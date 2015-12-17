@@ -41,14 +41,15 @@ class HtmlGenerator implements Generator {
 	{
 		return switch expr.expr {
 		case VPar(hlist):
-			'<p ${posAttrs(expr.pos)}>${iterHorizontal(hlist)}</p>';
+			indent(curDepth) + '<p ${posAttrs(expr.pos)}>${iterHorizontal(hlist)}</p>';
 		case VSection(label, name, contents):
 			var dep = curDepth + 1;
 			var lab = curLabel != "" ? '$curLabel.$label' : label;
 			var cl = dep == 1 ? "chapter" : "section";
-			'<article class="$cl" id="${urlEncode(lab)}" ${posAttrs(expr.pos)}>\n' +
-			'<h$dep ${posAttrs(expr.pos)}>${iterHorizontal(name)}</h$dep>\n' +
-			iterVertical(contents, dep, lab) + "\n</article>";
+			indent(curDepth) + '<article class="$cl" id="${urlEncode(lab)}" ${posAttrs(expr.pos)}>\n' +
+			indent(dep) + '<h$dep ${posAttrs(expr.pos)}>${iterHorizontal(name)}</h$dep>\n' +
+			iterVertical(contents, dep, lab) + "\n" +
+			indent(curDepth) + "</article>";
 		}
 	}
 
