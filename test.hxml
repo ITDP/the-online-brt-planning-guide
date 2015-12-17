@@ -1,0 +1,4 @@
+--interp
+-main format.tests.Main
+-lib utest
+
