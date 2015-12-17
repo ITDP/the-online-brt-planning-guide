@@ -1,0 +1,11 @@
+-neko bin/generate-html.n
+-main format.Main
+-D cli=generate-html
+-cmd nekotools boot bin/generate-html.n
+
+--next
+
+--interp
+-main format.tests.Main
+-lib utest
+

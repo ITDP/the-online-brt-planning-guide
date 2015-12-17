@@ -1,0 +1,5 @@
+package format;
+
+interface Generator {
+}
+
