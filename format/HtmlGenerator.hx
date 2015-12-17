@@ -14,47 +14,47 @@ class HtmlGenerator implements Generator {
 	function posAttrs(pos:Pos)
 		return 'x-src-file="${htmlEscape(pos.fileName)}" x-src-line=${pos.lineNumber}';
 
-	function iterHorizontal(list:HList)
-		return [ for (h in list) generateHorizontal(h) ].join("");
-
 	function generateHorizontal(expr:Expr<HDef>)
 	{
+		if (expr == null)
+			return "";
 		return switch expr.expr {
 		case HText(text):
 			'<span ${posAttrs(expr.pos)}>${htmlEscape(text)}</span>';
-		case HEmph(hlist):
-			var inner = [ for (h in hlist) generateHorizontal(h) ].join("");
-			'<em ${posAttrs(expr.pos)}>${iterHorizontal(hlist)}</em>';
-		case HHighlight(hlist):
-			var inner = [ for (h in hlist) generateHorizontal(h) ].join("");
-			'<strong ${posAttrs(expr.pos)}>${iterHorizontal(hlist)}</strong>';
+		case HEmph(expr):
+			'<em ${posAttrs(expr.pos)}>${generateHorizontal(expr)}</em>';
+		case HHighlight(expr):
+			'<strong ${posAttrs(expr.pos)}>${generateHorizontal(expr)}</strong>';
+		case HList(list):
+			[ for (h in list) generateHorizontal(h) ].join("");
 		}
 	}
-
-	function iterVertical(list:VList, ?depth=0, ?label="")
-		return [ for (v in list) generateVertical(v, depth, label) ].join("\n");
 
 	function indent(depth:Int)
 		return depth > 0 ? StringTools.rpad("", "\t", depth) : "";
 
 	function generateVertical(expr:Expr<VDef>, ?curDepth=0, ?curLabel="")
 	{
+		if (expr == null)
+			return "";
 		return switch expr.expr {
-		case VPar(hlist):
-			indent(curDepth) + '<p ${posAttrs(expr.pos)}>${iterHorizontal(hlist)}</p>';
+		case VPar(par):
+			indent(curDepth) + '<p ${posAttrs(expr.pos)}>${generateHorizontal(par)}</p>';
 		case VSection(label, name, contents):
 			var dep = curDepth + 1;
 			var lab = curLabel != "" ? '$curLabel.$label' : label;
 			var cl = dep == 1 ? "chapter" : "section";
 			indent(curDepth) + '<article class="$cl" id="${urlEncode(lab)}" ${posAttrs(expr.pos)}>\n' +
-			indent(dep) + '<h$dep ${posAttrs(expr.pos)}>${iterHorizontal(name)}</h$dep>\n' +
-			iterVertical(contents, dep, lab) + "\n" +
+			indent(dep) + '<h$dep ${posAttrs(expr.pos)}>${generateHorizontal(name)}</h$dep>\n' +
+			generateVertical(contents, dep, lab) + "\n" +
 			indent(curDepth) + "</article>";
+		case VList(list):
+			[ for (v in list) generateVertical(v, curDepth, curLabel) ].join("\n");
 		}
 	}
 
 	public function generateDocument(doc:Document)
-		api.saveContent("index.html", iterVertical(doc));
+		api.saveContent("index.html", generateVertical(doc));
 
 	public function new(?api:OutputApi) {
 		if (api == null)

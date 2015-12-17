@@ -4,6 +4,8 @@ import format.Document;
 import haxe.PosInfos;
 import utest.Assert;
 
+import format.tests.MacroHelpers.*;
+
 class HtmlGeneration {
 	@:access(format.HtmlGenerator.generateHorizontal)
 	function genH(expr:Expr<HDef>)
@@ -21,43 +23,37 @@ class HtmlGeneration {
 		return buf.toString();
 	}
 
-	function mk<Def>(expr:Def, ?pos:Pos)
-	{
-		if (pos == null)
-			pos = { fileName : "answer", lineNumber : 42 };
-		return { expr : expr, pos : pos };
-	}
-
 	public function test_000_garbage()
 	{
-		trace(genDoc([
-			mk(VPar([
-				mk(HText("Hello, ")),
-				mk(HEmph([
-					mk(HText("World"))
+		// beware, these are pseudo expressions that are made into real
+		// ones by the `make` macro
+		trace(genDoc(make(VList([
+			VPar(HList([
+				HText("Hello, "),
+				HEmph(HText("World")),
+				HText("! My name is "),
+				HHighlight(HList([
+					HText("BRT."),
+					HText("Robrt")
 				])),
-				mk(HText("!  My name is ")),
-				mk(HHighlight([
-					mk(HText("BRT.")),
-					mk(HText("Robrt"))
-				])),
-				mk(HText("."))
+				HText(".")
 			])),
-			mk(VSection("chapter", [ mk(HText("A chapter")) ], [
-				mk(VPar([ mk(HText("lalala")) ])),
-				mk(VSection("section", [ mk(HText("A section")) ], [
-					mk(VPar([ mk(HText("lalala")) ])),
-					mk(VSection("sub-section", [ mk(HText("A subsection")) ], [
-						mk(VPar([ mk(HText("lalala")) ])),
+			VSection("chapter-label", HText("A chapter title"), VList([
+				VPar(HText("lalala")),
+				VSection("section-label", HText("A section title"), VList([
+					VPar(HText("lalala")),
+					VSection("sub-section-label", HText("A subsection title"), VList([
+						VPar(HText("lalala"))
 					]))
 				]))
 			]))
-		]));
+		]))));
+		Assert.isTrue(true);
 	}
 
 	public function test_001_empty()
 	{
-		Assert.equals("", genDoc([]));
+		Assert.equals("", genDoc(make(null)));
 	}
 
 	public function new() {}
