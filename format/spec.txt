@@ -28,14 +28,16 @@ or
 ```
 
 
-## Input encoding
+## General concepts
+
+### Input encoding
 
 Source files should be encoded either in plain ASCII – 8-bit, but without the
 use of any extended ASCII code page characters – or UTF-8.  Byte-order marks
 should *not* be present.
 
 
-## Escaping
+### Escaping
 
 Several characters and character sequences have special meaning.  To produce
 output with these characters, one must first escape them by preceding each one
@@ -43,7 +45,7 @@ with an ASCII backslash (`\`).  The backslash is one of these characters with sp
 meaning.
 
 
-## Comments
+### Comments
 
 Comments allow annotations to the source file, but are not included in the
 generated output.  They follow the C++/Haxe/Java syntax:
@@ -56,7 +58,7 @@ at the end.  All content, including the starting and finishing delimiters, is
 also discarded.
 
 
-## Commands
+### Commands
 
 Commands are text sequences that will be processed internally by parser.  There
 are a dozen or so available commands to the user; they will be presented
@@ -73,7 +75,7 @@ name and it's first argument, the result is unspecified.
 // will define this behavior later, depending on if `\command arg` is allowed or not
 
 
-## Whitespace
+### Whitespace
 
 The existence of whitespace is kept in the generated output – at least, when
 the context allows any whitespace there – but any sequence of whitespace
@@ -81,19 +83,19 @@ characters larger than one is automatically converted into a single whitespace
 character, usually the ASCII space character.
 
 
-## Non generated elements
+### Non generated elements
 
 // TODO \beginignore[mark]\endignore[mark]  (vertical only)
 
 
-## Pass-through elements
+### Pass-through elements
 
 // TODO inline `` and ``` blocks
 // TODO \begincode[mark]\endcode[mark]  (vertical only)
 // PROPOSE \inlinecode[mark]{} to able to output the ` delimiter in horizontal mode
 
 
-## Input switching
+### Input switching
 
 Input can be read from other files by using the `\pipein{path-to-file}` command.
 

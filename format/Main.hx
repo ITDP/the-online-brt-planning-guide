@@ -28,7 +28,7 @@ class Main {
 #else
 		var p = new format.Parser();
 		var doc = p.parseStream(Sys.stdin(), Sys.getCwd());
-		trace(doc);
+		// trace(doc);
 
 		var buf = new StringBuf();
 		var api = {

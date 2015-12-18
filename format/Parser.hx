@@ -21,10 +21,12 @@ class Parser {
 	function makeExpr<Def>(expr:Def, ?pos:Pos)
 		return { expr : expr, pos : pos != null ? pos : makePos() };
 
-	function peek(?offset=0)
+	function peek(?offset=0, ?len=1)
 	{
 		var i = input.pos + offset;
-		return i < input.buf.length ? input.buf.charAt(i) : null;
+		if (i + len > input.buf.length)
+			return null;
+		return input.buf.substr(i, len);
 	}
 
 	function parseHorizontal():Expr<HDef>
@@ -35,6 +37,8 @@ class Parser {
 			switch peek() {
 			case null:
 				return null;
+			case "\r":
+				input.pos++;
 			case " ", "\t":
 				input.pos++;
 				if (peek(0) != null && !peek(0).isSpace(0))
@@ -55,7 +59,83 @@ class Parser {
 		return makeExpr(HText(buf.toString()), pos);
 	}
 
-	function parseVertical():Expr<VDef>
+	function readFancyLabel()
+	{
+		if (peek(0, 3) != ":::")
+			return null;
+		var pos = makePos();
+		while (true) {
+			switch peek() {
+			case c if (c.isSpace(0)):
+				input.pos++;
+			case _:  // NOOP
+			}
+		}
+		var buf = new StringBuf();
+		while (true) {
+			switch (peek()) {
+			case c if (~/[a-zA-Z0-9]/.match(c)):
+				input.pos++;
+				buf.add(c);
+			case c if (c.isSpace(0)):
+				input.pos++;
+				break;
+			case inv:
+				throw { msg : 'Invalid char for label: $inv', pos : pos };
+			}
+		}
+		return buf.toString();
+	}
+
+	function readFancyHeading()
+	{
+		var rewind = {
+			pos : input.pos,
+			lino : input.lino
+		};
+
+		var pat = ~/^(#+)(\*)?([^#]|(\\#))*\n/;
+		if (!pat.match(input.buf.substr(input.pos)))
+			return null;
+		var pos = makePos();
+
+		var depth = pat.matched(1).length;
+		if (depth > 6)
+			throw { msg : "Hierachy depth must be between 1 (chapter) and 6", pos : pos };
+		input.pos += depth;
+
+		if (pat.matched(2) == "*") {
+			trace("TODO unnumbered section; don't know what to do with this yet");
+			input.pos++;
+		}
+
+		var name = [];
+		var label = null;
+		while (true) {
+			var h = parseHorizontal();
+			if (h == null)
+				break;
+			name.push(h);
+			var lb = readFancyLabel();
+			if (lb != null) {
+				if (label != null)
+					throw { msg : "Multiple labels for a single vertical element aren't allowed", pos : pos };
+				label = lb;
+			}
+		}
+		var nameExpr = switch name.length {
+		case 0: throw { msg : "A section must have a name", pos : pos };
+		case 1: name[0];
+		case _: makeExpr(HList(name), name[0].pos);
+		}
+
+		if (label == null)
+			label = "fuck!!!";
+
+		return { depth : depth, label : label, name : nameExpr, pos: pos, rewind : rewind };
+	}
+
+	function parseVertical(depth:Int):Expr<VDef>
 	{
 		var list = [];
 		while (true) {
@@ -65,6 +145,22 @@ class Parser {
 			case "\n":
 				input.pos++;
 				input.lino++;
+			case "#": // fancy
+				var heading = readFancyHeading();
+				if (heading != null) {
+					if (heading.depth == depth + 1) {
+						list.push(makeExpr(VSection(heading.label, heading.name, parseVertical(heading.depth)), heading.pos));
+					} else if (heading.depth <= depth) {
+						input.pos = heading.rewind.pos;
+						input.lino = heading.rewind.lino;
+						break;
+					} else {
+						throw { msg : 'Jumping from hierachy depth $depth to ${heading.depth} is not allowed', pos : heading.pos };
+					}
+				} else {
+					trace(makePos());
+					input.pos++;
+				}
 			case _:
 				var par = [];
 				while (true) {
@@ -90,7 +186,7 @@ class Parser {
 	}
 
 	function parseDocument():Document
-		return parseVertical();
+		return parseVertical(0);
 
 	public function parseStream(stream:haxe.io.Input, ?basePath=".")
 	{
