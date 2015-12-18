@@ -30,6 +30,7 @@ class Parser {
 		return input.buf.substr(i, len);
 	}
 
+	// FIXME handle inline fancy syntax; example: inline :::label
 	function parseHorizontal(ltrim=false):Expr<HDef>
 	{
 		var pos = makePos();
