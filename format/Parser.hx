@@ -87,7 +87,7 @@ class Parser {
 		return buf.toString();
 	}
 
-	function readFancyHeading()
+	function parseFancyHeading(curDepth:Int)
 	{
 		var rewind = {
 			pos : input.pos,
@@ -102,6 +102,11 @@ class Parser {
 		var depth = pat.matched(1).length;
 		if (depth > 6)
 			throw { msg : "Hierachy depth must be between 1 (chapter) and 6", pos : pos };
+
+		// don't advance the input or finish parsing if we would need to rewind to close some sections
+		if (depth <= curDepth)
+			return { depth : depth, label : null, name : null, pos : pos };
+
 		input.pos += depth;
 
 		if (pat.matched(2) == "*") {
@@ -132,7 +137,7 @@ class Parser {
 		if (label == null)
 			label = "fuck!!!";
 
-		return { depth : depth, label : label, name : nameExpr, pos: pos, rewind : rewind };
+		return { depth : depth, label : label, name : nameExpr, pos: pos };
 	}
 
 	function parseVertical(depth:Int):Expr<VDef>
@@ -146,14 +151,13 @@ class Parser {
 				input.pos++;
 				input.lino++;
 			case "#": // fancy
-				var heading = readFancyHeading();
+				var heading = parseFancyHeading(depth);
 				if (heading != null) {
-					if (heading.depth == depth + 1) {
-						list.push(makeExpr(VSection(heading.label, heading.name, parseVertical(heading.depth)), heading.pos));
-					} else if (heading.depth <= depth) {
-						input.pos = heading.rewind.pos;
-						input.lino = heading.rewind.lino;
+					if (heading.depth <= depth) {
+						// must close the previous section first
 						break;
+					} else if (heading.depth == depth + 1) {
+						list.push(makeExpr(VSection(heading.label, heading.name, parseVertical(heading.depth)), heading.pos));
 					} else {
 						throw { msg : 'Jumping from hierachy depth $depth to ${heading.depth} is not allowed', pos : heading.pos };
 					}
