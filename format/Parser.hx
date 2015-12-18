@@ -35,12 +35,17 @@ class Parser {
 			switch peek() {
 			case null:
 				return null;
+			case " ", "\t":
+				input.pos++;
+				if (peek(0) != null && !peek(0).isSpace(0))
+					buf.add(" ");
 			case "\n":
 				input.pos++;
 				input.lino++;
 				if (StringTools.trim(buf.toString()) == "")
 					return null;
-				buf.add("\n");
+				if (peek(0) != null && !peek(0).isSpace(0))
+					buf.add(" ");
 				break;
 			case c:
 				input.pos++;
@@ -52,47 +57,40 @@ class Parser {
 
 	function parseVertical():Expr<VDef>
 	{
+		var list = [];
 		while (true) {
 			switch peek() {
 			case null:
-				return null;
+				break;
 			case "\n":
 				input.pos++;
 				input.lino++;
 			case _:
-				var list = [];
+				var par = [];
 				while (true) {
 					var h = parseHorizontal();
 					if (h == null)
 						break;
-					list.push(h);
+					par.push(h);
 				}
-				if (list.length == 0)
-					return null;
-				var text = switch list.length {
-				case 1: list[0];
-				case _: makeExpr(HList(list), list[0].pos);
+				if (par.length == 0)
+					continue;
+				var text = switch par.length {
+				case 1: par[0];
+				case _: makeExpr(HList(par), par[0].pos);
 				}
-				return makeExpr(VPar(text), text.pos);
+				list.push(makeExpr(VPar(text), text.pos));
 			}
-		}
-	}
-
-	function parseDocument():Document
-	{
-		var list = [];
-		while (true) {
-			var v = parseVertical();
-			if (v == null)
-				break;
-			list.push(v);
 		}
 		return switch list.length {
 		case 0: null;
 		case 1: list[0];
-		case _: { expr : VList(list), pos : list[0].pos };
+		case _: makeExpr(VList(list), list[0].pos);
 		}
 	}
+
+	function parseDocument():Document
+		return parseVertical();
 
 	public function parseStream(stream:haxe.io.Input, ?basePath=".")
 	{
