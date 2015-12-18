@@ -10,7 +10,7 @@ package format;
 	However, label matching and validation has not been performed yet, nor
 	have elements such as sections and figures been numbered or asset paths
 	been validated.
-	
+
 	These steps are done in the next stage, where each Expr<VDef/HDef> is
 	transformed into a Expr<GenVDef/GenHDef>,before being consumed by the
 	output routines – namely, the Html and TeX generators; this is the
@@ -66,7 +66,7 @@ enum HDef {
 /*
 	A vertical expression definition.
 
-	Expr<VDef> are used to insert some form of vertical or block element, such as 
+	Expr<VDef> are used to insert some form of vertical or block element, such as
 	paragraphs, sections, figures, tables, etc.
 
 	As with Expr<VDef>, vertical lists should be built with the VList
