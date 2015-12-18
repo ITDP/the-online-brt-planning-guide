@@ -155,13 +155,12 @@ class Parser {
 						// must close the previous section first
 						break;
 					} else if (heading.depth == depth + 1) {
-						trace(heading.label);
 						list.push(makeExpr(VSection(heading.label, heading.name, parseVertical(heading.depth)), heading.pos));
 					} else {
 						throw { msg : 'Jumping from hierachy depth $depth to ${heading.depth} is not allowed', pos : heading.pos };
 					}
 				} else {
-					trace(makePos());
+					trace('TODO handle other fancy features at ${makePos()}');
 					input.pos++;
 				}
 			case _:
