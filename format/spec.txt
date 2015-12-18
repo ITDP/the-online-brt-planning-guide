@@ -1,0 +1,173 @@
+#*The BRTPG source file format specification
+// since this is more of an article than a book, I'm abusing the sectioning
+// system by creating the entire document in a unnumbered chapter
+// also, we need commands for the document title, other properties, and for placement of the toc
+
+This document describes a markup language.  It is itself written in the same
+format, and should be equally parseable by any processor implementation.
+
+This is a technical description; users are advised to seek the accompanying
+writer's guide for a more friendly introduction to the format.
+
+
+##*Overview
+
+The format is inspired by both Markdown and TeX, and is based on two almost
+parallel paradigms: simple markup and text commands.
+
+For instance, to produce a chapter section, one can either use
+
+```
+## The section title
+```
+
+or
+
+```
+\section{The section title}
+```
+
+
+## Input encoding
+
+Source files should be encoded either in plain ASCII – 8-bit, but without the
+use of any extended ASCII code page characters – or UTF-8.  Byte-order marks
+should *not* be present.
+
+
+## Escaping
+
+Several characters and character sequences have special meaning.  To produce
+output with these characters, one must first escape them by preceding each one
+with an ASCII backslash (`\`).  The backslash is one of these characters with special
+meaning.
+
+
+## Comments
+
+Comments allow annotations to the source file, but are not included in the
+generated output.  They follow the C++/Haxe/Java syntax:
+
+Line comments start with `\\`.  All content including and after the `\\` is
+discarded.
+
+Block comments are chunks of text delimited by `/*` at the beginning and `*/`
+at the end.  All content, including the starting and finishing delimiters, is
+also discarded.
+
+
+## Commands
+
+Commands are text sequences that will be processed internally by parser.  There
+are a dozen or so available commands to the user; they will be presented
+throughout this document.  Users can't define new commands.
+
+Each command has a name – a sequence of more than one ASCII letters and/or
+numbers – and a sequence of both optional and required arguments.
+
+The command calling convention is a `\`, followed by the command name and its
+arguments, in the same order as they are defined.  Optional arguments should be
+wrapped in brackets (`[]`).  Required arguments should be encased in braces
+(`{}`).  If there are spaces between command arguments or between the command
+name and it's first argument, the result is unspecified.
+// will define this behavior later, depending on if `\command arg` is allowed or not
+
+
+## Whitespace
+
+The existence of whitespace is kept in the generated output – at least, when
+the context allows any whitespace there – but any sequence of whitespace
+characters larger than one is automatically converted into a single whitespace
+character, usually the ASCII space character.
+
+
+## Non generated elements
+
+// TODO \beginignore[mark]\endignore[mark]  (vertical only)
+
+
+## Pass-through elements
+
+// TODO inline `` and ``` blocks
+// TODO \begincode[mark]\endcode[mark]  (vertical only)
+// PROPOSE \inlinecode[mark]{} to able to output the ` delimiter in horizontal mode
+
+
+## Input switching
+
+Input can be read from other files by using the `\pipein{path-to-file}` command.
+
+
+## Vertical elements
+
+The document is divided in lists of vertical and horizontal elements.
+
+Vertical elements are the basic building blocks, and include sections, figures,
+tables, equations and paragraphs.
+
+The start of a new vertical element immediately ends the previous vertical element.
+Vertical elements  – in particular, paragraphs – can also be terminated by visibly blank
+lines.
+
+It is however unspecified whether vertical elements (such as a figure placement
+command) created inside other obvious vertical elements (such as a paragraph)
+should evaluate or result in a parsing error.
+// argument for evaluate: consistency in parsing
+// argument for error: source code readability
+
+### Paragraphs
+
+// TODO
+
+### Sections
+
+// TODO #Title and \section{Title}, and unnumbered variants
+
+### Paragraph title
+
+// TODO \partitle and ***
+// *** might be annoying to implement correctly because of emphasis (* and **)
+
+### Vertical pause
+
+// TODO \breathe
+
+### Boxes
+
+// TODO ???
+
+### Quotes
+
+// TODO >@ and \quote[author]{quote}
+
+### Figures
+
+// TODO #FIG#... and \figure{...}
+
+### Tables
+
+// TODO #TAB#... and \table{...}
+// TODO fake (image) alternatives
+
+### Equations
+
+// TODO #EQ#... and \equation{...}
+// TODO fake (image) alternatives
+
+
+## Labels for vertical elements
+
+// TODO labels must be a-zA-Z0-9 and must be unique in that section
+// TODO \label{a-label} and :::a-label
+
+
+## Horizontal elements
+
+Vertical elements have as children lists of horizontal elements.  Paragraphs
+are composed of chunks of text, and figures require chunks of text for the
+caption and copyright information.
+
+### References to vertical elements
+
+// TODO ???
+
