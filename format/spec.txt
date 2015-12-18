@@ -1,4 +1,5 @@
 #*The BRTPG source file format specification
+:::the-spec
 // since this is more of an article than a book, I'm abusing the sectioning
 // system by creating the entire document in a unnumbered chapter
 // also, we need commands for the document title, other properties, and for placement of the toc

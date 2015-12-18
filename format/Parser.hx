@@ -2,6 +2,7 @@ package format;
 
 import format.Document;
 
+using format.ExprTools;
 using StringTools;
 
 typedef Input = {
@@ -29,7 +30,7 @@ class Parser {
 		return input.buf.substr(i, len);
 	}
 
-	function parseHorizontal():Expr<HDef>
+	function parseHorizontal(ltrim=false):Expr<HDef>
 	{
 		var pos = makePos();
 		var buf = new StringBuf();
@@ -41,7 +42,7 @@ class Parser {
 				input.pos++;
 			case " ", "\t":
 				input.pos++;
-				if (peek(0) != null && !peek(0).isSpace(0))
+				if (!ltrim && peek(0) != null && !peek(0).isSpace(0))
 					buf.add(" ");
 			case "\n":
 				input.pos++;
@@ -52,6 +53,7 @@ class Parser {
 					buf.add(" ");
 				break;
 			case c:
+				ltrim = false;
 				input.pos++;
 				buf.add(c);
 			}
@@ -64,17 +66,13 @@ class Parser {
 		if (peek(0, 3) != ":::")
 			return null;
 		var pos = makePos();
-		while (true) {
-			switch peek() {
-			case c if (c.isSpace(0)):
-				input.pos++;
-			case _:  // NOOP
-			}
-		}
+		input.pos += 3;
+		while (peek().isSpace(0))
+			input.pos++;
 		var buf = new StringBuf();
 		while (true) {
 			switch (peek()) {
-			case c if (~/[a-zA-Z0-9]/.match(c)):
+			case c if (~/[a-z0-9-]/.match(c)):
 				input.pos++;
 				buf.add(c);
 			case c if (c.isSpace(0)):
@@ -117,7 +115,7 @@ class Parser {
 		var name = [];
 		var label = null;
 		while (true) {
-			var h = parseHorizontal();
+			var h = parseHorizontal(true);
 			if (h == null)
 				break;
 			name.push(h);
@@ -135,7 +133,7 @@ class Parser {
 		}
 
 		if (label == null)
-			label = "fuck!!!";
+			label = nameExpr.toLabel();
 
 		return { depth : depth, label : label, name : nameExpr, pos: pos };
 	}
@@ -157,6 +155,7 @@ class Parser {
 						// must close the previous section first
 						break;
 					} else if (heading.depth == depth + 1) {
+						trace(heading.label);
 						list.push(makeExpr(VSection(heading.label, heading.name, parseVertical(heading.depth)), heading.pos));
 					} else {
 						throw { msg : 'Jumping from hierachy depth $depth to ${heading.depth} is not allowed', pos : heading.pos };
@@ -168,7 +167,7 @@ class Parser {
 			case _:
 				var par = [];
 				while (true) {
-					var h = parseHorizontal();
+					var h = parseHorizontal(true);
 					if (h == null)
 						break;
 					par.push(h);
