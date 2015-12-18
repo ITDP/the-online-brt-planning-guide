@@ -1,0 +1,525 @@
+# The BRTPG source file format specification
+
+This document describes how the source files are recognized 
+and processed by the parser of the BRTPG (The Bus Rapid Transit Planning Guide)
+website to propose changes in the book.
+
+At the point of this writing, this is being developed as a proof of
+concept, so some things are being tested and defined. This document shall be
+part of the repository and updated by users as well.
+
+
+## Overview
+
+ROBRT is the continuous integration tool created to allow collaboration
+in the production of the BRTPG using git, a free distributed version control system
+and github, a hosting web service (free for open-source projects) to coordinated 
+distribution tool. ROBRT source-code itself is available at github too.
+
+Ideally, a collaborator must download and install git and create an account in git hub to
+fork the project, edit the content of source files and submit changes.
+Those changes will be processed and (if the process is sucessfull) displayed
+as a webpage with the current guide style at a given temporary address,
+so the collaborator can view and work in the result.
+
+The source code uses a 'markdown inspired with TeX sprinkles' format
+
+Markdown is an easy way to write plain text files, that can provide information about the content
+without polluting the source heavilly.
+
+The writer must centraly worry about the content and its semantic meaning, and not about
+formatting the text. Format decisions are let to the publisher and can be changed anytime in 
+a uniform way througout the book.
+
+Markdown uses special caracters, such as \, #, : and @, to indicate the semantic meaning of a given flow
+of text. This has the down-side that a writer willing to use some special characters at certain text positions
+will have use an alternative way (escaped caracters discussed bellow).
+
+To allow dynamic cross references (numbering and links) that are harder to break when things change place, one must use commands, as using marks for this would not improve readability. This useful commands can mostly be thinked of as text replacement tools.
+
+Additionally, some markdown sintaxe have equivalent commands that can be used as replacements in a more standard way which are easier to memorize, but eventually makes the source harder to read. Understanding the extended command formats can be useful for the writer to understand the markdown sintaxe and gain confidence about how to using the markdown flags.
+
+Commands may workout off the specifications given here, when there is no ambiguity about the intention of its use, but one shall not rely on that.
+
+Besides the generation of publishing formats, the processing of the source file has the objective of promoting the readability of the source document and assist the writer by making sure its intentions are expressed and preventing mistakes, that is why when commands and marks are demanded in visible places and the process is interrupted and 'errors' are issued both when valid commands are found in hard to spot places or unknown commands attempts are verified.
+
+### Command basics
+
+Commands start with the back-slash character followed by the command name and as many arguments as required within brackets like \command-name{first-argument}{second-argument}; for example: 
+
+. \\fignum{corridor-saturation}
+. \\endbox
+
+
+## Vertical blocks
+
+The ROBRT markdown does not care if a text 
+is split
+in several lines, moving the text to the following line
+has the same effect as a space in the same line.
+
+The book elements -- such as a paragraph, a list, a table or a figure -- should be split by a blank line (or more if the writer prefer to improve the readability of the source). The content between two blank lines is a vertical block. A line with only spaces and/or tabs is considered a blank line for this matter.
+
+To control lines within a paragraph, a list should be used,
+if two paragraphs within the same section requires some distance in order to
+separate the ideas (or "a pause") a vertical space mark (or command) 
+between two paragraphs should be used.
+
+In practice a writer can think of the vertical block as a continuous text line 
+with "returns" placed as its convenience to improve readability.
+
+Most markdown sintaxe is required at the beginning of a vertical block to inform its content and usually informs the nature of the content of till the end of the vertical block. No commands or marks at the beginning usually indicates a regular paragraph (that might be affected by a previous command or mark that acts over several vertical blocks) 
+
+
+## Horizontal blocks and Spacing
+
+Vertical blocks are further split in horizontal blocks. Thinking of a vertical block as a continuous line, the horizontal blocks are the words. Spaces, tabs, new lines are the regular delimiters of horizontal blocks, and having two of them usually  makes no difference in how the block will be processed, so one space between words   has  the   same effect   as several spaces and there is no harm in letting spaces at the end of a line (two new lines will end the vertical block though).
+
+Special characters (such as *,_,{, },=,: and @) and sequencies of special characters (such as //, **, /*, */ and :::) are also horizontal blocks delimiters if the context dictated by previous commands along the vertical block requires that. A special character or sequence may be required in a given context to split a vertical block, but having one or several spaces before or after a required delimiter has no effect. The writer should choose what improves readability of the source.
+
+\start-ignore{removed-feature}
+
+## Hidden vertical blocks
+
+Although the practice should be avoided, one can use commands that replaces markdown flags in the middle of a line (without separating it by blank lines). Doing that once might create up to three vertical blocks inside of what would visually appear as being only one. As a source editor, one must be aware of the possibility.
+
+It is also possible to make 'an in-line vertical block' using the markdown flag ||, this is particularly interesting to improve readability of short sections with one vertical block to title and one to  only paragraph, preventing the source to be too spread vertically. Doing this, will also hide vertical blocks.
+
+\end-ignore{removed-feature}
+
+## Escaped characters
+
+If one wants to use in the book, a special character that written in the source text file would be interpreted as a markdown character (let us say, for instance, start a regular paragraph with #), then one should use the 'escaped #', by using the sequence \# instead. A back slash must always be escaped (by \\) and the other characters that may require back-slash escaping are _*@{}[]=/: besides space, which, besides in the rare case discussed at the end of this section, will have exactly the same effect as space alone.
+
+Despite being accepted everywhere, there is no need to use them where they can not be interpreted with special meaning. For example there is no need to escape a # in the middle of a regular paragraph, only if it is to be used as the first character, * only needs to be escaped if in the beginning or in the end of a word, because separated by spaces it has no special meaning for the markdown.
+
+If one wants to write in the book a text sequence that coincides with a markdown flag or a command  (as /* for instance), on needs only to escape one of the characters.
+
+If one tries to escape a non-special character, it will be interpreted as an attempt to write a non-existent command.
+As commands are accepted everywhere in the source, the back-slash must always be escaped as \\. This is relevant to provide paths to files as command arguments using Windows directory separator. The universal style separator / can be used without need to escape on this cases.
+
+When providing file paths as arguments to commands the use of the escaped space is necessary to provide file paths that include spaces. Creating directories and files without using spaces and new lines is less error prone, though.
+
+
+\start-ignore{removed-feature}
+
+## In-line vertical block
+|| For better (or worst) source file readability, two vertical bars \|| can be used to markdown that
+a vertical block is finished. || Using this a second paragraph is written on the same line. 
+
+\end-ignore{removed-feature}
+
+
+\start-ignore{future-feature}
+
+## Intentional Spaces
+|| If the writer want to intentionally use more than one space between words, she must use:
+1. the command \\space{N} where N might be a number of fixed spaces (which the result may be unspecified depending on the style used) or a word which the length gives the spacing required. For example: \\space{total-vehicles} will add enough blank spaces from the last word (or beginning of paragraph) to fit the expression {total-vehicles}
+2. A 'word' starting with back-slash followed by as many hyphen/minus signs as the spacing required. For example:
+\\------ where the space given will be equivalent as to the word 'mmmmmm'
+
+\end-ignore{future-feature}
+
+
+## Suspend markdown interpretation
+
+If a long block of text is to be considered exactly as in the source, with spaces, tabs and line feeds one can suspend the interpretation of markdown and commands, this is not particularly useful except when writing about the markdown itself. If the book style is not using a mono-spaced font, result can be quite unexpected.
+
+The command to suspend markdown is \\start-code-block{label-argument} and the markdown to resume is \\end-code-block{label-argument}, where label-argument is any word of users choice that shall be matched in both commands. Until  an \\end-code-block command with the same argument is found, the source code will be published as seen in the source.
+
+To force readability in the source, both commands must be alone in a vertical block, the first and last empty line inside the code-block will be cut, if the writer wants to start or end the block with an empty line, it shall writ e two lines. If the start-code-block command is found out of the prescribed condition an error will be issued. If an end-block-code command with the same argument is found inside the block code without the prescribed condition, an error will also be issued.
+
+## Ignore block
+
+It is possible to maintain in the text source a section of the source that will be completely ignored in the publishing process. This is useful for temporary removal of sections under construction, so they do not pollute the output while other section is being tested.
+
+The commands to inform that a given block of source are \\start-ignore{label-argument} \\end-ignore{label-argument}, where label-argument is any word of users choice that shall be matched in both commands. Until  an \\end-ignore command with the same argument given by the \\start-ignore is found, the source code will not be published.
+
+Similarly to code-block commands, to force readability in the source, both \\start-ignore and \\end-ignore must be alone in a vertical block, if the start command is found out of the prescribed condition or end command with the same argument is found inside the ignored block code without the prescribed condition, an error will also be issued.
+
+## Comments
+
+Comments will not appear in the book, they shall be used to explain 
+underlying reasons or intentions of the text that will appear.
+The following ways are possible to write comments:
+
+*** line comment : 
+
+Using the markdown \// as follows:
+
+This text is to be published.\// this is a comment explaining this is a comment
+This text is published because it is in a new line, it shall have a space
+before it, if implementation is working fine.
+
+*** mark down block comment: 
+
+Using the markdown pair /* and */ as follows:
+
+\start-code-block{comment-example}
+This text is to be published /* this is a comment,
+
+as an example to show it works 
+even if I insert a new vertical block
+
+will span till a \*/ and this text is after a comment.
+\end-code-block{comment-example}
+
+
+## Markdown suspension, ignore block and comment precedence:
+
+The command or flag that appears first in the source will have precedence above all the others.
+
+One shall notice that the effect of comments and ignore commands are practically the same,
+still the proper used should be observed to correctly record the writer intention, in order 
+to make collaboration flow better.
+
+This three commands have precedence above all other commands, and all the encompassed vertical blocks are
+transformed  will be perceived as one (this is particularly relevant for the block-comment markdown that can start and end anywhere, although we strongly recommend its use to be such that it can be clearly perceived).
+
+## Including sources files - \\pipe-in 
+
+The content to be published should be spread in several files. For the BRTPG, our experience has shown that large sections may be split in two files and a single file may hold up to three small related sections, but the ideal is one section per file.
+
+To switch to the content of another file, the command \\pipe-in{path/to/file} should be used within the now called origin file. When the command is reached in the origin file, if the file can provided as argument can be found (now referred as destiny file) the content processing will be transfered to the destiny file considering the following:
+. the command and its argument must be alone in a line (that line  may be alone in a vertical block or not, otherwise an error is thrown.
+. after the destiny file is processed the content processing is returned to the origin file.
+. if the \\pipe-in command line is the only line in the vertical block, this block of the origin file  will be
+replaced by the vertical blocks of the destiny file.
+. if the command is not the first element of a vertical block (in the origin file), the first vertical block of the destiny file is appended to the vertical block of the origin file where the command is found. It does not matter if the destiny file start with blank lines.
+. if the command line is not the last line in the vertical block of the origin file, the remainder part of the vertical block of the origin file is appended to the last vertical block of the destiny file, it does not matter if the destiny file ends with blank lines.
+
+With this conditions the flow of vertical blocks is controlled only in the origin file.
+
+The destiny file can also have pipe-in commands inside it (there is no safeguards or warnings against an infinite sourcing loops in the processing); the ideal form of use for this command is to have a root file that controls the flows to other files (e.g. the sections of a chapter) allowing changing the order of topics. In fact, the whole book shall be the processing of only one file transfered to others this way.
+
+### File path argument
+
+File path arguments shall give the destiny file relatively to the origin file, directory can be indicated by / or \, but as \ is a reserved character, it shall be escaped, so it will be \\. The current file directory dot (.) is presumed and there is no need to indicate it, the upper directory is indicated by two dots (..), bellow some examples are explained:
+
+. \\pipe-in{introduction.md} transfer input to the file introduction.md in the same directory as the origin file;
+. \\pipe-in{intersection/overview.md} transfers the input to the file overview.md  in the directory intersection, which is in the same directory of the origin file;
+. \\pipe-in{intersection\\\\overview.md} is similar to the above;
+. \\pipe-in{../vehicle/tech-table.md} and \\pipein{..\\\\vehicle\\\\tech-table.md} input the file tech-table.md of the directory vehicle that is one level above the current file.
+. \\pipe-in{../vehicle/tech\ table.md} and \\pipein{..\\\\vehicle\\\\tech\ table.md} input the file named "tech table.md" (with space in the file name) of the directory vehicle that is one level above the current file.
+
+
+## Label
+
+Labels create named references that will mark its point of insertion outside book structure (i.e. not in the index) to be referenced from other places. The label name (or argument) has to start with an alphabet character, it can contain exclusively alphanumeric characters and - and end with a alphanumeric-character. Labels must be positioned before the text they want to refer to and they will not appear in the published output. Labels may be referred and search by its first letters only, but they should be long enough to prevent ambiguity and short enough to be easy to refer.
+
+Isolated labels are rarely necessary, as automatic labels are created form most of the book divisions (as discussed later in section \divname{book-divisions}), we present it first to facilitate the understanding of the concept.
+
+*** command form: 
+\\label{a-label}
+
+*** markdown form: 
+\:::a-label-1 
+
+*** Example of label inside the text:
+
+\start-code-block{label-example}
+
+Even intersections alone are usually less critical than stations, they represent a critical point along any BRT corridor. A poorly designed intersection or a poorly timed signal phase can substantially reduce system capacity and speed, specially by hindering stations. Finding solutions to optimizing intersection performance can do much to improve system efficiency. Generally, the three main :::design-objectives objectives of intersection design along a BRT corridor are to:
+
+1. Provide safe and convenient crossings for pedestrians;
+2. Minimize delay for BRT vehicles;
+3. Minimize delay for mixed traffic. 
+
+\end-code-block{label-example}
+
+## Paragraph title:
+
+Creates a paragraph with vertical emphasis that shall not be split from the paragraph that follows it,
+it will not be numbered nor referred in the book index. Wether in command form or markdown, it must
+be in the start of the vertical block and the title is considered everything till the end of the block.
+An optional label can be given to the paragraph. If none is provided, an automatic one is created,
+ by changing the whole text to small caps and replacing spaces by hyphen; if one is provided, no automatic is created though.
+
+*** command form:
+
+\\par-title{display}[label]
+
+\*** markdown form:
+
+\*\*\* Display \:::label
+
+\*\*\* Safety requirements \:::safety-check-list
+
+
+## Vertical pause
+
+To split subjects within the same book division unit, one must add a vertical pause... breathe space. The command (or the markdown) must be an isolated vertical block, or error is thrown.
+
+*** command form:
+
+\\v-space
+
+\*** markdown form:
+
+\*\*\*
+
+
+##  BOOK DIVISIONS 
+
+A vertical block starting with # informs that the block contains data for a book division (chapter, section, subsection) starting at that point. The level of the given division is informed by the number of # signs, up to six levels are permitted (currently referred as # Chapter, ## Section, ### Subsection, #### Subsubsection, ##### [Subsubsection] item and ###### [Subsubsection] subitem). The division will the division will span until another section of the same or higher level is started.
+
+Divisions will be numbered and indexed during the book generation, allowing flexibility in the inclusion and remotion of divisions. That is why they must be labeled and referred by names using the reference commands discussed at section \div-name(reference-commands). If no label is provided, an automatic one is generated. But if one is provided, then none is automatically generated (When referring to a section, one must verify if that is not the case; equally, when changing a label, one will be informed if any reference to it was broken when submitting the source to processing).
+
+By adding an \* at the end of the #...# markdown, the writer may also create a not numbered division (as the book foreword, executive summary or a chapter appendix), such division will appear on the index (unlikely the Paragraph Title, which is suitable for a chapter overview, for instance).
+
+When creating a division, numbered or not, one must be sure that it does not skip levels, that will generate an error when processing the source. The markdown notation of level shall not be confused with formatting the importance of the section. The formatting is let to the publisher, when declaring a non numbered division, the writer has already informed that its content is not part of the sequenced content, indicating its a supporting matter (in opposition to core matter).
+
+Bellow example of divisions header blocks:
+
+\start-code-block{eg}
+
+#* Executive Summary
+
+# Intersections and traffic signals
+
+## Basic concepts
+:::concepts
+
+### Intersection capacity
+::: formulas-for-capacity
+
+## Approach to intersection design
+::: introduction
+
+## Pedestrians and cyclists integration :::nmt
+
+\end-code-block{eg}
+
+
+### Automatic label generation for divisions
+
+If a label is not provided, the generator will create one automatically, by changing the whole text to small caps and replacing spaces by hyphens.
+
+Only the first two division of the previous examples will have automatic generated labels, that will be respectively:
+. executive-summary
+. intersections-and-traffic-signals
+
+Reference commands are allowed to use only part of the label, if they are not ambiguous.
+
+## Boxes
+
+Authors should use boxes to presents contents that are considered
+an important part of a division, but are an independent narrative
+as examples that join concepts of other subdivisions within the 
+division where they are included.
+
+A box is opened with three square brackets \[[[ followed by the box title till the end of the
+vertical block, like a division opening, an automatic will be created if one is not given in the block.
+
+Unlike divisions, where the end is defined when a similar
+or higher level division is started, boxes must be closed;
+this is done by three closing square brackets alone in a vertical block.
+If a block is not closed within the division it was opened, parsing is interrupted with
+an error message.
+
+In current proposal, boxes are (automatically) numbered after chapters.
+
+See bellow an example of box in a source file (there is a proper line
+comment in the closing block, which is ignored by the parser)
+
+\start-code-block{box-ex}
+
+[[[ Calculating station to intersection interference with a long red phase
+::: long-red-x-correction
+
+Where the relation between T_red and T_station is the most important...
+
+...
+
+Thus, at a value of 1.195 the high saturation leads to considerable congestion of the busway.
+
+]]] //end-long-red-x-corr
+
+\end-code-block{box-ex}
+
+## Quotes
+
+The BRTPG has introductory quotes for each section, those shall be entered like bellow in
+the source:
+
+\start-code-block{quote-ex}
+
+> Quote text as it may be until last @ author info Text
+
+\end-code-block{quote-ex}
+
+The greater-than symbol must be the first character of the text, followed by the quote, which can
+include emphasized text, without quotation marks, followed by an @ symbol (the last one of the block will be considered, if others are present they are not required to be escaped (despite it is a good idea to do so, so it gets evident for another reader).
+
+## Figures
+
+At this point, only image files are accepted as figures (in future implementations files with scripts to generate vetorial images are expected), in the BRTPG all figures are expected to have an descriptive caption and author information (even if they were created specially for the book). Optionally a label must be informed (otherwise an automatic one will be generated based on the file name) and a image size (small, medium, large and huge are allowed for the moment and in the absence of the information, medium is presumed).
+
+All the information about the figure must be placed within a vertical block started with \#FIG# or \#FIG:size# (if provided, the image size should be provided like this). Along the block, a relative path to the image file must be provided enclosed in square brackets, a label can also be provided (after the flag \:::), the remaining text along the block (that may carry emphasis as appropriate) will be treated as caption and copyright information, with the last part written after an @ symbol. 
+
+The following code block presents valid figure inputs:
+
+\start-code-block{photo-ex}
+
+#FIG# Motorcycles in Jakarta. @ Photo by John Ernst. [img/queue-fly-jkt.jpg]
+
+#FIG# Motorcycles [img/queue-fly-jkt.jpg] in Jakarta.@Photo by John Ernst. 
+
+#FIG:medium#
+[img/congested-intersection.jpg]
+The introduction of BRT and design changes to poorly controlled and congested
+intersections often leads to efficiency improvements for both public transport
+vehicles and mixed traffic.
+@Photo by Lloyd Wright.
+:::messy-cross
+
+\end-code-block{photo-ex}
+
+#TAB#
+Signal delay :::example-cross
+| Red light time  (seconds) | Green light time  (seconds) | Average signal delay (TF) (seconds) | Random queuing delay (TQs) (seconds) | Total signal delay (TS) (seconds) | Demand to signal capacity level (XSignal)
+|-----------|-----|----------------|-----------------|----------------|------------
+| 0  | 80 | 0.00  | 0.00   | 0.00   | 0.28
+| 10 | 70 | 0.87  | 0.00   | 0.87   | 0.32
+| 20 | 60 | 3.46  | 0.00   | 3.46   | 0.37
+| 30 | 50 | 7.79  | 0.00   | 7.79   | 0.44
+| 36 | 54 | 11.22 | 0.18   | 11.40  | 0.51
+| 40 | 40 | 13.85 | 2.25   | 16.10  | 0.56
+
+#EQ#
+Speed
+{V_segment = {D_segment} \over {Time_segment}  \dlarrow  Time_segment = {D_segment} \over {V_segment}}
+:::speed-eq
+
+#EQ:fake#
+Speed
+{img/eq-speed-definition.png}
+:::speed-eq
+
+![congested-intersection](img/congested-intersection.jpg
+"The introduction of BRT and design changes to poorly controlled and congested
+intersections often leads to efficiency improvements for both public transport
+vehicles and mixed traffic.  Photo by Lloyd Wright.")
+
+
+
+\fig fig-33 Um teste Public Domain assets/img.png
+
+
+
+
+
+\table Display escrito a vontade :::label 
+
+\eq
+
+
+\label
+
+
+
+\reftolabel{display-text}{label-to-refer}
+(IN PRINT THIS WOULD write "(page number)"
+
+\partitlename{label}
+
+\tablename{label} = internally equal to \partitlename{table-label}
+\tablenum{label} 
+\fignum{label}
+\figname{label}
+\eqnum{label}
+\eqname{label}
+\boxnum{label}
+\boxname{label}
+
+\divlevelname{label}
+\divnum{label}
+\divname{label}
+
+
+
+BOX:
+[[[Station saturation with multiple bays
+
+
+
+]]]
+
+
+\topartitle{lable}
+
+\linktolabelwithitstitle
+
+
+:::label,other-label
+
+\div{level}{display-title}{lable,other-label}
+\div{level}{display-title:::lable,other-label}
+\reldiv{level}{display-title}{lable,other-lable}
+\relativediv{level}{display-title}{lable,other-lable}
+\nonumberdiv{level}{display-title}{label,other-lable}
+\nonumberrelativediv{level}{display-title}{label,other-lable}
+
+
+\chapter{display-title}{lable, other-label}=\div{1}{display-title}{lable, other-label}
+\section{display-title}{lable, other-label}=\div{2}{display-title}{lable, other-label}
+\subsection{display-title}{lable, other-label}=\div{3}{display-title}{lable, other-label}
+\subsubsection{display-title}{lable, other-label}=\div{4}{display-title}{lable, other-label}
+\subsubsectionitem{display-title}{lable, other-label}=\div{5}{display-title}{lable, other-label}
+\subsubsectionsubitem{display-title}{lable, other label}=\div{6}{display-title}{lable, other-label}
+\fig[congested-intersection]
+{The introduction of BRT and design changes to poorly controlled and congested
+    intersections often leads to efficiency improvements for both public transport
+        vehicles and mixed traffic.}
+{Photo by Lloyd Wright.}
+[medium]
+{img/congested-intersection.jpg}
+
+\fig
+:caption={The introduction of BRT and design changes to poorly controlled and congested
+    intersections often leads to efficiency improvements for both public transport
+        vehicles and mixed traffic.}
+        :label={congested-intersection}
+        :copyright={Photo by Lloyd Wright.}
+        :path={img/congested-intersection.jpg}
+
+
+\box{display-title}{label, other lable}
+\endbox
+
+[[[display-title:::label, other lable
+]]]
+
+\quote{quote Text}{author info Text}
+
+
+
+\vbreak
+
+
+
+\table{display-title}{label}=label{table-lable}
+
+\equation{display-title}{label}
+
+
+{display-title}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
