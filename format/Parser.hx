@@ -69,16 +69,20 @@ class Parser {
 			input.pos++;
 			buf.add(c);
 		}
+		function readUntil(end) {
+				var i = input.buf.indexOf(end, input.pos);
+				var ret = i > -1 ? input.buf.substring(input.pos, i + end.length) : input.buf.substring(input.pos);
+				input.pos += ret.length;
+				return ret;
+		}
 		while (true) {
 			switch peek() {
 			case null:
 				return null;
 			case "/" if (peek(1) == "/"):
-				var nl = input.buf.indexOf("\n", input.pos);
-				input.pos = nl > -1 ? nl + 1 : input.buf.length;
+				readUntil("\n");
 			case "/" if (peek(1) == "*"):
-				var end = input.buf.indexOf("*/", input.pos);
-				input.pos = end > -1 ? end + 2 : input.buf.length;
+				readUntil("*/");
 			case "\r":
 				input.pos++;
 			case " ", "\t":
