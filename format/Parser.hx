@@ -16,6 +16,8 @@ typedef Input = {
 class Parser {
 	var input:Input;
 
+	var label:Null<String>;
+
 	function makePos():Pos
 		return { fileName : input.fname, lineNumber : input.lino };
 
@@ -30,11 +32,40 @@ class Parser {
 		return input.buf.substr(i, len);
 	}
 
-	// FIXME handle inline fancy syntax; example: inline :::label
+	function parseFancyLabel()
+	{
+		if (peek(0, 3) != ":::")
+			return null;
+		var pos = makePos();
+		input.pos += 3;
+		while (peek().isSpace(0))
+			input.pos++;
+		var buf = new StringBuf();
+		while (true) {
+			switch (peek()) {
+			case null:
+				break;
+			case c if (~/[a-z0-9-]/.match(c)):
+				input.pos++;
+				buf.add(c);
+			case c if (c.isSpace(0)):
+				break;
+			case inv:
+				throw { msg : 'Invalid char for label: $inv', pos : pos };
+			}
+		}
+		return buf.toString();
+	}
+
 	function parseHorizontal(ltrim=false):Expr<HDef>
 	{
 		var pos = makePos();
 		var buf = new StringBuf();
+		function fallback(c) {
+			ltrim = false;
+			input.pos++;
+			buf.add(c);
+		}
 		while (true) {
 			switch peek() {
 			case null:
@@ -56,6 +87,16 @@ class Parser {
 				if (peek(0) != null && !peek(0).isSpace(0))
 					buf.add(" ");
 				break;
+			case ":":
+				var pos = makePos();
+				var lb = parseFancyLabel();
+				if (lb == null) {
+					fallback(":");
+					break;
+				}
+				if (label != null)
+					throw { msg : "Can't overwrite label", pos : pos  };
+				label = lb;
 			case c:
 				ltrim = false;
 				input.pos++;
@@ -63,30 +104,6 @@ class Parser {
 			}
 		}
 		return makeExpr(HText(buf.toString()), pos);
-	}
-
-	function readFancyLabel()
-	{
-		if (peek(0, 3) != ":::")
-			return null;
-		var pos = makePos();
-		input.pos += 3;
-		while (peek().isSpace(0))
-			input.pos++;
-		var buf = new StringBuf();
-		while (true) {
-			switch (peek()) {
-			case c if (~/[a-z0-9-]/.match(c)):
-				input.pos++;
-				buf.add(c);
-			case c if (c.isSpace(0)):
-				input.pos++;
-				break;
-			case inv:
-				throw { msg : 'Invalid char for label: $inv', pos : pos };
-			}
-		}
-		return buf.toString();
 	}
 
 	function parseFancyHeading(curDepth:Int)
@@ -117,18 +134,12 @@ class Parser {
 		}
 
 		var name = [];
-		var label = null;
+		label = null;
 		while (true) {
 			var h = parseHorizontal(true);
 			if (h == null)
 				break;
 			name.push(h);
-			var lb = readFancyLabel();
-			if (lb != null) {
-				if (label != null)
-					throw { msg : "Multiple labels for a single vertical element aren't allowed", pos : pos };
-				label = lb;
-			}
 		}
 		var nameExpr = switch name.length {
 		case 0: throw { msg : "A section must have a name", pos : pos };
@@ -168,6 +179,7 @@ class Parser {
 					input.pos++;
 				}
 			case _:
+				label = null;
 				var par = [];
 				while (true) {
 					var h = parseHorizontal(true);
