@@ -18,11 +18,14 @@ class Parser {
 
 	var label:Null<String>;
 
-	function makePos():Pos
+	function mkPos():Pos
 		return { fileName : input.fname, lineNumber : input.lino };
 
-	function makeExpr<Def>(expr:Def, ?pos:Pos)
-		return { expr : expr, pos : pos != null ? pos : makePos() };
+	function mkExpr<Def>(expr:Def, ?pos:Pos)
+		return { expr : expr, pos : pos != null ? pos : mkPos() };
+
+	function mkErr(msg:String, ?pos:Pos)
+		return { msg : msg, pos : pos != null ? pos : mkPos() };
 
 	function peek(?offset=0, ?len=1)
 	{
@@ -36,7 +39,7 @@ class Parser {
 	{
 		if (peek(0, 3) != ":::")
 			return null;
-		var pos = makePos();
+		var pos = mkPos();
 		input.pos += 3;
 		while (peek().isSpace(0))
 			input.pos++;
@@ -51,7 +54,7 @@ class Parser {
 			case c if (c.isSpace(0)):
 				break;
 			case inv:
-				throw { msg : 'Invalid char for label: $inv', pos : pos };
+				throw mkErr('Invalid char for label: $inv', pos);
 			}
 		}
 		return buf.toString();
@@ -59,7 +62,7 @@ class Parser {
 
 	function parseHorizontal(ltrim=false):Expr<HDef>
 	{
-		var pos = makePos();
+		var pos = mkPos();
 		var buf = new StringBuf();
 		function readChar(c) {
 			ltrim = false;
@@ -88,20 +91,20 @@ class Parser {
 					buf.add(" ");
 				break;
 			case ":" if (peek(1, 2) == "::"):
-				var pos = makePos();
+				var pos = mkPos();
 				var lb = parseFancyLabel();
 				if (lb == null) {
 					readChar(":");
 					break;
 				}
 				if (label != null)
-					throw { msg : "Can't overwrite label", pos : pos  };
+					throw mkErr("Cannot set more than one label to the same vertical element", pos);
 				label = lb;
 			case c:
 				readChar(c);
 			}
 		}
-		return makeExpr(HText(buf.toString()), pos);
+		return mkExpr(HText(buf.toString()), pos);
 	}
 
 	function parseFancyHeading(curDepth:Int)
@@ -114,11 +117,11 @@ class Parser {
 		var pat = ~/^(#+)(\*)?([^#]|(\\#))*\n/;
 		if (!pat.match(input.buf.substr(input.pos)))
 			return null;
-		var pos = makePos();
+		var pos = mkPos();
 
 		var depth = pat.matched(1).length;
 		if (depth > 6)
-			throw { msg : "Hierachy depth must be between 1 (chapter) and 6", pos : pos };
+			throw mkErr("Heading level must be in the range from 1 to 6", pos);
 
 		// don't advance the input or finish parsing if we would need to rewind to close some sections
 		if (depth <= curDepth)
@@ -140,9 +143,9 @@ class Parser {
 			name.push(h);
 		}
 		var nameExpr = switch name.length {
-		case 0: throw { msg : "A section must have a name", pos : pos };
+		case 0: throw mkErr("A heading requires a title", pos);
 		case 1: name[0];
-		case _: makeExpr(HList(name), name[0].pos);
+		case _: mkExpr(HList(name), name[0].pos);
 		}
 
 		if (label == null)
@@ -168,12 +171,12 @@ class Parser {
 						// must close the previous section first
 						break;
 					} else if (heading.depth == depth + 1) {
-						list.push(makeExpr(VSection(heading.name, parseVertical(heading.depth), heading.label), heading.pos));
+						list.push(mkExpr(VSection(heading.name, parseVertical(heading.depth), heading.label), heading.pos));
 					} else {
-						throw { msg : 'Jumping from hierachy depth $depth to ${heading.depth} is not allowed', pos : heading.pos };
+						throw mkErr('Cannot increment hierarchy depth from $depth to ${heading.depth}; step larger than 1', heading.pos);
 					}
 				} else {
-					trace('TODO handle other fancy features at ${makePos()}');
+					trace('TODO handle other fancy features at ${mkPos()}');
 					input.pos++;
 				}
 			case _:
@@ -189,15 +192,15 @@ class Parser {
 					continue;
 				var text = switch par.length {
 				case 1: par[0];
-				case _: makeExpr(HList(par), par[0].pos);
+				case _: mkExpr(HList(par), par[0].pos);
 				}
-				list.push(makeExpr(VPar(text, label), text.pos));
+				list.push(mkExpr(VPar(text, label), text.pos));
 			}
 		}
 		return switch list.length {
 		case 0: null;
 		case 1: list[0];
-		case _: makeExpr(VList(list), list[0].pos);
+		case _: mkExpr(VList(list), list[0].pos);
 		}
 	}
 
