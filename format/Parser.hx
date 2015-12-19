@@ -143,7 +143,8 @@ class Parser {
 				readChar(c);
 			}
 		}
-		return mkExpr(HText(buf.toString()), pos);
+		var text = buf.toString();
+		return text.length != 0 ? mkExpr(HText(buf.toString()), pos) : null;
 	}
 
 	function parseFancyHeading(curDepth:Int)
