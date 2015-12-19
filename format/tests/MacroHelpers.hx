@@ -43,7 +43,6 @@ class MacroHelpers {
 				transform(sub, file, line);
 			case ECall({ expr : EConst(CIdent(c)) }, params) if (c.charAt(0) == "H" || c.charAt(0) == "V"):
 				var edef = { expr : ECall({ expr : EConst(CIdent(c)), pos : expr.pos }, params.map(transform.bind(_, file, line))), pos : expr.pos };
-				// TODO support some metas for custom positions
 				macro { expr : $edef, pos : { fileName : $v{file}, lineNumber : $v{line} } };
 			case _:
 				e.map(transform.bind(_, file, line));
