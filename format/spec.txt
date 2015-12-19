@@ -37,25 +37,40 @@ use of any extended ASCII code page characters – or UTF-8.  Byte-order marks
 should *not* be present.
 
 
-### Escaping
-
-Several characters and character sequences have special meaning.  To produce
-output with these characters, one must first escape them by preceding each one
-with an ASCII backslash (`\`).  The backslash is one of these characters with special
-meaning.
-
-
 ### Comments
 
 Comments allow annotations to the source file, but are not included in the
 generated output.  They follow the C++/Haxe/Java syntax:
 
 Line comments start with `//`.  All content including and after the `//` is
-discarded.
+immediately discarded.
 
 Block comments are chunks of text delimited by `/*` at the beginning and `*/`
 at the end.  All content, including the starting and finishing delimiters, is
 also discarded.
+
+No parsing is done in the comment contents.
+
+/*
+	Note that since escaping characters only exist in the parsing phase,
+	they have no meaning whatsoever inside comments.
+
+	However, the writer's guide should either:
+	 - (a) explain why the user can use escaped characters to prevent a
+	   comment for starting but not from finishing
+	 - or (b) don't go into this detail and let the spec be the only
+	   reference about it.
+
+	P.S. This comment also to test block comments.
+*/
+
+	
+### Escaping
+
+Several characters and character sequences have special meaning in the parsing
+phase.  To produce output with these characters, one must first escape them by
+preceding each one with an ASCII backslash (`\`).  The backslash is one of
+these characters with special meaning.
 
 
 ### Commands

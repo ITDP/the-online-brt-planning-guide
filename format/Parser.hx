@@ -76,6 +76,9 @@ class Parser {
 			case "/" if (peek(1) == "/"):
 				var nl = input.buf.indexOf("\n", input.pos);
 				input.pos = nl > -1 ? nl + 1 : input.buf.length;
+			case "/" if (peek(1) == "*"):
+				var end = input.buf.indexOf("*/", input.pos);
+				input.pos = end > -1 ? end + 2 : input.buf.length;
 			case "\r":
 				input.pos++;
 			case " ", "\t":
