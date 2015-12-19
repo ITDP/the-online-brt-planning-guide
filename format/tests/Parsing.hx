@@ -34,6 +34,8 @@ class Parsing {
 		Assert.same(make(VList([ VPar(HText("hello")), @li(3)VPar(HText("world!")) ])), parse("hello\n\nworld!"));
 
 		Assert.same(make(VPar(HList([ HText("hello, "), @li(2)HText("world!") ]))), parse("hello,\nworld!"));
+
+		Assert.same(make(VPar(HText("hello, world!") )), parse("hello, /* comment */world!"));
 	}
 
 	public function test_003_heading()
@@ -59,6 +61,10 @@ class Parsing {
 		// Assert.same(make(VPar(HList([ HText("hello, "), HHighlight(HText("world")), HText("!") ]))), parse("hello, \\highlight{world}!"));
 
 		Assert.same(make(VPar(HList([ HText("hello, "), HCode("world"), HText("!") ]))), parse("hello, `world`!"));
+
+		// prevent spontaneous par break if what's left starts with \n
+		Assert.same(make(VPar(HList([ HCode("hello, "), @ln(2)HText("world!") ]))), parse("`hello, `\nworld!"));  // FIXME
+		Assert.same(make(VPar(HList([ HEmph(HText("hello, ")), @ln(2)HText("world!") ]))), parse("*hello, *\nworld!"));  // FIXME
 	}
 
 	// public function test_005_escaped()
