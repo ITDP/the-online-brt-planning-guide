@@ -39,6 +39,9 @@ class Parser {
 			switch peek() {
 			case null:
 				return null;
+			case "/" if (peek(1) == "/"):
+				var nl = input.buf.indexOf("\n", input.pos);
+				input.pos = nl > -1 ? nl + 1 : input.buf.length;
 			case "\r":
 				input.pos++;
 			case " ", "\t":
