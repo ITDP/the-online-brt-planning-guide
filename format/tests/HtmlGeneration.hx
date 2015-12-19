@@ -38,15 +38,15 @@ class HtmlGeneration {
 				])),
 				HText(".")
 			])),
-			VSection("chapter-label", HText("A chapter title"), VList([
+			VSection(HText("A chapter title"), VList([
 				VPar(HText("lalala")),
-				VSection("section-label", HText("A section title"), VList([
+				VSection(HText("A section title"), VList([
 					VPar(HText("lalala")),
-					VSection("sub-section-label", HText("A subsection title"), VList([
+					VSection(HText("A subsection title"), VList([
 						VPar(HText("lalala"))
-					]))
-				]))
-			]))
+					]), "sub-section-label") 
+				]), "section-label")
+			]), "chapter-label")
 		]))));
 		Assert.isTrue(true);
 	}
