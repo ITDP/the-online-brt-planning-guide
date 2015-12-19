@@ -60,6 +60,34 @@ class Parser {
 		return buf.toString();
 	}
 
+	function parseInlineCode():Expr<HDef>
+	{
+		if (peek() != "`")
+			return null;
+		input.pos++;
+		var pos = mkPos();
+		var buf = new StringBuf();
+		while (true) {
+			switch peek() {
+			case null:
+				throw mkErr("Unclosed inline code expression", pos);
+			case "\n":
+				if (StringTools.trim(buf.toString()) == "")
+					throw mkErr("Paragraph breaks are not allowed in inline code expression", pos);
+				input.pos++;
+				input.lino++;
+				buf.add(" ");
+			case "`":
+				input.pos++;
+				break;
+			case c:
+				input.pos++;
+				buf.add(c);
+			}
+		}
+		return mkExpr(HCode(buf.toString()));
+	}
+
 	function parseHorizontal(ltrim=false):Expr<HDef>
 	{
 		var pos = mkPos();
@@ -78,7 +106,7 @@ class Parser {
 		while (true) {
 			switch peek() {
 			case null:
-				return null;
+				break;
 			case "/" if (peek(1) == "/"):
 				readUntil("\n");
 			case "/" if (peek(1) == "*"):
@@ -107,6 +135,10 @@ class Parser {
 				if (label != null)
 					throw mkErr("Cannot set more than one label to the same vertical element", pos);
 				label = lb;
+			case "`":
+				if (buf.toString().length > 0)
+					break;  // finish the current expr
+				return parseInlineCode();
 			case c:
 				readChar(c);
 			}
@@ -189,11 +221,10 @@ class Parser {
 			case _:
 				label = null;
 				var par = [];
-				while (true) {
-					var h = parseHorizontal(true);
-					if (h == null)
-						break;
+				var h = parseHorizontal(true);
+				while (h != null) {
 					par.push(h);
+					h = parseHorizontal();
 				}
 				if (par.length == 0)
 					continue;

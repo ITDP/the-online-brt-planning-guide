@@ -27,6 +27,8 @@ class HtmlGenerator implements Generator {
 		return switch expr.expr {
 		case HText(text):
 			'<span ${posAttrs(expr.pos)}>${htmlEscape(text)}</span>';
+		case HCode(code):
+			'<code ${posAttrs(expr.pos)}>${htmlEscape(code)}</code>';
 		case HEmph(expr):
 			'<em ${posAttrs(expr.pos)}>${generateHorizontal(expr)}</em>';
 		case HHighlight(expr):

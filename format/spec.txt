@@ -15,17 +15,8 @@ writer's guide for a more friendly introduction to the format.
 The format is inspired by both Markdown and TeX, and is based on two almost
 parallel paradigms: simple markup and text commands.  :::example
 
-For instance, to produce a chapter section, one can either use
-
-```
-## The section title
-```
-
-or
-
-```
-\section{The section title}
-```
+For instance, to produce a chapter section, one can either use `## The section
+title` or `\section{The section title}`.
 
 
 ## General concepts

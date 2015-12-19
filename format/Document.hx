@@ -46,6 +46,7 @@ typedef Expr<Def> = {
 */
 enum HDef {
 	HText(text:String);
+	HCode(code:String);
 	HEmph(expr:Expr<HDef>);
 	HHighlight(expr:Expr<HDef>);
 	// HMath(tex:String);
