@@ -98,10 +98,10 @@ class Parser {
 			buf.add(c);
 		}
 		function readUntil(end) {
-				var i = input.buf.indexOf(end, input.pos);
-				var ret = i > -1 ? input.buf.substring(input.pos, i + end.length) : input.buf.substring(input.pos);
-				input.pos += ret.length;
-				return ret;
+			var i = input.buf.indexOf(end, input.pos);
+			var ret = i > -1 ? input.buf.substring(input.pos, i + end.length) : input.buf.substring(input.pos);
+			input.pos += ret.length;
+			return ret;
 		}
 		while (true) {
 			switch peek() {
