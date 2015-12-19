@@ -40,10 +40,35 @@ class Parsing {
 	{
 		Assert.same(make(VSection(HText("Title"), @li(3)VPar(HText("Hello, world!")), "title")), parse("# Title\n\nHello, world!"));
 		Assert.same(make(VSection(HText("Title"), null, "title")), parse("# Title\n\n"));
-		// Assert.same(make(VSection(HText("Title"), null, "title")), parse("# Title"));  // FIXME
+		// Assert.same(make(VSection(HText("Title"), null, "title")), parse("# Title"));  // FIXME[priority=low]
 
 		Assert.same(make(VSection(HText("Title"), null, "title")), parse("# Title".rpad("\n", 2048)));  // greedy regex bug
 	}
+
+	public function test_004_hexpr()
+	{
+		// Assert.same(make(VPar(HList([ HText("hello, "), HEmph(HText("world")), HText("!") ]))), parse("hello, *world*!"));
+		// Assert.same(make(VPar(HList([ HText("hello, "), HEmph(HText("world")), HText("!") ]))), parse("hello, **world**!"));
+		// Assert.same(make(VPar(HList([ HText("hello, wall"), HEmph(HText("-e")), HText("!") ]))), parse("hello, wall*-e*!"));
+		// Assert.same(make(VPar(HList([ HText("hello, wall"), HEmph(HText("-e")), HText("!") ]))), parse("hello, wall**-e**!"));
+		// Assert.same(make(VPar(HEmph(HList([ HText("hello, "), HEmph(HText("world")), HText("!") ])))), parse("**hello, *world*!**"));
+		// Assert.same(make(VPar(HEmph(HList([ HText("hello, "), HEmph(HText("world")), HText("!") ])))), parse("*hello, **world**!*"));
+
+		// Assert.same(make(VPar(HList([ HText("hello, "), HHighlight(HText("world")), HText("!") ]))), parse("hello, \\highlight{world}!"));
+
+		Assert.same(make(VPar(HList([ HText("hello, "), HCode("world"), HText("!") ]))), parse("hello, `world`!"));
+	}
+
+	// public function test_005_escaped()
+	// {
+	// 	Assert.same(make(VPar(HText("\\"))), parse("\\\\"));
+	// 	Assert.same(make(VPar(HText("/"))), parse("\\/"));
+	// 	Assert.same(make(VPar(HText("//"))), parse("\\//"));
+	// 	Assert.same(make(VPar(HText("//"))), parse("/\\/"));
+	// 	Assert.same(make(VPar(HText("#"))), parse("\\#"));
+	// 	Assert.same(make(VPar(HText("`"))), parse("\\`"));
+	// 	Assert.same(make(VPar(HText("*"))), parse("\\*"));
+	// }
 
 	public function new() {}
 }
