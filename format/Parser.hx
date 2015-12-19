@@ -60,6 +60,7 @@ class Parser {
 		return buf.toString();
 	}
 
+	// inline code isn't parsed at all
 	function parseInlineCode():Expr<HDef>
 	{
 		if (peek() != "`")
@@ -88,7 +89,7 @@ class Parser {
 		return mkExpr(HCode(buf.toString()));
 	}
 
-	function parseHorizontal(ltrim=false):Expr<HDef>
+	function parseHorizontal(delimiter:Null<String>, ltrim=false):Expr<HDef>
 	{
 		var pos = mkPos();
 		var buf = new StringBuf();
@@ -142,6 +143,16 @@ class Parser {
 				if (buf.toString().length > 0)
 					break;  // finish the current expr
 				return parseInlineCode();
+			case _ if (delimiter != null && peek(0, delimiter.length) == delimiter):
+				input.pos += delimiter.length;
+				delimiter = null;
+				break;
+			case "*":
+				if (buf.toString().length > 0)
+					break;  // finish the current expr
+				delimiter = peek(1) == "*" ? "**" : "*";
+				input.pos += delimiter.length;
+				return mkExpr(HEmph(parseHorizontal(delimiter, ltrim)), pos);
 			case c:
 				readChar(c);
 			}
@@ -180,7 +191,7 @@ class Parser {
 		var name = [];
 		label = null;
 		while (true) {
-			var h = parseHorizontal(true);
+			var h = parseHorizontal(null, true);
 			if (h == null)
 				break;
 			name.push(h);
@@ -225,10 +236,10 @@ class Parser {
 			case _:
 				label = null;
 				var par = [];
-				var h = parseHorizontal(true);
+				var h = parseHorizontal(null, true);
 				while (h != null) {
 					par.push(h);
-					h = parseHorizontal();
+					h = parseHorizontal(null);
 				}
 				if (par.length == 0)
 					continue;

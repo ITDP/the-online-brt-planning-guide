@@ -47,12 +47,14 @@ class Parsing {
 
 	public function test_004_hexpr()
 	{
-		// Assert.same(make(VPar(HList([ HText("hello, "), HEmph(HText("world")), HText("!") ]))), parse("hello, *world*!"));
-		// Assert.same(make(VPar(HList([ HText("hello, "), HEmph(HText("world")), HText("!") ]))), parse("hello, **world**!"));
-		// Assert.same(make(VPar(HList([ HText("hello, wall"), HEmph(HText("-e")), HText("!") ]))), parse("hello, wall*-e*!"));
-		// Assert.same(make(VPar(HList([ HText("hello, wall"), HEmph(HText("-e")), HText("!") ]))), parse("hello, wall**-e**!"));
-		// Assert.same(make(VPar(HEmph(HList([ HText("hello, "), HEmph(HText("world")), HText("!") ])))), parse("**hello, *world*!**"));
+		Assert.same(make(VPar(HEmph(HText("hello")))), parse("*hello*"));
+		Assert.same(make(VPar(HEmph(HText("hello")))), parse("**hello**"));
+		Assert.same(make(VPar(HList([ HText("hello, "), HEmph(HText("world")), HText("!") ]))), parse("hello, *world*!"));
+		Assert.same(make(VPar(HList([ HText("hello, "), HEmph(HText("world")), HText("!") ]))), parse("hello, **world**!"));
+		Assert.same(make(VPar(HList([ HText("hello, wall"), HEmph(HText("-e")), HText("!") ]))), parse("hello, wall*-e*!"));
+		Assert.same(make(VPar(HList([ HText("hello, wall"), HEmph(HText("-e")), HText("!") ]))), parse("hello, wall**-e**!"));
 		// Assert.same(make(VPar(HEmph(HList([ HText("hello, "), HEmph(HText("world")), HText("!") ])))), parse("*hello, **world**!*"));
+		// Assert.same(make(VPar(HEmph(HList([ HText("hello, "), HEmph(HText("world")), HText("!") ])))), parse("**hello, *world*!**"));
 
 		// Assert.same(make(VPar(HList([ HText("hello, "), HHighlight(HText("world")), HText("!") ]))), parse("hello, \\highlight{world}!"));
 
