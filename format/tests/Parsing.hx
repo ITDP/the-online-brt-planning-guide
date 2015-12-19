@@ -1,9 +1,10 @@
 package format.tests;
 
 import format.Document;
+import format.tests.MacroHelpers.make;
 import utest.Assert;
 
-import format.tests.MacroHelpers.make;
+using StringTools;
 
 class Parsing {
 	function parse(s:String):Document
@@ -33,6 +34,15 @@ class Parsing {
 		Assert.same(make(VList([ VPar(HText("hello")), @li(3)VPar(HText("world!")) ])), parse("hello\n\nworld!"));
 
 		Assert.same(make(VPar(HList([ HText("hello, "), @li(2)HText("world!") ]))), parse("hello,\nworld!"));
+	}
+
+	public function test_003_heading()
+	{
+		Assert.same(make(VSection(HText("Title"), @li(3)VPar(HText("Hello, world!")), "title")), parse("# Title\n\nHello, world!"));
+		Assert.same(make(VSection(HText("Title"), null, "title")), parse("# Title\n\n"));
+		// Assert.same(make(VSection(HText("Title"), null, "title")), parse("# Title"));  // FIXME
+
+		Assert.same(make(VSection(HText("Title"), null, "title")), parse("# Title".rpad("\n", 2048)));  // greedy regex bug
 	}
 
 	public function new() {}

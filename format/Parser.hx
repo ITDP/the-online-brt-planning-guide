@@ -157,7 +157,8 @@ class Parser {
 			lino : input.lino
 		};
 
-		var pat = ~/^(#+)(\*)?([^#]|(\\#))*\n/;
+		var pat = ~/^(#+)(\*)?([^#]|(\\#))*?\n/;  // FIXME what it the input ends without a trailing newline?
+		trace([input.lino, input.pos, input.buf.length]);
 		if (!pat.match(input.buf.substr(input.pos)))
 			return null;
 		var pos = mkPos();
