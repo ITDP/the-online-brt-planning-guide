@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# Recommended pre-commit for those working on the parser.
+# To install, copy this file to .git/hooks/pre-commit; be sure to maintain it
+# somewhat updated
+
+runhaxe() {
+	echo "... $1/$2"
+	if !(cd $1 && haxe $2 -D hidesuccess) then
+		echo "... FAILURE"
+		echo "... if you're sure about commiting this state, use git commit --no-verify"
+		exit 1
+	fi
+}
+
+echo "Pre-commit: testing"
+runhaxe . build.hxml
+runhaxe . test.hxml
+
+echo "Pre-commit: success, continuing with commit"
+
