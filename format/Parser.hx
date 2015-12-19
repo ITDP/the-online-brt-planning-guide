@@ -61,7 +61,7 @@ class Parser {
 	{
 		var pos = makePos();
 		var buf = new StringBuf();
-		function fallback(c) {
+		function readChar(c) {
 			ltrim = false;
 			input.pos++;
 			buf.add(c);
@@ -87,20 +87,18 @@ class Parser {
 				if (peek(0) != null && !peek(0).isSpace(0))
 					buf.add(" ");
 				break;
-			case ":":
+			case ":" if (peek(1, 2) == "::"):
 				var pos = makePos();
 				var lb = parseFancyLabel();
 				if (lb == null) {
-					fallback(":");
+					readChar(":");
 					break;
 				}
 				if (label != null)
 					throw { msg : "Can't overwrite label", pos : pos  };
 				label = lb;
 			case c:
-				ltrim = false;
-				input.pos++;
-				buf.add(c);
+				readChar(c);
 			}
 		}
 		return makeExpr(HText(buf.toString()), pos);
