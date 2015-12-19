@@ -14,6 +14,12 @@ class HtmlGenerator implements Generator {
 	function posAttrs(pos:Pos)
 		return 'x-src-file="${htmlEscape(pos.fileName)}" x-src-line=${pos.lineNumber}';
 
+	function mkLabel(curLabel, prefix, label)
+	{
+		label = '$prefix.$label';
+		return curLabel != "" ? '$curLabel.$label' : label;
+	}
+
 	function generateHorizontal(expr:Expr<HDef>)
 	{
 		if (expr == null)
@@ -38,11 +44,16 @@ class HtmlGenerator implements Generator {
 		if (expr == null)
 			return "";
 		return switch expr.expr {
-		case VPar(par):
-			indent(curDepth) + '<p ${posAttrs(expr.pos)}>${generateHorizontal(par)}</p>';
-		case VSection(label, name, contents):
+		case VPar(par, label):
+			if (label != null) {
+				var lab = mkLabel(curLabel, "section", label);
+				indent(curDepth) + '<p id="${urlEncode(lab)}" ${posAttrs(expr.pos)}>${generateHorizontal(par)}</p>';
+			} else {
+				indent(curDepth) + '<p ${posAttrs(expr.pos)}>${generateHorizontal(par)}</p>';
+			}
+		case VSection(name, contents, label):
 			var dep = curDepth + 1;
-			var lab = curLabel != "" ? '$curLabel.$label' : label;
+			var lab = mkLabel(curLabel, "section", label);
 			var cl = dep == 1 ? "chapter" : "section";
 			indent(curDepth) + '<article class="$cl" id="${urlEncode(lab)}" ${posAttrs(expr.pos)}>\n' +
 			indent(dep) + '<h$dep ${posAttrs(expr.pos)}>${generateHorizontal(name)}</h$dep>\n' +

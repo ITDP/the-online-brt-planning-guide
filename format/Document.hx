@@ -73,10 +73,10 @@ enum HDef {
 	constructor.
 */
 enum VDef {
-	VPar(par:Expr<HDef>);
-	VSection(label:String, name:Expr<HDef>, contents:Expr<VDef>);
-	// VFig(label:String, caption:Expr<HDef>, copyright:Expr<HDef>, image:Image);
-	// VTable(label:String, title:Expr<HDef>, table:Table);
+	VPar(par:Expr<HDef>, ?label:String);
+	VSection(name:Expr<HDef>, contents:Expr<VDef>, label:String);
+	// VFig(caption:Expr<HDef>, copyright:Expr<HDef>, image:Image, label:String);
+	// VTable(title:Expr<HDef>, table:Table, label:String);
 	VList(list:Array<Expr<VDef>>);
 }
 

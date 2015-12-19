@@ -170,7 +170,7 @@ class Parser {
 						// must close the previous section first
 						break;
 					} else if (heading.depth == depth + 1) {
-						list.push(makeExpr(VSection(heading.label, heading.name, parseVertical(heading.depth)), heading.pos));
+						list.push(makeExpr(VSection(heading.name, parseVertical(heading.depth), heading.label), heading.pos));
 					} else {
 						throw { msg : 'Jumping from hierachy depth $depth to ${heading.depth} is not allowed', pos : heading.pos };
 					}
@@ -193,7 +193,7 @@ class Parser {
 				case 1: par[0];
 				case _: makeExpr(HList(par), par[0].pos);
 				}
-				list.push(makeExpr(VPar(text), text.pos));
+				list.push(makeExpr(VPar(text, label), text.pos));
 			}
 		}
 		return switch list.length {

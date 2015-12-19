@@ -1,4 +1,4 @@
-#*The BRTPG source file format specification ::: the-spec
+#*The BRTPG source file format specification  :::the-spec
 // since this is more of an article than a book, I'm abusing the sectioning
 // system by creating the entire document in a unnumbered chapter
 // also, we need commands for the document title, other properties, and for placement of the toc
@@ -13,7 +13,7 @@ writer's guide for a more friendly introduction to the format.
 ##*Overview
 
 The format is inspired by both Markdown and TeX, and is based on two almost
-parallel paradigms: simple markup and text commands.
+parallel paradigms: simple markup and text commands.  :::example
 
 For instance, to produce a chapter section, one can either use
 
