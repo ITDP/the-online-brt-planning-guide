@@ -110,7 +110,10 @@ class Parser {
 			case "/" if (peek(1) == "/"):
 				readUntil("\n");
 			case "/" if (peek(1) == "*"):
+				var p = mkPos();
 				readUntil("*/");
+				if (input.buf.substr(input.pos - 2, 2) != "*/")
+					throw mkErr("Unclosed comment", p);
 			case "\r":
 				input.pos++;
 			case " ", "\t":

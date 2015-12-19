@@ -4,7 +4,7 @@ import format.Document;
 import haxe.PosInfos;
 import utest.Assert;
 
-import format.tests.MacroHelpers.*;
+import format.tests.MacroHelpers.make;
 
 class HtmlGeneration {
 	@:access(format.HtmlGenerator.generateHorizontal)
