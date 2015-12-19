@@ -18,26 +18,26 @@ distribution tool. ROBRT source-code itself is available at github too.
 
 Ideally, a collaborator must download and install git and create an account in git hub to
 fork the project, edit the content of source files and submit changes.
-Those changes will be processed and (if the process is sucessfull) displayed
+Those changes will be processed and (if the process is successful) displayed
 as a webpage with the current guide style at a given temporary address,
 so the collaborator can view and work in the result.
 
-The source code uses a 'markdown inspired with TeX sprinkles' format
+The source code uses a 'markdown inspired with TeX sprinkles' format.
 
 Markdown is an easy way to write plain text files, that can provide information about the content
-without polluting the source heavilly.
+without polluting the source heavily.
 
-The writer must centraly worry about the content and its semantic meaning, and not about
+The writer must centrally worry about the content and its semantic meaning, and not about
 formatting the text. Format decisions are let to the publisher and can be changed anytime in 
-a uniform way througout the book.
+a uniform way throughout the book.
 
-Markdown uses special caracters, such as \, #, : and @, to indicate the semantic meaning of a given flow
+Markdown uses special characters, such as \, #, : and @, to indicate the semantic meaning of a given flow
 of text. This has the down-side that a writer willing to use some special characters at certain text positions
-will have use an alternative way (escaped caracters discussed bellow).
+will have use an alternative way (escaped characters discussed bellow).
 
-To allow dynamic cross references (numbering and links) that are harder to break when things change place, one must use commands, as using marks for this would not improve readability. This useful commands can mostly be thinked of as text replacement tools.
+To allow dynamic cross references (numbering and linking) that are harder to break when things change place, one must use commands, as using marks for this would not improve readability. This useful commands must be seen like text replacement tools.
 
-Additionally, some markdown sintaxe have equivalent commands that can be used as replacements in a more standard way which are easier to memorize, but eventually makes the source harder to read. Understanding the extended command formats can be useful for the writer to understand the markdown sintaxe and gain confidence about how to using the markdown flags.
+Additionally, some markdown sintaxe have equivalent commands that can be used as replacements in a more standardized way which are easier to memorize, but eventually makes the source harder to read. Understanding the extended command formats can be useful for the writer to understand the markdown sintaxe and gain confidence about how to using the markdown flags.
 
 Commands may workout off the specifications given here, when there is no ambiguity about the intention of its use, but one shall not rely on that.
 
@@ -153,15 +153,35 @@ before it, if implementation is working fine.
 
 *** mark down block comment: 
 
-Using the markdown pair /* and */ as follows:
+Using the markdown pair `/*` and `*/` as follows:
+
+- Both symbols must be in the same vertical block;
+- or both symbols must be alone in a line:
+
+     . `/*` starting a vertical block; and
+     . `*/` in the end of a vertical block 
 
 \start-code-block{comment-example}
-This text is to be published /* this is a comment,
 
-as an example to show it works 
-even if I insert a new vertical block
+This is an example of a case that would generate an error  /* this is a comment,
+this is the continuation of a comment as expected
 
-will span till a \*/ and this text is after a comment.
+If this was accepted this text here in the middle would be a comment, but one 
+looking at the source could hardly notice that! 
+
+and even this could go unnoticed */ and this text is after a comment.
+
+/*
+If one wants to write a comment that spans over several 
+vertical blocks, explaining the reasoning behind a given
+decision or explaining how one thinks something should be
+further improved.
+
+Using this format instead of the above will not generate an
+error and it is easy to see where the comment ends
+*/
+
+
 \end-code-block{comment-example}
 
 
@@ -230,20 +250,15 @@ Even intersections alone are usually less critical than stations, they represent
 ## Paragraph title:
 
 Creates a paragraph with vertical emphasis that shall not be split from the paragraph that follows it,
-it will not be numbered nor referred in the book index. Wether in command form or markdown, it must
+it will not be numbered nor referred in the book index. It must
 be in the start of the vertical block and the title is considered everything till the end of the block.
 An optional label can be given to the paragraph. If none is provided, an automatic one is created,
  by changing the whole text to small caps and replacing spaces by hyphen; if one is provided, no automatic is created though.
 
-*** command form:
-
-\\par-title{display}[label]
-
-\*** markdown form:
-
 \*\*\* Display \:::label
 
 \*\*\* Safety requirements \:::safety-check-list
+
 
 
 ## Vertical pause
@@ -337,6 +352,21 @@ Thus, at a value of 1.195 the high saturation leads to considerable congestion o
 
 \end-code-block{box-ex}
 
+Rendering like this
+
+[[[ Calculating station to intersection interference with a long red phase
+::: long-red-x-correction
+
+Where the relation between T_red and T_station is the most important...
+
+...
+
+Thus, at a value of 1.195 the high saturation leads to considerable congestion of the busway.
+
+]]] //end-long-red-x-corr
+
+
+
 ## Quotes
 
 The BRTPG has introductory quotes for each section, those shall be entered like bellow in
@@ -346,7 +376,15 @@ the source:
 
 > Quote text as it may be until last @ author info Text
 
+> Quotation, *n:* The act of repeating erroneously the words of another. 
+@ Ambrose Bierce, The Unabridged Devil's Dictionary
+
 \end-code-block{quote-ex}
+
+Currently style would render the last like this:
+
+> Quotation, *n:* The act of repeating erroneously the words of another. 
+@ Ambrose Bierce, The Unabridged Devil's Dictionary
 
 The greater-than symbol must be the first character of the text, followed by the quote, which can
 include emphasized text, without quotation marks, followed by an @ symbol (the last one of the block will be considered, if others are present they are not required to be escaped (despite it is a good idea to do so, so it gets evident for another reader).
@@ -355,18 +393,20 @@ include emphasized text, without quotation marks, followed by an @ symbol (the l
 
 At this point, only image files are accepted as figures (in future implementations files with scripts to generate vetorial images are expected), in the BRTPG all figures are expected to have an descriptive caption and author information (even if they were created specially for the book). Optionally a label must be informed (otherwise an automatic one will be generated based on the file name) and a image size (small, medium, large and huge are allowed for the moment and in the absence of the information, medium is presumed).
 
+Figures will be numbered and indexed according to the chapter they belong (if in a non-numbered chapter, sequential numbering is used).
+
 All the information about the figure must be placed within a vertical block started with \#FIG# or \#FIG:size# (if provided, the image size should be provided like this). Along the block, a relative path to the image file must be provided enclosed in square brackets, a label can also be provided (after the flag \:::), the remaining text along the block (that may carry emphasis as appropriate) will be treated as caption and copyright information, with the last part written after an @ symbol. 
 
 The following code block presents valid figure inputs:
 
 \start-code-block{photo-ex}
 
-#FIG# Motorcycles in Jakarta. @ Photo by John Ernst. [img/queue-fly-jkt.jpg]
+#FIG# Motorcycles in Jakarta. @ Photo by John Ernst. {img/queue-fly-jkt.jpg}
 
-#FIG# Motorcycles [img/queue-fly-jkt.jpg] in Jakarta.@Photo by John Ernst. 
+#FIG# Motorcycles {img/queue-fly-jkt.jpg} in Jakarta.@Photo by John Ernst. 
 
 #FIG:medium#
-[img/congested-intersection.jpg]
+{img/congested-intersection.jpg}
 The introduction of BRT and design changes to poorly controlled and congested
 intersections often leads to efficiency improvements for both public transport
 vehicles and mixed traffic.
@@ -375,9 +415,39 @@ vehicles and mixed traffic.
 
 \end-code-block{photo-ex}
 
+The output of the last is shown in figure \fignum{congested-intersection}
+
+{img/congested-intersection.jpg}
+The introduction of BRT and design changes to poorly controlled and congested
+intersections often leads to efficiency improvements for both public transport
+vehicles and mixed traffic.
+@Photo by Lloyd Wright.
+:::messy-cross
+## Tables
+
+Tables must also be written as a single vertical block, using alternatively markdown notation or (for now) images. 
+
+Like figures, tables will be numbered and indexed according to the chapter they belong (if in a non-numbered chapter, sequential numbering is used). Titles are required for tables, if one label is not provided, it will be generated.
+
+To input real tables one should use the flag #TAB#  the remainder of the content should be entered freely in the block and will be considered as follows:
+
+. A | as the first line character informs a new table line.
+. Subsequent | informs a new cell on that table line.
+. An optional second table line with only hyphens --- indicates that first line is a table title line.
+. Lines preceding the first table row  in the vertical block are considered table title (and label.)
+
+To input an image table, one must start the block with #TAB:fake:size#, the block must contain:
+
+. the path to image file (relative to the location of the source file being written) enclosed in square brackets
+. Outside of enclosed brackets the text is considered the table title and optional label
+
+Bellow valid table entries are shown:
+
+\start-code-block{tab-ex}
+
 #TAB#
 Signal delay :::example-cross
-| Red light time  (seconds) | Green light time  (seconds) | Average signal delay (TF) (seconds) | Random queuing delay (TQs) (seconds) | Total signal delay (TS) (seconds) | Demand to signal capacity level (XSignal)
+| Red light time  (seconds) | Green light time  (seconds) | Average signal delay (seconds) | Random queuing delay (seconds) | Total signal delay (seconds) | Demand to signal capacity level 
 |-----------|-----|----------------|-----------------|----------------|------------
 | 0  | 80 | 0.00  | 0.00   | 0.00   | 0.28
 | 10 | 70 | 0.87  | 0.00   | 0.87   | 0.32
@@ -386,69 +456,107 @@ Signal delay :::example-cross
 | 36 | 54 | 11.22 | 0.18   | 11.40  | 0.51
 | 40 | 40 | 13.85 | 2.25   | 16.10  | 0.56
 
+#TAB:fake:large#
+Example of fleet required for different vehicle sizes
+::: required-fleet
+{assets/fleet-x-size-example.png}
+
+\end-code-block{tab-ex}
+
+Output of the first example is on table \tabnum{example-cross} 
+
+#TAB#
+Signal delay :::example-cross
+| Red light time  (seconds) | Green light time  (seconds) | Average signal delay (seconds) | Random queuing delay (seconds) | Total signal delay (seconds) | Demand to signal capacity level 
+|-----------|-----|----------------|-----------------|----------------|------------
+| 0  | 80 | 0.00  | 0.00   | 0.00   | 0.28
+| 10 | 70 | 0.87  | 0.00   | 0.87   | 0.32
+| 20 | 60 | 3.46  | 0.00   | 3.46   | 0.37
+| 30 | 50 | 7.79  | 0.00   | 7.79   | 0.44
+| 36 | 54 | 11.22 | 0.18   | 11.40  | 0.51
+| 40 | 40 | 13.85 | 2.25   | 16.10  | 0.56
+
+
+## Emphasized and highlighted text
+
+In the source file wherever text to be displayed is expected, two levels of emphasis are allowed, independently or one within the other, this is indicated by the special character \* or doubled \** for opening and closing. Emphasis shall be used when the
+
+Highlighted text is equally accepted in this places, and it will be indicated by the command \highlight{Text to be highlighted inside brackets} 
+
+Emphasis should be used to call reader attention when reading that sentence, while highlighting should be used as a form to attract readers attention to the text before he focus on the paragraph as a visual clue about an essential content in the page.
+
+If the horizontal block where emphasis was started is ended before emphasis is closed before emphasis is finished, an error will be thrown.
+
+Example:
+
+## Math
+
+### in-line math
+
+Mathematical elements can be inserted wherever text to be displayed is expected as well as emphasis To be properly rendered, special notation shall be used (currently only TeX notation). An in-line mathematical expression shall bebe indicated starting and ending with the $ symbol.
+
+### Math block
+
+
+Example:
+
+```
+
+When $(a \ne 0\)$, there are two solutions to $ ax^2 + bx + c = 0$ and they are
+
+$$$ x = {-b \pm \sqrt{b^2-4ac} \over 2a}.
+
+```
+
+
+## Equations
+
+Equations differ from math blocks, as they must be numbered and optionally named or labeled (but one of the two options is required) to be referenced along the book.
+
+Similarly to tables and figures, equations have to be isolated and contained in one vertical block, as in the example bellow, started by #EQ#, elements can be given in any order.
+
+```
+
 #EQ#
 Speed
-{V_segment = {D_segment} \over {Time_segment}  \dlarrow  Time_segment = {D_segment} \over {V_segment}}
+$$$V_segment = {D_segment} \over {Time_segment}  \dlarrow  Time_segment = {D_segment} \over {V_segment}
 :::speed-eq
 
-#EQ:fake#
+```
+"Fake" equations are (for now) accepted too, as bellow:
+
+```
+#EQ:fake:small#
 Speed
 {img/eq-speed-definition.png}
 :::speed-eq
+```
 
-![congested-intersection](img/congested-intersection.jpg
-"The introduction of BRT and design changes to poorly controlled and congested
-intersections often leads to efficiency improvements for both public transport
-vehicles and mixed traffic.  Photo by Lloyd Wright.")
+## Reference commands
 
-
-
-\fig fig-33 Um teste Public Domain assets/img.png
-
-
-
-
-
-\table Display escrito a vontade :::label 
-
-\eq
-
-
-\label
-
-
-
-\reftolabel{display-text}{label-to-refer}
+\ref-to-label{display-text}{label-to-refer}
 (IN PRINT THIS WOULD write "(page number)"
 
-\partitlename{label}
+[display text]{reference}
 
-\tablename{label} = internally equal to \partitlename{table-label}
-\tablenum{label} 
-\fignum{label}
-\figname{label}
-\eqnum{label}
-\eqname{label}
-\boxnum{label}
-\boxname{label}
+\divnum{div-label-to-refer} will fail if not numbered div
+\boxnum{box-label-to-refer}
+\fignum{figure-label-to-refer}
+\tabnum{table-label-to-refer}
+\eqnum{equation-label-to-refer} 
 
-\divlevelname{label}
-\divnum{label}
-\divname{label}
+\divname{div-label-to-refer}
+\boxname{box-label-to-refer}
+\parname{par-title-label-to-refer}
+\tabname{table-label-to-refer}
+\eqname{equation-label-to-refer} will fail if not named equation
 
+\fulldivref
+\fullboxref
+\fullparref
+\fulltabref
+\fulleqref
 
-
-BOX:
-[[[Station saturation with multiple bays
-
-
-
-]]]
-
-
-\topartitle{lable}
-
-\linktolabelwithitstitle
 
 
 :::label,other-label
@@ -504,7 +612,6 @@ BOX:
 
 
 {display-title}
-
 
 
 
