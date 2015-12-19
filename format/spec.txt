@@ -51,7 +51,7 @@ meaning.
 Comments allow annotations to the source file, but are not included in the
 generated output.  They follow the C++/Haxe/Java syntax:
 
-Line comments start with `\\`.  All content including and after the `\\` is
+Line comments start with `//`.  All content including and after the `//` is
 discarded.
 
 Block comments are chunks of text delimited by `/*` at the beginning and `*/`
