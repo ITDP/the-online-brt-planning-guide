@@ -11,7 +11,7 @@
 			"haxe test.hxml",
 			"haxe build.hxml",
 			"mkdir -p $ROBRT_OUTPUT_DIR/spec",
-			"bin/process < format/spec.txt > $ROBRT_OUTPUT_DIR/index.html"
+			"bin/process < spec.txt > $ROBRT_OUTPUT_DIR/index.html"
 		]
 	}
 }
