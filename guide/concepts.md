@@ -6,6 +6,8 @@
 
 ### About intersections
 
+We are creating a forked version. 
+
 Intersection is the area where two or more roads encounter each other. The use of the word in Traffic Engineering technical environment implies in "roads for vehicles" and "at the same level", but very often the expressions "at-grade intersections" or "single grade intersections" are used to confirm the concept; for fly-overs and underpasses the term used is "interchange" or still "separated-grade interchange". When more than one mode is involved, the common traffic engineers' wording is "crossing" as in  "pedestrian crossing" (one of the roads is assumed to be a carriageway); recently the term "multimodal intersection" has been applied.  
 
 By this definition, intersection implies in conflicts for vehicles to use the same space, and can refer to an unidirectional T-shaped or Y-shaped confluence area; the conflicts there gets clear when there is no space to accommodate the two incoming flows on the exiting stream in a congested situation (figure \fignum(crowded-y-junction)). Conversely a channelled Y-shaped junction may not be an intersection (figure \fignum(channelled-y-junction)).
