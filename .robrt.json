@@ -11,7 +11,9 @@
 			"haxe test.hxml",
 			"haxe build.hxml",
 			"mkdir -p $ROBRT_OUTPUT_DIR/spec",
-			"bin/process < spec.txt > $ROBRT_OUTPUT_DIR/index.html"
+			"bin/process < spec.txt > $ROBRT_OUTPUT_DIR/spec.html",
+			"cat guide/header.html > $ROBRT_OUTPUT_DIR/concepts.html && pandoc guide/concepts.md -f markdown_github -t html >> $ROBRT_OUTPUT_DIR/concepts.html && cat guide/footer.html >> $ROBRT_OUTPUT_DIR/concepts.html",
+			"cp -r guide/{img,brtpg.css} $ROBRT_OUTPUT_DIR/"
 		]
 	}
 }
