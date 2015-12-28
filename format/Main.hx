@@ -1,13 +1,5 @@
 package format;
 
-class HtmlGeneration {
-	public static function main()
-	{
-		trace("TODO something");
-		Sys.exit(1);
-	}
-}
-
 class Main {
 	static function main()
 	{
@@ -19,16 +11,8 @@ class Main {
 			err.writeString('${pos.className.split(".").pop().toUpperCase()}  $msg  @${pos.fileName}:${pos.lineNumber}\n');
 		}
 
-#if (cli == "generate-html")
-		HtmlGeneration.main();
-#elseif (cli == "generate-tex")
-		throw("Not implemented here");
-#elseif (cli == "generate-parser")
-		throw("Not implemented here");
-#else
 		var p = new format.Parser();
 		var doc = p.parseStream(Sys.stdin(), Sys.getCwd());
-		// trace(doc);
 
 		var buf = new StringBuf();
 		var api = {
@@ -41,7 +25,6 @@ class Main {
 		var hgen = new format.HtmlGenerator(api);
 		hgen.generateDocument(doc);
 		Sys.println(buf.toString());
-#end
 	}
 }
 

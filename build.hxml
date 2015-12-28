@@ -2,10 +2,3 @@
 -main format.Main
 -cmd nekotools boot bin/process.n
 
---next
-
--neko bin/generate-html.n
--main format.Main
--D cli=generate-html
--cmd nekotools boot bin/generate-html.n
-
