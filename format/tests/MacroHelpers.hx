@@ -11,7 +11,7 @@ class MacroHelpers {
 
 		For example,
 
-			make( VPar(HList(HText("Hello,"), @li(2) HText("World!"))) )
+			make(VPar(HList([ HText("Hello,"), @li(2) HText("World!") ])))
 
 		generates the expression
 
@@ -19,8 +19,8 @@ class MacroHelpers {
 				{ expr : HList([
 					{ expr : HText("Hello,"), pos : { fileName : "stdin", lineNumber : 1 } },
 					{ expr : HText("World!"), pos : { fileName : "stdin", lineNumber : 2 } }
-				]), pos : { fileName : "stdin", lineNumber : 1 }
-			), pos : { fileName : "stdin", lineNumber : 1 }
+				]), pos : { fileName : "stdin", lineNumber : 1 } }
+			), pos : { fileName : "stdin", lineNumber : 1 } }
 
 		Source position information – file name and line number –
 		defaults to 'stdin' and 1, but can be customized with the `@li`
