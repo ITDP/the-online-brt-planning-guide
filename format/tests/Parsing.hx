@@ -28,6 +28,8 @@ class Parsing {
 
 	public function test_002_par()
 	{
+		// Assert.same({ expr : VPar({ expr:HText("hello"),pos:{...} }), pos : {...} }, parse("hello"));
+		trace(parse("hello"));
 		Assert.same(make(VPar(HText("hello"))), parse("hello"));
 		Assert.same(make(VPar(HText("hello"))), parse("hello\n\t "));
 		Assert.same(make(VPar(HText("hello"))), parse("\t hello\t "));
