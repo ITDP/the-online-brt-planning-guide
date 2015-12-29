@@ -127,7 +127,11 @@ class Main {
 		}
 
 		if (!opts.noTex) {
-			trace("Skipping TeX generation, not implemented yet");
+			if (opts.htmlSeparateChapters)
+				trace("Separate chapter generation still not implemented, falling back to single output mode");
+			var texRoot = opts.texRoot != null ? opts.texRoot : "book_contents.tex";
+			var tgen = new format.TeXGenerator(texRoot, sys.io.File);
+			tgen.generateDocument(doc);
 		}
 	}
 }
