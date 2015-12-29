@@ -1,8 +1,18 @@
 package format;
 
-class Main {
-	static var version = "v0.0.0-alpha-0";
-	static var usage = DocOpt.doctrim("
+typedef Options = {
+	?noHtml : Bool,
+	?htmlRoot : String,
+	?htmlSeparateChapters : Bool,
+	?noTex : Bool,
+	?texRoot : String,
+	?texSeparateChapters : Bool,
+	?version : Bool,
+	?help : Bool,
+	documentRoot : String
+}
+
+/**
 	The Digital BRT Planning Guide Generator.
 
 	Usage:
@@ -19,45 +29,59 @@ class Main {
 	  --tex-separate-chapters   Generate chapters in separate TeX files
 	  --version                 Print the version of the generator and exit
 	  --help                    Print this usage message and exit
-	");
+**/
+@:rtti
+class Main {
+	static var VERSION = "0.0.1-alpha-1";
 
 	static function parseArgs()  // TODO replace by docopt
 	{
+		var usage = DocOpt.doctrim(haxe.rtti.Rtti.getRtti(Main).doc);
 		try {
-			var opts = new Map<String,Dynamic>();
+			var opts:Options = cast {};
 			var args = Sys.args().copy();
+			function optToField(opt:String) {
+				var comp = opt.substr(2).split("-");
+				var buf = new StringBuf();
+				buf.add(comp.shift());
+				for (c in comp) {
+					buf.add(c.charAt(0).toUpperCase());
+					buf.add(c.substr(1));
+				}
+				return buf.toString();
+			}
 			while (args.length > 0) {
 				var arg = args.shift();
 				switch arg {
 				case "--no-html", "--html-separate-chapters", "--no-tex", "--tex-separate-chapters", "--version", "--help":
-					var opt = arg;
-					if (opts.exists(opt))
-						throw 'Cannot set $opt twice or more';
-					opts[opt] = true;
+					var f = optToField(arg);
+					if (Reflect.hasField(opts, f))
+						throw 'Cannot set $arg twice or more';
+					Reflect.setField(opts, f, true);
 				case "--html-root", "--tex-root":
-					var opt = arg;
-					if (opts.exists(opt))
-						throw 'Cannot set $opt twice or more';
+					var f = optToField(arg);
+					if (Reflect.hasField(opts, f))
+						throw 'Cannot set $arg twice or more';
 					if (args.length == 0)
-						throw 'Missing value for option $opt';
-					opts[opt] = args.shift();
+						throw 'Missing value for option $arg';
+					Reflect.setField(opts, f, args.shift());
 				case opt if (StringTools.startsWith(opt, "--")):
 					throw 'Unrecognized option: $opt';
 				case _:
-					if (opts.exists(arg))
+					if (Reflect.hasField(opts, "documentRoot"))
 						throw 'Too many arguments: ${args.join(" ")}';
-					opts["document-root"] = arg;
+					opts.documentRoot = arg;
 				}
 			}
-			if (opts["--version"]) {
-				Sys.println('Version: $version');
+			if (opts.version) {
+				Sys.println('Version: $VERSION');
 				Sys.exit(0);
 			}
-			if (opts["--help"]) {
+			if (opts.help) {
 				Sys.println(usage);
 				Sys.exit(0);
 			}
-			if (!opts.exists("document-root"))
+			if (opts.documentRoot == null)
 				throw 'Argument required: <document-root>';
 			return opts;
 		} catch (e:Dynamic) {

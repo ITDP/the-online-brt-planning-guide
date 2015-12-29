@@ -2,6 +2,7 @@
 -main format.Main
 -lib docopt  # dev/git git@github.com:/jonasmalacofilho/docopt.hx
 -cmd nekotools boot bin/generate.n
+-D use_rtti_doc
 
 --next
 
