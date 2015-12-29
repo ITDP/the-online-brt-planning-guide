@@ -102,23 +102,33 @@ class Main {
 			err.writeString('${pos.className.split(".").pop().toUpperCase()}  $msg  @${pos.fileName}:${pos.lineNumber}\n');
 		}
 
-		var args = parseArgs();
-		trace(args);
+		var opts = parseArgs();
+		trace(opts);
 
 		var p = new format.Parser();
-		var doc = p.parseStream(Sys.stdin(), Sys.getCwd());
+		var doc = p.parseFile(opts.documentRoot);
 
-		var buf = new StringBuf();
-		var api = {
-			saveContent : function (path, content) {
-				buf.add('<!-- file $path -->\n');
-				buf.add(content);
-				buf.add("\n\n");
+		if (!opts.noHtml) {
+			if (opts.htmlSeparateChapters)
+				trace("Separate chapter generation still not implemented, falling back to single output mode");
+
+			var htmlIndex = opts.htmlRoot != null ? opts.htmlRoot : "index.html";
+			var buf = new StringBuf();
+			var api = {
+				saveContent : function (path, content) {
+					buf.add('<!-- file $path -->\n');
+					buf.add(content);
+					buf.add("\n\n");
+				}
 			}
+			var hgen = new format.HtmlGenerator(api);
+			hgen.generateDocument(doc);
+			sys.io.File.saveContent(htmlIndex, buf.toString());
 		}
-		var hgen = new format.HtmlGenerator(api);
-		hgen.generateDocument(doc);
-		Sys.println(buf.toString());
+
+		if (!opts.noTex) {
+			trace("Skipping TeX generation, not implemented yet");
+		}
 	}
 }
 
