@@ -7,5 +7,6 @@ RUN apt-get -y install git
 RUN mkdir -p /var/git
 RUN git clone https://github.com/jonasmalacofilho/docopt.hx /var/git/docopt.hx && cd /var/git/docopt.hx && git checkout a716273 && haxelib dev docopt /var/git/docopt.hx
 RUN apt-get install -y texlive texlive-xetex
+RUN apt-get install -y latexmk
 ENV PS1="# "
 
