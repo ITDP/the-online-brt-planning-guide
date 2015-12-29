@@ -1,4 +1,9 @@
--neko bin/process.n
+-neko bin/generate.n
 -main format.Main
--cmd nekotools boot bin/process.n
+-lib docopt  # dev/git git@github.com:/jonasmalacofilho/docopt.hx
+-cmd nekotools boot bin/generate.n
+
+--next
+
+test.hxml
 
