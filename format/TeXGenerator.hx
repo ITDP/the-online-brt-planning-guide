@@ -77,7 +77,7 @@ class TeXGenerator implements Generator {
 			texEscape(text);
 		case HCode(code):
 			var delim = findVerbDelimiter(code);
-			'\\verb$delim$code$delim';
+			'\\hbox{\\verb$delim$code$delim}';
 		case HEmph(expr):
 			'\\emph{${generateHorizontal(expr)}}';
 		case HHighlight(expr):
