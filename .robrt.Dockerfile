@@ -8,5 +8,6 @@ RUN mkdir -p /var/git
 RUN git clone https://github.com/jonasmalacofilho/docopt.hx /var/git/docopt.hx && cd /var/git/docopt.hx && git checkout a716273 && haxelib dev docopt /var/git/docopt.hx
 RUN apt-get install -y texlive texlive-xetex
 RUN apt-get install -y latexmk
+RUN apt-get install -y fonts-freefont-otf
 ENV PS1="# "
 
