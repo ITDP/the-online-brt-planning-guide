@@ -22,6 +22,28 @@ class TeXGenerator implements Generator {
 		return s;  // FIXME
 	}
 
+	function findVerbDelimiter(str:String)
+	{
+		var codes = [ for (i in 0...str.length) str.fastCodeAt(i) ];
+		codes.sort(Reflect.compare);
+		var cand = 33;
+		for (c in codes) {
+			if (c > cand)
+				break;
+			else if (c == cand)
+				cand++;
+			if (cand  > 126)
+				throw 'Could not find suitable \\verb delimiter for string "$str"';
+			else if (cand > 96)
+				cand = 123;
+			else if (cand > 64)
+				cand = 91;
+			else if (cand > 47)
+				cand = 58;
+		}
+		return String.fromCharCode(cand);
+	}
+
 	function generateHorizontal(expr:Expr<HDef>)
 	{
 		if (expr == null)
@@ -30,7 +52,8 @@ class TeXGenerator implements Generator {
 		case HText(text):
 			texEscape(text);
 		case HCode(code):
-			'\\verb+$code+';  // FIXME choose appropriate delimiters depending on context
+			var delim = findVerbDelimiter(code);
+			'\\verb$delim$code$delim';
 		case HEmph(expr):
 			'\\emph{${generateHorizontal(expr)}}';
 		case HHighlight(expr):
