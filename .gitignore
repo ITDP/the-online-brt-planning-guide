@@ -3,6 +3,7 @@
 *.fls
 *.html
 *.log
+*.out
 *.pdf
 *.tex
 bin/
