@@ -2,8 +2,8 @@ FROM ubuntu:15.10
 ENV PS1="# "
 RUN mkdir -p /var/git
 RUN apt-get update
-RUN apt-get install -y texlive texlive-xetex latexmk
-RUN apt-get install -y software-properties-common git
+RUN apt-get install -y texlive
+RUN apt-get install -y software-properties-common git texlive-xetex latexmk
 RUN add-apt-repository -y ppa:haxe/releases && apt-get update && apt-get install -y haxe neko
 RUN apt-get -y install pandoc fonts-freefont-otf
 RUN haxelib setup /usr/share/haxe/lib && haxelib install utest
