@@ -17,9 +17,33 @@ class TeXGenerator implements Generator {
 		return curLabel != "" ? '$curLabel..$label' : label;
 	}
 
+	static var escaped = [
+		"\\".code => "\\textbackslash{}",
+		"#".code => "\\#",
+		"{".code => "\\{",
+		"}".code => "\\}"
+	];
+
 	function texEscape(s:String)
 	{
-		return s;  // FIXME
+		var buf = null;
+		for (i in 0...s.length) {
+			var c = s.fastCodeAt(i);
+			if (!escaped.exists(c))
+				continue;
+			buf = new StringBuf();
+			break;
+		}
+		if (buf == null)
+			return s;
+		for (i in 0...s.length) {
+			var c = s.fastCodeAt(i);
+			if (escaped.exists(c))
+				buf.add(escaped[c]);
+			else
+				buf.addChar(c);
+		}
+		return buf.toString();
 	}
 
 	function findVerbDelimiter(str:String)
