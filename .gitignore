@@ -9,4 +9,5 @@
 bin/
 
 !spec/spec.tex
+!docs/design/web/mockup/*.html
 
