@@ -1,11 +1,10 @@
--neko bin/process.n
+-neko bin/generate.n
 -main format.Main
--cmd nekotools boot bin/process.n
+-lib docopt  # dev/git git@github.com:/jonasmalacofilho/docopt.hx
+-cmd nekotools boot bin/generate.n
+-D use_rtti_doc
 
 --next
 
--neko bin/generate-html.n
--main format.Main
--D cli=generate-html
--cmd nekotools boot bin/generate-html.n
+test.hxml
 

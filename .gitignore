@@ -1,1 +1,12 @@
+*.aux
+*.fdb_latexmk
+*.fls
+*.html
+*.log
+*.out
+*.pdf
+*.tex
 bin/
+
+!spec/spec.tex
+

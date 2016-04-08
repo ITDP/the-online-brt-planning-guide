@@ -23,34 +23,6 @@ class HtmlGeneration {
 		return buf.toString();
 	}
 
-	public function test_000_garbage()
-	{
-		// beware, these are pseudo expressions that are made into real
-		// ones by the `make` macro
-		trace(genDoc(make(VList([
-			VPar(HList([
-				HText("Hello, "),
-				HEmph(HText("World")),
-				HText("! My name is "),
-				HHighlight(HList([
-					HText("BRT."),
-					HText("Robrt")
-				])),
-				HText(".")
-			])),
-			VSection(HText("A chapter title"), VList([
-				VPar(HText("lalala")),
-				VSection(HText("A section title"), VList([
-					VPar(HText("lalala")),
-					VSection(HText("A subsection title"), VList([
-						VPar(HText("lalala"))
-					]), "sub-section-label") 
-				]), "section-label")
-			]), "chapter-label")
-		]))));
-		Assert.isTrue(true);
-	}
-
 	public function test_001_empty()
 	{
 		Assert.equals("", genDoc(make(null)));

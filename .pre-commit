@@ -13,9 +13,8 @@ runhaxe() {
 	fi
 }
 
-echo "Pre-commit: testing"
+echo "Pre-commit: building and testing (build.hxml should already run test.hxml)"
 runhaxe . build.hxml
-runhaxe . test.hxml
 
 echo "Pre-commit: success, continuing with commit"
 
