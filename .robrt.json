@@ -15,7 +15,8 @@
 			"../bin/generate --html-root spec.html --tex-root contents.tex spec.txt",
 			"latexmk -xelatex -pdflatex=\"xelatex -interaction=nonstopmode -file-line-error\" spec.tex",
 			"cp spec.html spec.pdf spec.log $ROBRT_OUTPUT_DIR/",
-			"cp docs/design/web/mockup $ROBRT_OUTPUT_DIR/web-mockup"
+			"cd $ROBRT_REPOSITORY_DIR",
+			"cp -r docs/design/web/mockup $ROBRT_OUTPUT_DIR/web-mockup"
 		]
 	}
 }
