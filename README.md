@@ -1,2 +1,2 @@
-_The online colaborative BRT Planning Guide – a proof-of-concept_
+_Online collaborative version of the BRT Planning Guide_
 
