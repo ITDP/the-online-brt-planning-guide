@@ -1,5 +1,10 @@
--neko bin/unit-tests.n
--main format.tests.Main
+-lib hxparse
+-cp test
+-cp src
+
+--each
+
+-main RunAll
+--interp
 -lib utest
--cmd neko bin/unit-tests.n
 
