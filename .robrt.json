@@ -11,7 +11,7 @@
 			"cd generator",
 			"haxe test.hxml",
 			"cd $ROBRT_REPOSITORY_DIR",
-			"cp -r docs/design/web/mockup $ROBRT_OUTPUT_DIR/web-mockup"
+			"cp -r generator/docs/design/web/mockup $ROBRT_OUTPUT_DIR/web-mockup"
 		]
 	}
 }
