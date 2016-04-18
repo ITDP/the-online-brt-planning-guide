@@ -8,6 +8,6 @@
 *.tex
 bin/
 
-!spec/spec.tex
-!docs/design/web/mockup/*.html
+!generator/docs/spec.tex
+!generator/docs/design/web/mockup/*.html
 
