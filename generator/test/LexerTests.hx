@@ -1,4 +1,3 @@
-package test;
 import parser.*;
 import parser.Token;
 import utest.Assert;

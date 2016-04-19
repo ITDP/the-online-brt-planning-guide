@@ -1,4 +1,3 @@
-package test;
 
 class RunAll {
 	static function main()
