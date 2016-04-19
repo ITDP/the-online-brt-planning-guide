@@ -15,5 +15,8 @@ enum VDef {
 	VList(elem:Array<Elem<VDef>>);
 }
 
-typedef File = Elem<VDef>;
+typedef VElem = Elem<VDef>;
+typedef HElem = Elem<HDef>;
+
+typedef File = VElem;
 
