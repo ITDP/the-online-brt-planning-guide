@@ -66,24 +66,30 @@ class LexerTests {
 		//Consideting one whitespace again
 		Assert.same([TCommand("foo"), TBrOpen, TWord("bar"), TBrClose, TBrkOpen, TWord("opt"), TBrkClose, TEof], defs("\\foo{bar} [opt]"));
 		
-		Assert.same([TCommand("foo"), TBrOpen, TWord("bar"), TBrClose, TBrkOpen, TWord("opt"), TBrkClose, TEof], defs("\\foo {bar} [opt]"));
-		
-		//This is a word (escaping "\" twice)
-		Assert.same([TWord("\\\\foo"), TEof], defs("\\\\foo"));
+		//Only simple spaces (and a lot of them), not \t
+		Assert.same([TCommand("foo"), TBrOpen, TWord("bar"), TBrClose, TBrkOpen, TWord("opt"), TBrkClose, TEof], defs("\\foo        {bar}          [opt]"));
 	}
 	
 	public function test_004_fancies()
 	{
 		Assert.same([TFancy("foo"), TEof], defs("#foo#"));
-		Assert.same([TWord("#foo"), TEof], defs("#foo"));
-		Assert.same([TWord("foo#"), TEof], defs("foo#"));
+		
 		Assert.same([THashes(1), TEof], defs("#"));
 		Assert.same([THashes(3), TEof], defs("###"));
 		
-		//Hm... something tells me I'm supposed to make "###Foo" as the example below
-		//That str will produce "[TWord('###Foo'), TEof]" for the record
 		Assert.same([THashes(3), TWordSpace(" "), TWord("Foo"), TEof], defs("### Foo"));
+		Assert.same([THashes(3), TWord("Foo"), TEof], defs("###Foo"));
 		
+		//I think I Should throw for "#foo" and "foo#" cases
+		
+	}
+	
+	public function test_005_escapes()
+	{
+		Assert.same([TWord("\\\\foo"), TEof], defs("\\\\foo"));
+		
+		Assert.same([TWord("#foo"), TEof], defs("\\#foo"));
+		Assert.same([TWord("foo#"), TEof], defs("foo\\#"));
 	}
 
 	public function test_999_position()

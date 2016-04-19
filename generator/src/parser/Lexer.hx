@@ -1,7 +1,7 @@
 package parser;
 
 import parser.Token;
-
+using StringTools;
 class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 	static var buf:StringBuf;
 
@@ -21,7 +21,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 			pos : pos != null ? pos : mkPos(lex.curPos())
 		}
 	}
-
+	
 	static function countNewlines(s:String)
 	{
 		var n = 0;
@@ -71,12 +71,13 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		},
 		"(\\\\[a-zA-Z]+)" => mk( lexer, TCommand(lexer.current.substr(1))),
 		"#[a-zA-Z]+#" => mk(lexer, TFancy(lexer.current.substring(1, lexer.current.length -1))),
-		"{| {" => mk(lexer, TBrOpen),
+		"{|[ ]+{" => mk(lexer, TBrOpen),
 		"}" => mk(lexer, TBrClose),
-		"\\[| \\[" => mk(lexer, TBrkOpen),
+		"\\[|[ ]+\\[" => mk(lexer, TBrkOpen),
 		"\\]" => mk(lexer, TBrkClose),
+		"[a-zA-Z0-9]*\\\\#[a-zA-Z0-9]*" => mk(lexer, TWord(lexer.current.replace("\\", ""))),
 		"#+" => mk(lexer, THashes(hashes(lexer.current))),
-		"[^ \t\r\n/*{}\\[\\]]+" => mk(lexer, TWord(lexer.current))
+		"[^ \t\r\n/*{}\\[\\]#]+" => mk(lexer, TWord(lexer.current))
 	];
 }
 
