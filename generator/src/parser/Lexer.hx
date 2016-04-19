@@ -42,6 +42,15 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 			lexer.token(comment);
 		}
 	];
+	
+	static function hashes(s : String)
+	{
+		var n = 0;
+		for (i in 0...s.length)
+			if (s.charAt(i) == "#")
+				n++;
+		return n;
+	}
 
 	public static var tokens = @:rule [
 		"" => mk(lexer, TEof),
@@ -60,7 +69,14 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 			pos.min = min;
 			mk(lexer, def, pos);
 		},
-		"[^ \t\r\n/*]+" => mk(lexer, TWord(lexer.current))
+		"(\\\\[a-zA-Z]+)" => mk( lexer, TCommand(lexer.current.substr(1))),
+		"#[a-zA-Z]+#" => mk(lexer, TFancy(lexer.current.substring(1, lexer.current.length -1))),
+		"{| {" => mk(lexer, TBrOpen),
+		"}" => mk(lexer, TBrClose),
+		"\\[| \\[" => mk(lexer, TBrkOpen),
+		"\\]" => mk(lexer, TBrkClose),
+		"#+" => mk(lexer, THashes(hashes(lexer.current))),
+		"[^ \t\r\n/*{}\\[\\]]+" => mk(lexer, TWord(lexer.current))
 	];
 }
 
