@@ -71,7 +71,13 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 			mk(lexer, def, pos);
 		},
 		
+		
+		"$[^$]*$" => mk(lexer, TMath(lexer.current.substr(1).substr(0,lexer.current.length -2))),
+		"$$$[^\n]*" => mk(lexer, TMath(lexer.current.substr(3))),
+		
 		"\\\\\\\\" => mk(lexer, TWord("\\\\")),
+		
+		
 		
 		"(\\\\[a-zA-Z0-9]+)" => mk(lexer, TCommand(lexer.current.substr(1))),
 		
@@ -84,9 +90,10 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		":+" => mk(lexer, TColon(countmark(lexer.current, ":"))),
 		"@+" => mk(lexer, TAt(countmark(lexer.current, "@"))),
 		"#+" => mk(lexer, THashes(countmark(lexer.current, "#"))),
+		">" => mk(lexer, TGreater),
 		
-		"\\\\[\\*@:#]" => mk(lexer, TWord(lexer.current.substr(1))),
-		"[^ \t\r\n/*{}\\[\\]\\\\#]+" => mk(lexer, TWord(lexer.current))
+		"\\\\[\\*@:#>$]" => mk(lexer, TWord(lexer.current.substr(1))),
+		"[^ \t\r\n/*{}\\[\\]\\\\#>@\\*:$]+" => mk(lexer, TWord(lexer.current))
 	];
 }
 

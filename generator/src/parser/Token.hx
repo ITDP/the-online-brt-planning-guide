@@ -21,6 +21,8 @@ enum TokenDef {
 
 	// Block comments: begin at /* and at */
 	TBlockComment(s:String);
+	
+	TMath(s : String);
 
 	// Unformated text
 	TWord(s:String);
@@ -50,8 +52,9 @@ enum TokenDef {
 	
 	TColon(q : Int);
 	TAsterisk(q : Int);
-	//@
 	TAt(w : Int);
+	//Used for Quotes
+	TGreater;
 	
 }
 
