@@ -95,7 +95,7 @@ class LexerTests {
 	{
 		Assert.same([TWord("\\\\"), TWord("foo"), TEof], defs("\\\\foo"));
 		
-		Assert.same([TWord("foo"),TWord("\\"), TEof], defs("foo\\"));
+		Assert.raises(defs.bind("foo\\"));
 		
 		Assert.same([TWord("#"), TWord("foo"), TEof], defs("\\#foo"));
 		Assert.same([TWord("foo"), TWord("#"),  TEof], defs("foo\\#"));
