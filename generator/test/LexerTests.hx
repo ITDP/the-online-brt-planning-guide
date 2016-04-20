@@ -82,7 +82,8 @@ class LexerTests {
 	
 	public function test_005_escapes()
 	{
-		Assert.same([TWord("\\"), TWord("foo"), TEof], defs("\\\\foo"));
+		Assert.same([TWord("\\\\"), TWord("foo"), TEof], defs("\\\\foo"));
+		
 		Assert.same([TWord("foo"),TWord("\\"), TEof], defs("foo\\"));
 		
 		Assert.same([TWord("#"), TWord("foo"), TEof], defs("\\#foo"));
