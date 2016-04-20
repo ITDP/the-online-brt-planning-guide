@@ -1,28 +1,21 @@
 import utest.Assert;
-import parser.Lexer;
-import parser.Parser;
 import parser.Ast;
+import parser.MacroTools.*;
 
-using Lambda;
 class ParserTests {
 	public function new() {}
 
 	function parse(s:String)
 	{
-		var l = new Lexer(byte.ByteData.ofString(s), "test");
-		var p = new Parser(l);
+		var l = new parser.Lexer(byte.ByteData.ofString(s), "test");
+		var p = new parser.Parser(l);
 		return p.file();
 	}
 	
 	public function test_000_basic()
 	{
-		Assert.isTrue(true);
-		trace(parse("foo bar"));
-	}
-	
-	public function test_001_words()
-	{
-
+		trace(make(@skip(1)VList([@skip(2)@src("a.test")VList([@len(3)@skip(1)Paragraph(null)])])));
+		Assert.isTrue(true);  // FIXME
 	}
 }
 

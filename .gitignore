@@ -7,6 +7,7 @@
 *.pdf
 *.tex
 bin/
+dump/
 
 !generator/docs/spec.tex
 !generator/docs/design/web/mockup/*.html
