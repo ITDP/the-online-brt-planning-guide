@@ -88,6 +88,7 @@ class LexerTests {
 		
 		Assert.same([TAsterisk(1), TWord("foo"), TAsterisk(1), TEof], defs("*foo*"));
 		Assert.same([TAsterisk(2), TWord("foo"), TAsterisk(5), TEof], defs("**foo*****"));
+		Assert.same([TWord("foo"), TAsterisk(1), TWord("*"), TEof], defs("foo*\\*"));
 	}
 	
 	public function test_006_escapes()
@@ -101,6 +102,8 @@ class LexerTests {
 		
 		Assert.same([TWord("@"), TEof], defs("\\@"));
 		Assert.same([TWord("@"), TWord("@"), TEof], defs("\\@\\@"));
+		
+		Assert.same([TWord("foo"), TWord("@"), TEof], defs("foo\\@"));
 		
 		//Just in case
 		Assert.same([TWord("\\\\"), TCommand("foo"), TEof], defs("\\\\\\foo"));

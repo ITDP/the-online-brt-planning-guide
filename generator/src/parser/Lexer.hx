@@ -70,17 +70,20 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 			pos.min = min;
 			mk(lexer, def, pos);
 		},
+		
 		"\\\\\\\\" => mk(lexer, TWord("\\\\")),
 		"\\\\" => mk(lexer, TWord("\\")),
-		"(\\\\[a-zA-Z0-9]+)" => mk( lexer, TCommand(lexer.current.substr(1))),
+		
+		"(\\\\[a-zA-Z0-9]+)" => mk(lexer, TCommand(lexer.current.substr(1))),
+		
 		"{" => mk(lexer, TBrOpen),
 		"}" => mk(lexer, TBrClose),
 		"\\[" => mk(lexer, TBrkOpen),
 		"\\]" => mk(lexer, TBrkClose),
+		
 		"*+" => mk(lexer, TAsterisk(countmark(lexer.current, "*"))),
 		":+" => mk(lexer, TColon(countmark(lexer.current, ":"))),
 		"@+" => mk(lexer, TAt(countmark(lexer.current, "@"))),
-			
 		"#+" => mk(lexer, THashes(countmark(lexer.current, "#"))),
 		
 		"\\\\[\\*@:#]" => mk(lexer, TWord(lexer.current.substr(1))),

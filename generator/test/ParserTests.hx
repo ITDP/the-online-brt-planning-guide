@@ -3,6 +3,7 @@ import parser.Lexer;
 import parser.Parser;
 import parser.Ast;
 
+using Lambda;
 class ParserTests {
 	public function new() {}
 
@@ -12,11 +13,16 @@ class ParserTests {
 		var p = new Parser(l);
 		return p.file();
 	}
-
+	
 	public function test_000_basic()
 	{
 		Assert.isTrue(true);
-		trace(parse("foo"));
+		trace(parse("foo bar"));
+	}
+	
+	public function test_001_words()
+	{
+
 	}
 }
 

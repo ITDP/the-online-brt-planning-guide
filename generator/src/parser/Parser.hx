@@ -35,7 +35,35 @@ class Parser {
 	
 	function paragraph()
 	{
-		return mk(null, discard().pos);
+		var buff = new StringBuf();
+		var hlist = [];
+		
+		while (!peek().def.match(TBreakSpace(_) | TEof))
+		{
+			var elem : Elem<HDef> = {def : null, pos : null};
+			switch(peek().def)
+			{
+				case TWord(_):
+					buff.add(peek().def.getParameters()[0]);
+				case TWordSpace(_):
+					elem = {def : Word(buff.toString()), pos : peek().pos};
+					hlist.push(elem);
+					buff = new StringBuf();
+				default:
+					unexpected(peek());
+			}			
+			next = next.next;			
+		}
+		
+		if (buff.length > 0)
+		{
+			var elem = {def : Word(buff.toString()), pos : peek().pos};
+			hlist.push(elem);
+		}
+		
+		var helem : Elem<HDef> = {def : HList(hlist), pos : hlist[hlist.length - 1].pos};
+		
+		return mk(Paragraph(helem), hlist[hlist.length - 1].pos);
 	}
 
 	function vertical()
