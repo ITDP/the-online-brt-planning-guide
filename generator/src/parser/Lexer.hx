@@ -81,7 +81,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"\\[" => mk(lexer, TBrkOpen),
 		"\\]" => mk(lexer, TBrkClose),
 		
-		"*+" => mk(lexer, TAsterisk(countmark(lexer.current, "*"))),
+		"\\*+" => mk(lexer, TAsterisk(countmark(lexer.current, "*"))),
 		":+" => mk(lexer, TColon(countmark(lexer.current, ":"))),
 		"@+" => mk(lexer, TAt(countmark(lexer.current, "@"))),
 		"#+" => mk(lexer, THashes(countmark(lexer.current, "#"))),
