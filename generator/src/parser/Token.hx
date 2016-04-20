@@ -47,6 +47,12 @@ enum TokenDef {
 	// \figure => #FIG# == THashes(1) + TWord(FIG) + THashes(1)
 	THashes(q : Int);
 	
+	
+	TColon(q : Int);
+	TAsterisk(q : Int);
+	//@
+	TAt(w : Int);
+	
 }
 
 typedef Token = {

@@ -43,11 +43,12 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		}
 	];
 	
-	static function hashes(s : String)
+	//Count how many chars has in a string s
+	static function countmark(s : String, char : String)
 	{
 		var n = 0;
 		for (i in 0...s.length)
-			if (s.charAt(i) == "#")
+			if (s.charAt(i) == char)
 				n++;
 		return n;
 	}
@@ -72,16 +73,17 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"\\\\\\\\" => mk(lexer, TWord("\\\\")),
 		"\\\\" => mk(lexer, TWord("\\")),
 		"(\\\\[a-zA-Z0-9]+)" => mk( lexer, TCommand(lexer.current.substr(1))),
-		
 		"{" => mk(lexer, TBrOpen),
 		"}" => mk(lexer, TBrClose),
 		"\\[" => mk(lexer, TBrkOpen),
 		"\\]" => mk(lexer, TBrkClose),
+		"*+" => mk(lexer, TAsterisk(countmark(lexer.current, "*"))),
+		":+" => mk(lexer, TColon(countmark(lexer.current, ":"))),
+		"@+" => mk(lexer, TAt(countmark(lexer.current, "@"))),
+			
+		"#+" => mk(lexer, THashes(countmark(lexer.current, "#"))),
 		
-		"\\\\#" => mk(lexer, TWord(lexer.current.replace("\\", ""))),
-		
-		"#+" => mk(lexer, THashes(hashes(lexer.current))),
-		
+		"\\\\[\\*@:#]" => mk(lexer, TWord(lexer.current.substr(1))),
 		"[^ \t\r\n/*{}\\[\\]\\\\#]+" => mk(lexer, TWord(lexer.current))
 	];
 }

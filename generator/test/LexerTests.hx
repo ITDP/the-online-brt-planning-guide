@@ -80,7 +80,17 @@ class LexerTests {
 		Assert.same([TWord("Foo"),THashes(1), TEof], defs("Foo#"));
 	}
 	
-	public function test_005_escapes()
+	public function test_005_otherchars()
+	{
+		Assert.same([TAsterisk(1), TEof], defs("*"));
+		Assert.same([TColon(1), TEof], defs(":"));
+		Assert.same([TAt(1), TEof], defs("@"));
+		
+		Assert.same([TAsterisk(1), TWord("foo"), TAsterisk(1), TEof], defs("*foo*"));
+		Assert.same([TAsterisk(2), TWord("foo"), TAsterisk(5), TEof], defs("**foo*****"));
+	}
+	
+	public function test_006_escapes()
 	{
 		Assert.same([TWord("\\\\"), TWord("foo"), TEof], defs("\\\\foo"));
 		
@@ -88,6 +98,14 @@ class LexerTests {
 		
 		Assert.same([TWord("#"), TWord("foo"), TEof], defs("\\#foo"));
 		Assert.same([TWord("foo"), TWord("#"),  TEof], defs("foo\\#"));
+		
+		Assert.same([TWord("@"), TEof], defs("\\@"));
+		Assert.same([TWord("@"), TWord("@"), TEof], defs("\\@\\@"));
+		
+		//Just in case
+		Assert.same([TWord("\\\\"), TCommand("foo"), TEof], defs("\\\\\\foo"));
+		Assert.same([TWord("#"), THashes(1), TWord("foo"), THashes(1), TEof], defs("\\##foo#"));
+		
 	}
 
 	public function test_999_position()
