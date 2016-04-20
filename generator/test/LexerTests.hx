@@ -88,8 +88,6 @@ class LexerTests {
 		
 		Assert.same([TWord("#"), TWord("foo"), TEof], defs("\\#foo"));
 		Assert.same([TWord("foo"), TWord("#"),  TEof], defs("foo\\#"));
-		trace(defs("foo\\#"));
-		trace(defs("foo\\\\"));
 	}
 
 	public function test_999_position()

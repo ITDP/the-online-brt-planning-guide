@@ -28,10 +28,6 @@ enum TokenDef {
 	// Commands : Usually they follow this syntax \command {param} [opt]
 	TCommand(s : String);
 	
-	// Fancy Commands : A markdown-like approach to the command - 
-	// Usually they're easier to read than commands, but they're somewhat simplified
-	TFancy(s : String);
-	
 	// Braces - Important for the command syntax - 
 	// They define the obligatory params, e.g:
 	// \title {My Great Title!}
@@ -44,8 +40,11 @@ enum TokenDef {
 	TBrkClose;
 	
 	// Hashes(int qty): Quantity of hashes - 
-	// This token is a fancy syntax for section (###)
-	// and subsection (##)
+	// This token is used for all fancy commands
+	// e.g: 
+	// Fancy syntax for Section: \section {desc} => ### desc;
+	// Subsection \subsection {desc} => ## desc
+	// \figure => #FIG# == THashes(1) + TWord(FIG) + THashes(1)
 	THashes(q : Int);
 	
 }
