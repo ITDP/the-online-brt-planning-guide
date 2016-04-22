@@ -39,37 +39,36 @@ class MacroTools {
 		catch (e:Dynamic)
 			error('Wrong argument type for @$name: ${e.split("\n")[0]}', pos);
 
-	static function transform(expr:Expr, src:String, min:Int, ret:{ max:Int }) {
+	static function transform(expr:Expr, src:String, pp:{ len:Int, max:Int }) {
+		var min = pp.max;
+		pp.max += pp.len;
+		pp.len = 0;
 		return switch expr.expr {
 		case EMeta({ name:name, params:[v] }, sub):
 			switch lastPart(name, ":") {
 			case "src":
 				type(name, macro ($v:String), v.pos);
-				transform(sub, v.getValue(), min, ret);
+				src = v.getValue();
 			case "len":
 				type(name, macro ($v:Int), v.pos);
-				ret.max += v.getValue();
-				transform(sub, src, min, ret);
+				pp.len += v.getValue();
 			case "skip":
 				type(name, macro ($v:Int), v.pos);
-				var sv = v.getValue();
-				min += sv;
-				ret.max += sv;
-				transform(sub, src, min, ret);
+				pp.max += v.getValue();
 			case _:
 				warning('Unsupported @$name or wrong number of params, ignoring', expr.pos);
-				transform(sub, src, min, ret);
 			}
+			transform(sub, src, pp);
 		case EMeta({ name:name }, sub):
 			warning('Unsupported @$name or wrong number of params, ignoring', expr.pos);
-			transform(sub, src, min, ret);
+			transform(sub, src, pp);
 		case ECall({ expr:EConst(CIdent(lastPart(_, ".") => c)) }, params)
 		if (Lambda.has(getDefs(), c)):
-			params = params.map(transform.bind(_, src, min, ret));
+			params = params.map(transform.bind(_, src, pp));
 			var edef = { expr:ECall({ expr:EConst(CIdent(c)), pos:expr.pos }, params), pos:expr.pos };
-			macro { def:$edef, pos:{ src:$v{src}, min:$v{min}, max:$v{ret.max} } };
+			macro { def:$edef, pos:{ src:$v{src}, min:$v{min}, max:$v{pp.max} } };
 		case _:
-			expr.map(transform.bind(_, src, min, ret));
+			expr.map(transform.bind(_, src, pp));
 		}
 	}
 
@@ -77,6 +76,6 @@ class MacroTools {
 	Generate real Document ASTs from pseudo ASTs with only VDefs and HDefs.
 	*/
 	public static macro function make(expr:Expr):Expr
-		return transform(expr, getLocalModule()+".hx", 0, { max:0 });
+		return transform(expr, getLocalModule()+".hx", { len:0, max:0 });
 }
 
