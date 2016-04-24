@@ -36,7 +36,7 @@ class LexerTests {
 		Assert.same([TWordSpace(" \t"),TEof], defs(" \t"));
 		Assert.same([TWordSpace(" \n"),TEof], defs(" \n"));
 		Assert.same([TWordSpace(" \r\n"),TEof], defs(" \r\n"));
-
+		
 		Assert.same([TWord("foo"),TWordSpace(" \n"),TWord("bar"),TWordSpace("\t\r\n"),TEof], defs("foo \nbar\t\r\n"));
 		Assert.same([TWord("foo"),TBreakSpace(" \t\r\n\n"),TWord("bar"),TEof], defs("foo \t\r\n\nbar"));
 	}
@@ -99,6 +99,9 @@ class LexerTests {
 	{
 		Assert.same([TMath("bla"), TEof], defs("$bla$"));
 		Assert.same([TMath("bla"), TEof], defs("$$$bla"));
+		Assert.same([TMath("bla\n\n"), TEof], defs("$bla\n\n$"));
+		
+		Assert.same([TMath("bla\\$\n\n"), TEof], defs("$bla\\$\n\n$"));
 	}
 	
 	public function test_007_escapes()

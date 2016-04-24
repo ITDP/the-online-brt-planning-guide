@@ -43,6 +43,21 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		}
 	];
 	
+	
+	static var math = @:rule
+	[
+		"$" => checkExpr(),
+		"\\\\$" => {
+			buf.add(lexer.current);
+			lexer.token(math);
+		},
+		"[^$]" =>
+		{
+			buf.add(lexer.current);
+			lexer.token(math);
+		}
+	];
+	
 	//Count how many chars has in a string s
 	static function countmark(s : String, char : String)
 	{
@@ -51,6 +66,12 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 			if (s.charAt(i) == char)
 				n++;
 		return n;
+	}
+	
+	static function checkExpr() : TokenDef
+	{
+		//TODO: Check expr on TeX
+		return TMath(buf.toString());
 	}
 
 	public static var tokens = @:rule [
@@ -72,7 +93,14 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		},
 		
 		
-		"$[^$]*$" => mk(lexer, TMath(lexer.current.substr(1).substr(0,lexer.current.length -2))),
+		"$" => {
+			buf = new StringBuf();
+			var min = lexer.curPos().pmin;
+			var def = lexer.token(math);
+			var pos = mkPos(lexer.curPos());
+			pos.min = min;
+			mk(lexer, def, pos);
+		},
 		"$$$[^\n]*" => mk(lexer, TMath(lexer.current.substr(3))),
 		
 		"\\\\\\\\" => mk(lexer, TWord("\\\\")),
