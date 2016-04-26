@@ -58,7 +58,15 @@ class ParserTests {
 
 	public function test_001_simple()
 	{
-		Assert.isTrue(true);  // TODO
+		Assert.same(
+			make(Paragraph(@len(3)Word("foo"))),
+			parse("foo"));
+		Assert.same(
+			make(Paragraph(HList([@len(3)Word("foo"),@skip(1)@len(3)Word("bar")]))),
+			parse("foo bar"));
+		Assert.same(
+			make(@skip(2)Paragraph(HList([@len(3)Word("foo"),@skip(1)@len(3)Word("bar")]))),
+			parse("  foo bar"));
 	}
 }
 
