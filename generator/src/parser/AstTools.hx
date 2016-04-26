@@ -1,14 +1,18 @@
 package parser;
 
-import haxe.macro.Context.*;
+#if macro
 import haxe.macro.Expr;
-
-using StringTools;
+import haxe.macro.Context.*;
 using haxe.macro.ExprTools;
+using StringTools;
+#else
+import parser.Ast;
+import parser.Token;
+#end
 
-class MacroTools {
+class AstTools {
+#if macro
 	static var cachedDefs:Array<String>;  // don't access directly, call getDefs() instead
-
 	static function getDefs(?clear=false)
 	{
 		if (!clear && cachedDefs != null) return cachedDefs;
@@ -67,15 +71,46 @@ class MacroTools {
 			params = params.map(transform.bind(_, src, pp));
 			var edef = { expr:ECall({ expr:EConst(CIdent(c)), pos:expr.pos }, params), pos:expr.pos };
 			macro { def:$edef, pos:{ src:$v{src}, min:$v{min}, max:$v{pp.max} } };
+		case EConst(CIdent(lastPart(_, ".") => c)) if (Lambda.has(getDefs(), c)):
+			macro { def:$expr, pos:{ src:$v{src}, min:$v{min}, max:$v{pp.max} } };
 		case _:
 			expr.map(transform.bind(_, src, pp));
+		}
+	}
+#else
+	/*
+	Build a complete element from `def` and `pos`.
+
+	Saves a few characters when doing that a lot.
+	*/
+	public static function mk<T>(def:T, pos:Position):Elem<T>
+		return { def:def, pos:pos };
+#end
+	/*
+	Build a VList/HList full element from `def`.
+
+	If the list has 1 or none elements, simplify the structure to a single element or `null`.
+	*/
+	public static macro function mkList(def:Expr)
+	{
+		switch def.expr {
+		case ECall({ expr:EConst(CIdent(c)) }, [li]) if (Lambda.has(getDefs(), c) && c.endsWith("List")):
+			return macro {
+				($li:Array<Dynamic>);
+				if ($li.length < 2)
+					$li[0];
+				else
+					parser.AstTools.mk($def, parser.TokenTools.span($li[0].pos, $li[$li.length - 1].pos));
+			}
+		case _:
+			return error('Unexpected argument for mkList: ${def.toString}', def.pos);
 		}
 	}
 
 	/*
 	Generate real Document ASTs from pseudo ASTs with only VDefs and HDefs.
 	*/
-	public static macro function make(expr:Expr):Expr
-		return transform(expr, getLocalModule()+".hx", { len:0, max:0 });
+	public static macro function expand(pseudo:Expr):Expr
+		return transform(pseudo, getLocalModule()+".hx", { len:0, max:0 });
 }
 

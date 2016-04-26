@@ -1,20 +1,20 @@
 package parser;
 
-import parser.Token;
-import parser.Ast;
 import haxe.ds.GenericStack.GenericCell;
+import parser.Ast;
+import parser.Token;
 
-using parser.TokenTools;
+import parser.AstTools.*;
 
 class Parser {
 	var lexer:Lexer;
 	var next:GenericCell<Token>;
 
 	function error(m:String)
-		return throw m;
+		throw m;
 
 	function unexpected(t:Token)
-		return error('Unexpected `${t}`');
+		error('Unexpected `${t.def}` at ${t.pos.src}:${t.pos.min}-${t.pos.max}');
 
 	function peek()
 	{
@@ -30,40 +30,48 @@ class Parser {
 		return ret;
 	}
 
-	function mk<T>(def:T, pos:Position):Elem<T>
-		return { def:def, pos:pos };
+	function horizontal()
+	{
+		while (peek().def.match(TLineComment(_) | TBlockComment(_)))
+			discard();
+		return switch peek() {
+		case { def:TWord(s), pos:pos }:
+			discard();
+			mk(Word(s), pos);
+		case { def:TMath(s), pos:pos }:
+			discard();
+			mk(Word(s), pos);  // FIXME
+		case { def:TCommand(s), pos:pos }:
+			discard();
+			mk(Word(s), pos);  // FIXME
+		case { def:TWordSpace(s), pos:pos }:
+			discard();
+			mk(Wordspace, pos);
+		case { def:TBreakSpace(s) }:
+			null;
+		case { def:TEof }:
+			null;
+		case other:
+			unexpected(other); null;
+		}
+	}
+
+	function hlist()
+	{
+		var li = [];
+		while (true) {
+			var v = horizontal();
+			if (v == null) break;
+			li.push(v);
+		}
+		return mkList(HList(li));
+	}
 
 	function paragraph()
 	{
-		var buff = new StringBuf();
-		var hlist = [];
-
-		while (!peek().def.match(TBreakSpace(_) | TEof))
-		{
-			var elem : Elem<HDef> = {def : null, pos : null};
-			switch(peek().def)
-			{
-				case TWord(_):
-					buff.add(peek().def.getParameters()[0]);
-				case TWordSpace(_):
-					elem = {def : Word(buff.toString()), pos : peek().pos};
-					hlist.push(elem);
-					buff = new StringBuf();
-				default:
-					unexpected(peek());
-			}
-			next = next.next;
-		}
-
-		if (buff.length > 0)
-		{
-			var elem = {def : Word(buff.toString()), pos : peek().pos};
-			hlist.push(elem);
-		}
-
-		var helem : Elem<HDef> = {def : HList(hlist), pos : hlist[hlist.length - 1].pos};
-
-		return mk(Paragraph(helem), hlist[hlist.length - 1].pos);
+		var text = hlist();
+		if (text == null) return null;
+		return mk(Paragraph(text), text.pos);
 	}
 
 	function vertical()
@@ -73,7 +81,7 @@ class Parser {
 		return switch peek().def {
 		case TEof: null;
 		case TWord(_): paragraph();
-		case _: unexpected(peek());
+		case _: unexpected(peek()); null;
 		}
 	}
 
@@ -85,10 +93,7 @@ class Parser {
 			if (v == null) break;
 			li.push(v);
 		}
-		if (li.length < 2)
-			return li[0];
-		else
-			return mk(VList(li), li[0].pos.span(li[li.length - 1].pos));
+		return mkList(VList(li));
 	}
 
 	public function file()

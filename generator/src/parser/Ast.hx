@@ -5,7 +5,7 @@ import parser.Token;
 typedef Elem<T> = { def : T, pos : Position };
 
 enum HDef {
-	Wordspace(src:String);
+	Wordspace;
 	Word(w:String);
 	HList(elem:Array<Elem<HDef>>);
 }
