@@ -32,12 +32,12 @@ class Parser {
 
 	function mk<T>(def:T, pos:Position):Elem<T>
 		return { def:def, pos:pos };
-	
+
 	function paragraph()
 	{
 		var buff = new StringBuf();
 		var hlist = [];
-		
+
 		while (!peek().def.match(TBreakSpace(_) | TEof))
 		{
 			var elem : Elem<HDef> = {def : null, pos : null};
@@ -51,18 +51,18 @@ class Parser {
 					buff = new StringBuf();
 				default:
 					unexpected(peek());
-			}			
-			next = next.next;			
+			}
+			next = next.next;
 		}
-		
+
 		if (buff.length > 0)
 		{
 			var elem = {def : Word(buff.toString()), pos : peek().pos};
 			hlist.push(elem);
 		}
-		
+
 		var helem : Elem<HDef> = {def : HList(hlist), pos : hlist[hlist.length - 1].pos};
-		
+
 		return mk(Paragraph(helem), hlist[hlist.length - 1].pos);
 	}
 

@@ -12,7 +12,7 @@ class ParserTests {
 		var p = new parser.Parser(l);
 		return p.file();
 	}
-	
+
 	/*
 	Test the `make` macro, used to create AST elements from a simplified *Def only pseudo-structure.
 	**/
