@@ -13,10 +13,7 @@ class ParserTests {
 		return p.file();
 	}
 
-	/*
-	Test the `expand` macro, used to create AST elements from a simplified *Def only pseudo-structure.
-	**/
-	public function test_000_expand()
+	public function test_000_expand_macro()
 	{
 		Assert.same(
 			{ def:Paragraph(
@@ -56,7 +53,7 @@ class ParserTests {
 				@skip(3)Paragraph(HList([@skip(1)@len(3)Word("foo"),@len(3)Word("bar")]))])));
 	}
 
-	public function test_001_example()
+	public function test_001_test_example()
 	{
 		Assert.same(
 			expand(Paragraph(@len(3)Word("foo"))),
@@ -69,7 +66,7 @@ class ParserTests {
 			parse("  foo \tbar\n red"));
 	}
  
-	public function test_001_worspace()
+	public function test_001_wordspace()
 	{
 		Assert.same(
 			expand(Paragraph(HList([@len(1)Word("a"),@len(1)Wordspace,@len(1)Word("b")]))),
@@ -102,7 +99,7 @@ class ParserTests {
 			parse("a   b"));
 	}
 
-	public function test_002_parbreak()
+	public function test_002_paragraph_break()
 	{
 		Assert.same(
 			expand(VList([Paragraph(@len(1)Word("a")),@skip(2)Paragraph(@len(1)Word("b"))])),
