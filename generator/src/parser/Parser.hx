@@ -97,7 +97,7 @@ class Parser {
 	}
 
 	public function file()
-		return vertical();
+		return vlist();
 
 	public function new(lexer:Lexer)
 		this.lexer = lexer;

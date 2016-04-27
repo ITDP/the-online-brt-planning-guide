@@ -16,7 +16,7 @@ class ParserTests {
 	/*
 	Test the `expand` macro, used to create AST elements from a simplified *Def only pseudo-structure.
 	**/
-	public function test_000_make()
+	public function test_000_expand()
 	{
 		Assert.same(
 			{ def:Paragraph(
@@ -56,7 +56,7 @@ class ParserTests {
 				@skip(3)Paragraph(HList([@skip(1)@len(3)Word("foo"),@len(3)Word("bar")]))])));
 	}
 
-	public function test_001_simple()
+	public function test_001_example()
 	{
 		Assert.same(
 			expand(Paragraph(@len(3)Word("foo"))),
@@ -65,8 +65,57 @@ class ParserTests {
 			expand(Paragraph(HList([@len(3)Word("foo"),@len(1)Wordspace,@len(3)Word("bar")]))),
 			parse("foo bar"));
 		Assert.same(
-			expand(@skip(2)Paragraph(HList([@len(3)Word("foo"),@len(1)Wordspace,@len(3)Word("bar")]))),
-			parse("  foo bar"));
+			expand(@skip(2)Paragraph(HList([@len(3)Word("foo"),@len(2)Wordspace,@len(3)Word("bar"),@len(2)Wordspace,@len(3)Word("red")]))),
+			parse("  foo \tbar\n red"));
+	}
+ 
+	public function test_001_worspace()
+	{
+		Assert.same(
+			expand(Paragraph(HList([@len(1)Word("a"),@len(1)Wordspace,@len(1)Word("b")]))),
+			parse("a b"));
+		Assert.same(
+			expand(Paragraph(HList([@len(1)Word("a"),@len(1)Wordspace,@len(1)Word("b")]))),
+			parse("a\tb"));
+		Assert.same(
+			expand(Paragraph(HList([@len(1)Word("a"),@len(1)Wordspace,@len(1)Word("b")]))),
+			parse("a\nb"));
+		Assert.same(
+			expand(Paragraph(HList([@len(1)Word("a"),@len(2)Wordspace,@len(1)Word("b")]))),
+			parse("a\r\nb"));
+
+		Assert.same(
+			expand(Paragraph(HList([@len(1)Word("a"),@len(2)Wordspace,@len(1)Word("b")]))),
+			parse("a  b"));
+		Assert.same(
+			expand(Paragraph(HList([@len(1)Word("a"),@len(2)Wordspace,@len(1)Word("b")]))),
+			parse("a \tb"));
+		Assert.same(
+			expand(Paragraph(HList([@len(1)Word("a"),@len(2)Wordspace,@len(1)Word("b")]))),
+			parse("a\n b"));
+		Assert.same(
+			expand(Paragraph(HList([@len(1)Word("a"),@len(3)Wordspace,@len(1)Word("b")]))),
+			parse("a\t\r\nb"));
+
+		Assert.same(
+			expand(Paragraph(HList([@len(1)Word("a"),@len(3)Wordspace,@len(1)Word("b")]))),
+			parse("a   b"));
+	}
+
+	public function test_002_parbreak()
+	{
+		Assert.same(
+			expand(VList([Paragraph(@len(1)Word("a")),@skip(2)Paragraph(@len(1)Word("b"))])),
+			parse("a\n\nb"));
+		Assert.same(
+			expand(@skip(1)VList([Paragraph(@len(1)Word("a")),@skip(3)Paragraph(@len(1)Word("b"))])),
+			parse(" a\n\n b"));
+		Assert.same(
+			expand(VList([Paragraph(@len(1)Word("a")),@skip(4)Paragraph(@len(1)Word("b"))])),
+			parse("a\n \t\nb"));
+		Assert.same(
+			expand(VList([Paragraph(@len(1)Word("a")),@skip(5)Paragraph(@len(1)Word("b"))])),
+			parse("a \r\n\t\nb"));
 	}
 }
 
