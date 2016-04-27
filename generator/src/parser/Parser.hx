@@ -6,6 +6,8 @@ import parser.Token;
 
 import parser.AstTools.*;
 
+using parser.TokenTools;
+
 class Parser {
 	var lexer:Lexer;
 	var next:GenericCell<Token>;
@@ -30,7 +32,19 @@ class Parser {
 		return ret;
 	}
 
-	function horizontal()
+	function emph()
+	{
+		var cmd = discard();
+		if (!cmd.def.match(TCommand("emph"))) unexpected(peek());
+		var open = discard();
+		if (!open.def.match(TBrOpen)) unexpected(peek());
+		var helem = horizontal(false);
+		var close = discard();
+		if (!close.def.match(TBrClose)) unexpected(peek());
+		return mk(Emphasis(helem), cmd.pos.span(close.pos));
+	}
+
+	function horizontal(?parmode=true)
 	{
 		while (peek().def.match(TLineComment(_) | TBlockComment(_)))
 			discard();
@@ -41,15 +55,15 @@ class Parser {
 		case { def:TMath(s), pos:pos }:
 			discard();
 			mk(Word(s), pos);  // FIXME
+		case { def:TCommand("emph") }:
+			emph();
 		case { def:TCommand(s), pos:pos }:
 			discard();
 			mk(Word(s), pos);  // FIXME
 		case { def:TWordSpace(s), pos:pos }:
 			discard();
 			mk(Wordspace, pos);
-		case { def:TBreakSpace(s) }:
-			null;
-		case { def:TEof }:
+		case { def:tdef } if (tdef.match(TBreakSpace(_) | TEof)):
 			null;
 		case other:
 			unexpected(other); null;
@@ -80,7 +94,7 @@ class Parser {
 			discard();
 		return switch peek().def {
 		case TEof: null;
-		case TWord(_): paragraph();
+		case TWord(_), TCommand(_): paragraph();
 		case _: unexpected(peek()); null;
 		}
 	}

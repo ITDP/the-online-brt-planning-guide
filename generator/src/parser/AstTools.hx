@@ -43,10 +43,8 @@ class AstTools {
 		catch (e:Dynamic)
 			error('Wrong argument type for @$name: ${e.split("\n")[0]}', pos);
 
-	static function transform(expr:Expr, src:String, pp:{ len:Int, max:Int }) {
-		var min = pp.max;
-		pp.max += pp.len;
-		pp.len = 0;
+	static function transform(expr:Expr, src:String, pp:{ min:Int, max:Int }, ?wrap:{ before:Int, after:Int }) {
+		// trace('${expr.toString()}: $pp');
 		return switch expr.expr {
 		case EMeta({ name:name, params:[v] }, sub):
 			switch lastPart(name, ":") {
@@ -55,23 +53,44 @@ class AstTools {
 				src = v.getValue();
 			case "len":
 				type(name, macro ($v:Int), v.pos);
-				pp.len += v.getValue();
+				pp.max += v.getValue();
 			case "skip":
 				type(name, macro ($v:Int), v.pos);
-				pp.max += v.getValue();
+				var skip = v.getValue();
+				pp.min += skip;
+				pp.max += skip;
 			case _:
 				warning('Unsupported @$name or wrong number of params, ignoring', expr.pos);
 			}
 			transform(sub, src, pp);
+		case EMeta({ name:name, params:[before,after] }, sub) if (lastPart(name, ":") == "wrap"):
+			type(name, macro ($before:Int), before.pos);
+			type(name, macro ($after:Int), after.pos);
+			var skip = before.getValue();
+			pp.min += skip;
+			pp.max += skip;
+			transform(sub, src, pp, { before:skip, after:after.getValue() });
 		case EMeta({ name:name }, sub):
 			warning('Unsupported @$name or wrong number of params, ignoring', expr.pos);
 			transform(sub, src, pp);
 		case ECall({ expr:EConst(CIdent(lastPart(_, ".") => c)) }, params)
 		if (Lambda.has(getDefs(), c)):
+			var min = pp.min;
 			params = params.map(transform.bind(_, src, pp));
+			pp.min = pp.max;
+			if (wrap != null) {
+				min -= wrap.before;
+				pp.max += wrap.after;
+			}
 			var edef = { expr:ECall({ expr:EConst(CIdent(c)), pos:expr.pos }, params), pos:expr.pos };
 			macro { def:$edef, pos:{ src:$v{src}, min:$v{min}, max:$v{pp.max} } };
 		case EConst(CIdent(lastPart(_, ".") => c)) if (Lambda.has(getDefs(), c)):
+			var min = pp.min;
+			pp.min = pp.max;
+			if (wrap != null) {
+				min -= wrap.before;
+				pp.max += wrap.after;
+			}
 			macro { def:$expr, pos:{ src:$v{src}, min:$v{min}, max:$v{pp.max} } };
 		case _:
 			expr.map(transform.bind(_, src, pp));
@@ -111,6 +130,6 @@ class AstTools {
 	Generate real Document ASTs from pseudo ASTs with only VDefs and HDefs.
 	*/
 	public static macro function expand(pseudo:Expr):Expr
-		return transform(pseudo, getLocalModule()+".hx", { len:0, max:0 });
+		return transform(pseudo, getLocalModule()+".hx", { min:0, max:0 });
 }
 

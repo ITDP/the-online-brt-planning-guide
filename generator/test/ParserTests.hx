@@ -34,6 +34,13 @@ class ParserTests {
 				pos:{ min:0, max:8, src:SRC } },
 			expand(Paragraph(@skip(1)HList([@len(3)Word("foo"),@skip(1)@len(3)Word("bar")]))));
 		Assert.same(
+			{ def:Paragraph(
+				{ def:Emphasis(
+					{ def:Word("foo"), pos:{ min:6, max:9, src:SRC } }),
+					pos:{ min:0, max:10, src:SRC } }),
+				pos:{ min:0, max:10, src:SRC } },
+			expand(Paragraph(@wrap(6,1)Emphasis(@len(3)Word("foo")))));
+		Assert.same(
 			{ def:VList([
 				{ def:Paragraph(
 					{ def:HList([
@@ -113,6 +120,16 @@ class ParserTests {
 		Assert.same(
 			expand(VList([Paragraph(@len(1)Word("a")),@skip(5)Paragraph(@len(1)Word("b"))])),
 			parse("a \r\n\t\nb"));
+	}
+
+	public function test_003_emphasis()
+	{
+		Assert.same(
+			expand(Paragraph(@wrap(6,1)Emphasis(@len(1)Word("a")))),
+			parse("\\emph{a}"));
+		// Assert.same(
+		// 	expand(Paragraph(Emphasis(@len(1)Word("a")))),
+		// 	parse("*a*"));
 	}
 }
 
