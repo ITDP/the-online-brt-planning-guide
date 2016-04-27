@@ -65,7 +65,7 @@ class ParserTests {
 			expand(@skip(2)Paragraph(HList([@len(3)Word("foo"),@len(2)Wordspace,@len(3)Word("bar"),@len(2)Wordspace,@len(3)Word("red")]))),
 			parse("  foo \tbar\n red"));
 	}
- 
+
 	public function test_001_wordspace()
 	{
 		Assert.same(
