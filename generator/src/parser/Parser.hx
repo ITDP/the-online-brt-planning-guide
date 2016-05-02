@@ -8,6 +8,10 @@ import parser.AstTools.*;
 
 using parser.TokenTools;
 
+typedef HOpts = {
+	?stopBefore:TokenDef
+}
+
 class Parser {
 	var lexer:Lexer;
 	var next:GenericCell<Token>;
@@ -38,13 +42,13 @@ class Parser {
 		if (!cmd.def.match(TCommand("emph"))) unexpected(peek());
 		var open = discard();
 		if (!open.def.match(TBrOpen)) unexpected(peek());
-		var helem = horizontal(false);
+		var helem = hlist({ stopBefore:TBrClose });
 		var close = discard();
 		if (!close.def.match(TBrClose)) unexpected(peek());
 		return mk(Emphasis(helem), cmd.pos.span(close.pos));
 	}
 
-	function horizontal(?parmode=true)
+	function horizontal(opts:HOpts)
 	{
 		while (peek().def.match(TLineComment(_) | TBlockComment(_)))
 			discard();
@@ -65,16 +69,18 @@ class Parser {
 			mk(Wordspace, pos);
 		case { def:tdef } if (tdef.match(TBreakSpace(_) | TEof)):
 			null;
+		case { def:tdef } if (opts.stopBefore != null && tdef == opts.stopBefore):
+			null;
 		case other:
 			unexpected(other); null;
 		}
 	}
 
-	function hlist()
+	function hlist(opts:HOpts)
 	{
 		var li = [];
 		while (true) {
-			var v = horizontal();
+			var v = horizontal(opts);
 			if (v == null) break;
 			li.push(v);
 		}
@@ -83,7 +89,7 @@ class Parser {
 
 	function paragraph()
 	{
-		var text = hlist();
+		var text = hlist({});
 		if (text == null) return null;
 		return mk(Paragraph(text), text.pos);
 	}
