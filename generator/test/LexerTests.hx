@@ -87,7 +87,7 @@ class LexerTests {
 		Assert.same([TAt(1), TEof], defs("@"));
 		
 		Assert.same([TAsterisk(1), TWord("foo"), TAsterisk(1), TEof], defs("*foo*"));
-		Assert.same([TAsterisk(2), TWord("foo"), TAsterisk(5), TEof], defs("**foo*****"));
+		Assert.same([TAsterisk(2), TWord("foo"), TAsterisk(2), TAsterisk(2),TAsterisk(1), TEof], defs("**foo*****"));
 		Assert.same([TWord("foo"), TAsterisk(1), TWord("*"), TEof], defs("foo*\\*"));
 		
 		Assert.same([TGreater, TEof], defs(">"));

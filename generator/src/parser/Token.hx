@@ -51,7 +51,7 @@ enum TokenDef {
 	
 	
 	TColon(q : Int);
-	TAsterisk(q : Int);
+	TAsterisk(q : Int);  // maybe change to TSingleAsterisk/TDoubleAsterisk
 	TAt(w : Int);
 	//Used for Quotes
 	TGreater;

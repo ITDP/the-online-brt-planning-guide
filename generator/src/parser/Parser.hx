@@ -16,11 +16,14 @@ class Parser {
 	var lexer:Lexer;
 	var next:GenericCell<Token>;
 
-	function error(m:String)
-		throw m;
+	function error(m:String, p:Position)
+		throw '${p.src}:${p.min}-${p.max}: $m';
 
 	function unexpected(t:Token)
-		error('Unexpected `${t.def}` at ${t.pos.src}:${t.pos.min}-${t.pos.max}');
+		error('Unexpected `${t.def}`', t.pos);
+
+	function unclosed(name:String, p:Position)
+		error('Unclosed $name', p);
 
 	function peek()
 	{
@@ -44,7 +47,7 @@ class Parser {
 		if (!open.def.match(TBrOpen)) unexpected(open);
 		var li = hlist({ stopBefore:TBrClose });
 		var close = discard();
-		if (!close.def.match(TBrClose)) unexpected(close);
+		if (!close.def.match(TBrClose)) unclosed("argument", open.pos);
 		return mk(Emphasis(li), cmd.pos.span(close.pos));
 	}
 
@@ -54,7 +57,7 @@ class Parser {
 		if (!open.def.match(TAsterisk(_))) unexpected(open);
 		var li = hlist({ stopBefore:open.def });
 		var close = discard();
-		if (!Type.enumEq(close.def, open.def)) unexpected(close);
+		if (!Type.enumEq(close.def, open.def)) unclosed('(markdown) emphasis', open.pos);
 		return mk(Emphasis(li), open.pos.span(close.pos));
 	}
 
