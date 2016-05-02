@@ -39,13 +39,23 @@ class Parser {
 	function emph()
 	{
 		var cmd = discard();
-		if (!cmd.def.match(TCommand("emph"))) unexpected(peek());
+		if (!cmd.def.match(TCommand("emph"))) unexpected(cmd);
 		var open = discard();
-		if (!open.def.match(TBrOpen)) unexpected(peek());
-		var helem = hlist({ stopBefore:TBrClose });
+		if (!open.def.match(TBrOpen)) unexpected(open);
+		var li = hlist({ stopBefore:TBrClose });
 		var close = discard();
-		if (!close.def.match(TBrClose)) unexpected(peek());
-		return mk(Emphasis(helem), cmd.pos.span(close.pos));
+		if (!close.def.match(TBrClose)) unexpected(close);
+		return mk(Emphasis(li), cmd.pos.span(close.pos));
+	}
+
+	function mdEmph()
+	{
+		var open = discard();
+		if (!open.def.match(TAsterisk(_))) unexpected(open);
+		var li = hlist({ stopBefore:open.def });
+		var close = discard();
+		if (!Type.enumEq(close.def, open.def)) unexpected(close);
+		return mk(Emphasis(li), open.pos.span(close.pos));
 	}
 
 	function horizontal(opts:HOpts)
@@ -53,6 +63,8 @@ class Parser {
 		while (peek().def.match(TLineComment(_) | TBlockComment(_)))
 			discard();
 		return switch peek() {
+		case { def:tdef } if (opts.stopBefore != null && Type.enumEq(tdef, opts.stopBefore)):
+			null;
 		case { def:TWord(s), pos:pos }:
 			discard();
 			mk(Word(s), pos);
@@ -61,6 +73,8 @@ class Parser {
 			mk(Word(s), pos);  // FIXME
 		case { def:TCommand("emph") }:
 			emph();
+		case { def:TAsterisk(q) } if (q > 0 && q <= 2):
+			mdEmph();
 		case { def:TCommand(s), pos:pos }:
 			discard();
 			mk(Word(s), pos);  // FIXME
@@ -68,8 +82,6 @@ class Parser {
 			discard();
 			mk(Wordspace, pos);
 		case { def:tdef } if (tdef.match(TBreakSpace(_) | TEof)):
-			null;
-		case { def:tdef } if (opts.stopBefore != null && tdef == opts.stopBefore):
 			null;
 		case other:
 			unexpected(other); null;
@@ -100,7 +112,7 @@ class Parser {
 			discard();
 		return switch peek().def {
 		case TEof: null;
-		case TWord(_), TCommand(_): paragraph();
+		case TWord(_), TCommand(_), TAsterisk(_): paragraph();
 		case _: unexpected(peek()); null;
 		}
 	}
