@@ -41,6 +41,16 @@ class ParserTests {
 				pos:{ min:0, max:10, src:SRC } },
 			expand(Paragraph(@wrap(6,1)Emphasis(@len(3)Word("foo")))));
 		Assert.same(
+			{ def:Paragraph(
+				{ def:HList([
+					{ def:Emphasis(
+						{ def:Word("foo"), pos:{ min:1, max:4, src:SRC } } ),
+						pos:{ min:0, max:5, src:SRC } },
+					{ def:Word("bar"), pos:{ min:5, max:8, src:SRC } } ]),
+					pos:{ min:0, max:8, src:SRC } }),
+				pos:{ min:0, max:8, src:SRC } },
+			expand(Paragraph(HList([@wrap(1,1)Emphasis(@len(3)Word("foo")),@len(3)Word("bar")]))));
+		Assert.same(
 			{ def:VList([
 				{ def:Paragraph(
 					{ def:HList([
@@ -137,10 +147,16 @@ class ParserTests {
 		Assert.same(
 			expand(Paragraph(@wrap(1,1)Emphasis(HList([@len(1)Word("a"),@len(1)Wordspace,@len(1)Word("b")])))),
 			parse("*a b*"));
-
 		Assert.same(
 			expand(Paragraph(@wrap(2,2)Emphasis(@len(1)Word("a")))),
 			parse("**a**"));
+		Assert.same(
+			expand(Paragraph(@wrap(2,2)Emphasis(HList([@len(1)Word("a"),@len(1)Wordspace,@len(1)Word("b")])))),
+			parse("**a b**"));
+
+		Assert.same(
+			expand(Paragraph(@wrap(1,1)Emphasis(HList([@len(1)Word("a"),@len(1)Wordspace,@wrap(2,2)Emphasis(@len(1)Word("b")),@len(1)Wordspace,@len(1)Word("c")])))),
+			parse("*a **b** c*"));
 		Assert.same(
 			expand(Paragraph(@wrap(1,1)Emphasis(HList([@len(1)Word("a"),@len(1)Wordspace,@wrap(2,2)Emphasis(@len(1)Word("b"))])))),
 			parse("*a **b***"));
