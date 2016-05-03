@@ -77,20 +77,22 @@ class AstTools {
 		if (Lambda.has(getDefs(), c)):
 			var min = pp.min;
 			params = params.map(transform.bind(_, src, pp));
-			pp.min = pp.max;
 			if (wrap != null) {
 				min -= wrap.before;
 				pp.max += wrap.after;
 			}
+			pp.min = pp.max;
+			// trace('AFTER CALL ${expr.toString()}: $pp');
 			var edef = { expr:ECall({ expr:EConst(CIdent(c)), pos:expr.pos }, params), pos:expr.pos };
 			macro { def:$edef, pos:{ src:$v{src}, min:$v{min}, max:$v{pp.max} } };
 		case EConst(CIdent(lastPart(_, ".") => c)) if (Lambda.has(getDefs(), c)):
 			var min = pp.min;
-			pp.min = pp.max;
 			if (wrap != null) {
 				min -= wrap.before;
 				pp.max += wrap.after;
 			}
+			pp.min = pp.max;
+			// trace('AFTER IDENT ${expr.toString()}: $pp');
 			macro { def:$expr, pos:{ src:$v{src}, min:$v{min}, max:$v{pp.max} } };
 		case _:
 			expr.map(transform.bind(_, src, pp));
