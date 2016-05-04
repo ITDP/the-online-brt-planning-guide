@@ -2,8 +2,8 @@ import utest.Assert;
 import parser.Ast;
 import parser.AstTools.*;
 
-class ParserTests {
-	static inline var SRC = "ParserTests.hx";
+class Test_03_Parser {
+	static inline var SRC = "Test_03_Parser.hx";
 	public function new() {}
 
 	function parse(s:String)

@@ -2,7 +2,7 @@ import parser.*;
 import parser.Token;
 import utest.Assert;
 
-class LexerTests {
+class Test_02_Lexer {
 	public function new() {}
 
 	static function lex(s:String)
