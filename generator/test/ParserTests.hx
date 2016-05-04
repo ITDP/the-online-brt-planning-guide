@@ -103,9 +103,9 @@ class ParserTests {
 		Assert.same(
 			expand(Paragraph(@wrap(1,1)Emphasis(HList([@len(1)Word("a"),@len(1)Wordspace,@wrap(2,2)Emphasis(@len(1)Word("b"))])))),
 			parse("*a **b***"));
-		// Assert.same(
-		// 	expand(Paragraph(@wrap(2,2)Emphasis(HList([@len(1)Word("a"),@len(1)Wordspace,@wrap(1,1)Emphasis(@len(1)Word("b"))])))),
-		// 	parse("**a *b***"));  // most likely error?
+		Assert.same(
+			expand(Paragraph(@wrap(2,2)Emphasis(HList([@len(1)Word("a"),@len(1)Wordspace,@wrap(1,1)Emphasis(@len(1)Word("b"))])))),
+			parse("**a *b***"));  // for uniformity this should work; otherwise, it should fail with an informative error
 	}
 }
 
