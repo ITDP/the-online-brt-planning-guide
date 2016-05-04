@@ -51,6 +51,18 @@ class Parser {
 		return mk(Emphasis(li), cmd.pos.span(close.pos));
 	}
 
+	function highlight()
+	{
+		var cmd = discard();
+		if (!cmd.def.match(TCommand("highlight"))) unexpected(cmd);
+		var open = discard();
+		if (!open.def.match(TBrOpen)) unexpected(open);
+		var li = hlist({ stopBefore:TBrClose });
+		var close = discard();
+		if (!close.def.match(TBrClose)) unclosed("argument", open.pos);
+		return mk(Highlight(li), cmd.pos.span(close.pos));
+	}
+
 	function mdEmph()
 	{
 		var open = discard();
@@ -76,11 +88,14 @@ class Parser {
 			mk(Word(s), pos);  // FIXME
 		case { def:TCommand("emph") }:
 			emph();
+		case { def:TCommand(cmdName), pos:pos }:
+			switch cmdName {
+			case "emph": emph();
+			case "highlight": highlight();
+			case _: error('Unknown command \\$cmdName', pos); null;
+			}
 		case { def:TAsterisk }:
 			mdEmph();
-		case { def:TCommand(s), pos:pos }:
-			discard();
-			mk(Word(s), pos);  // FIXME
 		case { def:TWordSpace(s), pos:pos }:
 			discard();
 			mk(Wordspace, pos);
