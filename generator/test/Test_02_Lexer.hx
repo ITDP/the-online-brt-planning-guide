@@ -50,6 +50,8 @@ class Test_02_Lexer {
 
 		// block comments
 		Assert.same([TBlockComment(" foo "),TEof], defs("/* foo */"));
+		Assert.raises(defs.bind("/*"));
+		Assert.raises(defs.bind("*/"));
 	}
 
 	public function test_003_commands()
