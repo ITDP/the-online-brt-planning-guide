@@ -54,10 +54,10 @@ class Parser {
 	function mdEmph()
 	{
 		var open = discard();
-		if (!open.def.match(TAsterisk(_))) unexpected(open);
-		var li = hlist({ stopBefore:open.def });
+		if (!open.def.match(TAsterisk)) unexpected(open);
+		var li = hlist({ stopBefore:TAsterisk });
 		var close = discard();
-		if (!Type.enumEq(close.def, open.def)) unclosed('(markdown) emphasis', open.pos);
+		if (!close.def.match(TAsterisk)) unclosed('(markdown) emphasis', open.pos);
 		return mk(Emphasis(li), open.pos.span(close.pos));
 	}
 
@@ -76,7 +76,7 @@ class Parser {
 			mk(Word(s), pos);  // FIXME
 		case { def:TCommand("emph") }:
 			emph();
-		case { def:TAsterisk(q) } if (q > 0 && q <= 2):
+		case { def:TAsterisk }:
 			mdEmph();
 		case { def:TCommand(s), pos:pos }:
 			discard();
@@ -115,7 +115,7 @@ class Parser {
 			discard();
 		return switch peek().def {
 		case TEof: null;
-		case TWord(_), TCommand(_), TAsterisk(_): paragraph();
+		case TWord(_), TCommand(_), TAsterisk: paragraph();
 		case _: unexpected(peek()); null;
 		}
 	}
