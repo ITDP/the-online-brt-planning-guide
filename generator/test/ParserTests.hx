@@ -90,22 +90,13 @@ class ParserTests {
 		Assert.same(
 			expand(Paragraph(@wrap(1,1)Emphasis(HList([@len(1)Word("a"),@len(1)Wordspace,@len(1)Word("b")])))),
 			parse("*a b*"));
-		// Assert.same(
-		// 	expand(Paragraph(@wrap(2,2)Emphasis(@len(1)Word("a")))),
-		// 	parse("**a**"));
-		// Assert.same(
-		// 	expand(Paragraph(@wrap(2,2)Emphasis(HList([@len(1)Word("a"),@len(1)Wordspace,@len(1)Word("b")])))),
-		// 	parse("**a b**"));
 
-		// Assert.same(
-		// 	expand(Paragraph(@wrap(1,1)Emphasis(HList([@len(1)Word("a"),@len(1)Wordspace,@wrap(2,2)Emphasis(@len(1)Word("b")),@len(1)Wordspace,@len(1)Word("c")])))),
-		// 	parse("*a **b** c*"));
-		// Assert.same(
-		// 	expand(Paragraph(@wrap(1,1)Emphasis(HList([@len(1)Word("a"),@len(1)Wordspace,@wrap(2,2)Emphasis(@len(1)Word("b"))])))),
-		// 	parse("*a **b***"));
-		// Assert.same(
-		// 	expand(Paragraph(@wrap(2,2)Emphasis(HList([@len(1)Word("a"),@len(1)Wordspace,@wrap(1,1)Emphasis(@len(1)Word("b"))])))),
-		// 	parse("**a *b***"));  // for uniformity this should work; otherwise, it should fail with an informative error
+		Assert.same(
+			expand(Paragraph(HList([@len(2)Emphasis(null),@len(1)Word("a"),@len(2)Emphasis(null)]))),
+			parse("**a**"));  // TODO generate some warning on empty emphasis (maybe later than the parser)
+		Assert.same(
+			expand(Paragraph(HList([@wrap(1,1)Emphasis(HList([@len(1)Word("a"),@len(1)Wordspace])),@wrap(1,1)Emphasis(@len(1)Word("b")),@wrap(1,1)Emphasis(HList([@len(1)Wordspace,@len(1)Word("c")]))]))),
+			parse("*a **b** c*"));
 	}
 }
 
