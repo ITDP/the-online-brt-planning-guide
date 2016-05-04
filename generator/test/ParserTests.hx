@@ -119,7 +119,13 @@ class ParserTests {
 
 	public function test_005_bad_command_name()
 	{
+		// typos
 		Assert.raises(parse.bind("\\emp"));
+		Assert.raises(parse.bind("\\highligth"));
+
+		// non existant aliases
+		Assert.raises(parse.bind("\\emphasis"));
+		Assert.raises(parse.bind("\\display"));
 	}
 }
 
