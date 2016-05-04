@@ -135,5 +135,25 @@ class Test_03_Parser {
 			expand(Paragraph(HList([@wrap(1,1)Emphasis(@len(1)Word("a")),@len(1)Wordspace,@len(1)Word("b")]))),
 			parse("*a*\nb"));
 	}
+
+	public function test_007_comment_surroundings()
+	{
+		Assert.same(
+			expand(Paragraph(HList([@len(1)Word("a"),@skip(3)@len(1)Wordspace,@len(1)Word("b")]))),
+			parse("a//x\nb"));
+		Assert.same(
+			expand(Paragraph(HList([@len(1)Word("a"),@skip(5)@len(1)Wordspace,@len(1)Word("b")]))),
+			parse("a/*x*/\nb"));
+		Assert.same(
+			expand(Paragraph(HList([@len(1)Word("a"),@len(1)Wordspace,@skip(5)@len(1)Wordspace,@len(1)Word("b")]))),
+			parse("a\t/*x*/ b"));
+
+		Assert.same(
+			expand(VList([Paragraph(@len(1)Word("a")),@skip(5)Paragraph(@len(1)Word("b"))])),
+			parse("a//x\n\nb"));
+		Assert.same(
+			expand(VList([Paragraph(@len(1)Word("a")),@skip(7)Paragraph(@len(1)Word("b"))])),
+			parse("a/*x*/\n\nb"));
+	}
 }
 
