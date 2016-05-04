@@ -130,7 +130,7 @@ class Test_03_Parser {
 
 	public function test_006_known_dificulties_from_poc()
 	{
-		// spontaneous par breaks that can happen if whitespace is not properly handled
+		// if whitespace is not properly handled spontaneous par breaks can happen bellow
 		Assert.same(
 			expand(Paragraph(HList([@wrap(1,1)Emphasis(@len(1)Word("a")),@len(1)Wordspace,@len(1)Word("b")]))),
 			parse("*a*\nb"));
