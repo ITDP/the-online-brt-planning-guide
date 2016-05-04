@@ -127,5 +127,13 @@ class Test_03_Parser {
 		Assert.raises(parse.bind("\\emphasis"));
 		Assert.raises(parse.bind("\\display"));
 	}
+
+	public function test_006_known_dificulties_from_poc()
+	{
+		// spontaneous par breaks that can happen if whitespace is not properly handled
+		Assert.same(
+			expand(Paragraph(HList([@wrap(1,1)Emphasis(@len(1)Word("a")),@len(1)Wordspace,@len(1)Word("b")]))),
+			parse("*a*\nb"));
+	}
 }
 
