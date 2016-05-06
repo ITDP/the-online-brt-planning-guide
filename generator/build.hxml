@@ -1,0 +1,16 @@
+-lib hxparse
+-cp src
+
+--each
+
+-main RunTests
+--interp
+-cp test
+-lib utest
+
+--next
+
+-main Main
+-neko bin/obrt.n
+-cmd nekotools boot bin/obrt.n
+

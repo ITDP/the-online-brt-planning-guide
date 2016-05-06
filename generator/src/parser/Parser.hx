@@ -12,8 +12,12 @@ typedef HOpts = {
 	?stopBefore:TokenDef
 }
 
+typedef Path = String;
+typedef FileCache = Map<Path,File>;
+
 class Parser {
 	var lexer:Lexer;
+	var cache:FileCache;
 	var next:GenericCell<Token>;
 
 	function error(m:String, p:Position)
@@ -146,10 +150,21 @@ class Parser {
 		return mkList(VList(li));
 	}
 
-	public function file()
+	public function file():File
 		return vlist();
 
-	public function new(lexer:Lexer)
+	public function new(lexer:Lexer, ?cache:FileCache)
+	{
 		this.lexer = lexer;
+		if (cache == null) cache = new FileCache();
+		this.cache = cache;
+	}
+
+	public static function parse(path:String, ?cache:FileCache)
+	{
+		var lex = new Lexer(byte.ByteData.ofString(sys.io.File.getContent(path)));
+		var parser = new Parser(lex, cache);
+		return parser.file();
+	}
 }
 

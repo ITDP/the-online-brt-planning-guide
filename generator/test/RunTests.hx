@@ -1,5 +1,4 @@
-
-class RunAll {
+class RunTests {
 	static function main()
 	{
 		var r = new utest.Runner();

@@ -21,4 +21,5 @@ typedef VElem = Elem<VDef>;
 typedef HElem = Elem<HDef>;
 
 typedef File = VElem;
+typedef Ast = File;
 
