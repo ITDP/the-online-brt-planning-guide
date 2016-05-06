@@ -10,8 +10,6 @@
 			"cd $ROBRT_REPOSITORY_DIR",
 			"cd generator",
 			"haxe build.hxml",
-			"ls .",
-			"ls bin",
 			"bin/obrt gen ../README.md",
 			"cd $ROBRT_REPOSITORY_DIR",
 			"cp -r generator/docs/design/web/mockup $ROBRT_OUTPUT_DIR/web-mockup"
