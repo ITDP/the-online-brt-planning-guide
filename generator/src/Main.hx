@@ -1,3 +1,4 @@
+import haxe.io.Path;
 import Sys.*;
 import sys.FileSystem;
 
@@ -9,10 +10,15 @@ class Main {
 	{
 		if (!FileSystem.exists(path)) throw 'File does not exist: $path';
 		if (FileSystem.isDirectory(path)) throw 'Not a file: $path';
+
 		var ast = parser.Parser.parse(path);
 		trace(ast);
-		trace("TODO transform");
-		trace("TODO generate html");
+
+		var doc = transform.Transform.transform(ast);
+
+		var hgen = new generator.HtmlGen(path + ".html");
+		hgen.generate(doc);
+
 		trace("TODO generate tex");
 	}
 

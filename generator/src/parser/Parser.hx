@@ -1,4 +1,4 @@
-package parser;
+package parser;  // TODO move out of the package
 
 import haxe.ds.GenericStack.GenericCell;
 import parser.Ast;

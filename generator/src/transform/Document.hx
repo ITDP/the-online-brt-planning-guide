@@ -1,4 +1,4 @@
 package transform;
 
-typedef Document = parsed.Ast;  // FIXME
+typedef Document = parser.Ast;  // FIXME
 
