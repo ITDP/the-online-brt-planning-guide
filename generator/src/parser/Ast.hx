@@ -20,6 +20,6 @@ enum VDef {
 typedef VElem = Elem<VDef>;
 typedef HElem = Elem<HDef>;
 
-typedef File = VElem;
+typedef File = VElem;  // TODO rename, to avoid confusion with sys.io.File
 typedef Ast = File;
 
