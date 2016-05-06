@@ -9,7 +9,8 @@
 		"cmds" : [
 			"cd $ROBRT_REPOSITORY_DIR",
 			"cd generator",
-			"haxe test.hxml",
+			"haxe build.hxml",
+			"bin/obrt gen ../README.md",
 			"cd $ROBRT_REPOSITORY_DIR",
 			"cp -r generator/docs/design/web/mockup $ROBRT_OUTPUT_DIR/web-mockup"
 		]
