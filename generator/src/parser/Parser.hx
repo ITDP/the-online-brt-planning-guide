@@ -96,6 +96,7 @@ class Parser {
 			switch cmdName {
 			case "emph": emph();
 			case "highlight": highlight();
+			case "volume", "chapter": null;  // vertical commands end the current par
 			case _: error('Unknown command \\$cmdName', pos); null;
 			}
 		case { def:TAsterisk }:
@@ -121,6 +122,30 @@ class Parser {
 		return mkList(HList(li));
 	}
 
+	function volume()
+	{
+		var cmd = discard();
+		if (!cmd.def.match(TCommand("volume"))) unexpected(cmd);
+		var open = discard();
+		if (!open.def.match(TBrOpen)) unexpected(open);
+		var name = hlist({ stopBefore:TBrClose });
+		var close = discard();
+		if (!close.def.match(TBrClose)) unclosed("argument", open.pos);
+		return mk(Volume(name), cmd.pos.span(close.pos));
+	}
+
+	function chapter()
+	{
+		var cmd = discard();
+		if (!cmd.def.match(TCommand("chapter"))) unexpected(cmd);
+		var open = discard();
+		if (!open.def.match(TBrOpen)) unexpected(open);
+		var name = hlist({ stopBefore:TBrClose });
+		var close = discard();
+		if (!close.def.match(TBrClose)) unclosed("argument", open.pos);
+		return mk(Chapter(name), cmd.pos.span(close.pos));
+	}
+
 	function paragraph()
 	{
 		var text = hlist({});
@@ -134,7 +159,13 @@ class Parser {
 			discard();
 		return switch peek().def {
 		case TEof: null;
-		case TWord(_), TCommand(_), TAsterisk: paragraph();
+		case TCommand(cmdName):
+			switch cmdName {
+			case "volume": volume();
+			case "chapter": chapter();
+			case _: paragraph();
+			}
+		case TWord(_), TAsterisk: paragraph();
 		case _: unexpected(peek()); null;
 		}
 	}

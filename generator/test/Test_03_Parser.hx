@@ -73,6 +73,8 @@ class Test_03_Parser {
 		Assert.same(
 			expand(VList([Paragraph(@len(1)Word("a")),@skip(5)Paragraph(@len(1)Word("b"))])),
 			parse("a \r\n\t\nb"));
+
+		// TODO test: break paragraphs on vertical commands
 	}
 
 	public function test_003_emphasis()
@@ -154,6 +156,25 @@ class Test_03_Parser {
 		Assert.same(
 			expand(VList([Paragraph(@len(1)Word("a")),@skip(7)Paragraph(@len(1)Word("b"))])),
 			parse("a/*x*/\n\nb"));
+	}
+
+	public function test_008_divisions_commands()
+	{
+		Assert.same(
+			expand(@wrap(8,1)Volume(HList([@len(1)Word("a"),@len(1)Wordspace,@len(1)Word("b")]))),
+			parse("\\volume{a b}"));
+		Assert.same(
+			expand(VList([Paragraph(@len(1)Word("a")),@skip(2)@wrap(8,1)Volume(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))])),
+			parse("a\n\n\\volume{b}\n\nc"));
+
+		Assert.same(
+			expand(@wrap(9,1)Chapter(HList([@len(1)Word("a"),@len(1)Wordspace,@len(1)Word("b")]))),
+			parse("\\chapter{a b}"));
+		Assert.same(
+			expand(VList([Paragraph(@len(1)Word("a")),@skip(2)@wrap(9,1)Chapter(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))])),
+			parse("a\n\n\\chapter{b}\n\nc"));
+
+		// TODO test: vertical command in horizontal-type argument to another vertical command
 	}
 }
 

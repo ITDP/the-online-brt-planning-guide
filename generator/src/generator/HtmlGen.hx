@@ -31,6 +31,10 @@ class HtmlGen {
 	function vertical(v:VElem)
 	{
 		switch v.def {
+		case Volume(h):
+			return '<h2>${horizontal(h)}</h2>\n';
+		case Chapter(h):
+			return '<h3>${horizontal(h)}</h3>\n';
 		case Paragraph(h):
 			return '<p>${horizontal(h)}</p>\n';
 		case VList(li):
