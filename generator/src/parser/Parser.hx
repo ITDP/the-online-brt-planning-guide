@@ -51,7 +51,8 @@ class Parser {
 		if (!open.def.match(TBrOpen)) unexpected(open);
 		var li = hlist({ stopBefore:TBrClose });
 		var close = discard();
-		if (!close.def.match(TBrClose)) unclosed("argument", open.pos);
+		if (close.def.match(TEof)) unclosed("argument", open.pos);
+		if (!close.def.match(TBrClose)) unexpected(close);
 		return mk(Emphasis(li), cmd.pos.span(close.pos));
 	}
 
@@ -63,7 +64,8 @@ class Parser {
 		if (!open.def.match(TBrOpen)) unexpected(open);
 		var li = hlist({ stopBefore:TBrClose });
 		var close = discard();
-		if (!close.def.match(TBrClose)) unclosed("argument", open.pos);
+		if (close.def.match(TEof)) unclosed("argument", open.pos);
+		if (!close.def.match(TBrClose)) unexpected(close);
 		return mk(Highlight(li), cmd.pos.span(close.pos));
 	}
 
@@ -130,7 +132,8 @@ class Parser {
 		if (!open.def.match(TBrOpen)) unexpected(open);
 		var name = hlist({ stopBefore:TBrClose });
 		var close = discard();
-		if (!close.def.match(TBrClose)) unclosed("argument", open.pos);
+		if (close.def.match(TEof)) unclosed("argument", open.pos);
+		if (!close.def.match(TBrClose)) unexpected(close);
 		return mk(Volume(name), cmd.pos.span(close.pos));
 	}
 
@@ -142,7 +145,8 @@ class Parser {
 		if (!open.def.match(TBrOpen)) unexpected(open);
 		var name = hlist({ stopBefore:TBrClose });
 		var close = discard();
-		if (!close.def.match(TBrClose)) unclosed("argument", open.pos);
+		if (close.def.match(TEof)) unclosed("argument", open.pos);
+		if (!close.def.match(TBrClose)) unexpected(close);
 		return mk(Chapter(name), cmd.pos.span(close.pos));
 	}
 
@@ -154,7 +158,8 @@ class Parser {
 		if (!open.def.match(TBrOpen)) unexpected(open);
 		var name = hlist({ stopBefore:TBrClose });
 		var close = discard();
-		if (!close.def.match(TBrClose)) unclosed("argument", open.pos);
+		if (close.def.match(TEof)) unclosed("argument", open.pos);
+		if (!close.def.match(TBrClose)) unexpected(close);
 		return mk(Section(name), cmd.pos.span(close.pos));
 	}
 
