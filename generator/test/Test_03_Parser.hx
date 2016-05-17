@@ -174,6 +174,13 @@ class Test_03_Parser {
 			expand(VList([Paragraph(@len(1)Word("a")),@skip(2)@wrap(9,1)Chapter(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))])),
 			parse("a\n\n\\chapter{b}\n\nc"));
 
+		Assert.same(
+			expand(@wrap(9,1)Section(HList([@len(1)Word("a"),@len(1)Wordspace,@len(1)Word("b")]))),
+			parse("\\section{a b}"));
+		Assert.same(
+			expand(VList([Paragraph(@len(1)Word("a")),@skip(2)@wrap(9,1)Section(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))])),
+			parse("a\n\n\\section{b}\n\nc"));
+
 		// TODO test: vertical command in horizontal-type argument to another vertical command
 	}
 }

@@ -17,6 +17,7 @@ enum HDef {
 enum VDef {
 	Volume(name:HElem);
 	Chapter(name:HElem);
+	Section(name:HElem);
 	Paragraph(h:HElem);
 	VList(elem:Array<VElem>);
 }

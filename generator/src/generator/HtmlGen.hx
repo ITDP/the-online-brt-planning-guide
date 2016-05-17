@@ -35,6 +35,8 @@ class HtmlGen {
 			return '<h2>${horizontal(h)}</h2>\n';
 		case Chapter(h):
 			return '<h3>${horizontal(h)}</h3>\n';
+		case Section(h):
+			return '<h4>${horizontal(h)}</h4>\n';
 		case Paragraph(h):
 			return '<p>${horizontal(h)}</p>\n';
 		case VList(li):
