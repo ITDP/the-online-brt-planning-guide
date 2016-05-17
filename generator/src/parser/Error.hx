@@ -19,21 +19,21 @@ private class Error {
 class UnexpectedToken extends Error {
 	var tok:Token;
 
-	public function new(tok)
+	public function new(tok:Token, lex:Lexer)
 	{
 		this.tok = tok;
-		super('Unexpected `${tok.def}`', tok.pos);
+		super('Unexpected `${lex.recover(tok.pos.min, tok.pos.max - tok.pos.min)}`', tok.pos);
 	}
 }
 
 class Unclosed extends Error {
-	public function new(name, pos)
+	public function new(name:String, pos:Position)
 		super('Unclosed $name', pos);
 }
 
 class UnknownCommand extends Error {
-	public function new(name, pos)
-		super('Unknown command \\$name', pos);
+	public function new(name:String, pos:Position)
+		super('Unknown command `\\$name`', pos);
 }
 
 class MissingArgument extends Error {
@@ -42,7 +42,7 @@ class MissingArgument extends Error {
 		if (desc == null) desc = "argument";
 		switch cmd.def {
 		case TCommand(name):
-			super('Missing $desc to \\$name', cmd.pos);
+			super('Missing $desc for `\\$name`', cmd.pos);
 		case other:
 			trace('Assert failed: $other should be TCommand');
 			super('Missing $desc', cmd.pos);

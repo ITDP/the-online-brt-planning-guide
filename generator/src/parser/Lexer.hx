@@ -123,5 +123,20 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"\\\\[\\*@:#>$]" => mk(lexer, TWord(lexer.current.substr(1))),
 		"[^ \t\r\n/*{}\\[\\]\\\\#>@\\*:$]+" => mk(lexer, TWord(lexer.current))
 	];
+
+	var bytes:haxe.io.Bytes;
+
+	public function recover(pos, len)
+	{
+		if (pos < 0 || len <= 0 || pos + len > bytes.length) throw 'Out of bounds: $pos + $len';
+		return bytes.sub(pos, len).toString();
+	}
+
+	@:access(byte.ByteData)
+	public function new(bytes, sourceName)
+	{
+		this.bytes = bytes;
+		super(new byte.ByteData(bytes), sourceName);
+	}
 }
 

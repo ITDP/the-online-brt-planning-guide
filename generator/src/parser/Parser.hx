@@ -22,7 +22,7 @@ class Parser {
 	var next:GenericCell<Token>;
 
 	function unexpected(t:Token)
-		throw new UnexpectedToken(t);
+		throw new UnexpectedToken(t, lexer);
 
 	function unclosed(name:String, p:Position)
 		throw new Unclosed(name, p);
@@ -215,7 +215,7 @@ class Parser {
 
 	public static function parse(path:String, ?cache:FileCache)
 	{
-		var lex = new Lexer(byte.ByteData.ofString(sys.io.File.getContent(path)));
+		var lex = new Lexer(sys.io.File.getBytes(path), path);
 		var parser = new Parser(lex, cache);
 		return parser.file();
 	}

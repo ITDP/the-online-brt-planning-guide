@@ -8,8 +8,7 @@ class Test_02_Lexer {
 	static function lex(s:String)
 	{
 		var tokens = [];
-		var data = byte.ByteData.ofString(s);
-		var lexer = new Lexer(data, "test");
+		var lexer = new Lexer(haxe.io.Bytes.ofString(s), "test");
 		do {
 			var tok = lexer.token(Lexer.tokens);
 			tokens.push(tok);

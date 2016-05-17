@@ -9,7 +9,7 @@ class Test_03_Parser {
 
 	function parse(s:String)
 	{
-		var l = new parser.Lexer(byte.ByteData.ofString(s), SRC);
+		var l = new parser.Lexer(haxe.io.Bytes.ofString(s), SRC);
 		var p = new parser.Parser(l);
 		return p.file();
 	}
