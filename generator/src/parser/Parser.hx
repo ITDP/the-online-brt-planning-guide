@@ -2,6 +2,7 @@ package parser;  // TODO move out of the package
 
 import haxe.ds.GenericStack.GenericCell;
 import parser.Ast;
+import parser.Error;
 import parser.Token;
 
 import parser.AstTools.*;
@@ -20,14 +21,14 @@ class Parser {
 	var cache:FileCache;
 	var next:GenericCell<Token>;
 
-	function error(m:String, p:Position)
-		throw '${p.src}:${p.min}-${p.max}: $m';
-
 	function unexpected(t:Token)
-		error('Unexpected `${t.def}`', t.pos);
+		throw new UnexpectedToken(t);
 
 	function unclosed(name:String, p:Position)
-		error('Unclosed $name', p);
+		throw new Unclosed(name, p);
+
+	function missingArg(cmd:Token, ?desc:String)
+		throw new MissingArgument(cmd, desc);
 
 	function peek()
 	{
@@ -99,7 +100,7 @@ class Parser {
 			case "emph": emph();
 			case "highlight": highlight();
 			case "volume", "chapter", "section": null;  // vertical commands end the current par
-			case _: error('Unknown command \\$cmdName', pos); null;
+			case _: throw new UnknownCommand(cmdName, pos); null;
 			}
 		case { def:TAsterisk }:
 			mdEmph();
@@ -134,6 +135,7 @@ class Parser {
 		var close = discard();
 		if (close.def.match(TEof)) unclosed("argument", open.pos);
 		if (!close.def.match(TBrClose)) unexpected(close);
+		if (name == null) missingArg(cmd, "name");
 		return mk(Volume(name), cmd.pos.span(close.pos));
 	}
 
@@ -147,6 +149,7 @@ class Parser {
 		var close = discard();
 		if (close.def.match(TEof)) unclosed("argument", open.pos);
 		if (!close.def.match(TBrClose)) unexpected(close);
+		if (name == null) missingArg(cmd, "name");
 		return mk(Chapter(name), cmd.pos.span(close.pos));
 	}
 
@@ -160,6 +163,7 @@ class Parser {
 		var close = discard();
 		if (close.def.match(TEof)) unclosed("argument", open.pos);
 		if (!close.def.match(TBrClose)) unexpected(close);
+		if (name == null) missingArg(cmd, "name");
 		return mk(Section(name), cmd.pos.span(close.pos));
 	}
 

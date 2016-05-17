@@ -1,6 +1,7 @@
-import utest.Assert;
 import parser.Ast;
 import parser.AstTools.*;
+import parser.Error;
+import utest.Assert;
 
 class Test_03_Parser {
 	static inline var SRC = "Test_03_Parser.hx";
@@ -111,7 +112,7 @@ class Test_03_Parser {
 			expand(Paragraph(HList([@wrap(1,1)Emphasis(HList([@len(1)Word("a"),@len(1)Wordspace])),@wrap(1,1)Emphasis(@len(1)Word("b")),@wrap(1,1)Emphasis(HList([@len(1)Wordspace,@len(1)Word("c")]))]))),
 			parse("*a **b** c*"));
 
-		Assert.raises(parse.bind("\\emph{a}{}"));
+		Assert.raises(parse.bind("\\emph{a}{}"), UnexpectedToken);
 	}
 
 	public function test_004_highlight()
@@ -130,12 +131,12 @@ class Test_03_Parser {
 	public function test_005_bad_command_name()
 	{
 		// typos
-		Assert.raises(parse.bind("\\emp"));
-		Assert.raises(parse.bind("\\highligth"));
+		Assert.raises(parse.bind("\\emp"), UnknownCommand);
+		Assert.raises(parse.bind("\\highligth"), UnknownCommand);
 
 		// non existant aliases
-		Assert.raises(parse.bind("\\emphasis"));
-		Assert.raises(parse.bind("\\display"));
+		Assert.raises(parse.bind("\\emphasis"), UnknownCommand);
+		Assert.raises(parse.bind("\\display"), UnknownCommand);
 	}
 
 	public function test_006_known_dificulties_from_poc()
@@ -189,8 +190,16 @@ class Test_03_Parser {
 			expand(VList([Paragraph(@len(1)Word("a")),@skip(2)@wrap(9,1)Section(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))])),
 			parse("a\n\n\\section{b}\n\nc"));
 
-		Assert.raises(parse.bind("\\section{\\volume{a}}"));
-		Assert.raises(parse.bind("\\section{a\\volume{b}}"));
+		Assert.raises(parse.bind("\\section{\\volume{a}}"), UnexpectedToken);
+		Assert.raises(parse.bind("\\section{a\\volume{b}}"), UnexpectedToken);
+	}
+
+	public function test_009_command_parsing_errors()
+	{
+		Assert.raises(parse.bind("\\section"), UnexpectedToken);
+		Assert.raises(parse.bind("\\section\\section"), UnexpectedToken);
+		Assert.raises(parse.bind("\\section{"), Unclosed);
+		Assert.raises(parse.bind("\\section{}"), MissingArgument);
 	}
 }
 
