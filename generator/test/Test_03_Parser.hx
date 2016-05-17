@@ -74,7 +74,15 @@ class Test_03_Parser {
 			expand(VList([Paragraph(@len(1)Word("a")),@skip(5)Paragraph(@len(1)Word("b"))])),
 			parse("a \r\n\t\nb"));
 
-		// TODO test: break paragraphs on vertical commands
+		Assert.same(
+			expand(VList([Paragraph(@len(1)Word("a")),@wrap(8,1)Volume(@len(1)Word("b"))])),
+			parse("a\\volume{b}"));
+		Assert.same(
+			expand(VList([Paragraph(@len(1)Word("a")),@wrap(9,1)Chapter(@len(1)Word("b"))])),
+			parse("a\\chapter{b}"));
+		Assert.same(
+			expand(VList([Paragraph(@len(1)Word("a")),@wrap(9,1)Section(@len(1)Word("b"))])),
+			parse("a\\section{b}"));
 	}
 
 	public function test_003_emphasis()
