@@ -128,7 +128,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 
 	public function recover(pos, len)
 	{
-		if (pos < 0 || len <= 0 || pos + len > bytes.length) throw 'Out of bounds: $pos + $len';
+		if (pos < 0 || len <= 0 || pos + len > bytes.length) throw 'Assert failed: $pos + $len out of bounds';
 		return bytes.sub(pos, len).toString();
 	}
 
