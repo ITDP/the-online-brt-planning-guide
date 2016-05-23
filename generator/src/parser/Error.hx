@@ -1,6 +1,7 @@
 package parser;
 
 import parser.Token;
+import Assertion.assert;
 
 private class Error {
 	var msg:String;
@@ -44,7 +45,7 @@ class MissingArgument extends Error {
 		case TCommand(name):
 			super('Missing $desc for `\\$name`', cmd.pos);
 		case other:
-			trace('Assert failed: $other should be TCommand');
+			trace('Assert failed: $other should be TCommand');  // TODO replace with light version of Assertion.assert
 			super('Missing $desc', cmd.pos);
 		}
 	}

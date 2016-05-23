@@ -5,6 +5,7 @@ import parser.Ast;
 import parser.Error;
 import parser.Token;
 
+import Assertion.assert;
 import parser.AstTools.*;
 
 using parser.TokenTools;
@@ -48,14 +49,14 @@ class Parser {
 
 	function emph(cmd:Token)
 	{
-		// TODO assert command
+		assert(cmd.def.match(TCommand("emph")), cmd);
 		var content = harg();
 		return mk(Emphasis(content.hlist), cmd.pos.span(content.pos));
 	}
 
 	function highlight(cmd:Token)
 	{
-		// TODO assert command
+		assert(cmd.def.match(TCommand("highlight")), cmd);
 		var content = harg();
 		return mk(Highlight(content.hlist), cmd.pos.span(content.pos));
 	}
@@ -127,7 +128,7 @@ class Parser {
 
 	function volume(cmd:Token)
 	{
-		// TODO assert command
+		assert(cmd.def.match(TCommand("volume")), cmd);
 		var name = harg();
 		if (name.hlist == null) missingArg(cmd, "name");
 		return mk(Volume(name.hlist), cmd.pos.span(name.pos));
@@ -135,7 +136,7 @@ class Parser {
 
 	function chapter(cmd:Token)
 	{
-		// TODO assert command
+		assert(cmd.def.match(TCommand("chapter")), cmd);
 		var name = harg();
 		if (name.hlist == null) missingArg(cmd, "name");
 		return mk(Chapter(name.hlist), cmd.pos.span(name.pos));
@@ -143,7 +144,7 @@ class Parser {
 
 	function section(cmd:Token)
 	{
-		// TODO assert command
+		assert(cmd.def.match(TCommand("section")), cmd);
 		var name = harg();
 		if (name.hlist == null) missingArg(cmd, "name");
 		return mk(Section(name.hlist), cmd.pos.span(name.pos));

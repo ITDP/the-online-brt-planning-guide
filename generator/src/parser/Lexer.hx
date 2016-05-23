@@ -1,7 +1,9 @@
 package parser;
 
 import parser.Token;
+import Assertion.assert;
 using StringTools;
+
 class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 	static var buf:StringBuf;
 
@@ -128,7 +130,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 
 	public function recover(pos, len)
 	{
-		if (pos < 0 || len <= 0 || pos + len > bytes.length) throw 'Assert failed: $pos + $len out of bounds';
+		assert(pos >= 0 && len > 0 && pos + len <= bytes.length, pos, len, bytes.length);  // TODO restore 'out of bounds' msg
 		return bytes.sub(pos, len).toString();
 	}
 
