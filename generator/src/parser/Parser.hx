@@ -17,6 +17,8 @@ typedef Path = String;
 typedef FileCache = Map<Path,File>;
 
 class Parser {
+	static var horizontalCommands = ["emph", "highlight"];
+
 	var lexer:Lexer;
 	var cache:FileCache;
 	var next:GenericCell<Token>;
@@ -44,30 +46,18 @@ class Parser {
 		return ret;
 	}
 
-	function emph()
+	function emph(cmd:Token)
 	{
-		var cmd = discard();
-		if (!cmd.def.match(TCommand("emph"))) unexpected(cmd);
-		var open = discard();
-		if (!open.def.match(TBrOpen)) unexpected(open);
-		var li = hlist({ stopBefore:TBrClose });
-		var close = discard();
-		if (close.def.match(TEof)) unclosed("argument", open.pos);
-		if (!close.def.match(TBrClose)) unexpected(close);
-		return mk(Emphasis(li), cmd.pos.span(close.pos));
+		// TODO assert command
+		var content = harg();
+		return mk(Emphasis(content.hlist), cmd.pos.span(content.pos));
 	}
 
-	function highlight()
+	function highlight(cmd:Token)
 	{
-		var cmd = discard();
-		if (!cmd.def.match(TCommand("highlight"))) unexpected(cmd);
-		var open = discard();
-		if (!open.def.match(TBrOpen)) unexpected(open);
-		var li = hlist({ stopBefore:TBrClose });
-		var close = discard();
-		if (close.def.match(TEof)) unclosed("argument", open.pos);
-		if (!close.def.match(TBrClose)) unexpected(close);
-		return mk(Highlight(li), cmd.pos.span(close.pos));
+		// TODO assert command
+		var content = harg();
+		return mk(Highlight(content.hlist), cmd.pos.span(content.pos));
 	}
 
 	function mdEmph()
@@ -93,14 +83,11 @@ class Parser {
 		case { def:TMath(s), pos:pos }:
 			discard();
 			mk(Word(s), pos);  // FIXME
-		case { def:TCommand("emph") }:
-			emph();
 		case { def:TCommand(cmdName), pos:pos }:
 			switch cmdName {
-			case "emph": emph();
-			case "highlight": highlight();
-			case "volume", "chapter", "section": null;  // vertical commands end the current par
-			case _: throw new UnknownCommand(cmdName, pos); null;
+			case "emph": emph(discard());
+			case "highlight": highlight(discard());
+			case _: null;  // vertical commands end the current hlist; unknown commands will be handled later
 			}
 		case { def:TAsterisk }:
 			mdEmph();
@@ -125,46 +112,41 @@ class Parser {
 		return mkList(HList(li));
 	}
 
-	function volume()
+	function harg()
 	{
-		var cmd = discard();
-		if (!cmd.def.match(TCommand("volume"))) unexpected(cmd);
 		var open = discard();
 		if (!open.def.match(TBrOpen)) unexpected(open);
-		var name = hlist({ stopBefore:TBrClose });
+
+		var li = hlist({ stopBefore : TBrClose });
+
 		var close = discard();
 		if (close.def.match(TEof)) unclosed("argument", open.pos);
 		if (!close.def.match(TBrClose)) unexpected(close);
-		if (name == null) missingArg(cmd, "name");
-		return mk(Volume(name), cmd.pos.span(close.pos));
+		return { hlist:li, pos:open.pos.span(close.pos) };
 	}
 
-	function chapter()
+	function volume(cmd:Token)
 	{
-		var cmd = discard();
-		if (!cmd.def.match(TCommand("chapter"))) unexpected(cmd);
-		var open = discard();
-		if (!open.def.match(TBrOpen)) unexpected(open);
-		var name = hlist({ stopBefore:TBrClose });
-		var close = discard();
-		if (close.def.match(TEof)) unclosed("argument", open.pos);
-		if (!close.def.match(TBrClose)) unexpected(close);
-		if (name == null) missingArg(cmd, "name");
-		return mk(Chapter(name), cmd.pos.span(close.pos));
+		// TODO assert command
+		var name = harg();
+		if (name.hlist == null) missingArg(cmd, "name");
+		return mk(Volume(name.hlist), cmd.pos.span(name.pos));
 	}
 
-	function section()
+	function chapter(cmd:Token)
 	{
-		var cmd = discard();
-		if (!cmd.def.match(TCommand("section"))) unexpected(cmd);
-		var open = discard();
-		if (!open.def.match(TBrOpen)) unexpected(open);
-		var name = hlist({ stopBefore:TBrClose });
-		var close = discard();
-		if (close.def.match(TEof)) unclosed("argument", open.pos);
-		if (!close.def.match(TBrClose)) unexpected(close);
-		if (name == null) missingArg(cmd, "name");
-		return mk(Section(name), cmd.pos.span(close.pos));
+		// TODO assert command
+		var name = harg();
+		if (name.hlist == null) missingArg(cmd, "name");
+		return mk(Chapter(name.hlist), cmd.pos.span(name.pos));
+	}
+
+	function section(cmd:Token)
+	{
+		// TODO assert command
+		var name = harg();
+		if (name.hlist == null) missingArg(cmd, "name");
+		return mk(Section(name.hlist), cmd.pos.span(name.pos));
 	}
 
 	function paragraph()
@@ -182,10 +164,11 @@ class Parser {
 		case TEof: null;
 		case TCommand(cmdName):
 			switch cmdName {
-			case "volume": volume();
-			case "chapter": chapter();
-			case "section": section();
-			case _: paragraph();
+			case "volume": volume(discard());
+			case "chapter": chapter(discard());
+			case "section": section(discard());
+			case name if (Lambda.has(horizontalCommands, name)): paragraph();
+			case _: throw new UnknownCommand(cmdName, peek().pos);
 			}
 		case TWord(_), TAsterisk: paragraph();
 		case _: unexpected(peek()); null;
