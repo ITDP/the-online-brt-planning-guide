@@ -121,7 +121,7 @@ class Parser {
 		return { hlist:li, pos:open.pos.span(close.pos) };
 	}
 
-	function heading(cmd:Token)
+	function hierarchy(cmd:Token)
 	{
 		var name = harg();
 		if (name.hlist == null) missingArg(cmd, "name");
@@ -147,15 +147,18 @@ class Parser {
 		while (peek().def.match(TWordSpace(_) | TBreakSpace(_)))
 			discard();
 		return switch peek().def {
-		case TEof: null;
+		case TEof:
+			null;
 		case TCommand(cmdName):
 			switch cmdName {
-			case "volume", "chapter", "section": heading(discard());
+			case "volume", "chapter", "section", "subsection", "subsubsection": hierarchy(discard());
 			case name if (Lambda.has(horizontalCommands, name)): paragraph();
 			case _: throw new UnknownCommand(cmdName, peek().pos);
 			}
-		case TWord(_), TAsterisk: paragraph();
-		case _: unexpected(peek()); null;
+		case TWord(_), TAsterisk:
+			paragraph();
+		case _:
+			unexpected(peek()); null;
 		}
 	}
 

@@ -167,7 +167,7 @@ class Test_03_Parser {
 			parse("a/*x*/\n\nb"));
 	}
 
-	public function test_008_divisions_commands()
+	public function test_008_hierarchy_commands()
 	{
 		Assert.same(
 			expand(@wrap(8,1)Volume(HList([@len(1)Word("a"),@len(1)Wordspace,@len(1)Word("b")]))),
@@ -189,6 +189,20 @@ class Test_03_Parser {
 		Assert.same(
 			expand(VList([Paragraph(@len(1)Word("a")),@skip(2)@wrap(9,1)Section(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))])),
 			parse("a\n\n\\section{b}\n\nc"));
+
+		Assert.same(
+			expand(@wrap(12,1)SubSection(HList([@len(1)Word("a"),@len(1)Wordspace,@len(1)Word("b")]))),
+			parse("\\subsection{a b}"));
+		Assert.same(
+			expand(VList([Paragraph(@len(1)Word("a")),@skip(2)@wrap(12,1)SubSection(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))])),
+			parse("a\n\n\\subsection{b}\n\nc"));
+
+		Assert.same(
+			expand(@wrap(15,1)SubSubSection(HList([@len(1)Word("a"),@len(1)Wordspace,@len(1)Word("b")]))),
+			parse("\\subsubsection{a b}"));
+		Assert.same(
+			expand(VList([Paragraph(@len(1)Word("a")),@skip(2)@wrap(15,1)SubSubSection(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))])),
+			parse("a\n\n\\subsubsection{b}\n\nc"));
 
 		Assert.raises(parse.bind("\\section{\\volume{a}}"), UnexpectedToken);
 		Assert.raises(parse.bind("\\section{a\\volume{b}}"), UnexpectedToken);
