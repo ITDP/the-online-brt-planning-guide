@@ -215,5 +215,32 @@ class Test_03_Parser {
 		Assert.raises(parse.bind("\\section{"), Unclosed);
 		Assert.raises(parse.bind("\\section{}"), MissingArgument);
 	}
+
+	public function test_010_md_headings()
+	{
+		Assert.same(
+			expand(@wrap(1,0)Section(HList([@len(1)Word("a"),@len(1)Wordspace,@len(1)Word("b")]))),
+			parse("#a b"));
+		Assert.same(
+			expand(VList([Paragraph(@len(1)Word("a")),@skip(2)@wrap(2,0)Section(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))])),
+			parse("a\n\n# b\n\nc"));
+
+		Assert.same(
+			expand(@wrap(2,0)SubSection(HList([@len(1)Word("a"),@len(1)Wordspace,@len(1)Word("b")]))),
+			parse("##a b"));
+		Assert.same(
+			expand(VList([Paragraph(@len(1)Word("a")),@skip(2)@wrap(3,0)SubSection(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))])),
+			parse("a\n\n## b\n\nc"));
+
+		Assert.same(
+			expand(@wrap(3,0)SubSubSection(HList([@len(1)Word("a"),@len(1)Wordspace,@len(1)Word("b")]))),
+			parse("###a b"));
+		Assert.same(
+			expand(VList([Paragraph(@len(1)Word("a")),@skip(2)@wrap(4,0)SubSubSection(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))])),
+			parse("a\n\n### b\n\nc"));
+
+		Assert.raises(parse.bind("####a b"), UnexpectedToken);
+		// TODO maybe require hashes on the beginning of the line?
+	}
 }
 

@@ -33,11 +33,17 @@ class Parser {
 	inline function missingArg(cmd:Token, ?desc:String)
 		throw new MissingArgument(cmd, desc);
 
-	function peek()
+	function peek(offset=0):Token
 	{
 		if (next == null)
 			next = new GenericCell(lexer.token(Lexer.tokens), null);
-		return next.elt;
+		var c = next;
+		while (offset-- > 0) {
+			if (c.next == null)
+				c.next = new GenericCell(lexer.token(Lexer.tokens), null);
+			c = c.next;
+		}
+		return c.elt;
 	}
 
 	function discard()
@@ -135,6 +141,21 @@ class Parser {
 		}
 	}
 
+	function mdHeading(hashes:Token)
+	{
+		while (peek().def.match(TWordSpace(_)))  // TODO maybe add this to hlist?
+			discard();
+		var name = hlist({});
+		assert(name != null, "obvisouly empty header");  // FIXME maybe
+
+		return switch hashes.def {
+		case THashes(1): mk(Section(name), hashes.pos.span(name.pos));
+		case THashes(2): mk(SubSection(name), hashes.pos.span(name.pos));
+		case THashes(3): mk(SubSubSection(name), hashes.pos.span(name.pos));
+		case _: unexpected(hashes); null;  // TODO informative error about wrong number of hashes
+		}
+	}
+
 	function paragraph()
 	{
 		var text = hlist({});
@@ -155,6 +176,8 @@ class Parser {
 			case name if (Lambda.has(horizontalCommands, name)): paragraph();
 			case _: throw new UnknownCommand(cmdName, peek().pos);
 			}
+		case THashes(_) if (!peek(1).def.match(TWord("FIG") | TWord("EQ") | TWord("TAB"))):
+			mdHeading(discard());
 		case TWord(_), TAsterisk:
 			paragraph();
 		case _:
