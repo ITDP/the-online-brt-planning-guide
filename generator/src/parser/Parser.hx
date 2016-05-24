@@ -24,13 +24,13 @@ class Parser {
 	var cache:FileCache;
 	var next:GenericCell<Token>;
 
-	function unexpected(t:Token)
+	inline function unexpected(t:Token)
 		throw new UnexpectedToken(t, lexer);
 
-	function unclosed(name:String, p:Position)
+	inline function unclosed(name:String, p:Position)
 		throw new Unclosed(name, p);
 
-	function missingArg(cmd:Token, ?desc:String)
+	inline function missingArg(cmd:Token, ?desc:String)
 		throw new MissingArgument(cmd, desc);
 
 	function peek()
