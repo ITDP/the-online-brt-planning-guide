@@ -122,8 +122,19 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"#+" => mk(lexer, THashes(countmark(lexer.current, "#"))),
 		">" => mk(lexer, TGreater),
 
+		// treat -- as en-dash and as --- and em-dash
+		"---" => mk(lexer, TWord("—")),
+		"--" => mk(lexer, TWord("–")),
+		"-" => mk(lexer, TWord(lexer.current)),
+
+		// separate hyphen-dashes, en-dashes and em-dashes from regular words;
+		// em-dashes have special meaning in markdown-like quotations;
+		// however, compact figure dashes into en-dashes and horizontal bars into em-dashes
+		"–|‒" => mk(lexer, TWord("–")),  // u2013,u2012 -> u2013
+		"—|―" => mk(lexer, TWord("—")),  // u2014,u2015 -> u2014
+
 		"\\\\[\\*@:#>$]" => mk(lexer, TWord(lexer.current.substr(1))),
-		"[^ \t\r\n/*{}\\[\\]\\\\#>@\\*:$]+" => mk(lexer, TWord(lexer.current))
+		"[^ \t\r\n/*{}\\[\\]\\\\#>@\\*:$\\-‒–—―]+" => mk(lexer, TWord(lexer.current))
 	];
 
 	var bytes:haxe.io.Bytes;

@@ -125,6 +125,24 @@ class Test_02_Lexer {
 
 	}
 
+	public function test_008_dash_treatment()
+	{
+		// -- and --- aliases
+		Assert.same([TWord("–"), TEof], defs("--"));
+		Assert.same([TWord("—"), TEof], defs("---"));
+		Assert.same([TWord("-"), TEof], defs("-"));  // but leave it unspecified
+
+		// figure dash and horizontal bar compactation into en- and em-dashes
+		Assert.same([TWord("–"), TEof], defs("‒"));
+		Assert.same([TWord("—"), TEof], defs("―"));
+
+		// dashes isolated from the environment
+		Assert.same([TWord("a"), TWord("—"), TWord("b"), TEof], defs("a—b"));
+		Assert.same([TWord("a"), TWord("–"), TWord("b"), TEof], defs("a–b"));  // but leave it unspecified
+		Assert.same([TWord("a"), TWord("–"), TWord("b"), TEof], defs("a‒b"));  // but leave it unspecified
+		Assert.same([TWord("a"), TWord("—"), TWord("b"), TEof], defs("a―b"));  // but leave it unspecified
+	}
+
 	public function test_999_position()
 	{
 		Assert.same({ min:0, max:0 }, positions("")[0]);
