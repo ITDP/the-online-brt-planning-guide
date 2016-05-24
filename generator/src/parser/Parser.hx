@@ -126,28 +126,18 @@ class Parser {
 		return { hlist:li, pos:open.pos.span(close.pos) };
 	}
 
-	function volume(cmd:Token)
+	function heading(cmd:Token)
 	{
-		assert(cmd.def.match(TCommand("volume")), cmd);
 		var name = harg();
 		if (name.hlist == null) missingArg(cmd, "name");
-		return mk(Volume(name.hlist), cmd.pos.span(name.pos));
-	}
-
-	function chapter(cmd:Token)
-	{
-		assert(cmd.def.match(TCommand("chapter")), cmd);
-		var name = harg();
-		if (name.hlist == null) missingArg(cmd, "name");
-		return mk(Chapter(name.hlist), cmd.pos.span(name.pos));
-	}
-
-	function section(cmd:Token)
-	{
-		assert(cmd.def.match(TCommand("section")), cmd);
-		var name = harg();
-		if (name.hlist == null) missingArg(cmd, "name");
-		return mk(Section(name.hlist), cmd.pos.span(name.pos));
+		return switch cmd.def {
+		case TCommand("volume"): mk(Volume(name.hlist), cmd.pos.span(name.pos));
+		case TCommand("chapter"): mk(Chapter(name.hlist), cmd.pos.span(name.pos));
+		case TCommand("section"): mk(Section(name.hlist), cmd.pos.span(name.pos));
+		case TCommand("subsection"): mk(SubSection(name.hlist), cmd.pos.span(name.pos));
+		case TCommand("subsubsection"): mk(SubSubSection(name.hlist), cmd.pos.span(name.pos));
+		case _: unexpected(cmd); null;
+		}
 	}
 
 	function paragraph()
@@ -165,9 +155,7 @@ class Parser {
 		case TEof: null;
 		case TCommand(cmdName):
 			switch cmdName {
-			case "volume": volume(discard());
-			case "chapter": chapter(discard());
-			case "section": section(discard());
+			case "volume", "chapter", "section": heading(discard());
 			case name if (Lambda.has(horizontalCommands, name)): paragraph();
 			case _: throw new UnknownCommand(cmdName, peek().pos);
 			}

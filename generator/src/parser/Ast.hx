@@ -18,6 +18,8 @@ enum VDef {
 	Volume(name:HElem);
 	Chapter(name:HElem);
 	Section(name:HElem);
+	SubSection(name:HElem);
+	SubSubSection(name:HElem);
 	Paragraph(h:HElem);
 	VList(elem:Array<VElem>);
 }
