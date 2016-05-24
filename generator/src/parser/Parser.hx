@@ -47,18 +47,14 @@ class Parser {
 		return ret;
 	}
 
-	function emph(cmd:Token)
+	function emphasis(cmd:Token)
 	{
-		assert(cmd.def.match(TCommand("emph")), cmd);
 		var content = harg();
-		return mk(Emphasis(content.hlist), cmd.pos.span(content.pos));
-	}
-
-	function highlight(cmd:Token)
-	{
-		assert(cmd.def.match(TCommand("highlight")), cmd);
-		var content = harg();
-		return mk(Highlight(content.hlist), cmd.pos.span(content.pos));
+		return switch cmd.def {
+		case TCommand("emph"): mk(Emphasis(content.hlist), cmd.pos.span(content.pos));
+		case TCommand("highlight"): mk(Highlight(content.hlist), cmd.pos.span(content.pos));
+		case _: unexpected(cmd); null;
+		}
 	}
 
 	function mdEmph()
@@ -86,8 +82,7 @@ class Parser {
 			mk(Word(s), pos);  // FIXME
 		case { def:TCommand(cmdName), pos:pos }:
 			switch cmdName {
-			case "emph": emph(discard());
-			case "highlight": highlight(discard());
+			case "emph", "highlight": emphasis(discard());
 			case _: null;  // vertical commands end the current hlist; unknown commands will be handled later
 			}
 		case { def:TAsterisk }:
