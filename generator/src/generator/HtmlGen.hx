@@ -42,13 +42,13 @@ class HtmlGen {
 		case SubSubSection(h):
 			return '<h6>${horizontal(h)}</h6>\n';
 		case Quotation(t,a):
-			return '<aside>${horizontal(t)}<footer>$a</footer></aside>';
+			return '<aside>${horizontal(t)}<footer>${horizontal(a)}</footer></aside>';
 		case Paragraph(h):
 			return '<p>${horizontal(h)}</p>\n';
 		case VList(li):
 			var buf = new StringBuf();
 			for (i in li)
-				buf.add(i);
+				buf.add(vertical(i));
 			return buf.toString();
 		}
 	}
