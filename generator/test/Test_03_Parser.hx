@@ -251,6 +251,17 @@ class Test_03_Parser {
 		Assert.same(
 			expand(@wrap(12,1)Quotation(@len(1)Word("a"),@skip(3)@len(1)Word("b"))),  // FIXME @skip
 			parse("\\quotation\n{a}\n{b}"));
+
+		Assert.equals(3, "—".length);  // assumed bellow
+		Assert.same(
+			expand(@wrap(1,0)Quotation(@len(1)Word("a"),@skip(3)@len(1)Word("b"))),
+			parse(">a—b"));
+		Assert.same(
+			expand(@wrap(1,0)Quotation(@len(1)Word("a"),@skip(3)@len(1)Word("b"))),
+			parse(">a---b"));
+		Assert.same(
+			expand(@wrap(2,0)Quotation(HList([@len(1)Word("a"),@len(1)Wordspace]),@skip(3)@len(1)Word("b"))),
+			parse("> a\n---b"));
 	}
 }
 

@@ -168,6 +168,18 @@ class Parser {
 		return mk(Quotation(text.hlist, author.hlist), cmd.pos.span(author.pos));
 	}
 
+	function mdQuotation(greaterThan:Token)
+	{
+		assert(greaterThan.def.match(TGreater), greaterThan);
+		while (peek().def.match(TWordSpace(_)))  // TODO maybe add this to hlist?
+			discard();
+		var text = hlist({ stopBefore:TWord("—") });
+		var dash = discard();
+		if (!dash.def.match(TWord("—"))) unexpected(dash);
+		var author = hlist({});
+		return mk(Quotation(text, author), greaterThan.pos.span(author.pos));
+	}
+
 	function paragraph()
 	{
 		var text = hlist({});
@@ -191,6 +203,8 @@ class Parser {
 			}
 		case THashes(_) if (!peek(1).def.match(TWord("FIG") | TWord("EQ") | TWord("TAB"))):
 			mdHeading(discard());
+		case TGreater:
+			mdQuotation(discard());
 		case TWord(_), TAsterisk:
 			paragraph();
 		case _:
