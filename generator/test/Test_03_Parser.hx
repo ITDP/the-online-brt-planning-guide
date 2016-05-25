@@ -242,5 +242,15 @@ class Test_03_Parser {
 		Assert.raises(parse.bind("####a b"), UnexpectedToken);
 		// TODO maybe require hashes on the beginning of the line?
 	}
+
+	public function test_011_quotations()
+	{
+		Assert.same(
+			expand(@wrap(11,1)Quotation(@len(1)Word("a"),@skip(2)@len(1)Word("b"))),  // FIXME @skip
+			parse("\\quotation{a}{b}"));
+		Assert.same(
+			expand(@wrap(12,1)Quotation(@len(1)Word("a"),@skip(3)@len(1)Word("b"))),  // FIXME @skip
+			parse("\\quotation\n{a}\n{b}"));
+	}
 }
 

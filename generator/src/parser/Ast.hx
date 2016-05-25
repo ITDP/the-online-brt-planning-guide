@@ -20,6 +20,7 @@ enum VDef {
 	Section(name:HElem);
 	SubSection(name:HElem);
 	SubSubSection(name:HElem);
+	Quotation(text:HElem, by:HElem);
 	Paragraph(h:HElem);
 	VList(elem:Array<VElem>);
 }

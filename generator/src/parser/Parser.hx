@@ -116,6 +116,8 @@ class Parser {
 
 	function harg()
 	{
+		while (peek().def.match(TWordSpace(_)))
+			discard();
 		var open = discard();
 		if (!open.def.match(TBrOpen)) unexpected(open);
 
@@ -156,6 +158,16 @@ class Parser {
 		}
 	}
 
+	function quotation(cmd:Token)
+	{
+		assert(cmd.def.match(TCommand("quotation")), cmd);
+		var text = harg();
+		var author = harg();
+		if (text.hlist == null) missingArg(cmd, "text");
+		if (author.hlist == null) missingArg(cmd, "author");
+		return mk(Quotation(text.hlist, author.hlist), cmd.pos.span(author.pos));
+	}
+
 	function paragraph()
 	{
 		var text = hlist({});
@@ -173,6 +185,7 @@ class Parser {
 		case TCommand(cmdName):
 			switch cmdName {
 			case "volume", "chapter", "section", "subsection", "subsubsection": hierarchy(discard());
+			case "quotation": quotation(discard());
 			case name if (Lambda.has(horizontalCommands, name)): paragraph();
 			case _: throw new UnknownCommand(cmdName, peek().pos);
 			}
