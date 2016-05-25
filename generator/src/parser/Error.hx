@@ -17,16 +17,17 @@ private class Error {
 }
 
 class UnexpectedToken extends Error {
-	var tok:Token;
-
 	public function new(tok:Token, lex:Lexer)
 	{
-		this.tok = tok;
-		var str = lex.recover(tok.pos.min, tok.pos.max - tok.pos.min);
-		if (StringTools.trim(str) == "")
-			super('Unexpected whitespace (hex: ${haxe.io.Bytes.ofString(str).toHex()})', tok.pos);
-		else
+		switch tok.def {
+		case TWordSpace(s):
+			super('Unexpected interword space (hex: ${haxe.io.Bytes.ofString(s).toHex()})', tok.pos);
+		case TBreakSpace(s):
+			super('Unexpected vertical space (hex: ${haxe.io.Bytes.ofString(s).toHex()})', tok.pos);
+		case _:
+			var str = lex.recover(tok.pos.min, tok.pos.max - tok.pos.min);
 			super('Unexpected `$str`', tok.pos);
+		}
 	}
 }
 
