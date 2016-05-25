@@ -8,6 +8,7 @@ import parser.Token;
 import Assertion.assert;
 import parser.AstTools.*;
 
+using StringTools;
 using parser.TokenTools;
 
 typedef HOpts = {
@@ -96,6 +97,9 @@ class Parser {
 		case { def:TWordSpace(s), pos:pos }:
 			discard();
 			mk(Wordspace, pos);
+		case { def:TColon(q), pos:pos } if (q != 3):
+			discard();
+			mk(Word("".rpad(":", q)), pos);
 		case { def:tdef } if (tdef.match(TBreakSpace(_) | TEof)):
 			null;
 		case other:
@@ -206,6 +210,8 @@ class Parser {
 		case TGreater:
 			mdQuotation(discard());
 		case TWord(_), TAsterisk:
+			paragraph();
+		case TColon(q) if (q != 3):
 			paragraph();
 		case _:
 			unexpected(peek()); null;
