@@ -22,7 +22,11 @@ class UnexpectedToken extends Error {
 	public function new(tok:Token, lex:Lexer)
 	{
 		this.tok = tok;
-		super('Unexpected `${lex.recover(tok.pos.min, tok.pos.max - tok.pos.min)}`', tok.pos);
+		var str = lex.recover(tok.pos.min, tok.pos.max - tok.pos.min);
+		if (StringTools.trim(str) == "")
+			super('Unexpected whitespace (hex: ${haxe.io.Bytes.ofString(str).toHex()})', tok.pos);
+		else
+			super('Unexpected `$str`', tok.pos);
 	}
 }
 
