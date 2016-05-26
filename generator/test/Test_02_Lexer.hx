@@ -143,6 +143,19 @@ class Test_02_Lexer {
 		Assert.same([TWord("a"), TWord("—"), TWord("b"), TEof], defs("a―b"));  // but leave it unspecified
 	}
 
+	public function test_009_utf8_text()
+	{
+		// byte counts: 1, 2, 3 and 4
+		Assert.same([TWord("!"), TEof], defs("!"));
+		Assert.same([TWord("¡"), TEof], defs("¡"));
+		Assert.same([TWord("ࠀ"), TEof], defs("ࠀ"));
+		Assert.same([TWord("𐀀"), TEof], defs("𐀀"));
+
+		// special cases
+		Assert.same([TWord("“"), TEof], defs("“"));
+		Assert.same([TWord("”"), TEof], defs("”"));
+	}
+
 	public function test_999_position()
 	{
 		Assert.same({ min:0, max:0 }, positions("")[0]);
