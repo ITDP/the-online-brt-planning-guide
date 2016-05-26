@@ -20,10 +20,12 @@ enum VDef {
 	Section(name:HElem);
 	SubSection(name:HElem);
 	SubSubSection(name:HElem);
+	Figure(path:String, caption:HElem, copyright:HElem);  // TODO size?
 	Quotation(text:HElem, by:HElem);
 	Paragraph(h:HElem);
 	VList(elem:Array<VElem>);
 }
+// TODO labels?
 
 typedef File = VElem;  // TODO rename, to avoid confusion with sys.io.File
 typedef Ast = File;

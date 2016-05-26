@@ -263,5 +263,14 @@ class Test_03_Parser {
 			expand(@wrap(2,0)Quotation(HList([@len(1)Word("a"),@len(1)Wordspace]),@skip(3)@len(1)Word("b"))),
 			parse("> a\n---b"));
 	}
+
+	public function test_012_figures()
+	{
+		Assert.same(
+			expand(@wrap(8,1)Figure("fig.png",@skip(2+7)@len(7)Word("caption"),@skip(2)@len(9)Word("copyright"))),  // FIXME no pos for path, @skip
+			parse("\\figure{fig.png}{caption}{copyright}"));
+
+		// TODO mdFigure
+	}
 }
 

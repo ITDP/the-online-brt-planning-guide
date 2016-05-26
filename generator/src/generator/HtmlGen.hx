@@ -41,6 +41,10 @@ class HtmlGen {
 			return '<h5>${horizontal(h)}</h5>\n';
 		case SubSubSection(h):
 			return '<h6>${horizontal(h)}</h6>\n';
+		case Figure(path, caption, copyright):
+			var caption = horizontal(caption);
+			var copyright = horizontal(copyright);
+			return '<!-- TODO figure $path $caption $copyright -->';  // FIXME
 		case Quotation(t,a):
 			return '<aside>${horizontal(t)}<footer>${horizontal(a)}</footer></aside>';
 		case Paragraph(h):

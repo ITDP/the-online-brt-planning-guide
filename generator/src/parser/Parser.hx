@@ -56,10 +56,10 @@ class Parser {
 
 	function emphasis(cmd:Token)
 	{
-		var content = harg();
+		var content = arg(hlist);
 		return switch cmd.def {
-		case TCommand("emph"): mk(Emphasis(content.hlist), cmd.pos.span(content.pos));
-		case TCommand("highlight"): mk(Highlight(content.hlist), cmd.pos.span(content.pos));
+		case TCommand("emph"): mk(Emphasis(content.val), cmd.pos.span(content.pos));
+		case TCommand("highlight"): mk(Highlight(content.val), cmd.pos.span(content.pos));
 		case _: unexpected(cmd); null;
 		}
 	}
@@ -118,31 +118,50 @@ class Parser {
 		return mkList(HList(li));
 	}
 
-	function harg()
+	function rawHorizontal(opts:HOpts)
+	{
+		var buf = new StringBuf();
+		while (true) {
+			switch peek() {
+			case { def:tdef } if (opts.stopBefore != null && Type.enumEq(tdef, opts.stopBefore)):
+				break;
+			case { def:TBreakSpace(_) } | { def:TEof }:
+				break;
+			case { def:TBlockComment(_) } | { def:TLineComment(_) }:  // not sure about this
+				discard();
+			case { def:def, pos:pos }:
+				discard();
+				buf.add(lexer.recover(pos.min, pos.max - pos.min));
+			}
+		}
+		return buf.toString();
+	}
+
+	function arg<T>(internal:HOpts->T):{ val:T, pos:Position }
 	{
 		while (peek().def.match(TWordSpace(_)))
 			discard();
 		var open = discard();
 		if (!open.def.match(TBrOpen)) unexpected(open);
 
-		var li = hlist({ stopBefore : TBrClose });
+		var li = internal({ stopBefore : TBrClose });
 
 		var close = discard();
 		if (close.def.match(TEof)) unclosed("argument", open.pos);
 		if (!close.def.match(TBrClose)) unexpected(close);
-		return { hlist:li, pos:open.pos.span(close.pos) };
+		return { val:li, pos:open.pos.span(close.pos) };
 	}
 
 	function hierarchy(cmd:Token)
 	{
-		var name = harg();
-		if (name.hlist == null) missingArg(cmd, "name");
+		var name = arg(hlist);
+		if (name.val == null) missingArg(cmd, "name");
 		return switch cmd.def {
-		case TCommand("volume"): mk(Volume(name.hlist), cmd.pos.span(name.pos));
-		case TCommand("chapter"): mk(Chapter(name.hlist), cmd.pos.span(name.pos));
-		case TCommand("section"): mk(Section(name.hlist), cmd.pos.span(name.pos));
-		case TCommand("subsection"): mk(SubSection(name.hlist), cmd.pos.span(name.pos));
-		case TCommand("subsubsection"): mk(SubSubSection(name.hlist), cmd.pos.span(name.pos));
+		case TCommand("volume"): mk(Volume(name.val), cmd.pos.span(name.pos));
+		case TCommand("chapter"): mk(Chapter(name.val), cmd.pos.span(name.pos));
+		case TCommand("section"): mk(Section(name.val), cmd.pos.span(name.pos));
+		case TCommand("subsection"): mk(SubSection(name.val), cmd.pos.span(name.pos));
+		case TCommand("subsubsection"): mk(SubSubSection(name.val), cmd.pos.span(name.pos));
 		case _: unexpected(cmd); null;
 		}
 	}
@@ -162,14 +181,26 @@ class Parser {
 		}
 	}
 
+	function figure(cmd:Token)
+	{
+		assert(cmd.def.match(TCommand("figure")), cmd);
+		var path = arg(rawHorizontal);
+		var caption = arg(hlist);
+		var copyright = arg(hlist);
+		if (path.val == null) missingArg(cmd, "path");
+		if (caption.val == null) missingArg(cmd, "caption");
+		if (copyright.val == null) missingArg(cmd, "copyright");
+		return mk(Figure(path.val, caption.val, copyright.val), cmd.pos.span(copyright.pos));
+	}
+
 	function quotation(cmd:Token)
 	{
 		assert(cmd.def.match(TCommand("quotation")), cmd);
-		var text = harg();
-		var author = harg();
-		if (text.hlist == null) missingArg(cmd, "text");
-		if (author.hlist == null) missingArg(cmd, "author");
-		return mk(Quotation(text.hlist, author.hlist), cmd.pos.span(author.pos));
+		var text = arg(hlist);
+		var author = arg(hlist);
+		if (text.val == null) missingArg(cmd, "text");
+		if (author.val == null) missingArg(cmd, "author");
+		return mk(Quotation(text.val, author.val), cmd.pos.span(author.pos));
 	}
 
 	function mdQuotation(greaterThan:Token)
@@ -201,6 +232,7 @@ class Parser {
 		case TCommand(cmdName):
 			switch cmdName {
 			case "volume", "chapter", "section", "subsection", "subsubsection": hierarchy(discard());
+			case "figure": figure(discard());
 			case "quotation": quotation(discard());
 			case name if (Lambda.has(horizontalCommands, name)): paragraph();
 			case _: throw new UnknownCommand(cmdName, peek().pos);
