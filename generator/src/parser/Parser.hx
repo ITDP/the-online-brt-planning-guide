@@ -208,9 +208,9 @@ class Parser {
 		assert(greaterThan.def.match(TGreater), greaterThan);
 		while (peek().def.match(TWordSpace(_)))  // TODO maybe add this to hlist?
 			discard();
-		var text = hlist({ stopBefore:TWord("—") });
-		var dash = discard();
-		if (!dash.def.match(TWord("—"))) unexpected(dash);
+		var text = hlist({ stopBefore:TAt });
+		var at = discard();
+		if (!at.def.match(TAt)) unexpected(at);
 		var author = hlist({});
 		return mk(Quotation(text, author), greaterThan.pos.span(author.pos));
 	}

@@ -85,14 +85,14 @@ class Test_02_Lexer {
 	{
 		Assert.same([TAsterisk, TEof], defs("*"));
 		Assert.same([TColon(1), TEof], defs(":"));
-		Assert.same([TAt(1), TEof], defs("@"));
+		Assert.same([TAt, TEof], defs("@"));
 
 		Assert.same([TAsterisk, TWord("foo"), TAsterisk, TEof], defs("*foo*"));
 		Assert.same([TAsterisk, TAsterisk, TWord("foo"), TAsterisk, TAsterisk, TAsterisk, TAsterisk, TAsterisk, TEof], defs("**foo*****"));
 		Assert.same([TWord("foo"), TAsterisk, TWord("*"), TEof], defs("foo*\\*"));
 
 		Assert.same([TGreater, TEof], defs(">"));
-		Assert.same([TGreater, TWord("foo"), TAt(1), TWord("Bar"), TEof], defs(">foo@Bar"));
+		Assert.same([TGreater, TWord("foo"), TAt, TWord("Bar"), TEof], defs(">foo@Bar"));
 
 	}
 

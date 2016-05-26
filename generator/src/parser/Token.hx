@@ -52,7 +52,7 @@ enum TokenDef {
 
 	TColon(q : Int);
 	TAsterisk;
-	TAt(w : Int);
+	TAt;
 	//Used for Quotes
 	TGreater;
 }
