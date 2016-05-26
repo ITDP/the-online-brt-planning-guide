@@ -12,7 +12,8 @@ using StringTools;
 using parser.TokenTools;
 
 typedef HOpts = {
-	?stopBefore:TokenDef
+	?stopBefore:TokenDef,
+	?stopBeforeAny:Array<TokenDef>  // could possibly be simply stopBefore
 }
 
 typedef Path = String;
@@ -81,6 +82,8 @@ class Parser {
 		return switch peek() {
 		case { def:tdef } if (opts.stopBefore != null && Type.enumEq(tdef, opts.stopBefore)):
 			null;
+		case { def:tdef } if (opts.stopBeforeAny != null && Lambda.exists(opts.stopBeforeAny,Type.enumEq.bind(tdef))):
+			null;
 		case { def:TWord(s), pos:pos }:
 			discard();
 			mk(Word(s), pos);
@@ -124,6 +127,8 @@ class Parser {
 		while (true) {
 			switch peek() {
 			case { def:tdef } if (opts.stopBefore != null && Type.enumEq(tdef, opts.stopBefore)):
+				break;
+			case { def:tdef } if (opts.stopBeforeAny != null && Lambda.exists(opts.stopBeforeAny,Type.enumEq.bind(tdef))):
 				break;
 			case { def:TBreakSpace(_) } | { def:TEof }:
 				break;
@@ -193,6 +198,57 @@ class Parser {
 		return mk(Figure(path.val, caption.val, copyright.val), cmd.pos.span(copyright.pos));
 	}
 
+	/**
+	After having already read a `#FIG#` tag, parse the reaming of the
+	vertical block as a combination of a of path (delimited by `{}`),
+	copyright (after a `@` marker) and caption (everything before the `@`
+	and that isn't part of the path).
+	**/
+	function mdFigure(tag:Array<Token>)
+	{
+		assert(tag[0].def.match(THashes(1)), tag[0]);
+		assert(tag[1].def.match(TWord("FIG")), tag[1]);
+		assert(tag[2].def.match(THashes(1)), tag[2]);
+
+		var captionParts = [];
+		var path = null;
+		var copyright = null;
+		var lastPos = null;
+		while (true) {
+			var h = hlist({ stopBeforeAny:[TBrOpen,TAt] });
+			if (h != null) {
+				captionParts.push(h);
+				lastPos = h.pos;
+				continue;
+			}
+			switch peek().def {
+			case TBrOpen:
+				if (path != null) throw "TODO";
+				var p = arg(rawHorizontal);
+				lastPos = p.pos;
+				path = p.val;
+			case TAt:
+				if (copyright != null) throw "TODO";
+				discard();
+				copyright = hlist({ stopBefore:TBrOpen });
+				lastPos = copyright.pos;
+			case TBreakSpace(_), TEof:
+				break;
+			case _:
+				unexpected(peek());
+			}
+		}
+		if (captionParts.length == 0) throw "TODO";
+		if (path == null) throw "TODO";
+		if (copyright == null) throw "TODO";
+
+		var caption = if (captionParts.length == 1)
+				captionParts[0]
+			else
+				mk(HList(captionParts), captionParts[0].pos.span(captionParts[captionParts.length - 1].pos));
+		return mk(Figure(path, caption, copyright), tag[0].pos.span(lastPos));
+	}
+
 	function quotation(cmd:Token)
 	{
 		assert(cmd.def.match(TCommand("quotation")), cmd);
@@ -237,7 +293,9 @@ class Parser {
 			case name if (Lambda.has(horizontalCommands, name)): paragraph();
 			case _: throw new UnknownCommand(cmdName, peek().pos);
 			}
-		case THashes(_) if (!peek(1).def.match(TWord("FIG") | TWord("EQ") | TWord("TAB"))):
+		case THashes(1) if (peek(1).def.match(TWord("FIG")) && peek(2).def.match(THashes(1))):
+			mdFigure([discard(), discard(), discard()]);
+		case THashes(_) if (!peek(1).def.match(TWord("FIG") | TWord("EQ") | TWord("TAB"))):  // TODO remove FIG/EQ/TAB
 			mdHeading(discard());
 		case TGreater:
 			mdQuotation(discard());

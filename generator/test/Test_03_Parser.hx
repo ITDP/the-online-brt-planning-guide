@@ -266,7 +266,10 @@ class Test_03_Parser {
 			expand(@wrap(8,1)Figure("fig.png",@skip(2+7)@len(7)Word("caption"),@skip(2)@len(9)Word("copyright"))),  // FIXME no pos for path, @skip
 			parse("\\figure{fig.png}{caption}{copyright}"));
 
-		// TODO mdFigure
+		Assert.same(
+			expand(@wrap(5,0)Figure("fig.png",@skip(2+7)@len(7)Word("caption"),@skip(1)@len(9)Word("copyright"))),  // FIXME no pos for path, @skip
+			parse("#FIG#{fig.png}caption@copyright"));
+		// TODO other/weird orderings of #FIG# details
 	}
 }
 
