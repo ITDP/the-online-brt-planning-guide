@@ -5,7 +5,7 @@ import parser.Ast;
 import parser.Error;
 import parser.Token;
 
-import Assertion.assert;
+import Assertion.*;
 import parser.AstTools.*;
 
 using StringTools;
@@ -34,6 +34,9 @@ class Parser {
 
 	inline function missingArg(cmd:Token, ?desc:String)
 		throw new MissingArgument(cmd, desc);
+
+	inline function badValue(pos:Position, ?desc:String)
+		throw new InvalidValue(pos, desc);
 
 	function peek(offset=0):Token
 	{
@@ -142,12 +145,12 @@ class Parser {
 		return buf.toString();
 	}
 
-	function arg<T>(internal:HOpts->T):{ val:T, pos:Position }
+	function arg<T>(internal:HOpts->T, ?cmd:Token, ?desc:String):{ val:T, pos:Position }
 	{
 		while (peek().def.match(TWordSpace(_)))
 			discard();
 		var open = discard();
-		if (!open.def.match(TBrOpen)) unexpected(open);
+		if (!open.def.match(TBrOpen)) missingArg(cmd, desc);
 
 		var li = internal({ stopBefore : TBrClose });
 
@@ -160,7 +163,7 @@ class Parser {
 	function hierarchy(cmd:Token)
 	{
 		var name = arg(hlist);
-		if (name.val == null) missingArg(cmd, "name");
+		if (name.val == null) badValue(name.pos, "name");
 		return switch cmd.def {
 		case TCommand("volume"): mk(Volume(name.val), cmd.pos.span(name.pos));
 		case TCommand("chapter"): mk(Chapter(name.val), cmd.pos.span(name.pos));
@@ -192,9 +195,9 @@ class Parser {
 		var path = arg(rawHorizontal);
 		var caption = arg(hlist);
 		var copyright = arg(hlist);
-		if (path.val == null) missingArg(cmd, "path");
-		if (caption.val == null) missingArg(cmd, "caption");
-		if (copyright.val == null) missingArg(cmd, "copyright");
+		if (path.val == null) badValue(path.pos, "path");
+		if (caption.val == null) badValue(caption.pos, "caption");
+		if (copyright.val == null) badValue(copyright.pos, "copyright");
 		return mk(Figure(path.val, caption.val, copyright.val), cmd.pos.span(copyright.pos));
 	}
 
@@ -254,8 +257,8 @@ class Parser {
 		assert(cmd.def.match(TCommand("quotation")), cmd);
 		var text = arg(hlist);
 		var author = arg(hlist);
-		if (text.val == null) missingArg(cmd, "text");
-		if (author.val == null) missingArg(cmd, "author");
+		if (text.val == null) badValue(text.pos, "text");
+		if (author.val == null) badValue(author.pos, "author");
 		return mk(Quotation(text.val, author.val), cmd.pos.span(author.pos));
 	}
 
@@ -268,6 +271,8 @@ class Parser {
 		var at = discard();
 		if (!at.def.match(TAt)) unexpected(at);
 		var author = hlist({});
+		if (text == null) badValue(text.pos, "text");
+		if (author == null) badValue(text.pos, "author");
 		return mk(Quotation(text, author), greaterThan.pos.span(author.pos));
 	}
 

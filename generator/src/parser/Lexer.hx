@@ -77,7 +77,12 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 	}
 
 	public static var tokens = @:rule [
-		"" => mk(lexer, TEof),
+		"" => {
+			// TODO remove hack to fix eof min position
+			var pos = mkPos(lexer.curPos());
+			pos.min = pos.max;
+			mk(lexer, TEof, pos);
+		},
 		"([ \t\n]|(\r\n))+" => {
 			if (countNewlines(lexer.current) <= 1)
 				mk(lexer, TWordSpace(lexer.current));
@@ -145,6 +150,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 
 	public function recover(pos, len)
 	{
+		if (len == 0) return "";
 		assert(pos >= 0 && len > 0 && pos + len <= bytes.length, pos, len, bytes.length, "out of bounds");
 		return bytes.sub(pos, len).toString();
 	}

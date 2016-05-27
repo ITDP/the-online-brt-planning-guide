@@ -112,6 +112,8 @@ class Test_03_Parser {
 			expand(Paragraph(HList([@wrap(1,1)Emphasis(HList([@len(1)Word("a"),@len(1)Wordspace])),@wrap(1,1)Emphasis(@len(1)Word("b")),@wrap(1,1)Emphasis(HList([@len(1)Wordspace,@len(1)Word("c")]))]))),
 			parse("*a **b** c*"));
 
+		Assert.raises(parse.bind("\\emph"), MissingArgument);
+		Assert.raises(parse.bind("\\emph a"), MissingArgument);
 		Assert.raises(parse.bind("\\emph{a}{}"), UnexpectedToken);
 	}
 
@@ -126,6 +128,10 @@ class Test_03_Parser {
 		Assert.same(
 			expand(Paragraph(@wrap(11,1)Highlight(HList([@len(1)Word("a"),@len(1)Wordspace,@wrap(11,1)Highlight(@len(1)Word("b"))])))),
 			parse("\\highlight{a \\highlight{b}}"));
+
+		Assert.raises(parse.bind("\\highlight"), MissingArgument);
+		Assert.raises(parse.bind("\\highlight a"), MissingArgument);
+		Assert.raises(parse.bind("\\highlight{a}{}"), UnexpectedToken);
 	}
 
 	public function test_005_bad_command_name()
@@ -137,6 +143,7 @@ class Test_03_Parser {
 		// non existant aliases
 		Assert.raises(parse.bind("\\emphasis"), UnknownCommand);
 		Assert.raises(parse.bind("\\display"), UnknownCommand);
+		Assert.raises(parse.bind("\\quote"), UnknownCommand);
 	}
 
 	public function test_006_known_dificulties_from_poc()
@@ -204,16 +211,21 @@ class Test_03_Parser {
 			expand(VList([Paragraph(@len(1)Word("a")),@skip(2)@wrap(15,1)SubSubSection(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))])),
 			parse("a\n\n\\subsubsection{b}\n\nc"));
 
+		Assert.raises(parse.bind("\\volume{}"), InvalidValue);
+		Assert.raises(parse.bind("\\chapter{}"), InvalidValue);
+		Assert.raises(parse.bind("\\section{}"), InvalidValue);
+		Assert.raises(parse.bind("\\subsection{}"), InvalidValue);
+		Assert.raises(parse.bind("\\subsubsection{}"), InvalidValue);
+		Assert.raises(parse.bind("\\volume"), MissingArgument);
+		Assert.raises(parse.bind("\\volume a"), MissingArgument);
+		Assert.raises(parse.bind("\\volume{a}{}"), UnexpectedToken);
 		Assert.raises(parse.bind("\\section{\\volume{a}}"), UnexpectedToken);
 		Assert.raises(parse.bind("\\section{a\\volume{b}}"), UnexpectedToken);
 	}
 
-	public function test_009_command_parsing_errors()
+	public function test_009_argument_parsing_errors()
 	{
-		Assert.raises(parse.bind("\\section"), UnexpectedToken);
-		Assert.raises(parse.bind("\\section\\section"), UnexpectedToken);
 		Assert.raises(parse.bind("\\section{"), Unclosed);
-		Assert.raises(parse.bind("\\section{}"), MissingArgument);
 	}
 
 	public function test_010_md_headings()
@@ -258,6 +270,17 @@ class Test_03_Parser {
 		Assert.same(
 			expand(@wrap(2,0)Quotation(HList([@len(1)Word("a"),@len(1)Wordspace]),@skip(1)@len(1)Word("b"))),
 			parse("> a\n@b"));
+
+		Assert.raises(parse.bind("\\quotation{a}{}"), InvalidValue);
+		Assert.raises(parse.bind("\\quotation{}{b}"), InvalidValue);
+		Assert.raises(parse.bind("\\quotation"), MissingArgument);
+		Assert.raises(parse.bind("\\quotation a"), MissingArgument);
+		Assert.raises(parse.bind("\\quotation{a}"), MissingArgument);
+		Assert.raises(parse.bind("\\quotation{a} b"), MissingArgument);
+		Assert.raises(parse.bind("\\quotation{a}{b}{}"), UnexpectedToken);
+
+		Assert.raises(parse.bind(">a"));  // TODO add MissingPart exception
+		Assert.raises(parse.bind(">a@"), InvalidValue);
 	}
 
 	public function test_012_figures()
