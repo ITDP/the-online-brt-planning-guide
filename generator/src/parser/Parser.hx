@@ -27,16 +27,19 @@ class Parser {
 	var next:GenericCell<Token>;
 
 	inline function unexpected(t:Token)
-		throw new UnexpectedToken(t, lexer);
+		throw new UnexpectedToken(lexer, t);
 
 	inline function unclosed(name:String, p:Position)
-		throw new Unclosed(name, p);
+		throw new GenericError(lexer, p);
+		// throw new Unclosed(name, p);
 
 	inline function missingArg(cmd:Token, ?desc:String)
-		throw new MissingArgument(cmd, desc);
+		throw new GenericError(lexer, cmd.pos);
+		// throw new MissingArgument(cmd, desc);
 
 	inline function badValue(pos:Position, ?desc:String)
-		throw new InvalidValue(pos, desc);
+		throw new GenericError(lexer, pos);
+		// throw new InvalidValue(pos, desc);
 
 	function peek(offset=0):Token
 	{
@@ -296,7 +299,8 @@ class Parser {
 			case "figure": figure(discard());
 			case "quotation": quotation(discard());
 			case name if (Lambda.has(horizontalCommands, name)): paragraph();
-			case _: throw new UnknownCommand(cmdName, peek().pos);
+			case _: throw new GenericError(lexer, peek().pos);
+			// case _: throw new UnknownCommand(cmdName, peek().pos);
 			}
 		case THashes(1) if (peek(1).def.match(TWord("FIG")) && peek(2).def.match(THashes(1))):
 			mdFigure([discard(), discard(), discard()]);

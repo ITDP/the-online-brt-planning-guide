@@ -2,74 +2,111 @@ package parser;
 
 import parser.Token;
 
-private class Error {
-	var msg:String;
-	var pos:Position;
+class GenericError {
+	var lexer:Lexer;
+	public var pos(default,null):Position;
 
-	public function new(msg, ?pos)
-	{
-		this.msg = msg;
-		this.pos = pos;
-	}
+	public function atEof()
+		return pos.min != pos.max;
+
+	public function getTextAt()
+		return atEof() ? lexer.recover(pos.min, pos.max - pos.min) : "";
+
+	public function getPrettyPosAt()
+		return {
+			src:pos.src,
+			lines:{ min:0, max:0 },  // FIXME
+			chars:{ min:pos.min, max:pos.max }  // FIXME
+		};
 
 	public function toString()
+		return "Unknown error";
+
+	public function toPrettyString()
 	{
-		if (pos != null)
-			return '${pos.src}:bytes ${pos.min + 1}-${pos.max}: $msg';
+		var p = getPrettyPosAt();
+		if (p.lines.min != p.lines.max)
+			return '${p.src}: lines ${p.lines.min}-${p.lines.max}: ${toString()}';
 		else
-			return '$msg';
+			return '${p.src}: ${p.lines.min}: chars ${p.chars.min}-${p.chars.max}: ${toString()}';
+	}
+
+	public function new(lexer, pos)
+	{
+		this.lexer = lexer;
+		this.pos = pos;
 	}
 }
 
-class UnexpectedToken extends Error {
-	public function new(tok:Token, lex:Lexer)
+class UnexpectedToken extends GenericError {
+	var unexpected:Token;
+	var expected:Null<String>;
+
+	public function new(lexer, unexpected, ?expected)
 	{
-		switch tok.def {
+		this.unexpected = unexpected;
+		this.expected = expected;
+		super(lexer, unexpected.pos);
+	}
+
+	override public function toString()
+	{
+		var msg = switch unexpected.def {
 		case TWordSpace(s):
-			super('Unexpected interword space (hex: ${haxe.io.Bytes.ofString(s).toHex()})', tok.pos);
+			'Unexpected interword space (hex: ${hex(s)})';
 		case TBreakSpace(s):
-			super('Unexpected vertical space (hex: ${haxe.io.Bytes.ofString(s).toHex()})', tok.pos);
+			'Unexpected vertical space (hex: ${hex(s)})';
 		case TEof:
-			super("Unexpected end of file", tok.pos);
+			"Unexpected end of file";
 		case _:
-			var str = lex.recover(tok.pos.min, tok.pos.max - tok.pos.min);
-			super('Unexpected `$str`', tok.pos);
+			'Unexpected `${getTextAt()}`';
 		}
+		if (expected != null)
+			msg += '; expected $expected';
+		return msg;
 	}
+
+	function hex(s:String)
+		return haxe.io.Bytes.ofString(s).toHex();
 }
 
-class Unclosed extends Error {
-	public function new(name:String, pos:Position)
-		super('Unclosed $name', pos);
-}
+class Unclosed extends GenericError {}
+class UnknownCommand extends GenericError {}
+class MissingArgument extends GenericError {}
+class InvalidValue extends GenericError {}
 
-class UnknownCommand extends Error {
-	public function new(name:String, pos:Position)
-		super('Unknown command `\\$name`', pos);
-}
-
-class MissingArgument extends Error {
-	public function new(?cmd:Token, ?desc:String)
-	{
-
-		if (desc == null) desc = "argument";
-		switch cmd {
-		case null:
-			super('Missing $desc');
-		case { def:TCommand(name) }:
-			super('Missing $desc for `\\$name`', cmd.pos);
-		case other:
-			trace('Wrong token for a missing argument error: $other should be TCommand');
-			super('Missing $desc', cmd.pos);
-		}
-	}
-}
-
-class InvalidValue extends Error {
-	public function new(pos:Position, ?desc:String)
-	{
-		if (desc == null) desc = "argument";
-		super('Invalid value for $desc', pos);
-	}
-}
-
+// class Unclosed extends Error {
+// 	public function new(name:String, pos:Position)
+// 		super('Unclosed $name', pos);
+// }
+//
+// class UnknownCommand extends Error {
+// 	public function new(name:String, pos:Position)
+// 		super('Unknown command `\\$name`', pos);
+// }
+//
+// class MissingArgument extends Error {
+// 	public function new(?cmd:Token, ?desc:String)
+// 	{
+//
+// 		if (desc == null) desc = "argument";
+// 		switch cmd {
+// 		case null:
+// 			super('Missing $desc');
+// 		case { def:TCommand(name) }:
+// 			super('Missing $desc for `\\$name`', cmd.pos);
+// 		case other:
+// 			trace('Wrong token for a missing argument error: $other should be TCommand');
+// 			super('Missing $desc', cmd.pos);
+// 		}
+// 	}
+// }
+//
+// class InvalidValue extends Error {
+// 	public function new(pos:Position, ?desc:String)
+// 	{
+// 		if (desc == null) desc = "argument";
+// 		super('Invalid value for $desc', pos);
+// 	}
+// }
+//

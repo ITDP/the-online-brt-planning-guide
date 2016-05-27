@@ -1,6 +1,7 @@
 import parser.Ast;
 import parser.AstTools.*;
 import parser.Error;
+import parser.Token;
 import utest.Assert;
 
 class Test_03_Parser {
@@ -12,6 +13,19 @@ class Test_03_Parser {
 		var l = new parser.Lexer(haxe.io.Bytes.ofString(s), SRC);
 		var p = new parser.Parser(l);
 		return p.file();
+	}
+
+	function assertError(text:String, etype:Class<GenericError>, ?estr:String, ?epos:Position, ?pos:haxe.PosInfos)
+	{
+		Assert.raises(parse.bind(text), etype, pos);
+		try {
+			parse(text);
+		} catch (err:GenericError) {
+			if (estr != null)
+				Assert.equals(estr, err.toString());
+			if (epos != null)
+				Assert.same(epos, err.pos);
+		}
 	}
 
 	public function test_001_test_example()
@@ -251,7 +265,7 @@ class Test_03_Parser {
 			expand(VList([Paragraph(@len(1)Word("a")),@skip(2)@wrap(4,0)SubSubSection(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))])),
 			parse("a\n\n### b\n\nc"));
 
-		Assert.raises(parse.bind("####a b"), UnexpectedToken);
+		assertError("####a b", UnexpectedToken, { src:SRC, min:0, max:4 });
 		// TODO maybe require hashes on the beginning of the line?
 	}
 
