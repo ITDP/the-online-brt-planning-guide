@@ -15,14 +15,14 @@ class Test_03_Parser {
 		return p.file();
 	}
 
-	function assertError(text:String, etype:Class<GenericError>, ?estr:String, ?epos:Position, ?pos:haxe.PosInfos)
+	function assertError(text:String, etype:Class<GenericError>, ?etext:String, ?epos:Position, ?pos:haxe.PosInfos)
 	{
 		Assert.raises(parse.bind(text), etype, pos);
 		try {
 			parse(text);
 		} catch (err:GenericError) {
-			if (estr != null)
-				Assert.equals(estr, err.toString());
+			if (etext != null)
+				Assert.equals(etext, err.text);
 			if (epos != null)
 				Assert.same(epos, err.pos);
 		}

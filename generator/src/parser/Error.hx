@@ -2,34 +2,35 @@ package parser;
 
 import parser.Token;
 
+typedef LinePosition = {
+	src : String,
+	lines : { min:Int, max:Int },
+	chars : { min:Int, max:Int }
+}
+
 class GenericError {
 	var lexer:Lexer;
 	public var pos(default,null):Position;
 
-	public function atEof()
-		return pos.min != pos.max;
-
-	public function getTextAt()
-		return atEof() ? lexer.recover(pos.min, pos.max - pos.min) : "";
-
-	public function getPrettyPosAt()
-		return {
-			src:pos.src,
-			lines:{ min:0, max:0 },  // FIXME
-			chars:{ min:pos.min, max:pos.max }  // FIXME
-		};
+	public var text(get,null):String;
+		function get_text()
+			return "Unknown error";
+	public var atEof(get,null):Bool;
+		function get_atEof()
+			return pos.min != pos.max;
+	public var at(get,null):String;
+		function get_at()
+			return atEof ? lexer.recover(pos.min, pos.max - pos.min) : "";
+	public var lpos(get,never):LinePosition;
+		function get_lpos()
+			return {
+				src:pos.src,
+				lines:{ min:0, max:0 },  // FIXME
+				chars:{ min:pos.min, max:pos.max }  // FIXME
+			};
 
 	public function toString()
-		return "Unknown error";
-
-	public function toPrettyString()
-	{
-		var p = getPrettyPosAt();
-		if (p.lines.min != p.lines.max)
-			return '${p.src}: lines ${p.lines.min}-${p.lines.max}: ${toString()}';
-		else
-			return '${p.src}: ${p.lines.min}: chars ${p.chars.min}-${p.chars.max}: ${toString()}';
-	}
+		return '${pos.src}: ${pos.min}-${pos.max}: $text';
 
 	public function new(lexer, pos)
 	{
@@ -39,19 +40,19 @@ class GenericError {
 }
 
 class UnexpectedToken extends GenericError {
-	var unexpected:Token;
-	var expected:Null<String>;
+	var def:TokenDef;
+	var expDesc:Null<String>;
 
-	public function new(lexer, unexpected, ?expected)
+	public function new(lexer, def, ?expDesc)
 	{
-		this.unexpected = unexpected;
-		this.expected = expected;
-		super(lexer, unexpected.pos);
+		this.def = def.def;
+		this.expDesc = expDesc;
+		super(lexer, def.pos);
 	}
 
-	override public function toString()
+	override public function get_text()
 	{
-		var msg = switch unexpected.def {
+		var msg = switch def {
 		case TWordSpace(s):
 			'Unexpected interword space (hex: ${hex(s)})';
 		case TBreakSpace(s):
@@ -59,10 +60,10 @@ class UnexpectedToken extends GenericError {
 		case TEof:
 			"Unexpected end of file";
 		case _:
-			'Unexpected `${getTextAt()}`';
+			'Unexpected `$at`';
 		}
-		if (expected != null)
-			msg += '; expected $expected';
+		if (expDesc != null)
+			msg += '; expected $expDesc';
 		return msg;
 	}
 

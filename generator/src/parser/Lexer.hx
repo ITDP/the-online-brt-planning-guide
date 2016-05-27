@@ -146,7 +146,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"([^ \t\r\n/*{}\\[\\]\\\\#>@\\*:$\\-\\xe2]|(\\xE2[^\\x80])|(\\xE2\\x80[^\\x92-\\x95]))+" => mk(lexer, TWord(lexer.current))
 	];
 
-	var bytes:haxe.io.Bytes;
+	var bytes:haxe.io.Bytes;  // TODO change to a public source abstraction that already has a safe `recover` method
 
 	public function recover(pos, len)
 	{
