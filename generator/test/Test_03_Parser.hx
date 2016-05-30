@@ -15,7 +15,7 @@ class Test_03_Parser {
 		return p.file();
 	}
 
-	function parsingError(text:String, etype:Class<GenericError>, ?etext:String, ?epos:Position, ?p:haxe.PosInfos)
+	function parsingError(text:String, etype:Class<GenericError>, ?etext:EReg, ?epos:Position, ?p:haxe.PosInfos)
 	{
 		Assert.raises(parse.bind(text), etype, p);
 		if (etext != null || epos != null) {
@@ -23,12 +23,15 @@ class Test_03_Parser {
 				parse(text);
 			} catch (err:GenericError) {
 				if (etext != null)
-					Assert.equals(etext, err.text, p);
+					Assert.match(etext, err.text, p);
 				if (epos != null)
 					Assert.same(epos, err.pos, p);
 			}
 		}
 	}
+
+	function mkPos(min, max):Position
+		return { src:SRC, min:min, max:max };
 
 	public function test_001_test_example()
 	{
@@ -128,9 +131,9 @@ class Test_03_Parser {
 			expand(Paragraph(HList([@wrap(1,1)Emphasis(HList([@len(1)Word("a"),@len(1)Wordspace])),@wrap(1,1)Emphasis(@len(1)Word("b")),@wrap(1,1)Emphasis(HList([@len(1)Wordspace,@len(1)Word("c")]))]))),
 			parse("*a **b** c*"));
 
-		parsingError("\\emph", MissingArgument);
-		parsingError("\\emph a", MissingArgument);
-		parsingError("\\emph{a}{}", UnexpectedToken);
+		parsingError("\\emph", MissingArgument, ~/argument.+\\emph/i, mkPos(5, 5));
+		parsingError("\\emph a", MissingArgument, ~/argument.+\\emph/i, mkPos(6,7));
+		parsingError("\\emph{a}{}", UnexpectedToken, ~/{/, mkPos(8,9));
 	}
 
 	public function test_004_highlight()
@@ -145,9 +148,9 @@ class Test_03_Parser {
 			expand(Paragraph(@wrap(11,1)Highlight(HList([@len(1)Word("a"),@len(1)Wordspace,@wrap(11,1)Highlight(@len(1)Word("b"))])))),
 			parse("\\highlight{a \\highlight{b}}"));
 
-		Assert.raises(parse.bind("\\highlight"), MissingArgument);
-		Assert.raises(parse.bind("\\highlight a"), MissingArgument);
-		Assert.raises(parse.bind("\\highlight{a}{}"), UnexpectedToken);
+		parsingError("\\highlight", MissingArgument, ~/argument.+\\highligh/i, mkPos(10, 10));
+		parsingError("\\highlight a", MissingArgument, ~/argument.+\\highlight/i, mkPos(11, 12));
+		parsingError("\\highlight{a}{}", UnexpectedToken, ~/{/, mkPos(13, 14));
 	}
 
 	public function test_005_bad_command_name()
@@ -232,11 +235,11 @@ class Test_03_Parser {
 		Assert.raises(parse.bind("\\section{}"), InvalidValue);
 		Assert.raises(parse.bind("\\subsection{}"), InvalidValue);
 		Assert.raises(parse.bind("\\subsubsection{}"), InvalidValue);
-		Assert.raises(parse.bind("\\volume"), MissingArgument);
-		Assert.raises(parse.bind("\\volume a"), MissingArgument);
-		Assert.raises(parse.bind("\\volume{a}{}"), UnexpectedToken);
-		Assert.raises(parse.bind("\\section{\\volume{a}}"), UnexpectedToken);
-		Assert.raises(parse.bind("\\section{a\\volume{b}}"), UnexpectedToken);
+		parsingError("\\volume", MissingArgument, ~/name.+\\volume/i, mkPos(7, 7));
+		parsingError("\\volume a", MissingArgument, ~/name.+\\volume/i, mkPos(8, 9));
+		parsingError("\\volume{a}{}", UnexpectedToken, ~/{/, mkPos(10, 11));
+		parsingError("\\section{\\volume{a}}", UnexpectedToken, ~/\\volume/, mkPos(9, 16));
+		parsingError("\\section{a\\volume{b}}", UnexpectedToken, ~/\\volume/, mkPos(10, 17));
 	}
 
 	public function test_009_argument_parsing_errors()
@@ -267,7 +270,7 @@ class Test_03_Parser {
 			expand(VList([Paragraph(@len(1)Word("a")),@skip(2)@wrap(4,0)SubSubSection(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))])),
 			parse("a\n\n### b\n\nc"));
 
-		parsingError("####a b", UnexpectedToken, { src:SRC, min:0, max:4 });
+		parsingError("####a b", UnexpectedToken, ~/####/, mkPos(0, 4));
 		// TODO maybe require hashes on the beginning of the line?
 	}
 
@@ -289,11 +292,11 @@ class Test_03_Parser {
 
 		Assert.raises(parse.bind("\\quotation{a}{}"), InvalidValue);
 		Assert.raises(parse.bind("\\quotation{}{b}"), InvalidValue);
-		Assert.raises(parse.bind("\\quotation"), MissingArgument);
-		Assert.raises(parse.bind("\\quotation a"), MissingArgument);
-		Assert.raises(parse.bind("\\quotation{a}"), MissingArgument);
-		Assert.raises(parse.bind("\\quotation{a} b"), MissingArgument);
-		Assert.raises(parse.bind("\\quotation{a}{b}{}"), UnexpectedToken);
+		parsingError("\\quotation", MissingArgument, ~/text.+\\quotation/i, mkPos(10, 10));
+		parsingError("\\quotation a", MissingArgument, ~/text.+\\quotation/i, mkPos(11, 12));
+		parsingError("\\quotation{a}", MissingArgument, ~/author.+\\quotation/i, mkPos(13, 13));
+		parsingError("\\quotation{a} b", MissingArgument, ~/author.+\\quotation/i, mkPos(14, 15));
+		parsingError("\\quotation{a}{b}{}", UnexpectedToken, ~/{/, mkPos(16, 17));
 
 		Assert.raises(parse.bind(">a"));  // TODO add MissingPart exception
 		Assert.raises(parse.bind(">a@"), InvalidValue);
