@@ -29,16 +29,17 @@ class Parser {
 	inline function unexpected(t:Token)
 		throw new UnexpectedToken(lexer, t);
 
-	inline function unclosed(name:String, p:Position)
-		throw new GenericError(lexer, p);
-		// throw new Unclosed(name, p);
+	inline function unclosed(t:Token)
+		throw new UnclosedToken(lexer, t);
 
 	inline function missingArg(p:Position, ?toToken:Token, ?desc:String)
 		throw new MissingArgument(lexer, p, toToken, desc);
 
 	inline function badValue(pos:Position, ?desc:String)
-		throw new GenericError(lexer, pos);
-		// throw new InvalidValue(pos, desc);
+		throw new BadValue(lexer, pos, desc);
+
+	inline function badArg(pos:Position, ?desc:String)
+		throw new BadValue(lexer, pos.offset(1, -1), desc);
 
 	function peek(offset=0):Token
 	{
@@ -76,7 +77,7 @@ class Parser {
 		if (!open.def.match(TAsterisk)) unexpected(open);
 		var li = hlist({ stopBefore:TAsterisk });
 		var close = discard();
-		if (!close.def.match(TAsterisk)) unclosed('(markdown) emphasis', open.pos);
+		if (!close.def.match(TAsterisk)) unclosed(open);
 		return mk(Emphasis(li), open.pos.span(close.pos));
 	}
 
@@ -157,7 +158,7 @@ class Parser {
 		var li = internal({ stopBefore : TBrClose });
 
 		var close = discard();
-		if (close.def.match(TEof)) unclosed("argument", open.pos);
+		if (close.def.match(TEof)) unclosed(open);
 		if (!close.def.match(TBrClose)) unexpected(close);
 		return { val:li, pos:open.pos.span(close.pos) };
 	}
@@ -165,7 +166,7 @@ class Parser {
 	function hierarchy(cmd:Token)
 	{
 		var name = arg(hlist, cmd, "name");
-		if (name.val == null) badValue(name.pos, "name");
+		if (name.val == null) badArg(name.pos, "name cannot be empty");
 		return switch cmd.def {
 		case TCommand("volume"): mk(Volume(name.val), cmd.pos.span(name.pos));
 		case TCommand("chapter"): mk(Chapter(name.val), cmd.pos.span(name.pos));
@@ -197,9 +198,9 @@ class Parser {
 		var path = arg(rawHorizontal, cmd, "path");
 		var caption = arg(hlist, cmd, "caption");
 		var copyright = arg(hlist, cmd, "copyright");
-		if (path.val == null) badValue(path.pos, "path");
-		if (caption.val == null) badValue(caption.pos, "caption");
-		if (copyright.val == null) badValue(copyright.pos, "copyright");
+		if (path.val == null) badArg(path.pos, "path cannot be empty");
+		if (caption.val == null) badArg(caption.pos, "caption cannot be empty");
+		if (copyright.val == null) badArg(copyright.pos, "copyright cannot be empty");
 		return mk(Figure(path.val, caption.val, copyright.val), cmd.pos.span(copyright.pos));
 	}
 
@@ -259,8 +260,8 @@ class Parser {
 		assert(cmd.def.match(TCommand("quotation")), cmd);
 		var text = arg(hlist, cmd, "text");
 		var author = arg(hlist, cmd, "author");
-		if (text.val == null) badValue(text.pos, "text");
-		if (author.val == null) badValue(author.pos, "author");
+		if (text.val == null) badArg(text.pos, "text cannot be empty");
+		if (author.val == null) badArg(author.pos, "author cannot be empty");
 		return mk(Quotation(text.val, author.val), cmd.pos.span(author.pos));
 	}
 
@@ -272,9 +273,9 @@ class Parser {
 		var text = hlist({ stopBefore:TAt });
 		var at = discard();
 		if (!at.def.match(TAt)) unexpected(at);
-		var author = hlist({});
-		if (text == null) badValue(text.pos, "text");
-		if (author == null) badValue(text.pos, "author");
+		var author = hlist({});  // TODO maybe also discard wordspace before
+		if (text == null) badValue(greaterThan.pos.span(at.pos).offset(1, -1), "text cannot be empty");
+		if (author == null) badValue(at.pos.offset(1,0), "author cannot be empty");
 		return mk(Quotation(text, author), greaterThan.pos.span(author.pos));
 	}
 
@@ -298,8 +299,7 @@ class Parser {
 			case "figure": figure(discard());
 			case "quotation": quotation(discard());
 			case name if (Lambda.has(horizontalCommands, name)): paragraph();
-			case _: throw new GenericError(lexer, peek().pos);
-			// case _: throw new UnknownCommand(cmdName, peek().pos);
+			case _: throw new UnknownCommand(lexer, peek().pos);
 			}
 		case THashes(1) if (peek(1).def.match(TWord("FIG")) && peek(2).def.match(THashes(1))):
 			mdFigure([discard(), discard(), discard()]);

@@ -15,7 +15,7 @@ class Test_03_Parser {
 		return p.file();
 	}
 
-	function parsingError(text:String, etype:Class<GenericError>, ?etext:EReg, ?epos:Position, ?p:haxe.PosInfos)
+	function parsingError(text:String, ?etype:Class<GenericError>, ?etext:EReg, ?epos:Position, ?p:haxe.PosInfos)
 	{
 		Assert.raises(parse.bind(text), etype, p);
 		if (etext != null || epos != null) {
@@ -156,13 +156,13 @@ class Test_03_Parser {
 	public function test_005_bad_command_name()
 	{
 		// typos
-		Assert.raises(parse.bind("\\emp"), UnknownCommand);
-		Assert.raises(parse.bind("\\highligth"), UnknownCommand);
+		parsingError("\\emp", UnknownCommand, ~/\\emp/, mkPos(0,4));
+		parsingError("\\highligth", UnknownCommand);
 
 		// non existant aliases
-		Assert.raises(parse.bind("\\emphasis"), UnknownCommand);
-		Assert.raises(parse.bind("\\display"), UnknownCommand);
-		Assert.raises(parse.bind("\\quote"), UnknownCommand);
+		parsingError("\\emphasis", UnknownCommand);
+		parsingError("\\display", UnknownCommand);
+		parsingError("\\quote", UnknownCommand);
 	}
 
 	public function test_006_known_dificulties_from_poc()
@@ -230,21 +230,22 @@ class Test_03_Parser {
 			expand(VList([Paragraph(@len(1)Word("a")),@skip(2)@wrap(15,1)SubSubSection(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))])),
 			parse("a\n\n\\subsubsection{b}\n\nc"));
 
-		Assert.raises(parse.bind("\\volume{}"), InvalidValue);
-		Assert.raises(parse.bind("\\chapter{}"), InvalidValue);
-		Assert.raises(parse.bind("\\section{}"), InvalidValue);
-		Assert.raises(parse.bind("\\subsection{}"), InvalidValue);
-		Assert.raises(parse.bind("\\subsubsection{}"), InvalidValue);
 		parsingError("\\volume", MissingArgument, ~/name.+\\volume/i, mkPos(7, 7));
 		parsingError("\\volume a", MissingArgument, ~/name.+\\volume/i, mkPos(8, 9));
 		parsingError("\\volume{a}{}", UnexpectedToken, ~/{/, mkPos(10, 11));
 		parsingError("\\section{\\volume{a}}", UnexpectedToken, ~/\\volume/, mkPos(9, 16));
 		parsingError("\\section{a\\volume{b}}", UnexpectedToken, ~/\\volume/, mkPos(10, 17));
+
+		parsingError("\\volume{}", BadValue, ~/name cannot be empty/i, mkPos(8, 8));
+		parsingError("\\chapter{}", BadValue, ~/name cannot be empty/i, mkPos(9, 9));
+		parsingError("\\section{}", BadValue, ~/name cannot be empty/i, mkPos(9, 9));
+		parsingError("\\subsection{}", BadValue, ~/name cannot be empty/i, mkPos(12, 12));
+		parsingError("\\subsubsection{}", BadValue, ~/name cannot be empty/i, mkPos(15, 15));
 	}
 
 	public function test_009_argument_parsing_errors()
 	{
-		Assert.raises(parse.bind("\\section{"), Unclosed);
+		parsingError("\\section{", UnclosedToken, ~/{/, mkPos(8,9));
 	}
 
 	public function test_010_md_headings()
@@ -290,16 +291,17 @@ class Test_03_Parser {
 			expand(@wrap(2,0)Quotation(HList([@len(1)Word("a"),@len(1)Wordspace]),@skip(1)@len(1)Word("b"))),
 			parse("> a\n@b"));
 
-		Assert.raises(parse.bind("\\quotation{a}{}"), InvalidValue);
-		Assert.raises(parse.bind("\\quotation{}{b}"), InvalidValue);
 		parsingError("\\quotation", MissingArgument, ~/text.+\\quotation/i, mkPos(10, 10));
 		parsingError("\\quotation a", MissingArgument, ~/text.+\\quotation/i, mkPos(11, 12));
 		parsingError("\\quotation{a}", MissingArgument, ~/author.+\\quotation/i, mkPos(13, 13));
 		parsingError("\\quotation{a} b", MissingArgument, ~/author.+\\quotation/i, mkPos(14, 15));
 		parsingError("\\quotation{a}{b}{}", UnexpectedToken, ~/{/, mkPos(16, 17));
+		parsingError(">a\n\nb");  // TODO add MissingPart exception
 
-		Assert.raises(parse.bind(">a"));  // TODO add MissingPart exception
-		Assert.raises(parse.bind(">a@"), InvalidValue);
+		parsingError("\\quotation{a}{}", BadValue, ~/author cannot be empty/i, mkPos(14,14));
+		parsingError("\\quotation{}{b}", BadValue, ~/text cannot be empty/i, mkPos(11, 11));
+		parsingError(">a@\n\nb", BadValue, ~/author cannot be empty/i, mkPos(3, 3));
+		parsingError(">@a\n\nb", BadValue, ~/text cannot be empty/i, mkPos(1, 1));
 	}
 
 	public function test_012_figures()

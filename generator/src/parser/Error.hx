@@ -104,25 +104,45 @@ class MissingArgument extends GenericError {
 	}
 }
 
-class Unclosed extends GenericError {}
-class UnknownCommand extends GenericError {}
-class InvalidValue extends GenericError {}
+class UnclosedToken extends GenericError {
+	var def:TokenDef;
 
-// class Unclosed extends Error {
-// 	public function new(name:String, pos:Position)
-// 		super('Unclosed $name', pos);
-// }
-//
-// class UnknownCommand extends Error {
-// 	public function new(name:String, pos:Position)
-// 		super('Unknown command `\\$name`', pos);
-// }
-//
-// class InvalidValue extends Error {
-// 	public function new(pos:Position, ?desc:String)
-// 	{
-// 		if (desc == null) desc = "argument";
-// 		super('Invalid value for $desc', pos);
-// 	}
-// }
-//
+	public function new(lexer, tok)
+	{
+		this.def = tok.def;
+		super(lexer, tok.pos);
+	}
+
+	override public function get_text()
+	{
+		return switch def {
+		case TBrOpen: "Unclosed braces `{`";
+		case TBrkOpen: "Unclosed brackets `{`";
+		case other: "Unclosed token " + other;
+		}
+	}
+}
+
+class BadValue extends GenericError {
+	var details:Null<String>;
+
+	public function new(lexer, pos, ?details)
+	{
+		this.details = details;
+		super(lexer, pos);
+	}
+
+	override public function get_text()
+	{
+		if (details != null)
+			return 'Bad value: `$at` ($details)';
+		else
+			return 'Bad value: `$at`';
+	}
+}
+
+class UnknownCommand extends GenericError {
+	override public function get_text()
+		return 'Unknown command $at';
+}
+
