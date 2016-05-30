@@ -12,7 +12,6 @@ class Main {
 		if (FileSystem.isDirectory(path)) throw 'Not a file: $path';
 
 		var ast = parser.Parser.parse(path);
-		trace(ast);
 
 		var doc = transform.Transform.transform(ast);
 
