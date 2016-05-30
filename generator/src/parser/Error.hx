@@ -118,23 +118,6 @@ class InvalidValue extends GenericError {}
 // 		super('Unknown command `\\$name`', pos);
 // }
 //
-// class MissingArgument extends Error {
-// 	public function new(?cmd:Token, ?desc:String)
-// 	{
-//
-// 		if (desc == null) desc = "argument";
-// 		switch cmd {
-// 		case null:
-// 			super('Missing $desc');
-// 		case { def:TCommand(name) }:
-// 			super('Missing $desc for `\\$name`', cmd.pos);
-// 		case other:
-// 			trace('Wrong token for a missing argument error: $other should be TCommand');
-// 			super('Missing $desc', cmd.pos);
-// 		}
-// 	}
-// }
-//
 // class InvalidValue extends Error {
 // 	public function new(pos:Position, ?desc:String)
 // 	{
