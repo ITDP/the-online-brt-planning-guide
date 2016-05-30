@@ -147,12 +147,12 @@ class Parser {
 		return buf.toString();
 	}
 
-	function arg<T>(internal:HOpts->T, cmd:Null<Token>, ?desc:String):{ val:T, pos:Position }
+	function arg<T>(internal:HOpts->T, toToken:Null<Token>, ?desc:String):{ val:T, pos:Position }
 	{
 		while (peek().def.match(TWordSpace(_)))
 			discard();
 		var open = discard();
-		if (!open.def.match(TBrOpen)) missingArg(open.pos, cmd, desc);
+		if (!open.def.match(TBrOpen)) missingArg(open.pos, toToken, desc);
 
 		var li = internal({ stopBefore : TBrClose });
 
@@ -229,7 +229,7 @@ class Parser {
 			switch peek().def {
 			case TBrOpen:
 				if (path != null) throw "TODO";
-				var p = arg(rawHorizontal, null);
+				var p = arg(rawHorizontal, tag[1], "path");
 				lastPos = p.pos;
 				path = p.val;
 			case TAt:
