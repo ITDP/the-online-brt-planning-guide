@@ -33,9 +33,8 @@ class Parser {
 		throw new GenericError(lexer, p);
 		// throw new Unclosed(name, p);
 
-	inline function missingArg(cmd:Token, ?desc:String)
-		throw new GenericError(lexer, cmd.pos);
-		// throw new MissingArgument(cmd, desc);
+	inline function missingArg(p:Position, ?toToken:Token, ?desc:String)
+		throw new MissingArgument(lexer, p, toToken, desc);
 
 	inline function badValue(pos:Position, ?desc:String)
 		throw new GenericError(lexer, pos);
@@ -63,7 +62,7 @@ class Parser {
 
 	function emphasis(cmd:Token)
 	{
-		var content = arg(hlist);
+		var content = arg(hlist, cmd);
 		return switch cmd.def {
 		case TCommand("emph"): mk(Emphasis(content.val), cmd.pos.span(content.pos));
 		case TCommand("highlight"): mk(Highlight(content.val), cmd.pos.span(content.pos));
@@ -148,12 +147,12 @@ class Parser {
 		return buf.toString();
 	}
 
-	function arg<T>(internal:HOpts->T, ?cmd:Token, ?desc:String):{ val:T, pos:Position }
+	function arg<T>(internal:HOpts->T, cmd:Null<Token>, ?desc:String):{ val:T, pos:Position }
 	{
 		while (peek().def.match(TWordSpace(_)))
 			discard();
 		var open = discard();
-		if (!open.def.match(TBrOpen)) missingArg(cmd, desc);
+		if (!open.def.match(TBrOpen)) missingArg(open.pos, cmd, desc);
 
 		var li = internal({ stopBefore : TBrClose });
 
@@ -165,7 +164,7 @@ class Parser {
 
 	function hierarchy(cmd:Token)
 	{
-		var name = arg(hlist);
+		var name = arg(hlist, cmd, "name");
 		if (name.val == null) badValue(name.pos, "name");
 		return switch cmd.def {
 		case TCommand("volume"): mk(Volume(name.val), cmd.pos.span(name.pos));
@@ -195,9 +194,9 @@ class Parser {
 	function figure(cmd:Token)
 	{
 		assert(cmd.def.match(TCommand("figure")), cmd);
-		var path = arg(rawHorizontal);
-		var caption = arg(hlist);
-		var copyright = arg(hlist);
+		var path = arg(rawHorizontal, cmd, "path");
+		var caption = arg(hlist, cmd, "caption");
+		var copyright = arg(hlist, cmd, "copyright");
 		if (path.val == null) badValue(path.pos, "path");
 		if (caption.val == null) badValue(caption.pos, "caption");
 		if (copyright.val == null) badValue(copyright.pos, "copyright");
@@ -230,7 +229,7 @@ class Parser {
 			switch peek().def {
 			case TBrOpen:
 				if (path != null) throw "TODO";
-				var p = arg(rawHorizontal);
+				var p = arg(rawHorizontal, null);
 				lastPos = p.pos;
 				path = p.val;
 			case TAt:
@@ -258,8 +257,8 @@ class Parser {
 	function quotation(cmd:Token)
 	{
 		assert(cmd.def.match(TCommand("quotation")), cmd);
-		var text = arg(hlist);
-		var author = arg(hlist);
+		var text = arg(hlist, cmd, "text");
+		var author = arg(hlist, cmd, "author");
 		if (text.val == null) badValue(text.pos, "text");
 		if (author.val == null) badValue(author.pos, "author");
 		return mk(Quotation(text.val, author.val), cmd.pos.span(author.pos));

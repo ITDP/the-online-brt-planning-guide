@@ -15,7 +15,7 @@ class Test_03_Parser {
 		return p.file();
 	}
 
-	function assertError(text:String, etype:Class<GenericError>, ?etext:String, ?epos:Position, ?p:haxe.PosInfos)
+	function parsingError(text:String, etype:Class<GenericError>, ?etext:String, ?epos:Position, ?p:haxe.PosInfos)
 	{
 		Assert.raises(parse.bind(text), etype, p);
 		if (etext != null || epos != null) {
@@ -128,9 +128,9 @@ class Test_03_Parser {
 			expand(Paragraph(HList([@wrap(1,1)Emphasis(HList([@len(1)Word("a"),@len(1)Wordspace])),@wrap(1,1)Emphasis(@len(1)Word("b")),@wrap(1,1)Emphasis(HList([@len(1)Wordspace,@len(1)Word("c")]))]))),
 			parse("*a **b** c*"));
 
-		Assert.raises(parse.bind("\\emph"), MissingArgument);
-		Assert.raises(parse.bind("\\emph a"), MissingArgument);
-		Assert.raises(parse.bind("\\emph{a}{}"), UnexpectedToken);
+		parsingError("\\emph", MissingArgument);
+		parsingError("\\emph a", MissingArgument);
+		parsingError("\\emph{a}{}", UnexpectedToken);
 	}
 
 	public function test_004_highlight()
@@ -267,7 +267,7 @@ class Test_03_Parser {
 			expand(VList([Paragraph(@len(1)Word("a")),@skip(2)@wrap(4,0)SubSubSection(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))])),
 			parse("a\n\n### b\n\nc"));
 
-		assertError("####a b", UnexpectedToken, { src:SRC, min:0, max:4 });
+		parsingError("####a b", UnexpectedToken, { src:SRC, min:0, max:4 });
 		// TODO maybe require hashes on the beginning of the line?
 	}
 

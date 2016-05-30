@@ -71,9 +71,41 @@ class UnexpectedToken extends GenericError {
 		return haxe.io.Bytes.ofString(s).toHex();
 }
 
+class MissingArgument extends GenericError {
+	var toToken:Null<Token>;
+	var argDesc:Null<String>;
+
+	public function new(lexer, pos, ?toToken, ?argDesc)
+	{
+		this.toToken = toToken;
+		this.argDesc = argDesc;
+		super(lexer, pos);
+	}
+
+	override public function get_text()
+	{
+		var msg = new StringBuf();
+		msg.add("Missing ");
+		msg.add(argDesc != null ? argDesc : "argument");
+		switch toToken {
+		case null:  // NOOP
+		case { def:TCommand(name) }:
+			msg.add(" to \\");
+			msg.add(name);
+		case { def:TWord(w) } if (Lambda.has(["FIG", "EQ", "TAB"], w)):
+			msg.add(" to #");
+			msg.add(w);
+			msg.add("#");
+		case other:
+			msg.add(" to token ");
+			msg.add(other);
+		}
+		return msg.toString();
+	}
+}
+
 class Unclosed extends GenericError {}
 class UnknownCommand extends GenericError {}
-class MissingArgument extends GenericError {}
 class InvalidValue extends GenericError {}
 
 // class Unclosed extends Error {
