@@ -47,6 +47,16 @@ class HtmlGen {
 			return '<!-- TODO figure $path $caption $copyright -->';  // FIXME
 		case Quotation(t,a):
 			return '<aside>${horizontal(t)}<footer>${horizontal(a)}</footer></aside>';
+		case List(li):
+			var buf = new StringBuf();
+			buf.add("<ul>\n");
+			for (i in li) {
+				buf.add("<li>");
+				buf.add(vertical(i));
+				buf.add("</li>\n");
+			}
+			buf.add("</ul>\n");
+			return buf.toString();
 		case Paragraph(h):
 			return '<p>${horizontal(h)}</p>\n';
 		case VList(li):

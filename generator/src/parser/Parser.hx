@@ -11,9 +11,9 @@ import parser.AstTools.*;
 using StringTools;
 using parser.TokenTools;
 
-typedef HOpts = {
-	?stopBefore:TokenDef,
-	?stopBeforeAny:Array<TokenDef>  // could possibly be simply stopBefore
+typedef Stop = {
+	?before:TokenDef,
+	?beforeAny:Array<TokenDef>  // could possibly replace before
 }
 
 typedef Path = String;
@@ -75,20 +75,20 @@ class Parser {
 	{
 		var open = discard();
 		if (!open.def.match(TAsterisk)) unexpected(open);
-		var li = hlist({ stopBefore:TAsterisk });
+		var li = hlist({ before:TAsterisk });
 		var close = discard();
 		if (!close.def.match(TAsterisk)) unclosed(open);
 		return mk(Emphasis(li), open.pos.span(close.pos));
 	}
 
-	function horizontal(opts:HOpts)
+	function horizontal(stop:Stop)
 	{
 		while (peek().def.match(TLineComment(_) | TBlockComment(_)))
 			discard();
 		return switch peek() {
-		case { def:tdef } if (opts.stopBefore != null && Type.enumEq(tdef, opts.stopBefore)):
+		case { def:tdef } if (stop.before != null && Type.enumEq(tdef, stop.before)):
 			null;
-		case { def:tdef } if (opts.stopBeforeAny != null && Lambda.exists(opts.stopBeforeAny,Type.enumEq.bind(tdef))):
+		case { def:tdef } if (stop.beforeAny != null && Lambda.exists(stop.beforeAny,Type.enumEq.bind(tdef))):
 			null;
 		case { def:TWord(s), pos:pos }:
 			discard();
@@ -116,25 +116,25 @@ class Parser {
 		}
 	}
 
-	function hlist(opts:HOpts)
+	function hlist(stop:Stop)
 	{
 		var li = [];
 		while (true) {
-			var v = horizontal(opts);
+			var v = horizontal(stop);
 			if (v == null) break;
 			li.push(v);
 		}
 		return mkList(HList(li));
 	}
 
-	function rawHorizontal(opts:HOpts)
+	function rawHorizontal(stop:Stop)
 	{
 		var buf = new StringBuf();
 		while (true) {
 			switch peek() {
-			case { def:tdef } if (opts.stopBefore != null && Type.enumEq(tdef, opts.stopBefore)):
+			case { def:tdef } if (stop.before != null && Type.enumEq(tdef, stop.before)):
 				break;
-			case { def:tdef } if (opts.stopBeforeAny != null && Lambda.exists(opts.stopBeforeAny,Type.enumEq.bind(tdef))):
+			case { def:tdef } if (stop.beforeAny != null && Lambda.exists(stop.beforeAny,Type.enumEq.bind(tdef))):
 				break;
 			case { def:TBreakSpace(_) } | { def:TEof }:
 				break;
@@ -148,14 +148,14 @@ class Parser {
 		return buf.toString();
 	}
 
-	function arg<T>(internal:HOpts->T, toToken:Null<Token>, ?desc:String):{ val:T, pos:Position }
+	function arg<T>(internal:Stop->T, toToken:Null<Token>, ?desc:String):{ val:T, pos:Position }
 	{
 		while (peek().def.match(TWordSpace(_)))
 			discard();
 		var open = discard();
 		if (!open.def.match(TBrOpen)) missingArg(open.pos, toToken, desc);
 
-		var li = internal({ stopBefore : TBrClose });
+		var li = internal({ before : TBrClose });
 
 		var close = discard();
 		if (close.def.match(TEof)) unclosed(open);
@@ -221,7 +221,7 @@ class Parser {
 		var copyright = null;
 		var lastPos = null;
 		while (true) {
-			var h = hlist({ stopBeforeAny:[TBrOpen,TAt] });
+			var h = hlist({ beforeAny:[TBrOpen,TAt] });
 			if (h != null) {
 				captionParts.push(h);
 				lastPos = h.pos;
@@ -236,7 +236,7 @@ class Parser {
 			case TAt:
 				if (copyright != null) throw "TODO";
 				discard();
-				copyright = hlist({ stopBefore:TBrOpen });
+				copyright = hlist({ before:TBrOpen });
 				lastPos = copyright.pos;
 			case TBreakSpace(_), TEof:
 				break;
@@ -270,13 +270,45 @@ class Parser {
 		assert(greaterThan.def.match(TGreater), greaterThan);
 		while (peek().def.match(TWordSpace(_)))  // TODO maybe add this to hlist?
 			discard();
-		var text = hlist({ stopBefore:TAt });
+		var text = hlist({ before:TAt });
 		var at = discard();
 		if (!at.def.match(TAt)) unexpected(at);
 		var author = hlist({});  // TODO maybe also discard wordspace before
 		if (text == null) badValue(greaterThan.pos.span(at.pos).offset(1, -1), "text cannot be empty");
 		if (author == null) badValue(at.pos.offset(1,0), "author cannot be empty");
 		return mk(Quotation(text, author), greaterThan.pos.span(author.pos));
+	}
+
+	function listItem(mark:Token)
+	{
+		assert(mark.def.match(TCommand("item")), mark);
+		var item = vertical({ before:mark.def });  // FIXME maybe: or vlist?
+		// TODO validation and error handling
+		return item;
+	}
+
+	function list(begin:Token)
+	{
+		// FIXME define if lists begin implicitly with \item and handle
+		// that accordingly
+		assert(begin.def.match(TCommand("beginlist") | TCommand("item")), begin);
+		var li = [];
+		if (begin.def.match(TCommand("item")))
+			li.push(listItem(begin));
+		while (true) {
+			// TODO discard discardable tokens
+			if (!peek().def.match(TCommand("item"))) break;
+			li.push(listItem(discard()));
+		}
+		var end = null;
+		if (begin.def.match(TCommand("beginlist"))) {
+			// TODO consume \endlist
+		} else {
+			// only sure that li.length > 0 here because then the
+			// list started implicitly with \item
+			end = li[li.length - 1];
+		}
+		return mk(List(li), begin.pos.span(end.pos));
 	}
 
 	function paragraph()
@@ -286,11 +318,15 @@ class Parser {
 		return mk(Paragraph(text), text.pos);
 	}
 
-	function vertical()
+	function vertical(stop:Stop)
 	{
 		while (peek().def.match(TWordSpace(_) | TBreakSpace(_)))
 			discard();
 		return switch peek().def {
+		case tdef if (stop.before != null && Type.enumEq(tdef, stop.before)):
+			null;
+		case tdef if (stop.beforeAny != null && Lambda.exists(stop.beforeAny,Type.enumEq.bind(tdef))):
+			null;
 		case TEof:
 			null;
 		case TCommand(cmdName):
@@ -298,6 +334,7 @@ class Parser {
 			case "volume", "chapter", "section", "subsection", "subsubsection": hierarchy(discard());
 			case "figure": figure(discard());
 			case "quotation": quotation(discard());
+			case "beginlist", "item": list(discard());
 			case name if (Lambda.has(horizontalCommands, name)): paragraph();
 			case _: throw new UnknownCommand(lexer, peek().pos);
 			}
@@ -316,11 +353,11 @@ class Parser {
 		}
 	}
 
-	function vlist()
+	function vlist(stop:Stop)
 	{
 		var li = [];
 		while (true) {
-			var v = vertical();
+			var v = vertical(stop);
 			if (v == null) break;
 			li.push(v);
 		}
@@ -328,7 +365,7 @@ class Parser {
 	}
 
 	public function file():File
-		return vlist();
+		return vlist({});
 
 	public function new(lexer:Lexer, ?cache:FileCache)
 	{

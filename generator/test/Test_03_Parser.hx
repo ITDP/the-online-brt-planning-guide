@@ -315,5 +315,11 @@ class Test_03_Parser {
 			parse("#FIG#{fig.png}caption@copyright"));
 		// TODO other/weird orderings of #FIG# details
 	}
+
+	public function test_013_lists()
+	{
+		// TODO
+		trace(parse("\\item foo\\item bar"));
+	}
 }
 
