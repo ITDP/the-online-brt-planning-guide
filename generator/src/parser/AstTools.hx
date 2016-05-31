@@ -10,6 +10,12 @@ import parser.Ast;
 import parser.Token;
 #end
 
+/**
+Tools for constructing, manupilating or testing ASTs.
+
+Designed for the parsing ASTs, but they should also work on post-transform
+ASTs.
+**/
 class AstTools {
 #if macro
 	static var cachedDefs:Array<String>;  // don't access directly, call getDefs() instead
@@ -17,17 +23,19 @@ class AstTools {
 	{
 		if (!clear && cachedDefs != null) return cachedDefs;
 		var ret = [];
-		var m = getModule("parser.Ast");
-		for (t in m) {
-			switch t {
-			case TEnum(_.get() => t, []):
-				if (!t.name.endsWith("Def")) continue;
-				for (cons in t.names) {
-					if (Lambda.has(ret, cons))
-						error("AST constructor name reuse not supported", currentPos());
-					ret.push(cons);
+		var modules = [getModule("parser.Ast"), getModule("transform.Document")];
+		for (m in modules) {
+			for (t in m) {
+				switch t {
+				case TEnum(_.get() => t, []):
+					if (!t.name.endsWith("Def")) continue;
+					for (cons in t.names) {
+						if (Lambda.has(ret, cons))
+							error("AST constructor name reuse not supported", currentPos());
+						ret.push(cons);
+					}
+				case _:
 				}
-			case _:
 			}
 		}
 		cachedDefs = ret;
