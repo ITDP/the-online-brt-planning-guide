@@ -1,31 +1,20 @@
-package;
 import haxe.io.Bytes;
+import parser.AstTools.*;
 import parser.Lexer;
 import parser.Parser;
-import transform.Transform;
 import transform.Document;
-import parser.Ast;
+import transform.Transform;
 import utest.Assert;
 
-/**
- * ...
- * @author Caio
- */
-
-class Test_04_Transform
-{
+class Test_04_Transform {
 	static inline var SRC = "Test_04_Transform.hx";
-	public function new() 
-	{
-		
-	}
+
+	public function new() {}
 	
 	function transform(str : String)
 	{
 		var l = new Lexer(Bytes.ofString(str), SRC);
 		var p = new Parser(l).file();
-		
-		
 		return Transform.transform(p);
 	}
 	
@@ -78,5 +67,28 @@ class Test_04_Transform
 			pos : {min : 0, max : 22, src : SRC}
 		}, transform("\\volume{a}b\\volume{c}d"));
 	}
-	
+
+	public function test_002_hierarchy_content_binding()
+	{
+		// FIXME no lists with length == 1
+		Assert.same(
+			expand(TVList([
+				@wrap(8,0)TVolume(@len(1)Word("a"), 1, @skip(1)TVList([TParagraph(@len(1)Word("b"))]))])),
+			transform("\\volume{a}b"));
+
+		Assert.same(
+			expand(TVList([
+				@wrap(8,0)TVolume(@len(1)Word("a"), 1, @skip(1)TVList([TParagraph(@len(1)Word("b"))])),
+				@wrap(8,0)TVolume(@len(1)Word("c"), 2, @skip(1)TVList([TParagraph(@len(1)Word("d"))]))])),
+			transform("\\volume{a}b\\volume{c}d"));
+
+		// TODO test other hierarchy constructs
+	}
+
+	public function test_003_element_counting()
+	{
+		// TODO easy cases
+
+		// TODO hard cases
+	}
 }
