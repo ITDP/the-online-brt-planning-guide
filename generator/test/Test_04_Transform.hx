@@ -73,13 +73,22 @@ class Test_04_Transform {
 		// FIXME no lists with length == 1
 		Assert.same(
 			expand(TVList([
-				@wrap(8,0)TVolume(@len(1)Word("a"), 0, @skip(1)TVList([TParagraph(@len(1)Word("b"))]))])),
+				@wrap(8,0)TVolume(@len(1)Word("a"), 1, @skip(1)TVList([TParagraph(@len(1)Word("b"))]))])),
 			transform("\\volume{a}b"));
 
 		Assert.same(
 			expand(TVList([
-				@wrap(8,0)TVolume(@len(1)Word("a"), 0, @skip(1)TVList([TParagraph(@len(1)Word("b"))])),
-				@wrap(8,0)TVolume(@len(1)Word("c"), 0, @skip(1)TVList([TParagraph(@len(1)Word("d"))]))])),
+				@wrap(8,0)TVolume(@len(1)Word("a"), 1, @skip(1)TVList([TParagraph(@len(1)Word("b"))])),
+				@wrap(8,0)TVolume(@len(1)Word("c"), 2, @skip(1)TVList([TParagraph(@len(1)Word("d"))]))])),
 			transform("\\volume{a}b\\volume{c}d"));
+
+		// TODO test other hierarchy constructs
+	}
+
+	public function test_003_element_counting()
+	{
+		// TODO easy cases
+
+		// TODO hard cases
 	}
 }
