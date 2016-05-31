@@ -15,6 +15,8 @@ class Transform {
 	static inline var SEC = 2;
 	static inline var SUB = 3;
 	static inline var SUBSUB = 4;
+	//Figs,tbls,etc
+	static inline var OTH = 5;
 	
 	static function mk<T>(def:T, pos:Position):Elem<T>
 		return { def:def, pos:pos };
@@ -48,7 +50,9 @@ class Transform {
 		count[type] = ++count[type];
 		
 		var t = type+1;
-		while (t < count.length)
+		//TODO: Rewrite
+		while ((( type > 0) && (t < count.length -1)) 
+		|| (t < count.length))
 		{
 			count[t] = 0;
 			t++;
@@ -71,7 +75,6 @@ class Transform {
 				throw "Invalid type " + type; //TODO: FIX
 		}
 	}
-	
 	
 	static function consume(rest:Rest, stopBefore: Int, count : Array<Int>):TElem
 	{
@@ -109,6 +112,11 @@ class Transform {
 			return mk(TVList(tf), v.pos);  // FIXME v.pos.span(???)
 		case Volume(name), Chapter(name), Section(name), SubSection(name), SubSubSection(name):
 			return hierarchy(v, rest, v.pos, count);
+		case Figure(path, caption, cp):
+			count[OTH] = ++count[OTH];
+			return mk(TFigure(path, caption, cp, count[OTH]), v.pos);
+		case Quotation(text, by):
+			return mk(TQuotation(text, by), v.pos);
 		case Paragraph(h):
 			return mk(TParagraph(h), v.pos);
 		case _:
@@ -118,7 +126,7 @@ class Transform {
 	
 	public static function transform(parsed:parser.Ast) : TElem
 	{
-		var tf = vertical(parsed, [], [0,0,0,0,0]);
+		var tf = vertical(parsed, [], [0,0,0,0,0,0]);
 		
 		//return parsed;
 		return tf;

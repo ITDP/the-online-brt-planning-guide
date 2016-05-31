@@ -17,7 +17,7 @@ enum TDef {
 	TVList(elem:Array<TElem>);
 	
 	TFigure(path:String, caption:HElem, copyright:HElem, count : Int);  // TODO size?
-	TQuotation(text:HElem, by:HElem, count : Int);
+	TQuotation(text:HElem, by:HElem);
 	TParagraph(h:HElem);	
 }
 
