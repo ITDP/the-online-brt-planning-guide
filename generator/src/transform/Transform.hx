@@ -24,12 +24,15 @@ class Transform {
 		var tf = [];
 		while (rest.length > 0) {
 			var v = rest.shift();
+			
 			if (stopBefore != null && Type.enumIndex(stopBefore) == Type.enumIndex(v.def)) {
 				rest.unshift(v);
 				break;
 			}
+			
 			tf.push(vertical(v, rest));
 		}
+
 		return mk(TVList(tf), tf[0].pos.span(tf[tf.length - 1].pos));
 	}
 	
@@ -43,17 +46,19 @@ class Transform {
 			return mk(TVList(tf), v.pos);  // FIXME v.pos.span(???)
 		case Volume(name):
 			return volume(name, rest, v.pos);
+		case Paragraph(h):
+			return mk(TParagraph(h), v.pos);
 		case _:
 			return mk(null, v.pos);
 		}
 	}
 	
-	public static function transform(parsed:parser.Ast) : File
+	public static function transform(parsed:parser.Ast) : TElem
 	{
 		var tf = vertical(parsed, []);
-		trace(tf);
-		trace(haxe.Json.stringify(tf));
-		return parsed;
+		
+		//return parsed;
+		return tf;
 	}
 
 }
