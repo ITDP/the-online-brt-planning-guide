@@ -10,42 +10,105 @@ private typedef Rest = Array<VElem>;
 
 class Transform {
 	
+	static inline var VOL = 0;
+	static inline var CHA = 1;
+	static inline var SEC = 2;
+	static inline var SUB = 3;
+	static inline var SUBSUB = 4;
+	
 	static function mk<T>(def:T, pos:Position):Elem<T>
 		return { def:def, pos:pos };
 	
-	static function volume(name:HElem, rest:Rest, pos:Position):TElem
+		
+	static function hierarchy(cur : VElem, rest : Rest, pos : Position, count : Array<Int>) : TElem
 	{
-		var tf = consume(rest, Volume(null));
-		return mk(TVolume(name, 0, tf), pos.span(tf.pos));
+		var type = null;
+		var _name = null;
+		switch(cur.def)
+		{
+			case Volume(name):
+				type = VOL;
+				_name = name;
+			case Chapter(name):
+				type = CHA;
+				_name = name;
+			case Section(name):
+				type = SEC;
+				_name = name;
+			case SubSection(name):
+				type = SUB;
+				_name = name;
+			case SubSubSection(name): 
+				type = SUBSUB;
+				_name = name;
+			default:
+				throw "Invalid " + cur.def;				
+		}
+		
+		count[type] = ++count[type];
+		
+		var t = type+1;
+		while (t < count.length)
+		{
+			count[t] = 0;
+			t++;
+		}
+		
+		var tf = consume(rest, type, count);
+		return switch(type)
+		{
+			case VOL:
+				mk(TVolume(_name, count[VOL], tf), pos.span(tf.pos));
+			case CHA:
+				mk(TChapter(_name, count[CHA], tf), pos.span(tf.pos));
+			case SEC:
+				mk(TSection(_name, count[SEC], tf), pos.span(tf.pos));
+			case SUB:
+				mk(TSubSection(_name, count[SUB], tf), pos.span(tf.pos));
+			case SUBSUB:
+				mk(TSubSubSection(_name, count[SUBSUB], tf), pos.span(tf.pos));
+			default:
+				throw "Invalid type " + type; //TODO: FIX
+		}
 	}
 	
-	static function consume(rest:Rest, stopBefore:Null<VDef>):TElem
+	
+	static function consume(rest:Rest, stopBefore: Int, count : Array<Int>):TElem
 	{
 		var tf = [];
 		while (rest.length > 0) {
-			var v = rest.shift();
+			var v = rest.shift();			
+			var type = switch(v.def)
+			{
+				case Volume(_): VOL;
+				case Chapter(_): CHA;
+				case Section(_) : SEC;
+				case SubSection(_) : SUB;
+				case SubSubSection(_) : SUBSUB;
+				default : null;
+			}
 			
-			if (stopBefore != null && Type.enumIndex(stopBefore) == Type.enumIndex(v.def)) {
+			if (stopBefore != null && type <= stopBefore) {
 				rest.unshift(v);
 				break;
 			}
 			
-			tf.push(vertical(v, rest));
+			tf.push(vertical(v, rest, count));
 		}
 
 		return mk(TVList(tf), tf[0].pos.span(tf[tf.length - 1].pos));
 	}
 	
-	static function vertical(v:VElem, rest:Rest):TElem
+	static function vertical(v:VElem, rest:Rest, count : Array<Int>):TElem
 	{
 		switch v.def {
 		case VList(li):
 			var tf = [];
 			while (li.length > 0)
-				tf.push(vertical(li.shift(), li));
+				tf.push(vertical(li.shift(), li, count));
 			return mk(TVList(tf), v.pos);  // FIXME v.pos.span(???)
-		case Volume(name):
-			return volume(name, rest, v.pos);
+		case Volume(name), Chapter(name), Section(name), SubSection(name), SubSubSection(name):
+			return hierarchy(v, rest, v.pos, count);
 		case Paragraph(h):
 			return mk(TParagraph(h), v.pos);
 		case _:
@@ -55,7 +118,7 @@ class Transform {
 	
 	public static function transform(parsed:parser.Ast) : TElem
 	{
-		var tf = vertical(parsed, []);
+		var tf = vertical(parsed, [], [0,0,0,0,0]);
 		
 		//return parsed;
 		return tf;

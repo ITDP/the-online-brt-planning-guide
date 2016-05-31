@@ -37,7 +37,7 @@ class Test_04_Transform
 					def : Word("a"),
 					pos : {min : 8, max : 9, src : SRC}
 				}, 
-				0,
+				1,
 				{
 					def : TVList([
 						{
@@ -58,7 +58,7 @@ class Test_04_Transform
 					def : Word("c"),
 					pos : {min : 19, max : 20, src : SRC}
 				}, 
-				0,
+				2,
 				{
 					def : TVList([
 						{
