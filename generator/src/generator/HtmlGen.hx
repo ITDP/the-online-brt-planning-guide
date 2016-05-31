@@ -1,7 +1,7 @@
 package generator;  // TODO move out of the package
 
 import sys.FileSystem;
-import transform.Document;
+import parser.Ast.File;
 
 // temporary
 import parser.Ast;
@@ -57,7 +57,7 @@ class HtmlGen {
 		}
 	}
 
-	function document(doc:Document)
+	function document(doc:File)
 	{
 		var buf = new StringBuf();
 		buf.add('<html><head><title>TODO</title></head><body>\n');
@@ -66,7 +66,7 @@ class HtmlGen {
 		sys.io.File.saveContent(joinPaths([dest,"index.html"]), buf.toString());
 	}
 
-	public function generate(doc:Document)
+	public function generate(doc:File)
 	{
 		if (!FileSystem.exists(dest))
 			FileSystem.createDirectory(dest);
