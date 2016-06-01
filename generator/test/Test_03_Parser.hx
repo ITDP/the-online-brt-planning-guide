@@ -318,8 +318,17 @@ class Test_03_Parser {
 
 	public function test_013_lists()
 	{
-		// TODO
 		trace(parse("\\item foo\\item bar"));
+		Assert.same(
+			expand(@wrap(6,0)List([Paragraph(@len(1)Word("a")),@skip(6)@len(1)Paragraph(Word("b"))])),
+			parse("\\item a\\item b"));
+		Assert.same(
+			expand(VList([
+				Paragraph(@len(1)Word("x")),@skip(2)
+				@wrap(6,0)List([Paragraph(@len(1)Word("a")),@skip(6)@len(1)Paragraph(Word("b"))]),@skip(2)
+				Paragraph(@len(1)Word("y"))
+			])),
+			parse("x\n\n\\item a\\item b\n\ny"));
 	}
 }
 

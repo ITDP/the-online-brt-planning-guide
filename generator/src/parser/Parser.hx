@@ -287,28 +287,14 @@ class Parser {
 		return item;
 	}
 
-	function list(begin:Token)
+	// see /generator/docs/list-design.md
+	function list(at:Position)
 	{
-		// FIXME define if lists begin implicitly with \item and handle
-		// that accordingly
-		assert(begin.def.match(TCommand("beginlist") | TCommand("item")), begin);
 		var li = [];
-		if (begin.def.match(TCommand("item")))
-			li.push(listItem(begin));
-		while (true) {
-			// TODO discard discardable tokens
-			if (!peek().def.match(TCommand("item"))) break;
+		while (peek().def.match(TCommand("item")))
 			li.push(listItem(discard()));
-		}
-		var end = null;
-		if (begin.def.match(TCommand("beginlist"))) {
-			// TODO consume \endlist
-		} else {
-			// only sure that li.length > 0 here because then the
-			// list started implicitly with \item
-			end = li[li.length - 1];
-		}
-		return mk(List(li), begin.pos.span(end.pos));
+		assert(li.length > 0, li);  // we're sure that li.length > 0 since we started with \item
+		return mk(List(li), at.span(li[li.length - 1].pos));
 	}
 
 	function paragraph()
@@ -334,7 +320,7 @@ class Parser {
 			case "volume", "chapter", "section", "subsection", "subsubsection": hierarchy(discard());
 			case "figure": figure(discard());
 			case "quotation": quotation(discard());
-			case "beginlist", "item": list(discard());
+			case "item": list(peek().pos);
 			case name if (Lambda.has(horizontalCommands, name)): paragraph();
 			case _: throw new UnknownCommand(lexer, peek().pos);
 			}
