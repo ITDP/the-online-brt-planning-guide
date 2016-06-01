@@ -141,7 +141,7 @@ class HtmlGen {
 		<!-- Normalize -->
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css" rel="stylesheet" type="text/css">
 		<!-- CSS -->
-		<link href="../../generator/docs/design/web/mockup/style.css" rel="stylesheet" type="text/css">
+		<link href="style.css" rel="stylesheet" type="text/css">
 		<!-- MathJax -->
 		<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 		<!-- Jquery -->
