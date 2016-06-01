@@ -23,7 +23,7 @@
     <option directives="" />
     <option flashStrict="False" />
     <option noInlineOnDebug="False" />
-    <option mainClass="Main" />
+    <option mainClass="RunTests" />
     <option enabledebug="False" />
     <option additional="" />
   </build>
