@@ -48,13 +48,12 @@ Alternatives are to add (maybe optional) `\beginlist` and `\endlist` commands
 or to use (maybe optional) braces (`{}`) to delimit vertical nesting
 
 ```
-\item foo
-\item{
-	bar
+\item  foo
+\item{ bar
 	\item red
 	\item blu
 }
-\item rab
+\item  rab
 ```
 
 
@@ -84,13 +83,12 @@ might be interesting to adopt brackets (`[]`) as _optional_ argument indicators.
 Thus, the nested list example becomes
 
 ```
-\item foo
-\item[
-	bar
+\item  foo
+\item[ bar
 	\item red
 	\item blu
 ]
-\item rab
+\item  rab
 ```
 
 and still remains quite legible.
@@ -128,13 +126,12 @@ Using (or allowing) reserved charactesr to function as the item mark also don't 
 Despite being a bit more verbose, the proposed solution
 
 ```
-\item foo
-\item[
-	bar
+\item  foo
+\item[ bar
 	\item red
 	\item blu
 ]
-\item rab
+\item  rab
 ```
 
 seems equally as legible as markdown
