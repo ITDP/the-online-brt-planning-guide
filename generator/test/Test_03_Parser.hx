@@ -321,8 +321,6 @@ class Test_03_Parser {
 
 	public function test_013_lists()
 	{
-		trace(parse("\\item foo\\item bar"));
-
 		// simple lists
 		Assert.same(
 			expand(List([@wrap(6,0)Paragraph(@len(1)Word("a"))])),
@@ -359,6 +357,9 @@ class Test_03_Parser {
 					List([@wrap(6,0)Paragraph(@len(1)Word("x")),@wrap(6,0)Paragraph(@len(1)Word("y"))])]),
 				@wrap(6,1)Paragraph(@len(1)Word("b"))])),
 			parse("\\item[a\n\n\\item x\\item y]\\item[b]"));
+
+		// TODO more tests
+		// TODO more error tests
 	}
 
 	public function test_014_discardable_tokens()
