@@ -59,6 +59,7 @@ class Transform {
 		}
 		
 		var tf = consume(rest, type, count);
+		
 		return switch(type)
 		{
 			case VOL:
@@ -98,8 +99,13 @@ class Transform {
 			
 			tf.push(vertical(v, rest, count));
 		}
-
-		return mk(TVList(tf), tf[0].pos.span(tf[tf.length - 1].pos));
+		
+		if(tf.length > 1)
+			return mk(TVList(tf), tf[0].pos.span(tf[tf.length - 1].pos));
+		else if(tf.length == 1)
+			return tf[0];
+		else //TODO: THROW
+			return null;
 	}
 	
 	static function vertical(v:VElem, rest:Rest, count : Array<Int>):TElem
