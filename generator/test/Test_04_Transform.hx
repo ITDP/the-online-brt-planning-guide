@@ -81,14 +81,95 @@ class Test_04_Transform {
 				@wrap(8,0)TVolume(@len(1)Word("a"), 1, @skip(1)TVList([TParagraph(@len(1)Word("b"))])),
 				@wrap(8,0)TVolume(@len(1)Word("c"), 2, @skip(1)TVList([TParagraph(@len(1)Word("d"))]))])),
 			transform("\\volume{a}b\\volume{c}d"));
-
+		
+		Assert.same(
+			expand(TVList([
+				@wrap(8, 0) TVolume(@len(1) Word("a"), 1, @skip(1) TVList([TParagraph(@len(1) Word("b")),
+				@wrap(9,0) TChapter(@len(1) Word("c"),1,@skip(1) TVList([TParagraph(@len(1) Word("d"))]))
+			]))])), 
+			transform('\\volume{a}b\\chapter{c}d'));
+			
+		Assert.same(
+			expand(TVList([
+				@wrap(8, 0) TVolume(@len(1) Word("a"), 1, @skip(1) TVList([TParagraph(@len(1) Word("b")),
+				@wrap(9, 0) TChapter(@len(1) Word("c"), 1, @skip(1) TVList([TParagraph(@len(1) Word("d")),
+				@wrap(9, 0) TSection(@len(1) Word("e"), 1, @skip(1) TVList([TParagraph(@len(1) Word("f")),
+				@wrap(12, 0) TSubSection(@len(1) Word("g"), 1, @skip(1) TVList([TParagraph(@len(1) Word("h")),
+				@wrap(15, 0) TSubSubSection(@len(1) Word("i"), 1, @skip(1) TVList([TParagraph(@len(1) Word("j"))
+				]))]))]))]))]))
+			])),
+			transform("\\volume{a}b\\chapter{c}d\\section{e}f\\subsection{g}h\\subsubsection{i}j"));
+			
+		Assert.same(
+			expand(TVList([
+				@wrap(8, 0) TVolume(@len(1) Word("a"), 1, @skip(1) TVList([TParagraph(@len(1) Word("b")),
+				@wrap(9, 0) TChapter(@len(1) Word("c"), 1, @skip(1) TVList([TParagraph(@len(1) Word("d"))])),
+				@wrap(9, 0) TChapter(@len(1) Word("e"), 2, @skip(1) TVList([TParagraph(@len(1) Word("f")),
+				@wrap(9, 0) TSection(@len(1) Word("g"), 1, @skip(1) TVList([TParagraph(@len(1) Word("h"))
+				]))]))]))
+			])),
+			transform("\\volume{a}b\\chapter{c}d\\chapter{e}f\\section{g}h"));
+			
+			
+		Assert.same(
+			expand(TVList([
+				@wrap(8, 0) TVolume(@len(1) Word("a"), 1, @skip(1) TVList([TParagraph(@len(1) Word("b")),
+				@wrap(9, 0) TChapter(@len(1) Word("c"), 1, @skip(1) TVList([TParagraph(@len(1) Word("d"))])),
+				
+				@wrap(9, 0) TChapter(@len(1) Word("e"), 2, @skip(1) TVList([TParagraph(@len(1) Word("f")),
+				@wrap(9, 0) TSection(@len(1) Word("g"), 1, @skip(1) TVList([TParagraph(@len(1) Word("h"))]))])),
+				
+				@wrap(9, 0) TChapter(@len(1) Word("i"), 3, @skip(1) TVList([TParagraph(@len(1) Word("j")), 
+				@wrap(9, 0) TSection(@len(1) Word("k"), 1, @skip(1) TVList([TParagraph(@len(1) Word("l"))]))]))])),
+				
+				@wrap(8, 0) TVolume(@len(1) Word("m"), 2, @skip(1) TVList([TParagraph(@len(1) Word("n")),
+				@wrap(9, 0) TChapter(@len(1) Word("o"), 1, @skip(1) TVList([TParagraph(@len(1) Word("p")),
+				@wrap(9,0) TSection(@len(1) Word("r"), 1, @skip(1) TVList([TParagraph(@len(1) Word("s"))]))]))]))
+			])),
+			transform("\\volume{a}b\\chapter{c}d\\chapter{e}f\\section{g}h\\chapter{i}j\\section{k}l\\volume{m}n\\chapter{o}p\\section{r}s"));
+		
 		// TODO test other hierarchy constructs
 	}
 
 	public function test_003_element_counting()
 	{
-		// TODO easy cases
-
-		// TODO hard cases
+		
+		Assert.same(
+			expand(TVList([
+				@wrap(8,0) TVolume(@len(1) Word("a"),1, @skip(1) TVList([TParagraph(@len(1) Word("b"))]))
+			])),
+			transform("\\volume{a}b"));
+			
+		Assert.same(
+			expand(TVList([
+				@wrap(8, 0) TVolume(@len(1) Word("a"), 1, @skip(1) TVList([TParagraph(@len(1) Word("b"))])),
+				@wrap(8,0) TVolume(@len(1) Word("c"),2, @skip(1) TVList([TParagraph(@len(1) Word("d"))]))
+			])),
+			transform("\\volume{a}b\\volume{c}d"));
+			
+		Assert.same(
+			expand(TVList([
+				@wrap(8, 0) TVolume(@len(1) Word("a"), 1, @skip(1) TVList([TParagraph(@len(1) Word("b")),
+				@wrap(9, 0) TChapter(@len(1) Word("c"), 1, @skip(1) TVList([TParagraph(@len(1) Word("d"))]))])),
+				@wrap(8, 0) TVolume(@len(1) Word("e"), 2, @skip(1) TVList([TParagraph(@len(1) Word("f")),
+				@wrap(9,0) TChapter(@len(1) Word("g") , 1, @skip(1) TVList([TParagraph(@len(1) Word("h"))]))]))
+			])),
+			transform("\\volume{a}b\\chapter{c}d\\volume{e}f\\chapter{g}h"));
+		
+		
+		Assert.same(
+			expand(TVList([
+				@wrap(8, 0) TVolume(@len(1) Word("a"), 1, @skip(1) TVList([TParagraph(@len(1) Word("b")),
+				@wrap(9, 0) TChapter(@len(1) Word("c"), 1, @skip(1) TVList([TParagraph(@len(1) Word("d"))])),
+				@wrap(9, 0) TChapter(@len(1) Word("e"), 2, @skip(1) TVList([TParagraph(@len(1) Word("f")),
+				@wrap(9, 0) TSection(@len(1) Word("g"), 1, @skip(1) TVList([TParagraph(@len(1) Word("h"))])),
+				@wrap(9, 0) TSection(@len(1) Word("i"), 2, @skip(1) TVList([TParagraph(@len(1) Word("j"))]))])),
+				@wrap(9, 0) TChapter(@len(1) Word("k"), 3, @skip(1) TVList([TParagraph(@len(1) Word("l")),
+				@wrap(9, 0) TSection(@len(1) Word("m"), 1, @skip(1) TVList([TParagraph(@len(1) Word("n")),
+				@wrap(12, 0) TSubSection(@len(1) Word("o"), 1, @skip(1) TVList([TParagraph(@len(1) Word("p")),
+				@wrap(8, 1) TFigure("f", @skip(2 + 1)@len(1) Word("c"), @skip(2)@len(2) Word("cp"),1)])),
+				@wrap(12,0) TSubSection(@len(1) Word("q"), 2, @skip(1) TVList([TParagraph(@len(1) Word("r"))]))]))]))]))
+			])),
+		transform("\\volume{a}b\\chapter{c}d\\chapter{e}f\\section{g}h\\section{i}j\\chapter{k}l\\section{m}n\\subsection{o}p\\figure{f}{c}{cp}\\subsection{q}r"));
 	}
 }
