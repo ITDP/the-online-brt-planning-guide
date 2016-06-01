@@ -13,7 +13,8 @@
 			"cd $ROBRT_REPOSITORY_DIR",
 			"generator/bin/obrt gen guide/the-brt-planning-guide.src",
 			"cp -r generator/docs/design/web/mockup $ROBRT_OUTPUT_DIR/web-mockup",
-			"cp -r guide/the-brt-planning-guide.src.html $ROBRT_OUTPUT_DIR/guide"
+			"cp -r guide/the-brt-planning-guide.src.html $ROBRT_OUTPUT_DIR/guide",
+			"cp generator/docs/design/web/mockup/style.css $ROBRT_OUTPUT_DIR/guide"
 		]
 	}
 }
