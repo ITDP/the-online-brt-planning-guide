@@ -47,12 +47,12 @@ class Transform {
 				throw "Invalid " + cur.def;				
 		}
 		
-		count[type] = ++count[type];
-		
+		count[type] = ++count[type]; 
+		 
 		var t = type+1;
-		//TODO: Rewrite
-		while ((( type > 0) && (t < count.length -1)) 
-		|| (t < count.length))
+		
+		//Reset Sec/Sub/SubSub when sec changes OR when chapter changes everything goes to waste (Reset all BUT VOL AND Chapter)
+		while ((type >= SEC && t < OTH) || (type == CHA && t < count.length))
 		{
 			count[t] = 0;
 			t++;

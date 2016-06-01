@@ -123,7 +123,7 @@ class Test_04_Transform {
 				@wrap(9, 0) TSection(@len(1) Word("k"), 1, @skip(1) TVList([TParagraph(@len(1) Word("l"))]))]))])),
 				
 				@wrap(8, 0) TVolume(@len(1) Word("m"), 2, @skip(1) TVList([TParagraph(@len(1) Word("n")),
-				@wrap(9, 0) TChapter(@len(1) Word("o"), 1, @skip(1) TVList([TParagraph(@len(1) Word("p")),
+				@wrap(9, 0) TChapter(@len(1) Word("o"), 4, @skip(1) TVList([TParagraph(@len(1) Word("p")),
 				@wrap(9,0) TSection(@len(1) Word("r"), 1, @skip(1) TVList([TParagraph(@len(1) Word("s"))]))]))]))
 			])),
 			transform("\\volume{a}b\\chapter{c}d\\chapter{e}f\\section{g}h\\chapter{i}j\\section{k}l\\volume{m}n\\chapter{o}p\\section{r}s"));
@@ -146,20 +146,20 @@ class Test_04_Transform {
 				@wrap(8,0) TVolume(@len(1) Word("c"),2, @skip(1) TVList([TParagraph(@len(1) Word("d"))]))
 			])),
 			transform("\\volume{a}b\\volume{c}d"));
-			
+		//TODO: Rewrite this so I can test Sec+ Changes	
 		Assert.same(
 			expand(TVList([
 				@wrap(8, 0) TVolume(@len(1) Word("a"), 1, @skip(1) TVList([TParagraph(@len(1) Word("b")),
 				@wrap(9, 0) TChapter(@len(1) Word("c"), 1, @skip(1) TVList([TParagraph(@len(1) Word("d"))]))])),
 				@wrap(8, 0) TVolume(@len(1) Word("e"), 2, @skip(1) TVList([TParagraph(@len(1) Word("f")),
-				@wrap(9,0) TChapter(@len(1) Word("g") , 1, @skip(1) TVList([TParagraph(@len(1) Word("h"))]))]))
+				@wrap(9,0) TChapter(@len(1) Word("g") , 2, @skip(1) TVList([TParagraph(@len(1) Word("h"))]))]))
 			])),
 			transform("\\volume{a}b\\chapter{c}d\\volume{e}f\\chapter{g}h"));
 		
-		
+		 
 		Assert.same(
 			expand(TVList([
-				@wrap(8, 0) TVolume(@len(1) Word("a"), 1, @skip(1) TVList([TParagraph(@len(1) Word("b")),
+				@wrap(8, 0) TVolume(@len(1) Word("a"), 1, @skip(1) TVList([TParagraph(@len(1) Word("b")), 
 				@wrap(9, 0) TChapter(@len(1) Word("c"), 1, @skip(1) TVList([TParagraph(@len(1) Word("d"))])),
 				@wrap(9, 0) TChapter(@len(1) Word("e"), 2, @skip(1) TVList([TParagraph(@len(1) Word("f")),
 				@wrap(9, 0) TSection(@len(1) Word("g"), 1, @skip(1) TVList([TParagraph(@len(1) Word("h"))])),
