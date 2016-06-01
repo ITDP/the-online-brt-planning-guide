@@ -319,6 +319,8 @@ class Test_03_Parser {
 	public function test_013_lists()
 	{
 		trace(parse("\\item foo\\item bar"));
+
+		// simple lists
 		Assert.same(
 			expand(@wrap(6,0)List([Paragraph(@len(1)Word("a")),@skip(6)@len(1)Paragraph(Word("b"))])),
 			parse("\\item a\\item b"));
@@ -329,6 +331,11 @@ class Test_03_Parser {
 				Paragraph(@len(1)Word("y"))
 			])),
 			parse("x\n\n\\item a\\item b\n\ny"));
+
+		// vertical lists in items
+		// Assert.same(
+		// 	expand(@wrap(6,0)List([Paragraph(@len(1)Word("a")),@skip(6)@len(1)Paragraph(Word("b"))])),
+		// 	parse("\\item[a]\\item[b]"));
 	}
 }
 
