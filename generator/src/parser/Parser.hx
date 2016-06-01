@@ -150,7 +150,7 @@ class Parser {
 
 	function arg<T>(internal:Stop->T, toToken:Null<Token>, ?desc:String):{ val:T, pos:Position }
 	{
-		while (peek().def.match(TWordSpace(_)))
+		while (peek().def.match(TWordSpace(_) | TLineComment(_) | TBlockComment(_)))
 			discard();
 		var open = discard();
 		if (!open.def.match(TBrOpen)) missingArg(open.pos, toToken, desc);

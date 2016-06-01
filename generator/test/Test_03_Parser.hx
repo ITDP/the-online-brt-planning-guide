@@ -337,5 +337,30 @@ class Test_03_Parser {
 		// 	expand(@wrap(6,0)List([Paragraph(@len(1)Word("a")),@skip(6)@len(1)Paragraph(Word("b"))])),
 		// 	parse("\\item[a]\\item[b]"));
 	}
+
+	public function test_014_discardable_tokens()
+	{
+		// before arguments
+		Assert.same(
+			expand(Paragraph(@wrap(6,1)Emphasis(@skip(1)@len(1)Word("a")))),
+			parse("\\emph {a}"));
+		Assert.same(
+			expand(Paragraph(@wrap(6,1)Emphasis(@skip(1)@len(1)Word("a")))),
+			parse("\\emph\n{a}"));
+		Assert.same(
+			expand(Paragraph(@wrap(6,1)Emphasis(@skip(6)@len(1)Word("a")))),
+			parse("\\emph//foo\n{a}"));
+		Assert.same(
+			expand(Paragraph(@wrap(6,1)Emphasis(@skip(7)@len(1)Word("a")))),
+			parse("\\emph/*foo*/{a}"));
+
+		// after argument opening braces
+		Assert.same(
+			expand(Paragraph(@wrap(6,1)Emphasis(@skip(5)HList([@len(1)Wordspace,@len(1)Word("a")])))),
+			parse("\\emph{//foo\na}"));  // the HList is needed so that `a//b\nc` doesn't become `ac`
+		Assert.same(
+			expand(Paragraph(@wrap(6,1)Emphasis(@skip(7)@len(1)Word("a")))),
+			parse("\\emph{/*foo*/a}"));
+	}
 }
 
