@@ -299,12 +299,12 @@ class Parser {
 		return mk(Quotation(text, author), greaterThan.pos.span(author.pos));
 	}
 
-	function listItem(mark:Token)
+	function listItem(mark:Token, stop:Stop)
 	{
 		assert(mark.def.match(TCommand("item")), mark);
 		var item = optArg(vlist, mark, "item content");
 		if (item == null) {
-			var i = vertical({ before:TCommand("item") });
+			var i = vertical(stop);
 			item = { val:i, pos:i.pos };
 		}
 		// TODO validation and error handling
@@ -313,11 +313,11 @@ class Parser {
 	}
 
 	// see /generator/docs/list-design.md
-	function list(at:Position)
+	function list(at:Position, stop:Stop)
 	{
 		var li = [];
 		while (peek().def.match(TCommand("item")))
-			li.push(listItem(discard()));
+			li.push(listItem(discard(), stop));
 		assert(li.length > 0, li);  // we're sure that li.length > 0 since we started with \item
 		return mk(List(li), at.span(li[li.length - 1].pos));
 	}
@@ -345,7 +345,7 @@ class Parser {
 			case "volume", "chapter", "section", "subsection", "subsubsection": hierarchy(discard());
 			case "figure": figure(discard());
 			case "quotation": quotation(discard());
-			case "item": list(peek().pos);
+			case "item": list(peek().pos, stop);
 			case name if (Lambda.has(horizontalCommands, name)): paragraph(stop);
 			case _: throw new UnknownCommand(lexer, peek().pos);
 			}

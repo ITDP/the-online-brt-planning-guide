@@ -103,6 +103,9 @@ class Test_03_Parser {
 		Assert.same(
 			expand(VList([Paragraph(@len(1)Word("a")),@wrap(9,1)Section(@len(1)Word("b"))])),
 			parse("a\\section{b}"));
+		Assert.same(
+			expand(VList([Paragraph(@len(1)Word("a")),List([@wrap(6,0)Paragraph(@len(1)Word("b"))])])),
+			parse("a\\item b"));
 	}
 
 	public function test_003_emphasis()
