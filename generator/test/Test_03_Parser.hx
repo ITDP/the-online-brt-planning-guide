@@ -322,20 +322,40 @@ class Test_03_Parser {
 
 		// simple lists
 		Assert.same(
-			expand(@wrap(6,0)List([Paragraph(@len(1)Word("a")),@skip(6)@len(1)Paragraph(Word("b"))])),
+			expand(List([@wrap(6,0)Paragraph(@len(1)Word("a"))])),
+			parse("\\item a"));
+		Assert.same(
+			expand(List([@wrap(6,0)Paragraph(@len(1)Word("a")),@wrap(6,0)Paragraph(@len(1)Word("b"))])),
 			parse("\\item a\\item b"));
 		Assert.same(
 			expand(VList([
 				Paragraph(@len(1)Word("x")),@skip(2)
-				@wrap(6,0)List([Paragraph(@len(1)Word("a")),@skip(6)@len(1)Paragraph(Word("b"))]),@skip(2)
+				List([@wrap(6,0)Paragraph(@len(1)Word("a")),@wrap(6,0)Paragraph(@len(1)Word("b"))]),@skip(2)
 				Paragraph(@len(1)Word("y"))
 			])),
 			parse("x\n\n\\item a\\item b\n\ny"));
 
 		// vertical lists in items
-		// Assert.same(
-		// 	expand(@wrap(6,0)List([Paragraph(@len(1)Word("a")),@skip(6)@len(1)Paragraph(Word("b"))])),
-		// 	parse("\\item[a]\\item[b]"));
+		Assert.same(
+			expand(List([@wrap(6,1)Paragraph(@len(1)Word("a"))])),
+			parse("\\item[a]"));
+		Assert.same(
+			expand(List([@wrap(6,1)Paragraph(@len(1)Word("a")),@wrap(6,1)Paragraph(@len(1)Word("b"))])),
+			parse("\\item[a]\\item[b]"));
+		Assert.same(
+			expand(VList([
+				Paragraph(@len(1)Word("x")),@skip(2)
+				List([@wrap(6,1)Paragraph(@len(1)Word("a")),@wrap(6,1)Paragraph(@len(1)Word("b"))]),@skip(2)
+				Paragraph(@len(1)Word("y"))
+			])),
+			parse("x\n\n\\item[a]\\item[b]\n\ny"));
+		Assert.same(
+			expand(List([
+				@wrap(6,1)VList([
+					Paragraph(@len(1)Word("a")),@skip(2)
+					List([@wrap(6,0)Paragraph(@len(1)Word("x")),@wrap(6,0)Paragraph(@len(1)Word("y"))])]),
+				@wrap(6,1)Paragraph(@len(1)Word("b"))])),
+			parse("\\item[a\n\n\\item x\\item y]\\item[b]"));
 	}
 
 	public function test_014_discardable_tokens()
