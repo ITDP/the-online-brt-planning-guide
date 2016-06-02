@@ -1,5 +1,5 @@
-\meta\skip{volume}{2}
-\meta\skip{chapter}{8}
+\meta\reset{volume}{2}
+\meta\reset{chapter}{8}
 /* since we're starting at volume 3/chapter 9 */
 
 \volume{Communications and Marketing}

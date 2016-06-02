@@ -323,15 +323,15 @@ class Parser {
 		return mk(List(li), at.span(li[li.length - 1].pos));
 	}
 
-	function metaSkip(cmd:Token)
+	function metaReset(cmd:Token)
 	{
-		assert(cmd.def.match(TCommand("skip")), cmd);
+		assert(cmd.def.match(TCommand("reset")), cmd);
 		var name = arg(rawHorizontal, cmd, "counter name");
 		if (!Lambda.has(["volume","chapter"], name.val)) badArg(name.pos, "counter name should be `volume` or `chapter`");
-		var val = arg(rawHorizontal, cmd, "counter value");
+		var val = arg(rawHorizontal, cmd, "reset value");
 		var no = val.val != null ? Std.parseInt(StringTools.trim(val.val)) : null;
-		if (no == null || no <= 0) badArg(val.pos, "counter value must be strictly positive integer");
-		return mk(MetaSkip(name.val, no), cmd.pos.span(val.pos));
+		if (no == null || no <= 0) badArg(val.pos, "reset value must be strictly greater or equal to zero");
+		return mk(MetaReset(name.val, no), cmd.pos.span(val.pos));
 	}
 
 	function meta(cmd:Token)
@@ -340,7 +340,7 @@ class Parser {
 		while (peek().def.match(TWordSpace(_) | TLineComment(_) | TBlockComment(_)))
 			discard();
 		return switch peek().def {
-		case TCommand("skip"): metaSkip(discard());
+		case TCommand("reset"): metaReset(discard());
 		case _: unexpected(peek()); null;
 		}
 	}

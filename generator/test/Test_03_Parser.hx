@@ -394,25 +394,25 @@ class Test_03_Parser {
 	public function test_015_set_counter()
 	{
 		Assert.same(
-			expand(@skip(5)@len(16)MetaSkip("volume", 2)),
-			parse("\\meta\\skip{volume}{2}"));
+			expand(@skip(5)@len(17)MetaReset("volume", 2)),
+			parse("\\meta\\reset{volume}{2}"));
 		Assert.same(
-			expand(@skip(5)@len(17)MetaSkip("chapter", 8)),
-			parse("\\meta\\skip{chapter}{8}"));
+			expand(@skip(5)@len(18)MetaReset("chapter", 8)),
+			parse("\\meta\\reset{chapter}{8}"));
 
-		parsingError("\\meta\\skip{section}{1}", BadValue);
-		parsingError("\\meta\\skip{subsection}{1}", BadValue);
-		parsingError("\\meta\\skip{subsubsection}{1}", BadValue);
+		parsingError("\\meta\\reset{section}{1}", BadValue);
+		parsingError("\\meta\\reset{subsection}{1}", BadValue);
+		parsingError("\\meta\\reset{subsubsection}{1}", BadValue);
 
-		parsingError("\\meta\\skip{volume}{a}", BadValue);
-		parsingError("\\meta\\skip{volume}{-1}", BadValue);
-		// parsingError("\\meta\\skip{volume}{1a}", BadValue);  // FIXME
+		parsingError("\\meta\\reset{volume}{a}", BadValue);
+		parsingError("\\meta\\reset{volume}{-1}", BadValue);
+		// parsingError("\\meta\\reset{volume}{1a}", BadValue);  // FIXME
 
-		parsingError("\\meta\\skip{}{1}", BadValue);
-		parsingError("\\meta\\skip{volume}{}", BadValue);
+		parsingError("\\meta\\reset{}{1}", BadValue);
+		parsingError("\\meta\\reset{volume}{}", BadValue);
 
-		parsingError("\\meta\\skip", MissingArgument, ~/name/);
-		parsingError("\\meta\\skip{volume}", MissingArgument, ~/value/);
+		parsingError("\\meta\\reset", MissingArgument, ~/name/);
+		parsingError("\\meta\\reset{volume}", MissingArgument, ~/value/);
 	}
 }
 
