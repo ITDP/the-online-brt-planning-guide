@@ -385,11 +385,13 @@ class Parser {
 		this.cache = cache;
 	}
 
+#if sys
 	public static function parse(path:String, ?cache:FileCache)
 	{
 		var lex = new Lexer(sys.io.File.getBytes(path), path);
 		var parser = new Parser(lex, cache);
 		return parser.file();
 	}
+#end
 }
 
