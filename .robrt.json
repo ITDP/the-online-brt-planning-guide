@@ -14,11 +14,11 @@
 			"cd $ROBRT_REPOSITORY_DIR",
 			"generator/bin/obrt gen guide/the-brt-planning-guide.src",
 
-			"mkdir -p $ROBRT_REPOSITORY_DIR/bin",
+			"mkdir -p $ROBRT_OUTPUT_DIR/bin",
 			"cp -r generator/docs/design/web/mockup $ROBRT_OUTPUT_DIR/web-mockup",
 			"cp -r guide/the-brt-planning-guide.src.html $ROBRT_OUTPUT_DIR/guide",
 			"cp generator/docs/design/web/mockup/style.css $ROBRT_OUTPUT_DIR/guide",
-			"cp generator/bin/{obrt.n,obrt.js} $ROBRT_REPOSITORY_DIR/bin/"
+			"cp generator/bin/{obrt.n,obrt.js} $ROBRT_OUTPUT_DIR/bin/"
 		]
 	}
 }
