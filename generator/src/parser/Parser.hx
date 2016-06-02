@@ -323,15 +323,26 @@ class Parser {
 		return mk(List(li), at.span(li[li.length - 1].pos));
 	}
 
-	function setCounter(cmd:Token)
+	function number(cmd:Token)
 	{
-		assert(cmd.def.match(TCommand("setcounter")));
+		assert(cmd.def.match(TCommand("number")), cmd);
 		var name = arg(rawHorizontal, cmd, "counter name");
 		if (!Lambda.has(["volume","chapter"], name.val)) badArg(name.pos, "counter name should be `volume` or `chapter`");
 		var val = arg(rawHorizontal, cmd, "counter value");
 		var no = val.val != null ? Std.parseInt(StringTools.trim(val.val)) : null;
 		if (no == null || no <= 0) badArg(val.pos, "counter value must be strictly positive integer");
 		return mk(SetCounter(name.val, no), cmd.pos.span(val.pos));
+	}
+
+	function meta(cmd:Token)
+	{
+		assert(cmd.def.match(TCommand("meta")), cmd);
+		while (peek().def.match(TWordSpace(_) | TLineComment(_) | TBlockComment(_)))
+			discard();
+		return switch peek().def {
+		case TCommand("number"): number(discard());
+		case _: unexpected(peek()); null;
+		}
 	}
 
 	function paragraph(stop:Stop)
@@ -358,7 +369,7 @@ class Parser {
 			case "figure": figure(discard());
 			case "quotation": quotation(discard());
 			case "item": list(peek().pos, stop);
-			case "setcounter": setCounter(discard());
+			case "meta": meta(discard());
 			case name if (Lambda.has(horizontalCommands, name)): paragraph(stop);
 			case _: throw new UnknownCommand(lexer, peek().pos);
 			}
