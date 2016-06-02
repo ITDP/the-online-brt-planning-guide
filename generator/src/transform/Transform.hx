@@ -1,7 +1,8 @@
 package transform;  // TODO move out of the package
 
-import parser.Token;
+import Assertion.*;
 import parser.Ast;
+import parser.Token;
 import transform.Document;
 
 using parser.TokenTools;
@@ -79,7 +80,7 @@ class Transform {
 		}
 	}
 
-	static function consume(rest:Rest, stopBefore: Int, count : Array<Int>, names : Array<String>):TElem
+	static function consume(rest:Rest, stopBefore:Null<Int>, count : Array<Int>, names : Array<String>):TElem
 	{
 		var tf = [];
 		while (rest.length > 0) {
@@ -94,7 +95,7 @@ class Transform {
 				default : null;
 			}
 
-			if (stopBefore != null && type <= stopBefore) {
+			if (stopBefore != null && type != null && type <= stopBefore) {
 				rest.unshift(v);
 				break;
 			}
