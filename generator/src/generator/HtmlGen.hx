@@ -1,5 +1,6 @@
 package generator;  // TODO move out of the package
 
+import generator.HtmlGen.Nav;
 import sys.FileSystem;
 import transform.Document;
 
@@ -8,10 +9,15 @@ import parser.Ast;
 
 import haxe.io.Path.join in joinPaths;
 
+typedef Nav = {
+	name : String,
+	id : String
+}
+
 typedef Path = String;
 
 class HtmlGen {
-	
+
 	static inline var VOL = 0;
 	static inline var CHA = 1;
 	static inline var SEC = 2;
@@ -19,9 +25,12 @@ class HtmlGen {
 	static inline var SUBSUB = 4;
 	//Figs,tbls,etc
 	static inline var OTH = 5;
-	
+
+	//
+	var navs : Array<Nav>;
+
 	var dest:Path;
-	
+
 	function horizontal(h:HElem)
 	{
 		return switch h.def {
@@ -36,81 +45,24 @@ class HtmlGen {
 			buf.toString();
 		}
 	}
-	 
-	function idGen(counts : Array<Int>, elem : Int, sep : String)
-	{
-		var i = 0;
-		var str = new StringBuf();
-		while (i <= elem)
-		{
-			if(i != elem)
-				str.add(counts[i] + sep);
-			else
-				str.add(counts[i]);
-			i++;
-		}
-		
-		return str.toString();
-	}
-	function hierarchy(cur : TElem, counts : Array<Int>)
-	{
-		var buff = new StringBuf();
-		var _children = null;
-		var type : Int = null;
-		
-		switch(cur.def)
-		{
-			case TVolume(name, count, children):
-				counts[VOL] = count;
-				_children = children;
-				type = VOL;				
-				buff.add('<section id="${idGen(counts, VOL, "_")}"><h1>${horizontal(name)}</h1>');
-			case TChapter(name, count, children):
-				counts[CHA] = count;
-				_children = children;
-				type = VOL;
-				buff.add('<section id="${idGen(counts, CHA, "_")}"><h2>${idGen(counts, CHA, ".")} ${horizontal(name)}</h2>');
-			case TSection(name, count, children):
-				counts[SEC] = count;
-				type = VOL;
-				_children = children;
-				buff.add('<section id="${idGen(counts, SEC, "_")}"><h3>${idGen(counts, SEC, ".")} ${horizontal(name)}</h2>');
-			case TSubSection(name, count, children):
-				counts[SUB] = count;
-				_children = children;
-				type = VOL;
-				buff.add('<section id="${idGen(counts, SUB, "_")}"><h4>${idGen(counts, SUB, ".")} ${horizontal(name)}</h4>');
-			case TSubSubSection(name, count, children):
-				counts[SUBSUB] = count;
-				_children = children;
-				type = VOL;
-				buff.add('<section id="${idGen(counts, SUBSUB, "_")}"><h5>${idGen(counts, SUBSUB, ".")} ${horizontal(name)}</h5>');
-			default:
-				throw "Invalid element " + cur.def;
-		}
-		
-		buff.add(vertical(_children, counts));
-		
-		buff.add("</section>");
-		
-		return buff.toString();
-	}
-	
-	
+
 	function vertical(v:TElem, counts : Array<Int>)
 	{
 		switch v.def {
-		case TVolume(name, count, children), TChapter(name, count, children), 
-		TSection(name, count, children), TSubSection(name, count, children),
-		TSubSubSection(name, count, children):
+		case TVolume(name, count, id, children), TChapter(name, count, id, children),
+		TSection(name, count, id, children), TSubSection(name, count, id, children),
+		TSubSubSection(name, count, id, children):
 			return hierarchy(v, counts);
-		case TFigure(path, caption, copyright, count):
+		case TFigure(path, caption, copyright, count,id):
 			var caption = horizontal(caption);
 			var copyright = horizontal(copyright);
+			navs.push({name : '', id : id});
 			//TODO: Make FIG SIZE param
-			return '<section class="md img-block><img src="${path}"/><p><strong>Fig ${count}</strong>${caption} <em>${caption}</em></p>'; 
+			return '<section class="md img-block id="${id}"><img src="${path}"/><p><strong>Fig ${count}</strong>${caption} <em>${caption}</em></p>';
 		case TQuotation(t,a):
 			return '<blockquote class="md"><q>${horizontal(t)}</q><span>${horizontal(a)}</span></blockquote>';
+		case TParagraph(h):
+			return '<p>${horizontal(h)}</p>\n';
 		case TList(li):
 			var buf = new StringBuf();
 			buf.add("<ul>\n");
@@ -121,8 +73,6 @@ class HtmlGen {
 			}
 			buf.add("</ul>\n");
 			return buf.toString();
-		case TParagraph(h):
-			return '<p>${horizontal(h)}</p>\n';
 		case TVList(li):
 			var buf = new StringBuf();
 			for (i in li)
@@ -131,8 +81,100 @@ class HtmlGen {
 		}
 	}
 
+	function hierarchy(cur : TElem, counts : Array<Int>)
+	{
+		var buff = new StringBuf();
+		var _children = null;
+		var _name  = "";
+		var _id = "";
+		var type : Int = null;
+
+		switch(cur.def)
+		{
+			case TVolume(name, count, id, children):
+				_name = horizontal(name);
+				_id = id;
+				counts[VOL] = count;
+				_children = children;
+				type = VOL;
+			case TChapter(name, count,id, children):
+				_name = horizontal(name);
+				_id = id;
+				counts[CHA] = count;
+				_children = children;
+				type = CHA;
+			case TSection(name, count,id, children):
+				_name = horizontal(name);
+				_id = id;
+				counts[SEC] = count;
+				type = SEC;
+				_children = children;
+			case TSubSection(name, count,id, children):
+				_name = horizontal(name);
+				_id = id;
+				counts[SUB] = count;
+				_children = children;
+				type = SUB;
+			case TSubSubSection(name, count,id, children):
+				_name = horizontal(name);
+				_id = id;
+				counts[SUBSUB] = count;
+				_children = children;
+				type = SUBSUB;
+			default:
+				throw "Invalid element " + cur.def;
+		}
+
+
+		navs.push({id : _id , name : _name});
+
+		var count = countGen(counts, type, ".");
+
+		//Vol. doesnt add anything
+		if(type > 0)
+			buff.add('<section id="${_id}"><h${(type+1)}>${count} ${_name}</h${(type + 1)}>');
+		else
+			buff.add('<section id="${_id}">');
+
+		buff.add(vertical(_children, counts));
+
+		buff.add("</section>");
+
+		return buff.toString();
+	}
+
+	function processNav() : String
+	{
+		var leftTxt = new StringBuf();
+		var topTxt = new StringBuf();
+		topTxt.add("<ul class='menu'>");
+
+		for (n in navs)
+		{
+			if (n.id.indexOf("other.") == -1)
+			{
+				var idpartials = n.id.split(".");
+				//Assuming id ~= volume.Foo.chapter.bar.section.red.subsection.blue.subsub.grn
+				if (idpartials.length <= 4)
+				{
+					//TODO: Point to the right FILE
+					topTxt.add('<li><a href="#${n.id}">${n.name}</a></li>');
+				}
+				else
+				{
+
+				}
+			}
+		}
+
+		//TODO:
+		return "";
+	}
+
 	function document(doc:Document)
 	{
+		navs = new Array<Nav>();
+
 		var buf = new StringBuf();
 		buf.add('<meta charset="utf-8">
 		<title></title>
@@ -163,5 +205,24 @@ class HtmlGen {
 
 	public function new(dest:Path)
 		this.dest = dest;
+
+
+	function countGen(counts : Array<Int>, elem : Int, sep : String)
+	{
+		var i = 0;
+		var str = new StringBuf();
+		while (i <= elem)
+		{
+			if(i != elem)
+				str.add(counts[i] + sep);
+			else
+				str.add(counts[i]);
+			i++;
+		}
+
+		return str.toString();
+	}
+
+
 }
 
