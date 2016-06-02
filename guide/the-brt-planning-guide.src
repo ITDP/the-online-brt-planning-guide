@@ -1,4 +1,8 @@
-\volume{3}
+\meta\skip{volume}{2}
+\meta\skip{chapter}{8}
+/* since we're starting at volume 3/chapter 9 */
+
+\volume{Communications and Marketing}
 
 \chapter{Strategic Planning for Communications}
 
