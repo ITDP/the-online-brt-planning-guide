@@ -35,11 +35,11 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 
 	static var comment = @:rule [
 		"\\*/" => TBlockComment(buf.toString()),
-		"\\*" => {
+		"[*/]" => {
 			buf.add(lexer.current);
 			lexer.token(comment);
 		},
-		"[^*/]" => {
+		"[^*/]+" => {
 			buf.add(lexer.current);
 			lexer.token(comment);
 		}

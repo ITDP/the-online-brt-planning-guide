@@ -354,7 +354,7 @@ class Parser {
 
 	function vertical(stop:Stop):VElem
 	{
-		while (peek().def.match(TWordSpace(_) | TBreakSpace(_)))
+		while (peek().def.match(TWordSpace(_) | TBreakSpace(_) | TLineComment(_) | TBlockComment(_)))
 			discard();
 		return switch peek().def {
 		case tdef if (stop.before != null && Type.enumEq(tdef, stop.before)):

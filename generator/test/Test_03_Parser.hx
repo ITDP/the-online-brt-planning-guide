@@ -194,6 +194,10 @@ class Test_03_Parser {
 		Assert.same(
 			expand(VList([Paragraph(@len(1)Word("a")),@skip(7)Paragraph(@len(1)Word("b"))])),
 			parse("a/*x*/\n\nb"));
+
+		Assert.same(
+			expand(null),
+			parse("/* foo */"));
 	}
 
 	public function test_008_hierarchy_commands()

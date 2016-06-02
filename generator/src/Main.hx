@@ -1,5 +1,6 @@
-import haxe.io.Path;
 import Sys.*;
+import haxe.CallStack;
+import haxe.io.Path;
 import sys.FileSystem;
 
 class Main {
@@ -39,7 +40,8 @@ class Main {
 			}
 		} catch (e:Dynamic) {
 			println('Error: $e');
-			// TODO print the call stack
+			if (Sys.getEnv("DEBUG") == "1")
+				println(CallStack.toString(CallStack.exceptionStack()));
 			exit(2);
 		}
 	}
