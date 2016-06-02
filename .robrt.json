@@ -14,8 +14,8 @@
 			"cd $ROBRT_REPOSITORY_DIR",
 			"export DEBUG=1",
 			"nodejs --version",
-			"time nodejs generator/bin/obrt.js gen guide/the-brt-planning-guide.src",
 			"time generator/bin/obrt gen guide/the-brt-planning-guide.src",
+			"time nodejs generator/bin/obrt.js gen guide/the-brt-planning-guide.src",
 
 			"mkdir -p $ROBRT_OUTPUT_DIR/bin",
 			"cp -r generator/docs/design/web/mockup $ROBRT_OUTPUT_DIR/web-mockup",
