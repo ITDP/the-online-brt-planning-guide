@@ -11,7 +11,9 @@ import haxe.io.Path.join in joinPaths;
 
 typedef Nav = {
 	name : String,
-	id : String
+	id : String,
+	type : Int,
+	chd : Null<Array<Nav>>
 }
 
 typedef Path = String;
@@ -26,8 +28,9 @@ class HtmlGen {
 	//Figs,tbls,etc
 	static inline var OTH = 5;
 	
-	//
 	var navs : Array<Nav>;
+	var navTop : String;
+	var navLeft : String;
 	
 	var dest:Path;
 	
@@ -46,17 +49,17 @@ class HtmlGen {
 		}
 	}
 	
-	function vertical(v:TElem, counts : Array<Int>)
+	function vertical(v:TElem, counts : Array<Int>, curNav : Null<Nav>)
 	{
 		switch v.def {
 		case TVolume(name, count, id, children), TChapter(name, count, id, children), 
 		TSection(name, count, id, children), TSubSection(name, count, id, children),
 		TSubSubSection(name, count, id, children):
-			return hierarchy(v, counts);
+			return hierarchy(v, counts, curNav);
 		case TFigure(path, caption, copyright, count,id):
 			var caption = horizontal(caption);
 			var copyright = horizontal(copyright);
-			navs.push({name : '', id : id});
+			//navs.push({name : '', id : id,type : OTH, chd : null});
 			//TODO: Make FIG SIZE param
 			return '<section class="md img-block id="${id}"><img src="${path}"/><p><strong>Fig ${count}</strong>${caption} <em>${caption}</em></p>'; 
 		case TQuotation(t,a):
@@ -66,12 +69,12 @@ class HtmlGen {
 		case TVList(li):
 			var buf = new StringBuf();
 			for (i in li)
-				buf.add(vertical(i, counts));
+				buf.add(vertical(i, counts, curNav));
 			return buf.toString();
 		}
 	}
 	
-	function hierarchy(cur : TElem, counts : Array<Int>)
+	function hierarchy(cur : TElem, counts : Array<Int>, curNav : Nav)
 	{
 		var buff = new StringBuf();
 		var _children = null;
@@ -115,8 +118,13 @@ class HtmlGen {
 				throw "Invalid element " + cur.def;
 		}
 		
-		
-		navs.push({id : _id , name : _name});
+		var _nav = {id : _id , name : _name, type : type, chd : []};
+		if(curNav != null)
+			curNav.chd.push(_nav);
+		else
+			navs.push(_nav);
+			
+		curNav = _nav;
 		
 		var count = countGen(counts, type, ".");
 		
@@ -126,41 +134,140 @@ class HtmlGen {
 		else
 			buff.add('<section id="${_id}">');
 		
-		buff.add(vertical(_children, counts));
+		buff.add(vertical(_children, counts, curNav));
 		
 		buff.add("</section>");
 		
 		return buff.toString();
 	}
 	
-	function processNav() : String
+	function processNav() : { volumes : String, sections : String, topNavJs : String}
 	{
-		var leftTxt = new StringBuf();
-		var topTxt = new StringBuf();
-		topTxt.add("<ul class='menu'>");
+		var topBuff = new StringBuf();
+		var leftBuff = new StringBuf();
 		
+		//Nav options (will gen a JS);
+		var optBuff = new Map<String, {list : String, type : Int}>();
+		
+		topBuff.add("<header><ul class='menu'><li><a> BRTPG</a><ul class='item hide'>");
+		
+		leftBuff.add("<nav><ul>");
+		
+		//Should be volumes
 		for (n in navs)
 		{
-			if (n.id.indexOf("other.") == -1)
+			topBuff.add('<li id="${n.id}">${n.name}</li>');
+			if (n.chd != null && n.chd.length > 0)
 			{
-				var idpartials = n.id.split(".");
-				//Assuming id ~= volume.Foo.chapter.bar.section.red.subsection.blue.subsub.grn
-				if (idpartials.length <= 4)
+				var cha = '<a> Chapters </a><ul class=\"item hide\">';
+				
+				for (c in n.chd)
 				{
-					//TODO: Point to the right FILE
-					topTxt.add('<li><a href="#${n.id}">${n.name}</a></li>');
-				}
-				else
-				{
+					cha += '<li id="${c.id}">${c.name}</li>';
 					
+					if (c.chd != null && c.chd.length > 0)
+					{
+						var sec = "<ul class=\"item hide\">";
+						
+							for (se in c.chd)
+							{
+								trace(se);
+								//TODO: Href the right HTML
+								sec += '<li id="${se.id}>${se.name}</li>';
+								
+								//I think I'll need a map instead(so I gen only the necessary sections
+								for (su in se.chd)
+								{
+									trace("here?");
+									leftBuff.add('<li><a href="#${su.id}">${su.name}</li>');
+									if (se.chd != null && se.chd.length > 0)
+									{
+										leftBuff.add('<li><ul>');
+										for (ss in su.chd)
+										{
+											leftBuff.add('<li><a href="#${ss.id}">${ss.name}</a></li>');
+										}
+										leftBuff.add('</ul></li>');
+										
+									}
+								}
+								
+							}
+						sec += '</ul>';
+						optBuff.set(c.id, {list : sec, type : SEC});
+					}
 				}
+				
+				cha += "</ul>";
+				optBuff.set(n.id, {list : cha, type : CHA});
 			}
+			
+			
 		}
 		
-		//TODO:
-		return "";
+		topBuff.add("</li></ul></li><li>/</li></ul></header>");
+		leftBuff.add('</ul></nav>');
+		
+		return {volumes : topBuff.toString(), sections : leftBuff.toString(), topNavJs : genNavJs(optBuff)};
 	}
 	
+	
+	function genNavJs(values : Map<String,{list : String, type : Int}>) : String
+	{
+		var buff = new StringBuf();
+		buff.add('<script>');
+		buff.add("$('document').ready(function(){\n");
+		
+		buff.add("$('header li ul').hide().removeClass('hide');
+		$('header li').hover(
+		  function () {
+			$('ul', this).stop().slideDown(100);
+		  },
+		  function () {
+			$('ul', this).stop().slideUp(100);
+		  }
+		);
+		");
+		for (key in values.keys())
+		{
+			var id = key.split(".").join("\\\\.");
+			//TODO: Optimize
+			buff.add('$("#${id}").click(function()
+			{
+				var v = {type : ${values.get(key).type}, list : \'${values.get(key).list}\'};
+				var menu = $(".menu");
+				while (((v.type + 1)) <= ((menu.children("li").length-1)/2))
+				{
+					console.log(menu);
+					console.log(menu.children("li"));
+					menu.children("li").last().remove();
+				}
+				
+				menu.append("<li>" + v.list + "</li>");
+				menu.append("<li>/<li>");
+				
+				//Bind evt again (TODO: Rewrite)
+				$("header li").off("hover");
+				$("header li ul").hide().removeClass("hide");
+				$("header li").hover(
+				  function () {
+					$("ul", this).stop().slideDown(100);
+				  },
+				  function () {
+					$("ul", this).stop().slideUp(100);
+				  }
+				);
+			}); '
+			);
+			
+			buff.add("\n");
+		}
+		
+		buff.add("});</script>");
+		return buff.toString();
+	}
+	
+		
 	function document(doc:Document)
 	{
 		navs = new Array<Nav>();
@@ -178,8 +285,14 @@ class HtmlGen {
 	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 	<!-- Jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script><body><div class="container"><div class="col-text"\n');
-		buf.add(vertical(doc,[0,0,0,0,0,0]));
-		buf.add('</div></div></body>');
+		buf.add(vertical(doc,[0,0,0,0,0,0], null));
+		buf.add('</div>');
+		var navElements = processNav();
+		buf.add(navElements.sections);
+		buf.add('</div>');
+		buf.add(navElements.volumes);
+		buf.add(navElements.topNavJs);
+		buf.add('</body>');
 		sys.io.File.saveContent(joinPaths([dest,"index.html"]), buf.toString());
 	}
 
