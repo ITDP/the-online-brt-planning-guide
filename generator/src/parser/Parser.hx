@@ -385,7 +385,7 @@ class Parser {
 		this.cache = cache;
 	}
 
-#if sys
+#if (sys || hxnodejs)
 	public static function parse(path:String, ?cache:FileCache)
 	{
 		var lex = new Lexer(sys.io.File.getBytes(path), path);

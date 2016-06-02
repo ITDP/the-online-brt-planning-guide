@@ -26,7 +26,11 @@ class Main {
 		print(BANNER);
 
 		try {
-			switch Sys.args() {
+			var args = Sys.args();
+#if nodejs
+			args = args.slice(2);
+#end
+			switch args {
 			case [cmd, path] if (StringTools.startsWith("generate", cmd)):
 				generate(path);
 			case _:

@@ -10,6 +10,12 @@
 
 --next
 
+-main Main
+-js bin/obrt.js
+-lib hxnodejs
+
+--next
+
 -main RunTests
 -js bin/tests.js
 -cp test
