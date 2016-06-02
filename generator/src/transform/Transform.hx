@@ -100,7 +100,9 @@ class Transform {
 				break;
 			}
 
-			tf.push(vertical(v, rest, count, names));
+			var tv = vertical(v, rest, count, names);
+			if (tv != null)
+				tf.push(tv);
 		}
 
 		if(tf.length > 1)
@@ -116,8 +118,11 @@ class Transform {
 		switch v.def {
 		case VList(li):
 			var tf = [];
-			while (li.length > 0)
-				tf.push(vertical(li.shift(), li, count, names));
+			while (li.length > 0) {
+				var v = vertical(li.shift(), li, count, names);
+				if (v != null)
+					tf.push(v);
+			}
 			return mk(TVList(tf), v.pos);  // FIXME v.pos.span(???)
 		case Volume(name), Chapter(name), Section(name), SubSection(name), SubSubSection(name):
 			return hierarchy(v, rest, v.pos, count, names);
@@ -129,11 +134,17 @@ class Transform {
 		case Quotation(text, by):
 			return mk(TQuotation(text, by), v.pos);
 		case List(items):
-			return mk(TList(items.map(vertical.bind(_, rest, count, names))), v.pos);
+			var tf = [];
+			for (i in items) {
+				var v = vertical(i, rest, count, names);
+				if (v != null)
+					tf.push(v);
+			}
+			return mk(TList(tf), v.pos);
 		case Paragraph(h):
 			return mk(TParagraph(h), v.pos);
 		case _:  // FIXME can't leave this here
-			return mk(null, v.pos);
+			return null;
 		}
 	}
 
