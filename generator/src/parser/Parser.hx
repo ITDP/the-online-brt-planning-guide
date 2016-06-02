@@ -323,9 +323,9 @@ class Parser {
 		return mk(List(li), at.span(li[li.length - 1].pos));
 	}
 
-	function number(cmd:Token)
+	function metaSkip(cmd:Token)
 	{
-		assert(cmd.def.match(TCommand("number")), cmd);
+		assert(cmd.def.match(TCommand("skip")), cmd);
 		var name = arg(rawHorizontal, cmd, "counter name");
 		if (!Lambda.has(["volume","chapter"], name.val)) badArg(name.pos, "counter name should be `volume` or `chapter`");
 		var val = arg(rawHorizontal, cmd, "counter value");
@@ -340,7 +340,7 @@ class Parser {
 		while (peek().def.match(TWordSpace(_) | TLineComment(_) | TBlockComment(_)))
 			discard();
 		return switch peek().def {
-		case TCommand("number"): number(discard());
+		case TCommand("skip"): metaSkip(discard());
 		case _: unexpected(peek()); null;
 		}
 	}
