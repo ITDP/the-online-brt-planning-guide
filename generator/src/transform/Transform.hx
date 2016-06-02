@@ -143,6 +143,13 @@ class Transform {
 			return mk(TList(tf), v.pos);
 		case Paragraph(h):
 			return mk(TParagraph(h), v.pos);
+		case SetCounter(name, val):
+			switch name {
+			case "volume": count[VOL] = val;
+			case "chapter": count[CHA] = val;
+			case _: throw 'Unexpected counter name: $name';
+			}
+			return null;
 		case _:  // FIXME can't leave this here
 			return null;
 		}
