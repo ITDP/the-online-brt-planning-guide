@@ -29,6 +29,7 @@ class Main {
 		try {
 			var args = Sys.args();
 #if hxnodejs
+			trace(args);
 			args = args.slice(2);
 #end
 			switch args {
