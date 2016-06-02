@@ -11,6 +11,7 @@ class Main {
 
 	static function generate(path)
 	{
+		if (debug) println('The current working dir is: `${Sys.getCwd()}`');
 		if (!FileSystem.exists(path)) throw 'File does not exist: $path';
 		if (FileSystem.isDirectory(path)) throw 'Not a file: $path';
 
