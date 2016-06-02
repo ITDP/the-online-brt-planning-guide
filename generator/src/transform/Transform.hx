@@ -1,7 +1,8 @@
 package transform;  // TODO move out of the package
 
-import parser.Token;
+import Assertion.*;
 import parser.Ast;
+import parser.Token;
 import transform.Document;
 
 using parser.TokenTools;
@@ -9,7 +10,7 @@ using parser.TokenTools;
 private typedef Rest = Array<VElem>;
 
 class Transform {
-	
+
 	static inline var VOL = 0;
 	static inline var CHA = 1;
 	static inline var SEC = 2;
@@ -17,11 +18,11 @@ class Transform {
 	static inline var SUBSUB = 4;
 	//Figs,tbls,etc
 	static inline var OTH = 5;
-	
+
 	static function mk<T>(def:T, pos:Position):Elem<T>
 		return { def:def, pos:pos };
-	
-		
+
+
 	static function hierarchy(cur : VElem, rest : Rest, pos : Position, count : Array<Int>, names : Array<String>) : TElem
 	{
 		var type = null;
@@ -40,28 +41,28 @@ class Transform {
 			case SubSection(name):
 				type = SUB;
 				_name = name;
-			case SubSubSection(name): 
+			case SubSubSection(name):
 				type = SUBSUB;
 				_name = name;
 			default:
-				throw "Invalid " + cur.def;				
+				throw "Invalid " + cur.def;
 		}
-		
-		count[type] = ++count[type]; 
-		 
+
+		count[type] = ++count[type];
+
 		var t = type+1;
-		
+
 		//Reset Sec/Sub/SubSub when sec changes OR when chapter changes everything goes to waste (Reset all BUT VOL AND Chapter)
 		while ((type >= SEC && t < OTH) || (type == CHA && t < count.length))
 		{
 			count[t] = 0;
 			t++;
 		}
-		
+
 		names[type] = horizontal(_name);
 		var tf = consume(rest, type, count, names);
 		var id = idGen(names, type);
-		
+
 		return switch(type)
 		{
 			case VOL:
@@ -78,12 +79,12 @@ class Transform {
 				throw "Invalid type " + type; //TODO: FIX
 		}
 	}
-	
-	static function consume(rest:Rest, stopBefore: Int, count : Array<Int>, names : Array<String>):TElem
+
+	static function consume(rest:Rest, stopBefore:Null<Int>, count : Array<Int>, names : Array<String>):TElem
 	{
 		var tf = [];
 		while (rest.length > 0) {
-			var v = rest.shift();			
+			var v = rest.shift();
 			var type = switch(v.def)
 			{
 				case Volume(_): VOL;
@@ -93,15 +94,17 @@ class Transform {
 				case SubSubSection(_) : SUBSUB;
 				default : null;
 			}
-			
-			if (stopBefore != null && type <= stopBefore) {
+
+			if (stopBefore != null && type != null && type <= stopBefore) {
 				rest.unshift(v);
 				break;
 			}
-			
-			tf.push(vertical(v, rest, count, names));
+
+			var tv = vertical(v, rest, count, names);
+			if (tv != null)
+				tf.push(tv);
 		}
-		
+
 		if(tf.length > 1)
 			return mk(TVList(tf), tf[0].pos.span(tf[tf.length - 1].pos));
 		else if(tf.length == 1)
@@ -109,14 +112,17 @@ class Transform {
 		else //TODO: THROW
 			return null;
 	}
-	
+
 	static function vertical(v:VElem, rest:Rest, count : Array<Int>, names : Array<String>):TElem
 	{
 		switch v.def {
 		case VList(li):
 			var tf = [];
-			while (li.length > 0)
-				tf.push(vertical(li.shift(), li, count, names));
+			while (li.length > 0) {
+				var v = vertical(li.shift(), li, count, names);
+				if (v != null)
+					tf.push(v);
+			}
 			return mk(TVList(tf), v.pos);  // FIXME v.pos.span(???)
 		case Volume(name), Chapter(name), Section(name), SubSection(name), SubSubSection(name):
 			return hierarchy(v, rest, v.pos, count, names);
@@ -127,13 +133,28 @@ class Transform {
 			return mk(TFigure(path, caption, cp, count[OTH], name), v.pos);
 		case Quotation(text, by):
 			return mk(TQuotation(text, by), v.pos);
+		case List(items):
+			var tf = [];
+			for (i in items) {
+				var v = vertical(i, rest, count, names);
+				if (v != null)
+					tf.push(v);
+			}
+			return mk(TList(tf), v.pos);
 		case Paragraph(h):
 			return mk(TParagraph(h), v.pos);
-		case _:
-			return mk(null, v.pos);
+		case MetaSkip(name, val):
+			switch name {
+			case "volume": count[VOL] = val;
+			case "chapter": count[CHA] = val;
+			case _: throw 'Unexpected counter name: $name';
+			}
+			return null;
+		case _:  // FIXME can't leave this here
+			return null;
 		}
 	}
-	
+
 	static function horizontal(elem : HElem)
 	{
 		return switch(elem.def)
@@ -148,22 +169,22 @@ class Transform {
 					buf.add(horizontal(l));
 				}
 				buf.toString();
-			
+
 		}
 	}
 	public static function transform(parsed:parser.Ast) : TElem
 	{
 		var tf = vertical(parsed, [], [0,0,0,0,0,0],['','','','','','']);
-		
+
 		//return parsed;
 		return tf;
 	}
-	
+
 	static function idGen(names : Array<String>, elem : Int)
 	{
 		var i = 0;
 		var str = new StringBuf();
-		
+
 		while (i <= elem)
 		{
 			var before = switch(i)
@@ -183,30 +204,30 @@ class Transform {
 				default:
 					null;
 			}
-			
+
 			var clearstr = names[i];
-			
-			
+
+
 			clearstr = StringTools.replace(clearstr," ", "-");
-			
+
 			var reg = ~/[a-zA-Z0-9-]+/;
-			
+
 			if (!reg.match(clearstr))
 			{
 				i++;
 				continue;
 			}
-			
+
 			clearstr = reg.matched(0);
-			
+
 			if(i != elem)
 				str.add(before + clearstr + ".");
 			else
 				str.add(before + clearstr);
-			
-			i++;		
+
+			i++;
 		}
-		
+
 		return str.toString();
 	}
 

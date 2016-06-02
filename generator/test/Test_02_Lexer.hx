@@ -49,6 +49,7 @@ class Test_02_Lexer {
 
 		// block comments
 		Assert.same([TBlockComment(" foo "),TEof], defs("/* foo */"));
+		Assert.same([TWord("a"),TBreakSpace("\n\n"),TBlockComment(" foo "),TEof], defs("a\n\n/* foo */"));
 		Assert.raises(defs.bind("/*"));
 		Assert.raises(defs.bind("*/"));
 	}

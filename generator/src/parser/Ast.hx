@@ -22,6 +22,8 @@ enum VDef {
 	SubSubSection(name:HElem);
 	Figure(path:String, caption:HElem, copyright:HElem);  // TODO size?
 	Quotation(text:HElem, by:HElem);
+	List(items:Array<VElem>);
+	MetaSkip(name:String, val:Int);
 	Paragraph(h:HElem);
 	VList(elem:Array<VElem>);
 }

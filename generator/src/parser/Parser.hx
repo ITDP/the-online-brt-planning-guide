@@ -11,9 +11,9 @@ import parser.AstTools.*;
 using StringTools;
 using parser.TokenTools;
 
-typedef HOpts = {
-	?stopBefore:TokenDef,
-	?stopBeforeAny:Array<TokenDef>  // could possibly be simply stopBefore
+typedef Stop = {
+	?before:TokenDef,
+	?beforeAny:Array<TokenDef>  // could possibly replace before
 }
 
 typedef Path = String;
@@ -75,20 +75,20 @@ class Parser {
 	{
 		var open = discard();
 		if (!open.def.match(TAsterisk)) unexpected(open);
-		var li = hlist({ stopBefore:TAsterisk });
+		var li = hlist({ before:TAsterisk });
 		var close = discard();
 		if (!close.def.match(TAsterisk)) unclosed(open);
 		return mk(Emphasis(li), open.pos.span(close.pos));
 	}
 
-	function horizontal(opts:HOpts)
+	function horizontal(stop:Stop):HElem
 	{
 		while (peek().def.match(TLineComment(_) | TBlockComment(_)))
 			discard();
 		return switch peek() {
-		case { def:tdef } if (opts.stopBefore != null && Type.enumEq(tdef, opts.stopBefore)):
+		case { def:tdef } if (stop.before != null && Type.enumEq(tdef, stop.before)):
 			null;
-		case { def:tdef } if (opts.stopBeforeAny != null && Lambda.exists(opts.stopBeforeAny,Type.enumEq.bind(tdef))):
+		case { def:tdef } if (stop.beforeAny != null && Lambda.exists(stop.beforeAny,Type.enumEq.bind(tdef))):
 			null;
 		case { def:TWord(s), pos:pos }:
 			discard();
@@ -116,25 +116,25 @@ class Parser {
 		}
 	}
 
-	function hlist(opts:HOpts)
+	function hlist(stop:Stop)
 	{
 		var li = [];
 		while (true) {
-			var v = horizontal(opts);
+			var v = horizontal(stop);
 			if (v == null) break;
 			li.push(v);
 		}
 		return mkList(HList(li));
 	}
 
-	function rawHorizontal(opts:HOpts)
+	function rawHorizontal(stop:Stop)
 	{
 		var buf = new StringBuf();
 		while (true) {
 			switch peek() {
-			case { def:tdef } if (opts.stopBefore != null && Type.enumEq(tdef, opts.stopBefore)):
+			case { def:tdef } if (stop.before != null && Type.enumEq(tdef, stop.before)):
 				break;
-			case { def:tdef } if (opts.stopBeforeAny != null && Lambda.exists(opts.stopBeforeAny,Type.enumEq.bind(tdef))):
+			case { def:tdef } if (stop.beforeAny != null && Lambda.exists(stop.beforeAny,Type.enumEq.bind(tdef))):
 				break;
 			case { def:TBreakSpace(_) } | { def:TEof }:
 				break;
@@ -148,18 +148,38 @@ class Parser {
 		return buf.toString();
 	}
 
-	function arg<T>(internal:HOpts->T, toToken:Null<Token>, ?desc:String):{ val:T, pos:Position }
+	function arg<T>(internal:Stop->T, toToken:Null<Token>, ?desc:String):{ val:T, pos:Position }
 	{
-		while (peek().def.match(TWordSpace(_)))
+		while (peek().def.match(TWordSpace(_) | TLineComment(_) | TBlockComment(_)))
 			discard();
 		var open = discard();
 		if (!open.def.match(TBrOpen)) missingArg(open.pos, toToken, desc);
 
-		var li = internal({ stopBefore : TBrClose });
+		var li = internal({ before : TBrClose });
 
 		var close = discard();
 		if (close.def.match(TEof)) unclosed(open);
 		if (!close.def.match(TBrClose)) unexpected(close);
+		return { val:li, pos:open.pos.span(close.pos) };
+	}
+
+	function optArg<T>(internal:Stop->T, toToken:Null<Token>, ?desc:String):Null<{ val:T, pos:Position }>
+	{
+		var i = 0;
+		while (peek(i).def.match(TWordSpace(_) | TLineComment(_) | TBlockComment(_)))
+			i++;
+		if (!peek(i).def.match(TBrkOpen))
+			return null;
+
+		while (--i > 0) discard();
+		var open = discard();
+		if (!open.def.match(TBrkOpen)) missingArg(open.pos, toToken, desc);
+
+		var li = internal({ before : TBrkClose });
+
+		var close = discard();
+		if (close.def.match(TEof)) unclosed(open);
+		if (!close.def.match(TBrkClose)) unexpected(close);
 		return { val:li, pos:open.pos.span(close.pos) };
 	}
 
@@ -177,11 +197,11 @@ class Parser {
 		}
 	}
 
-	function mdHeading(hashes:Token)
+	function mdHeading(hashes:Token, stop:Stop)
 	{
 		while (peek().def.match(TWordSpace(_)))  // TODO maybe add this to hlist?
 			discard();
-		var name = hlist({});
+		var name = hlist(stop);
 		assert(name != null, "obvisouly empty header");  // FIXME maybe
 
 		return switch hashes.def {
@@ -210,7 +230,7 @@ class Parser {
 	copyright (after a `@` marker) and caption (everything before the `@`
 	and that isn't part of the path).
 	**/
-	function mdFigure(tag:Array<Token>)
+	function mdFigure(tag:Array<Token>, stop)
 	{
 		assert(tag[0].def.match(THashes(1)), tag[0]);
 		assert(tag[1].def.match(TWord("FIG")), tag[1]);
@@ -221,7 +241,7 @@ class Parser {
 		var copyright = null;
 		var lastPos = null;
 		while (true) {
-			var h = hlist({ stopBeforeAny:[TBrOpen,TAt] });
+			var h = hlist({ beforeAny:[TBrOpen,TAt] });  // FIXME consider current stop
 			if (h != null) {
 				captionParts.push(h);
 				lastPos = h.pos;
@@ -236,7 +256,7 @@ class Parser {
 			case TAt:
 				if (copyright != null) throw "TODO";
 				discard();
-				copyright = hlist({ stopBefore:TBrOpen });
+				copyright = hlist({ before:TBrOpen });  // FIXME consider current stop
 				lastPos = copyright.pos;
 			case TBreakSpace(_), TEof:
 				break;
@@ -265,32 +285,82 @@ class Parser {
 		return mk(Quotation(text.val, author.val), cmd.pos.span(author.pos));
 	}
 
-	function mdQuotation(greaterThan:Token)
+	function mdQuotation(greaterThan:Token, stop:Stop)
 	{
 		assert(greaterThan.def.match(TGreater), greaterThan);
 		while (peek().def.match(TWordSpace(_)))  // TODO maybe add this to hlist?
 			discard();
-		var text = hlist({ stopBefore:TAt });
+		var text = hlist({ before:TAt });
 		var at = discard();
 		if (!at.def.match(TAt)) unexpected(at);
-		var author = hlist({});  // TODO maybe also discard wordspace before
+		var author = hlist(stop);  // TODO maybe also discard wordspace before
 		if (text == null) badValue(greaterThan.pos.span(at.pos).offset(1, -1), "text cannot be empty");
 		if (author == null) badValue(at.pos.offset(1,0), "author cannot be empty");
 		return mk(Quotation(text, author), greaterThan.pos.span(author.pos));
 	}
 
-	function paragraph()
+	// TODO docs
+	function listItem(mark:Token, stop:Stop)
 	{
-		var text = hlist({});
+		assert(mark.def.match(TCommand("item")), mark);
+		var item = optArg(vlist, mark, "item content");
+		if (item == null) {
+			var i = vertical(stop);
+			item = { val:i, pos:i.pos };
+		}
+		// TODO validation and error handling
+		item.val.pos = mark.pos.span(item.pos);
+		return item.val;
+	}
+
+	// see /generator/docs/list-design.md
+	function list(at:Position, stop:Stop)
+	{
+		var li = [];
+		while (peek().def.match(TCommand("item")))
+			li.push(listItem(discard(), stop));
+		assert(li.length > 0, li);  // we're sure that li.length > 0 since we started with \item
+		return mk(List(li), at.span(li[li.length - 1].pos));
+	}
+
+	function metaSkip(cmd:Token)
+	{
+		assert(cmd.def.match(TCommand("skip")), cmd);
+		var name = arg(rawHorizontal, cmd, "counter name");
+		if (!Lambda.has(["volume","chapter"], name.val)) badArg(name.pos, "counter name should be `volume` or `chapter`");
+		var val = arg(rawHorizontal, cmd, "counter value");
+		var no = val.val != null ? Std.parseInt(StringTools.trim(val.val)) : null;
+		if (no == null || no <= 0) badArg(val.pos, "counter value must be strictly positive integer");
+		return mk(MetaSkip(name.val, no), cmd.pos.span(val.pos));
+	}
+
+	function meta(cmd:Token)
+	{
+		assert(cmd.def.match(TCommand("meta")), cmd);
+		while (peek().def.match(TWordSpace(_) | TLineComment(_) | TBlockComment(_)))
+			discard();
+		return switch peek().def {
+		case TCommand("skip"): metaSkip(discard());
+		case _: unexpected(peek()); null;
+		}
+	}
+
+	function paragraph(stop:Stop)
+	{
+		var text = hlist(stop);
 		if (text == null) return null;
 		return mk(Paragraph(text), text.pos);
 	}
 
-	function vertical()
+	function vertical(stop:Stop):VElem
 	{
-		while (peek().def.match(TWordSpace(_) | TBreakSpace(_)))
+		while (peek().def.match(TWordSpace(_) | TBreakSpace(_) | TLineComment(_) | TBlockComment(_)))
 			discard();
 		return switch peek().def {
+		case tdef if (stop.before != null && Type.enumEq(tdef, stop.before)):
+			null;
+		case tdef if (stop.beforeAny != null && Lambda.exists(stop.beforeAny,Type.enumEq.bind(tdef))):
+			null;
 		case TEof:
 			null;
 		case TCommand(cmdName):
@@ -298,29 +368,31 @@ class Parser {
 			case "volume", "chapter", "section", "subsection", "subsubsection": hierarchy(discard());
 			case "figure": figure(discard());
 			case "quotation": quotation(discard());
-			case name if (Lambda.has(horizontalCommands, name)): paragraph();
+			case "item": list(peek().pos, stop);
+			case "meta": meta(discard());
+			case name if (Lambda.has(horizontalCommands, name)): paragraph(stop);
 			case _: throw new UnknownCommand(lexer, peek().pos);
 			}
 		case THashes(1) if (peek(1).def.match(TWord("FIG")) && peek(2).def.match(THashes(1))):
-			mdFigure([discard(), discard(), discard()]);
+			mdFigure([discard(), discard(), discard()], stop);
 		case THashes(_) if (!peek(1).def.match(TWord("FIG") | TWord("EQ") | TWord("TAB"))):  // TODO remove FIG/EQ/TAB
-			mdHeading(discard());
+			mdHeading(discard(), stop);
 		case TGreater:
-			mdQuotation(discard());
+			mdQuotation(discard(), stop);
 		case TWord(_), TAsterisk:
-			paragraph();
+			paragraph(stop);
 		case TColon(q) if (q != 3):
-			paragraph();
+			paragraph(stop);
 		case _:
 			unexpected(peek()); null;
 		}
 	}
 
-	function vlist()
+	function vlist(stop:Stop)
 	{
 		var li = [];
 		while (true) {
-			var v = vertical();
+			var v = vertical(stop);
 			if (v == null) break;
 			li.push(v);
 		}
@@ -328,7 +400,7 @@ class Parser {
 	}
 
 	public function file():File
-		return vlist();
+		return vlist({});
 
 	public function new(lexer:Lexer, ?cache:FileCache)
 	{
@@ -337,11 +409,13 @@ class Parser {
 		this.cache = cache;
 	}
 
+#if (sys || hxnodejs)
 	public static function parse(path:String, ?cache:FileCache)
 	{
 		var lex = new Lexer(sys.io.File.getBytes(path), path);
 		var parser = new Parser(lex, cache);
 		return parser.file();
 	}
+#end
 }
 

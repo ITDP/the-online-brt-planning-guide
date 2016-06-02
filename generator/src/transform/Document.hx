@@ -12,12 +12,13 @@ enum TDef {
 	TSection(name : HElem, count : Int, id : String, children : TElem);
 	TSubSection(name : HElem, count : Int, id : String, children : TElem);
 	TSubSubSection(name : HElem, count : Int, id : String, children : TElem);
-	
+
 	//TODO: Box
 	TVList(elem:Array<TElem>);
-	
+
 	TFigure(path:String, caption:HElem, copyright:HElem, count : Int, id : String);  // TODO size?
 	TQuotation(text:HElem, by:HElem);
-	TParagraph(h:HElem);	
+	TList(items:Array<TElem>);
+	TParagraph(h:HElem);
 }
 

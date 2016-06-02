@@ -19,7 +19,7 @@ typedef Nav = {
 typedef Path = String;
 
 class HtmlGen {
-	
+
 	static inline var VOL = 0;
 	static inline var CHA = 1;
 	static inline var SEC = 2;
@@ -33,7 +33,7 @@ class HtmlGen {
 	var navLeft : String;
 	
 	var dest:Path;
-	
+
 	function horizontal(h:HElem)
 	{
 		return switch h.def {
@@ -52,7 +52,7 @@ class HtmlGen {
 	function vertical(v:TElem, counts : Array<Int>, curNav : Null<Nav>)
 	{
 		switch v.def {
-		case TVolume(name, count, id, children), TChapter(name, count, id, children), 
+		case TVolume(name, count, id, children), TChapter(name, count, id, children),
 		TSection(name, count, id, children), TSubSection(name, count, id, children),
 		TSubSubSection(name, count, id, children):
 			return hierarchy(v, counts, curNav);
@@ -61,11 +61,21 @@ class HtmlGen {
 			var copyright = horizontal(copyright);
 			//navs.push({name : '', id : id,type : OTH, chd : null});
 			//TODO: Make FIG SIZE param
-			return '<section class="md img-block id="${id}"><img src="${path}"/><p><strong>Fig ${count}</strong>${caption} <em>${caption}</em></p>'; 
+			return '<section class="md img-block id="${id}"><img src="${path}"/><p><strong>Fig ${count}</strong>${caption} <em>${caption}</em></p>';
 		case TQuotation(t,a):
 			return '<blockquote class="md"><q>${horizontal(t)}</q><span>${horizontal(a)}</span></blockquote>';
 		case TParagraph(h):
 			return '<p>${horizontal(h)}</p>\n';
+		case TList(li):
+			var buf = new StringBuf();
+			buf.add("<ul>\n");
+			for (i in li) {
+				buf.add("<li>");
+				buf.add(vertical(i, counts));
+				buf.add("</li>\n");
+			}
+			buf.add("</ul>\n");
+			return buf.toString();
 		case TVList(li):
 			var buf = new StringBuf();
 			for (i in li)
@@ -81,7 +91,7 @@ class HtmlGen {
 		var _name  = "";
 		var _id = "";
 		var type : Int = null;
-		
+
 		switch(cur.def)
 		{
 			case TVolume(name, count, id, children):
@@ -127,7 +137,7 @@ class HtmlGen {
 		curNav = _nav;
 		
 		var count = countGen(counts, type, ".");
-		
+
 		//Vol. doesnt add anything
 		if(type > 0)
 			buff.add('<section id="${_id}"><h${(type+1)}>${count} ${_name}</h${(type + 1)}>');
@@ -137,7 +147,7 @@ class HtmlGen {
 		buff.add(vertical(_children, counts, curNav));
 		
 		buff.add("</section>");
-		
+
 		return buff.toString();
 	}
 	
@@ -271,7 +281,7 @@ class HtmlGen {
 	function document(doc:Document)
 	{
 		navs = new Array<Nav>();
-		
+
 		var buf = new StringBuf();
 		buf.add('<meta charset="utf-8">
 	<title></title>
@@ -308,8 +318,8 @@ class HtmlGen {
 
 	public function new(dest:Path)
 		this.dest = dest;
-		
-		
+
+
 	function countGen(counts : Array<Int>, elem : Int, sep : String)
 	{
 		var i = 0;
@@ -322,10 +332,10 @@ class HtmlGen {
 				str.add(counts[i]);
 			i++;
 		}
-		
+
 		return str.toString();
 	}
-	
-	
+
+
 }
 

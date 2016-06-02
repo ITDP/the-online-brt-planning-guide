@@ -103,6 +103,9 @@ class Test_03_Parser {
 		Assert.same(
 			expand(VList([Paragraph(@len(1)Word("a")),@wrap(9,1)Section(@len(1)Word("b"))])),
 			parse("a\\section{b}"));
+		Assert.same(
+			expand(VList([Paragraph(@len(1)Word("a")),List([@wrap(6,0)Paragraph(@len(1)Word("b"))])])),
+			parse("a\\item b"));
 	}
 
 	public function test_003_emphasis()
@@ -191,6 +194,10 @@ class Test_03_Parser {
 		Assert.same(
 			expand(VList([Paragraph(@len(1)Word("a")),@skip(7)Paragraph(@len(1)Word("b"))])),
 			parse("a/*x*/\n\nb"));
+
+		Assert.same(
+			expand(null),
+			parse("/* foo */"));
 	}
 
 	public function test_008_hierarchy_commands()
@@ -314,6 +321,98 @@ class Test_03_Parser {
 			expand(@wrap(5,0)Figure("fig.png",@skip(2+7)@len(7)Word("caption"),@skip(1)@len(9)Word("copyright"))),  // FIXME no pos for path, @skip
 			parse("#FIG#{fig.png}caption@copyright"));
 		// TODO other/weird orderings of #FIG# details
+	}
+
+	public function test_013_lists()
+	{
+		// simple lists
+		Assert.same(
+			expand(List([@wrap(6,0)Paragraph(@len(1)Word("a"))])),
+			parse("\\item a"));
+		Assert.same(
+			expand(List([@wrap(6,0)Paragraph(@len(1)Word("a")),@wrap(6,0)Paragraph(@len(1)Word("b"))])),
+			parse("\\item a\\item b"));
+		Assert.same(
+			expand(VList([
+				Paragraph(@len(1)Word("x")),@skip(2)
+				List([@wrap(6,0)Paragraph(@len(1)Word("a")),@wrap(6,0)Paragraph(@len(1)Word("b"))]),@skip(2)
+				Paragraph(@len(1)Word("y"))
+			])),
+			parse("x\n\n\\item a\\item b\n\ny"));
+
+		// vertical lists in items
+		Assert.same(
+			expand(List([@wrap(6,1)Paragraph(@len(1)Word("a"))])),
+			parse("\\item[a]"));
+		Assert.same(
+			expand(List([@wrap(6,1)Paragraph(@len(1)Word("a")),@wrap(6,1)Paragraph(@len(1)Word("b"))])),
+			parse("\\item[a]\\item[b]"));
+		Assert.same(
+			expand(VList([
+				Paragraph(@len(1)Word("x")),@skip(2)
+				List([@wrap(6,1)Paragraph(@len(1)Word("a")),@wrap(6,1)Paragraph(@len(1)Word("b"))]),@skip(2)
+				Paragraph(@len(1)Word("y"))
+			])),
+			parse("x\n\n\\item[a]\\item[b]\n\ny"));
+		Assert.same(
+			expand(List([
+				@wrap(6,1)VList([
+					Paragraph(@len(1)Word("a")),@skip(2)
+					List([@wrap(6,0)Paragraph(@len(1)Word("x")),@wrap(6,0)Paragraph(@len(1)Word("y"))])]),
+				@wrap(6,1)Paragraph(@len(1)Word("b"))])),
+			parse("\\item[a\n\n\\item x\\item y]\\item[b]"));
+
+		// TODO more tests
+		// TODO more error tests
+	}
+
+	public function test_014_discardable_tokens()
+	{
+		// before arguments
+		Assert.same(
+			expand(Paragraph(@wrap(6,1)Emphasis(@skip(1)@len(1)Word("a")))),
+			parse("\\emph {a}"));
+		Assert.same(
+			expand(Paragraph(@wrap(6,1)Emphasis(@skip(1)@len(1)Word("a")))),
+			parse("\\emph\n{a}"));
+		Assert.same(
+			expand(Paragraph(@wrap(6,1)Emphasis(@skip(6)@len(1)Word("a")))),
+			parse("\\emph//foo\n{a}"));
+		Assert.same(
+			expand(Paragraph(@wrap(6,1)Emphasis(@skip(7)@len(1)Word("a")))),
+			parse("\\emph/*foo*/{a}"));
+
+		// after argument opening braces
+		Assert.same(
+			expand(Paragraph(@wrap(6,1)Emphasis(@skip(5)HList([@len(1)Wordspace,@len(1)Word("a")])))),
+			parse("\\emph{//foo\na}"));  // the HList is needed so that `a//b\nc` doesn't become `ac`
+		Assert.same(
+			expand(Paragraph(@wrap(6,1)Emphasis(@skip(7)@len(1)Word("a")))),
+			parse("\\emph{/*foo*/a}"));
+	}
+
+	public function test_015_set_counter()
+	{
+		Assert.same(
+			expand(@skip(5)@len(16)MetaSkip("volume", 2)),
+			parse("\\meta\\skip{volume}{2}"));
+		Assert.same(
+			expand(@skip(5)@len(17)MetaSkip("chapter", 8)),
+			parse("\\meta\\skip{chapter}{8}"));
+
+		parsingError("\\meta\\skip{section}{1}", BadValue);
+		parsingError("\\meta\\skip{subsection}{1}", BadValue);
+		parsingError("\\meta\\skip{subsubsection}{1}", BadValue);
+
+		parsingError("\\meta\\skip{volume}{a}", BadValue);
+		parsingError("\\meta\\skip{volume}{-1}", BadValue);
+		// parsingError("\\meta\\skip{volume}{1a}", BadValue);  // FIXME
+
+		parsingError("\\meta\\skip{}{1}", BadValue);
+		parsingError("\\meta\\skip{volume}{}", BadValue);
+
+		parsingError("\\meta\\skip", MissingArgument, ~/name/);
+		parsingError("\\meta\\skip{volume}", MissingArgument, ~/value/);
 	}
 }
 

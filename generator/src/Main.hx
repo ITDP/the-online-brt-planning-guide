@@ -1,5 +1,6 @@
-import haxe.io.Path;
 import Sys.*;
+import haxe.CallStack;
+import haxe.io.Path;
 import sys.FileSystem;
 
 class Main {
@@ -26,7 +27,11 @@ class Main {
 		print(BANNER);
 
 		try {
-			switch Sys.args() {
+			var args = Sys.args();
+#if nodejs
+			args = args.slice(2);
+#end
+			switch args {
 			case [cmd, path] if (StringTools.startsWith("generate", cmd)):
 				generate(path);
 			case _:
@@ -35,7 +40,8 @@ class Main {
 			}
 		} catch (e:Dynamic) {
 			println('Error: $e');
-			// TODO print the call stack
+			if (Sys.getEnv("DEBUG") == "1")
+				println(CallStack.toString(CallStack.exceptionStack()));
 			exit(2);
 		}
 	}
