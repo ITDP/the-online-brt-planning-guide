@@ -71,7 +71,7 @@ class HtmlGen {
 			buf.add("<ul>\n");
 			for (i in li) {
 				buf.add("<li>");
-				buf.add(vertical(i, counts));
+				buf.add(vertical(i, counts, curNav));
 				buf.add("</li>\n");
 			}
 			buf.add("</ul>\n");
