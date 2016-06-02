@@ -386,5 +386,29 @@ class Test_03_Parser {
 			expand(Paragraph(@wrap(6,1)Emphasis(@skip(7)@len(1)Word("a")))),
 			parse("\\emph{/*foo*/a}"));
 	}
+
+	public function test_015_set_counter()
+	{
+		Assert.same(
+			expand(@len(22)SetCounter("volume", 2)),
+			parse("\\setcounter{volume}{2}"));
+		Assert.same(
+			expand(@len(23)SetCounter("chapter", 8)),
+			parse("\\setcounter{chapter}{8}"));
+
+		parsingError("\\setcounter{section}{1}", BadValue);
+		parsingError("\\setcounter{subsection}{1}", BadValue);
+		parsingError("\\setcounter{subsubsection}{1}", BadValue);
+
+		parsingError("\\setcounter{volume}{a}", BadValue);
+		parsingError("\\setcounter{volume}{-1}", BadValue);
+		// parsingError("\\setcounter{volume}{1a}", BadValue);  // FIXME
+
+		parsingError("\\setcounter{}{1}", BadValue);
+		parsingError("\\setcounter{volume}{}", BadValue);
+
+		parsingError("\\setcounter", MissingArgument, ~/name/);
+		parsingError("\\setcounter{volume}", MissingArgument, ~/value/);
+	}
 }
 
