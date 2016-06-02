@@ -1,4 +1,4 @@
-FROM ubuntu:15.10
+FROM ubuntu:16.04
 ENV PS1="# "
 RUN mkdir -p /var/git
 RUN apt-get update
