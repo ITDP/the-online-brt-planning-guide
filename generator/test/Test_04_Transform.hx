@@ -167,5 +167,21 @@ class Test_04_Transform {
 				@wrap(12,0) TSubSection(@len(1) Word("q"), 2,"volume.a.chapter.k.section.m.subsection.q", @skip(1) TParagraph(@len(1) Word("r")))]))]))]))
 			])),
 		transform("\\volume{a}b\\chapter{c}d\\chapter{e}f\\section{g}h\\section{i}j\\chapter{k}l\\section{m}n\\subsection{o}p\\figure{f}{c}{cp}\\subsection{q}r"));
+
+	}
+
+	public function test_004_reset_counters()
+	{
+		Assert.same(
+			expand(TVList([
+				@skip(23)@wrap(8,0)TVolume(@len(1)Word("a"),42,"volume.a",@skip(1)TParagraph(@len(1)Word("b")))
+			])),
+			transform("\\meta\\reset{volume}{41}\\volume{a}b"));
+		Assert.same(
+			expand(TVList([
+				@wrap(8,0)TVolume(@len(1)Word("a"),1,"volume.a",@skip(1)TParagraph(@len(1)Word("b"))),
+				@skip(22)@wrap(8,0)TVolume(@len(1)Word("c"),1,"volume.c",@skip(1)TParagraph(@len(1)Word("d")))
+			])),
+			transform("\\volume{a}b\\meta\\reset{volume}{0}\\volume{c}d"));
 	}
 }

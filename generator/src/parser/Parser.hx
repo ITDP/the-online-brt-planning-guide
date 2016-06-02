@@ -323,15 +323,16 @@ class Parser {
 		return mk(List(li), at.span(li[li.length - 1].pos));
 	}
 
-	function metaReset(cmd:Token)
+	function metaReset(metaCmd:Token, cmd:Token)
 	{
+		assert(metaCmd.def.match(TCommand("meta")), metaCmd);
 		assert(cmd.def.match(TCommand("reset")), cmd);
 		var name = arg(rawHorizontal, cmd, "counter name");
-		if (!Lambda.has(["volume","chapter"], name.val)) badArg(name.pos, "counter name should be `volume` or `chapter`");
 		var val = arg(rawHorizontal, cmd, "reset value");
 		var no = val.val != null ? Std.parseInt(StringTools.trim(val.val)) : null;
-		if (no == null || no <= 0) badArg(val.pos, "reset value must be strictly greater or equal to zero");
-		return mk(MetaReset(name.val, no), cmd.pos.span(val.pos));
+		if (!Lambda.has(["volume","chapter"], name.val)) badArg(name.pos, "counter name should be `volume` or `chapter`");
+		if (no == null || no < 0) badArg(val.pos, "reset value must be strictly greater or equal to zero");
+		return mk(MetaReset(name.val, no), metaCmd.pos.span(val.pos));
 	}
 
 	function meta(cmd:Token)
@@ -340,7 +341,7 @@ class Parser {
 		while (peek().def.match(TWordSpace(_) | TLineComment(_) | TBlockComment(_)))
 			discard();
 		return switch peek().def {
-		case TCommand("reset"): metaReset(discard());
+		case TCommand("reset"): metaReset(cmd, discard());
 		case _: unexpected(peek()); null;
 		}
 	}

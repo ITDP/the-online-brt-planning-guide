@@ -394,10 +394,10 @@ class Test_03_Parser {
 	public function test_015_set_counter()
 	{
 		Assert.same(
-			expand(@skip(5)@len(17)MetaReset("volume", 2)),
+			expand(@len(22)MetaReset("volume", 2)),
 			parse("\\meta\\reset{volume}{2}"));
 		Assert.same(
-			expand(@skip(5)@len(18)MetaReset("chapter", 8)),
+			expand(@len(23)MetaReset("chapter", 8)),
 			parse("\\meta\\reset{chapter}{8}"));
 
 		parsingError("\\meta\\reset{section}{1}", BadValue);

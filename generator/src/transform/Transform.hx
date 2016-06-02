@@ -49,6 +49,7 @@ class Transform {
 		}
 
 		count[type] = ++count[type];
+		var c = count[type];  // save the count to make sure that \meta\reset only applies to the _next_ element
 
 		var t = type+1;
 
@@ -66,15 +67,15 @@ class Transform {
 		return switch(type)
 		{
 			case VOL:
-				mk(TVolume(_name, count[VOL], id, tf), pos.span(tf.pos));
+				mk(TVolume(_name, c, id, tf), pos.span(tf.pos));
 			case CHA:
-				mk(TChapter(_name, count[CHA], id, tf), pos.span(tf.pos));
+				mk(TChapter(_name, c, id, tf), pos.span(tf.pos));
 			case SEC:
-				mk(TSection(_name, count[SEC], id, tf), pos.span(tf.pos));
+				mk(TSection(_name, c, id, tf), pos.span(tf.pos));
 			case SUB:
-				mk(TSubSection(_name, count[SUB], id, tf), pos.span(tf.pos));
+				mk(TSubSection(_name, c, id, tf), pos.span(tf.pos));
 			case SUBSUB:
-				mk(TSubSubSection(_name, count[SUBSUB], id, tf), pos.span(tf.pos));
+				mk(TSubSubSection(_name, c, id, tf), pos.span(tf.pos));
 			default:
 				throw "Invalid type " + type; //TODO: FIX
 		}
