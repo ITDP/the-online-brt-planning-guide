@@ -29,8 +29,9 @@ class Main {
 		try {
 			var args = Sys.args();
 #if hxnodejs
-			trace(args);
+			trace(Sys.args());
 			args = args.slice(2);
+			trace(args);
 #end
 			switch args {
 			case [cmd, path] if (StringTools.startsWith("generate", cmd)):
