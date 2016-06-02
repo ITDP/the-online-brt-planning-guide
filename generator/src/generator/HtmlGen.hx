@@ -166,29 +166,27 @@ class HtmlGen {
 		//Should be volumes
 		for (n in navs)
 		{
-			topBuff.add('<li id="${n.id}">${n.name}</li>');
+			topBuff.add('<li id="${n.id}"><a href="#">${n.name}</a></li>');
 			if (n.chd != null && n.chd.length > 0)
 			{
 				var cha = '<a> Chapters </a><ul class=\"item hide\">';
 				
 				for (c in n.chd)
 				{
-					cha += '<li id="${c.id}">${c.name}</li>';
+					cha += '<li id="${c.id}"><a href="#">${c.name}</a></li>';
 					
 					if (c.chd != null && c.chd.length > 0)
 					{
-						var sec = "<ul class=\"item hide\">";
+						var sec = "<a>Sections</a><ul class=\"item hide\">";
 						
 							for (se in c.chd)
 							{
-								trace(se);
 								//TODO: Href the right HTML
-								sec += '<li id="${se.id}>${se.name}</li>';
+								sec += '<li><a href="#">${se.name}"</a></li>';
 								
 								//I think I'll need a map instead(so I gen only the necessary sections
 								for (su in se.chd)
 								{
-									trace("here?");
 									leftBuff.add('<li><a href="#${su.id}">${su.name}</li>');
 									if (se.chd != null && se.chd.length > 0)
 									{
@@ -198,10 +196,8 @@ class HtmlGen {
 											leftBuff.add('<li><a href="#${ss.id}">${ss.name}</a></li>');
 										}
 										leftBuff.add('</ul></li>');
-										
 									}
 								}
-								
 							}
 						sec += '</ul>';
 						optBuff.set(c.id, {list : sec, type : SEC});
@@ -226,54 +222,60 @@ class HtmlGen {
 	{
 		var buff = new StringBuf();
 		buff.add('<script>');
-		buff.add("$('document').ready(function(){\n");
 		
-		buff.add("$('header li ul').hide().removeClass('hide');
-		$('header li').hover(
-		  function () {
-			$('ul', this).stop().slideDown(100);
-		  },
-		  function () {
-			$('ul', this).stop().slideUp(100);
-		  }
-		);
-		");
+		buff.add("function hover()
+		{
+			$('header li ul').off('hover');
+			
+			$('header li ul').hide().removeClass('hide');
+			$('header li').hover(
+			  function () {
+				$('ul', this).stop().slideDown(100);
+			  },
+			  function () {
+				$('ul', this).stop().slideUp(100);
+			  }
+			);
+		}");
+		
+		buff.add('\nfunction onClick(){');
 		for (key in values.keys())
 		{
 			var id = key.split(".").join("\\\\.");
 			//TODO: Optimize
-			buff.add('$("#${id}").click(function()
-			{
-				var v = {type : ${values.get(key).type}, list : \'${values.get(key).list}\'};
-				var menu = $(".menu");
-				while (((v.type + 1)) <= ((menu.children("li").length-1)/2))
+			buff.add('
+				$("#${id}").off("click"); \n
+				$("#${id}").click(function()
 				{
-					console.log(menu);
-					console.log(menu.children("li"));
-					menu.children("li").last().remove();
-				}
-				
-				menu.append("<li>" + v.list + "</li>");
-				menu.append("<li>/<li>");
-				
-				//Bind evt again (TODO: Rewrite)
-				$("header li").off("hover");
-				$("header li ul").hide().removeClass("hide");
-				$("header li").hover(
-				  function () {
-					$("ul", this).stop().slideDown(100);
-				  },
-				  function () {
-					$("ul", this).stop().slideUp(100);
-				  }
-				);
-			}); '
+					var v = {type : ${values.get(key).type}, list : \'${values.get(key).list}\'};
+					var menu = $(".menu");
+					
+					while (((v.type)) < ((menu.children("li").length)/2))
+					{
+						console.log(v.type + 1);
+						console.log(((menu.children("li").length - 1) / 2));
+						menu.children("li").last().remove();
+					}
+					
+					console.log("click!");
+					
+					menu.append("<li>" + v.list + "</li>");
+					menu.append("<li>/<li>");
+					console.log(menu.children().last().children("ul").attr("id"));
+					
+					//Bind evt again (TODO: Rewrite)
+					hover();
+					onClick();
+					
+				});'
 			);
-			
+		
 			buff.add("\n");
 		}
+		buff.add("}\n");
 		
-		buff.add("});</script>");
+		buff.add("$(document).ready(function(){onClick();hover();});");
+		buff.add("</script>");
 		return buff.toString();
 	}
 	
