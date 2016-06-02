@@ -28,7 +28,7 @@ class Main {
 
 		try {
 			var args = Sys.args();
-#if nodejs
+#if hxnodejs
 			args = args.slice(2);
 #end
 			switch args {
