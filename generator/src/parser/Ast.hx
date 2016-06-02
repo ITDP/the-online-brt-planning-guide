@@ -23,7 +23,7 @@ enum VDef {
 	Figure(path:String, caption:HElem, copyright:HElem);  // TODO size?
 	Quotation(text:HElem, by:HElem);
 	List(items:Array<VElem>);
-	SetCounter(name:String, val:Int);
+	MetaSkip(name:String, val:Int);
 	Paragraph(h:HElem);
 	VList(elem:Array<VElem>);
 }

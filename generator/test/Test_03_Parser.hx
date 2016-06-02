@@ -394,10 +394,10 @@ class Test_03_Parser {
 	public function test_015_set_counter()
 	{
 		Assert.same(
-			expand(@skip(5)@len(16)SetCounter("volume", 2)),
+			expand(@skip(5)@len(16)MetaSkip("volume", 2)),
 			parse("\\meta\\skip{volume}{2}"));
 		Assert.same(
-			expand(@skip(5)@len(17)SetCounter("chapter", 8)),
+			expand(@skip(5)@len(17)MetaSkip("chapter", 8)),
 			parse("\\meta\\skip{chapter}{8}"));
 
 		parsingError("\\meta\\skip{section}{1}", BadValue);

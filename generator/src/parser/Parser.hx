@@ -331,7 +331,7 @@ class Parser {
 		var val = arg(rawHorizontal, cmd, "counter value");
 		var no = val.val != null ? Std.parseInt(StringTools.trim(val.val)) : null;
 		if (no == null || no <= 0) badArg(val.pos, "counter value must be strictly positive integer");
-		return mk(SetCounter(name.val, no), cmd.pos.span(val.pos));
+		return mk(MetaSkip(name.val, no), cmd.pos.span(val.pos));
 	}
 
 	function meta(cmd:Token)
