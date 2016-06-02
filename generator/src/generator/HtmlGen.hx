@@ -46,20 +46,19 @@ class HtmlGen {
 		}
 	}
 	
-	function vertical(v:TElem, counts : Array<Int>, names : Array<String>)
+	function vertical(v:TElem, counts : Array<Int>)
 	{
 		switch v.def {
-		case TVolume(name, count, children), TChapter(name, count, children), 
-		TSection(name, count, children), TSubSection(name, count, children),
-		TSubSubSection(name, count, children):
-			return hierarchy(v, counts, names);
-		case TFigure(path, caption, copyright, count):
+		case TVolume(name, count, id, children), TChapter(name, count, id, children), 
+		TSection(name, count, id, children), TSubSection(name, count, id, children),
+		TSubSubSection(name, count, id, children):
+			return hierarchy(v, counts);
+		case TFigure(path, caption, copyright, count,id):
 			var caption = horizontal(caption);
 			var copyright = horizontal(copyright);
-			names[OTH] = count + '';
-			navs.push({name : '', id : idGen(names, OTH)});
+			navs.push({name : '', id : id});
 			//TODO: Make FIG SIZE param
-			return '<section class="md img-block id="${navs[navs.length-1].id}"><img src="${path}"/><p><strong>Fig ${count}</strong>${caption} <em>${caption}</em></p>'; 
+			return '<section class="md img-block id="${id}"><img src="${path}"/><p><strong>Fig ${count}</strong>${caption} <em>${caption}</em></p>'; 
 		case TQuotation(t,a):
 			return '<blockquote class="md"><q>${horizontal(t)}</q><span>${horizontal(a)}</span></blockquote>';
 		case TParagraph(h):
@@ -67,43 +66,48 @@ class HtmlGen {
 		case TVList(li):
 			var buf = new StringBuf();
 			for (i in li)
-				buf.add(vertical(i, counts, names));
+				buf.add(vertical(i, counts));
 			return buf.toString();
 		}
 	}
 	
-	function hierarchy(cur : TElem, counts : Array<Int>, names : Array<String>)
+	function hierarchy(cur : TElem, counts : Array<Int>)
 	{
 		var buff = new StringBuf();
 		var _children = null;
 		var _name  = "";
-		
+		var _id = "";
 		var type : Int = null;
 		
 		switch(cur.def)
 		{
-			case TVolume(name, count, children):
+			case TVolume(name, count, id, children):
 				_name = horizontal(name);
+				_id = id;
 				counts[VOL] = count;
 				_children = children;
 				type = VOL;
-			case TChapter(name, count, children):
+			case TChapter(name, count,id, children):
 				_name = horizontal(name);
+				_id = id;
 				counts[CHA] = count;
 				_children = children;
 				type = CHA;
-			case TSection(name, count, children):
+			case TSection(name, count,id, children):
 				_name = horizontal(name);
+				_id = id;
 				counts[SEC] = count;
 				type = SEC;
 				_children = children;
-			case TSubSection(name, count, children):
+			case TSubSection(name, count,id, children):
 				_name = horizontal(name);
+				_id = id;
 				counts[SUB] = count;
 				_children = children;
 				type = SUB;
-			case TSubSubSection(name, count, children):
+			case TSubSubSection(name, count,id, children):
 				_name = horizontal(name);
+				_id = id;
 				counts[SUBSUB] = count;
 				_children = children;
 				type = SUBSUB;
@@ -111,20 +115,18 @@ class HtmlGen {
 				throw "Invalid element " + cur.def;
 		}
 		
-		var id = idGen(names, type);
-		navs.push({id : id , name : _name});
 		
-		names[type] = _name;
+		navs.push({id : _id , name : _name});
 		
 		var count = countGen(counts, type, ".");
 		
 		//Vol. doesnt add anything
 		if(type > 0)
-			buff.add('<section id="${id}"><h${(type+1)}>${count} ${_name}</h${(type + 1)}>');
+			buff.add('<section id="${_id}"><h${(type+1)}>${count} ${_name}</h${(type + 1)}>');
 		else
-			buff.add('<section id="${id}">');
+			buff.add('<section id="${_id}">');
 		
-		buff.add(vertical(_children, counts, names));
+		buff.add(vertical(_children, counts));
 		
 		buff.add("</section>");
 		
@@ -176,7 +178,7 @@ class HtmlGen {
 	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 	<!-- Jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script><body><div class="container"><div class="col-text"\n');
-		buf.add(vertical(doc,[0,0,0,0,0,0], ['','','','','','']));
+		buf.add(vertical(doc,[0,0,0,0,0,0]));
 		buf.add('</div></div></body>');
 		sys.io.File.saveContent(joinPaths([dest,"index.html"]), buf.toString());
 	}
@@ -211,50 +213,6 @@ class HtmlGen {
 		return str.toString();
 	}
 	
-	function idGen(counts : Array<String>, elem : Int)
-	{
-		var i = 0;
-		var str = new StringBuf();
-		
-		while (i <= elem)
-		{
-			var before = switch(i)
-			{
-				case VOL:
-					"volume.";
-				case CHA:
-					"chapter.";
-				case SEC:
-					"section.";
-				case SUB:
-					"subsection.";
-				case SUBSUB:
-					"subsubsection.";
-				case OTH:
-					"other.";
-				default:
-					null;
-			}
-			
-			var clearstr = counts[i];
-			trace(counts[i]);
-			clearstr = StringTools.replace(clearstr," ", "-");
-		
-			var reg = ~/[a-zA-Z0-9-]+/;
-			trace(clearstr);
-			if(!reg.match(clearstr))
-				break;
-			clearstr = reg.matched(0);
-			
-			if(i != elem)
-				str.add(before + clearstr + ".");
-			else
-				str.add(before + clearstr);
-			
-			i++;		
-		}
-		
-		return str.toString();
-	}
+	
 }
 

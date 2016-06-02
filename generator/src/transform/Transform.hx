@@ -22,7 +22,7 @@ class Transform {
 		return { def:def, pos:pos };
 	
 		
-	static function hierarchy(cur : VElem, rest : Rest, pos : Position, count : Array<Int>) : TElem
+	static function hierarchy(cur : VElem, rest : Rest, pos : Position, count : Array<Int>, names : Array<String>) : TElem
 	{
 		var type = null;
 		var _name = null;
@@ -58,26 +58,28 @@ class Transform {
 			t++;
 		}
 		
-		var tf = consume(rest, type, count);
+		names[type] = horizontal(_name);
+		var tf = consume(rest, type, count, names);
+		var id = idGen(names, type);
 		
 		return switch(type)
 		{
 			case VOL:
-				mk(TVolume(_name, count[VOL], tf), pos.span(tf.pos));
+				mk(TVolume(_name, count[VOL], id, tf), pos.span(tf.pos));
 			case CHA:
-				mk(TChapter(_name, count[CHA], tf), pos.span(tf.pos));
+				mk(TChapter(_name, count[CHA], id, tf), pos.span(tf.pos));
 			case SEC:
-				mk(TSection(_name, count[SEC], tf), pos.span(tf.pos));
+				mk(TSection(_name, count[SEC], id, tf), pos.span(tf.pos));
 			case SUB:
-				mk(TSubSection(_name, count[SUB], tf), pos.span(tf.pos));
+				mk(TSubSection(_name, count[SUB], id, tf), pos.span(tf.pos));
 			case SUBSUB:
-				mk(TSubSubSection(_name, count[SUBSUB], tf), pos.span(tf.pos));
+				mk(TSubSubSection(_name, count[SUBSUB], id, tf), pos.span(tf.pos));
 			default:
 				throw "Invalid type " + type; //TODO: FIX
 		}
 	}
 	
-	static function consume(rest:Rest, stopBefore: Int, count : Array<Int>):TElem
+	static function consume(rest:Rest, stopBefore: Int, count : Array<Int>, names : Array<String>):TElem
 	{
 		var tf = [];
 		while (rest.length > 0) {
@@ -97,7 +99,7 @@ class Transform {
 				break;
 			}
 			
-			tf.push(vertical(v, rest, count));
+			tf.push(vertical(v, rest, count, names));
 		}
 		
 		if(tf.length > 1)
@@ -108,19 +110,21 @@ class Transform {
 			return null;
 	}
 	
-	static function vertical(v:VElem, rest:Rest, count : Array<Int>):TElem
+	static function vertical(v:VElem, rest:Rest, count : Array<Int>, names : Array<String>):TElem
 	{
 		switch v.def {
 		case VList(li):
 			var tf = [];
 			while (li.length > 0)
-				tf.push(vertical(li.shift(), li, count));
+				tf.push(vertical(li.shift(), li, count, names));
 			return mk(TVList(tf), v.pos);  // FIXME v.pos.span(???)
 		case Volume(name), Chapter(name), Section(name), SubSection(name), SubSubSection(name):
-			return hierarchy(v, rest, v.pos, count);
+			return hierarchy(v, rest, v.pos, count, names);
 		case Figure(path, caption, cp):
 			count[OTH] = ++count[OTH];
-			return mk(TFigure(path, caption, cp, count[OTH]), v.pos);
+			names[OTH] = count[CHA] + " " + count[OTH];
+			var name = idGen(names, OTH);
+			return mk(TFigure(path, caption, cp, count[OTH], name), v.pos);
 		case Quotation(text, by):
 			return mk(TQuotation(text, by), v.pos);
 		case Paragraph(h):
@@ -130,12 +134,80 @@ class Transform {
 		}
 	}
 	
+	static function horizontal(elem : HElem)
+	{
+		return switch(elem.def)
+		{
+			case Wordspace: " ";
+			case Emphasis(t), Highlight(t): horizontal(t);
+			case Word(w) : w;
+			case HList(li):
+				var buf = new StringBuf();
+				for (l in li)
+				{
+					buf.add(horizontal(l));
+				}
+				buf.toString();
+			
+		}
+	}
 	public static function transform(parsed:parser.Ast) : TElem
 	{
-		var tf = vertical(parsed, [], [0,0,0,0,0,0]);
+		var tf = vertical(parsed, [], [0,0,0,0,0,0],['','','','','','']);
 		
 		//return parsed;
 		return tf;
+	}
+	
+	static function idGen(names : Array<String>, elem : Int)
+	{
+		var i = 0;
+		var str = new StringBuf();
+		
+		while (i <= elem)
+		{
+			var before = switch(i)
+			{
+				case VOL:
+					"volume.";
+				case CHA:
+					"chapter.";
+				case SEC:
+					"section.";
+				case SUB:
+					"subsection.";
+				case SUBSUB:
+					"subsubsection.";
+				case OTH:
+					"other.";
+				default:
+					null;
+			}
+			
+			var clearstr = names[i];
+			
+			
+			clearstr = StringTools.replace(clearstr," ", "-");
+			
+			var reg = ~/[a-zA-Z0-9-]+/;
+			
+			if (!reg.match(clearstr))
+			{
+				i++;
+				continue;
+			}
+			
+			clearstr = reg.matched(0);
+			
+			if(i != elem)
+				str.add(before + clearstr + ".");
+			else
+				str.add(before + clearstr);
+			
+			i++;		
+		}
+		
+		return str.toString();
 	}
 
 }
