@@ -4,6 +4,8 @@ import haxe.io.Path;
 import sys.FileSystem;
 
 class Main {
+	public static var debug(default,null) = false;
+
 	static inline var BANNER = "The Online BRT Planning Guide Tool\n\n";
 	static inline var USAGE = "Usage: obrt generate <input file>\n";
 
@@ -25,14 +27,11 @@ class Main {
 	static function main()
 	{
 		print(BANNER);
+		debug = Sys.getEnv("DEBUG") == "1";
 
 		try {
 			var args = Sys.args();
-#if hxnodejs
-			trace(Sys.args());
-			args = args.slice(2);
-			trace(args);
-#end
+			if (debug) println('Arguments are: `${args.join("`, `")}`');
 			switch args {
 			case [cmd, path] if (StringTools.startsWith("generate", cmd)):
 				generate(path);
@@ -42,8 +41,7 @@ class Main {
 			}
 		} catch (e:Dynamic) {
 			println('Error: $e');
-			if (Sys.getEnv("DEBUG") == "1")
-				println(CallStack.toString(CallStack.exceptionStack()));
+			if (debug) println(CallStack.toString(CallStack.exceptionStack()));
 			exit(2);
 		}
 	}
