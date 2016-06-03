@@ -442,5 +442,18 @@ class Test_03_Parser {
 		// would be necessary, let's forbidd them for now.
 		parsingError("\\meta\\reset{\n\nvolume}{0}");
 	}
+
+	public function test_017_boxes()
+	{
+		Assert.same(
+			expand(@wrap(9,7)Box(null)),
+			parse("\\beginbox\\endbox"));
+		Assert.same(
+			expand(@wrap(10,7)Box(Paragraph(@len(1)Word("a")))),
+			parse("\\beginbox a\\endbox"));
+		Assert.same(
+			expand(@wrap(10,7)Box(VList([Paragraph(@len(1)Word("a")),@skip(2)Paragraph(@len(1)Word("b"))]))),
+			parse("\\beginbox a\n\nb\\endbox"));
+	}
 }
 

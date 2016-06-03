@@ -335,6 +335,20 @@ class Parser {
 		return mk(MetaReset(name.val, no), metaCmd.pos.span(val.pos));
 	}
 
+	function box(begin:Token)
+	{
+		// FIXME remove compat with \boxstart,\boxend
+		assert(begin.def.match(TCommand("beginbox") | TCommand("boxstart")), begin);
+		weakAssert(begin.def.match(TCommand("beginbox")), "\\boxstart deprecated; use \\beginbox,\\endbox", begin.pos);
+		var li = vlist({ beforeAny:[TCommand("endbox"), TCommand("boxend")] });
+		while (peek().def.match(TWordSpace(_) | TBreakSpace(_) | TLineComment(_) | TBlockComment(_)))
+			discard();
+		var end = discard();
+		if (end.def.match(TEof)) unclosed(begin);
+		if (!end.def.match(TCommand("endbox") | TCommand("boxend"))) unexpected(end);
+		return mk(Box(li), begin.pos.span(end.pos));
+	}
+
 	function meta(cmd:Token)
 	{
 		assert(cmd.def.match(TCommand("meta")), cmd);
@@ -371,7 +385,7 @@ class Parser {
 			case "quotation": quotation(discard());
 			case "item": list(peek().pos, stop);
 			case "meta": meta(discard());
-			case "boxstart", "boxend": discard(); vertical(stop);  // FIXME temporary bypass to test other stuff
+			case "beginbox", "boxstart": box(discard());
 			case name if (Lambda.has(horizontalCommands, name)): paragraph(stop);
 			case _: throw new UnknownCommand(lexer, peek().pos);
 			}
