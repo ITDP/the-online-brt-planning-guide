@@ -323,18 +323,6 @@ class Parser {
 		return mk(List(li), at.span(li[li.length - 1].pos));
 	}
 
-	function metaReset(metaCmd:Token, cmd:Token)
-	{
-		assert(metaCmd.def.match(TCommand("meta")), metaCmd);
-		assert(cmd.def.match(TCommand("reset")), cmd);
-		var name = arg(rawHorizontal, cmd, "counter name");
-		var val = arg(rawHorizontal, cmd, "reset value");
-		var no = ~/^[ \t\r\n]*[0-9][0-9]*[ \t\r\n]*$/.match(val.val) ? Std.parseInt(StringTools.trim(val.val)) : null;
-		if (!Lambda.has(["volume","chapter"], name.val)) badArg(name.pos, "counter name should be `volume` or `chapter`");
-		if (no == null || no < 0) badArg(val.pos, "reset value must be strictly greater or equal to zero");
-		return mk(MetaReset(name.val, no), metaCmd.pos.span(val.pos));
-	}
-
 	function box(begin:Token)
 	{
 		// FIXME remove compat with \boxstart,\boxend
@@ -349,14 +337,43 @@ class Parser {
 		return mk(Box(li), begin.pos.span(end.pos));
 	}
 
+	function metaReset(cmd:Token)
+	{
+		assert(cmd.def.match(TCommand("meta\\reset")), cmd);
+		var name = arg(rawHorizontal, cmd, "counter name");
+		var val = arg(rawHorizontal, cmd, "reset value");
+		var no = ~/^[ \t\r\n]*[0-9][0-9]*[ \t\r\n]*$/.match(val.val) ? Std.parseInt(StringTools.trim(val.val)) : null;
+		if (!Lambda.has(["volume","chapter"], name.val)) badArg(name.pos, "counter name should be `volume` or `chapter`");
+		if (no == null || no < 0) badArg(val.pos, "reset value must be strictly greater or equal to zero");
+		return mk(MetaReset(name.val, no), cmd.pos.span(val.pos));
+	}
+
+	function targetInclude(cmd:Token)
+	{
+		var path = arg(rawHorizontal, cmd);
+		if (path.val == null || StringTools.trim(path.val) == "") badArg(path.pos, "path cannot be empty");
+		return switch cmd.def {
+		case TCommand("html\\apply"): mk(HtmlApply(path.val), cmd.pos.span(path.pos));
+		case TCommand("tex\\preamble"): mk(LaTeXPreamble(path.val), cmd.pos.span(path.pos));
+		case _: unexpected(cmd); null;
+		}
+	}
+
 	function meta(cmd:Token)
 	{
 		assert(cmd.def.match(TCommand("meta")), cmd);
 		while (peek().def.match(TWordSpace(_) | TLineComment(_) | TBlockComment(_)))
 			discard();
-		return switch peek().def {
-		case TCommand("reset"): metaReset(cmd, discard());
-		case _: unexpected(peek()); null;
+		var next = discard();
+		var exec = switch next.def {
+		case TCommand(name): { def:TCommand('meta\\$name'), pos:cmd.pos.span(next.pos) };
+		case _: unexpected(next); null;
+		}
+		return switch exec.def {
+		case TCommand("meta\\reset"): metaReset(exec);
+		case TCommand("html\\apply"): targetInclude(exec);
+		case TCommand("tex\\preamble"): targetInclude(exec);
+		case _: unexpected(next); null;  // FIXME specific error unknown meta command
 		}
 	}
 

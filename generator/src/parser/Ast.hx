@@ -25,6 +25,8 @@ enum VDef {
 	List(items:Array<VElem>);
 	Box(contents:VElem);
 	MetaReset(name:String, val:Int);
+	HtmlApply(path:String);
+	LaTeXPreamble(path:String);
 	Paragraph(h:HElem);
 	VList(elem:Array<VElem>);
 }
