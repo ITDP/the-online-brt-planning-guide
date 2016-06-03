@@ -424,5 +424,23 @@ class Test_03_Parser {
 		parsingError("\\meta");  // FIXME specific error
 		parsingError("\\meta\n\n\\reset{volume}{2}");  // FIXME specific error
 	}
+
+	public function test_016_break_spaces_in_arguments()
+	{
+		// Section name must be a hlist, hence to break spaces can happen
+		parsingError("\\section{\n\nname}");
+
+		// It's hard to decide whether raw arguments should accept
+		// break spaces or not: on one hand, this is closer to what
+		// "raw" is expected to mean; on the other, this allows for
+		// uggly things like
+		//     \meta\reset{
+		//
+		//                 volume}{0}
+		// and this isn't something we want to encorage.
+		// Since we still don't use them in places were break spaces
+		// would be necessary, let's forbidd them for now.
+		parsingError("\\meta\\reset{\n\nvolume}{0}");
+	}
 }
 
