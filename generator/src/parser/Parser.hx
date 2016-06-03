@@ -61,6 +61,41 @@ class Parser {
 		return ret;
 	}
 
+	function arg<T>(internal:Stop->T, toToken:Null<Token>, ?desc:String):{ val:T, pos:Position }
+	{
+		while (peek().def.match(TWordSpace(_) | TLineComment(_) | TBlockComment(_)))
+			discard();
+		var open = discard();
+		if (!open.def.match(TBrOpen)) missingArg(open.pos, toToken, desc);
+
+		var li = internal({ before : TBrClose });
+
+		var close = discard();
+		if (close.def.match(TEof)) unclosed(open);
+		if (!close.def.match(TBrClose)) unexpected(close);
+		return { val:li, pos:open.pos.span(close.pos) };
+	}
+
+	function optArg<T>(internal:Stop->T, toToken:Null<Token>, ?desc:String):Null<{ val:T, pos:Position }>
+	{
+		var i = 0;
+		while (peek(i).def.match(TWordSpace(_) | TLineComment(_) | TBlockComment(_)))
+			i++;
+		if (!peek(i).def.match(TBrkOpen))
+			return null;
+
+		while (--i > 0) discard();
+		var open = discard();
+		if (!open.def.match(TBrkOpen)) missingArg(open.pos, toToken, desc);
+
+		var li = internal({ before : TBrkClose });
+
+		var close = discard();
+		if (close.def.match(TEof)) unclosed(open);
+		if (!close.def.match(TBrkClose)) unexpected(close);
+		return { val:li, pos:open.pos.span(close.pos) };
+	}
+
 	function emphasis(cmd:Token)
 	{
 		var content = arg(hlist, cmd);
@@ -146,41 +181,6 @@ class Parser {
 			}
 		}
 		return buf.toString();
-	}
-
-	function arg<T>(internal:Stop->T, toToken:Null<Token>, ?desc:String):{ val:T, pos:Position }
-	{
-		while (peek().def.match(TWordSpace(_) | TLineComment(_) | TBlockComment(_)))
-			discard();
-		var open = discard();
-		if (!open.def.match(TBrOpen)) missingArg(open.pos, toToken, desc);
-
-		var li = internal({ before : TBrClose });
-
-		var close = discard();
-		if (close.def.match(TEof)) unclosed(open);
-		if (!close.def.match(TBrClose)) unexpected(close);
-		return { val:li, pos:open.pos.span(close.pos) };
-	}
-
-	function optArg<T>(internal:Stop->T, toToken:Null<Token>, ?desc:String):Null<{ val:T, pos:Position }>
-	{
-		var i = 0;
-		while (peek(i).def.match(TWordSpace(_) | TLineComment(_) | TBlockComment(_)))
-			i++;
-		if (!peek(i).def.match(TBrkOpen))
-			return null;
-
-		while (--i > 0) discard();
-		var open = discard();
-		if (!open.def.match(TBrkOpen)) missingArg(open.pos, toToken, desc);
-
-		var li = internal({ before : TBrkClose });
-
-		var close = discard();
-		if (close.def.match(TEof)) unclosed(open);
-		if (!close.def.match(TBrkClose)) unexpected(close);
-		return { val:li, pos:open.pos.span(close.pos) };
 	}
 
 	function hierarchy(cmd:Token)
@@ -337,6 +337,13 @@ class Parser {
 		return mk(Box(li), begin.pos.span(end.pos));
 	}
 
+	function paragraph(stop:Stop)
+	{
+		var text = hlist(stop);
+		if (text == null) return null;
+		return mk(Paragraph(text), text.pos);
+	}
+
 	function metaReset(cmd:Token)
 	{
 		assert(cmd.def.match(TCommand("meta\\reset")), cmd);
@@ -375,13 +382,6 @@ class Parser {
 		case TCommand("tex\\preamble"): targetInclude(exec);
 		case _: unexpected(next); null;  // FIXME specific error unknown meta command
 		}
-	}
-
-	function paragraph(stop:Stop)
-	{
-		var text = hlist(stop);
-		if (text == null) return null;
-		return mk(Paragraph(text), text.pos);
 	}
 
 	function vertical(stop:Stop):VElem
