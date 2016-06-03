@@ -11,7 +11,7 @@ class Test_03_Parser {
 	function parse(s:String)
 	{
 		var l = new parser.Lexer(haxe.io.Bytes.ofString(s), SRC);
-		var p = new parser.Parser(l);
+		var p = new parser.Parser(SRC, l);
 		return p.file();
 	}
 
@@ -462,6 +462,21 @@ class Test_03_Parser {
 	// 	parsingError("\\item[\\section{foo}]");
 	// 	parsingError("\\beginbox\\section{foo}\\endbox");
 	// 	parsingError("\\item[\\beginbox\\endbox]");
+	// }
+
+	// TODO
+	// public function test_019_html_metas()
+	// {
+	// }
+
+	// TODO
+	// public function test_020_tex_metas()
+	// {
+	// }
+
+	// TODO
+	// public function test_021_include()
+	// {
 	// }
 }
 

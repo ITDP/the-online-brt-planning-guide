@@ -6,7 +6,7 @@ import Assertion.assert;
 class TokenTools {
 	public static function span(left:Position, right:Position)
 	{
-		assert(left.src == right.src, "cannot span between different files", left, right);
+		if (left.src != right.src) return left;
 		assert(left.min <= right.min, "inverted positions", left, right);
 		return { src:left.src, min:left.min, max:right.max };
 	}

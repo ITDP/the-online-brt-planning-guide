@@ -22,12 +22,13 @@ typedef FileCache = Map<Path,File>;
 class Parser {
 	static var horizontalCommands = ["emph", "highlight"];
 
+	var location:Path;
 	var lexer:Lexer;
 	var cache:FileCache;
 	var next:GenericCell<Token>;
 
-	inline function unexpected(t:Token)
-		throw new UnexpectedToken(lexer, t);
+	inline function unexpected(t:Token, ?desc)
+		throw new UnexpectedToken(lexer, t, desc);
 
 	inline function unclosed(t:Token)
 		throw new UnclosedToken(lexer, t);
@@ -162,6 +163,8 @@ class Parser {
 		return mkList(HList(li));
 	}
 
+	// FIXME try to avoid escaping the /, extremely common in paths
+	// FIXME handle dash conversion, or document it accordingly
 	function rawHorizontal(stop:Stop)
 	{
 		var buf = new StringBuf();
@@ -175,6 +178,9 @@ class Parser {
 				break;
 			case { def:TBlockComment(_) } | { def:TLineComment(_) }:  // not sure about this
 				discard();
+			case { def:TWord(w) }:
+				discard();
+				buf.add(w);
 			case { def:def, pos:pos }:
 				discard();
 				buf.add(lexer.recover(pos.min, pos.max - pos.min));
@@ -337,6 +343,24 @@ class Parser {
 		return mk(Box(li), begin.pos.span(end.pos));
 	}
 
+	function include(cmd:Token)
+	{
+#if (sys || hxnodejs)
+		assert(cmd.def.match(TCommand("include")), cmd);
+		var p = arg(rawHorizontal, cmd);
+		var path = p.val != null ? StringTools.trim(p.val) : "";
+		if (path == "") badArg(p.pos, "path cannot be empty");
+		// TODO don't allow absolute paths (they mean nothing in a collaborative repository)
+		path = haxe.io.Path.join([haxe.io.Path.directory(location), path]);
+		// TODO normalize the (absolute) path
+		// TODO use the cache
+		return parse(path, cache);
+#else
+		unexpected(cmd, "\\include not available in non-sys targets (or Node.js)");
+		return null;
+#end
+	}
+
 	function paragraph(stop:Stop)
 	{
 		var text = hlist(stop);
@@ -403,6 +427,7 @@ class Parser {
 			case "item": list(peek().pos, stop);
 			case "meta": meta(discard());
 			case "beginbox", "boxstart": box(discard());
+			case "include": include(discard());
 			case name if (Lambda.has(horizontalCommands, name)): paragraph(stop);
 			case _: throw new UnknownCommand(lexer, peek().pos);
 			}
@@ -433,10 +458,11 @@ class Parser {
 	}
 
 	public function file():File
-		return vlist({});
+		return vlist({});  // TODO update the cache
 
-	public function new(lexer:Lexer, ?cache:FileCache)
+	public function new(location:String, lexer:Lexer, ?cache:FileCache)
 	{
+		this.location = location;
 		this.lexer = lexer;
 		if (cache == null) cache = new FileCache();
 		this.cache = cache;
@@ -446,7 +472,7 @@ class Parser {
 	public static function parse(path:String, ?cache:FileCache)
 	{
 		var lex = new Lexer(sys.io.File.getBytes(path), path);
-		var parser = new Parser(lex, cache);
+		var parser = new Parser(path, lex, cache);
 		return parser.file();
 	}
 #end

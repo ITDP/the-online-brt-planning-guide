@@ -14,7 +14,7 @@ class Test_04_Transform {
 	function transform(str : String)
 	{
 		var l = new Lexer(Bytes.ofString(str), SRC);
-		var p = new Parser(l).file();
+		var p = new Parser(SRC, l).file();
 		return Transform.transform(p);
 	}
 
