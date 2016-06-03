@@ -371,6 +371,7 @@ class Parser {
 			case "quotation": quotation(discard());
 			case "item": list(peek().pos, stop);
 			case "meta": meta(discard());
+			case "boxstart", "boxend": discard(); vertical(stop);  // FIXME temporary bypass to test other stuff
 			case name if (Lambda.has(horizontalCommands, name)): paragraph(stop);
 			case _: throw new UnknownCommand(lexer, peek().pos);
 			}
