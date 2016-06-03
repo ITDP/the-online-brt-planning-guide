@@ -40,10 +40,14 @@ class Main {
 				print(USAGE);
 				exit(1);
 			}
+		} catch (e:hxparse.UnexpectedChar) {
+			println('${e.pos}: $e');
+			if (debug) println(CallStack.toString(CallStack.exceptionStack()));
+			exit(2);
 		} catch (e:Dynamic) {
 			println('Error: $e');
 			if (debug) println(CallStack.toString(CallStack.exceptionStack()));
-			exit(2);
+			exit(9);
 		}
 	}
 }
