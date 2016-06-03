@@ -52,7 +52,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 			buf.add(lexer.current);
 			lexer.token(math);
 		},
-		"[^$]+" =>
+		"[^$\\\\]+" =>
 		{
 			buf.add(lexer.current);
 			lexer.token(math);
