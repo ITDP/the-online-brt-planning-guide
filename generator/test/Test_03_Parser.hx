@@ -413,7 +413,7 @@ class Test_03_Parser {
 
 		parsingError("\\meta\\reset{volume}{a}", BadValue);
 		parsingError("\\meta\\reset{volume}{-1}", BadValue);
-		// parsingError("\\meta\\reset{volume}{1a}", BadValue);  // FIXME
+		parsingError("\\meta\\reset{volume}{1a}", BadValue);  // FIXME
 
 		parsingError("\\meta\\reset{}{1}", BadValue);
 		parsingError("\\meta\\reset{volume}{}", BadValue);
