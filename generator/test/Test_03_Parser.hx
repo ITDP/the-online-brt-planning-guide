@@ -455,5 +455,13 @@ class Test_03_Parser {
 			expand(@wrap(10,7)Box(VList([Paragraph(@len(1)Word("a")),@skip(2)Paragraph(@len(1)Word("b"))]))),
 			parse("\\beginbox a\n\nb\\endbox"));
 	}
+
+	// FIXME
+	// public function test_018_controled_nesting_of_vertical_elements()
+	// {
+	// 	parsingError("\\item[\\section{foo}]");
+	// 	parsingError("\\beginbox\\section{foo}\\endbox");
+	// 	parsingError("\\item[\\beginbox\\endbox]");
+	// }
 }
 
