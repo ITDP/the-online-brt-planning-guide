@@ -391,7 +391,7 @@ class Test_03_Parser {
 			parse("\\emph{/*foo*/a}"));
 	}
 
-	public function test_015_set_counter()
+	public function test_015_meta_reset()
 	{
 		Assert.same(
 			expand(@len(22)MetaReset("volume", 2)),
@@ -399,6 +399,13 @@ class Test_03_Parser {
 		Assert.same(
 			expand(@len(23)MetaReset("chapter", 8)),
 			parse("\\meta\\reset{chapter}{8}"));
+
+		Assert.same(
+			expand(@len(25)MetaReset("volume", 2)),
+			parse("\\meta \t\n\\reset{volume}{2}"));
+		Assert.same(
+			expand(@len(27)MetaReset("volume", 2)),
+			parse("\\meta/*a*/\\reset{volume}{2}"));
 
 		parsingError("\\meta\\reset{section}{1}", BadValue);
 		parsingError("\\meta\\reset{subsection}{1}", BadValue);
@@ -413,6 +420,9 @@ class Test_03_Parser {
 
 		parsingError("\\meta\\reset", MissingArgument, ~/name/);
 		parsingError("\\meta\\reset{volume}", MissingArgument, ~/value/);
+
+		parsingError("\\meta");  // FIXME specific error
+		parsingError("\\meta\n\n\\reset{volume}{2}");  // FIXME specific error
 	}
 }
 
