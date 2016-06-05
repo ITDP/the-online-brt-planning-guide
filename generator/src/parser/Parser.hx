@@ -55,23 +55,36 @@ class Parser {
 		return c.elt;
 	}
 
-	function discard()
+	function pop()
 	{
 		var ret = peek();
 		next = next.next;
 		return ret;
 	}
 
+	function discardNoise(permanent=true):Int
+	{
+		var next = 0;
+		var count = 0;
+		while (peek(next).def.match(TWordSpace(_) | TLineComment(_) | TBlockComment(_))) {
+			count++;
+			if (permanent)
+				pop();
+			else
+				next = count;
+		}
+		return count;
+	}
+
 	function arg<T>(internal:Stop->T, toToken:Null<Token>, ?desc:String):{ val:T, pos:Position }
 	{
-		while (peek().def.match(TWordSpace(_) | TLineComment(_) | TBlockComment(_)))
-			discard();
-		var open = discard();
+		discardNoise();
+		var open = pop();
 		if (!open.def.match(TBrOpen)) missingArg(open.pos, toToken, desc);
 
 		var li = internal({ before : TBrClose });
 
-		var close = discard();
+		var close = pop();
 		if (close.def.match(TEof)) unclosed(open);
 		if (!close.def.match(TBrClose)) unexpected(close);
 		return { val:li, pos:open.pos.span(close.pos) };
@@ -79,19 +92,17 @@ class Parser {
 
 	function optArg<T>(internal:Stop->T, toToken:Null<Token>, ?desc:String):Null<{ val:T, pos:Position }>
 	{
-		var i = 0;
-		while (peek(i).def.match(TWordSpace(_) | TLineComment(_) | TBlockComment(_)))
-			i++;
+		var i = discardNoise(false);
 		if (!peek(i).def.match(TBrkOpen))
 			return null;
 
-		while (--i > 0) discard();
-		var open = discard();
+		while (--i > 0) pop();
+		var open = pop();
 		if (!open.def.match(TBrkOpen)) missingArg(open.pos, toToken, desc);
 
 		var li = internal({ before : TBrkClose });
 
-		var close = discard();
+		var close = pop();
 		if (close.def.match(TEof)) unclosed(open);
 		if (!close.def.match(TBrkClose)) unexpected(close);
 		return { val:li, pos:open.pos.span(close.pos) };
@@ -109,10 +120,10 @@ class Parser {
 
 	function mdEmph()
 	{
-		var open = discard();
+		var open = pop();
 		if (!open.def.match(TAsterisk)) unexpected(open);
 		var li = hlist({ before:TAsterisk });
-		var close = discard();
+		var close = pop();
 		if (!close.def.match(TAsterisk)) unclosed(open);
 		return mk(Emphasis(li), open.pos.span(close.pos));
 	}
@@ -120,30 +131,30 @@ class Parser {
 	function horizontal(stop:Stop):HElem
 	{
 		while (peek().def.match(TLineComment(_) | TBlockComment(_)))
-			discard();
+			pop();
 		return switch peek() {
 		case { def:tdef } if (stop.before != null && Type.enumEq(tdef, stop.before)):
 			null;
 		case { def:tdef } if (stop.beforeAny != null && Lambda.exists(stop.beforeAny,Type.enumEq.bind(tdef))):
 			null;
 		case { def:TWord(s), pos:pos }:
-			discard();
+			pop();
 			mk(Word(s), pos);
 		case { def:TMath(s), pos:pos }:
-			discard();
+			pop();
 			mk(Word(s), pos);  // FIXME
 		case { def:TCommand(cmdName), pos:pos }:
 			switch cmdName {
-			case "emph", "highlight": emphasis(discard());
+			case "emph", "highlight": emphasis(pop());
 			case _: null;  // vertical commands end the current hlist; unknown commands will be handled later
 			}
 		case { def:TAsterisk }:
 			mdEmph();
 		case { def:TWordSpace(s), pos:pos }:
-			discard();
+			pop();
 			mk(Wordspace, pos);
 		case { def:TColon(q), pos:pos } if (q != 3):
-			discard();
+			pop();
 			mk(Word("".rpad(":", q)), pos);
 		case { def:tdef } if (tdef.match(TBreakSpace(_) | TEof)):
 			null;
@@ -177,12 +188,12 @@ class Parser {
 			case { def:TBreakSpace(_) } | { def:TEof }:
 				break;
 			case { def:TBlockComment(_) } | { def:TLineComment(_) }:  // not sure about this
-				discard();
+				pop();
 			case { def:TWord(w) }:
-				discard();
+				pop();
 				buf.add(w);
 			case { def:def, pos:pos }:
-				discard();
+				pop();
 				buf.add(lexer.recover(pos.min, pos.max - pos.min));
 			}
 		}
@@ -205,8 +216,7 @@ class Parser {
 
 	function mdHeading(hashes:Token, stop:Stop)
 	{
-		while (peek().def.match(TWordSpace(_)))  // TODO maybe add this to hlist?
-			discard();
+		discardNoise();
 		var name = hlist(stop);
 		assert(name != null, "obvisouly empty header");  // FIXME maybe
 
@@ -261,7 +271,7 @@ class Parser {
 				path = p.val;
 			case TAt:
 				if (copyright != null) throw "TODO";
-				discard();
+				pop();
 				copyright = hlist({ before:TBrOpen });  // FIXME consider current stop
 				lastPos = copyright.pos;
 			case TBreakSpace(_), TEof:
@@ -294,12 +304,11 @@ class Parser {
 	function mdQuotation(greaterThan:Token, stop:Stop)
 	{
 		assert(greaterThan.def.match(TGreater), greaterThan);
-		while (peek().def.match(TWordSpace(_)))  // TODO maybe add this to hlist?
-			discard();
+		discardNoise();
 		var text = hlist({ before:TAt });
-		var at = discard();
+		var at = pop();
 		if (!at.def.match(TAt)) unexpected(at);
-		var author = hlist(stop);  // TODO maybe also discard wordspace before
+		var author = hlist(stop);  // TODO maybe also pop wordspace before
 		if (text == null) badValue(greaterThan.pos.span(at.pos).offset(1, -1), "text cannot be empty");
 		if (author == null) badValue(at.pos.offset(1,0), "author cannot be empty");
 		return mk(Quotation(text, author), greaterThan.pos.span(author.pos));
@@ -324,7 +333,7 @@ class Parser {
 	{
 		var li = [];
 		while (peek().def.match(TCommand("item")))
-			li.push(listItem(discard(), stop));
+			li.push(listItem(pop(), stop));
 		assert(li.length > 0, li);  // we're sure that li.length > 0 since we started with \item
 		return mk(List(li), at.span(li[li.length - 1].pos));
 	}
@@ -336,8 +345,8 @@ class Parser {
 		weakAssert(begin.def.match(TCommand("beginbox")), "\\boxstart deprecated; use \\beginbox,\\endbox", begin.pos);
 		var li = vlist({ beforeAny:[TCommand("endbox"), TCommand("boxend")] });
 		while (peek().def.match(TWordSpace(_) | TBreakSpace(_) | TLineComment(_) | TBlockComment(_)))
-			discard();
-		var end = discard();
+			pop();
+		var end = pop();
 		if (end.def.match(TEof)) unclosed(begin);
 		if (!end.def.match(TCommand("endbox") | TCommand("boxend"))) unexpected(end);
 		return mk(Box(li), begin.pos.span(end.pos));
@@ -393,9 +402,8 @@ class Parser {
 	function meta(cmd:Token)
 	{
 		assert(cmd.def.match(TCommand("meta")), cmd);
-		while (peek().def.match(TWordSpace(_) | TLineComment(_) | TBlockComment(_)))
-			discard();
-		var next = discard();
+		discardNoise();
+		var next = pop();
 		var exec = switch next.def {
 		case TCommand(name): { def:TCommand('meta\\$name'), pos:cmd.pos.span(next.pos) };
 		case _: unexpected(next); null;
@@ -411,7 +419,7 @@ class Parser {
 	function vertical(stop:Stop):VElem
 	{
 		while (peek().def.match(TWordSpace(_) | TBreakSpace(_) | TLineComment(_) | TBlockComment(_)))
-			discard();
+			pop();
 		return switch peek().def {
 		case tdef if (stop.before != null && Type.enumEq(tdef, stop.before)):
 			null;
@@ -421,22 +429,22 @@ class Parser {
 			null;
 		case TCommand(cmdName):
 			switch cmdName {
-			case "volume", "chapter", "section", "subsection", "subsubsection": hierarchy(discard());
-			case "figure": figure(discard());
-			case "quotation": quotation(discard());
+			case "volume", "chapter", "section", "subsection", "subsubsection": hierarchy(pop());
+			case "figure": figure(pop());
+			case "quotation": quotation(pop());
 			case "item": list(peek().pos, stop);
-			case "meta": meta(discard());
-			case "beginbox", "boxstart": box(discard());
-			case "include": include(discard());
+			case "meta": meta(pop());
+			case "beginbox", "boxstart": box(pop());
+			case "include": include(pop());
 			case name if (Lambda.has(horizontalCommands, name)): paragraph(stop);
 			case _: throw new UnknownCommand(lexer, peek().pos);
 			}
 		case THashes(1) if (peek(1).def.match(TWord("FIG")) && peek(2).def.match(THashes(1))):
-			mdFigure([discard(), discard(), discard()], stop);
+			mdFigure([pop(), pop(), pop()], stop);
 		case THashes(_) if (!peek(1).def.match(TWord("FIG") | TWord("EQ") | TWord("TAB"))):  // TODO remove FIG/EQ/TAB
-			mdHeading(discard(), stop);
+			mdHeading(pop(), stop);
 		case TGreater:
-			mdQuotation(discard(), stop);
+			mdQuotation(pop(), stop);
 		case TWord(_), TAsterisk:
 			paragraph(stop);
 		case TColon(q) if (q != 3):
