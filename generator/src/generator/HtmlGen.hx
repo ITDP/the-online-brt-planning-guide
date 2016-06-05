@@ -71,7 +71,12 @@ class HtmlGen {
 			buf.add("<ul>\n");
 			for (i in li) {
 				buf.add("<li>");
-				buf.add(vertical(i, counts, curNav));
+				switch i.def {
+				case TParagraph(h):
+					buf.add(horizontal(h));
+				case _:
+					buf.add(vertical(i, counts, curNav));
+				}
 				buf.add("</li>\n");
 			}
 			buf.add("</ul>\n");
