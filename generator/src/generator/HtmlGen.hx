@@ -141,7 +141,7 @@ class HtmlGen {
 			
 		curNav = _nav;
 		
-		var count = countGen(counts, type, ".");
+		var count = counts.slice(1, type + 1).join(".");
 
 		//Vol. doesnt add anything
 		if(type > 0)
@@ -325,24 +325,5 @@ class HtmlGen {
 
 	public function new(dest:Path)
 		this.dest = dest;
-
-
-	function countGen(counts : Array<Int>, elem : Int, sep : String)
-	{
-		var i = 0;
-		var str = new StringBuf();
-		while (i <= elem)
-		{
-			if(i != elem)
-				str.add(counts[i] + sep);
-			else
-				str.add(counts[i]);
-			i++;
-		}
-
-		return str.toString();
-	}
-
-
 }
 
