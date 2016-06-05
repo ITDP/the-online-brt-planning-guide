@@ -364,6 +364,7 @@ class Test_03_Parser {
 				@wrap(6,1)Paragraph(@len(1)Word("b"))])),
 			parse("\\item[a\n\n\\item x\\item y]\\item[b]"));
 
+		// TODO test that lists break on breakspaces
 		// TODO more tests
 		// TODO more error tests
 	}
@@ -480,5 +481,12 @@ class Test_03_Parser {
 	// public function test_021_include()
 	// {
 	// }
+
+	// TODO
+	public function test_022_tables()
+	{
+		trace(parse("\\begintable{a}\\row\\col x\\col y\\row\\col 1\\col 2\\endtable"));
+		Assert.isTrue(true);
+	}
 }
 

@@ -91,11 +91,11 @@ class Parser {
 		return ret;
 	}
 
-	function discardNoise(permanent=true):Int
+	function discard(match:Token->Bool, permanent=true)
 	{
 		var next = 0;
 		var count = 0;
-		while (peek(next).def.match(TWordSpace(_) | TLineComment(_) | TBlockComment(_))) {
+		while (match(peek(next))) {
 			count++;
 			if (permanent)
 				pop();
@@ -104,6 +104,12 @@ class Parser {
 		}
 		return count;
 	}
+
+	function discardNoise(permanent=true):Int
+		return discard(function (x) return x.def.match(TWordSpace(_)|TLineComment(_)|TBlockComment(_)));
+
+	function discardVerticalNoise(permanent=true):Int
+		return discard(function (x) return x.def.match(TWordSpace(_)|TLineComment(_)|TBlockComment(_)|TBreakSpace(_)));
 
 	function arg<T>(internal:Stop->T, toToken:Null<Token>, ?desc:String):{ val:T, pos:Position }
 	{
@@ -269,6 +275,43 @@ class Parser {
 		return mk(Figure(path.val, caption.val, copyright.val), cmd.pos.span(copyright.pos));
 	}
 
+	function tableCell(cmd:Token)
+	{
+		assert(cmd.def.match(TCommand("col")), cmd);
+		// TODO handle empty cells
+		return vlist({ beforeAny:[TCommand("col"), TCommand("row"), TCommand("endtable")] });
+	}
+
+	function tableRow(cmd:Token)
+	{
+		assert(cmd.def.match(TCommand("row")), cmd);
+		// TODO handle empty rows
+		var cells = [];
+		while (true) {
+			discardVerticalNoise();
+			if (!peek().def.match(TCommand("col"))) break;
+			cells.push(tableCell(pop()));
+		}
+		return cells;
+	}
+
+	function table(begin:Token)
+	{
+		assert(begin.def.match(TCommand("begintable")), begin);
+		var caption = arg(hlist, begin, "caption");
+		if (caption.val == null) badArg(caption.pos, "caption cannot be empty");
+		var rows = [];
+		while (true) {
+			discardVerticalNoise();
+			if (!peek().def.match(TCommand("row"))) break;
+			rows.push(tableRow(pop()));
+		}
+		var end = pop();  // should have already discarted any vnoise before
+		if (end.def.match(TEof)) unclosed(begin);
+		if (!end.def.match(TCommand("endtable"))) unexpected(end);
+		return mk(Table(rows, caption.val), begin.pos.span(end.pos));
+	}
+
 	/**
 	After having already read a `#FIG#` tag, parse the reaming of the
 	vertical block as a combination of a of path (delimited by `{}`),
@@ -373,8 +416,7 @@ class Parser {
 		assert(begin.def.match(TCommand("beginbox") | TCommand("boxstart")), begin);
 		weakAssert(begin.def.match(TCommand("beginbox")), "\\boxstart deprecated; use \\beginbox,\\endbox", begin.pos);
 		var li = vlist({ beforeAny:[TCommand("endbox"), TCommand("boxend")] });
-		while (peek().def.match(TWordSpace(_) | TBreakSpace(_) | TLineComment(_) | TBlockComment(_)))
-			pop();
+		discardVerticalNoise();
 		var end = pop();
 		if (end.def.match(TEof)) unclosed(begin);
 		if (!end.def.match(TCommand("endbox") | TCommand("boxend"))) unexpected(end);
@@ -447,8 +489,7 @@ class Parser {
 
 	function vertical(stop:Stop):VElem
 	{
-		while (peek().def.match(TWordSpace(_) | TBreakSpace(_) | TLineComment(_) | TBlockComment(_)))
-			pop();
+		discardVerticalNoise();
 		return switch peek().def {
 		case tdef if (stop.before != null && Type.enumEq(tdef, stop.before)):
 			null;
@@ -460,6 +501,7 @@ class Parser {
 			switch cmdName {
 			case "volume", "chapter", "section", "subsection", "subsubsection": hierarchy(pop());
 			case "figure": figure(pop());
+			case "begintable": table(pop());
 			case "quotation": quotation(pop());
 			case "item": list(peek().pos, stop);
 			case "meta": meta(pop());

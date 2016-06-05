@@ -14,19 +14,24 @@ enum HDef {
 	HList(elem:Array<HElem>);
 }
 
+typedef TableCell = VElem;
+typedef TableRow = Array<TableCell>;
+
 enum VDef {
+	MetaReset(name:String, val:Int);  // could we make it a hdef?
+	HtmlApply(path:String);
+	LaTeXPreamble(path:String);
+
 	Volume(name:HElem);
 	Chapter(name:HElem);
 	Section(name:HElem);
 	SubSection(name:HElem);
 	SubSubSection(name:HElem);
 	Figure(path:String, caption:HElem, copyright:HElem);  // TODO size?
+	Table(rows:Array<TableRow>, caption:HElem);  // copyright/source?
 	Quotation(text:HElem, by:HElem);
 	List(items:Array<VElem>);
 	Box(contents:VElem);
-	MetaReset(name:String, val:Int);
-	HtmlApply(path:String);
-	LaTeXPreamble(path:String);
 	Paragraph(h:HElem);
 	VList(elem:Array<VElem>);
 }
