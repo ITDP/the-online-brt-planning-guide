@@ -20,6 +20,10 @@ typedef Path = String;
 typedef FileCache = Map<Path,File>;
 
 class Parser {
+	static var verticalCommands = [
+		"volume", "chapter", "section", "subsection", "subsubsection",
+		"figure", "quotation", "item", "beginbox", "endbox", "include",
+		"meta\\reset", "tex\\preamble", "html\\apply"];
 	static var horizontalCommands = ["emph", "highlight"];
 
 	var location:Path;
@@ -41,6 +45,31 @@ class Parser {
 
 	inline function badArg(pos:Position, ?desc:String)
 		throw new BadValue(lexer, pos.offset(1, -1), desc);
+
+	inline function unknownCmd(cmd:Token)
+	{
+		// EXPERIMENTAL: use Levenshtein distances to generate command suggestions
+
+		// Levenshtein distance penalties for the NeedlemanWunsh
+		var df = function ( a, b ) return a==b ? 0 : 1;
+		var sf = function ( a, b, c ) return 1;
+
+		var name = switch cmd.def {
+		case TCommand(n): n;
+		case _: throw new UnknownCommand(lexer, cmd.pos); null;
+		}
+		name = name.toLowerCase();
+		var cmds = verticalCommands.concat(horizontalCommands);
+		var dist = cmds.map(function (x) return x.split(""))
+			.map(NeedlemanWunsch.globalAlignment.bind(name.split(""), _, df, sf));
+		var best = 0;
+		for (i in 1...cmds.length) {
+			if (dist[i].distance < dist[best].distance)
+				best = i;
+		}
+		// trace(untyped [cmds[best], dist[best]]);
+		throw new UnknownCommand(lexer, cmd.pos, cmds[best]);
+	}
 
 	function peek(offset=0):Token
 	{
@@ -437,7 +466,7 @@ class Parser {
 			case "beginbox", "boxstart": box(pop());
 			case "include": include(pop());
 			case name if (Lambda.has(horizontalCommands, name)): paragraph(stop);
-			case _: throw new UnknownCommand(lexer, peek().pos);
+			case _: unknownCmd(peek()); null;
 			}
 		case THashes(1) if (peek(1).def.match(TWord("FIG")) && peek(2).def.match(THashes(1))):
 			mdFigure([pop(), pop(), pop()], stop);

@@ -159,13 +159,15 @@ class Test_03_Parser {
 	public function test_005_bad_command_name()
 	{
 		// typos
-		parsingError("\\emp", UnknownCommand, ~/\\emp/, mkPos(0,4));
-		parsingError("\\highligth", UnknownCommand);
+		parsingError("\\emp", UnknownCommand, ~/\\emp.+\\emph/, mkPos(0,4));
+		parsingError("\\highligth", UnknownCommand, ~/\\highligth.+\\highlight/);
 
 		// non existant aliases
-		parsingError("\\emphasis", UnknownCommand);
+		parsingError("\\emphasis", UnknownCommand, ~/\\emphasis.+\\emph/);
 		parsingError("\\display", UnknownCommand);
+		// parsingError("\\display", UnknownCommand, ~/\\display.+\\highlight/);  // FIXME
 		parsingError("\\quote", UnknownCommand);
+		// parsingError("\\quote", UnknownCommand, ~/\\quote.+\\quotation/);  // FIXME
 	}
 
 	public function test_006_known_dificulties_from_poc()

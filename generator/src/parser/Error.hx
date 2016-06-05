@@ -142,7 +142,20 @@ class BadValue extends GenericError {
 }
 
 class UnknownCommand extends GenericError {
+	var suggestion:Null<String>;
+
+	public function new(lexer, pos, ?suggestion)
+	{
+		this.suggestion = suggestion;
+		super(lexer, pos);
+	}
+
 	override public function get_text()
-		return 'Unknown command $at';
+	{
+		var msg = 'Unknown command $at';
+		if (suggestion != null)
+			msg += '; did you perhaps mean `\\$suggestion`?  (sorry if the suggestion makes no sense)';
+		return msg;
+	}
 }
 

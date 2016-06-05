@@ -1,5 +1,6 @@
 -lib hxparse
 -lib assertion
+-cp include
 -cp src
 
 --each
