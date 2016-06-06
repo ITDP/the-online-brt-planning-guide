@@ -3,6 +3,7 @@ package generator;  // TODO move out of the package
 import generator.HtmlGen.Nav;
 
 
+
 import parser.Ast.HElem;
 
 import sys.io.File;
@@ -188,7 +189,6 @@ class HtmlGen {
 		//Nav options (will gen a JS);
 		var optBuff = new Map<String, {list : String, type : Int}>();
 		
-		
 		leftBuff.add("<nav><ul>");
 		
 		//Should be volumes
@@ -213,7 +213,6 @@ class HtmlGen {
 								var cha_name = se_params[3];
 								var sec_name = se_params[5];
 								
-								//TODO:
 								sec += '<li><a href="../${cha_name}/${sec_name}.html">${se.name}"</a></li>';
 								
 								if (curSec != null && curSec == se)
@@ -259,7 +258,13 @@ class HtmlGen {
 		buff.add('function init()
 		{
 			$(".volumes").append(\'${volumesList}\');
-			var path = window.location.pathname.split("/");
+			var fullid = $(".col-text").children("section").first().children("h3").attr("id").split(".");
+			var vol_id = fullid.slice(0, 2).join("\\\\.");
+			$("#" + vol_id).trigger("click");
+			$("#" + fullid.slice(0, 4).join("\\\\.")).trigger("click");
+			$("#" + fullid.slice(0, 6).join("\\\\.")).trigger("click");
+			
+			
 		}');
 		
 		buff.add("function hover()
@@ -281,7 +286,7 @@ class HtmlGen {
 		for (key in values.keys())
 		{
 			var id = key.split(".").join("\\\\.");
-			//TODO: Optimize
+			//TODO: Optimize:
 			buff.add('
 				$("#${id}").off("click"); \n
 				$("#${id}").click(function()
@@ -313,7 +318,7 @@ class HtmlGen {
 		}
 		buff.add("}\n");
 		
-		buff.add("$(document).ready(function(){init();onClick();hover();});");
+		buff.add("$(document).ready(function(){onClick();hover();init();});");
 
 		return buff.toString();
 	}
@@ -354,7 +359,7 @@ class HtmlGen {
 			FileSystem.createDirectory(path);
 		
 		var buff = new StringBuf();
-		buff.add(headGen(joinPaths([dest, "style.css"]), joinPaths([dest, JSName])));
+		buff.add(headGen("../style.css",  "../" + JSName));
 		
 		buff.add('<body><div class="container"><div class="col-text">');
 		buff.add(content);
