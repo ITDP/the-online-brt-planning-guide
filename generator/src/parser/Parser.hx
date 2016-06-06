@@ -23,7 +23,8 @@ class Parser {
 	static var verticalCommands = [
 		"volume", "chapter", "section", "subsection", "subsubsection",
 		"figure", "quotation", "item", "beginbox", "endbox", "include",
-		"meta\\reset", "tex\\preamble", "html\\apply"];
+		"begintable", "row", "col", "endtable",
+		"meta", "meta\\reset", "tex", "tex\\preamble", "html", "html\\apply"];
 	static var horizontalCommands = ["emph", "highlight"];
 
 	var location:Path;
