@@ -37,7 +37,7 @@
 			"cp book.pdf $ROBRT_OUTPUT_DIR/pdf/guide_lualatex.pdf",
 			"latexmk -C book.tex",
 
-			"latexmk -pdflatex='-interaction=nonstopmode' book.tex",
+			"latexmk -pdf -pdflatex='pdflatex -interaction=nonstopmode' book.tex",
 			"cp book.pdf $ROBRT_OUTPUT_DIR/pdf/guide_pdflatex.pdf",
 			"latexmk -C book.tex"
 		]
