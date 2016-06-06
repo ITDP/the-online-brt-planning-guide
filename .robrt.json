@@ -19,11 +19,22 @@
 			"export DEBUG=1",
 
 			"command time -v neko generator/bin/obrt.n gen guide/the-brt-planning-guide.src",
+
 			"cp -r guide/the-brt-planning-guide.src.html $ROBRT_OUTPUT_DIR/guide",
 			"cp generator/docs/design/web/mockup/style.css $ROBRT_OUTPUT_DIR/guide",
 
 			"nodejs --version",
-			"command time -v nodejs generator/bin/obrt.js gen guide/the-brt-planning-guide.src"
+			"command time -v nodejs generator/bin/obrt.js gen guide/the-brt-planning-guide.src",
+
+			"cd guide/the-brt-planning-guide.src.pdf/",
+
+			"latexmk -xelatex root.tex",
+			"cp root.pdf $ROBRT_OUTPUT_DIR/guide/guide_xelatex.pdf",
+			"latexmk -C root.tex",
+
+			"latexmk -lualatex root.tex",
+			"cp root.pdf $ROBRT_OUTPUT_DIR/guide/guide_lualatex.pdf",
+			"latexmk -C root.tex"
 		]
 	}
 }
