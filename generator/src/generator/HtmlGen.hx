@@ -207,7 +207,7 @@ class HtmlGen {
 								var cha_name = se_params[3];
 								var sec_name = se_params[5];
 								
-								sec += '<li><a href="../${cha_name}/${sec_name}.html">${se.name}"</a></li>';
+								sec += '<li><a href="../${cha_name}/${sec_name}.html">${se.name}</a></li>';
 								
 								if (curSec != null && curSec == se)
 								{
@@ -368,7 +368,7 @@ class HtmlGen {
 		curBuff = new StringBuf();
 		vertical(doc,[0,0,0,0,0,0], null);
 		
-		
+		//JS name
 		File.saveContent(joinPaths([dest, JSName]), processNav(null).topNavJs);
 		
 	}
