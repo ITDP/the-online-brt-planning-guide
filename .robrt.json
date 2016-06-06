@@ -29,13 +29,13 @@
 			"cd guide/the-brt-planning-guide.src.pdf/",
 			"mkdir -p $ROBRT_OUTPUT_DIR/pdf",
 
-			"latexmk -xelatex -pdflatex='xelatex -interaction=nonstopmode' root.tex",
-			"cp root.pdf $ROBRT_OUTPUT_DIR/pdf/guide_xelatex.pdf",
-			"latexmk -C root.tex",
+			"latexmk -xelatex -pdflatex='xelatex -interaction=nonstopmode' book.tex",
+			"cp book.pdf $ROBRT_OUTPUT_DIR/pdf/guide_xelatex.pdf",
+			"latexmk -C book.tex",
 
-			"latexmk -lualatex -pdflatex='lualatex -interaction=nonstopmode' root.tex",
-			"cp root.pdf $ROBRT_OUTPUT_DIR/pdf/guide_lualatex.pdf",
-			"latexmk -C root.tex"
+			"latexmk -lualatex -pdflatex='lualatex -interaction=nonstopmode' book.tex",
+			"cp book.pdf $ROBRT_OUTPUT_DIR/pdf/guide_lualatex.pdf",
+			"latexmk -C book.tex"
 		]
 	}
 }

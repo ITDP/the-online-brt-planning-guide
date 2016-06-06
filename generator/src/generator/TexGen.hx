@@ -62,8 +62,8 @@ class TexGen {
 		case TParagraph(h):
 			return '${genh(h)}\\par\n${genp(v.pos)}\n';
 		case TVolume(name, count, id, children):
+			var path = Path.join([at, id.split(".")[1]+".tex"]);
 			var dir = Path.join([at, id.split(".")[1]]);
-			var path = Path.join([dir, "root.tex"]);
 			var buf = new StringBuf();
 			bufs[path] = buf;
 			buf.add(FILE_BANNER);
@@ -123,7 +123,7 @@ class TexGen {
 		root.add("\\begin{document}\n\n");
 		root.add(contents);
 		root.add("\\end{document}\n");
-		bufs["root.tex"] = root;
+		bufs["book.tex"] = root;
 
 		for (p in bufs.keys()) {
 			var path = Path.join([destDir, p]);
