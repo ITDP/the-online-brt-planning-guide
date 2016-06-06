@@ -7,6 +7,8 @@ typedef Document = TElem;
 typedef TElem = Elem<TDef>;
 
 enum TDef {
+	TLaTeXPreamble(path:String);
+
 	TVolume(name : HElem, count : Int, id : String, children : TElem);
 	TChapter(name : HElem, count : Int, id : String, children : TElem);
 	TSection(name : HElem, count : Int, id : String, children : TElem);

@@ -86,6 +86,8 @@ class HtmlGen {
 			for (i in li)
 				buf.add(vertical(i, counts, curNav));
 			return buf.toString();
+		case TLaTeXPreamble(_):
+			return null;  // ignore
 		}
 	}
 	
