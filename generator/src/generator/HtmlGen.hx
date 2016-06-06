@@ -93,7 +93,7 @@ class HtmlGen {
 			for (i in li)
 				vertical(i, counts, curNav);
 		case TLaTeXPreamble(_):
-			return null;  // ignore
+			null;  // ignore
 		}
 	}
 	
