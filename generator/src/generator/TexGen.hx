@@ -5,6 +5,8 @@ import sys.FileSystem;
 import sys.io.File;
 import transform.Document;
 
+import Assertion.*;
+
 using Literals;
 using StringTools;
 
@@ -48,26 +50,37 @@ class TexGen {
 		}
 	}
 
-	function genv(v:TElem)
+	function genv(v:TElem, at:String)
 	{
+		assert(!at.endsWith(".tex"), at, "should not but a directory");
 		switch v.def {
 		case TVList(li):
 			var buf = new StringBuf();
 			for (i in li)
-				buf.add(genv(i));
+				buf.add(genv(i, at));
 			return buf.toString();
 		case TParagraph(h):
 			return '${genh(h)}\\par\n${genp(v.pos)}\n';
 		case TVolume(name, count, id, children):
-			return '\\volume{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children)}';
+			var dir = Path.join([at, id.split(".")[1]]);
+			var path = Path.join([dir, "root.tex"]);
+			var buf = new StringBuf();
+			bufs[path] = buf;
+			buf.add(FILE_BANNER);
+			buf.add('\n\n\\volume{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, dir)}');
+			return '\\input{$path}\n\n';
 		case TChapter(name, count, id, children):
-			return '\\chapter{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children)}';
+			var path = Path.join([at, id.split(".")[3]+".tex"]);
+			var buf = new StringBuf();
+			bufs[path] = buf;
+			buf.add('\\chapter{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at)}');
+			return '\\input{$path}\n\n';
 		case TSection(name, count, id, children):
-			return '\\section{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children)}';
+			return '\\section{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at)}';
 		case TSubSection(name, count, id, children):
-			return '\\subsection{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children)}';
+			return '\\subsection{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at)}';
 		case TSubSubSection(name, count, id, children):
-			return '\\subsubsection{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children)}';
+			return '\\subsubsection{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at)}';
 		case TFigure(_):
 			trace("TODO figure");
 			return "";
@@ -81,7 +94,7 @@ class TexGen {
 				case TParagraph(h):
 					buf.add('\\item ${genh(h)}${genp(i.pos)}');
 				case _:
-					buf.add('\\item {${genv(i)}}\n');
+					buf.add('\\item {${genv(i, at)}}\n');
 				}
 			buf.add("\\end{itemize}\n");
 			buf.add(genp(v.pos));
@@ -103,7 +116,7 @@ class TexGen {
 		preamble.add(FILE_BANNER);
 		preamble.add("\n\n");
 
-		var contents = genv(doc);
+		var contents = genv(doc, "./");
 
 		var root = new StringBuf();
 		root.add(preamble.toString());
@@ -112,10 +125,9 @@ class TexGen {
 		root.add("\\end{document}\n");
 		bufs["root.tex"] = root;
 
-		if (!FileSystem.exists(destDir))
-			FileSystem.createDirectory(destDir);
 		for (p in bufs.keys()) {
 			var path = Path.join([destDir, p]);
+			FileSystem.createDirectory(Path.directory(path));
 			File.saveContent(path, bufs[p].toString());
 		}
 	}
