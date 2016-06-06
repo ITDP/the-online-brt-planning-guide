@@ -59,18 +59,14 @@ linecolor = gray50
 %brt
 \renewcommand{\quotation}[2]{\begingroup\leftskip=14mm\rightskip=14mm {\small\color{gray50} \noindent\textit{``#1''} \\\hbox{}\hfill --- #2} \par\endgroup }
 
-\newenvironment{brtbox}  % TODO make the name more neutral
-	{\begin{mdframed}
+\def\beginbox{
+	\mdframed[usetwoside=false]
 	\parskip = 12.75pt
 	\baselineskip = 12.75pt
 	\parindent = 7mm
 	\color{gray50}
 	}
-	{\end{mdframed}}
-\newcommand\beginbox{} % blow up if already defined
-\newcommand\endbox{}  % same...
-\def\beginbox{\begin{brtbox}}
-\def\endbox{\end{brtbox}}
+\def\endbox{\endmdframed}
 
 %tmp
 \usepackage{lipsum}

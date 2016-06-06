@@ -85,7 +85,7 @@ class TexGen {
 			trace("TODO figure");
 			return "";
 		case TBox(contents):
-			return '\\beginbox\n\n${genv(contents, at)}\n\n\\endbox\n${genp(v.pos)}\n';
+			return '\\beginbox\n\n${genv(contents, at)}\\endbox\n${genp(v.pos)}\n';
 		case TQuotation(text, by):
 			return '\\quotation{${genh(text)}}{${genh(by)}}\n${genp(v.pos)}\n';
 		case TList(li):
