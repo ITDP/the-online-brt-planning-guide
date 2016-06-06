@@ -1,5 +1,80 @@
-\documentclass{book}
+\documentclass[twoside, 8pt]{extreport}
 
-\newcommand\volume[1]{At volume #1}
-\renewcommand\quotation[2]{``#1''\hfil\break---#2}
+%fonts
+\usepackage[T1]{fontenc}
+\usepackage{paratype}
+
+%pagesize
+\usepackage{geometry}
+\geometry{ a4paper, total={105mm,243mm}, left=35mm, top=18mm, marginparsep = 7mm, marginparwidth = 49mm, headsep = 5.5mm, footskip = 9mm  }
+
+%header & footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\nouppercase\footnotesize\textsf{ \color{gray25} BRT Planning Guide }}
+\fancyhead[RO]{\nouppercase\footnotesize\textsf{ \color{gray25} \leftmark }}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[LE,RO]{ \color{gray25} \thepage }
+
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+
+%colors
+\usepackage{xcolor}
+\definecolor{gray75}{gray}{0.25}
+\definecolor{gray50}{gray}{0.5}
+\definecolor{gray25}{gray}{0.75}
+\definecolor{greenbrt}{cmyk}{0.75,0,0.75,0.25}
+
+%headings
+\usepackage{titlesec}
+\titleformat{\part}[display]{\centering\bfseries\huge\color{greenbrt}\sffamily}{ VOLUME \thepart}{0pt}{}[]
+\titleformat{\chapter}[display]{\bfseries\LARGE\color{greenbrt}\sffamily}{}{0pt}{ \thechapter.\ }[]
+\titleformat*{\section}{\bfseries\Large\color{greenbrt}\sffamily}
+\titleformat*{\subsection}{\bfseries\large\color{greenbrt}\sffamily}
+\titleformat*{\subsubsection}{\bfseries\\color{greenbrt}\sffamily}
+\let\volume\part
+
+%box
+\usepackage{mdframed}
+\mdfsetup{%
+innerleftmargin=6.75mm,
+innerrightmargin=6.75mm,
+innertopmargin=8.75mm,
+innerbottommargin=8.75mm,
+skipabove = 12.75pt,
+skipbelow = 12.75pt,
+linewidth = 0.25mm,
+linecolor = gray50
+}
+
+%list
+\usepackage{enumitem}
+\setlist{nolistsep, leftmargin=28pt, rightmargin=28pt }
+\labelindent=28pt
+
+%img
+\usepackage{graphicx}
+
+%brt
+\renewcommand{\quotation}[2]{\begingroup\leftskip=14mm\rightskip=14mm {\small\color{gray50} \noindent\textit{``#1''} \\\hbox{}\hfill --- #2} \par\endgroup }
+
+\newenvironment{brtbox}  % TODO make the name more neutral
+	{\begin{mdframed}
+	\parskip = 12.75pt
+	\baselineskip = 12.75pt
+	\parindent = 7mm
+	\color{gray50}
+	}
+	{\end{mdframed}}
+
+%tmp
+\usepackage{lipsum}
+
+\AtBeginDocument{
+	\parskip = 12.75pt
+	\baselineskip = 12.75pt
+	\parindent = 7mm
+	\color{gray75}
+}
 
