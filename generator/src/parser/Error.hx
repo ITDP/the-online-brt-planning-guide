@@ -92,6 +92,8 @@ class MissingArgument extends GenericError {
 		case { def:TCommand(name) }:
 			msg.add(" to \\");
 			msg.add(name);
+		case { def:TGreater }:
+			msg.add(" to quotation");
 		case { def:TWord(w) } if (Lambda.has(["FIG", "EQ", "TAB"], w)):
 			msg.add(" to #");
 			msg.add(w);

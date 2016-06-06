@@ -127,9 +127,10 @@ class Test_03_Parser {
 			expand(Paragraph(@wrap(1,1)Emphasis(HList([@len(1)Word("a"),@len(1)Wordspace,@len(1)Word("b")])))),
 			parse("*a b*"));
 
+		// there's only one level of markdown emphasis
 		Assert.same(
 			expand(Paragraph(HList([@len(2)Emphasis(null),@len(1)Word("a"),@len(2)Emphasis(null)]))),
-			parse("**a**"));  // TODO generate some warning on empty emphasis (maybe later than the parser)
+			parse("**a**"));
 		Assert.same(
 			expand(Paragraph(HList([@wrap(1,1)Emphasis(HList([@len(1)Word("a"),@len(1)Wordspace])),@wrap(1,1)Emphasis(@len(1)Word("b")),@wrap(1,1)Emphasis(HList([@len(1)Wordspace,@len(1)Word("c")]))]))),
 			parse("*a **b** c*"));
@@ -281,7 +282,6 @@ class Test_03_Parser {
 			parse("a\n\n### b\n\nc"));
 
 		parsingError("####a b", UnexpectedToken, ~/####/, mkPos(0, 4));
-		// TODO maybe require hashes on the beginning of the line?
 	}
 
 	public function test_011_quotations()
@@ -305,7 +305,7 @@ class Test_03_Parser {
 		parsingError("\\quotation{a}", MissingArgument, ~/author.+\\quotation/i, mkPos(13, 13));
 		parsingError("\\quotation{a} b", MissingArgument, ~/author.+\\quotation/i, mkPos(14, 15));
 		parsingError("\\quotation{a}{b}{}", UnexpectedToken, ~/{/, mkPos(16, 17));
-		parsingError(">a\n\nb");  // TODO add MissingPart exception
+		parsingError(">a\n\nb", MissingArgument, ~/author.+quotation/);
 
 		parsingError("\\quotation{a}{}", BadValue, ~/author cannot be empty/i, mkPos(14,14));
 		parsingError("\\quotation{}{b}", BadValue, ~/text cannot be empty/i, mkPos(11, 11));
@@ -364,7 +364,14 @@ class Test_03_Parser {
 				@wrap(6,1)Paragraph(@len(1)Word("b"))])),
 			parse("\\item[a\n\n\\item x\\item y]\\item[b]"));
 
-		// TODO test that lists break on breakspaces
+		// lists end on breakspaces
+		Assert.same(
+			expand(VList([
+				List([@wrap(6,0)Paragraph(@len(1)Word("a")),@wrap(6,0)Paragraph(@len(1)Word("b"))]),@skip(2)
+				List([@wrap(6,0)Paragraph(@len(1)Word("x")),@wrap(6,0)Paragraph(@len(1)Word("y"))])
+			])),
+			parse("\\item a\\item b\n\n\\item x\\item y"));
+
 		// TODO more tests
 		// TODO more error tests
 	}

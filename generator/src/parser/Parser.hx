@@ -379,7 +379,7 @@ class Parser {
 		discardNoise();
 		var text = hlist({ before:TAt });
 		var at = pop();
-		if (!at.def.match(TAt)) unexpected(at);
+		if (!at.def.match(TAt)) missingArg(at.pos, greaterThan, "author (prefixed with @)");
 		var author = hlist(stop);  // TODO maybe also pop wordspace before
 		if (text == null) badValue(greaterThan.pos.span(at.pos).offset(1, -1), "text cannot be empty");
 		if (author == null) badValue(at.pos.offset(1,0), "author cannot be empty");
