@@ -259,7 +259,7 @@ class Parser {
 		case THashes(1): mk(Section(name), hashes.pos.span(name.pos));
 		case THashes(2): mk(SubSection(name), hashes.pos.span(name.pos));
 		case THashes(3): mk(SubSubSection(name), hashes.pos.span(name.pos));
-		case _: unexpected(hashes); null;  // TODO informative error about wrong number of hashes
+		case _: unexpected(hashes, 'only sections (#), subsections (##) and subsubsections (###) allowed'); null;
 		}
 	}
 
@@ -337,12 +337,12 @@ class Parser {
 			}
 			switch peek().def {
 			case TBrOpen:
-				if (path != null) throw "TODO";
+				if (path != null) unexpected(peek(), "path already given");
 				var p = arg(rawHorizontal, tag[1], "path");
 				lastPos = p.pos;
 				path = p.val;
 			case TAt:
-				if (copyright != null) throw "TODO";
+				if (copyright != null) unexpected(peek(), "copyright already given");
 				pop();
 				copyright = hlist({ before:TBrOpen });  // FIXME consider current stop
 				lastPos = copyright.pos;
@@ -352,9 +352,10 @@ class Parser {
 				unexpected(peek());
 			}
 		}
-		if (captionParts.length == 0) throw "TODO";
-		if (path == null) throw "TODO";
-		if (copyright == null) throw "TODO";
+		assert(lastPos != null);
+		if (captionParts.length == 0) badValue(lastPos, "caption cannot be empty");
+		if (path == null) missingArg(lastPos, tag[1], "path");
+		if (copyright == null) missingArg(lastPos, tag[1], "copyright");
 
 		var caption = if (captionParts.length == 1)
 				captionParts[0]
@@ -380,7 +381,8 @@ class Parser {
 		var text = hlist({ before:TAt });
 		var at = pop();
 		if (!at.def.match(TAt)) missingArg(at.pos, greaterThan, "author (prefixed with @)");
-		var author = hlist(stop);  // TODO maybe also pop wordspace before
+		discardNoise();
+		var author = hlist(stop);
 		if (text == null) badValue(greaterThan.pos.span(at.pos).offset(1, -1), "text cannot be empty");
 		if (author == null) badValue(at.pos.offset(1,0), "author cannot be empty");
 		return mk(Quotation(text, author), greaterThan.pos.span(author.pos));
@@ -512,7 +514,7 @@ class Parser {
 			}
 		case THashes(1) if (peek(1).def.match(TWord("FIG")) && peek(2).def.match(THashes(1))):
 			mdFigure([pop(), pop(), pop()], stop);
-		case THashes(_) if (!peek(1).def.match(TWord("FIG") | TWord("EQ") | TWord("TAB"))):  // TODO remove FIG/EQ/TAB
+		case THashes(_) if (!peek(1).def.match(TWord("EQ") | TWord("TAB"))):  // TODO remove EQ/TAB when possible
 			mdHeading(pop(), stop);
 		case TGreater:
 			mdQuotation(pop(), stop);
