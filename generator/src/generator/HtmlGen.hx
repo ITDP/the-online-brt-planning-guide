@@ -92,7 +92,8 @@ class HtmlGen {
 			//var buf = new StringBuf();
 			for (i in li)
 				vertical(i, counts, curNav);
-			
+		case TLaTeXPreamble(_):
+			return null;  // ignore
 		}
 	}
 	

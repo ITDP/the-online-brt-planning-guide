@@ -1,3 +1,5 @@
+\tex\preamble{.preamble.tex}
+
 \meta\reset{volume}{2}
 \meta\reset{chapter}{8}
 /* since we're starting at volume 3/chapter 9 */

@@ -7,6 +7,8 @@ typedef Document = TElem;
 typedef TElem = Elem<TDef>;
 
 enum TDef {
+	TLaTeXPreamble(path:String);
+
 	TVolume(name : HElem, count : Int, id : String, children : TElem);
 	TChapter(name : HElem, count : Int, id : String, children : TElem);
 	TSection(name : HElem, count : Int, id : String, children : TElem);
@@ -21,4 +23,7 @@ enum TDef {
 	TList(items:Array<TElem>);
 	TParagraph(h:HElem);
 }
+
+typedef HElem = parser.HElem;
+typedef Position = parser.Token.Position;
 

@@ -22,7 +22,8 @@ class Main {
 		var hgen = new generator.HtmlGen(path + ".html");
 		hgen.generate(doc);
 
-		trace("TODO generate tex");
+		var tgen = new generator.TexGen(path + ".pdf");
+		tgen.generate(doc);
 	}
 
 	static function main()

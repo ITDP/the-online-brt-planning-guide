@@ -465,27 +465,24 @@ class Parser {
 	{
 		var path = arg(rawHorizontal, cmd);
 		if (path.val == null || StringTools.trim(path.val) == "") badArg(path.pos, "path cannot be empty");
+		var tpath = haxe.io.Path.join([haxe.io.Path.directory(location), path.val]);
 		return switch cmd.def {
-		case TCommand("html\\apply"): mk(HtmlApply(path.val), cmd.pos.span(path.pos));
-		case TCommand("tex\\preamble"): mk(LaTeXPreamble(path.val), cmd.pos.span(path.pos));
+		case TCommand("html\\apply"): mk(HtmlApply(tpath), cmd.pos.span(path.pos));
+		case TCommand("tex\\preamble"): mk(LaTeXPreamble(tpath), cmd.pos.span(path.pos));
 		case _: unexpected(cmd); null;
 		}
 	}
 
-	function meta(cmd:Token)
+	function meta(meta:Token)
 	{
-		assert(cmd.def.match(TCommand("meta")), cmd);
 		discardNoise();
-		var next = pop();
-		var exec = switch next.def {
-		case TCommand(name): { def:TCommand('meta\\$name'), pos:cmd.pos.span(next.pos) };
-		case _: unexpected(next); null;
-		}
-		return switch exec.def {
-		case TCommand("meta\\reset"): metaReset(exec);
-		case TCommand("html\\apply"): targetInclude(exec);
-		case TCommand("tex\\preamble"): targetInclude(exec);
-		case _: unexpected(next); null;  // FIXME specific error unknown meta command
+		var exec = pop();
+		var pos = meta.pos.span(exec.pos);
+		return switch [meta.def, exec.def] {
+		case [TCommand("meta"), TCommand("reset")]: metaReset({ def:TCommand("meta\\reset"), pos:pos });
+		case [TCommand("html"), TCommand("apply")]: targetInclude({ def:TCommand("html\\apply"), pos:pos });
+		case [TCommand("tex"), TCommand("preamble")]: targetInclude({ def:TCommand("tex\\preamble"), pos:pos });
+		case _: unexpected(exec); null;  // FIXME specific error unknown meta command
 		}
 	}
 
@@ -506,7 +503,7 @@ class Parser {
 			case "begintable": table(pop());
 			case "quotation": quotation(pop());
 			case "item": list(peek().pos, stop);
-			case "meta": meta(pop());
+			case "meta", "tex", "preamble": meta(pop());
 			case "beginbox", "boxstart": box(pop());
 			case "include": include(pop());
 			case name if (Lambda.has(horizontalCommands, name)): paragraph(stop);

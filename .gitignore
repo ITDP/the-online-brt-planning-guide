@@ -9,6 +9,9 @@
 bin/
 dump/
 
+!guide/*.tex
+!guide/*.css
+
 !generator/docs/spec.tex
 !generator/docs/design/web/mockup/*.html
 

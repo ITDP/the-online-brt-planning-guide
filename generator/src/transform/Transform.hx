@@ -151,6 +151,8 @@ class Transform {
 			case _: throw 'Unexpected counter name: $name';
 			}
 			return null;
+		case LaTeXPreamble(path):
+			return mk(TLaTeXPreamble(path), v.pos);
 		case _:  // FIXME can't leave this here
 			return null;
 		}
