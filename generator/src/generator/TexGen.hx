@@ -1,13 +1,19 @@
 package generator;
 
+import haxe.io.Path;
 import sys.FileSystem;
 import sys.io.File;
-import haxe.io.Path;
 import transform.Document;
 
+using Literals;
 using StringTools;
 
 class TexGen {
+	static var FILE_BANNER = "
+	% The Online BRT Planning Guide
+	% This file has been generated; do not edit manually!
+	".doctrim();
+
 	var destDir:String;
 	var preamble:StringBuf;
 	var bufs:Map<String,StringBuf>;
@@ -94,7 +100,8 @@ class TexGen {
 	public function generate(doc:Document)
 	{
 		preamble = new StringBuf();
-		preamble.add("% This file has been generated; do not edit manually!\n\n");
+		preamble.add(FILE_BANNER);
+		preamble.add("\n\n");
 
 		var contents = genv(doc);
 
