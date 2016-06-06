@@ -17,6 +17,7 @@
   <classpaths>
     <class path="src" />
     <class path="test" />
+    <class path="include" />
   </classpaths>
   <!-- Build options -->
   <build>

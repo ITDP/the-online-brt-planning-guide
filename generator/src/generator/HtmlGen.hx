@@ -1,11 +1,17 @@
 package generator;  // TODO move out of the package
 
 import generator.HtmlGen.Nav;
+
+
+import parser.Ast.HElem;
+
+import sys.io.File;
+
+
+
 import sys.FileSystem;
 import transform.Document;
 
-// temporary
-import parser.Ast;
 
 import haxe.io.Path.join in joinPaths;
 
@@ -19,6 +25,8 @@ typedef Nav = {
 typedef Path = String;
 
 class HtmlGen {
+	
+	static inline var JSName =  "navscript.js";
 
 	static inline var VOL = 0;
 	static inline var CHA = 1;
@@ -31,7 +39,7 @@ class HtmlGen {
 	var navs : Array<Nav>;
 	var navTop : String;
 	var navLeft : String;
-	
+	var curBuff : StringBuf;
 	var dest:Path;
 
 	function horizontal(h:HElem)
@@ -55,17 +63,17 @@ class HtmlGen {
 		case TVolume(name, count, id, children), TChapter(name, count, id, children),
 		TSection(name, count, id, children), TSubSection(name, count, id, children),
 		TSubSubSection(name, count, id, children):
-			return hierarchy(v, counts, curNav);
+			hierarchy(v, counts, curNav);
 		case TFigure(path, caption, copyright, count,id):
 			var caption = horizontal(caption);
 			var copyright = horizontal(copyright);
 			//navs.push({name : '', id : id,type : OTH, chd : null});
 			//TODO: Make FIG SIZE param
-			return '<section class="md img-block id="${id}"><img src="${path}"/><p><strong>Fig ${count}</strong>${caption} <em>${caption}</em></p>';
+			curBuff.add('<section class="md img-block id="${id}"><img src="${path}"/><p><strong>Fig ${count}</strong>${caption} <em>${caption}</em></p>');
 		case TQuotation(t,a):
-			return '<blockquote class="md"><q>${horizontal(t)}</q><span>${horizontal(a)}</span></blockquote>';
+			curBuff.add('<blockquote class="md"><q>${horizontal(t)}</q><span>${horizontal(a)}</span></blockquote>');
 		case TParagraph(h):
-			return '<p>${horizontal(h)}</p>\n';
+			curBuff.add('<p>${horizontal(h)}</p>\n');
 		case TList(li):
 			var buf = new StringBuf();
 			buf.add("<ul>\n");
@@ -75,19 +83,18 @@ class HtmlGen {
 				case TParagraph(h):
 					buf.add(horizontal(h));
 				case _:
-					buf.add(vertical(i, counts, curNav));
+					vertical(i, counts, curNav);
 				}
 				buf.add("</li>\n");
 			}
 			buf.add("</ul>\n");
-			return buf.toString();
+			curBuff.add(buf.toString());
 		case TVList(li):
-			var buf = new StringBuf();
+			//var buf = new StringBuf();
 			for (i in li)
-				buf.add(vertical(i, counts, curNav));
-			return buf.toString();
+				vertical(i, counts, curNav);
 		case TLaTeXPreamble(_):
-			return null;  // ignore
+			null;  // ignore
 		}
 	}
 	
@@ -136,6 +143,7 @@ class HtmlGen {
 		}
 		
 		var _nav = {id : _id , name : _name, type : type, chd : []};
+		
 		if(curNav != null)
 			curNav.chd.push(_nav);
 		else
@@ -144,21 +152,29 @@ class HtmlGen {
 		curNav = _nav;
 		
 		var count = counts.slice(1, type + 1).join(".");
-
-		//Vol. doesnt add anything
-		if(type > 0)
-			buff.add('<section><h${(type+1)} id="${_id}">${count} ${_name}</h${(type + 1)}>');
-		else
-			buff.add('<section>');
 		
-		buff.add(vertical(_children, counts, curNav));
 		
-		buff.add("</section>");
-
-		return buff.toString();
+		
+		//Vol. and Chapter doesnt add anything
+		if(type > 1)
+			curBuff.add('<section><h${(type+1)} id="${_id}">${count} ${_name}</h${(type + 1)}>');
+		
+		vertical(_children, counts, curNav);
+		
+		if(type > 1)
+			curBuff.add("</section>");
+		
+		//Section already processed, clear buff , continue program execution
+		if (type == 2 && curBuff.length > 0)
+		{			
+			fileGen(curBuff.toString(), curNav);
+			curBuff = new StringBuf();
+		}
+		
+		
 	}
 	
-	function processNav() : { volumes : String, sections : String, topNavJs : String}
+	function processNav(curSec : Null<Nav>) : { sections : String, topNavJs : String}
 	{
 		var topBuff = new StringBuf();
 		var leftBuff = new StringBuf();
@@ -166,7 +182,6 @@ class HtmlGen {
 		//Nav options (will gen a JS);
 		var optBuff = new Map<String, {list : String, type : Int}>();
 		
-		topBuff.add("<header><ul class='menu'><li><a> BRTPG</a><ul class='item hide'>");
 		
 		leftBuff.add("<nav><ul>");
 		
@@ -178,7 +193,7 @@ class HtmlGen {
 			{
 				var cha = '<a> Chapters </a><ul class=\"item hide\">';
 				
-				for (c in n.chd)
+				for(c in n.chd)
 				{
 					cha += '<li id="${c.id}"><a href="#">${c.name}</a></li>';
 					
@@ -188,21 +203,27 @@ class HtmlGen {
 						
 							for (se in c.chd)
 							{
-								//TODO: Href the right HTML
-								sec += '<li><a href="#">${se.name}"</a></li>';
+								var se_params = se.id.split('.');
+								var cha_name = se_params[3];
+								var sec_name = se_params[5];
 								
-								//I think I'll need a map instead(so I gen only the necessary sections
-								for (su in se.chd)
+								//TODO:
+								sec += '<li><a href="../${cha_name}/${sec_name}.html">${se.name}"</a></li>';
+								
+								if (curSec != null && curSec == se)
 								{
-									leftBuff.add('<li><a href="#${su.id}">${su.name}</li>');
-									if (se.chd != null && se.chd.length > 0)
+									for (su in se.chd)
 									{
-										leftBuff.add('<li><ul>');
-										for (ss in su.chd)
+										leftBuff.add('<li><a href="#${su.id}">${su.name}</li>');
+										if (se.chd != null && se.chd.length > 0)
 										{
-											leftBuff.add('<li><a href="#${ss.id}">${ss.name}</a></li>');
+											leftBuff.add('<li><ul>');
+											for (ss in su.chd)
+											{
+												leftBuff.add('<li><a href="#${ss.id}">${ss.name}</a></li>');
+											}
+											leftBuff.add('</ul></li>');
 										}
-										leftBuff.add('</ul></li>');
 									}
 								}
 							}
@@ -218,17 +239,22 @@ class HtmlGen {
 			
 		}
 		
-		topBuff.add("</li></ul></li><li>/</li></ul></header>");
+		//topBuff.add();
 		leftBuff.add('</ul></nav>');
 		
-		return {volumes : topBuff.toString(), sections : leftBuff.toString(), topNavJs : genNavJs(optBuff)};
+		return {sections : leftBuff.toString(), topNavJs : genNavJs(optBuff, topBuff.toString())};
 	}
 	
 	
-	function genNavJs(values : Map<String,{list : String, type : Int}>) : String
+	function genNavJs(values : Map<String,{list : String, type : Int}>, volumesList : String) : String
 	{
 		var buff = new StringBuf();
-		buff.add('<script>');
+		
+		buff.add('function init()
+		{
+			$(".volumes").append(\'${volumesList}\');
+			var path = window.location.pathname.split("/");
+		}');
 		
 		buff.add("function hover()
 		{
@@ -281,38 +307,70 @@ class HtmlGen {
 		}
 		buff.add("}\n");
 		
-		buff.add("$(document).ready(function(){onClick();hover();});");
-		buff.add("</script>");
+		buff.add("$(document).ready(function(){init();onClick();hover();});");
+
 		return buff.toString();
 	}
 	
+	//TODO: add custom params...later
+	function headGen(cssFile : String, jsFile : String)
+	{
+		var staticres = '<head>
+			<meta charset="utf-8">
+			<title></title>
+			<link href="${cssFile}" rel="stylesheet" type="text/css">
+			<!-- Jquery -->
+			<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js" ></script>
+			<script src="${jsFile}"></script>
+			<!-- MathJax -->
+			<script src = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" ></script>
+			
+			<!-- Google Fonts -->
+			<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700italic,700|PT+Sans:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+			<!-- Normalize -->
+			<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css" rel="stylesheet" type="text/css">
+			</head> ';
+			
+		return staticres;
+	}
+	
+	function fileGen(content : String, nav : Nav)
+	{
+		if (nav == null) 
+			throw "Invalid access";
+		
+		var params = nav.id.split(".");
+		
+		var chap = params[3];
+		var sec = params[5];
+		var path = dest + "/" + chap;
+		if (!FileSystem.exists(path))
+			FileSystem.createDirectory(path);
+		
+		var buff = new StringBuf();
+		buff.add(headGen(joinPaths([dest, "style.css"]), joinPaths([dest, JSName])));
+		
+		buff.add('<body><div class="container"><div class="col-text">');
+		buff.add(content);
+		buff.add('</div>');
+		buff.add(processNav(nav).sections);
+		buff.add('</div>');
+		buff.add("<header><ul class='menu'><li><a> BRTPG</a><ul class='item hide volumes'></ul></li><li>/</li></ul></header>");
+		
+		File.saveContent(joinPaths([path, sec + ".html"]), buff.toString());
+		
+		
+	}
 		
 	function document(doc:Document)
 	{
 		navs = new Array<Nav>();
-
-		var buf = new StringBuf();
-		buf.add('<meta charset="utf-8">
-	<title></title>
-	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700italic,700|PT+Sans:400,400italic,700,700italic" rel="stylesheet" type="text/css">
-	<!-- Normalize -->
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css" rel="stylesheet" type="text/css">
-	<!-- CSS -->
-	<link href="style.css" rel="stylesheet" type="text/css">
-	<!-- MathJax -->
-	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-	<!-- Jquery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script><body><div class="container"><div class="col-text"\n');
-		buf.add(vertical(doc,[0,0,0,0,0,0], null));
-		buf.add('</div>');
-		var navElements = processNav();
-		buf.add(navElements.sections);
-		buf.add('</div>');
-		buf.add(navElements.volumes);
-		buf.add(navElements.topNavJs);
-		buf.add('</body>');
-		sys.io.File.saveContent(joinPaths([dest,"index.html"]), buf.toString());
+		curBuff = new StringBuf();
+		vertical(doc,[0,0,0,0,0,0], null);
+		
+		
+		File.saveContent(joinPaths([dest, JSName]), processNav(null).topNavJs);
+		
 	}
 
 	public function generate(doc:Document)
