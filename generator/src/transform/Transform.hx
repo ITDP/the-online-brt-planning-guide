@@ -219,7 +219,7 @@ class Transform {
 				continue;
 			}
 
-			clearstr = reg.matched(0);
+			clearstr = reg.matched(0).toLowerCase();
 
 			if(i != elem)
 				str.add(before + clearstr + ".");
