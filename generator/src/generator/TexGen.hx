@@ -73,7 +73,7 @@ class TexGen {
 			for (i in li)
 				switch i.def {
 				case TParagraph(h):
-					buf.add('\\item ${genh(h)}\n\n');
+					buf.add('\\item ${genh(h)}${genp(i.pos)}');
 				case _:
 					buf.add('\\item {${genv(i)}}\n');
 				}
