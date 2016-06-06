@@ -2,6 +2,7 @@ package generator;  // TODO move out of the package
 
 import generator.HtmlGen.Nav;
 
+
 import parser.Ast.HElem;
 
 import sys.io.File;
@@ -335,7 +336,6 @@ class HtmlGen {
 	
 	function fileGen(content : String, nav : Nav)
 	{
-		trace(nav);
 		if (nav == null) 
 			throw "Invalid access";
 		
@@ -346,17 +346,18 @@ class HtmlGen {
 		var path = dest + "/" + chap;
 		if (!FileSystem.exists(path))
 			FileSystem.createDirectory(path);
-		trace('here!');
-		var f = File.write(joinPaths([path, sec + ".html"]), false);
-		f.writeString(headGen(joinPaths([dest, "style.css"]), joinPaths([dest, JSName])));
 		
-		f.writeString('<body><div class="container"><div class="col-text">');
-		f.writeString(content);
-		f.writeString('</div>');
-		f.writeString(processNav(nav).sections);
-		f.writeString('</div>');
-		f.writeString("<header><ul class='menu'><li><a> BRTPG</a><ul class='item hide volumes'></ul></li><li>/</li></ul></header>");
-		f.close();
+		var buff = new StringBuf();
+		buff.add(headGen(joinPaths([dest, "style.css"]), joinPaths([dest, JSName])));
+		
+		buff.add('<body><div class="container"><div class="col-text">');
+		buff.add(content);
+		buff.add('</div>');
+		buff.add(processNav(nav).sections);
+		buff.add('</div>');
+		buff.add("<header><ul class='menu'><li><a> BRTPG</a><ul class='item hide volumes'></ul></li><li>/</li></ul></header>");
+		
+		File.saveContent(joinPaths([path, sec + ".html"]), buff.toString());
 		
 		
 	}
