@@ -84,6 +84,8 @@ class TexGen {
 		case TFigure(_):
 			trace("TODO figure");
 			return "";
+		case TBox(contents):
+			return '\\beginbox\n\n${genv(contents, at)}\n\n\\endbox\n${genp(v.pos)}\n';
 		case TQuotation(text, by):
 			return '\\quotation{${genh(text)}}{${genh(by)}}\n${genp(v.pos)}\n';
 		case TList(li):
@@ -106,6 +108,8 @@ class TexGen {
 			preamble.add(genp(v.pos));
 			preamble.add(File.getContent(path).trim());
 			preamble.add("\n\n");
+			return "";
+		case THtmlApply(_):
 			return "";
 		}
 	}

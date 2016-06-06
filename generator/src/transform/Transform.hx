@@ -132,6 +132,8 @@ class Transform {
 			names[OTH] = count[CHA] + " " + count[OTH];
 			var name = idGen(names, OTH);
 			return mk(TFigure(path, caption, cp, count[OTH], name), v.pos);
+		case Box(contents):
+			return mk(TBox(vertical(contents, rest, count, names)), v.pos);
 		case Quotation(text, by):
 			return mk(TQuotation(text, by), v.pos);
 		case List(items):
@@ -153,8 +155,10 @@ class Transform {
 			return null;
 		case LaTeXPreamble(path):
 			return mk(TLaTeXPreamble(path), v.pos);
-		case _:  // FIXME can't leave this here
-			return null;
+		case HtmlApply(path):
+			return mk(THtmlApply(path), v.pos);
+		case Table(_):
+			return null;  // TODO
 		}
 	}
 

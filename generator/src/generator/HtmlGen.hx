@@ -70,6 +70,10 @@ class HtmlGen {
 			//navs.push({name : '', id : id,type : OTH, chd : null});
 			//TODO: Make FIG SIZE param
 			curBuff.add('<section class="md img-block id="${id}"><img src="${path}"/><p><strong>Fig ${count}</strong>${caption} <em>${caption}</em></p>');
+		case TBox(contents):
+			curBuff.add('<section class="box">\n');
+			vertical(contents, counts, curNav);
+			curBuff.add('</section>\n');
 		case TQuotation(t,a):
 			curBuff.add('<blockquote class="md"><q>${horizontal(t)}</q><span>${horizontal(a)}</span></blockquote>');
 		case TParagraph(h):
@@ -93,6 +97,8 @@ class HtmlGen {
 			//var buf = new StringBuf();
 			for (i in li)
 				vertical(i, counts, curNav);
+		case THtmlApply(_):
+			null;  // TODO use
 		case TLaTeXPreamble(_):
 			null;  // ignore
 		}

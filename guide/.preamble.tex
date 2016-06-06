@@ -67,6 +67,10 @@ linecolor = gray50
 	\color{gray50}
 	}
 	{\end{mdframed}}
+\newcommand\beginbox{} % blow up if already defined
+\newcommand\endbox{}  % same...
+\def\beginbox{\begin{brtbox}}
+\def\endbox{\end{brtbox}}
 
 %tmp
 \usepackage{lipsum}
