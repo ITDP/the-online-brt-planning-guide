@@ -24,3 +24,6 @@ enum TDef {
 	TParagraph(h:HElem);
 }
 
+typedef HElem = parser.HElem;
+typedef Position = parser.Token.Position;
+

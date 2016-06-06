@@ -11,4 +11,5 @@ dump/
 
 !generator/docs/spec.tex
 !generator/docs/design/web/mockup/*.html
+!guide/.preamble.tex
 
