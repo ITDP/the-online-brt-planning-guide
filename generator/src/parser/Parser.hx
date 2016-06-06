@@ -504,7 +504,7 @@ class Parser {
 			case "begintable": table(pop());
 			case "quotation": quotation(pop());
 			case "item": list(peek().pos, stop);
-			case "meta", "tex", "preamble": meta(pop());
+			case "meta", "tex", "html": meta(pop());
 			case "beginbox", "boxstart": box(pop());
 			case "include": include(pop());
 			case name if (Lambda.has(horizontalCommands, name)): paragraph(stop);

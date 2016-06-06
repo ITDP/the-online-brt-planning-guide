@@ -1,4 +1,5 @@
-\tex\preamble{.preamble.tex}
+\tex\preamble{preamble.tex}
+\html\apply{style.css}
 
 \meta\reset{volume}{2}
 \meta\reset{chapter}{8}

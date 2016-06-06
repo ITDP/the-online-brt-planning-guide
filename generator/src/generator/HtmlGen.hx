@@ -359,7 +359,7 @@ class HtmlGen {
 			FileSystem.createDirectory(path);
 		
 		var buff = new StringBuf();
-		buff.add(headGen("../style.css",  "../" + JSName));
+		buff.add(headGen("../../style.css",  "../" + JSName));
 		
 		buff.add('<body><div class="container"><div class="col-text">');
 		buff.add(content);
