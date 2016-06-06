@@ -197,7 +197,7 @@ class HtmlGen {
 			topBuff.add('<li id="${n.id}"><a href="#">${n.name}</a></li>');
 			if (n.chd != null && n.chd.length > 0)
 			{
-				var cha = '<a> Chapters </a><ul class=\"item hide\">';
+				var cha = '<a> ${n.name} </a><ul class=\"item hide\">';
 				
 				for(c in n.chd)
 				{
@@ -205,7 +205,7 @@ class HtmlGen {
 					
 					if (c.chd != null && c.chd.length > 0)
 					{
-						var sec = "<a>Sections</a><ul class=\"item hide\">";
+						var sec = '<a>${c.name}</a><ul class=\"item hide\">';
 						
 							for (se in c.chd)
 							{
@@ -258,13 +258,6 @@ class HtmlGen {
 		buff.add('function init()
 		{
 			$(".volumes").append(\'${volumesList}\');
-			var fullid = $(".col-text").children("section").first().children("h3").attr("id").split(".");
-			var vol_id = fullid.slice(0, 2).join("\\\\.");
-			$("#" + vol_id).trigger("click");
-			$("#" + fullid.slice(0, 4).join("\\\\.")).trigger("click");
-			$("#" + fullid.slice(0, 6).join("\\\\.")).trigger("click");
-			
-			
 		}');
 		
 		buff.add("function hover()
@@ -296,16 +289,11 @@ class HtmlGen {
 					
 					while (((v.type)) < ((menu.children("li").length)/2))
 					{
-						console.log(v.type + 1);
-						console.log(((menu.children("li").length - 1) / 2));
 						menu.children("li").last().remove();
 					}
 					
-					console.log("click!");
-					
 					menu.append("<li>" + v.list + "</li>");
 					menu.append("<li>/<li>");
-					console.log(menu.children().last().children("ul").attr("id"));
 					
 					//Bind evt again (TODO: Rewrite)
 					hover();
@@ -317,8 +305,15 @@ class HtmlGen {
 			buff.add("\n");
 		}
 		buff.add("}\n");
-		
-		buff.add("$(document).ready(function(){onClick();hover();init();});");
+		buff.add('function post()
+		{
+			var fullid = $(".col-text").children("section").first().children("h3").attr("id").split(".");
+			var vol_id = fullid.slice(0, 2).join("\\\\.");
+			$("#" + vol_id).trigger("click");
+			$("#" + fullid.slice(0, 4).join("\\\\.")).trigger("click");
+			$("#" + fullid.slice(0, 6).join("\\\\.")).trigger("click");
+		}\n');
+		buff.add("$(document).ready(function(){init();onClick();hover();post();});");
 
 		return buff.toString();
 	}
