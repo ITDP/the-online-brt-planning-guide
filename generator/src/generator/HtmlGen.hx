@@ -147,9 +147,9 @@ class HtmlGen {
 
 		//Vol. doesnt add anything
 		if(type > 0)
-			buff.add('<section id="${_id}"><h${(type+1)}>${count} ${_name}</h${(type + 1)}>');
+			buff.add('<section><h${(type+1)} id="${_id}">${count} ${_name}</h${(type + 1)}>');
 		else
-			buff.add('<section id="${_id}">');
+			buff.add('<section>');
 		
 		buff.add(vertical(_children, counts, curNav));
 		
