@@ -113,8 +113,7 @@ class HtmlGen {
 			for (i in li)
 				vertical(i, counts, curNav);
 		case THtmlApply(path):
-			var path = saveAsset(path);
-			css.push('<link href="../${path}" rel="stylesheet" type="text/css">');
+			css.push(saveAsset(path));
 		case TLaTeXPreamble(_):
 			null;  // ignore
 		case TTable(caption, header, chd, count, id):
@@ -391,7 +390,7 @@ class HtmlGen {
 			<meta charset="utf-8">
 			<title></title>
 			<!-- Custom CSSs -->
-			${css.join("\n") }
+			${css.map(function (p) return '<link href="../${p}" rel="stylesheet" type="text/css">').join("\n")}
 			<!-- Jquery -->
 			<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js" ></script>
 			<script src="${jsFile}"></script>
