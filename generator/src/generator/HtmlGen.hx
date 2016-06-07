@@ -1,9 +1,6 @@
 package generator;  // TODO move out of the package
 
 import generator.HtmlGen.Nav;
-
-
-
 import parser.Ast.HElem;
 
 import sys.io.File;
@@ -41,6 +38,9 @@ class HtmlGen {
 	var navTop : String;
 	var navLeft : String;
 	var curBuff : StringBuf;
+	
+	var css : Array<String>;
+	
 	var dest:Path;
 
 	function horizontal(h:HElem)
@@ -98,8 +98,8 @@ class HtmlGen {
 			//var buf = new StringBuf();
 			for (i in li)
 				vertical(i, counts, curNav);
-		case THtmlApply(_):
-			null;  // TODO use
+		case THtmlApply(path):
+			css.push('<link href="${path}" rel="stylesheet" type="text/css">');
 		case TLaTeXPreamble(_):
 			null;  // ignore
 		case TTable(caption, chd, count, id):
@@ -365,12 +365,13 @@ class HtmlGen {
 	}
 	
 	//TODO: add custom params...later
-	function headGen(cssFile : String, jsFile : String)
+	function headGen(jsFile : String)
 	{
 		var staticres = '<head>
 			<meta charset="utf-8">
 			<title></title>
-			<link href="${cssFile}" rel="stylesheet" type="text/css">
+			<!-- Custom CSSs -->
+			${css.join("\n") }
 			<!-- Jquery -->
 			<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js" ></script>
 			<script src="${jsFile}"></script>
@@ -400,7 +401,7 @@ class HtmlGen {
 			FileSystem.createDirectory(path);
 		
 		var buff = new StringBuf();
-		buff.add(headGen("../../style.css",  "../" + JSName));
+		buff.add(headGen("../" + JSName));
 		
 		buff.add('<body><div class="container"><div class="col-text">');
 		buff.add(content);
@@ -416,6 +417,7 @@ class HtmlGen {
 		
 	function document(doc:Document)
 	{
+		css = new Array<String>();
 		navs = new Array<Nav>();
 		curBuff = new StringBuf();
 		vertical(doc,[0,0,0,0,0,0], null);
