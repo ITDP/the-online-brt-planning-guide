@@ -23,8 +23,8 @@ class Parser {
 	static var verticalCommands = [
 		"volume", "chapter", "section", "subsection", "subsubsection",
 		"figure", "quotation", "item", "beginbox", "endbox", "include",
-		"begintable", "row", "col", "endtable",
-		"meta", "meta\\reset", "tex", "tex\\preamble", "html", "html\\apply"];
+		"begintable", "header", "row", "col", "endtable",
+		"meta", "reset", "tex", "preamble", "html", "apply"];
 	static var horizontalCommands = ["emph", "highlight"];
 
 	var location:Path;
@@ -486,7 +486,7 @@ class Parser {
 		case [TCommand("meta"), TCommand("reset")]: metaReset({ def:TCommand("meta\\reset"), pos:pos });
 		case [TCommand("html"), TCommand("apply")]: targetInclude({ def:TCommand("html\\apply"), pos:pos });
 		case [TCommand("tex"), TCommand("preamble")]: targetInclude({ def:TCommand("tex\\preamble"), pos:pos });
-		case _: unexpected(exec); null;  // FIXME specific error unknown meta command
+		case _: unknownCmd(exec); null;
 		}
 	}
 

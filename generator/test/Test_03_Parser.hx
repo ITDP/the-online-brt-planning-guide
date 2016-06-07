@@ -157,11 +157,28 @@ class Test_03_Parser {
 		parsingError("\\highlight{a}{}", UnexpectedToken, ~/{/, mkPos(13, 14));
 	}
 
+	/*
+	Good error reporting for unknown commands.
+
+	Not only does this test that the error has been correctly specified as
+	a unknown command, but also that the suggestion system is working
+	correctly (at least for most of the time).
+	*/
 	public function test_005_bad_command_name()
 	{
 		// typos
 		parsingError("\\emp", UnknownCommand, ~/\\emp.+\\emph/, mkPos(0,4));
 		parsingError("\\highligth", UnknownCommand, ~/\\highligth.+\\highlight/);
+		parsingError("\\volme", UnknownCommand, ~/\\volme.+\\volume/);
+		parsingError("\\chpter", UnknownCommand, ~/\\chpter.+\\chapter/);
+		parsingError("\\subection", UnknownCommand, ~/\\subection.+\\subsection/);
+		parsingError("\\subsubection", UnknownCommand, ~/\\subsubection.+\\subsubsection/);
+		parsingError("\\metaa\\reset", UnknownCommand, ~/\\metaa.+\\meta/);
+		parsingError("\\meta\\rest", UnknownCommand, ~/\\rest.+\\reset/);
+		parsingError("\\hml\\apply", UnknownCommand, ~/\\hml.+\\html/);
+		parsingError("\\html\\appply", UnknownCommand, ~/\\appply.+\\apply/);
+		parsingError("\\text\\preamble", UnknownCommand, ~/\\text.+\\tex/);
+		parsingError("\\tex\\preambl", UnknownCommand, ~/\\preambl.+\\preamble/);
 
 		// non existant aliases
 		parsingError("\\emphasis", UnknownCommand, ~/\\emphasis.+\\emph/);
@@ -169,6 +186,8 @@ class Test_03_Parser {
 		// parsingError("\\display", UnknownCommand, ~/\\display.+\\highlight/);  // FIXME
 		parsingError("\\quote", UnknownCommand);
 		// parsingError("\\quote", UnknownCommand, ~/\\quote.+\\quotation/);  // FIXME
+
+		// TOOD figures, tables, lists, boxes
 	}
 
 	public function test_006_known_dificulties_from_poc()
