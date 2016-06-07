@@ -158,6 +158,10 @@ class Transform {
 		case HtmlApply(path):
 			return mk(THtmlApply(path), v.pos);
 		case Table(rows, caption):
+			count[OTH] = ++count[OTH];
+			names[OTH] = count[CHA] + " " + count[OTH];
+			var name = idGen(names, OTH);
+			
 			var rvalues = [];
 			for (r in rows)
 			{
@@ -170,7 +174,7 @@ class Transform {
 			}
 			//TODO: v.pos.span(?) --> Should I Add its length?
 			var tbldata = mk(TVList(rvalues), v.pos);
-			return mk(TTable(caption, tbldata), v.pos);
+			return mk(TTable(caption, tbldata, count[OTH], name), v.pos);
 			
 		}
 	}

@@ -102,10 +102,10 @@ class HtmlGen {
 			null;  // TODO use
 		case TLaTeXPreamble(_):
 			null;  // ignore
-		case TTable(caption, chd):
-			counts[OTH] = counts[OTH] +1;
+		case TTable(caption, chd, count, id):
+			counts[OTH] = count;
 			curBuff.add("<section class='lg'>");
-			curBuff.add('<h4>Table ${counts[CHA] +"." + counts[OTH]} : ${horizontal(caption)}</h4>'); //TODO:
+			curBuff.add('<h4 id="${id}">Table ${counts[CHA] +"." + counts[OTH]} : ${horizontal(caption)}</h4>'); //TODO:
 			curBuff.add("<table>");
 			processTable(chd); 
 			curBuff.add("</table></section>");
@@ -113,25 +113,36 @@ class HtmlGen {
 		}
 	}
 	
-	function processTable(chd : TElem, ?isColumnMode : Bool)
+	//isColumnMode and isHeadMode are optional because I'll call then inside the function
+	//E.G: This function assumes that row0 is always a header, isColumn mode starts with false or null
+	//because it assumes an object is of type TR[TD[Val]] (same as HTML table standard).
+	function processTable(chd : TElem, ?isColumnMode : Bool, ?isHeadMode : Bool)
 	{		
 		switch(chd.def)
 		{
 			case TVList(li):
-				for (el in li)
+				var i = 0;
+				while(i < li.length)
 				{
-					if(!isColumnMode)
+					if (isHeadMode && isColumnMode)
+					{
+						curBuff.add("<th>");
+						processTable(li[i], true, true);
+						curBuff.add("</th>");
+					}
+					else if(!isColumnMode)
 					{
 						curBuff.add("<tr>");
-						processTable(el, true);
+						processTable(li[i], true, (i == 0));
 						curBuff.add("</tr>");
 					}
 					else
 					{
 						curBuff.add("<td>");
-						processTable(el, true);
+						processTable(li[i], true);
 						curBuff.add("</td>");
 					}
+					i++;
 				}
 			case TParagraph(h):
 				curBuff.add(horizontal(h));
