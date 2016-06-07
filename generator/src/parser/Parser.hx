@@ -276,43 +276,6 @@ class Parser {
 		return mk(Figure(path.val, caption.val, copyright.val), cmd.pos.span(copyright.pos));
 	}
 
-	function tableCell(cmd:Token)
-	{
-		assert(cmd.def.match(TCommand("col")), cmd);
-		// TODO handle empty cells
-		return vlist({ beforeAny:[TCommand("col"), TCommand("row"), TCommand("endtable")] });
-	}
-
-	function tableRow(cmd:Token)
-	{
-		assert(cmd.def.match(TCommand("row")), cmd);
-		// TODO handle empty rows
-		var cells = [];
-		while (true) {
-			discardVerticalNoise();
-			if (!peek().def.match(TCommand("col"))) break;
-			cells.push(tableCell(pop()));
-		}
-		return cells;
-	}
-
-	function table(begin:Token)
-	{
-		assert(begin.def.match(TCommand("begintable")), begin);
-		var caption = arg(hlist, begin, "caption");
-		if (caption.val == null) badArg(caption.pos, "caption cannot be empty");
-		var rows = [];
-		while (true) {
-			discardVerticalNoise();
-			if (!peek().def.match(TCommand("row"))) break;
-			rows.push(tableRow(pop()));
-		}
-		var end = pop();  // should have already discarted any vnoise before
-		if (end.def.match(TEof)) unclosed(begin);
-		if (!end.def.match(TCommand("endtable"))) unexpected(end);
-		return mk(Table(rows, caption.val), begin.pos.span(end.pos));
-	}
-
 	/**
 	After having already read a `#FIG#` tag, parse the reaming of the
 	vertical block as a combination of a of path (delimited by `{}`),
@@ -363,6 +326,43 @@ class Parser {
 			else
 				mk(HList(captionParts), captionParts[0].pos.span(captionParts[captionParts.length - 1].pos));
 		return mk(Figure(path, caption, copyright), tag[0].pos.span(lastPos));
+	}
+
+	function tableCell(cmd:Token)
+	{
+		assert(cmd.def.match(TCommand("col")), cmd);
+		// TODO handle empty cells
+		return vlist({ beforeAny:[TCommand("col"), TCommand("row"), TCommand("endtable")] });
+	}
+
+	function tableRow(cmd:Token)
+	{
+		assert(cmd.def.match(TCommand("row")), cmd);
+		// TODO handle empty rows
+		var cells = [];
+		while (true) {
+			discardVerticalNoise();
+			if (!peek().def.match(TCommand("col"))) break;
+			cells.push(tableCell(pop()));
+		}
+		return cells;
+	}
+
+	function table(begin:Token)
+	{
+		assert(begin.def.match(TCommand("begintable")), begin);
+		var caption = arg(hlist, begin, "caption");
+		if (caption.val == null) badArg(caption.pos, "caption cannot be empty");
+		var rows = [];
+		while (true) {
+			discardVerticalNoise();
+			if (!peek().def.match(TCommand("row"))) break;
+			rows.push(tableRow(pop()));
+		}
+		var end = pop();  // should have already discarted any vnoise before
+		if (end.def.match(TEof)) unclosed(begin);
+		if (!end.def.match(TCommand("endtable"))) unexpected(end);
+		return mk(Table(caption.val, rows), begin.pos.span(end.pos));
 	}
 
 	function quotation(cmd:Token)

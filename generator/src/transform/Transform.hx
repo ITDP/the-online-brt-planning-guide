@@ -157,7 +157,7 @@ class Transform {
 			return mk(TLaTeXPreamble(path), v.pos);
 		case HtmlApply(path):
 			return mk(THtmlApply(path), v.pos);
-		case Table(rows, caption):
+		case Table(caption, rows):
 			count[OTH] = ++count[OTH];
 			names[OTH] = count[CHA] + " " + count[OTH];
 			var name = idGen(names, OTH);

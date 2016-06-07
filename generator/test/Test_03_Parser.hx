@@ -492,7 +492,11 @@ class Test_03_Parser {
 	// TODO
 	public function test_022_tables()
 	{
-		trace(parse("\\begintable{a}\\row\\col x\\col y\\row\\col 1\\col 2\\endtable"));
+		Assert.same(
+			expand(@wrap(12,9)Table(@len(1)Word("a"), @skip(1)[
+					[@skip(9)Paragraph(@len(1)Word("x")),@skip(5)Paragraph(@len(1)Word("y"))],
+					[@skip(9)Paragraph(@len(1)Word("1")),@skip(5)Paragraph(@len(1)Word("2"))] ])),
+			parse("\\begintable{a}\\row\\col x\\col y\\row\\col 1\\col 2\\endtable"));
 		Assert.isTrue(true);
 	}
 }
