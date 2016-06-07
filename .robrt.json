@@ -21,7 +21,6 @@
 			"command time -v neko generator/bin/obrt.n gen guide/the-brt-planning-guide.src",
 
 			"cp -r guide/the-brt-planning-guide.src.html $ROBRT_OUTPUT_DIR/guide",
-			"cp guide/style.css $ROBRT_OUTPUT_DIR",
 
 			"nodejs --version",
 			"command time -v nodejs generator/bin/obrt.js gen guide/the-brt-planning-guide.src",

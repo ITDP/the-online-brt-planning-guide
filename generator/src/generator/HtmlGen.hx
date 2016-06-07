@@ -1,19 +1,12 @@
 package generator;  // TODO move out of the package
 
-import generator.HtmlGen.Nav;
-
-
-
+import haxe.io.Path;
 import parser.Ast.HElem;
-
-import sys.io.File;
-
-
-
 import sys.FileSystem;
+import sys.io.File;
 import transform.Document;
 
-
+import Assertion.*;
 import haxe.io.Path.join in joinPaths;
 
 typedef Nav = {
@@ -23,11 +16,10 @@ typedef Nav = {
 	chd : Null<Array<Nav>>
 }
 
-typedef Path = String;
-
 class HtmlGen {
 	
 	static inline var JSName =  "navscript.js";
+	static inline var ASSET_SUBDIR = "assets";
 
 	static inline var VOL = 0;
 	static inline var CHA = 1;
@@ -41,7 +33,29 @@ class HtmlGen {
 	var navTop : String;
 	var navLeft : String;
 	var curBuff : StringBuf;
-	var dest:Path;
+	
+	var css : Array<String>;
+	
+	var dest:String;
+
+	function saveAsset(path:String)
+	{
+		var dir = ASSET_SUBDIR;
+		var ldir = Path.join([dest, ASSET_SUBDIR]);
+		if (!FileSystem.exists(ldir))
+			FileSystem.createDirectory(ldir);
+
+		var ext = Path.extension(path).toLowerCase();
+		assert(ext != "", path);
+		var data = File.getBytes(path);
+		var hash = haxe.crypto.Sha1.make(data).toHex();
+
+		var name = hash + "." + ext;
+		var path = Path.join([dir, name]);
+		var lpath = Path.join([ldir, name]);
+		File.saveBytes(lpath, data);
+		return path;
+	}
 
 	function horizontal(h:HElem)
 	{
@@ -98,17 +112,16 @@ class HtmlGen {
 			//var buf = new StringBuf();
 			for (i in li)
 				vertical(i, counts, curNav);
-		case THtmlApply(_):
-			null;  // TODO use
+		case THtmlApply(path):
+			css.push(saveAsset(path));
 		case TLaTeXPreamble(_):
 			null;  // ignore
 		case TTable(caption, header, chd, count, id):
 			counts[OTH] = count;
 			curBuff.add("<section class='lg'>");
 			curBuff.add('<h4 id="${id}">Table ${counts[CHA] +"." + counts[OTH]} : ${horizontal(caption)}</h4>'); //TODO:
-			curBuff.add("<table><tr>");
-			processTable(header, true, true);
-			curBuff.add("</tr>");
+			curBuff.add("<table>");
+			processTable([header], true);
 			processTable(chd);
 			curBuff.add("</table></section>");
 			
@@ -118,39 +131,43 @@ class HtmlGen {
 	//isColumnMode and isHeadMode are optional because I'll call then inside the function
 	//E.G: This function assumes that row0 is always a header, isColumn mode starts with false or null
 	//because it assumes an object is of type TR[TD[Val]] (same as HTML table standard).
-	function processTable(chd : TElem, ?isColumnMode : Bool, ?isHeadMode : Bool)
-	{		
-		switch(chd.def)
+	function processTable(body : Array<Array<TElem>>, ?isHeadMode : Bool)
+	{
+		if (isHeadMode)
+			curBuff.add("<thead>");
+		else
+			curBuff.add("<tbody>");
+			
+		for (row in body)
 		{
-			case TVList(li):
-				var i = 0;
-				while(i < li.length)
+			curBuff.add("<tr>");
+			for (col in row)
+			{
+				if (isHeadMode)
+					curBuff.add("<th>");
+				else
+					curBuff.add("<td>");
+					
+				switch(col.def)
 				{
-					if (isHeadMode && isColumnMode)
-					{
-						curBuff.add("<th>");
-						processTable(li[i], true, true);
-						curBuff.add("</th>");
-					}
-					else if(!isColumnMode)
-					{
-						curBuff.add("<tr>");
-						processTable(li[i], true, isHeadMode);
-						curBuff.add("</tr>");
-					}
-					else
-					{
-						curBuff.add("<td>");
-						processTable(li[i], true);
-						curBuff.add("</td>");
-					}
-					i++;
+					case TParagraph(h):
+						curBuff.add(horizontal(h));
+					default:
+						throw "NI";
 				}
-			case TParagraph(h):
-				curBuff.add(horizontal(h));
-			default:
-				throw "NI";
+				
+				if (isHeadMode)
+					curBuff.add("</th>");
+				else
+					curBuff.add("</td>");
+			}
+			curBuff.add("</tr>");
 		}
+		
+		if (isHeadMode)
+			curBuff.add("</thead>");
+		else
+			curBuff.add("</tbody>");
 	}
 	
 	function hierarchy(cur : TElem, counts : Array<Int>, curNav : Nav)
@@ -367,12 +384,13 @@ class HtmlGen {
 	}
 	
 	//TODO: add custom params...later
-	function headGen(cssFile : String, jsFile : String)
+	function headGen(jsFile : String)
 	{
 		var staticres = '<head>
 			<meta charset="utf-8">
 			<title></title>
-			<link href="${cssFile}" rel="stylesheet" type="text/css">
+			<!-- Custom CSSs -->
+			${css.map(function (p) return '<link href="../${p}" rel="stylesheet" type="text/css">').join("\n")}
 			<!-- Jquery -->
 			<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js" ></script>
 			<script src="${jsFile}"></script>
@@ -402,7 +420,7 @@ class HtmlGen {
 			FileSystem.createDirectory(path);
 		
 		var buff = new StringBuf();
-		buff.add(headGen("../../style.css",  "../" + JSName));
+		buff.add(headGen("../" + JSName));
 		
 		buff.add('<body><div class="container"><div class="col-text">');
 		buff.add(content);
@@ -418,6 +436,7 @@ class HtmlGen {
 		
 	function document(doc:Document)
 	{
+		css = new Array<String>();
 		navs = new Array<Nav>();
 		curBuff = new StringBuf();
 		vertical(doc,[0,0,0,0,0,0], null);
@@ -437,7 +456,7 @@ class HtmlGen {
 		document(doc);
 	}
 
-	public function new(dest:Path)
+	public function new(dest:String)
 		this.dest = dest;
 }
 
