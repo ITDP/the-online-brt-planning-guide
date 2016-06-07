@@ -157,13 +157,13 @@ class Transform {
 			return mk(TLaTeXPreamble(path), v.pos);
 		case HtmlApply(path):
 			return mk(THtmlApply(path), v.pos);
-		case Table(caption, rows):
+		case Table(caption, header, rows):
 			count[OTH] = ++count[OTH];
 			names[OTH] = count[CHA] + " " + count[OTH];
 			var name = idGen(names, OTH);
 			
 			var rvalues = [];
-			for (r in rows)
+			for (r in [header].concat(rows))  // POG
 			{
 				var cellvalues = [];
 				for (value in r)
@@ -173,8 +173,8 @@ class Transform {
 				rvalues.push(cells);
 			}
 			//TODO: v.pos.span(?) --> Should I Add its length?
-			var tbldata = mk(TVList(rvalues), v.pos);
-			return mk(TTable(caption, tbldata, count[OTH], name), v.pos);
+			var tbldata = mk(TVList(rvalues.slice(1)), v.pos);  // POG
+			return mk(TTable(caption, rvalues[0], tbldata, count[OTH], name), v.pos);
 			
 		}
 	}
