@@ -169,12 +169,10 @@ class Transform {
 				for (value in r)
 					cellvalues.push(vertical(value, rest, count, names));
 					//TODO: v.pos.span(?) --> Should I Add its length?
-				var cells = mk(TVList(cellvalues), v.pos);
-				rvalues.push(cells);
+				rvalues.push(cellvalues);
 			}
 			//TODO: v.pos.span(?) --> Should I Add its length?
-			var tbldata = mk(TVList(rvalues.slice(1)), v.pos);  // POG
-			return mk(TTable(caption, rvalues[0], tbldata, count[OTH], name), v.pos);
+			return mk(TTable(caption, rvalues[0], rvalues.slice(1), count[OTH], name), v.pos);
 			
 		}
 	}

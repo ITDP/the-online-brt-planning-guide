@@ -106,9 +106,8 @@ class HtmlGen {
 			counts[OTH] = count;
 			curBuff.add("<section class='lg'>");
 			curBuff.add('<h4 id="${id}">Table ${counts[CHA] +"." + counts[OTH]} : ${horizontal(caption)}</h4>'); //TODO:
-			curBuff.add("<table><tr>");
-			processTable(header, true, true);
-			curBuff.add("</tr>");
+			curBuff.add("<table>");
+			processTable([header], true);
 			processTable(chd);
 			curBuff.add("</table></section>");
 			
@@ -118,39 +117,43 @@ class HtmlGen {
 	//isColumnMode and isHeadMode are optional because I'll call then inside the function
 	//E.G: This function assumes that row0 is always a header, isColumn mode starts with false or null
 	//because it assumes an object is of type TR[TD[Val]] (same as HTML table standard).
-	function processTable(chd : TElem, ?isColumnMode : Bool, ?isHeadMode : Bool)
-	{		
-		switch(chd.def)
+	function processTable(body : Array<Array<TElem>>, ?isHeadMode : Bool)
+	{
+		if (isHeadMode)
+			curBuff.add("<thead>");
+		else
+			curBuff.add("<tbody>");
+			
+		for (row in body)
 		{
-			case TVList(li):
-				var i = 0;
-				while(i < li.length)
+			curBuff.add("<tr>");
+			for (col in row)
+			{
+				if (isHeadMode)
+					curBuff.add("<th>");
+				else
+					curBuff.add("<td>");
+					
+				switch(col.def)
 				{
-					if (isHeadMode && isColumnMode)
-					{
-						curBuff.add("<th>");
-						processTable(li[i], true, true);
-						curBuff.add("</th>");
-					}
-					else if(!isColumnMode)
-					{
-						curBuff.add("<tr>");
-						processTable(li[i], true, isHeadMode);
-						curBuff.add("</tr>");
-					}
-					else
-					{
-						curBuff.add("<td>");
-						processTable(li[i], true);
-						curBuff.add("</td>");
-					}
-					i++;
+					case TParagraph(h):
+						curBuff.add(horizontal(h));
+					default:
+						throw "NI";
 				}
-			case TParagraph(h):
-				curBuff.add(horizontal(h));
-			default:
-				throw "NI";
+				
+				if (isHeadMode)
+					curBuff.add("</th>");
+				else
+					curBuff.add("</td>");
+			}
+			curBuff.add("</tr>");
 		}
+		
+		if (isHeadMode)
+			curBuff.add("</thead>");
+		else
+			curBuff.add("</tbody>");
 	}
 	
 	function hierarchy(cur : TElem, counts : Array<Int>, curNav : Nav)
