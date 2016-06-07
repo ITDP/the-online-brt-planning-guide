@@ -4,6 +4,10 @@
 \usepackage[T1]{fontenc}
 \usepackage{paratype}
 
+%font style
+\let\emphasis\textit
+\let\highlight\textbf
+
 %pagesize
 \usepackage{geometry}
 \geometry{a4paper,total={105mm,243mm},left=35mm,top=18mm,marginparsep=7mm,marginparwidth=49mm,headsep=5.5mm,footskip=9mm}
@@ -38,18 +42,18 @@
 %box
 \usepackage{mdframed}
 \mdfsetup{innerleftmargin=6.75mm,innerrightmargin=6.75mm,innertopmargin=8.75mm,innerbottommargin=8.75mm,skipabove=12.75pt,skipbelow=12.75pt,linewidth=0.25mm,linecolor=gray50}
-\newenvironment{brtbox}  % TODO make the name more neutral
-	{\begin{mdframed}
-		\parskip=12.75pt
-		\baselineskip=12.75pt
-		\parindent=7mm
-		\color{gray50}
+\def\beginbox{
+	\mdframed[usetwoside=false]
+	\parskip=12.75pt
+	\baselineskip=12.75pt
+	\parindent=7mm
+	\color{gray50}
 	}
-	{\end{mdframed}}
+\def\endbox{\endmdframed}
 	
 %list
 \usepackage{enumitem}
-\setlist{nolistsep, leftmargin=28pt, rightmargin=28pt }
+\setlist{nolistsep,leftmargin=28pt,rightmargin=28pt}
 \labelindent=28pt
 
 %images - img {width(mm)}{filename} - fignote{figure number}{text}{credits}
