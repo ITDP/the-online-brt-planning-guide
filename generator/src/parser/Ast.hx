@@ -28,7 +28,7 @@ enum VDef {
 	SubSection(name:HElem);
 	SubSubSection(name:HElem);
 	Figure(path:String, caption:HElem, copyright:HElem);  // TODO size?
-	Table(rows:Array<TableRow>, caption:HElem);  // copyright/source?
+	Table(caption:HElem, rows:Array<TableRow>);  // copyright/source?
 	Quotation(text:HElem, by:HElem);
 	List(items:Array<VElem>);
 	Box(contents:VElem);
