@@ -8,8 +8,8 @@ h1, h2, h3, h4, h5, h6, h7 {
 }
 h1 { font-size: 48px; color: #00a95e; }
 h2 { font-size: 32px; color: #00a95e; }
-h3 { font-size: 24px; color: #666; }
-h4 { font-size:	18px; color: #666; }
+h3 { font-size: 24px; color: #00a95e; }
+h4 { font-size:	18px; color: #00a95e; }
 
 p {
 	font-family: 'PT Serif', serif;
@@ -288,4 +288,13 @@ q {
 	.container {
 		width: 1216px;
 	}
+}
+
+/* lists */
+
+section > ul,ol {
+	padding-left: 40px;
+	width: 560px;
+	font-family: 'PT Serif', serif;
+	text-align: justify;
 }
