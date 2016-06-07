@@ -36,7 +36,7 @@ Who is affected?
 
 How do I use it?
 
-\boxstart
+\beginbox
 
 Tips for messaging:
 
@@ -49,7 +49,7 @@ Tips for messaging:
 \item Keep it positive: Whenever possible, keep your message positive while being honest.
 
 
-\boxend
+\endbox
 
 Why should I use it? What does it cost?
 
@@ -61,7 +61,7 @@ A commonly used tactic is to demonstrate through example, by using information f
 
 Consistency of messaging with the project's operating plan is critical, as these messages will be the first interaction users will have with the system and will set the tone for how they judge the system once it is operational.
 
-\boxstart
+\beginbox
 
 Example: Transantiago
 
@@ -72,7 +72,7 @@ When the new system launched, residents were completely unaware of how the chang
 Transantiago's problems went well beyond communications - incomplete infrastructure and insufficient service were also major factors - but citizens who had been left in the dark made the chaos far worse.
 
 /*#FIG{/word/media/image8.jpeg}{ Fig 9.8 The Transantiago BRT in Santiago, Chile. Image }{ Wikipedia Creative Commons.}*/
-\boxend
+\endbox
 
 For example, with regard to customer comfort\/crowding in buses, although BRT promises high-quality service, ideally at four customers per square meter, public transport typically must find a financially sustainable model involving little or no subsidy, which will mean that customers' comfort may be reduced. If service is set at five or six customers per square meter, it is no longer valid to say that the BRT is comfortable, and messages should instead promote other characteristics, such as cleanliness, punctuality, speed, accessibility, and safety.
 
