@@ -337,7 +337,7 @@ class Parser {
 
 	function tableRow(cmd:Token)
 	{
-		assert(cmd.def.match(TCommand("row")), cmd);
+		assert(cmd.def.match(TCommand("row") | TCommand("header")), cmd);
 		// TODO handle empty rows
 		var cells = [];
 		while (true) {
@@ -354,6 +354,9 @@ class Parser {
 		var caption = arg(hlist, begin, "caption");
 		if (caption.val == null) badArg(caption.pos, "caption cannot be empty");
 		var rows = [];
+		discardVerticalNoise();
+		if (!peek().def.match(TCommand("header"))) missingArg(peek().pos, begin, "\\header line");
+		var header = tableRow(pop());
 		while (true) {
 			discardVerticalNoise();
 			if (!peek().def.match(TCommand("row"))) break;
@@ -362,7 +365,7 @@ class Parser {
 		var end = pop();  // should have already discarted any vnoise before
 		if (end.def.match(TEof)) unclosed(begin);
 		if (!end.def.match(TCommand("endtable"))) unexpected(end);
-		return mk(Table(caption.val, rows), begin.pos.span(end.pos));
+		return mk(Table(caption.val, header, rows), begin.pos.span(end.pos));
 	}
 
 	function quotation(cmd:Token)

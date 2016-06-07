@@ -102,12 +102,14 @@ class HtmlGen {
 			null;  // TODO use
 		case TLaTeXPreamble(_):
 			null;  // ignore
-		case TTable(caption, chd, count, id):
+		case TTable(caption, header, chd, count, id):
 			counts[OTH] = count;
 			curBuff.add("<section class='lg'>");
 			curBuff.add('<h4 id="${id}">Table ${counts[CHA] +"." + counts[OTH]} : ${horizontal(caption)}</h4>'); //TODO:
-			curBuff.add("<table>");
-			processTable(chd); 
+			curBuff.add("<table><tr>");
+			processTable(header, true, true);
+			curBuff.add("</tr>");
+			processTable(chd);
 			curBuff.add("</table></section>");
 			
 		}
@@ -133,7 +135,7 @@ class HtmlGen {
 					else if(!isColumnMode)
 					{
 						curBuff.add("<tr>");
-						processTable(li[i], true, (i == 0));
+						processTable(li[i], true, isHeadMode);
 						curBuff.add("</tr>");
 					}
 					else
