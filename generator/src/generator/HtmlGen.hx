@@ -1,16 +1,12 @@
 package generator;  // TODO move out of the package
 
-import generator.HtmlGen.Nav;
+import haxe.io.Path;
 import parser.Ast.HElem;
-
-import sys.io.File;
-
-
-
 import sys.FileSystem;
+import sys.io.File;
 import transform.Document;
 
-
+import Assertion.*;
 import haxe.io.Path.join in joinPaths;
 
 typedef Nav = {
@@ -20,11 +16,10 @@ typedef Nav = {
 	chd : Null<Array<Nav>>
 }
 
-typedef Path = String;
-
 class HtmlGen {
 	
 	static inline var JSName =  "navscript.js";
+	static inline var ASSET_SUBDIR = "assets";
 
 	static inline var VOL = 0;
 	static inline var CHA = 1;
@@ -41,7 +36,26 @@ class HtmlGen {
 	
 	var css : Array<String>;
 	
-	var dest:Path;
+	var dest:String;
+
+	function saveAsset(path:String)
+	{
+		var dir = ASSET_SUBDIR;
+		var ldir = Path.join([dest, ASSET_SUBDIR]);
+		if (!FileSystem.exists(ldir))
+			FileSystem.createDirectory(ldir);
+
+		var ext = Path.extension(path).toLowerCase();
+		assert(ext != "", path);
+		var data = File.getBytes(path);
+		var hash = haxe.crypto.Sha1.make(data).toHex();
+
+		var name = hash + "." + ext;
+		var path = Path.join([dir, name]);
+		var lpath = Path.join([ldir, name]);
+		File.saveBytes(lpath, data);
+		return path;
+	}
 
 	function horizontal(h:HElem)
 	{
@@ -99,7 +113,8 @@ class HtmlGen {
 			for (i in li)
 				vertical(i, counts, curNav);
 		case THtmlApply(path):
-			css.push('<link href="${path}" rel="stylesheet" type="text/css">');
+			var path = saveAsset(path);
+			css.push('<link href="../${path}" rel="stylesheet" type="text/css">');
 		case TLaTeXPreamble(_):
 			null;  // ignore
 		case TTable(caption, header, chd, count, id):
@@ -442,7 +457,7 @@ class HtmlGen {
 		document(doc);
 	}
 
-	public function new(dest:Path)
+	public function new(dest:String)
 		this.dest = dest;
 }
 
