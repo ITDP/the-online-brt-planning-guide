@@ -111,6 +111,8 @@ class TexGen {
 			return "";
 		case THtmlApply(_):
 			return "";
+		case TTable(caption, chd):
+			return null;//TODO;
 		}
 	}
 

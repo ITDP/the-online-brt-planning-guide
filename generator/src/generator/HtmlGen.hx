@@ -102,6 +102,41 @@ class HtmlGen {
 			null;  // TODO use
 		case TLaTeXPreamble(_):
 			null;  // ignore
+		case TTable(caption, chd):
+			counts[OTH] = counts[OTH] +1;
+			curBuff.add("<section class='lg'>");
+			curBuff.add('<h4>Table ${counts[CHA] +"." + counts[OTH]} : ${horizontal(caption)}</h4>'); //TODO:
+			curBuff.add("<table>");
+			processTable(chd); 
+			curBuff.add("</table></section>");
+			
+		}
+	}
+	
+	function processTable(chd : TElem, ?isColumnMode : Bool)
+	{		
+		switch(chd.def)
+		{
+			case TVList(li):
+				for (el in li)
+				{
+					if(!isColumnMode)
+					{
+						curBuff.add("<tr>");
+						processTable(el, true);
+						curBuff.add("</tr>");
+					}
+					else
+					{
+						curBuff.add("<td>");
+						processTable(el, true);
+						curBuff.add("</td>");
+					}
+				}
+			case TParagraph(h):
+				curBuff.add(horizontal(h));
+			default:
+				throw "NI";
 		}
 	}
 	

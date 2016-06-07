@@ -20,6 +20,7 @@ enum TDef {
 	TVList(elem:Array<TElem>);
 
 	TFigure(path:String, caption:HElem, copyright:HElem, count : Int, id : String);  // TODO size?
+	TTable(caption : HElem, children : TElem);
 	TBox(contents:TElem);
 	TQuotation(text:HElem, by:HElem);
 	TList(items:Array<TElem>);

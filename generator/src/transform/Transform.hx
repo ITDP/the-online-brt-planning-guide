@@ -157,8 +157,21 @@ class Transform {
 			return mk(TLaTeXPreamble(path), v.pos);
 		case HtmlApply(path):
 			return mk(THtmlApply(path), v.pos);
-		case Table(_):
-			return null;  // TODO
+		case Table(rows, caption):
+			var rvalues = [];
+			for (r in rows)
+			{
+				var cellvalues = [];
+				for (value in r)
+					cellvalues.push(vertical(value, rest, count, names));
+					//TODO: v.pos.span(?) --> Should I Add its length?
+				var cells = mk(TVList(cellvalues), v.pos);
+				rvalues.push(cells);
+			}
+			//TODO: v.pos.span(?) --> Should I Add its length?
+			var tbldata = mk(TVList(rvalues), v.pos);
+			return mk(TTable(caption, tbldata), v.pos);
+			
 		}
 	}
 
