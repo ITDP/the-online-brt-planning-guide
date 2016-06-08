@@ -232,16 +232,16 @@ class Transform {
 
 			clearstr = StringTools.replace(clearstr," ", "-");
 
-			var reg = ~/[a-zA-Z0-9-]+/;
-
-			if (!reg.match(clearstr))
+			var reg = ~/[^a-zA-Z0-9-]+/g;
+				
+			if(clearstr.length == 0)
 			{
 				i++;
 				continue;
 			}
-
-			clearstr = reg.matched(0).toLowerCase();
-
+			
+			clearstr = reg.replace(clearstr, "").toLowerCase();
+			
 			if(i != elem)
 				str.add(before + clearstr + ".");
 			else

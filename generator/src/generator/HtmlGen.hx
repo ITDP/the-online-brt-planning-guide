@@ -33,6 +33,7 @@ class HtmlGen {
 	var navTop : String;
 	var navLeft : String;
 	var curBuff : StringBuf;
+	var cur_chapter_name : String;
 	
 	var css : Array<String>;
 	
@@ -128,26 +129,18 @@ class HtmlGen {
 		}
 	}
 	
-	//isColumnMode and isHeadMode are optional because I'll call then inside the function
-	//E.G: This function assumes that row0 is always a header, isColumn mode starts with false or null
-	//because it assumes an object is of type TR[TD[Val]] (same as HTML table standard).
 	function processTable(body : Array<Array<TElem>>, ?isHeadMode : Bool)
 	{
-		if (isHeadMode)
-			curBuff.add("<thead>");
-		else
-			curBuff.add("<tbody>");
-			
+		
+		addTblHeader(isHeadMode, false);
+		
 		for (row in body)
 		{
 			curBuff.add("<tr>");
 			for (col in row)
 			{
-				if (isHeadMode)
-					curBuff.add("<th>");
-				else
-					curBuff.add("<td>");
-					
+				addColumn(isHeadMode, false);
+				
 				switch(col.def)
 				{
 					case TParagraph(h):
@@ -156,18 +149,48 @@ class HtmlGen {
 						throw "NI";
 				}
 				
-				if (isHeadMode)
-					curBuff.add("</th>");
-				else
-					curBuff.add("</td>");
+				addColumn(isHeadMode, true);
 			}
 			curBuff.add("</tr>");
 		}
 		
+		addTblHeader(isHeadMode, true);
+	}
+	
+	function addColumn(isHeadMode : Bool, isEnd : Bool)
+	{
 		if (isHeadMode)
-			curBuff.add("</thead>");
+		{
+			if (!isEnd)
+				curBuff.add("<th>");
+			else
+				curBuff.add("</th>");
+		}
 		else
-			curBuff.add("</tbody>");
+		{
+			if (!isEnd)
+				curBuff.add("<td>");
+			else
+				curBuff.add("</td>");
+		}
+	}
+	
+	function addTblHeader(isHead : Bool, isEnd : Bool)
+	{
+		if (isHead)
+		{
+			if (!isEnd)
+				curBuff.add("<thead>");
+			else
+				curBuff.add("</thead>");
+		}
+		else
+		{
+			if (!isEnd)
+				curBuff.add("<tbody>");
+			else
+				curBuff.add("</tbody>");
+		}
 	}
 	
 	function hierarchy(cur : TElem, counts : Array<Int>, curNav : Nav)
@@ -192,6 +215,7 @@ class HtmlGen {
 				counts[CHA] = count;
 				_children = children;
 				type = CHA;
+				cur_chapter_name = _name;
 			case TSection(name, count,id, children):
 				_name = horizontal(name);
 				_id = id;
@@ -238,8 +262,9 @@ class HtmlGen {
 		
 		//Section already processed, clear buff , continue program execution
 		if (type == 2 && curBuff.length > 0)
-		{			
-			fileGen(curBuff.toString(), curNav);
+		{
+			var title = '${counts.slice(1, 3).join(".")} ${_name} [${cur_chapter_name}]';
+			fileGen(curBuff.toString(), curNav, title);
 			curBuff = new StringBuf();
 		}
 		
@@ -262,20 +287,22 @@ class HtmlGen {
 			topBuff.add('<li id="${n.id}"><a href="#">${n.name}</a></li>');
 			if (n.chd != null && n.chd.length > 0)
 			{
-				var cha = '<a> ${n.name} </a><ul class=\"item hide\">';
+				var cha = '<a> ${n.name} </a><ul style="margin-left:46px;" class=\"item hide\">';
 				
 				for(c in n.chd)
 				{
-					cha += '<li id="${c.id}"><a href="#">${c.name}</a></li>';
+					var cha_name = c.id.split(".")[3];
+					var first_sec_name = c.chd[0].id.split(".")[5];
+					cha += '<li id="${c.id}"><a href="../${cha_name}/${first_sec_name}.html">${c.name}</a></li>';
 					
 					if (c.chd != null && c.chd.length > 0)
 					{
-						var sec = '<a>${c.name}</a><ul class=\"item hide\">';
+						var sec = '<a>${c.name}</a><ul style="margin-left:258px;" class=\"item hide\">';
 						
 							for (se in c.chd)
 							{
 								var se_params = se.id.split('.');
-								var cha_name = se_params[3];
+								
 								var sec_name = se_params[5];
 								
 								sec += '<li><a href="../${cha_name}/${sec_name}.html">${se.name}</a></li>';
@@ -384,11 +411,11 @@ class HtmlGen {
 	}
 	
 	//TODO: add custom params...later
-	function headGen(jsFile : String)
+	function headGen(jsFile : String, title : String)
 	{
 		var staticres = '<head>
 			<meta charset="utf-8">
-			<title></title>
+			<title>${title}</title>
 			<!-- Custom CSSs -->
 			${css.map(function (p) return '<link href="../${p}" rel="stylesheet" type="text/css">').join("\n")}
 			<!-- Jquery -->
@@ -406,7 +433,7 @@ class HtmlGen {
 		return staticres;
 	}
 	
-	function fileGen(content : String, nav : Nav)
+	function fileGen(content : String, nav : Nav, title : String)
 	{
 		if (nav == null) 
 			throw "Invalid access";
@@ -420,7 +447,7 @@ class HtmlGen {
 			FileSystem.createDirectory(path);
 		
 		var buff = new StringBuf();
-		buff.add(headGen("../" + JSName));
+		buff.add(headGen("../" + JSName, title));
 		
 		buff.add('<body><div class="container"><div class="col-text">');
 		buff.add(content);
