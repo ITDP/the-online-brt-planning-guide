@@ -262,7 +262,7 @@ class HtmlGen {
 			topBuff.add('<li id="${n.id}"><a href="#">${n.name}</a></li>');
 			if (n.chd != null && n.chd.length > 0)
 			{
-				var cha = '<a> ${n.name} </a><ul class=\"item hide\">';
+				var cha = '<a> ${n.name} </a><ul style="margin-left:46px;" class=\"item hide\">';
 				
 				for(c in n.chd)
 				{
@@ -272,7 +272,7 @@ class HtmlGen {
 					
 					if (c.chd != null && c.chd.length > 0)
 					{
-						var sec = '<a>${c.name}</a><ul class=\"item hide\">';
+						var sec = '<a>${c.name}</a><ul style="margin-left:258px;" class=\"item hide\">';
 						
 							for (se in c.chd)
 							{
