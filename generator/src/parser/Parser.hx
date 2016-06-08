@@ -360,7 +360,9 @@ class Parser {
 		while (true) {
 			discardVerticalNoise();
 			if (!peek().def.match(TCommand("row"))) break;
-			rows.push(tableRow(pop()));
+			var row = tableRow(pop());
+			rows.push(row);
+			weakAssert(row.length == header.length, row.length, header.length, rows.length, begin.pos);
 		}
 		var end = pop();  // should have already discarted any vnoise before
 		if (end.def.match(TEof)) unclosed(begin);

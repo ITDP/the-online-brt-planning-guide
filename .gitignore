@@ -9,9 +9,16 @@
 bin/
 dump/
 
+*.JPEG
+*.JPG
+*.PNG
+*.jpeg
+*.jpg
+*.png
+
 !guide/*.tex
 !guide/*.css
 
 !generator/docs/spec.tex
-!generator/docs/design/web/mockup/*.html
+!generator/docs/design/web/mockup/*
 
