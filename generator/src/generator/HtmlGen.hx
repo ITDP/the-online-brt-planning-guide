@@ -266,7 +266,9 @@ class HtmlGen {
 				
 				for(c in n.chd)
 				{
-					cha += '<li id="${c.id}"><a href="#">${c.name}</a></li>';
+					var cha_name = c.id.split(".")[3];
+					
+					cha += '<li id="${c.id}"><a href="../${cha_name}/${cha_name}.html">${c.name}</a></li>';
 					
 					if (c.chd != null && c.chd.length > 0)
 					{
@@ -275,7 +277,7 @@ class HtmlGen {
 							for (se in c.chd)
 							{
 								var se_params = se.id.split('.');
-								var cha_name = se_params[3];
+								
 								var sec_name = se_params[5];
 								
 								sec += '<li><a href="../${cha_name}/${sec_name}.html">${se.name}</a></li>';
