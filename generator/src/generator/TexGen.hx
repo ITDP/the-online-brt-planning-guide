@@ -22,7 +22,7 @@ class TexGen {
 
 	function gent(text:String)
 	{
-		text = ~/([%{}\$\/\\])/.replace(text, "\\$1");  // FIXME complete
+		text = ~/([%{}%#\$\/\\])/.replace(text, "\\$1");  // FIXME complete
 		return text;
 	}
 
@@ -112,7 +112,29 @@ class TexGen {
 		case THtmlApply(_):
 			return "";
 		case TTable(caption, header, chd, count, id):
-			return null;//TODO;
+			var buf = new StringBuf();
+			buf.add('% FIXME\nTable ${genh(caption)}:\n\n');
+			var width = header.length;
+			buf.add("\\halign{\n\t\\beforefirstcell");
+			for (i in 1...width)
+				buf.add("#\\aftercell&\\beforecell");
+			buf.add("#\\afterlastcell\\cr\n\t");
+			function genCell(i:TElem) {
+				return switch i.def {
+				case TParagraph(h): genh(h);
+				case _: genv(i, at);
+				}
+			}
+			buf.add(header.map(genCell).join("&"));
+			buf.add("\\cr\n");
+			for (r in chd) {
+				assert(r.length == width, header.length, r.length);
+				buf.add("\t");
+				buf.add(r.map(genCell).join("&"));
+				buf.add("\\cr\n");
+			}
+			buf.add('}\n${genp(v.pos)}\n');
+			return buf.toString();
 		}
 	}
 

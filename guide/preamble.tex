@@ -67,6 +67,12 @@
 %tmp
 \usepackage{lipsum}
 
+%tables
+\def\beforecell{}
+\let\beforefirstcell\hfil
+\def\aftercell{\quad\hfil}
+\let\afterlastcell\hfil
+
 \AtBeginDocument{
 	\parskip=12.75pt
 	\baselineskip=12.75pt
