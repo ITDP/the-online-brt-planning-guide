@@ -20,5 +20,5 @@ dump/
 !guide/*.css
 
 !generator/docs/spec.tex
-!generator/docs/design/web/mockup/*.html
+!generator/docs/design/web/mockup/*
 
