@@ -240,7 +240,7 @@ class Transform {
 				continue;
 			}
 			
-			clearstr = reg.replace(clearstr, "");
+			clearstr = reg.replace(clearstr, "").toLowerCase();
 			
 			if(i != elem)
 				str.add(before + clearstr + ".");
