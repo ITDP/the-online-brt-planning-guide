@@ -418,14 +418,12 @@ class Parser {
 
 	function box(begin:Token)
 	{
-		// FIXME remove compat with \boxstart,\boxend
-		assert(begin.def.match(TCommand("beginbox") | TCommand("boxstart")), begin);
-		weakAssert(begin.def.match(TCommand("beginbox")), "\\boxstart deprecated; use \\beginbox,\\endbox", begin.pos);
-		var li = vlist({ beforeAny:[TCommand("endbox"), TCommand("boxend")] });
+		assert(begin.def.match(TCommand("beginbox")), begin);
+		var li = vlist({ beforeAny:[TCommand("endbox")] });
 		discardVerticalNoise();
 		var end = pop();
 		if (end.def.match(TEof)) unclosed(begin);
-		if (!end.def.match(TCommand("endbox") | TCommand("boxend"))) unexpected(end);
+		if (!end.def.match(TCommand("endbox"))) unexpected(end);
 		return mk(Box(li), begin.pos.span(end.pos));
 	}
 

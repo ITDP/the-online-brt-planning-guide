@@ -36,7 +36,7 @@ Developing relationships with journalists is essential. The more comfortable the
 
 /*#FIG{/word/media/image12.jpeg}{Fig. 9.12 This editorial cartoon from Chicago, USA demonstrates a common negative perception of BRT. Building relationships with local media is extremely important to countering this perception. Image }{ Chicago Gazette.}*/
 
-\boxstart
+\beginbox
 
 Example: Rea Vaya
 
@@ -45,7 +45,7 @@ The Rea Vaya BRT in Johannesburg, South Africa, made special efforts to reach ou
 Although two key minibus stakeholder groups agreed to cooperate with Rea Vaya, significant numbers of minibus taxi operators continued to oppose the system by holding strikes and protesting. The Rea Vaya team continued to engage with them, and their relationship with local media helped to ensure that the coverage included Rea Vaya's perspective, as well as the perspective of those unions that did support the project. This was essential in framing the issue as favourable to Rea Vaya, and they continued to enjoy public support during this phase.
 
  /*#FIG{/word/media/image13.jpeg}{Fig. 9.13 The Rea Vaya BRT is Johannesburg, South Africa. Image }{ ITDP.}*/
-\boxend
+\endbox
 
 
 
@@ -97,7 +97,7 @@ For more examples of promotional materials and branding, see Chapter 11.
 
 
 
-\boxstart
+\beginbox
 
 Example: Transjakarta
 
@@ -110,7 +110,7 @@ Transjakarta has several mobile apps. The most popular, called Busway Transjakar
 /*#FIG{/word/media/image16.jpeg}{Fig. 9.16 A mobile application provides public transport directions. Image }{ Transjakarta.}*/
 
 
-\boxend
+\endbox
 
 
 
