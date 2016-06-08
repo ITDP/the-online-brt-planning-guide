@@ -38,7 +38,7 @@ Finally, citizens’ organizations are able to contribute crucial BRT-related in
 \col Thinking outside the box, consultation, and bringing key citizens’ groups on board can help improve a difficult decision or build a better understanding of it.
 \row
 \col Reducing Risk Exposure
-\col Participation helps to “learn from the future as it emerges.”
+\col Participation helps to “learn from the future as it emerges.”; ; 
 \row
 \col Project Schedule
 \col Participation can reduce delays due to unforeseen controversies or barriers.
@@ -55,4 +55,4 @@ Finally, citizens’ organizations are able to contribute crucial BRT-related in
 \col Source: Giering 2011
 \endtable
 
-Fig. 10.2 Building support among residents and customers paid off well for Mexico City’s Metrobús BRT, which has enjoyed popular support during major expansions. Image courtesy of ITDP.
+/*\figure{assets\/image2.jpeg}{Fig. 10.2 Building support among residents and customers paid off well for Mexico City’s Metrobús BRT, which has enjoyed popular support during major expansions. Image }{ ITDP.}*/
