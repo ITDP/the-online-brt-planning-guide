@@ -9,6 +9,13 @@
 bin/
 dump/
 
+*.JPEG
+*.JPG
+*.PNG
+*.jpeg
+*.jpg
+*.png
+
 !guide/*.tex
 !guide/*.css
 
