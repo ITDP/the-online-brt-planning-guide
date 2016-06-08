@@ -16,6 +16,7 @@ class LargeTable {
 	static inline var QUOTE_COST = 1;
 	static inline var EM_DASH_COST = 2;
 	static inline var NO_MODULES = 30;
+	static inline var NO_MODULES_LARGE = 46;
 	static inline var MIN_COLUMN = 4;
 	static inline var SEPAR_SIZE = 1;
 
@@ -75,7 +76,7 @@ class LargeTable {
 			}
 		}
 		var tcost = Lambda.fold(cost, function (p,x) return p+x, 0);
-		var available = NO_MODULES - (width - 1)*SEPAR_SIZE;
+		var available = NO_MODULES_LARGE - (width - 1)*SEPAR_SIZE;
 		var ncost = cost.map(function (x) return available/tcost*x);
 		for (i in 0...width) {
 			if (ncost[i] < MIN_COLUMN)
@@ -114,13 +115,12 @@ class LargeTable {
 		var buf = new StringBuf();
 		buf.add('% FIXME\nTable ${gen.genh(caption)}:\n\n');
 		var width = header.length;
-		buf.add("\\halign to 154mm{\\kern -49mm\n\t\\hfill");
-		var t = 154/105*1.75;
+		buf.add('\\halign to ${NO_MODULES_LARGE}\\tablemodule{\\kern -49mm\n\t');
 		for (i in 0...width) {
 			if (i > 0)
-				buf.add('\\hbox to ${t}mm{}&\\hbox to ${t}mm{}');
-			var size = colWidths[i]*154/105*3.5;
-			buf.add('\\vtop{\\sffamily\\footnotesize\\noindent\\hsize=${size}mm#}');
+				buf.add('\\hbox to ${SEPAR_SIZE*.5}\\tablemodule{}&\\hbox to ${SEPAR_SIZE*.5}\\tablemodule{}');
+			var size = colWidths[i];
+			buf.add('\\vtop{\\sffamily\\footnotesize\\noindent\\hsize=${size}\\tablemodule#}');
 		}
 		buf.add("\\cr\n\t");
 		function genCell(i:TElem) {
