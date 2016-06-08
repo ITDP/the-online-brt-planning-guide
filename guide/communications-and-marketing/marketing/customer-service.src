@@ -22,7 +22,7 @@ The development of a user-information system is a process that is determined by 
 Different users (and different situations) need different information. Nobody travels for the simple pleasure of sitting in a bus, but for a purpose: going to work (frequent trips), to the hospital (occasional trips), or sightseeing (leisure trips), for example. This context determines what type of information a person requires. While experienced travelers focus on making more effective use of their daily commutes, an elderly person, for example, may prefer to avoid crowded environments and seek a more comfortable, if longer trip. Defining what type of information users require, acknowledging the wide range of needs they may have, and providing only that information simply and easily, is the core of the user-information design challenge.
 
 /*\figure{assets\/image31.jpeg}{This information kiosk in Brisbane, Australia, helps answer basic questions as well as begins the awareness-raising process. Image }{ ITDP.}*/
-\begintable{}
+\begintable{(empty)}
 \header
 \col System Information
 \row
@@ -34,7 +34,7 @@ Different users (and different situations) need different information. Nobody tr
 \row
 \col Fares and payment options; How much does it cost? What are the fare alternatives? How do I pay?; Users need to understand what they are paying for and how to choose the right fare: a single ride, a given time allowance. Payment options are equally important, in particular when the use of cash is restricted. The latter also contributes to enhancing customer movement.; 
 \endtable
-\begintable{}
+\begintable{(empty)}
 \header
 \col Service information
 \row
