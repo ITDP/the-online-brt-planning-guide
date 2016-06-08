@@ -60,7 +60,7 @@ class Transform {
 			t++;
 		}
 
-		names[type] = horizontal(_name);
+		names[type] = txtFromHorizontal(_name);
 		var tf = consume(rest, type, count, names);
 		var id = idGen(names, type);
 
@@ -131,10 +131,14 @@ class Transform {
 			count[OTH] = ++count[OTH];
 			names[OTH] = count[CHA] + " " + count[OTH];
 			var name = idGen(names, OTH);
-			return mk(TFigure(path, caption, cp, count[OTH], name), v.pos);
+			var _caption = htrim(caption);
+			var _cp = htrim(cp);
+			return mk(TFigure(path, _caption, _cp, count[OTH], name), v.pos);
 		case Box(contents):
 			return mk(TBox(vertical(contents, rest, count, names)), v.pos);
 		case Quotation(text, by):
+			var _text = htrim(text);
+			var _by = htrim(by);
 			return mk(TQuotation(text, by), v.pos);
 		case List(items):
 			var tf = [];
@@ -145,7 +149,8 @@ class Transform {
 			}
 			return mk(TList(tf), v.pos);
 		case Paragraph(h):
-			return mk(TParagraph(h), v.pos);
+			var _h = htrim(h);
+			return mk(TParagraph(_h), v.pos);
 		case MetaReset(name, val):
 			switch name {
 			case "volume": count[VOL] = val;
@@ -161,7 +166,7 @@ class Transform {
 			count[OTH] = ++count[OTH];
 			names[OTH] = count[CHA] + " " + count[OTH];
 			var name = idGen(names, OTH);
-			
+			var _caption = htrim(caption);
 			var rvalues = [];
 			for (r in [header].concat(rows))  // POG
 			{
@@ -172,28 +177,94 @@ class Transform {
 				rvalues.push(cellvalues);
 			}
 			//TODO: v.pos.span(?) --> Should I Add its length?
-			return mk(TTable(caption, rvalues[0], rvalues.slice(1), count[OTH], name), v.pos);
+			return mk(TTable(_caption, rvalues[0], rvalues.slice(1), count[OTH], name), v.pos);
 			
 		}
 	}
-
-	static function horizontal(elem : HElem)
+	
+	static function htrim(elem : HElem)
+	{
+		elem = ltrim(elem, null);
+		elem = rtrim(elem, null);
+		return elem;
+	}
+	
+	static function ltrim(cur : HElem, leftElem : HElem)
+	{
+		if(cur != null)
+		switch(cur.def)
+		{
+			case Word(s):
+				return cur;
+			case Wordspace:
+				if (checkBrothers(cur, leftElem))
+					return null;
+			case Highlight(el), Emphasis(el):
+				ltrim(el, leftElem);
+			case HList(li):
+				if (checkBrothers(li[0], leftElem))
+					li.shift();
+				var i = 0;
+				while (i < li.length)
+				{
+					var elem = li[(i + 1)];
+					ltrim(elem, li[i]);
+					i++;
+				}
+		}
+		return cur;
+	}
+	
+	static function rtrim(cur : HElem, rightElem : HElem)
+	{
+		if (cur != null)
+		switch(cur.def)
+		{
+			case Word(s):
+				return cur;
+			case Wordspace:
+				if (checkBrothers(cur, rightElem))
+					return null;
+			case Highlight(el), Emphasis(el):
+				rtrim(el, rightElem);
+			case HList(li):
+				if(checkBrothers(li[li.length - 1], rightElem))
+					li.pop();
+				var i = li.length - 1;
+				while (i > 0)
+				{
+					var elem = li[i - 1];
+					rtrim(elem, li[i]);
+					i--;
+				}
+		}
+		return cur;
+	}
+	
+	static function checkBrothers(cur : HElem, oth : HElem)
+	{
+		if (oth == null) return cur.def == Wordspace;
+		else 			 return(cur.def == Wordspace && oth.def == cur.def);
+	}
+	
+	
+	static function txtFromHorizontal(elem : HElem)
 	{
 		return switch(elem.def)
 		{
 			case Wordspace: " ";
-			case Emphasis(t), Highlight(t): horizontal(t);
+			case Emphasis(t), Highlight(t): txtFromHorizontal(t);
 			case Word(w) : w;
 			case HList(li):
 				var buf = new StringBuf();
 				for (l in li)
 				{
-					buf.add(horizontal(l));
+					buf.add(txtFromHorizontal(l));
 				}
 				buf.toString();
-
 		}
 	}
+	
 	public static function transform(parsed:parser.Ast) : TElem
 	{
 		var tf = vertical(parsed, [], [0,0,0,0,0,0],['','','','','','']);
