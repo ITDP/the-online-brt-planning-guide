@@ -23,7 +23,7 @@ To optimize these potential contributions, the project’s management will need 
 For an innovative approach like BRT, building support among residents contributes substantially to putting it on public agendas and keeping it there throughout the typical turbulence of implementation. Citizens involved in participatory events can offer uniquely detailed, contextual knowledge of the urban spaces (and life systems) that are in design or under intervention. Moreover, in rapidly democratizing societies, their opinions influence politicians.
 
 Finally, citizens’ organizations are able to contribute crucial BRT-related information in a timely and credible way through a vast network of contacts. For example, a participatory process that creates a very BRT-literate neighborhood association executive enables that person to become an effective conduit as well to his\/her local religious institution, health clinic, planning advisory board, or parents’ group at the local school.
-\begintable{  SEQ }
+\begintable{Table  SEQ Table \* ARABIC 1: Factors influencing Goals and Objectives of Participation}
 \header
 \col Factor
 \col Observations
@@ -38,7 +38,7 @@ Finally, citizens’ organizations are able to contribute crucial BRT-related in
 \col Thinking outside the box, consultation, and bringing key citizens’ groups on board can help improve a difficult decision or build a better understanding of it.
 \row
 \col Reducing Risk Exposure
-\col Participation helps to “learn from the future as it emerges.”
+\col Participation helps to “learn from the future as it emerges.”; ; 
 \row
 \col Project Schedule
 \col Participation can reduce delays due to unforeseen controversies or barriers.
@@ -55,4 +55,4 @@ Finally, citizens’ organizations are able to contribute crucial BRT-related in
 \col Source: Giering 2011
 \endtable
 
-Fig. 10.2 Building support among residents and customers paid off well for Mexico City’s Metrobús BRT, which has enjoyed popular support during major expansions. Image courtesy of ITDP.
+/*\figure{assets\/image2.jpeg}{Building support among residents and customers paid off well for Mexico City’s Metrobús BRT, which has enjoyed popular support during major expansions. Image }{ ITDP.}*/

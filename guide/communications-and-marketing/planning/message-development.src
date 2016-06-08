@@ -47,7 +47,7 @@ Why should I use it? What does it cost?
 
 A commonly used tactic is to demonstrate through example, by using information from successful BRT systems, such as TransMilenio in Bogotá or the Guangzhou BRT in China. This can give stakeholders some good visuals and examples as to what the system will be like. Many cities have found success with a focus on educating children about public transport. If children get excited about a new system, they will share what they’ve learned with their families, and encourage their parents to try the system. For example, in Johannesburg, South Africa, they city hired a theater group to perform a play in primary schools, teaching children how to use the Rea Vaya BRT.
 
-/*\figure{assets/image7.jpeg}{Fig. 9.7 Creative approaches to outreach, such as using entertainers, can be highly effective for disseminating information in a memorable manner. Image }{ Lloyd Wright.}*/
+/*\figure{assets\/image7.jpeg}{Creative approaches to outreach, such as using entertainers, can be highly effective for disseminating information in a memorable manner. Image }{ Lloyd Wright.}*/
 
 Consistency of messaging with the project’s operating plan is critical, as these messages will be the first interaction users will have with the system and will set the tone for how they judge the system once it is operational. 
 
@@ -61,7 +61,7 @@ When the new system launched, residents were completely unaware of how the chang
 
 Transantiago’s problems went well beyond communications — incomplete infrastructure and insufficient service were also major factors — but citizens who had been left in the dark made the chaos far worse.
 
-/*\figure{assets/image8.jpeg}{Fig 9.8 The Transantiago BRT in Santiago, Chile. Image }{ Wikipedia Creative Commons.}*/
+/*\figure{assets\/image8.jpeg}{Fig 9.8 The Transantiago BRT in Santiago, Chile. Image }{ Wikipedia Creative Commons.}*/
 \endbox
 
 For example, with regard to customer comfort\/crowding in buses, although BRT promises high-quality service, ideally at four customers per square meter, public transport typically must find a financially sustainable model involving little or no subsidy, which will mean that customers’ comfort may be reduced. If service is set at five or six customers per square meter, it is no longer valid to say that the BRT is comfortable, and messages should instead promote other characteristics, such as cleanliness, punctuality, speed, accessibility, and safety. 
