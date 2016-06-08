@@ -26,14 +26,14 @@ Creating public recognition of the system can be bolstered by a slogan or taglin
 
 Not every system has a tagline, but when used, taglines should be visually integrated into the design sometimes as part of the logo, sometimes independently, in the same way as the logo, name, and livery.
 
-/*\figure{assets\/image25.jpeg}{/*\figure{assets\/image26.jpeg}{}{}*/}{}*/
+/*\figure{assets\/image25.jpeg}{}{}*/
 
-Fig. 11.25 and Fig. 11.26 The marketing announcement for the Orange Line BRT in Los Angeles highlights the time-saving aspect of the service, while the Ottawa, Ontario, Canada, public transport system focuses on a universal use of the system for all your public transport needs. Fig. 11.25 photo courtesy of Los Angeles County Metropolitan Transit Authority and Fig. 11.26 photo courtesy of Lloyd Wright.
+/*\figure{assets\/image26.jpeg}{and The marketing announcement for the Orange Line BRT in Los Angeles highlights the time-saving aspect of the service, while the Ottawa, Ontario, Canada, public transport system focuses on a universal use of the system for all your public transport needs. photo }{ Los Angeles County Metropolitan Transit Authority and photo }*/
 
 \subsection{Market Segmentation}
 
 The market segmentation process will be informed by the stakeholder analysis (see Chapter 9: Strategic Planning for Communications) and the communications team will develop messages as well as devise strategies and tactics for reaching individual audiences. Determining what messages and modes of transmitting them will appeal to which group is the key challenge for and job of the communications team, as described in Chapter 9.
-\begintable{ 11.1 Potential Marketing Messages for Market Segments}
+\begintable{Potential Marketing Messages for Market Segments}
 \header
 \col Market Segment
 \col Potential Messages
@@ -66,7 +66,7 @@ Example: Metro Orange Line: It Beats the 101
 
 Through a unified brand and clear messaging, Los Angeles Metro has proved that it can capture the attention of riders in the most style-conscious of cities. The team employed several taglines in the launch of the Orange Line BRT that informed users about the new service, as it was the first BRT in the state. The taglines were locally focused, referencing congested Highway 101, for example (“the valley’s new shortcut”), and referencing their market research, in which they determined that a barrier to using the BRT was that people’s experiences on crowded buses made them think they would not find seating. 
 
-/*\figure{assets\/image270.jpeg}{Fig. 11.27 Orange Line vehicle. Image }{ ITDP.}*/
+/*\figure{assets\/image270.jpeg}{Orange Line vehicle. Image }{ ITDP.}*/
 
 
 \endbox

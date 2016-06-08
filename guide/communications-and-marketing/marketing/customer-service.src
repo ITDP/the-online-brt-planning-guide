@@ -9,7 +9,7 @@ Customer service is the communications face of the BRT and the ultimate implemen
 
 The overall BRT communications plan should include a process for communicating with customer service representatives regularly so that they can both provide assistance to customers and feedback to system operators. They also need to be able to answer inquiries and manage communications if there are any service problems. Ideally, the system will be designed in such a way that direct customer service is not always necessary but is available for anyone who needs extra assistance.
 
-/*\figure{assets\/image30.jpeg}{Fig. 11.30 A TransMilenio staff person provides in-person assistance to customers. Image }{ Libros al Viento.}*/
+/*\figure{assets\/image30.jpeg}{A TransMilenio staff person provides in-person assistance to customers. Image }{ Libros al Viento.}*/
 
 BRT transport systems are particularly complex environments and need a way to transmit to users the best way to travel according to their needs. Users will always need to know, at a minimum, how to get to their destination. Ideally, travelers should not have to spend a lot of time figuring out how to reach their final destination; instead they should have a seamless travel experience. The information system needs to provide users with the right information in the right place at the right time.
 
@@ -21,7 +21,7 @@ The development of a user-information system is a process that is determined by 
 
 Different users (and different situations) need different information. Nobody travels for the simple pleasure of sitting in a bus, but for a purpose: going to work (frequent trips), to the hospital (occasional trips), or sightseeing (leisure trips), for example. This context determines what type of information a person requires. While experienced travelers focus on making more effective use of their daily commutes, an elderly person, for example, may prefer to avoid crowded environments and seek a more comfortable, if longer trip. Defining what type of information users require, acknowledging the wide range of needs they may have, and providing only that information simply and easily, is the core of the user-information design challenge.
 
-/*\figure{assets\/image31.jpeg}{Fig. 11.31 This information kiosk in Brisbane, Australia, helps answer basic questions as well as begins the awareness-raising process. Image }{ ITDP.}*/
+/*\figure{assets\/image31.jpeg}{This information kiosk in Brisbane, Australia, helps answer basic questions as well as begins the awareness-raising process. Image }{ ITDP.}*/
 \begintable{}
 \header
 \col System Information
@@ -49,9 +49,9 @@ Different users (and different situations) need different information. Nobody tr
 
 One very important issue is that all information must always be accurate and updated periodically (monthly, annually, etc.). Information that is likely to change more often is better placed in flexible, cost-effective structures, such as poster holders, or presented digitally in the station. Periodic changes fall to the maintenance staff and will depend on the materials chosen for the structures, as well as the level of vandalism or wear that these receive. Digital information platforms allow a great level of flexibility and can be updated to display short-term information such as service disruptions and countdowns. Information must always be accurate, especially regarding travel and waiting times, service stops, and disruptions. Inaccurate system information is one of the most common customer service complaints regarding public transport.
 
-/*\figure{assets\/image32.jpeg}{Fig. 11.32 Real-time information is displayed along a platform of the Brisbane Busway System. Image }{ Queensland Transport.}*/
+/*\figure{assets\/image32.jpeg}{Real-time information is displayed along a platform of the Brisbane Busway System. Image }{ Queensland Transport.}*/
 
-/*\figure{assets\/image33.jpeg}{Fig. 11.33 This time-based route map in Nagoya, Japan, allows customers to gauge the time required to travel to their destination. Image }{ Lloyd Wright.}*/
+/*\figure{assets\/image33.jpeg}{This time-based route map in Nagoya, Japan, allows customers to gauge the time required to travel to their destination. Image }{ Lloyd Wright.}*/
 
 \subsection{Effective Visual Information}
 
@@ -77,9 +77,9 @@ Get the experts: In the same way that experts must design BRT operations, custom
 
 Adapt design to local legislation: National and city legislation is normally very specific with regard to what can be presented in and outside of transport system stations, and on how information must be presented in terms of colors, materials, sizes, etc. Of course, this legislation must always be followed, but if the design team judges that some elements should be modified to convey information better, they should decide if it is worth making a formal appeal to the authority, and if there is sufficient time to incorporate any changes into the design of information systems.
 
-/*\figure{assets\/image34.jpeg}{Fig. 11.34 After just a few weeks of operation, stations along the Parajitos busway in Santiago, Chile, are covered with graffiti, making their information areas unusable. Image }{ Lloyd Wright.}*/
+/*\figure{assets\/image34.jpeg}{After just a few weeks of operation, stations along the Parajitos busway in Santiago, Chile, are covered with graffiti, making their information areas unusable. Image }{ Lloyd Wright.}*/
 
-/*\figure{assets\/image35.jpeg}{Fig. 11.35 Information displays at a BRT station in the Jinan, China, system provide the real-time position of BRT buses along the corridor. Photo }{ ITDP.}*/
+/*\figure{assets\/image35.jpeg}{Information displays at a BRT station in the Jinan, China, system provide the real-time position of BRT buses along the corridor. Photo }{ ITDP.}*/
 
 \subsection{Types of Information}
 
@@ -97,7 +97,7 @@ The typical set of information that should be included in any BRT system:
 \item Signage: Generally provide directional information helping users to find their way around the transport facility and improve customer movements;
 \item Web and mobile applications (as discussed in Chapter 9).
 
-/*\figure{assets\/image36.jpeg}{Fig. 11.36 The Quito Trolé line provides an area map and a detailed map of the individual line stops at each station. Image }{ Lloyd Wright.}*/
+/*\figure{assets\/image36.jpeg}{The Quito Trolé line provides an area map and a detailed map of the individual line stops at each station. Image }{ Lloyd Wright.}*/
 
 How the information is presented depends on the type of information. Generally, printed information is static, composed of maps of the system or of specific routes, and consists of anything that has greater level of detail and is modified with less frequency. Dynamic information that is modified frequently should be presented in digital displays. This includes real-time information on upcoming services, service disruptions, or general messages from system management. This information is generally “simple” in the sense that it will not need interaction from users and will only provide information in letters and numbers.
 
@@ -105,7 +105,7 @@ There is also dynamic information that is complex, meaning that users will need 
 
 This is the most flexible of all systems of information. It is particularly complex to design, manage, and operate from the “back end” of the service, especially when machines are provided at stations. They must have very robust operation systems and software structure to avoid blocking or disruption when they are used heavily (e.g., at system terminals).
 
-/*\figure{assets\/image37.jpeg}{Fig. 11.37 The BRT in Guangzhou, China, provides dynamic real-time information digitally on vehicle arrivals. Image }{ ITDP.}*/
+/*\figure{assets\/image37.jpeg}{The BRT in Guangzhou, China, provides dynamic real-time information digitally on vehicle arrivals. Image }{ ITDP.}*/
 
 \subsection{Locations of Customer Information}
 
