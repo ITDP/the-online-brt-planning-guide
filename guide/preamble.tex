@@ -56,9 +56,9 @@
 \setlist{nolistsep,leftmargin=28pt,rightmargin=28pt}
 \labelindent=28pt
 
-%images - img {width(mm)}{filename} - fignote{figure number}{text}{credits}
+%images - img {width}{filename} - fignote{figure number}{text}{credits}
 \usepackage{graphicx}
-\newcommand{\img}[2]{\noindent\centering\includegraphics[width=#1mm]{#2} \\}
+\newcommand{\img}[2]{\noindent\centering\includegraphics[width=#1]{#2} \\}
 \newcommand{\fignote}[3]{\noindent\raggedright\footnotesize\sffamily\color{gray50}{\bfseries Figure \thechapter.#1.} #2 \textit{#3} \par}
 
 %quotation {quote}{name, about, 1900 - 2000}
