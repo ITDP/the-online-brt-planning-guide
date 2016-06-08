@@ -270,10 +270,9 @@ class Parser {
 		var path = arg(rawHorizontal, cmd, "path");
 		var caption = arg(hlist, cmd, "caption");
 		var copyright = arg(hlist, cmd, "copyright");
-		if (path.val == null) badArg(path.pos, "path cannot be empty");
 		if (caption.val == null) badArg(caption.pos, "caption cannot be empty");
 		if (copyright.val == null) badArg(copyright.pos, "copyright cannot be empty");
-		return mk(Figure(path.val, caption.val, copyright.val), cmd.pos.span(copyright.pos));
+		return mk(Figure(mkPath(path.val, path.pos), caption.val, copyright.val), cmd.pos.span(copyright.pos));
 	}
 
 	/**
@@ -304,7 +303,7 @@ class Parser {
 				if (path != null) unexpected(peek(), "path already given");
 				var p = arg(rawHorizontal, tag[1], "path");
 				lastPos = p.pos;
-				path = p.val;
+				path = mkPath(p.val, p.pos);
 			case TAt:
 				if (copyright != null) unexpected(peek(), "copyright already given");
 				pop();
@@ -429,15 +428,26 @@ class Parser {
 		return mk(Box(li), begin.pos.span(end.pos));
 	}
 
+	function mkPath(rel:String, pos:Position, allowEmpty=false)
+	{
+		// TODO don't allow absolute paths (they mean nothing in a collaborative repository)
+		// TODO absolute paths?
+		rel = rel != null ? StringTools.trim(rel) : "";
+		if (rel == "") {
+			if (allowEmpty)
+				return rel;
+			badArg(pos, "path cannot be empty");
+		}
+		var path = haxe.io.Path.join([haxe.io.Path.directory(pos.src), rel]);
+		return haxe.io.Path.normalize(path);
+	}
+
 	function include(cmd:Token)
 	{
 #if (sys || hxnodejs)
 		assert(cmd.def.match(TCommand("include")), cmd);
 		var p = arg(rawHorizontal, cmd);
-		var path = p.val != null ? StringTools.trim(p.val) : "";
-		if (path == "") badArg(p.pos, "path cannot be empty");
-		// TODO don't allow absolute paths (they mean nothing in a collaborative repository)
-		path = haxe.io.Path.join([haxe.io.Path.directory(location), path]);
+		var path = mkPath(p.val, p.pos);
 		// TODO normalize the (absolute) path
 		// TODO use the cache
 		return parse(path, cache);
@@ -467,12 +477,11 @@ class Parser {
 
 	function targetInclude(cmd:Token)
 	{
-		var path = arg(rawHorizontal, cmd);
-		if (path.val == null || StringTools.trim(path.val) == "") badArg(path.pos, "path cannot be empty");
-		var tpath = haxe.io.Path.join([haxe.io.Path.directory(location), path.val]);
+		var p = arg(rawHorizontal, cmd);
+		var path = mkPath(p.val, p.pos);
 		return switch cmd.def {
-		case TCommand("html\\apply"): mk(HtmlApply(tpath), cmd.pos.span(path.pos));
-		case TCommand("tex\\preamble"): mk(LaTeXPreamble(tpath), cmd.pos.span(path.pos));
+		case TCommand("html\\apply"): mk(HtmlApply(path), cmd.pos.span(p.pos));
+		case TCommand("tex\\preamble"): mk(LaTeXPreamble(path), cmd.pos.span(p.pos));
 		case _: unexpected(cmd); null;
 		}
 	}
