@@ -83,9 +83,10 @@ class HtmlGen {
 		case TFigure(path, caption, copyright, count,id):
 			var caption = horizontal(caption);
 			var copyright = horizontal(copyright);
+			var _path = saveAsset(path);
 			//navs.push({name : '', id : id,type : OTH, chd : null});
 			//TODO: Make FIG SIZE param
-			curBuff.add('<section class="md img-block id="${id}"><img src="${path}"/><p><strong>Fig ${count}</strong>${caption} <em>${caption}</em></p>');
+			curBuff.add('<section class="md img-block id="${id}"><img src="../${_path}"/><p><strong>Fig. ${counts[CHA]}.${count}</strong>${caption} <em>${caption}</em></p></section>');
 		case TBox(contents):
 			curBuff.add('<section class="box">\n');
 			vertical(contents, counts, curNav);
