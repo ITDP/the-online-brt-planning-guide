@@ -187,7 +187,6 @@ class Test_04_Transform {
 	
 	public function test_005_tables()
 	{
-		trace(transform("\\begintable{a}\\header\\col c\\row\\col d\\endtable"));
 		Assert.same(
 			expand(@wrap(12,9) TTable(@len(1) Word("a"), @wrap(7,0) [@wrap(4,0) @skip(2)TParagraph(@len(1) Word("b"))], [@wrap(9,0)[TParagraph(@len(1)Word("d"))]], 1, "other.0-1")),
 			transform("\\begintable{a}\\header\\col b\\row\\col d\\endtable"));
