@@ -141,13 +141,7 @@ class HtmlGen {
 			{
 				addColumn(isHeadMode, false);
 				
-				switch(col.def)
-				{
-					case TParagraph(h):
-						curBuff.add(horizontal(h));
-					default:
-						throw "NI";
-				}
+				processTableElem(col);
 				
 				addColumn(isHeadMode, true);
 			}
@@ -155,6 +149,34 @@ class HtmlGen {
 		}
 		
 		addTblHeader(isHeadMode, true);
+	}
+	
+	function processTableElem(elem : TElem)
+	{
+		switch(elem.def)
+		{
+			case TParagraph(h):
+				curBuff.add(horizontal(h));
+			case TList(li):
+				var buff = new StringBuf();
+				curBuff.add("<ul>\n");
+				for (el in li)
+				{
+					curBuff.add("<li>");
+					switch el.def {
+					case TParagraph(h):
+						curBuff.add(horizontal(h));
+					case TList(li):
+						processTableElem(el);
+					case _:
+						throw "Invalid table element: " + el.def.getName() + " pos : " + el.pos.min + " at " + el.pos.src;
+					}
+					curBuff.add("</li>\n");
+				}
+				curBuff.add("</ul>\n");
+			default:
+				throw "Invalid table element: " + elem.def.getName() + " pos : " + elem.pos.min + " at " + elem.pos.src;
+		}
 	}
 	
 	function addColumn(isHeadMode : Bool, isEnd : Bool)
