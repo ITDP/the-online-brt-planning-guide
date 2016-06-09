@@ -2,11 +2,6 @@ package parser;
 
 import parser.Token;
 
-typedef LinePosition = {
-	src : String,
-	lines : { min:Int, max:Int },
-	chars : { min:Int, max:Int }
-}
 
 class GenericError {
 	var lexer:Lexer;
@@ -21,14 +16,11 @@ class GenericError {
 	public var at(get,null):String;
 		function get_at()
 			return atEof ? lexer.recover(pos.min, pos.max - pos.min) : "";
+#if !unittests
 	public var lpos(get,never):LinePosition;
 		function get_lpos()
-			return {
-				src:pos.src,
-				lines:{ min:0, max:0 },  // FIXME
-				chars:{ min:pos.min, max:pos.max }  // FIXME
-			};
-
+			return TokenTools.toLinePosition(pos);
+#end
 	public function toString()
 		return '${pos.src}: ${pos.min}-${pos.max}: $text';
 

@@ -22,6 +22,7 @@
 -js bin/tests.js
 -cp test
 -lib utest
+-D unittests
 
 --next
 
@@ -29,5 +30,6 @@
 --interp
 -cp test
 -lib utest
+-D unittests
 
 
