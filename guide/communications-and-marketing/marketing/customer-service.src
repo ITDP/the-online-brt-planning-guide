@@ -69,7 +69,6 @@ Service information
 \item Routes (journey planning): What services are available from A to B? What journey option is more convenient for me?; BRT can sometimes provide different options to perform the same trip (i.e., express and stopping services). Users’ priorities depend on the purpose of their trip and their personal abilities.; 
 \item Schedules: What are the operation times and days? What is the frequency?; This could include a number of details on the operation of a given service or route: operation times and days, frequency, first and last service, and special schedules. Depending on the complexity of the operation, this level of information could range from being redundant (i.e., very frequent services) to essential (i.e., irregular or special services, such as weekends, night, and peak-only).; 
 \item Time (travel and waiting): How long do I have to wait for the next service? How long will my total journey will take?; Electronic information is generally preferable and more intuitive for users than fixed schedules. Countdowns at stations reduce anxiety and provide key information for experienced users. Electronic information also can respond to system disruptions.; 
-\endtable
 
 One very important issue is that all information must always be accurate and updated periodically (monthly, 
 annually, etc.). Information that is likely to change more often is better placed in flexible, cost-effective 
