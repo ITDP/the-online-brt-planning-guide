@@ -139,7 +139,7 @@ class Transform {
 		case Quotation(text, by):
 			var _text = htrim(text);
 			var _by = htrim(by);
-			return mk(TQuotation(text, by), v.pos);
+			return mk(TQuotation(_text, _by), v.pos);
 		case List(items):
 			var tf = [];
 			for (i in items) {
@@ -199,6 +199,7 @@ class Transform {
 		switch(elem.def)
 		{
 			case Word(s):
+				Assertion.weakAssert(!StringTools.endsWith(s, " "));
 				tarray.push(mk(TWord(s), elem.pos));
 			case Wordspace:
 				tarray.push(mk(Space, elem.pos));
