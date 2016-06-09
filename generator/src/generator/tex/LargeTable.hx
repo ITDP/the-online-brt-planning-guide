@@ -4,6 +4,8 @@ import transform.Document;
 
 import Assertion.*;
 
+using Literals;
+
 class LargeTable {
 	static inline var CHAR_COST = 1;
 	static inline var SPACE_COST = 1;
@@ -17,7 +19,7 @@ class LargeTable {
 	static inline var EM_DASH_COST = 2;
 	static inline var NO_MODULES = 30;
 	static inline var NO_MODULES_LARGE = 46;
-	static inline var MIN_COLUMN = 4;
+	static inline var MIN_COLUMN = 5;
 	static inline var SEPAR_SIZE = 1;
 
 	static function pseudoHTypeset(h:HElem)
@@ -115,7 +117,12 @@ class LargeTable {
 		var buf = new StringBuf();
 		buf.add('% FIXME\nTable ${gen.genh(caption)}:\n\n');
 		var width = header.length;
-		buf.add('\\halign to ${NO_MODULES_LARGE}\\tablemodule{\\kern -49mm\n\t');
+		buf.add('
+			\\halign to ${NO_MODULES_LARGE}\\tablemodule{
+				\\relax\\checkoddpage\\ifoddpage\\else
+					\\kern ${NO_MODULES-NO_MODULES_LARGE}\\tablemodule
+				\\fi'.doctrim());
+		buf.add("\n\t");
 		for (i in 0...width) {
 			if (i > 0)
 				buf.add('\\hbox to ${SEPAR_SIZE*.5}\\tablemodule{}&\\hbox to ${SEPAR_SIZE*.5}\\tablemodule{}');
