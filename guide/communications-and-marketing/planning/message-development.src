@@ -2,9 +2,9 @@
 
 \section{Message Development}
 
-> “Words mean more than what is set down on paper. It takes the human voice to infuse them with deeper 
-meaning.”
-@ —Maya Angelou, author and poet, 1928–2014
+> Words mean more than what is set down on paper. It takes the human voice to infuse them with deeper 
+meaning.
+@ — Maya Angelou, author and poet, 1928 – 2014
 
 Having identified your internal and external stakeholders, the team is better positioned to think about 
 the messages that will best reach these groups. For internal stakeholders, such as employees of the public 
@@ -40,15 +40,17 @@ may be deterred simply because they don’t understand the system. You can overc
 right messaging, and the right placement, before the system opens. User education should help potential 
 customers answer these fundamental questions about the BRT:
 
-What is it?
+\item What is it?
 
-Where does it go?
+\item Where does it go?
 
-When does it start?
+\item When does it start?
 
-Who is affected?
+\item Who is affected?
 
-How do I use it?
+\item How do I use it?
+
+\item Why should I use it? What does it cost?
 
 \beginbox
 
@@ -61,10 +63,7 @@ for any target group, should support and not contradict;
 \item Keep it positive: Whenever possible, keep 
 your message positive while being honest.
 
-
 \endbox
-
-Why should I use it? What does it cost?
 
 A commonly used tactic is to demonstrate through example, by using information from successful BRT 
 systems, such as TransMilenio in Bogotá or the Guangzhou BRT in China. This can give stakeholders some 
@@ -81,45 +80,10 @@ Consistency of messaging with the project’s operating plan is critical, as the
 first interaction users will have with the system and will set the tone for how they judge the system 
 once it is operational. 
 
-\beginbox
-
-Example: Transantiago
-
-When officials from the city of Santiago, Chile restructured the 
-city’s bus system, they unintentionally 
-gave us a case study in how NOT to manage messaging to their 
-system’s users. User education concentrated 
-on high-level messaging using celebrities, but it did not 
-address the practical needs and basic questions 
-of users, such as where the system would run, how much 
-it would cost, or how customers would pay and 
-transfer. The updated route map was released less than 
-two weeks before opening day, and because it was 
-poorly designed and promoted, the system was difficult 
-for customers to navigate.
-
-When the new system launched, residents were completely unaware of how the 
-changes would impact their 
-daily commutes. Confused commuters responded by avoiding the bus and crowded 
-the city’s metro, nearly 
-crippling the rail system. The situation created such public outrage that the 
-President of Chile issued 
-a public apology and the Transport Minister resigned.
-
-Transantiago’s problems 
-went well beyond communications — incomplete infrastructure and insufficient 
-service were also major 
-factors — but citizens who had been left in the dark made the chaos far worse.
-
-/*\figure{assets\/image8.jpeg}{Fig 
-9.8 The Transantiago BRT in Santiago, Chile. Image}{ Wikipedia Creative 
-Commons.}*/
-\endbox
-
 For example, 
 with regard to customer comfort\/crowding in buses, although BRT promises high-quality service, ideally 
 at four customers per square meter, public transport typically must find a financially sustainable model 
 involving little or no subsidy, which will mean that customers’ comfort may be reduced. If service is 
 set at five or six customers per square meter, it is no longer valid to say that the BRT is comfortable, 
 and messages should instead promote other characteristics, such as cleanliness, punctuality, speed, accessibility, 
-and safety. 
+and safety.

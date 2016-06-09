@@ -1,10 +1,10 @@
 
 
-\section{ Focus Groups}
+\section{Focus Groups}
 
 > I believe in accessibility. I believe in honesty and a culture that supports that. And you can't have 
 that if you're not open to receiving feedback.
-@ —Mindy Grossman, CEO of the Home Shopping Network (HSN), 1958-
+@ — Mindy Grossman, CEO of the Home Shopping Network (HSN), 1958 -
 
 Focus groups can provide significant qualitative information quickly and in depth, based on a group 
 discussion guided by an interviewer. A delicate science of complex interactions with ethical implications, 
@@ -27,7 +27,8 @@ The main components to consider for any focus group, however, are:
 /*\figure{assets\/image13.jpeg}{Focus groups should be held at a convenient and comfortable location 
 for participants, such as this focus group held in a village in Jagatpur of the Chitwan District in Nepal. 
 Image}{ Save the Children, Image }*/
-\item 10.6.1 Committees
+
+\subsection{Committees}
 
 A particular form of the small group meeting, which usually lasts and evolves over a much longer period, 
 is the advisory committee made up of civic, private, and government representatives. Committees have 
@@ -85,7 +86,8 @@ women cyclists’ support for BRT, for example, if suggestions to include cycle 
 or permit cycles on vehicles during off-peak hours are never formally integrated into projects. If committee 
 members see integration of at least some of the ideas they put forth, they are more likely to believe 
 in and support the participatory process.
-\item 10.6.2 Civil Society Organizations
+
+\subsection{Civil Society Organizations}
 
 Building civil society organizations is a complex task that largely falls outside the mandate of BRT 
 initiatives. Nonetheless, it can be the single most relevant factor in generating strong political support 
@@ -108,7 +110,8 @@ in general and\/or specifically for neighborhood associations. These funds enabl
 training, education, and other programs; to support corporate social responsibility initiatives; and 
 to coordinate with other funders to make focus on transport-related issues part of the criteria for awarding 
 funds.
-\item 10.6.3 Engaging Local Networks
+
+\subsection{Engaging Local Networks}
 
 While the above processes all offer opportunities for interested members of the public to engage with 
 the planning process, having a truly representative public participation process also requires proactively 
@@ -138,7 +141,21 @@ started up and took place mainly at bus stations and on board regular buses, alo
 places and local schools. The outreach team of Mission Bogotá would discuss the project directly with 
 the public and personally answer any questions or concerns. Many cities now use these techniques to impart 
 transport information in a friendly, lighthearted manner.
-\item Online Engagement
+
+\subsubsection{Online Engagement}
+
+Public transport agencies have embraced 
+the Internet as a means of communication with the public since the 1990s. Internet-based communication 
+can be broken down into two phases. The initial phase was dominated by one-way communication, where agency 
+websites were geared primarily toward marketing their services online, much like an online brochure. 
+These websites allowed customers to retrieve information such as maps, schedules, guides, and fare information, 
+but provided little opportunity for interactivity (Morris et al., 2010). Today, websites are more interactive. 
+Project websites routinely offer customers the ability to submit comments. In some cases these comments 
+are shared on a discussion board or blog. For its 2035 long-range plan update, the Virginia, USA, DOT 
+developed a web-based workshop to mirror the information and interactive opportunities available at its 
+in-person meetings held throughout the state. The convenience afforded by the Internet in allowing users 
+to participate from the location and time of their choosing helped push online participation above the 
+total combined participation at all of the in-person meetings (VTrans2035).
 
 \beginbox
 
@@ -161,21 +178,9 @@ began.
 /*\figure{assets\/image150.jpeg}{Janmarg 
 BRT station in Ahmedabad, India. Image}{ ITDP.}*/
 
-
 \endbox
 
-Public transport agencies have embraced 
-the Internet as a means of communication with the public since the 1990s. Internet-based communication 
-can be broken down into two phases. The initial phase was dominated by one-way communication, where agency 
-websites were geared primarily toward marketing their services online, much like an online brochure. 
-These websites allowed customers to retrieve information such as maps, schedules, guides, and fare information, 
-but provided little opportunity for interactivity (Morris et al., 2010). Today, websites are more interactive. 
-Project websites routinely offer customers the ability to submit comments. In some cases these comments 
-are shared on a discussion board or blog. For its 2035 long-range plan update, the Virginia, USA, DOT 
-developed a web-based workshop to mirror the information and interactive opportunities available at its 
-in-person meetings held throughout the state. The convenience afforded by the Internet in allowing users 
-to participate from the location and time of their choosing helped push online participation above the 
-total combined participation at all of the in-person meetings (VTrans2035).
+
 
 The rise of social media tools and mobile phone and tablet applications offers a host of options for 
 multi-directional communications, reaching people in their preferred way of receiving and interacting 
