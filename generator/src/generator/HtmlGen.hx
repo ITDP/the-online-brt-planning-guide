@@ -289,7 +289,6 @@ class HtmlGen {
 		
 		if(type > 0)
 			buff.add('<section><h${(type+1)} id="${_id}">${count}<span class="quad"></span>${_name}</h${(type + 1)}>');
-			buff.add('<section><h${(type+1)} id="${_id}">${count} ${_name}</h${(type + 1)}>');
 		
 		buff.add(vertical(_children, counts, curNav));
 			
