@@ -349,16 +349,21 @@ class Parser {
 		return cells;
 	}
 
+	function blobSize(spec:Null<{ val:String, pos:Position }>, def:BlobSize):Null<BlobSize>
+	{
+		if (spec == null) return def;
+		return switch spec.val.toLowerCase().trim() {
+		case "small": MarginWidth;
+		case "medium": TextWidth;
+		case "large": FullWidth;
+		case _: badValue(spec.pos, "only sizes 'small', 'medium', and 'large' are valid"); null;
+		}
+	}
+
 	function table(begin:Token)
 	{
 		assert(begin.def.match(TCommand("begintable")), begin);
-		var size = switch optArg(rawHorizontal, begin, "size") {
-		case null: FullWidth;
-		case { val:"small", pos:pos }: MarginWidth;
-		case { val:"medium", pos:pos }: TextWidth;
-		case { val:"large", pos:pos }: FullWidth;
-		case { pos:pos }: badArg(pos, "valid sizes are 'small', 'medium' and 'large'"); null;
-		}
+		var size = blobSize(optArg(rawHorizontal, begin, "size"), TextWidth);
 		var caption = arg(hlist, begin, "caption");
 		if (caption.val == null) badArg(caption.pos, "caption cannot be empty");
 		var rows = [];
