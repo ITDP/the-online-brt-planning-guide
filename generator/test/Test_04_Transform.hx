@@ -163,7 +163,7 @@ class Test_04_Transform {
 				@wrap(9, 0) TChapter(@len(1) Word("k"), 3,"volume.a.chapter.k", @skip(1) TVList([TParagraph(@len(1) Word("l")),
 				@wrap(9, 0) TSection(@len(1) Word("m"), 1,"volume.a.chapter.k.section.m", @skip(1) TVList([TParagraph(@len(1) Word("n")),
 				@wrap(12, 0) TSubSection(@len(1) Word("o"), 1, "volume.a.chapter.k.section.m.subsection.o", @skip(1) TVList([TParagraph(@len(1) Word("p")),
-				@wrap(8, 1) TFigure("f", @skip(2 + 1)@len(1) Word("c"), @skip(2)@len(2) Word("cp"),1,"volume.a.chapter.k.section.m.subsection.o.other.3-1")])), //3-1 -> Chapter 3, Fig 1
+				@wrap(8, 1) TFigure(MarginWidth, "f", @skip(2 + 1)@len(1) Word("c"), @skip(2)@len(2) Word("cp"),1,"volume.a.chapter.k.section.m.subsection.o.other.3-1")])), //3-1 -> Chapter 3, Fig 1
 				@wrap(12,0) TSubSection(@len(1) Word("q"), 2,"volume.a.chapter.k.section.m.subsection.q", @skip(1) TParagraph(@len(1) Word("r")))]))]))]))
 			])),
 		transform("\\volume{a}b\\chapter{c}d\\chapter{e}f\\section{g}h\\section{i}j\\chapter{k}l\\section{m}n\\subsection{o}p\\figure{f}{c}{cp}\\subsection{q}r"));

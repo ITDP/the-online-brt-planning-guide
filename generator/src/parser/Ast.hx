@@ -33,7 +33,7 @@ enum VDef {
 	Section(name:HElem);
 	SubSection(name:HElem);
 	SubSubSection(name:HElem);
-	Figure(path:String, caption:HElem, copyright:HElem);  // TODO size?
+	Figure(size:BlobSize, path:String, caption:HElem, copyright:HElem);  // TODO size?
 	Table(size:BlobSize, caption:HElem, header:TableRow, rows:Array<TableRow>);  // copyright/source?
 	Quotation(text:HElem, by:HElem);
 	List(items:Array<VElem>);

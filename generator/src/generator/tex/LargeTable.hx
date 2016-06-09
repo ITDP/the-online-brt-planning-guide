@@ -49,7 +49,7 @@ class LargeTable {
 			for (i in li)
 				cnt += pseudoTypeset(i);
 			cnt/li.length;
-		case TFigure(_, caption, cright, _): TBL_MARK_COST + pseudoHTypeset(caption) + SPACE_COST + pseudoHTypeset(cright);
+		case TFigure(_, _, caption, cright, _): TBL_MARK_COST + pseudoHTypeset(caption) + SPACE_COST + pseudoHTypeset(cright);
 		case TTable(_), TBox(_): BAD_COST; // not allowed (for now?)
 		case TQuotation(text, by): QUOTE_COST + pseudoHTypeset(text) + QUOTE_COST + LINE_BREAK_COST + EM_DASH_COST + pseudoHTypeset(by);
 		case TList(li):

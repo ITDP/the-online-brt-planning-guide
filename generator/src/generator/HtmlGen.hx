@@ -80,7 +80,7 @@ class HtmlGen {
 		TSection(name, count, id, children), TSubSection(name, count, id, children),
 		TSubSubSection(name, count, id, children):
 			hierarchy(v, counts, curNav);
-		case TFigure(path, caption, copyright, count,id):
+		case TFigure(size, path, caption, copyright, count,id):
 			var caption = horizontal(caption);
 			var copyright = horizontal(copyright);
 			var _path = saveAsset(path);
@@ -117,7 +117,7 @@ class HtmlGen {
 			css.push(saveAsset(path));
 		case TLaTeXPreamble(_):
 			null;  // ignore
-		case TTable(_, caption, header, chd, count, id):
+		case TTable(size, caption, header, chd, count, id):
 			counts[OTH] = count;
 			curBuff.add("<section class='lg'>");
 			curBuff.add('<h4 id="${id}">Table ${counts[CHA] +"." + counts[OTH]} : ${horizontal(caption)}</h4>'); //TODO:
