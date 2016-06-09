@@ -10,11 +10,10 @@ class LargeTable {
 	// internal commands; for now, no real expectation of tunning them at runtime
 	static inline var CHAR_COST = 1;
 	static inline var SPACE_COST = 1;
-	static inline var PAR_BREAK_COST = 20;
-	static inline var LINE_BREAK_COST = -20;
+	static inline var LINE_BREAK_COST = 5;
 	static inline var BULLET_COST = 1;
-	static inline var FIG_MARK_COST = 10;
-	static inline var TBL_MARK_COST = 10;
+	static inline var FIG_MARK_COST = 20;
+	static inline var TBL_MARK_COST = 20;
 	static inline var BAD_COST = 1000;
 	static inline var QUOTE_COST = 1;
 	static inline var EM_DASH_COST = 2;
@@ -46,24 +45,18 @@ class LargeTable {
 		case TLaTeXPreamble(_), THtmlApply(_): 0;
 		case TVolume(_), TChapter(_), TSection(_), TSubSection(_), TSubSubSection(_): BAD_COST; // not allowed in tables
 		case TVList(li):
-			var cnt = 0;
-			for (i in li) {
+			var cnt = 0.;
+			for (i in li)
 				cnt += pseudoTypeset(i);
-				if (cnt > 0)
-					cnt += PAR_BREAK_COST;
-			}
-			cnt;
+			cnt/li.length;
 		case TFigure(_, caption, cright, _): TBL_MARK_COST + pseudoHTypeset(caption) + SPACE_COST + pseudoHTypeset(cright);
 		case TTable(_), TBox(_): BAD_COST; // not allowed (for now?)
 		case TQuotation(text, by): QUOTE_COST + pseudoHTypeset(text) + QUOTE_COST + LINE_BREAK_COST + EM_DASH_COST + pseudoHTypeset(by);
 		case TList(li):
-			var cnt = 0;
-			for (i in li) {
+			var cnt = 0.;
+			for (i in li)
 				cnt += BULLET_COST + SPACE_COST + pseudoTypeset(i);
-				if (cnt > 0)
-					cnt += LINE_BREAK_COST;
-			}
-			cnt;
+			cnt/li.length;
 		case TParagraph(h): pseudoHTypeset(h);
 		}
 	}
