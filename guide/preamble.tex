@@ -1,5 +1,8 @@
 \documentclass[twoside, 8pt]{extreport}
 
+%monkey-patching tools
+\usepackage{etoolbox}
+
 %fonts
 \usepackage[T1]{fontenc}
 \usepackage{paratype}
@@ -42,6 +45,13 @@
 \titlespacing*{\subsection}{0mm}{0mm}{0mm}[0pt]
 \titlespacing*{\subsubsection}{0mm}{0mm}{0mm}[0pt]
 \let\volume\part
+
+%workaround for titlesec 2.10.1 issue with missing labels
+%http://tex.stackexchange.com/a/300259/46436
+\makeatletter
+\patchcmd{\ttlh@hang}{\parindent\z@}{\parindent\z@\leavevmode}{}{}
+\patchcmd{\ttlh@hang}{\noindent}{}{}{}
+\makeatother
 
 %box
 \usepackage{mdframed}
