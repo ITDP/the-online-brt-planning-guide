@@ -10,6 +10,7 @@ import Assertion.*;
 
 using Literals;
 using StringTools;
+using parser.TokenTools;
 
 class TexGen {
 	static var FILE_BANNER = "
@@ -29,7 +30,8 @@ class TexGen {
 
 	public function genp(pos:Position)
 	{
-		return '% @ ${pos.src}:${pos.min + 1}-${pos.max}\n';
+		var lpos = pos.toLinePosition();
+		return '% @ ${lpos.src}:${lpos.lines.min + 1}-${lpos.lines.max}:${lpos.chars.min + 1}-${lpos.chars.max}\n';
 	}
 
 	public function genh(h:HElem)

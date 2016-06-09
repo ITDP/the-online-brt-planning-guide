@@ -5,6 +5,7 @@ import transform.Document;
 import Assertion.*;
 
 using Literals;
+using parser.TokenTools;
 
 class LargeTable {
 	// internal commands; for now, no real expectation of tunning them at runtime
@@ -130,7 +131,7 @@ class LargeTable {
 				var noModules = large ? NO_MODULES_LARGE : NO_MODULES;
 				var colWidths = computeTableWidths(noModules, header, rows);
 				if (Main.debug) {
-					trace(v.pos);
+					trace(v.pos.toLinePosition());
 					trace(colWidths);
 				}
 				buf.add('\\halign to ${noModules}\\tablemodule{%');
