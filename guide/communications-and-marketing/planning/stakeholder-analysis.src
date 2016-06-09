@@ -21,7 +21,7 @@ Using the data you collect from your surveys and focus groups, you can create a 
 that will help you develop a communications plan aligned to each stakeholder’s focus and concerns. The 
 table below outlines a stakeholder analysis that was completed for a public transport project in Palmira, 
 Colombia.
-\begintable{Stakeholder Analysis for Palmira}
+\begintable[large]{Stakeholder Analysis for Palmira}
 \header
 \col Group; ; 
 \col Needs
