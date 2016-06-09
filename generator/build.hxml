@@ -27,9 +27,7 @@
 --next
 
 -main RunTests
---interp
+-neko bin/tests.n
 -cp test
 -lib utest
 -D unittests
-
-

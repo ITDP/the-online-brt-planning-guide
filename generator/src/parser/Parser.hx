@@ -47,7 +47,7 @@ class Parser {
 	inline function badArg(pos:Position, ?desc:String)
 		throw new BadValue(lexer, pos.offset(1, -1), desc);
 
-	inline function unknownCmd(cmd:Token)
+	inline function unexpectedCmd(cmd:Token)
 	{
 		// EXPERIMENTAL: use Levenshtein distances to generate command suggestions
 
@@ -57,10 +57,12 @@ class Parser {
 
 		var name = switch cmd.def {
 		case TCommand(n): n;
-		case _: throw new UnknownCommand(lexer, cmd.pos); null;
+		case _: throw new UnexpectedToken(lexer, cmd); null;
 		}
 		name = name.toLowerCase();
 		var cmds = verticalCommands.concat(horizontalCommands);
+		if (Lambda.has(cmds, name))
+			throw new UnexpectedCommand(lexer, cmd.pos);
 		var dist = cmds.map(function (x) return x.split(""))
 			.map(NeedlemanWunsch.globalAlignment.bind(name.split(""), _, df, sf));
 		var best = 0;
@@ -350,6 +352,13 @@ class Parser {
 	function table(begin:Token)
 	{
 		assert(begin.def.match(TCommand("begintable")), begin);
+		var size = switch optArg(rawHorizontal, begin, "size") {
+		case null: FullWidth;
+		case { val:"small", pos:pos }: SmallWidth;
+		case { val:"medium", pos:pos }: TextWidth;
+		case { val:"large", pos:pos }: FullWidth;
+		case { pos:pos }: badArg(pos, "valid sizes are 'small', 'medium' and 'large'"); null;
+		}
 		var caption = arg(hlist, begin, "caption");
 		if (caption.val == null) badArg(caption.pos, "caption cannot be empty");
 		var rows = [];
@@ -366,7 +375,7 @@ class Parser {
 		var end = pop();  // should have already discarted any vnoise before
 		if (end.def.match(TEof)) unclosed(begin);
 		if (!end.def.match(TCommand("endtable"))) unexpected(end);
-		return mk(Table(caption.val, header, rows), begin.pos.span(end.pos));
+		return mk(Table(size, caption.val, header, rows), begin.pos.span(end.pos));
 	}
 
 	function quotation(cmd:Token)
@@ -495,7 +504,7 @@ class Parser {
 		case [TCommand("meta"), TCommand("reset")]: metaReset({ def:TCommand("meta\\reset"), pos:pos });
 		case [TCommand("html"), TCommand("apply")]: targetInclude({ def:TCommand("html\\apply"), pos:pos });
 		case [TCommand("tex"), TCommand("preamble")]: targetInclude({ def:TCommand("tex\\preamble"), pos:pos });
-		case _: unknownCmd(exec); null;
+		case _: unexpectedCmd(exec); null;
 		}
 	}
 
@@ -520,7 +529,7 @@ class Parser {
 			case "beginbox", "boxstart": box(pop());
 			case "include": include(pop());
 			case name if (Lambda.has(horizontalCommands, name)): paragraph(stop);
-			case _: unknownCmd(peek()); null;
+			case _: unexpectedCmd(peek()); null;
 			}
 		case THashes(1) if (peek(1).def.match(TWord("FIG")) && peek(2).def.match(THashes(1))):
 			mdFigure([pop(), pop(), pop()], stop);

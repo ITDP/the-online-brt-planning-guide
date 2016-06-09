@@ -6,14 +6,18 @@ html {
 h1, h2, h3, h4, h5, h6, h7 {
 	font-family: 'PT Sans', sans-serif;
 }
-h1 { font-size: 48px; color: #00a95e; }
-h2 { font-size: 32px; color: #00a95e; }
+h1 { font-size: 32px; color: #00a95e; }
+h2 { font-size: 28px; color: #00a95e; }
 h3 { font-size: 24px; color: #00a95e; }
-h4 { font-size:	18px; color: #00a95e; }
+h4 { font-size:	20px; color: #00a95e; }
+h5 { font-size:	16px; color: #666; }
+h6 { font-size:	16px; color: #666; }
+h7 { font-size:	16px; color: #666; }
 
 p {
 	font-family: 'PT Serif', serif;
 	color: #333;
+	text-indent: 40px;
 }
 a {
 	color: #00a95e;
@@ -247,6 +251,7 @@ td {
 /* quotes */
 
 blockquote {
+	text-align: justify;
 	font-family: 'PT Serif', serif;
 	margin: 0;
 	background-color: #EEE;
@@ -255,6 +260,9 @@ blockquote {
 blockquote span {
 	display: block;
 	text-align: right;
+}
+blockquote span::before {
+	content: "— ";
 }
 
 blockquote.md {

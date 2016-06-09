@@ -23,7 +23,7 @@ class Main {
 		hgen.generate(doc);
 
 		var tgen = new generator.TexGen(path + ".pdf");
-		tgen.generate(doc);
+		tgen.writeDocument(doc);
 	}
 
 	static function main()
