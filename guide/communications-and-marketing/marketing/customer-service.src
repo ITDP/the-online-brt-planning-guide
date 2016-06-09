@@ -3,7 +3,7 @@
 \section{Customer Service}
 
 > Well done is better than well said.
-@ —Benjamin Franklin, author, politician, and scientist, 1706-90
+@ — Benjamin Franklin, author, politician, and scientist, 1706-1990
 
 Customer service is the communications face of the BRT and the ultimate implementation of the brand. 
 Every employee who comes in contact with the public should be thought of as a “brand ambassador” to the 
@@ -55,29 +55,20 @@ design challenge.
 
 /*\figure{assets\/image31.jpeg}{This information kiosk in Brisbane, Australia, helps answer basic questions 
 as well as begins the awareness-raising process. Image}{ ITDP.}*/
-\begintable{(empty)}
-\header
-\col System Information
-\row
-\col Network; Where can I get to using the BRT system? How does the system relate to the city? How can I reach areas of the cities outside the BRT coverage?; Before entering the system, maps and network diagrams are usually placed at station entrances (outside the paid area).; 
-\row
-\col Ownership; Who is responsible for the system operation? How can I contact them? Is the BRT part of a wider integrated system?; Visual identity (branding) application and clear distinction need to be included between the system brand, the transport authority, the local authority, and the operators. Contact details through various media need to be made available for users.; 
-\row
-\col Behavior and rules; What are the rules? What is mandatory and what is desirable? What are the penalties?; On entering and throughout the journey users need to be reassured about what is allowed\/disallowed in the system. National regulation and statutory notices need to be incorporated into the information system from scratch.; 
-\row
-\col Fares and payment options; How much does it cost? What are the fare alternatives? How do I pay?; Users need to understand what they are paying for and how to choose the right fare: a single ride, a given time allowance. Payment options are equally important, in particular when the use of cash is restricted. The latter also contributes to enhancing customer movement.; 
-\endtable
-\begintable{(empty)}
-\header
-\col Service information
-\row
-\col Destinations; What is the nearest or most convenient stop to my final destination?; The nature of the network map could aid in understanding this issue, but consistent naming of stations, neighborhoods, and points of interest is key. Linear route diagrams could display more detailed stop information.; 
-\row
-\col Routes (journey planning); What services are available from A to B? What journey option is more convenient for me?; BRT can sometimes provide different options to perform the same trip (i.e., express and stopping services). Users’ priorities depend on the purpose of their trip and their personal abilities.; 
-\row
-\col Schedules; What are the operation times and days? What is the frequency?; This could include a number of details on the operation of a given service or route: operation times and days, frequency, first and last service, and special schedules. Depending on the complexity of the operation, this level of information could range from being redundant (i.e., very frequent services) to essential (i.e., irregular or special services, such as weekends, night, and peak-only).; 
-\row
-\col Time (travel and waiting); How long do I have to wait for the next service? How long will my total journey will take?; Electronic information is generally preferable and more intuitive for users than fixed schedules. Countdowns at stations reduce anxiety and provide key information for experienced users. Electronic information also can respond to system disruptions.; 
+
+System Information
+
+\item Network: Where can I get to using the BRT system? How does the system relate to the city? How can I reach areas of the cities outside the BRT coverage?; Before entering the system, maps and network diagrams are usually placed at station entrances (outside the paid area).; 
+\item Ownership: Who is responsible for the system operation? How can I contact them? Is the BRT part of a wider integrated system?; Visual identity (branding) application and clear distinction need to be included between the system brand, the transport authority, the local authority, and the operators. Contact details through various media need to be made available for users.; 
+\item Behavior and rules: What are the rules? What is mandatory and what is desirable? What are the penalties?; On entering and throughout the journey users need to be reassured about what is allowed\/disallowed in the system. National regulation and statutory notices need to be incorporated into the information system from scratch.; 
+\item Fares and payment options: How much does it cost? What are the fare alternatives? How do I pay?; Users need to understand what they are paying for and how to choose the right fare: a single ride, a given time allowance. Payment options are equally important, in particular when the use of cash is restricted. The latter also contributes to enhancing customer movement.; 
+
+Service information
+
+\item Destinations: What is the nearest or most convenient stop to my final destination?; The nature of the network map could aid in understanding this issue, but consistent naming of stations, neighborhoods, and points of interest is key. Linear route diagrams could display more detailed stop information.; 
+\item Routes (journey planning): What services are available from A to B? What journey option is more convenient for me?; BRT can sometimes provide different options to perform the same trip (i.e., express and stopping services). Users’ priorities depend on the purpose of their trip and their personal abilities.; 
+\item Schedules: What are the operation times and days? What is the frequency?; This could include a number of details on the operation of a given service or route: operation times and days, frequency, first and last service, and special schedules. Depending on the complexity of the operation, this level of information could range from being redundant (i.e., very frequent services) to essential (i.e., irregular or special services, such as weekends, night, and peak-only).; 
+\item Time (travel and waiting): How long do I have to wait for the next service? How long will my total journey will take?; Electronic information is generally preferable and more intuitive for users than fixed schedules. Countdowns at stations reduce anxiety and provide key information for experienced users. Electronic information also can respond to system disruptions.; 
 \endtable
 
 One very important issue is that all information must always be accurate and updated periodically (monthly, 
@@ -103,7 +94,7 @@ on quickly. Ideally a user should not have to spend more than thirty seconds dec
 Careful positioning of these types of elements (such as information panels) is important so that they 
 are visible and readable on the one hand but do not obstruct passing customer flows on the other.
 
-Best practices for visual, customer information
+\subsubsection{Best practices for visual, customer information}
 
 Simplicity: The first and most important rule is that information must be presented as simply as possible. 
 One can make use of design techniques and color contrasts in order to provide the simplest and most effective 
@@ -232,7 +223,7 @@ The placement of information in a BRT system requires careful planning. The foll
 locations where BRT planners should consider posting information as they attempt to address the individual 
 concerns of each locale.
 
-Everywhere: System Staff
+\subsubsection{Everywhere: System Staff}
 
 As was described above, customers prefer asking system staff or even other users for information regarding 
 the best way to get to their destination. System staff should be located in proximity to both users and 
@@ -241,7 +232,7 @@ to request additional help if needed. Access to system personnel is also very im
 special needs who will request help from people to get to their destination, as described later in the 
 chapter.
 
-External Venues near the Station: Printed Information
+\subsubsection{External Venues near the Station: Printed Information}
 
 External venues, such as a shopping mall or a park, should have information about nearby BRT stations. 
 People, especially tourists who will visit these venues, will want to access general information regarding 
@@ -249,7 +240,7 @@ the location of the nearest BRT station, and what service is available at that s
 can take the BRT from this location to another public attraction, then information should be clearly 
 posted at exit points.
 
-Outside the Station Entrance: Station Map
+\subsubsection{Outside the Station Entrance: Station Map}
 
 Since users must pay to enter the station, it is crucial to provide information on the system and the 
 services that stop there right outside of the station. A station map would be useful here with a specific 
@@ -257,7 +248,7 @@ services that stop there right outside of the station. A station map would be us
 the general destinations that can be reached through the system (and, more specifically, the trunk line 
 that passes through that particular station). Generally, large totems are used for this purpose.
 
-Inside the Station: Service Signs
+\subsubsection{Inside the Station: Service Signs}
 
 The station interior may be long and have various sections or wagons depending on the extension and 
 service complexity of the BRT. If the station has multiple doors in both directions, it must indicate 
@@ -265,7 +256,7 @@ where customers can find particular services and how they are grouped (by final 
 location, local and express services, etc.). In this case, travelers will want to know where they should 
 look for more details about their service.
 
-Inside the Station: Information Panels, Maps, and Digital Information
+\subsubsection{Inside the Station: Information Panels, Maps, and Digital Information}
 
 The location of information on more comprehensive panels, including maps, should be placed strategically. 
 A station map will attract crowding around it and can negatively affect circulation in the vicinity. 
@@ -276,18 +267,18 @@ As an alternative to information panels, interactive kiosks work well to provide
 regarding system services and will respond to specific requests from users (i.e., what service they must 
 take to go to their destination), although only one person at a time can use them.
 
-Inside the Station in Front of Boarding Doors
+\subsubsection{Inside the Station in Front of Boarding Doors}
 
 Information regarding the specific services and schedules can be posted on doors that lead to the vehicles.
 
-Outside of the Vehicle
+\subsubsection{Outside of the Vehicle}
 
 Information regarding the specific service that a vehicle is operating should be presented outside 
 of the vehicle (preferably on the side, rear, and front). Since vehicles can change services more than 
 once a day, digital displays are recommended. This is also useful at nighttime when it is difficult for 
 customers to read without proper illumination.
 
-Inside of the Vehicle
+\subsubsection{Inside of the Vehicle}
 
 Once inside the vehicle, customers must be alerted to upcoming station stops. In express services, 
 it is advisable that users are informed of the next two or more stops. Synchronized digital displays 
@@ -296,7 +287,7 @@ also suitable for the visually impaired. Dynamic maps of routes are also useful 
 of all upcoming stations. Again, frequent service changes imply that digital information may be a better 
 choice than printed information.
 
-Between Vehicle and Station
+\subsubsection{Between Vehicle and Station}
 
 Before leaving the vehicle, travelers must ensure that they are alighting at the station they expect. 
 This can be confirmed by the information inside the vehicle when approaching the station, and it should 
@@ -305,7 +296,7 @@ can also confirm where they can find the exit(s) of the station depending on the
 (when stations have more than one exit). This information needs to be carefully positioned at window-height 
 so it can be seen by seated and standing customers from inside the vehicle.
 
-11.7.5 Accessible Customer Service Systems
+\subsection{Accessible Customer Service Systems}
 
 An important constituency to consider when designing customer information and customer service systems 
 is that of individuals with special needs. This includes customers with physical and mental disabilities, 
@@ -319,7 +310,7 @@ needs. In many countries, making your system accessible to everyone is required 
 of this community in designing your system. Full details on the topic of universal access are available 
 in Chapter 30: Universal Access, of this guide.
 
-People with Physical Disabilities
+\subsubsection{People with Physical Disabilities}
 
 There are many forms of physical disabilities, some requiring the use of wheelchairs or walkers. The 
 location of an information panel must be evaluated based on the average height of the population but 
@@ -327,14 +318,14 @@ also based on the heights of people in wheelchairs so that they can read all inf
 dynamic information systems must also be adapted for people who cannot use touch screens, possibly by 
 means of sound sensors or other technology.
 
-People with Language Barriers
+\subsubsection{People with Language Barriers}
 
 Depending on the population the BRT will serve, it may be necessary to display information in symbols 
 or images in addition to one or several languages. This will also be useful to foreigners and in countries 
 where official languages are not necessarily those which are spoken by the entire population. A combination 
 of symbols and sentences may also be useful for quick comprehension for everyone.
 
-People with Visual Impairments
+\subsubsection{People with Visual Impairments}
 
 For the blind or partially blind, availability of tactile and\/or audio information from station entrances 
 through the station and until arriving at the vehicle can be helpful. As a rule, blind customers require 
@@ -345,14 +336,14 @@ elderly, it is important to evaluate whether font size and type are adequate for
 with visual difficulties includes the color-blind, who may not be able to discern different colors in 
 a map. This is also why contrast is so important in presenting routes and line colors in maps.
 
-People with Hearing Impairments
+\subsubsection{People with Hearing Impairments}
 
 Like visual impairments, hearing impairments take many forms. These customers require text information 
 or the use of various, more advanced technical solutions. To begin with, there should always be full 
 information in written form, and if audio cues signal the approach of a vehicle, there should also be 
 a corresponding visual cue, like a blinking light.
 
-People with Mental Impairments
+\subsubsection{People with Mental Impairments}
 
 Those with mental impairments may have particular difficulty understanding complex maps or large amounts 
 of information that include many steps, but keeping information simple is also good practice for the 
@@ -372,7 +363,7 @@ more complex. It is important to refer BRT planners, engineers, etc., to the lit
 and to details in Chapter 30: Universal Access, of this guide. Some useful resources to start with are 
  and .
 
-11.7.6 Online Customer Service
+\subsection{Online Customer Service}
 
 Although customer service should not be limited to online interactions, providing service through a 
 website or mobile app is increasingly necessary and can be very convenient for those customers who prefer 
@@ -412,7 +403,7 @@ people will want to use the route planner when they are out and when their plans
 In addition to the route planner, there should be options for customer questions, complaint, and feedback. 
 This is a valuable way to collect information about your system from the people who actually use it.
 
-11.7.7 Customer Complaints and Feedback
+\subsection{Customer Complaints and Feedback}
 
 It is important to continuously take in and review comments and complaints regarding the system in 
 terms of its operations, maintenance, staff behavior, and any other issue that is of interest to customers 

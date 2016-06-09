@@ -3,7 +3,7 @@
 \section{Concept and Research}
 
 > Business has only two functions—marketing and innovation.
-@ —Peter Drucker, writer and consultant, 1909-2005
+@ — Peter Drucker, writer and consultant, 1909-2005
 
 Customer research is an important part of the process, and it should be aligned with the public participation 
 process discussed in Chapter 9: Strategic Planning for Communications and Chapter 10: Public Participation. 
@@ -33,7 +33,7 @@ following groupings are typical:
 
 With these thoughts in mind, we can look at the brand’s building blocks in more detail.
 
-\subsection{ Naming}
+\subsection{Naming}
 
 In the case of BRT, some systems, such as TransMilenio, have moved away from the conventional bus mode, 
 dispensing with the word bus altogether. However, some, such as Brisbane, Australia, and its “busway” 
@@ -50,15 +50,11 @@ There are many different categories from which a brand name can be derived, but 
 one of five categories and can be generic, local, or abstract. This is best demonstrated by using airlines 
 as examples:
 
-(1)Descriptive: British Airways (the airline of the United Kingdom);
-
-(2)Abbreviated: Pan Am (short for Pan American);
-
-(3)Initials or acronym: Qantas (Queensland and Northern Territory Aerial Services);
-
-(4)A made-up name: Allegiant (a low-cost, US-based carrier);
-
-(5)An analogy: Garuda (mighty Garuda is the lord of the birds in Indonesian mythology).
+\item Descriptive: British Airways (the airline of the United Kingdom);
+\item Abbreviated: Pan Am (short for Pan American);
+\item Initials or acronym: Qantas (Queensland and Northern Territory Aerial Services);
+\item A made-up name: Allegiant (a low-cost, US-based carrier);
+\item An analogy: Garuda (mighty Garuda is the lord of the birds in Indonesian mythology).
 
 /*\figure{assets\/image3.jpeg}{In London, the descriptive approach can be seen with Transport for London 
 (TFL) buses and the London Underground. Photo}{ ITDP.}*/
@@ -95,7 +91,7 @@ where the BRT is sponsored by the Cleveland Clinic and University Hospital and i
 Here there is a synergy between health care providers and the positioning of the BRT as a greener, and 
 therefore healthier, way to travel. Photo}{ ITDP.}*/
 
-11.3.2 The Logo
+\subsection{The Logo}
 
 The logo is the most recognizable piece of branding. A logo can be a symbol, a word or words known 
 as a logotype, or a combination of both. Logos can be, but do not have to be, literal interpretations 
@@ -121,7 +117,8 @@ Basically, a good logo must be:
 
 Figs. 11.8-11.11 Some of the most recognizable BRT logos. Images courtesy of TransJakarta, TransMilenio, 
 Guangzhou BRT, and Janmarg.
-\item Colors and Typography
+
+\subsection{Colors and Typography}
 
 Although it may seem like a minor decision, advertising research tells us that color influences brand 
 recognition by up to 80 percent; it also tells us that people will make a subconscious judgment within 
@@ -140,7 +137,7 @@ that print colors such as Pantone do not always have matching colors in, say, po
 where RAL colors—a standardized set of colors used in Europe—are prevalent, and the colors you see on 
 a computer screen are not the same colors you see in print.
 
-In choosing colors the design team should review literature on color theory (for example, ). The use 
+In choosing colors the design team should review literature on color theory (for example, http://www.colorcom.com/research/consumer-color-preferences). The use 
 of color, particularly in branding, is a well-studied science, which has proven that different colors 
 produce different reactions. For example, yellow and orange and some variations of red have been shown 
 to make people hungry, which is why most fast food chains, such as McDonalds and KFC, have chosen colors 
@@ -194,7 +191,7 @@ The route map can be a stand-alone piece of collateral and can be assimilated in
 other modes. In the latter case, it is likely that the visual parameters will be determined by the structure 
 of the network.
 
-11.3.5 Core Communications: Wayfinding
+\subsection{Core Communications: Wayfinding}
 
 Another key component is signage and wayfinding. Particularly in a dense city center with other transport, 
 good signage can be essential in increasing and keeping your ridership high. This is particularly important 
@@ -215,7 +212,8 @@ a complex and sprawling city. Photo}{ TheIntrepidTraveller, Wikimedia Commons.}*
 
 /*\figure{assets\/image19.jpeg}{Signage in a station in Quito provides clear guidance to customers. 
 Photo}{ Lloyd Wright.}*/
-\item Core Communications: Livery
+
+\subsection{Core Communications: Livery}
 
 Livery is an integral part of the brand architecture and one of its most visible manifestations. It 
 is the common design scheme or identity a company uses on its vehicles and uniforms. Livery is more than 
@@ -262,7 +260,7 @@ discounts to advertisers whose ads are transport-themed and adhere to MTA brandi
 can hamper the customer’s ability see other information, such as system maps, as well as reduce outside 
 visibility. Photo}{ Lloyd Wright.}*/
 
-Uniforms
+\subsubsection{Uniforms}
 
 Uniforms, a component of livery, are an important part of the brand and communicate a great deal to 
 your customers and potential customers about the people and the business behind the service. While the 
@@ -282,7 +280,7 @@ the following questions:
 /*\figure{assets\/image23.jpeg}{and An example of how uniforms can reflect the “personality” of the 
 brand: In Japan, the Keihan railways system reflects a professional and formal branding, while in Bogotá, 
 TransMilenio staff are casual and approachable. Each reflects the intended personality of their respective 
-brands. photo}{ Keihan Railways and photo }*/Fig. 11.23
+brands. photo}{ Keihan Railways and photo }*/
 
 Compare a polo shirt to a “military” style shirt. If an airplane pilot turned up in a baseball cap 
 and polo shirt, one might question the seriousness and professionalism of the airline. A bus driver is 
@@ -295,7 +293,8 @@ Cultural and social conditions will also influence what makes for the most appro
 your particular service. For example, in an urban service, security may be an overriding issue so it 
 may be appropriate to feature military styling to convey a sense of authority. In a relaxed, leisure-oriented 
 location, a more casual uniform might be more effective branding.
-\item Copyright
+
+\subsection{Copyright}
 
 Trademarks and copyrights should protect the new system’s image, brand name, logo, and tagline, as 
 they will be important assets for the system. The copyright should be held by the public authority and 
@@ -331,5 +330,3 @@ system and its positive image among the general public attracted a lot of reques
 co-marketing from the business community. A prestigious bank, for instance, offered a generous advertising 
 budget to promote the system in exchange for permission to display its support for landmark ventures 
 like TransMilenio in its official logo.
-
-.
