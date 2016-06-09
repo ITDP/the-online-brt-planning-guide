@@ -91,12 +91,12 @@ header ul li ul {
 }
 header li {
 	display: inline;
-	padding: 0 0 8px 4px;
+	padding: 0 0 8px 0px;
 	margin: 0;
 	list-style: none;
 }
 header li a {
-	padding: 0 0 8px 4px;
+	padding: 0 4px 0px 4px;
 }
 .item {
 	display: none;
@@ -253,6 +253,10 @@ td {
 	vertical-align: top;
 	border-top: 1px solid #999;
 }
+td ul {
+	padding-start: 16px;
+	-webkit-padding-start: 16px;
+}
 
 /* equation */
 
@@ -304,6 +308,7 @@ q {
 	outline: 2px solid #CCC;
 	outline-offset: 15px;
 	margin: 32px 0;
+	color: #666;
 }
 .box p {
 	color: #666;
