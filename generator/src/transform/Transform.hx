@@ -60,7 +60,7 @@ class Transform {
 			t++;
 		}
 
-		names[type] = horizontal(_name);
+		names[type] = txtFromHorizontal(_name);
 		var tf = consume(rest, type, count, names);
 		var id = idGen(names, type);
 
@@ -131,11 +131,15 @@ class Transform {
 			count[OTH] = ++count[OTH];
 			names[OTH] = count[CHA] + " " + count[OTH];
 			var name = idGen(names, OTH);
-			return mk(TFigure(size, path, caption, cp, count[OTH], name), v.pos);
+			var _caption = htrim(caption);
+			var _cp = htrim(cp);
+			return mk(TFigure(size, path, _caption, _cp, count[OTH], name), v.pos);
 		case Box(contents):
 			return mk(TBox(vertical(contents, rest, count, names)), v.pos);
 		case Quotation(text, by):
-			return mk(TQuotation(text, by), v.pos);
+			var _text = htrim(text);
+			var _by = htrim(by);
+			return mk(TQuotation(_text, _by), v.pos);
 		case List(items):
 			var tf = [];
 			for (i in items) {
@@ -145,7 +149,8 @@ class Transform {
 			}
 			return mk(TList(tf), v.pos);
 		case Paragraph(h):
-			return mk(TParagraph(h), v.pos);
+			var _h = htrim(h);
+			return mk(TParagraph(_h), v.pos);
 		case MetaReset(name, val):
 			switch name {
 			case "volume": count[VOL] = val;
@@ -161,7 +166,7 @@ class Transform {
 			count[OTH] = ++count[OTH];
 			names[OTH] = count[CHA] + " " + count[OTH];
 			var name = idGen(names, OTH);
-			
+			var _caption = htrim(caption);
 			var rvalues = [];
 			for (r in [header].concat(rows))  // POG
 			{
@@ -172,28 +177,145 @@ class Transform {
 				rvalues.push(cellvalues);
 			}
 			//TODO: v.pos.span(?) --> Should I Add its length?
-			return mk(TTable(size, caption, rvalues[0], rvalues.slice(1), count[OTH], name), v.pos);
-			
+			return mk(TTable(size, _caption, rvalues[0], rvalues.slice(1), count[OTH], name), v.pos);
 		}
 	}
-
-	static function horizontal(elem : HElem)
+	
+	
+	static var tarray : Array<HToken>;
+	
+	static function htrim(elem : HElem)
+	{
+		tarray = new Array<HToken>();
+		tokenify(elem);
+		ltrim();
+		rtrim();
+		elem = rebuild();
+		return elem;
+	}
+	
+	static function tokenify(elem : HElem)
+	{
+		switch(elem.def)
+		{
+			case Word(s):
+				Assertion.weakAssert(!StringTools.endsWith(s, " "));
+				tarray.push(mk(TWord(s), elem.pos));
+			case Wordspace:
+				tarray.push(mk(Space, elem.pos));
+			case Emphasis(el):
+				tarray.push(mk(Emph, elem.pos));
+				tokenify(el);
+			case Highlight(el):
+				tarray.push(mk(High, elem.pos));
+				tokenify(el);
+			case HList(li):
+				tarray.push(mk(LiStart, elem.pos));
+				for(el in li)
+					tokenify(el);
+				tarray.push(mk(LiEnd, elem.pos));				
+		}
+	}
+	
+	static function ltrim()
+	{
+		var cur : HToken = null;
+		var i = 0;
+		
+		while (i < tarray.length)
+		{
+			//Everything that is NOT Word or Space
+			if(!(tarray[i].def.match(TWord(_)) || tarray[i].def.match(Space)))
+			{
+				i++;
+				continue;
+			}
+			
+			if(!checkBrothers(tarray[i], cur))
+			{
+				cur = tarray[i];
+				i++;
+			}
+			else
+				tarray.remove(tarray[i]);
+		}
+	}
+	
+	static function rtrim()
+	{
+		var cur : HToken = null;
+		var i = 0;
+		tarray.reverse();
+		while(i < tarray.length)
+		{
+			//Everything that is NOT Word or Space
+			if(!(tarray[i].def.match(TWord(_)) || tarray[i].def.match(Space)))
+			{
+				i++;
+				continue;
+			}
+			if(!checkBrothers(tarray[i], cur))
+			{
+				cur = tarray[i];
+				i++;
+			}
+			else
+				tarray.remove(tarray[i]);
+		}
+		tarray.reverse();
+	}
+	
+	static function rebuild() : HElem
+	{
+		var c = tarray.shift();
+		
+		switch(c.def)
+		{
+			case TWord(h):
+				return mk(Word(h), c.pos);
+			case Space:
+				return mk(Wordspace, c.pos);
+			case Emph:
+				return mk(Emphasis(rebuild()), c.pos);
+			case High:
+				return mk(Highlight(rebuild()), c.pos);
+			case LiStart:
+				var list = [];
+				while(!tarray[0].def.match(LiEnd))
+				{
+					list.push(rebuild());	
+				}
+				tarray.shift();
+				return mk(HList(list), c.pos);
+			default:
+				throw "Unexpected token : " + c.def.getName() + " at line: " + c.pos.min + " with src: " + c.pos.src;
+		}
+	}
+	
+	static function checkBrothers(cur : HToken, oth : HToken)
+	{
+		if (oth == null) return cur.def == Space;
+		else 			 return(cur.def == Space && oth.def == cur.def);
+	}
+	
+	
+	static function txtFromHorizontal(elem : HElem)
 	{
 		return switch(elem.def)
 		{
 			case Wordspace: " ";
-			case Emphasis(t), Highlight(t): horizontal(t);
+			case Emphasis(t), Highlight(t): txtFromHorizontal(t);
 			case Word(w) : w;
 			case HList(li):
 				var buf = new StringBuf();
 				for (l in li)
 				{
-					buf.add(horizontal(l));
+					buf.add(txtFromHorizontal(l));
 				}
 				buf.toString();
-
 		}
 	}
+	
 	public static function transform(parsed:parser.Ast) : TElem
 	{
 		var tf = vertical(parsed, [], [0,0,0,0,0,0],['','','','','','']);

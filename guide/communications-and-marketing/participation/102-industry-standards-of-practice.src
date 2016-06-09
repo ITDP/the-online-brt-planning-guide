@@ -1,9 +1,9 @@
 
 
-\section{ Industry Standards of Practice}
+\section{Industry Standards of Practice}
 
 > Those are my principles, and if you don't like them...well, I have others.
-@ —Julius Henry "Groucho" Marx, comedian and actor, 1890–1977
+@ Julius Henry "Groucho" Marx, comedian and actor, 1890 - 1977
 
 Public participation strategies are as diverse as the communities, locations, and agencies they serve. 
 Specific public involvement techniques and the methods by which public transport providers execute public 
@@ -24,7 +24,7 @@ build civil society.
 /*\figure{assets\/image3.jpeg}{This design charette in Rio de Janeiro brought together government, 
 civil society, and private sector representatives in preparation for the TransOeste BRT. Image}{ ITDP.}*/
 
-10.2.1 Goals and Objectives
+\subsection{Goals and Objectives}
 
 Just as in communications planning, goals and objectives play a key role in public involvement strategies. 
 They guide the entire process, influencing who will be engaged, the level of participation desired, the 
@@ -41,28 +41,24 @@ Below are common project-specific goals from the International Association of Pu
 \item Collaborate: To partner with the public in each aspect of the decision, including the development of alternatives and the identification of the preferred solution;
 \item Empower: To place final decision making in the hands of the public (IAP2 2010). As with communications planning, each goal should be followed by specific, measurable objectives. For more information on defining goals and objectives, see Chapter 9: Strategic Planning for Communications.
 
-10.2.2 Principles of Participation
+\subsection{Principles of Participation}
 
 An essential part of having a well-designed participatory process is setting clearly defined principles 
 that all participants agree to abide by, which are enforced by leaders or coordinators of participant 
 groups. The Community Development Society () suggests the following five principles of good practice 
 in community development:
 
-1.Promote active and representative participation toward enabling all community members to meaningfully 
+\item Promote active and representative participation toward enabling all community members to meaningfully 
 influence the decisions that affect their lives.
-
-2.Engage community members in learning about and understanding community issues, and the economic, 
+\item Engage community members in learning about and understanding community issues, and the economic, 
 social, environmental, political, psychological, and other impacts associated with alternative courses 
 of action.
-
-3.Incorporate the diverse interests and cultures of the community in the community development process; 
+\item Incorporate the diverse interests and cultures of the community in the community development process; 
 and disengage from support of any effort that is likely to adversely affect the disadvantaged members 
 of a community.
-
-4.Work actively to enhance the leadership capacity of community members, leaders, and groups within 
+\item Work actively to enhance the leadership capacity of community members, leaders, and groups within 
 the community (so that they may be ambassadors for BRT).
-
-5.Be open to using the full range of action strategies to work toward the long-term sustainability 
+\item Be open to using the full range of action strategies to work toward the long-term sustainability 
 and well-being of the community.
 
 There are many versions of these good practice principles, and they may be adjusted for local context 
@@ -70,7 +66,8 @@ and to address specific concerns.
 
 /*\figure{assets\/image4.jpeg}{Fig.10.4 A community workshop in Rio de Janeiro, Brazil, asked participants 
 to give input on the future of transportation in their city. Image}{ ITDP.}*/
-\item 10.2.3 The Passive vs. Active Approach
+
+\subsection{The Passive vs. Active Approach}
 
 In the past, agencies have offered suggestion boxes, toll-free telephone numbers, leaflets, or advertising 
 campaigns as examples of “participation.” While these offerings are not without value—high-quality collateral 

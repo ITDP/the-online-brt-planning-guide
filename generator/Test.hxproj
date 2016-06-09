@@ -2,7 +2,7 @@
 <project version="2">
   <!-- Output SWF options -->
   <output>
-    <movie outputType="Application" />
+    <movie outputType="CustomBuild" />
     <movie input="" />
     <movie path="bin\unit-tests.n" />
     <movie fps="0" />
@@ -30,9 +30,7 @@
   </build>
   <!-- haxelib libraries -->
   <haxelib>
-    <library name="hxparse" />
-    <library name="utest" />
-    <library name="assertion" />
+    <!-- example: <library name="..." /> -->
   </haxelib>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>
@@ -43,7 +41,7 @@
     <hidden path="obj" />
   </hiddenPaths>
   <!-- Executed before build -->
-  <preBuildCommand />
+  <preBuildCommand>$(CompilerPath)\haxe.exe --connect 6000 $(ProjectDir)\build.hxml</preBuildCommand>
   <!-- Executed after build -->
   <postBuildCommand alwaysRun="False" />
   <!-- Other project options -->
