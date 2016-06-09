@@ -279,7 +279,7 @@ class HtmlGen {
 		
 		//Vol. and Chapter doesnt add anything
 		if(type > 1)
-			curBuff.add('<section><h${(type+1)} id="${_id}">${count} ${_name}</h${(type + 1)}>');
+			curBuff.add('<section><h${(type+1)} id="${_id}">${count}<span class="quad"></span>${_name}</h${(type + 1)}>');
 		
 		vertical(_children, counts, curNav);
 		

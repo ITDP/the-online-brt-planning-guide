@@ -3,6 +3,11 @@ html {
 	color: #333;
 }
 
+.quad {
+	display: inline-block;
+	width: 1em;
+}
+
 h1, h2, h3, h4, h5, h6, h7 {
 	font-family: 'PT Sans', sans-serif;
 }
@@ -13,6 +18,13 @@ h4 { font-size:	20px; color: #00a95e; }
 h5 { font-size:	16px; color: #666; }
 h6 { font-size:	16px; color: #666; }
 h7 { font-size:	16px; color: #666; }
+
+h1>.quad:before { content:"."; }
+h2>.quad:before { content:"."; }
+h3>.quad:before { content:"."; }
+h4>.quad:before { content:"."; }
+h5>.quad:before { content:"."; }
+h6>.quad:before { content:"."; }
 
 p {
 	font-family: 'PT Serif', serif;
