@@ -20,7 +20,7 @@ enum TDef {
 	TVList(elem:Array<TElem>);
 
 	TFigure(path:String, caption:HElem, copyright:HElem, count : Int, id : String);  // TODO size?
-	TTable(caption:HElem, header:Array<TElem>, body:Array<Array<TElem>>, count:Int, id:String);
+	TTable(size:TableSize, caption:HElem, header:Array<TElem>, body:Array<Array<TElem>>, count:Int, id:String);
 	TBox(contents:TElem);
 	TQuotation(text:HElem, by:HElem);
 	TList(items:Array<TElem>);
@@ -29,6 +29,7 @@ enum TDef {
 
 typedef HElem = parser.HElem;
 typedef Position = parser.Token.Position;
+typedef TableSize = parser.TableSize;
 
 enum HTokenDef
 {

@@ -17,6 +17,12 @@ enum HDef {
 typedef TableCell = VElem;
 typedef TableRow = Array<TableCell>;
 
+enum TableSize {
+	SmallWidth;
+	TextWidth;
+	FullWidth;
+}
+
 enum VDef {
 	MetaReset(name:String, val:Int);  // could we make it a hdef?
 	HtmlApply(path:String);
@@ -28,7 +34,7 @@ enum VDef {
 	SubSection(name:HElem);
 	SubSubSection(name:HElem);
 	Figure(path:String, caption:HElem, copyright:HElem);  // TODO size?
-	Table(caption:HElem, header:TableRow, rows:Array<TableRow>);  // copyright/source?
+	Table(size:TableSize, caption:HElem, header:TableRow, rows:Array<TableRow>);  // copyright/source?
 	Quotation(text:HElem, by:HElem);
 	List(items:Array<VElem>);
 	Box(contents:VElem);

@@ -1,5 +1,6 @@
 package generator;
 
+import generator.tex.*;
 import haxe.io.Path;
 import sys.FileSystem;
 import sys.io.File;
@@ -20,18 +21,18 @@ class TexGen {
 	var preamble:StringBuf;
 	var bufs:Map<String,StringBuf>;
 
-	function gent(text:String)
+	public function gent(text:String)
 	{
-		text = ~/([%{}\$\/\\])/.replace(text, "\\$1");  // FIXME complete
+		text = ~/([%{}%#\$\/\\])/.replace(text, "\\$1");  // FIXME complete
 		return text;
 	}
 
-	function genp(pos:Position)
+	public function genp(pos:Position)
 	{
 		return '% @ ${pos.src}:${pos.min + 1}-${pos.max}\n';
 	}
 
-	function genh(h:HElem)
+	public function genh(h:HElem)
 	{
 		switch h.def {
 		case HList(li):
@@ -50,7 +51,7 @@ class TexGen {
 		}
 	}
 
-	function genv(v:TElem, at:String)
+	public function genv(v:TElem, at:String)
 	{
 		assert(!at.endsWith(".tex"), at, "should not but a directory");
 		switch v.def {
@@ -111,12 +112,12 @@ class TexGen {
 			return "";
 		case THtmlApply(_):
 			return "";
-		case TTable(caption, header, chd, count, id):
-			return null;//TODO;
+		case TTable(_):
+			return LargeTable.gen(v, this, at);
 		}
 	}
 
-	public function generate(doc:Document)
+	public function writeDocument(doc:Document)
 	{
 		preamble = new StringBuf();
 		preamble.add(FILE_BANNER);

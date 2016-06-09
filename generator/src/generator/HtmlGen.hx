@@ -117,7 +117,7 @@ class HtmlGen {
 			css.push(saveAsset(path));
 		case TLaTeXPreamble(_):
 			null;  // ignore
-		case TTable(caption, header, chd, count, id):
+		case TTable(_, caption, header, chd, count, id):
 			counts[OTH] = count;
 			curBuff.add("<section class='lg'>");
 			curBuff.add('<h4 id="${id}">Table ${counts[CHA] +"." + counts[OTH]} : ${horizontal(caption)}</h4>'); //TODO:
