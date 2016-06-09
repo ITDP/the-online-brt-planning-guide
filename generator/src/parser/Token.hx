@@ -6,6 +6,12 @@ typedef Position = {
 	max : Int
 }
 
+typedef LinePosition = {
+	src : String,
+	lines : { min:Int, max:Int },
+	chars : { min:Int, max:Int }
+}
+
 enum TokenDef {
 	TEof;
 

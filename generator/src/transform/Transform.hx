@@ -127,13 +127,13 @@ class Transform {
 			return mk(TVList(tf), v.pos);  // FIXME v.pos.span(???)
 		case Volume(name), Chapter(name), Section(name), SubSection(name), SubSubSection(name):
 			return hierarchy(v, rest, v.pos, count, names);
-		case Figure(path, caption, cp):
+		case Figure(size, path, caption, cp):
 			count[OTH] = ++count[OTH];
 			names[OTH] = count[CHA] + " " + count[OTH];
 			var name = idGen(names, OTH);
 			var _caption = htrim(caption);
 			var _cp = htrim(cp);
-			return mk(TFigure(path, _caption, _cp, count[OTH], name), v.pos);
+			return mk(TFigure(size, path, _caption, _cp, count[OTH], name), v.pos);
 		case Box(contents):
 			return mk(TBox(vertical(contents, rest, count, names)), v.pos);
 		case Quotation(text, by):

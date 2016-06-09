@@ -17,8 +17,8 @@ enum HDef {
 typedef TableCell = VElem;
 typedef TableRow = Array<TableCell>;
 
-enum TableSize {
-	SmallWidth;
+enum BlobSize {
+	MarginWidth;
 	TextWidth;
 	FullWidth;
 }
@@ -33,8 +33,8 @@ enum VDef {
 	Section(name:HElem);
 	SubSection(name:HElem);
 	SubSubSection(name:HElem);
-	Figure(path:String, caption:HElem, copyright:HElem);  // TODO size?
-	Table(size:TableSize, caption:HElem, header:TableRow, rows:Array<TableRow>);  // copyright/source?
+	Figure(size:BlobSize, path:String, caption:HElem, copyright:HElem);  // TODO size?
+	Table(size:BlobSize, caption:HElem, header:TableRow, rows:Array<TableRow>);  // copyright/source?
 	Quotation(text:HElem, by:HElem);
 	List(items:Array<VElem>);
 	Box(contents:VElem);

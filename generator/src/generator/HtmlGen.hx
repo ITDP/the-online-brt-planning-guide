@@ -80,7 +80,7 @@ class HtmlGen {
 		TSection(name, count, id, children), TSubSection(name, count, id, children),
 		TSubSubSection(name, count, id, children):
 			hierarchy(v, counts, curNav);
-		case TFigure(path, caption, copyright, count,id):
+		case TFigure(size, path, caption, copyright, count,id):
 			var caption = horizontal(caption);
 			var copyright = horizontal(copyright);
 			var _path = saveAsset(path);
@@ -117,10 +117,14 @@ class HtmlGen {
 			css.push(saveAsset(path));
 		case TLaTeXPreamble(_):
 			null;  // ignore
-		case TTable(_, caption, header, chd, count, id):
+		case TTable(size, caption, header, chd, count, id):
 			counts[OTH] = count;
-			curBuff.add("<section class='lg'>");
-			curBuff.add('<h4 id="${id}">Table ${counts[CHA] +"." + counts[OTH]} : ${horizontal(caption)}</h4>'); //TODO:
+			switch size {
+			case MarginWidth: curBuff.add("<section class='sl'>");
+			case TextWidth: curBuff.add("<section class='md'>");
+			case FullWidth: curBuff.add("<section class='lg'>");
+			}
+			curBuff.add('<h5 id="${id}">Table ${counts[CHA] + "." + counts[OTH]}. ${horizontal(caption)}</h5>'); //TODO:
 			curBuff.add("<table>");
 			processTable([header], true);
 			processTable(chd);
@@ -317,7 +321,7 @@ class HtmlGen {
 			topBuff.add('<li id="${n.id}"><a href="#">${n.name}</a></li>');
 			if (n.chd != null && n.chd.length > 0)
 			{
-				var cha = '<a>${n.name}</a><ul style="margin-left:46px;" class=\"item hide\">';
+				var cha = '<a>${n.name}</a><ul style="margin-left:114px;" class=\"item hide\">';
 				
 				for(c in n.chd)
 				{
@@ -327,7 +331,7 @@ class HtmlGen {
 					
 					if (c.chd != null && c.chd.length > 0)
 					{
-						var sec = '<a>${c.name}</a><ul style="margin-left:258px;" class=\"item hide\">';
+						var sec = '<a>${c.name}</a><ul style="margin-left:317px;" class=\"item hide\">';
 						
 							for (se in c.chd)
 							{
@@ -488,7 +492,7 @@ class HtmlGen {
 		buff.add('</div>');
 		buff.add(processNav(nav).sections);
 		buff.add('</div>');
-		buff.add("<header><ul class='menu'><li><a>BRTPG</a><ul class='item hide volumes'></ul></li></ul></header>");
+		buff.add("<header><ul class='menu'><li><a><strong>BRT Planning Guide</strong></a><ul class='item hide volumes'></ul></li></ul></header>");
 		
 		File.saveContent(joinPaths([path,  ((filename != null) ? filename : sec) + ".html"]), buff.toString());		
 	}

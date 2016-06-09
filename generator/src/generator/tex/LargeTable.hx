@@ -5,6 +5,7 @@ import transform.Document;
 import Assertion.*;
 
 using Literals;
+using parser.TokenTools;
 
 class LargeTable {
 	// internal commands; for now, no real expectation of tunning them at runtime
@@ -49,7 +50,7 @@ class LargeTable {
 			for (i in li)
 				cnt += pseudoTypeset(i);
 			cnt/li.length;
-		case TFigure(_, caption, cright, _): TBL_MARK_COST + pseudoHTypeset(caption) + SPACE_COST + pseudoHTypeset(cright);
+		case TFigure(_, _, caption, cright, _): TBL_MARK_COST + pseudoHTypeset(caption) + SPACE_COST + pseudoHTypeset(cright);
 		case TTable(_), TBox(_): BAD_COST; // not allowed (for now?)
 		case TQuotation(text, by): QUOTE_COST + pseudoHTypeset(text) + QUOTE_COST + LINE_BREAK_COST + EM_DASH_COST + pseudoHTypeset(by);
 		case TList(li):
@@ -118,7 +119,7 @@ class LargeTable {
 			var width = header.length;
 
 			switch size {
-			case SmallWidth:
+			case MarginWidth:
 				buf.add("\\halign {%\n\t");
 				for (i in 0...width) {
 					if (i > 0)
@@ -130,7 +131,7 @@ class LargeTable {
 				var noModules = large ? NO_MODULES_LARGE : NO_MODULES;
 				var colWidths = computeTableWidths(noModules, header, rows);
 				if (Main.debug) {
-					trace(v.pos);
+					trace(v.pos.toLinePosition());
 					trace(colWidths);
 				}
 				buf.add('\\halign to ${noModules}\\tablemodule{%');
