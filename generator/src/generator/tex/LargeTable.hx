@@ -111,7 +111,7 @@ class LargeTable {
 			}
 		}
 		var check = available - Lambda.fold(icost, function (p,x) return p+x, 0);
-		assert(check == 0 && Lambda.foreach(icost, function (x) return x >= MIN_COLUMN), check, width, ncost, icost, priori, itCnt);
+		weakAssert(check == 0 && Lambda.foreach(icost, function (x) return x >= MIN_COLUMN), check, width, ncost, icost, priori, itCnt);
 		return icost;
 	}
 
@@ -128,12 +128,14 @@ class LargeTable {
 			var buf = new StringBuf();
 			buf.add('% FIXME\nTable ${gen.genh(caption)}:\n\n');
 			var width = header.length;
-			buf.add('
-				\\halign to ${noModules}\\tablemodule{%
+			buf.add('\\halign to ${noModules}\\tablemodule{%');
+			if (large) {
+				buf.add('
 					% requires the ifoddpage package
 					\\relax\\checkoddpage\\ifoddpage\\else%
 						\\kern ${NO_MODULES-noModules}\\tablemodule%
 					\\fi%'.doctrim());
+			}
 			buf.add("\n\t");
 			for (i in 0...width) {
 				if (i > 0)

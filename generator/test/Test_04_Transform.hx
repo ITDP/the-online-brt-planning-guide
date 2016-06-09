@@ -189,10 +189,10 @@ class Test_04_Transform {
 	{
 		trace(transform("\\begintable{a}\\header\\col c\\row\\col d\\endtable"));
 		Assert.same(
-			expand(@wrap(12,9) TTable(SmallWidth, @len(1) Word("a"), @wrap(7,0) [@wrap(4,0) @skip(2)TParagraph(@len(1) Word("b"))], [@wrap(9,0)[TParagraph(@len(1)Word("d"))]], 1, "other.0-1")),
+			expand(@wrap(12,9) TTable(FullWidth, @len(1) Word("a"), @wrap(7,0) [@wrap(4,0) @skip(2)TParagraph(@len(1) Word("b"))], [@wrap(9,0)[TParagraph(@len(1)Word("d"))]], 1, "other.0-1")),
 			transform("\\begintable{a}\\header\\col b\\row\\col d\\endtable"));
 		Assert.same(
-			expand(@wrap(12, 9) TTable(SmallWidth, @len(1) Word("a"), 
+			expand(@wrap(12, 9) TTable(FullWidth, @len(1) Word("a"), 
 				@wrap(7, 0)[@wrap(4, 0) @skip(3) TParagraph(@len(1) Word("b")), @wrap(4, 0) @skip(1) TParagraph(@len(1) Word("c")), @wrap(4, 0) @skip(1) TParagraph(@len(1) Word("d"))], 
 				[@wrap(9, 0)[TParagraph(@len(1) Word("e")), @skip(5) TParagraph(@len(1) Word("f")), @skip(5) TParagraph(@len(1)Word("g"))],
 				@wrap(9,0)[TParagraph(@len(1) Word("h")), @skip(5)TParagraph(@len(1)Word("i")), @skip(5)TParagraph(@len(1)Word("j"))]], 1,"other.0-1"				

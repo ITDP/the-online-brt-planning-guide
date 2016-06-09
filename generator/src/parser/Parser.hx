@@ -350,6 +350,13 @@ class Parser {
 	function table(begin:Token)
 	{
 		assert(begin.def.match(TCommand("begintable")), begin);
+		var size = switch optArg(rawHorizontal, begin, "size") {
+		case null: FullWidth;
+		case { val:"small", pos:pos }: SmallWidth;
+		case { val:"medium", pos:pos }: TextWidth;
+		case { val:"large", pos:pos }: FullWidth;
+		case { pos:pos }: badArg(pos, "valid sizes are 'small', 'medium' and 'large'"); null;
+		}
 		var caption = arg(hlist, begin, "caption");
 		if (caption.val == null) badArg(caption.pos, "caption cannot be empty");
 		var rows = [];
@@ -366,7 +373,7 @@ class Parser {
 		var end = pop();  // should have already discarted any vnoise before
 		if (end.def.match(TEof)) unclosed(begin);
 		if (!end.def.match(TCommand("endtable"))) unexpected(end);
-		return mk(Table(SmallWidth, caption.val, header, rows), begin.pos.span(end.pos));
+		return mk(Table(size, caption.val, header, rows), begin.pos.span(end.pos));
 	}
 
 	function quotation(cmd:Token)
