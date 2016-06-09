@@ -304,7 +304,6 @@ q {
 /* boxes */
 
 .box {
-	width: 640px;
 	outline: 2px solid #CCC;
 	outline-offset: 15px;
 	margin: 32px 0;
