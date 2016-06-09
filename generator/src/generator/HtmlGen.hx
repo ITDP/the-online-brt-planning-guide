@@ -283,9 +283,10 @@ class HtmlGen {
 			curBuff.add("</section>");
 		
 		//Section already processed, clear buff , continue program execution
-		if (type == 2 && curBuff.length > 0)
+		if ((type == 2 || type == 1) && curBuff.length > 0)
 		{
-			var title = '${counts.slice(1, 3).join(".")} ${_name} [${cur_chapter_name}]';
+			var title = (type == 2) ? 
+			'${counts.slice(1, 3).join(".")} ${_name} [${cur_chapter_name}]' : '$counts[1] $_name';
 			fileGen(curBuff.toString(), curNav, title);
 			curBuff = new StringBuf();
 		}
