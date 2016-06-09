@@ -1,8 +1,0 @@
-build.hxml
-
---next
-
--main RunTests
---interp
--cp test
--lib utest

@@ -41,7 +41,7 @@
     <hidden path="obj" />
   </hiddenPaths>
   <!-- Executed before build -->
-  <preBuildCommand>$(CompilerPath)\haxe.exe --connect 6000 $(ProjectDir)\build.hxml</preBuildCommand>
+  <preBuildCommand>$(CompilerPath)\haxe.exe --connect 6000 $(ProjectDir)\only-build.hxml</preBuildCommand>
   <!-- Executed after build -->
   <postBuildCommand alwaysRun="False" />
   <!-- Other project options -->
