@@ -28,8 +28,8 @@ img {
 	border-radius: 2px;
 }
 .container {
-    margin-right: auto;
-    margin-left: auto;
+	margin-right: auto;
+	margin-left: auto;
 	padding: 0;
 }
 
@@ -39,8 +39,8 @@ img {
 	width: 256px;
 	clear: right;
 	float: right;
-    font-size: 12px;
-    font-family: 'PT Sans', sans-serif;
+	font-size: 12px;
+	font-family: 'PT Sans', sans-serif;
 }
 .md {
 	width: 640px;
@@ -52,7 +52,7 @@ img {
 /* header */
 
 header {
-    font-family: 'PT Sans', sans-serif;
+	font-family: 'PT Sans', sans-serif;
 	width: 100%;
 	height: 32px;
 	position: fixed;
@@ -79,16 +79,19 @@ header ul li ul {
 }
 header li {
 	display: inline;
-	padding: 0 0 0 4px;
+	padding: 0 0 8px 4px;
 	margin: 0;
 	list-style: none;
+}
+header li a {
+	padding: 0 0 8px 4px;
 }
 .item {
 	display: none;
 	position: fixed;
-    background-color: #FFF;
-    width: auto;
-    padding: 0 16px 16px 16px;
+	background-color: #FFF;
+	width: auto;
+	padding: 0 16px 16px 16px;
 	border: solid #00a95e;
 	border-width: 0px 1px 1px 1px;
 }
@@ -104,10 +107,10 @@ header li {
 }
 
 :target:before {
-  content:"";
-  display:block;
-  height:48px; /* fixed header height*/
-  margin:-48px 0 0; /* negative fixed header height */
+	content:"";
+	display:block;
+	height:48px; /* fixed header height*/
+	margin:-48px 0 0; /* negative fixed header height */
 }
 
 /* volume i */
@@ -151,7 +154,7 @@ header li {
 /* footer */
 
 footer {
-    font-family: 'PT Sans', sans-serif;
+	font-family: 'PT Sans', sans-serif;
 	width: 100%;
 	height: 32px;
 	position: fixed;
@@ -163,7 +166,7 @@ footer {
 /* nav */
 
 nav {
-    font-family: 'PT Sans', sans-serif;
+	font-family: 'PT Sans', sans-serif;
 	font-size: 14px;
 	float: left;
 	top: 64px;
@@ -191,7 +194,7 @@ nav a {
 	margin-left: 288px;
 	float: left;
 	width: 928px;
-    margin-top: 16px;
+	margin-top: 16px;
 }
 
 .col-text p {
@@ -274,23 +277,26 @@ blockquote.lg {
 	width: 848px;
 	padding: 40px;
 	font-size: 20px;
-    text-align: center;
+	text-align: center;
 }
 
 q {
-    quotes: "“" "”" "‘" "’";
+	quotes: "“" "”" "‘" "’";
 	font-style: italic;
 }
 
 /* boxes */
 
 .box {
-    outline: 2px solid #CCC;
-    outline-offset: 15px;
+	width: 640px;
+	outline: 2px solid #CCC;
+	outline-offset: 15px;
 	margin: 32px 0;
 }
-
-
+.box p {
+	color: #666;
+	margin-right: 0px;
+}
 
 @media (min-width: 1240px) {
 	.container {
