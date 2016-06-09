@@ -351,22 +351,13 @@ class HtmlGen {
 								
 								if (curSec != null && curSec == se)
 								{
-									leftBuff.add('<li><ul><li><a href="#${se.id}">${se.name}</li>');
+									leftBuff.add('<li><a href="#${se.id}">${se.name}</li>');
 									
 									for (su in se.chd)
 									{
 										leftBuff.add('<li><a href="#${su.id}">${su.name}</li>');
-										if (se.chd != null && se.chd.length > 0)
-										{
-											leftBuff.add('<li><ul>');
-											for (ss in su.chd)
-											{
-												leftBuff.add('<li><a href="#${ss.id}">${ss.name}</a></li>');
-											}
-											leftBuff.add('</ul></li>');
-										}
 									}
-									leftBuff.add("</ul></li>");
+									//leftBuff.add("</ul></li>");
 								}
 							}
 						sec += '</ul>';
