@@ -422,15 +422,16 @@ class HtmlGen {
 				{
 					var v = {type : ${values.get(key).type}, list : \'${values.get(key).list}\'};
 					var menu = $(".menu");
-					console.log(v.type);
-					console.log(menu.children("li").length);
+					//console.log(v.type);
+					//console.log(menu.children("li").length);
 					while (((v.type)) < ((menu.children("li").length)/2))
 					{
-						console.log("removed");
+						//console.log("removed");
 						menu.children("li").last().remove();
 					}
-					console.log(v.list);
-					menu.append("<li>/<li>");
+					//console.log(v.list);
+					if(!(menu.children("li").last().html() == "/"))
+						menu.append("<li>/<li>");
 					menu.append("<li>" + v.list + "</li>");
 					
 					//Bind evt again (TODO: Rewrite)
