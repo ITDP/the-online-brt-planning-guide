@@ -31,7 +31,9 @@ class TexGen {
 	public function genp(pos:Position)
 	{
 		var lpos = pos.toLinePosition();
-		return '% @ ${lpos.src}:${lpos.lines.min + 1}-${lpos.lines.max}:${lpos.chars.min + 1}-${lpos.chars.max}\n';
+		if (Main.debug)
+			return '% @ ${lpos.src}: lines ${lpos.lines.min + 1}-${lpos.lines.max}: chars ${lpos.chars.min + 1}-${lpos.chars.max}\n';  // TODO slow, be careful!
+		return '% @ ${pos.src}: bytes ${pos.min + 1}-${pos.max}\n';
 	}
 
 	public function genh(h:HElem)
