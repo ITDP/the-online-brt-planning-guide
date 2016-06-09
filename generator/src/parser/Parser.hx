@@ -354,7 +354,7 @@ class Parser {
 		assert(begin.def.match(TCommand("begintable")), begin);
 		var size = switch optArg(rawHorizontal, begin, "size") {
 		case null: FullWidth;
-		case { val:"small", pos:pos }: SmallWidth;
+		case { val:"small", pos:pos }: MarginWidth;
 		case { val:"medium", pos:pos }: TextWidth;
 		case { val:"large", pos:pos }: FullWidth;
 		case { pos:pos }: badArg(pos, "valid sizes are 'small', 'medium' and 'large'"); null;

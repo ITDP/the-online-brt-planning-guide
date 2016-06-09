@@ -118,7 +118,7 @@ class LargeTable {
 			var width = header.length;
 
 			switch size {
-			case SmallWidth:
+			case MarginWidth:
 				buf.add("\\halign {%\n\t");
 				for (i in 0...width) {
 					if (i > 0)
