@@ -157,7 +157,7 @@ class Transform {
 			return mk(TLaTeXPreamble(path), v.pos);
 		case HtmlApply(path):
 			return mk(THtmlApply(path), v.pos);
-		case Table(caption, header, rows):
+		case Table(size, caption, header, rows):
 			count[OTH] = ++count[OTH];
 			names[OTH] = count[CHA] + " " + count[OTH];
 			var name = idGen(names, OTH);
@@ -172,7 +172,7 @@ class Transform {
 				rvalues.push(cellvalues);
 			}
 			//TODO: v.pos.span(?) --> Should I Add its length?
-			return mk(TTable(caption, rvalues[0], rvalues.slice(1), count[OTH], name), v.pos);
+			return mk(TTable(size, caption, rvalues[0], rvalues.slice(1), count[OTH], name), v.pos);
 			
 		}
 	}

@@ -366,7 +366,7 @@ class Parser {
 		var end = pop();  // should have already discarted any vnoise before
 		if (end.def.match(TEof)) unclosed(begin);
 		if (!end.def.match(TCommand("endtable"))) unexpected(end);
-		return mk(Table(caption.val, header, rows), begin.pos.span(end.pos));
+		return mk(Table(SmallWidth, caption.val, header, rows), begin.pos.span(end.pos));
 	}
 
 	function quotation(cmd:Token)

@@ -112,7 +112,7 @@ class TexGen {
 			return "";
 		case THtmlApply(_):
 			return "";
-		case TTable(caption, header, chd, count, id):
+		case TTable(_):
 			return LargeTable.gen(v, this, at);
 		}
 	}

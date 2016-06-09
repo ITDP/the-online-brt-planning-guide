@@ -119,8 +119,10 @@ class LargeTable {
 	{
 		assert(v.def.match(TTable(_)), v);
 		switch v.def {
-		case TTable(caption, header, rows, count, id):
-			var large = true;  // FIXME
+		// case TTable(SmallWidth, caption, header, rows, count, id):
+		// 	return "";  // TODO
+		case TTable(size, caption, header, rows, count, id):
+			var large = size.match(FullWidth);
 			var noModules = large ? NO_MODULES_LARGE : NO_MODULES;
 			var colWidths = computeTableWidths(noModules, header, rows);
 			var buf = new StringBuf();
