@@ -199,4 +199,33 @@ class Test_04_Transform {
 			transform("\\begintable{a}\\header \\col b\\col c\\col d\\row\\col e\\col f\\col g\\row\\col h\\col i\\col j\\endtable")
 		);
 	}
+	
+	@:access(transform.Transform)
+	public function test_006_htrim()
+	{
+		Assert.same(
+			expand(TParagraph(HList([Word("b"),Wordspace,Word("a"),Wordspace,Word("c"),Wordspace,Word("d")]))),
+			expand(TParagraph(Transform.htrim(HList([Word("b"), Wordspace, Word("a"), Wordspace, Word("c"), Wordspace, Word("d")]))))
+		);
+		//[a, ,b] == trim([ ,a, ,b, ])
+		Assert.same(
+			expand(TParagraph(HList([Word("a"), Wordspace, Word("b")]))),
+			expand(TParagraph(Transform.htrim(HList([Wordspace, Word("a"), Wordspace, Word("b"), Wordspace]))))
+		);
+		
+		//[ ,Emph([ ,a])]
+		Assert.same(
+			expand(TParagraph(HList([Emphasis(HList([Word("a")]))]))),
+			expand(TParagraph(Transform.htrim(HList([Wordspace, Emphasis(HList([Wordspace, Word("a")]))]))))
+		);
+		
+		//[ , Emph(" a "), ,b]
+		
+		//trace(expand(TParagraph(Transform.htrim(HList([Wordspace, Emphasis(HList([Wordspace, Word("a"), Wordspace])), Wordspace, Word("b")])))));
+		Assert.same(
+			expand(TParagraph(HList([Emphasis(HList([Word("a"), Wordspace])), Word("b")]))),
+			expand(TParagraph(Transform.htrim(HList([Wordspace,Emphasis(HList([Wordspace, Word("a"), Wordspace])), Wordspace, Word("b")]))))
+		);
+		
+	}
 }

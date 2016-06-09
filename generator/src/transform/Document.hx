@@ -30,3 +30,14 @@ enum TDef {
 typedef HElem = parser.HElem;
 typedef Position = parser.Token.Position;
 
+enum HTokenDef
+{
+	TWord(a : String);
+	Space;
+	Emph;
+	High;
+	LiStart;
+	LiEnd;
+}
+
+typedef HToken = Elem<HTokenDef>;
