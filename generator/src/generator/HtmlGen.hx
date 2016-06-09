@@ -430,8 +430,8 @@ class HtmlGen {
 						menu.children("li").last().remove();
 					}
 					//console.log(v.list);
-					if(!(menu.children("li").last().html() == "/"))
-						menu.append("<li>/<li>");
+					if(!(menu.children("li").last().html() == "<a>/</a>"))
+						menu.append("<li><a>/</a></li>");
 					menu.append("<li>" + v.list + "</li>");
 					
 					//Bind evt again (TODO: Rewrite)
