@@ -314,7 +314,7 @@ class HtmlGen {
 			topBuff.add('<li id="${n.id}"><a href="#">${n.name}</a></li>');
 			if (n.chd != null && n.chd.length > 0)
 			{
-				var cha = '<a>${n.name}</a><ul style="margin-left:46px;" class=\"item hide\">';
+				var cha = '<a>${n.name}</a><ul style="margin-left:114px;" class=\"item hide\">';
 				
 				for(c in n.chd)
 				{
@@ -324,7 +324,7 @@ class HtmlGen {
 					
 					if (c.chd != null && c.chd.length > 0)
 					{
-						var sec = '<a>${c.name}</a><ul style="margin-left:258px;" class=\"item hide\">';
+						var sec = '<a>${c.name}</a><ul style="margin-left:317px;" class=\"item hide\">';
 						
 							for (se in c.chd)
 							{
@@ -485,7 +485,7 @@ class HtmlGen {
 		buff.add('</div>');
 		buff.add(processNav(nav).sections);
 		buff.add('</div>');
-		buff.add("<header><ul class='menu'><li><a>BRT Planning Guide</a><ul class='item hide volumes'></ul></li></ul></header>");
+		buff.add("<header><ul class='menu'><li><a><strong>BRT Planning Guide</strong></a><ul class='item hide volumes'></ul></li></ul></header>");
 		
 		File.saveContent(joinPaths([path, sec + ".html"]), buff.toString());
 		
