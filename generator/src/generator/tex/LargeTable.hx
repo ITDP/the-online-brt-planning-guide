@@ -7,6 +7,7 @@ import Assertion.*;
 using Literals;
 
 class LargeTable {
+	// internal commands; for now, no real expectation of tunning them at runtime
 	static inline var CHAR_COST = 1;
 	static inline var SPACE_COST = 1;
 	static inline var PAR_BREAK_COST = 10;
@@ -17,6 +18,9 @@ class LargeTable {
 	static inline var BAD_COST = 1000;
 	static inline var QUOTE_COST = 1;
 	static inline var EM_DASH_COST = 2;
+
+	// external parameters
+	// TODO make metas commands to change them
 	static inline var NO_MODULES = 30;
 	static inline var NO_MODULES_LARGE = 46;
 	static inline var MIN_COLUMN = 5;
@@ -65,7 +69,7 @@ class LargeTable {
 	}
 
 	// TODO document the objective and the implementation
-	static function computeTableWidths(header, rows:Array<Array<TElem>>)
+	static function computeTableWidths(noModules, header, rows:Array<Array<TElem>>)
 	{
 		var width = header.length;
 		var cost = header.map(pseudoTypeset);
@@ -78,7 +82,7 @@ class LargeTable {
 			}
 		}
 		var tcost = Lambda.fold(cost, function (p,x) return p+x, 0);
-		var available = NO_MODULES_LARGE - (width - 1)*SEPAR_SIZE;
+		var available = noModules - (width - 1)*SEPAR_SIZE;
 		var ncost = cost.map(function (x) return available/tcost*x);
 		for (i in 0...width) {
 			if (ncost[i] < MIN_COLUMN)
@@ -111,43 +115,51 @@ class LargeTable {
 		return icost;
 	}
 
-	public static function gen(genAt:String, pos:Position, caption, header:Array<TElem>, rows:Array<Array<TElem>>, count:Int, id:String, gen:TexGen)
+	public static function gen(v:TElem, gen:TexGen, genAt:String)
 	{
-		var colWidths = computeTableWidths(header, rows);
-		var buf = new StringBuf();
-		buf.add('% FIXME\nTable ${gen.genh(caption)}:\n\n');
-		var width = header.length;
-		buf.add('
-			\\halign to ${NO_MODULES_LARGE}\\tablemodule{
-				\\relax\\checkoddpage\\ifoddpage\\else
-					\\kern ${NO_MODULES-NO_MODULES_LARGE}\\tablemodule
-				\\fi'.doctrim());
-		buf.add("\n\t");
-		for (i in 0...width) {
-			if (i > 0)
-				buf.add('\\hbox to ${SEPAR_SIZE*.5}\\tablemodule{}&\\hbox to ${SEPAR_SIZE*.5}\\tablemodule{}');
-			var size = colWidths[i];
-			buf.add('\\vtop{\\sffamily\\footnotesize\\noindent\\hsize=${size}\\tablemodule#}');
-		}
-		buf.add("\\cr\n\t");
-		function genCell(i:TElem) {
-			return switch i.def {
-			case TParagraph(h): gen.genh(h);
-			case _: gen.genv(i, genAt);
+		assert(v.def.match(TTable(_)), v);
+		switch v.def {
+		case TTable(caption, header, rows, count, id):
+			var large = true;  // FIXME
+			var noModules = large ? NO_MODULES_LARGE : NO_MODULES;
+			var colWidths = computeTableWidths(noModules, header, rows);
+			var buf = new StringBuf();
+			buf.add('% FIXME\nTable ${gen.genh(caption)}:\n\n');
+			var width = header.length;
+			buf.add('
+				\\halign to ${noModules}\\tablemodule{%
+					% requires the ifoddpage package
+					\\relax\\checkoddpage\\ifoddpage\\else%
+						\\kern ${NO_MODULES-noModules}\\tablemodule%
+					\\fi%'.doctrim());
+			buf.add("\n\t");
+			for (i in 0...width) {
+				if (i > 0)
+					buf.add('\\hbox to ${SEPAR_SIZE*.5}\\tablemodule{}&\\hbox to ${SEPAR_SIZE*.5}\\tablemodule{}');
+				var size = colWidths[i];
+				buf.add('\\vtop{\\sffamily\\footnotesize\\noindent\\hsize=${size}\\tablemodule#}');
 			}
-		}
-		buf.add(header.map(genCell).join("&"));
-		buf.add("\\cr\n");
-		for (r in rows) {
-			weakAssert(r.length == width, header.length, r.length);
-			buf.add("\t");
-			if (r.length != width)
-				buf.add("% ");  // FIXME
-			buf.add(r.map(genCell).join("&"));
+			buf.add("\\cr\n\t");
+			function genCell(i:TElem) {
+				return switch i.def {
+				case TParagraph(h): gen.genh(h);
+				case _: gen.genv(i, genAt);
+				}
+			}
+			buf.add(header.map(genCell).join("&"));
 			buf.add("\\cr\n");
+			for (r in rows) {
+				weakAssert(r.length == width, header.length, r.length);
+				buf.add("\t");
+				if (r.length != width)
+					buf.add("% ");  // FIXME
+				buf.add(r.map(genCell).join("&"));
+				buf.add("\\cr\n");
+			}
+			buf.add('}\n${gen.genp(v.pos)}\n');
+			return buf.toString();
+		case _: return "";  // should never happen
 		}
-		buf.add('}\n${gen.genp(pos)}\n');
-		return buf.toString();
 	}
 }
 
