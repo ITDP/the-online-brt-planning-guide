@@ -120,7 +120,7 @@ class HtmlGen {
 		case TTable(size, caption, header, chd, count, id):
 			counts[OTH] = count;
 			curBuff.add("<section class='lg'>");
-			curBuff.add('<h4 id="${id}">Table ${counts[CHA] +"." + counts[OTH]} : ${horizontal(caption)}</h4>'); //TODO:
+			curBuff.add('<h5 id="${id}">Table ${counts[CHA] + "." + counts[OTH]} + ". " + ${horizontal(caption)}</h5>'); //TODO:
 			curBuff.add("<table>");
 			processTable([header], true);
 			processTable(chd);
@@ -481,7 +481,7 @@ class HtmlGen {
 		buff.add('</div>');
 		buff.add(processNav(nav).sections);
 		buff.add('</div>');
-		buff.add("<header><ul class='menu'><li><a>BRTPG</a><ul class='item hide volumes'></ul></li></ul></header>");
+		buff.add("<header><ul class='menu'><li><a>BRT Planning Guide</a><ul class='item hide volumes'></ul></li></ul></header>");
 		
 		File.saveContent(joinPaths([path, sec + ".html"]), buff.toString());
 		
