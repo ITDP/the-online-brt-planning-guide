@@ -74,7 +74,7 @@ class HtmlGen {
 	}
 	
 	function vertical(v:TElem, counts : Array<Int>, curNav : Null<Nav>)
-	{
+	{		
 		switch v.def {
 		case TVolume(name, count, id, children), TChapter(name, count, id, children),
 		TSection(name, count, id, children), TSubSection(name, count, id, children),
@@ -90,7 +90,7 @@ class HtmlGen {
 			curBuff.add('<section class="box">\n');
 			vertical(contents, counts, curNav);
 			curBuff.add('</section>\n');
-		case TQuotation(t,a):
+		case TQuotation(t, a):
 			curBuff.add('<blockquote class="md"><q>${horizontal(t)}</q><span>${horizontal(a)}</span></blockquote>');
 		case TParagraph(h):
 			curBuff.add('<p>${horizontal(h)}</p>\n');
@@ -127,6 +127,9 @@ class HtmlGen {
 			curBuff.add("</table></section>");
 			
 		}
+		
+	
+		
 	}
 	
 	function processTable(body : Array<Array<TElem>>, ?isHeadMode : Bool)
@@ -217,6 +220,7 @@ class HtmlGen {
 	
 	function hierarchy(cur : TElem, counts : Array<Int>, curNav : Nav)
 	{
+			
 		var buff = new StringBuf();
 		var _children = null;
 		var _name  = "";
@@ -278,20 +282,23 @@ class HtmlGen {
 			curBuff.add('<section><h${(type+1)} id="${_id}">${count} ${_name}</h${(type + 1)}>');
 		
 		vertical(_children, counts, curNav);
-		
+			
 		if(type > 1)
 			curBuff.add("</section>");
 		
 		//Section already processed, clear buff , continue program execution
-		if ((type == 2 || type == 1) && curBuff.length > 0)
+		if (type == SEC)
 		{
-			var title = (type == 2) ? 
-			'${counts.slice(1, 3).join(".")} ${_name} [${cur_chapter_name}]' : '$counts[1] $_name';
-			fileGen(curBuff.toString(), curNav, title);
+			var title = (type == SEC) ? 
+			'${counts.slice(1, 3).join(".")} ${_name} [${cur_chapter_name}]' : '${counts[1]} $_name';
+			
+			if(type == SEC)
+				fileGen(curBuff.toString(), curNav, title);
+			else
+				fileGen(curBuff.toString(), curNav, title, "index");
+			
 			curBuff = new StringBuf();
-		}
-		
-		
+		}		
 	}
 	
 	function processNav(curSec : Null<Nav>) : { sections : String, topNavJs : String}
@@ -426,7 +433,7 @@ class HtmlGen {
 		buff.add("}\n");
 		buff.add('function post()
 		{
-			var fullid = $(".col-text").children("section").first().children("h3").attr("id").split(".");
+			var fullid = $(".col-text").children("section").first().children("h3,h2").attr("id").split(".");
 			var vol_id = fullid.slice(0, 2).join("\\\\.");
 			$("#" + vol_id).trigger("click");
 			$("#" + fullid.slice(0, 4).join("\\\\.")).trigger("click");
@@ -460,7 +467,7 @@ class HtmlGen {
 		return staticres;
 	}
 	
-	function fileGen(content : String, nav : Nav, title : String)
+	function fileGen(content : String, nav : Nav, title : String, ?filename : String)
 	{
 		if (nav == null) 
 			throw "Invalid access";
@@ -483,9 +490,7 @@ class HtmlGen {
 		buff.add('</div>');
 		buff.add("<header><ul class='menu'><li><a>BRTPG</a><ul class='item hide volumes'></ul></li></ul></header>");
 		
-		File.saveContent(joinPaths([path, sec + ".html"]), buff.toString());
-		
-		
+		File.saveContent(joinPaths([path,  ((filename != null) ? filename : sec) + ".html"]), buff.toString());		
 	}
 		
 	function document(doc:Document)
