@@ -182,6 +182,9 @@ class Transform {
 		}
 	}
 	
+	
+	static var tarray : Array<HToken>;
+	
 	static function htrim(elem : HElem)
 	{
 		tarray = new Array<HToken>();
@@ -191,8 +194,6 @@ class Transform {
 		elem = rebuild();
 		return elem;
 	}
-	
-	static var tarray : Array<HToken>;
 	
 	static function tokenify(elem : HElem)
 	{
@@ -216,34 +217,6 @@ class Transform {
 		}
 	}
 	
-	static function rebuild() : HElem
-	{
-		var c = tarray.shift();
-		
-		switch(c.def)
-		{
-			case TWord(h):
-				return mk(Word(h), c.pos);
-			case Space:
-				return mk(Wordspace, c.pos);
-			case Emph:
-				return mk(Emphasis(rebuild()), c.pos);
-			case High:
-				return mk(Highlight(rebuild()), c.pos);
-			case LiStart:
-				var list = [];
-				while(!tarray[0].def.match(LiEnd))
-				{
-					list.push(rebuild());	
-				}
-				tarray.shift();
-				return mk(HList(list), c.pos);
-			default:
-				throw "Unexpected token : " + c.def.getName() + " at line: " + c.pos.min + " with src: " + c.pos.src;
-		}
-	}
-	
-
 	static function ltrim()
 	{
 		var cur : HToken = null;
@@ -290,6 +263,33 @@ class Transform {
 				tarray.remove(tarray[i]);
 		}
 		tarray.reverse();
+	}
+	
+	static function rebuild() : HElem
+	{
+		var c = tarray.shift();
+		
+		switch(c.def)
+		{
+			case TWord(h):
+				return mk(Word(h), c.pos);
+			case Space:
+				return mk(Wordspace, c.pos);
+			case Emph:
+				return mk(Emphasis(rebuild()), c.pos);
+			case High:
+				return mk(Highlight(rebuild()), c.pos);
+			case LiStart:
+				var list = [];
+				while(!tarray[0].def.match(LiEnd))
+				{
+					list.push(rebuild());	
+				}
+				tarray.shift();
+				return mk(HList(list), c.pos);
+			default:
+				throw "Unexpected token : " + c.def.getName() + " at line: " + c.pos.min + " with src: " + c.pos.src;
+		}
 	}
 	
 	static function checkBrothers(cur : HToken, oth : HToken)

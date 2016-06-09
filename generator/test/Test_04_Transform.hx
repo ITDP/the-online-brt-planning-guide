@@ -220,12 +220,28 @@ class Test_04_Transform {
 		);
 		
 		//[ , Emph(" a "), ,b]
-		
-		//trace(expand(TParagraph(Transform.htrim(HList([Wordspace, Emphasis(HList([Wordspace, Word("a"), Wordspace])), Wordspace, Word("b")])))));
 		Assert.same(
 			expand(TParagraph(HList([Emphasis(HList([Word("a"), Wordspace])), Word("b")]))),
 			expand(TParagraph(Transform.htrim(HList([Wordspace,Emphasis(HList([Wordspace, Word("a"), Wordspace])), Wordspace, Word("b")]))))
 		);
 		
+		//[a,emph("b "), ]
+		Assert.same(
+			expand(TParagraph(HList([Word("a"), Emphasis(HList([Word("b")]))]))),
+			expand(TParagraph(Transform.htrim(HList([Word("a"), Emphasis(HList([Word("b"), Wordspace])), Wordspace]))))
+		);
+		
+		
+		//[ , emph([ , emph([ , a])]),b]
+		Assert.same(
+			expand(TParagraph(HList([Emphasis(HList([Emphasis(HList([Word("a")]))])) , Word("b")]))),
+			expand(TParagraph(Transform.htrim(HList([Wordspace, Emphasis(HList([Wordspace, Emphasis(HList([Wordspace, Word("a")]))])), Word("b")]))))
+		);
+		
+		//[, emph([ , high([ ,a, ]), ]), ]
+		Assert.same(
+			expand(TParagraph(HList([Emphasis(HList([Highlight(HList([Word("a")]))]))]))),
+			expand(TParagraph(Transform.htrim(HList([Wordspace, Emphasis(HList([Wordspace, Highlight(HList([ Wordspace, Word("a"), Wordspace])), Wordspace])), Wordspace]))))
+		);
 	}
 }
