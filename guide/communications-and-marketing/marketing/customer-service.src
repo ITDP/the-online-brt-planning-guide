@@ -5,23 +5,56 @@
 > Well done is better than well said.
 @ —Benjamin Franklin, author, politician, and scientist, 1706-90
 
-Customer service is the communications face of the BRT and the ultimate implementation of the brand. Every employee who comes in contact with the public should be thought of as a “brand ambassador” to the public. These interactions are important opportunities to reinforce the brand. Customer service employees need to understand the brand, and have the resources they need to represent it well. They should be trained in and furnished with talking points and practices that reinforce the brand values. Having a useful and accurate website, social media presence, and outreach will help customers and customer service personnel be better informed and better able to assist customers. Yet it is still the case that nothing beats personal contact at stations, in terminals, and in neighborhoods. The system must provide specific locations where users can share feedback directly without having to go online. This is especially true for cities with little Internet use in low-income areas. These locations should have staff trained to answer users’ queries and offer information on routes, stations, services, disruptions, or other system information.
+Customer service is the communications face of the BRT and the ultimate implementation of the brand. 
+Every employee who comes in contact with the public should be thought of as a “brand ambassador” to the 
+public. These interactions are important opportunities to reinforce the brand. Customer service employees 
+need to understand the brand, and have the resources they need to represent it well. They should be trained 
+in and furnished with talking points and practices that reinforce the brand values. Having a useful and 
+accurate website, social media presence, and outreach will help customers and customer service personnel 
+be better informed and better able to assist customers. Yet it is still the case that nothing beats personal 
+contact at stations, in terminals, and in neighborhoods. The system must provide specific locations where 
+users can share feedback directly without having to go online. This is especially true for cities with 
+little Internet use in low-income areas. These locations should have staff trained to answer users’ queries 
+and offer information on routes, stations, services, disruptions, or other system information.
 
-The overall BRT communications plan should include a process for communicating with customer service representatives regularly so that they can both provide assistance to customers and feedback to system operators. They also need to be able to answer inquiries and manage communications if there are any service problems. Ideally, the system will be designed in such a way that direct customer service is not always necessary but is available for anyone who needs extra assistance.
+The overall BRT communications plan should include a process for communicating with customer service 
+representatives regularly so that they can both provide assistance to customers and feedback to system 
+operators. They also need to be able to answer inquiries and manage communications if there are any service 
+problems. Ideally, the system will be designed in such a way that direct customer service is not always 
+necessary but is available for anyone who needs extra assistance.
 
-/*\figure{assets\/image30.jpeg}{A TransMilenio staff person provides in-person assistance to customers. Image }{ Libros al Viento.}*/
+/*\figure{assets\/image30.jpeg}{A TransMilenio staff person provides in-person assistance to customers. 
+Image}{ Libros al Viento.}*/
 
-BRT transport systems are particularly complex environments and need a way to transmit to users the best way to travel according to their needs. Users will always need to know, at a minimum, how to get to their destination. Ideally, travelers should not have to spend a lot of time figuring out how to reach their final destination; instead they should have a seamless travel experience. The information system needs to provide users with the right information in the right place at the right time.
+BRT transport systems are particularly complex environments and need a way to transmit to users the 
+best way to travel according to their needs. Users will always need to know, at a minimum, how to get 
+to their destination. Ideally, travelers should not have to spend a lot of time figuring out how to reach 
+their final destination; instead they should have a seamless travel experience. The information system 
+needs to provide users with the right information in the right place at the right time.
 
-The rest of this chapter will briefly describe how people receive information, and what rules must be taken into account when designing information for travelers. There are different types of information in a BRT system that can guide travelers, and the best mix of these will provide riders with a useful and effortless way to navigate through the system, even if they are first-time users or foreigners.
+The rest of this chapter will briefly describe how people receive information, and what rules must 
+be taken into account when designing information for travelers. There are different types of information 
+in a BRT system that can guide travelers, and the best mix of these will provide riders with a useful 
+and effortless way to navigate through the system, even if they are first-time users or foreigners.
 
 \subsection{User Information}
 
-The development of a user-information system is a process that is determined by the nature of each BRT system, technical and operational features, users, and physical and cultural context. It is useful to understand the role of each information element as part of a whole. Generally, user information falls into two categories: system information and service information.
+The development of a user-information system is a process that is determined by the nature of each 
+BRT system, technical and operational features, users, and physical and cultural context. It is useful 
+to understand the role of each information element as part of a whole. Generally, user information falls 
+into two categories: system information and service information.
 
-Different users (and different situations) need different information. Nobody travels for the simple pleasure of sitting in a bus, but for a purpose: going to work (frequent trips), to the hospital (occasional trips), or sightseeing (leisure trips), for example. This context determines what type of information a person requires. While experienced travelers focus on making more effective use of their daily commutes, an elderly person, for example, may prefer to avoid crowded environments and seek a more comfortable, if longer trip. Defining what type of information users require, acknowledging the wide range of needs they may have, and providing only that information simply and easily, is the core of the user-information design challenge.
+Different users (and different situations) need different information. Nobody travels for the simple 
+pleasure of sitting in a bus, but for a purpose: going to work (frequent trips), to the hospital (occasional 
+trips), or sightseeing (leisure trips), for example. This context determines what type of information 
+a person requires. While experienced travelers focus on making more effective use of their daily commutes, 
+an elderly person, for example, may prefer to avoid crowded environments and seek a more comfortable, 
+if longer trip. Defining what type of information users require, acknowledging the wide range of needs 
+they may have, and providing only that information simply and easily, is the core of the user-information 
+design challenge.
 
-/*\figure{assets\/image31.jpeg}{This information kiosk in Brisbane, Australia, helps answer basic questions as well as begins the awareness-raising process. Image }{ ITDP.}*/
+/*\figure{assets\/image31.jpeg}{This information kiosk in Brisbane, Australia, helps answer basic questions 
+as well as begins the awareness-raising process. Image}{ ITDP.}*/
 \begintable{(empty)}
 \header
 \col System Information
@@ -47,45 +80,117 @@ Different users (and different situations) need different information. Nobody tr
 \col Time (travel and waiting); How long do I have to wait for the next service? How long will my total journey will take?; Electronic information is generally preferable and more intuitive for users than fixed schedules. Countdowns at stations reduce anxiety and provide key information for experienced users. Electronic information also can respond to system disruptions.; 
 \endtable
 
-One very important issue is that all information must always be accurate and updated periodically (monthly, annually, etc.). Information that is likely to change more often is better placed in flexible, cost-effective structures, such as poster holders, or presented digitally in the station. Periodic changes fall to the maintenance staff and will depend on the materials chosen for the structures, as well as the level of vandalism or wear that these receive. Digital information platforms allow a great level of flexibility and can be updated to display short-term information such as service disruptions and countdowns. Information must always be accurate, especially regarding travel and waiting times, service stops, and disruptions. Inaccurate system information is one of the most common customer service complaints regarding public transport.
+One very important issue is that all information must always be accurate and updated periodically (monthly, 
+annually, etc.). Information that is likely to change more often is better placed in flexible, cost-effective 
+structures, such as poster holders, or presented digitally in the station. Periodic changes fall to the 
+maintenance staff and will depend on the materials chosen for the structures, as well as the level of 
+vandalism or wear that these receive. Digital information platforms allow a great level of flexibility 
+and can be updated to display short-term information such as service disruptions and countdowns. Information 
+must always be accurate, especially regarding travel and waiting times, service stops, and disruptions. 
+Inaccurate system information is one of the most common customer service complaints regarding public 
+transport.
 
-/*\figure{assets\/image32.jpeg}{Real-time information is displayed along a platform of the Brisbane Busway System. Image }{ Queensland Transport.}*/
+/*\figure{assets\/image32.jpeg}{Real-time information is displayed along a platform of the Brisbane 
+Busway System. Image}{ Queensland Transport.}*/
 
-/*\figure{assets\/image33.jpeg}{This time-based route map in Nagoya, Japan, allows customers to gauge the time required to travel to their destination. Image }{ Lloyd Wright.}*/
+/*\figure{assets\/image33.jpeg}{This time-based route map in Nagoya, Japan, allows customers to gauge 
+the time required to travel to their destination. Image}{ Lloyd Wright.}*/
 
 \subsection{Effective Visual Information}
 
-Information must be presented in the most effective, easiest way for everyone to understand and act on quickly. Ideally a user should not have to spend more than thirty seconds deciphering information. Careful positioning of these types of elements (such as information panels) is important so that they are visible and readable on the one hand but do not obstruct passing customer flows on the other.
+Information must be presented in the most effective, easiest way for everyone to understand and act 
+on quickly. Ideally a user should not have to spend more than thirty seconds deciphering information. 
+Careful positioning of these types of elements (such as information panels) is important so that they 
+are visible and readable on the one hand but do not obstruct passing customer flows on the other.
 
 Best practices for visual, customer information
 
-Simplicity: The first and most important rule is that information must be presented as simply as possible. One can make use of design techniques and color contrasts in order to provide the simplest and most effective visual presentation. An arrow, for instance, if well placed and properly designed, can convey almost all needed information in some cases (e.g., showing where to walk in order to arrive at an exit). The basic rule is less is more. It may be tempting to include more information than necessary with the intention of being comprehensive, but this is almost always counterproductive, confusing the customer.
+Simplicity: The first and most important rule is that information must be presented as simply as possible. 
+One can make use of design techniques and color contrasts in order to provide the simplest and most effective 
+visual presentation. An arrow, for instance, if well placed and properly designed, can convey almost 
+all needed information in some cases (e.g., showing where to walk in order to arrive at an exit). The 
+basic rule is less is more. It may be tempting to include more information than necessary with the intention 
+of being comprehensive, but this is almost always counterproductive, confusing the customer.
 
-Unity: All visual information for customers must be based on a consistent set of design rules, which in turn are part of the corporate image of the system. This is especially true when using colors, since these will convey messages in themselves if used as part of a coherent whole. For instance, a BRT system that uses the color yellow to mean “this is an entrance” will not need to write the word entrance if visual information is designed coherently and as a whole.
+Unity: All visual information for customers must be based on a consistent set of design rules, which 
+in turn are part of the corporate image of the system. This is especially true when using colors, since 
+these will convey messages in themselves if used as part of a coherent whole. For instance, a BRT system 
+that uses the color yellow to mean “this is an entrance” will not need to write the word entrance if 
+visual information is designed coherently and as a whole.
 
-Coherence and integration: All visual information must be coherent with existent signaling systems and codes. For instance, it is commonly understood that the color red means “stop” or “caution,” while the color green means “go.” Each country or city will have its own particular and historical visual information systems, which must be respected when developing a new traveler information system.
+Coherence and integration: All visual information must be coherent with existent signaling systems 
+and codes. For instance, it is commonly understood that the color red means “stop” or “caution,” while 
+the color green means “go.” Each country or city will have its own particular and historical visual information 
+systems, which must be respected when developing a new traveler information system.
 
-Colors versus numbers\/letters: A common question among designers is whether people understand colors better than numbers or letters, and if information should be conveyed exclusively through one or both. Some cities are used to complex numbering\/lettering systems in their streets or other urban information systems, while other cities have used colors and even pictograms to present information. The right answer depends on the population being served, but in general, any option can work as long as the system is clear and consistent.
+Colors versus numbers\/letters: A common question among designers is whether people understand colors 
+better than numbers or letters, and if information should be conveyed exclusively through one or both. 
+Some cities are used to complex numbering\/lettering systems in their streets or other urban information 
+systems, while other cities have used colors and even pictograms to present information. The right answer 
+depends on the population being served, but in general, any option can work as long as the system is 
+clear and consistent.
 
-People versus machines: When given the option between relying on printed information or a person, users generally prefer to ask the person rather than looking into the details of the map. This tendency is so strong that, in many cases, people will prefer to ask other travelers rather than checking the map, even if those travelers are not necessarily well informed about the system. Obviously, official staff of the system (or police guards, or anyone with some relation to the BRT system) will be preferred over asking a fellow traveler. This is much better for concerned travelers because they know that they must only ask “what service do I need to get off at X station,” and they can also ask follow-up questions based on the answers they receive. With most visual information, none of these are options.
+People versus machines: When given the option between relying on printed information or a person, users 
+generally prefer to ask the person rather than looking into the details of the map. This tendency is 
+so strong that, in many cases, people will prefer to ask other travelers rather than checking the map, 
+even if those travelers are not necessarily well informed about the system. Obviously, official staff 
+of the system (or police guards, or anyone with some relation to the BRT system) will be preferred over 
+asking a fellow traveler. This is much better for concerned travelers because they know that they must 
+only ask “what service do I need to get off at X station,” and they can also ask follow-up questions 
+based on the answers they receive. With most visual information, none of these are options.
 
-Ask users: This entire volume describes different ways of collecting information from users in order to know how the system should be planned and to gather information about their concerns or comments regarding system performance. This also applies to traveler information systems. Despite the fact that information design is a well-established discipline that has standard rules on how to develop information and present it properly, no piece of information can be confirmed until it has been validated by users. It must be clear that users have various groups (depending on age, level of schooling, special needs), and that users can be either frequent (i.e., those who use the system daily) or sporadic (i.e., those who use it once every now and then, or foreigners who will use the system only for a few days). These users must be integrated into consultation because a customer information system is most useful especially to those who are using it for the first time rather than those who have used it for a considerable time. This could also have a positive impact on ridership of the system.
+Ask users: This entire volume describes different ways of collecting information from users in order 
+to know how the system should be planned and to gather information about their concerns or comments regarding 
+system performance. This also applies to traveler information systems. Despite the fact that information 
+design is a well-established discipline that has standard rules on how to develop information and present 
+it properly, no piece of information can be confirmed until it has been validated by users. It must be 
+clear that users have various groups (depending on age, level of schooling, special needs), and that 
+users can be either frequent (i.e., those who use the system daily) or sporadic (i.e., those who use 
+it once every now and then, or foreigners who will use the system only for a few days). These users must 
+be integrated into consultation because a customer information system is most useful especially to those 
+who are using it for the first time rather than those who have used it for a considerable time. This 
+could also have a positive impact on ridership of the system.
 
-Integrating customer information into BRT system design: Though customer information is normally seen as a complement of system planning, it can also work the other way around: in some BRT systems, operations are so complex that users fail to fully understand them regardless of the efforts of the designers. If this is the case and designers find that users cannot understand some features of the system, it means that the system will not necessarily be used to its fullest potential. Thus, whenever users express their confusion regarding specific operational characteristics of a BRT, system planners must reflect upon the usefulness of having those features and consider removing them completely if no solution is found. The more intuitive the system is to use, the less need there is for additional information.
+Integrating customer information into BRT system design: Though customer information is normally seen 
+as a complement of system planning, it can also work the other way around: in some BRT systems, operations 
+are so complex that users fail to fully understand them regardless of the efforts of the designers. If 
+this is the case and designers find that users cannot understand some features of the system, it means 
+that the system will not necessarily be used to its fullest potential. Thus, whenever users express their 
+confusion regarding specific operational characteristics of a BRT, system planners must reflect upon 
+the usefulness of having those features and consider removing them completely if no solution is found. 
+The more intuitive the system is to use, the less need there is for additional information.
 
-Get the experts: In the same way that experts must design BRT operations, customer information systems are also very complex in terms of their design. Graphic designers, communication experts, and social scientists should be hired to develop the customer information system in close cooperation with system planners.
+Get the experts: In the same way that experts must design BRT operations, customer information systems 
+are also very complex in terms of their design. Graphic designers, communication experts, and social 
+scientists should be hired to develop the customer information system in close cooperation with system 
+planners.
 
-Adapt design to local legislation: National and city legislation is normally very specific with regard to what can be presented in and outside of transport system stations, and on how information must be presented in terms of colors, materials, sizes, etc. Of course, this legislation must always be followed, but if the design team judges that some elements should be modified to convey information better, they should decide if it is worth making a formal appeal to the authority, and if there is sufficient time to incorporate any changes into the design of information systems.
+Adapt design to local legislation: National and city legislation is normally very specific with regard 
+to what can be presented in and outside of transport system stations, and on how information must be 
+presented in terms of colors, materials, sizes, etc. Of course, this legislation must always be followed, 
+but if the design team judges that some elements should be modified to convey information better, they 
+should decide if it is worth making a formal appeal to the authority, and if there is sufficient time 
+to incorporate any changes into the design of information systems.
 
-/*\figure{assets\/image34.jpeg}{After just a few weeks of operation, stations along the Parajitos busway in Santiago, Chile, are covered with graffiti, making their information areas unusable. Image }{ Lloyd Wright.}*/
+/*\figure{assets\/image34.jpeg}{After just a few weeks of operation, stations along the Parajitos busway 
+in Santiago, Chile, are covered with graffiti, making their information areas unusable. Image}{ Lloyd 
+Wright.}*/
 
-/*\figure{assets\/image35.jpeg}{Information displays at a BRT station in the Jinan, China, system provide the real-time position of BRT buses along the corridor. Photo }{ ITDP.}*/
+/*\figure{assets\/image35.jpeg}{Information displays at a BRT station in the Jinan, China, system provide 
+the real-time position of BRT buses along the corridor. Photo}{ ITDP.}*/
 
 \subsection{Types of Information}
 
-Information can be provided in many ways in a BRT system. Technological options have been increasing, while costs are plummeting. The most important consideration is that information be provided when and where travelers need it. In some cases digital information will work best; in others, print will be more useful.
+Information can be provided in many ways in a BRT system. Technological options have been increasing, 
+while costs are plummeting. The most important consideration is that information be provided when and 
+where travelers need it. In some cases digital information will work best; in others, print will be more 
+useful.
 
-In general, information that must be modified or updated frequently (e.g., the service that a vehicle is providing at a given time or the upcoming vehicles that are arriving at the station) should be presented digitally. Information that must be studied more carefully by travelers and that has greater complexity of graphics and information lends itself better to print form. This is also related to information that is static or dynamic as described below.
+In general, information that must be modified or updated frequently (e.g., the service that a vehicle 
+is providing at a given time or the upcoming vehicles that are arriving at the station) should be presented 
+digitally. Information that must be studied more carefully by travelers and that has greater complexity 
+of graphics and information lends itself better to print form. This is also related to information that 
+is static or dynamic as described below.
 
 The typical set of information that should be included in any BRT system:
 \item City\/area maps with system indications: Maps of the city or the area of the city with the station and nearby stations indicated. These should be large and located inside or outside of the station near the exits;
@@ -97,41 +202,79 @@ The typical set of information that should be included in any BRT system:
 \item Signage: Generally provide directional information helping users to find their way around the transport facility and improve customer movements;
 \item Web and mobile applications (as discussed in Chapter 9).
 
-/*\figure{assets\/image36.jpeg}{The Quito Trolé line provides an area map and a detailed map of the individual line stops at each station. Image }{ Lloyd Wright.}*/
+/*\figure{assets\/image36.jpeg}{The Quito Trolé line provides an area map and a detailed map of the 
+individual line stops at each station. Image}{ Lloyd Wright.}*/
 
-How the information is presented depends on the type of information. Generally, printed information is static, composed of maps of the system or of specific routes, and consists of anything that has greater level of detail and is modified with less frequency. Dynamic information that is modified frequently should be presented in digital displays. This includes real-time information on upcoming services, service disruptions, or general messages from system management. This information is generally “simple” in the sense that it will not need interaction from users and will only provide information in letters and numbers.
+How the information is presented depends on the type of information. Generally, printed information 
+is static, composed of maps of the system or of specific routes, and consists of anything that has greater 
+level of detail and is modified with less frequency. Dynamic information that is modified frequently 
+should be presented in digital displays. This includes real-time information on upcoming services, service 
+disruptions, or general messages from system management. This information is generally “simple” in the 
+sense that it will not need interaction from users and will only provide information in letters and numbers.
 
-There is also dynamic information that is complex, meaning that users will need to interact with a screen or information panel in order to request and receive further information. This is the case of route planners (via websites, mobile phones, or machines at stations), where users will provide their origin and destination (or only their destination, when they use a machine at a station) and will receive information on the most appropriate services that can be used for their particular trip.
+There is also dynamic information that is complex, meaning that users will need to interact with a 
+screen or information panel in order to request and receive further information. This is the case of 
+route planners (via websites, mobile phones, or machines at stations), where users will provide their 
+origin and destination (or only their destination, when they use a machine at a station) and will receive 
+information on the most appropriate services that can be used for their particular trip.
 
-This is the most flexible of all systems of information. It is particularly complex to design, manage, and operate from the “back end” of the service, especially when machines are provided at stations. They must have very robust operation systems and software structure to avoid blocking or disruption when they are used heavily (e.g., at system terminals).
+This is the most flexible of all systems of information. It is particularly complex to design, manage, 
+and operate from the “back end” of the service, especially when machines are provided at stations. They 
+must have very robust operation systems and software structure to avoid blocking or disruption when they 
+are used heavily (e.g., at system terminals).
 
-/*\figure{assets\/image37.jpeg}{The BRT in Guangzhou, China, provides dynamic real-time information digitally on vehicle arrivals. Image }{ ITDP.}*/
+/*\figure{assets\/image37.jpeg}{The BRT in Guangzhou, China, provides dynamic real-time information 
+digitally on vehicle arrivals. Image}{ ITDP.}*/
 
 \subsection{Locations of Customer Information}
 
-The placement of information in a BRT system requires careful planning. The following is a set of common locations where BRT planners should consider posting information as they attempt to address the individual concerns of each locale.
+The placement of information in a BRT system requires careful planning. The following is a set of common 
+locations where BRT planners should consider posting information as they attempt to address the individual 
+concerns of each locale.
 
 Everywhere: System Staff
 
-As was described above, customers prefer asking system staff or even other users for information regarding the best way to get to their destination. System staff should be located in proximity to both users and system information maps. This will aid travelers in understanding information systems and allow them to request additional help if needed. Access to system personnel is also very important for people with special needs who will request help from people to get to their destination, as described later in the chapter.
+As was described above, customers prefer asking system staff or even other users for information regarding 
+the best way to get to their destination. System staff should be located in proximity to both users and 
+system information maps. This will aid travelers in understanding information systems and allow them 
+to request additional help if needed. Access to system personnel is also very important for people with 
+special needs who will request help from people to get to their destination, as described later in the 
+chapter.
 
 External Venues near the Station: Printed Information
 
-External venues, such as a shopping mall or a park, should have information about nearby BRT stations. People, especially tourists who will visit these venues, will want to access general information regarding the location of the nearest BRT station, and what service is available at that station. If customers can take the BRT from this location to another public attraction, then information should be clearly posted at exit points.
+External venues, such as a shopping mall or a park, should have information about nearby BRT stations. 
+People, especially tourists who will visit these venues, will want to access general information regarding 
+the location of the nearest BRT station, and what service is available at that station. If customers 
+can take the BRT from this location to another public attraction, then information should be clearly 
+posted at exit points.
 
 Outside the Station Entrance: Station Map
 
-Since users must pay to enter the station, it is crucial to provide information on the system and the services that stop there right outside of the station. A station map would be useful here with a specific “you are here” indication and some level of detail of the specific services that can be taken there and the general destinations that can be reached through the system (and, more specifically, the trunk line that passes through that particular station). Generally, large totems are used for this purpose.
+Since users must pay to enter the station, it is crucial to provide information on the system and the 
+services that stop there right outside of the station. A station map would be useful here with a specific 
+“you are here” indication and some level of detail of the specific services that can be taken there and 
+the general destinations that can be reached through the system (and, more specifically, the trunk line 
+that passes through that particular station). Generally, large totems are used for this purpose.
 
 Inside the Station: Service Signs
 
-The station interior may be long and have various sections or wagons depending on the extension and service complexity of the BRT. If the station has multiple doors in both directions, it must indicate where customers can find particular services and how they are grouped (by final destination, specific location, local and express services, etc.). In this case, travelers will want to know where they should look for more details about their service.
+The station interior may be long and have various sections or wagons depending on the extension and 
+service complexity of the BRT. If the station has multiple doors in both directions, it must indicate 
+where customers can find particular services and how they are grouped (by final destination, specific 
+location, local and express services, etc.). In this case, travelers will want to know where they should 
+look for more details about their service.
 
 Inside the Station: Information Panels, Maps, and Digital Information
 
-The location of information on more comprehensive panels, including maps, should be placed strategically. A station map will attract crowding around it and can negatively affect circulation in the vicinity. In general, having more than one map that can provide all necessary information to users throughout the station is a good idea.
+The location of information on more comprehensive panels, including maps, should be placed strategically. 
+A station map will attract crowding around it and can negatively affect circulation in the vicinity. 
+In general, having more than one map that can provide all necessary information to users throughout the 
+station is a good idea.
 
-As an alternative to information panels, interactive kiosks work well to provide specific information regarding system services and will respond to specific requests from users (i.e., what service they must take to go to their destination), although only one person at a time can use them.
+As an alternative to information panels, interactive kiosks work well to provide specific information 
+regarding system services and will respond to specific requests from users (i.e., what service they must 
+take to go to their destination), although only one person at a time can use them.
 
 Inside the Station in Front of Boarding Doors
 
@@ -139,81 +282,181 @@ Information regarding the specific services and schedules can be posted on doors
 
 Outside of the Vehicle
 
-Information regarding the specific service that a vehicle is operating should be presented outside of the vehicle (preferably on the side, rear, and front). Since vehicles can change services more than once a day, digital displays are recommended. This is also useful at nighttime when it is difficult for customers to read without proper illumination.
+Information regarding the specific service that a vehicle is operating should be presented outside 
+of the vehicle (preferably on the side, rear, and front). Since vehicles can change services more than 
+once a day, digital displays are recommended. This is also useful at nighttime when it is difficult for 
+customers to read without proper illumination.
 
 Inside of the Vehicle
 
-Once inside the vehicle, customers must be alerted to upcoming station stops. In express services, it is advisable that users are informed of the next two or more stops. Synchronized digital displays and audio announcements can provide this information about the next stop, interchange options, and are also suitable for the visually impaired. Dynamic maps of routes are also useful for presenting a list of all upcoming stations. Again, frequent service changes imply that digital information may be a better choice than printed information.
+Once inside the vehicle, customers must be alerted to upcoming station stops. In express services, 
+it is advisable that users are informed of the next two or more stops. Synchronized digital displays 
+and audio announcements can provide this information about the next stop, interchange options, and are 
+also suitable for the visually impaired. Dynamic maps of routes are also useful for presenting a list 
+of all upcoming stations. Again, frequent service changes imply that digital information may be a better 
+choice than printed information.
 
 Between Vehicle and Station
 
-Before leaving the vehicle, travelers must ensure that they are alighting at the station they expect. This can be confirmed by the information inside the vehicle when approaching the station, and it should also be indicated clearly on the outside of the station, e.g., on station doors with station name. Travelers can also confirm where they can find the exit(s) of the station depending on their final destination (when stations have more than one exit). This information needs to be carefully positioned at window-height so it can be seen by seated and standing customers from inside the vehicle.
+Before leaving the vehicle, travelers must ensure that they are alighting at the station they expect. 
+This can be confirmed by the information inside the vehicle when approaching the station, and it should 
+also be indicated clearly on the outside of the station, e.g., on station doors with station name. Travelers 
+can also confirm where they can find the exit(s) of the station depending on their final destination 
+(when stations have more than one exit). This information needs to be carefully positioned at window-height 
+so it can be seen by seated and standing customers from inside the vehicle.
 
 11.7.5 Accessible Customer Service Systems
 
-An important constituency to consider when designing customer information and customer service systems is that of individuals with special needs. This includes customers with physical and mental disabilities, language barriers, and those who are visually impaired. Incorporating the needs of these users is essential to providing a fully accessible BRT system. Information for special needs groups may be either incorporated into the “main” information system or delivered through alternative media, implying in many cases the development of a parallel customer information system.
+An important constituency to consider when designing customer information and customer service systems 
+is that of individuals with special needs. This includes customers with physical and mental disabilities, 
+language barriers, and those who are visually impaired. Incorporating the needs of these users is essential 
+to providing a fully accessible BRT system. Information for special needs groups may be either incorporated 
+into the “main” information system or delivered through alternative media, implying in many cases the 
+development of a parallel customer information system.
 
-Remember that developing accessible information systems benefits everyone, not just those with special needs. In many countries, making your system accessible to everyone is required by law. Engage with representatives of this community in designing your system. Full details on the topic of universal access are available in Chapter 30: Universal Access, of this guide.
+Remember that developing accessible information systems benefits everyone, not just those with special 
+needs. In many countries, making your system accessible to everyone is required by law. Engage with representatives 
+of this community in designing your system. Full details on the topic of universal access are available 
+in Chapter 30: Universal Access, of this guide.
 
 People with Physical Disabilities
 
-There are many forms of physical disabilities, some requiring the use of wheelchairs or walkers. The location of an information panel must be evaluated based on the average height of the population but also based on the heights of people in wheelchairs so that they can read all information presented. Complex dynamic information systems must also be adapted for people who cannot use touch screens, possibly by means of sound sensors or other technology.
+There are many forms of physical disabilities, some requiring the use of wheelchairs or walkers. The 
+location of an information panel must be evaluated based on the average height of the population but 
+also based on the heights of people in wheelchairs so that they can read all information presented. Complex 
+dynamic information systems must also be adapted for people who cannot use touch screens, possibly by 
+means of sound sensors or other technology.
 
 People with Language Barriers
 
-Depending on the population the BRT will serve, it may be necessary to display information in symbols or images in addition to one or several languages. This will also be useful to foreigners and in countries where official languages are not necessarily those which are spoken by the entire population. A combination of symbols and sentences may also be useful for quick comprehension for everyone.
+Depending on the population the BRT will serve, it may be necessary to display information in symbols 
+or images in addition to one or several languages. This will also be useful to foreigners and in countries 
+where official languages are not necessarily those which are spoken by the entire population. A combination 
+of symbols and sentences may also be useful for quick comprehension for everyone.
 
 People with Visual Impairments
 
-For the blind or partially blind, availability of tactile and\/or audio information from station entrances through the station and until arriving at the vehicle can be helpful. As a rule, blind customers require audible or tactile information such as tactile guideways, tactile warning strips, and Braille (if desired), or more sophisticated Remote Infrared Audible Signage (RIAS) or other navigation aids. For those who have some level of vision, but may not be able to read small print or complex diagrams, including the elderly, it is important to evaluate whether font size and type are adequate for reading. Another group with visual difficulties includes the color-blind, who may not be able to discern different colors in a map. This is also why contrast is so important in presenting routes and line colors in maps.
+For the blind or partially blind, availability of tactile and\/or audio information from station entrances 
+through the station and until arriving at the vehicle can be helpful. As a rule, blind customers require 
+audible or tactile information such as tactile guideways, tactile warning strips, and Braille (if desired), 
+or more sophisticated Remote Infrared Audible Signage (RIAS) or other navigation aids. For those who 
+have some level of vision, but may not be able to read small print or complex diagrams, including the 
+elderly, it is important to evaluate whether font size and type are adequate for reading. Another group 
+with visual difficulties includes the color-blind, who may not be able to discern different colors in 
+a map. This is also why contrast is so important in presenting routes and line colors in maps.
 
 People with Hearing Impairments
 
-Like visual impairments, hearing impairments take many forms. These customers require text information or the use of various, more advanced technical solutions. To begin with, there should always be full information in written form, and if audio cues signal the approach of a vehicle, there should also be a corresponding visual cue, like a blinking light.
+Like visual impairments, hearing impairments take many forms. These customers require text information 
+or the use of various, more advanced technical solutions. To begin with, there should always be full 
+information in written form, and if audio cues signal the approach of a vehicle, there should also be 
+a corresponding visual cue, like a blinking light.
 
 People with Mental Impairments
 
-Those with mental impairments may have particular difficulty understanding complex maps or large amounts of information that include many steps, but keeping information simple is also good practice for the general population. Though this has more to do with operational planning specifically, traveler information systems can also help in providing more adequate information for this group. For example, complex dynamic systems may be clearer containing only essential information, or staff should be available for assistance.
+Those with mental impairments may have particular difficulty understanding complex maps or large amounts 
+of information that include many steps, but keeping information simple is also good practice for the 
+general population. Though this has more to do with operational planning specifically, traveler information 
+systems can also help in providing more adequate information for this group. For example, complex dynamic 
+systems may be clearer containing only essential information, or staff should be available for assistance.
 
-In addition to the design requirements for accessibility, customer service staff must complement these systems. No matter how well a station or system is designed, there will be cases when human help is needed. Customer service station staff should be available to guide members of these groups in entering the station, choosing the right service, and boarding and alighting the vehicle. It is important to remember that most people, especially those with disabilities, would generally prefer to be able to navigate the system on their own, so help should only be offered when it appears necessary or in response to questions.
+In addition to the design requirements for accessibility, customer service staff must complement these 
+systems. No matter how well a station or system is designed, there will be cases when human help is needed. 
+Customer service station staff should be available to guide members of these groups in entering the station, 
+choosing the right service, and boarding and alighting the vehicle. It is important to remember that 
+most people, especially those with disabilities, would generally prefer to be able to navigate the system 
+on their own, so help should only be offered when it appears necessary or in response to questions.
 
-In general, the entire field of travel information for those with disabilities is growing and becoming more complex. It is important to refer BRT planners, engineers, etc., to the literature that is available, and to details in Chapter 30: Universal Access, of this guide. Some useful resources to start with are  and .
+In general, the entire field of travel information for those with disabilities is growing and becoming 
+more complex. It is important to refer BRT planners, engineers, etc., to the literature that is available, 
+and to details in Chapter 30: Universal Access, of this guide. Some useful resources to start with are 
+ and .
 
 11.7.6 Online Customer Service
 
-Although customer service should not be limited to online interactions, providing service through a website or mobile app is increasingly necessary and can be very convenient for those customers who prefer go to online. Online customer service is often called the user interface.
+Although customer service should not be limited to online interactions, providing service through a 
+website or mobile app is increasingly necessary and can be very convenient for those customers who prefer 
+go to online. Online customer service is often called the user interface.
 
-The most commonly used web tool for transport systems is the route planner. Users must be able to easily and quickly identify how they can get an answer on the most appropriate service they must take to arrive at their destination. The interface should be as simple as possible, asking users where they are starting their trip (address, landmark, or station), and where they want to arrive. When using a smartphone that is GPS-enabled or if the device is located inside a station, the first step can be avoided.
+The most commonly used web tool for transport systems is the route planner. Users must be able to easily 
+and quickly identify how they can get an answer on the most appropriate service they must take to arrive 
+at their destination. The interface should be as simple as possible, asking users where they are starting 
+their trip (address, landmark, or station), and where they want to arrive. When using a smartphone that 
+is GPS-enabled or if the device is located inside a station, the first step can be avoided.
 
-Customers should be able to click or tap on these locations or have the option to write only a portion of the station or landmark name and have the system fill in the rest to ensure that they are choosing the right station. Software developers must always integrate a system that is flexible in interpreting information, meaning that customers should not need to have perfect spelling and should not be expected to write accents, and the system should integrate an auto-complete function in the query.
+Customers should be able to click or tap on these locations or have the option to write only a portion 
+of the station or landmark name and have the system fill in the rest to ensure that they are choosing 
+the right station. Software developers must always integrate a system that is flexible in interpreting 
+information, meaning that customers should not need to have perfect spelling and should not be expected 
+to write accents, and the system should integrate an auto-complete function in the query.
 
-The ideal web-based route planner should have software that is able to recognize what the closest station is to where the customer is located, what is the current scheduling that applies (off-peak, peak, nighttime, all day) and which is the best, or shortest, route to arrive at the desired destination. The system should have default\/user-specific values for:
+The ideal web-based route planner should have software that is able to recognize what the closest station 
+is to where the customer is located, what is the current scheduling that applies (off-peak, peak, nighttime, 
+all day) and which is the best, or shortest, route to arrive at the desired destination. The system should 
+have default\/user-specific values for:
 \item Transfer preferences (generally, none are preferred);
 \item Duration of trip (shortest is generally preferred);
 \item Use of local or express services;
 \item Availability of bicycle parking\/bicycle taxis\/feeder routes\/public bicycles;
 \item Desired level of comfort (i.e., crowded or being guaranteed a seat).
 
-These default values should be updated based on current settings and on complex queries given by travelers, or on users’ own registered values, if the system has a registration service.
+These default values should be updated based on current settings and on complex queries given by travelers, 
+or on users’ own registered values, if the system has a registration service.
 
-The web-based system can also include traveler registration, where users will provide their general demographic details if they choose and their preferred mode of travel according to the values specified above plus their typical origin or destination. Thus, every time they log in to the system, they will not have to provide full information on any of these variables. Mobile integration is essential, as most people will want to use the route planner when they are out and when their plans change.
+The web-based system can also include traveler registration, where users will provide their general 
+demographic details if they choose and their preferred mode of travel according to the values specified 
+above plus their typical origin or destination. Thus, every time they log in to the system, they will 
+not have to provide full information on any of these variables. Mobile integration is essential, as most 
+people will want to use the route planner when they are out and when their plans change.
 
-In addition to the route planner, there should be options for customer questions, complaint, and feedback. This is a valuable way to collect information about your system from the people who actually use it.
+In addition to the route planner, there should be options for customer questions, complaint, and feedback. 
+This is a valuable way to collect information about your system from the people who actually use it.
 
 11.7.7 Customer Complaints and Feedback
 
-It is important to continuously take in and review comments and complaints regarding the system in terms of its operations, maintenance, staff behavior, and any other issue that is of interest to customers and system planners. There are many different methods that can be used to collect suchuser feedback and use it to improve the system. It is gratifying for participants in that feedback loop when they see their concerns addressed. More information on the methods of collecting information is described in Chapter 9: Strategic Planning for Communications.
+It is important to continuously take in and review comments and complaints regarding the system in 
+terms of its operations, maintenance, staff behavior, and any other issue that is of interest to customers 
+and system planners. There are many different methods that can be used to collect suchuser feedback and 
+use it to improve the system. It is gratifying for participants in that feedback loop when they see their 
+concerns addressed. More information on the methods of collecting information is described in Chapter 
+9: Strategic Planning for Communications.
 
-In general, user feedback is one of the most useful ways to improve system services and should be actively sought. Regardless of the level of aggressiveness with which users present their complaints or comments, any information that is provided by users will be crucial to understand how the system is operating and how it can be improved. The fact that system managers are actively seeking such information will also generate very positive reactions from users, especially when their comments have specific responses from system management in terms of explanations or specific solutions that are given to them in return. This also has linkages with the use of social media as described in Chapter 9, since it is very easy to receive and give almost immediate feedback to social media users when they are indicating their concerns by those means.
+In general, user feedback is one of the most useful ways to improve system services and should be actively 
+sought. Regardless of the level of aggressiveness with which users present their complaints or comments, 
+any information that is provided by users will be crucial to understand how the system is operating and 
+how it can be improved. The fact that system managers are actively seeking such information will also 
+generate very positive reactions from users, especially when their comments have specific responses from 
+system management in terms of explanations or specific solutions that are given to them in return. This 
+also has linkages with the use of social media as described in Chapter 9, since it is very easy to receive 
+and give almost immediate feedback to social media users when they are indicating their concerns by those 
+means.
 
-There must always be a system in place for dealing with customer complaints, whether they are received online or in person. Staff should be trained on the protocol for addressing complaints and be equipped with the ability to offer solutions. This includes offering free rides or priority boarding if that will solve the problem or being aware of the process of issuing a formal complaint to the system operators. The most important thing to remember is that those who complain, no matter how polite or aggressive they may be, all simply want their complaints to be heard and taken seriously by customer service staff. If a customer is being disruptive, there should also be protocols in place to deal with that situation.
+There must always be a system in place for dealing with customer complaints, whether they are received 
+online or in person. Staff should be trained on the protocol for addressing complaints and be equipped 
+with the ability to offer solutions. This includes offering free rides or priority boarding if that will 
+solve the problem or being aware of the process of issuing a formal complaint to the system operators. 
+The most important thing to remember is that those who complain, no matter how polite or aggressive they 
+may be, all simply want their complaints to be heard and taken seriously by customer service staff. If 
+a customer is being disruptive, there should also be protocols in place to deal with that situation.
 
-Despite the fact that users may not have a complete understanding of how the system is managed, who is in charge of operations, vehicles, or fare collection, or even who is in charge of maintaining stations, the customer service representative must represent the brand by being professional and courteous. Some simple ways to address customer complaints include:
+Despite the fact that users may not have a complete understanding of how the system is managed, who 
+is in charge of operations, vehicles, or fare collection, or even who is in charge of maintaining stations, 
+the customer service representative must represent the brand by being professional and courteous. Some 
+simple ways to address customer complaints include:
 \item Providing accurate information to users regarding solutions being sought (or which have been accomplished) regarding their complaint;
 \item Forwarding information to the appropriate parties promptly (system management, operating companies, infrastructure developers, station management, fare collection);
 \item Systematizing all information and feedback that is provided and distributing it to system managers and planners for immediate or future improvements of the service;
 \item Including remarks or issues in the system website FAQs, guides, maps, or other locations.
 
-An important issue when collecting users’ feedback or comments on the system is time. For instance, a ten-minute survey will not be responded to by someone who has a twenty-minute ride to work in the morning. Methods like riding in the vehicle with users and collecting information from them can be done, though this poses a challenge if vehicles are crowded and collecting formats are large (i.e., A4-sized sheets of paper).
+An important issue when collecting users’ feedback or comments on the system is time. For instance, 
+a ten-minute survey will not be responded to by someone who has a twenty-minute ride to work in the morning. 
+Methods like riding in the vehicle with users and collecting information from them can be done, though 
+this poses a challenge if vehicles are crowded and collecting formats are large (i.e., A4-sized sheets 
+of paper).
 
-If these measures to collect feedback are not kept short and easy, the results of surveys can be biased since the only users who will respond to long surveys may be those who have arrived at a station much earlier than usual or those who do not have a specific time of arrival (generally unemployed or elderly groups). Thus, these responses cannot be generalized to all users of the system. As with the beginning of this process, it is valuable to consult with professional service organizations that specialize in conducting surveys.
+If these measures to collect feedback are not kept short and easy, the results of surveys can be biased 
+since the only users who will respond to long surveys may be those who have arrived at a station much 
+earlier than usual or those who do not have a specific time of arrival (generally unemployed or elderly 
+groups). Thus, these responses cannot be generalized to all users of the system. As with the beginning 
+of this process, it is valuable to consult with professional service organizations that specialize in 
+conducting surveys.
