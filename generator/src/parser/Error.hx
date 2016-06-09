@@ -143,6 +143,13 @@ class BadValue extends GenericError {
 	}
 }
 
+class UnexpectedCommand extends GenericError {
+	var suggestion:Null<String>;
+
+	override public function get_text()
+		return 'Unexpected command $at';
+}
+
 class UnknownCommand extends GenericError {
 	var suggestion:Null<String>;
 

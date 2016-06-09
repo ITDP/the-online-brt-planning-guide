@@ -483,6 +483,8 @@ class Test_03_Parser {
 		Assert.same(
 			expand(@wrap(10,7)Box(VList([Paragraph(@len(1)Word("a")),@skip(2)Paragraph(@len(1)Word("b"))]))),
 			parse("\\beginbox a\n\nb\\endbox"));
+
+		parsingError("\\endbox", UnexpectedCommand, ~/\\endbox/);
 	}
 
 	// FIXME
@@ -525,6 +527,8 @@ class Test_03_Parser {
 					@wrap(6,0)Paragraph(@len(1)Word("1")),
 					@wrap(6,0)Paragraph(@len(1)Word("2")) ])] ])),
 			parse("\\begintable{a}\\header\\col x\\col y\\row\\col list\\col \\item 1\\item 2\\endtable"));
+
+		parsingError("\\endtable", UnexpectedCommand, ~/\\endtable/);
 	}
 }
 
