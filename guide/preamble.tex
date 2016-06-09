@@ -36,11 +36,12 @@
 \titleformat{\chapter}[display]{\bfseries\LARGE\color{greenbrt}\sffamily}{}{0pt}{\thechapter.\ }[]
 \titleformat*{\section}{\bfseries\Large\color{greenbrt}\sffamily}
 \titleformat*{\subsection}{\bfseries\large\color{greenbrt}\sffamily}
-\titleformat*{\subsubsection}{\bfseries\\color{greenbrt}\sffamily}
+\titleformat*{\subsubsection}{\bfseries\color{greenbrt}\sffamily}
 \let\volume\part
 
 %box
 \usepackage{mdframed}
+\newcommand{\boxtitle}[2]{{\noindent\bfseries\color{greenbrt}\sffamily Box \thechapter.#1. #2} \\ }
 \mdfsetup{innerleftmargin=6.75mm,innerrightmargin=6.75mm,innertopmargin=8.75mm,innerbottommargin=8.75mm,skipabove=12.75pt,skipbelow=12.75pt,linewidth=0.25mm,linecolor=gray50}
 \def\beginbox{
 	\mdframed[usetwoside=false]
@@ -53,16 +54,21 @@
 	
 %list
 \usepackage{enumitem}
-\setlist{nolistsep,leftmargin=28pt,rightmargin=28pt}
-\labelindent=28pt
+\setlist{nolistsep,leftmargin=14mm,rightmargin=14mm}
+\labelindent=14mm
 
 %images - img {width(mm)}{filename} - fignote{figure number}{text}{credits}
 \usepackage{graphicx}
 \newcommand{\img}[2]{\noindent\centering\includegraphics[width=#1mm]{#2} \\}
-\newcommand{\fignote}[3]{\noindent\raggedright\footnotesize\sffamily\color{gray50}{\bfseries Figure \thechapter.#1.} #2 \textit{#3} \par}
+\newcommand{\fignote}[3]{\noindent\raggedright\footnotesize\sffamily\color{gray50}{\bfseries Figure \thechapter.#1.} #2 {\itshape #3} \par}
 
 %quotation {quote}{name, about, 1900 - 2000}
 \renewcommand{\quotation}[2]{\begingroup\leftskip=14mm\rightskip=14mm {\small\color{gray50} \noindent\textit{``#1''} \\\hbox{}\hfill --- #2} \par\endgroup}
+
+%tables
+\usepackage{ifoddpage}
+\newcommand{\tabletitle}[2]{{\noindent\bfseries\color{greenbrt}\sffamily Table \thechapter.#1. #2} \\ }
+\newcommand{\tablesource}[1]{\noindent\raggedright\footnotesize\sffamily\color{gray50}{\bfseries Source:} #1 \par \smallskip}
 
 %tmp
 \usepackage{lipsum}
