@@ -10,8 +10,8 @@ class LargeTable {
 	// internal commands; for now, no real expectation of tunning them at runtime
 	static inline var CHAR_COST = 1;
 	static inline var SPACE_COST = 1;
-	static inline var PAR_BREAK_COST = 10;
-	static inline var LINE_BREAK_COST = 10;
+	static inline var PAR_BREAK_COST = 20;
+	static inline var LINE_BREAK_COST = -20;
 	static inline var BULLET_COST = 1;
 	static inline var FIG_MARK_COST = 10;
 	static inline var TBL_MARK_COST = 10;
@@ -119,30 +119,44 @@ class LargeTable {
 	{
 		assert(v.def.match(TTable(_)), v);
 		switch v.def {
-		// case TTable(SmallWidth, caption, header, rows, count, id):
-		// 	return "";  // TODO
 		case TTable(size, caption, header, rows, count, id):
-			var large = size.match(FullWidth);
-			var noModules = large ? NO_MODULES_LARGE : NO_MODULES;
-			var colWidths = computeTableWidths(noModules, header, rows);
 			var buf = new StringBuf();
 			buf.add('% FIXME\nTable ${gen.genh(caption)}:\n\n');
 			var width = header.length;
-			buf.add('\\halign to ${noModules}\\tablemodule{%');
-			if (large) {
-				buf.add('
-					% requires the ifoddpage package
-					\\relax\\checkoddpage\\ifoddpage\\else%
-						\\kern ${NO_MODULES-noModules}\\tablemodule%
-					\\fi%'.doctrim());
+
+			switch size {
+			case SmallWidth:
+				buf.add("\\halign {%\n\t");
+				for (i in 0...width) {
+					if (i > 0)
+						buf.add('\\hbox to ${SEPAR_SIZE*.5}\\tablemodule{}&\n\t\\hbox to ${SEPAR_SIZE*.5}\\tablemodule{}');
+					buf.add("\\sffamily\\footnotesize\\noindent#");
+				}
+			case _:
+				var large = size.match(FullWidth);
+				var noModules = large ? NO_MODULES_LARGE : NO_MODULES;
+				var colWidths = computeTableWidths(noModules, header, rows);
+				if (Main.debug) {
+					trace(v.pos);
+					trace(colWidths);
+				}
+				buf.add('\\halign to ${noModules}\\tablemodule{%');
+				if (large) {
+					buf.add('
+						% requires the ifoddpage package
+						\\relax\\checkoddpage\\ifoddpage\\else%
+							\\kern ${NO_MODULES-noModules}\\tablemodule%
+						\\fi%'.doctrim());
+				}
+				buf.add("\n\t");
+				for (i in 0...width) {
+					if (i > 0)
+						buf.add('\\hbox to ${SEPAR_SIZE*.5}\\tablemodule{}&\n\t\\hbox to ${SEPAR_SIZE*.5}\\tablemodule{}');
+					var size = colWidths[i];
+					buf.add('\\vtop{\\sffamily\\footnotesize\\noindent\\hsize=${size}\\tablemodule#}');
+				}
 			}
-			buf.add("\n\t");
-			for (i in 0...width) {
-				if (i > 0)
-					buf.add('\\hbox to ${SEPAR_SIZE*.5}\\tablemodule{}&\\hbox to ${SEPAR_SIZE*.5}\\tablemodule{}');
-				var size = colWidths[i];
-				buf.add('\\vtop{\\sffamily\\footnotesize\\noindent\\hsize=${size}\\tablemodule#}');
-			}
+
 			buf.add("\\cr\n\t");
 			function genCell(i:TElem) {
 				return switch i.def {
@@ -157,12 +171,14 @@ class LargeTable {
 				buf.add("\t");
 				if (r.length != width)
 					buf.add("% ");  // FIXME
-				buf.add(r.map(genCell).join("&"));
+				buf.add(r.map(genCell).join("&\n").split("\n").join("\n\t"));
 				buf.add("\\cr\n");
 			}
 			buf.add('}\n${gen.genp(v.pos)}\n');
 			return buf.toString();
-		case _: return "";  // should never happen
+		case _:
+			// should never happen
+			return "";
 		}
 	}
 }
