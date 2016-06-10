@@ -29,7 +29,6 @@ h6>.quad:before { content:"."; }
 p {
 	font-family: 'PT Serif', serif;
 	color: #333;
-	text-indent: 40px;
 }
 a {
 	color: #00a95e;
