@@ -9,6 +9,8 @@ import transform.Document;
 import Assertion.*;
 import haxe.io.Path.join in joinPaths;
 
+using Literals;
+
 typedef Nav = {
 	name : String,
 	id : String,
@@ -94,7 +96,11 @@ class HtmlGen {
 			var copyright = horizontal(copyright);
 			var _path = saveAsset(path);
 			//TODO: Make FIG SIZE param
-			return ('<section class="${sizeToClass(size)} img-block id="${id}"><img src="../${_path}"/><p><strong>Fig. ${counts[CHA]}.${count}</strong>${caption} <em>${copyright}</em></p></section>');
+			return ('
+			<section class="${sizeToClass(size)} img-block id="${id}">
+				<img src="../${_path}"/>
+				<p><strong>Fig. ${counts[CHA]}.${count}</strong><span class="quad"></span>${caption} <em>${copyright}</em></p>
+			</section>'.doctrim());
 		case TBox(contents):
 			var b = new StringBuf();
 			b.add('<section class="box">\n');
