@@ -7,6 +7,12 @@
 	},
 	"build" : {
 		"cmds" : [
+			"cd $ROBRT_REPOSITORY_DIR",
+			"git remote add lfs https://github.com/jonasmalacofilho/the-online-brt-planning-guide-with-lfs.git",
+			"git fetch lfs",
+			"git merge lfs/figures-with-lfs",
+			"git lfs pull",
+
 			"cd $ROBRT_REPOSITORY_DIR/generator",
 			"haxe -D travis build.hxml",
 			"nodejs bin/tests.js",
