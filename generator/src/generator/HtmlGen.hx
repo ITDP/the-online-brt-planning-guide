@@ -76,7 +76,7 @@ class HtmlGen {
 	function sizeToClass(s:BlobSize)
 	{
 		return switch s {
-		case MarginWidth: "sl";
+		case MarginWidth: "sm";
 		case TextWidth: "md";
 		case FullWidth: "lg";
 		}
