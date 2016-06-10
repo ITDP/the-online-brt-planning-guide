@@ -200,6 +200,10 @@ nav a {
 	color: #666;
 }
 
+nav ul li:first-child {
+	font-weight: bold;
+}
+
 /* col-text */
 
 .col-text {
