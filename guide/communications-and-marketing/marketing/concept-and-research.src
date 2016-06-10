@@ -180,7 +180,7 @@ system, followed by a visual portrayal of the future system, can also be an effe
 Regardless of the complexity of the route or routes, the route map should strictly adhere to the brand 
 guidelines in terms of presentation, color, and typography.
 
-\figure{assets\/image15.jpeg}{The TransJakarta route map is an example of a complex system that is 
+\figure[medium]{assets\/image15.jpeg}{The TransJakarta route map is an example of a complex system that is 
 streamlined by a route map encompassing the logo, system colors, and typography to maintain consistent 
 branding. Photo}{ TransJakarta.}
 
