@@ -72,6 +72,15 @@ class HtmlGen {
 			buf.toString();
 		}
 	}
+
+	function sizeToClass(s:BlobSize)
+	{
+		return switch s {
+		case MarginWidth: "sl";
+		case TextWidth: "md";
+		case FullWidth: "lg";
+		}
+	}
 	
 	function vertical(v:TElem, counts : Array<Int>, curNav : Null<Nav>) : String
 	{		
@@ -85,7 +94,7 @@ class HtmlGen {
 			var copyright = horizontal(copyright);
 			var _path = saveAsset(path);
 			//TODO: Make FIG SIZE param
-			return ('<section class="md img-block id="${id}"><img src="../${_path}"/><p><strong>Fig. ${counts[CHA]}.${count}</strong>${caption} <em>${copyright}</em></p></section>');
+			return ('<section class="${sizeToClass(size)} img-block id="${id}"><img src="../${_path}"/><p><strong>Fig. ${counts[CHA]}.${count}</strong>${caption} <em>${copyright}</em></p></section>');
 		case TBox(contents):
 			var b = new StringBuf();
 			b.add('<section class="box">\n');
@@ -123,12 +132,7 @@ class HtmlGen {
 		case TTable(size, caption, header, chd, count, id):
 			var buff = new StringBuf();
 			counts[OTH] = count;
-			switch size {
-			case MarginWidth: buff.add("<section class='sl'>");
-			case TextWidth: buff.add("<section class='md'>");
-			case FullWidth: buff.add("<section class='lg'>");
-			}
-			buff.add('<h5 id="${id}">Table ${counts[CHA] + "." + counts[OTH]}. ${horizontal(caption)}</h5>'); //TODO:
+			buff.add('<section class="${sizeToClass(size)}"><h5 id="${id}">Table ${counts[CHA] + "." + counts[OTH]}. ${horizontal(caption)}</h5>'); //TODO:
 			buff.add("<table>");
 			buff.add(processTable([header], true));
 			buff.add(processTable(chd));
