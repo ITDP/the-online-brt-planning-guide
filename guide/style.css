@@ -96,7 +96,7 @@ header li {
 	list-style: none;
 }
 header li a {
-	padding: 0 4px 8px 4px;
+	padding: 0 4px 8px 0px;
 }
 .item {
 	display: none;
@@ -191,7 +191,7 @@ nav {
 nav ul,
 nav li
 {
-	padding: 0 0 0 8px;
+	padding: 0 0 0 0px;
 	margin: 0;
 	list-style: none;
 }
