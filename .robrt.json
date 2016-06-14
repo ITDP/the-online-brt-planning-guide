@@ -8,15 +8,43 @@
 	"build" : {
 		"cmds" : [
 			"cd $ROBRT_REPOSITORY_DIR",
-			"cat guide/header.html > $ROBRT_OUTPUT_DIR/concepts.html && pandoc guide/concepts.md -f markdown_github -t html >> $ROBRT_OUTPUT_DIR/concepts.html && cat guide/footer.html >> $ROBRT_OUTPUT_DIR/concepts.html",
-			"cp -r guide/{img,brtpg.css} $ROBRT_OUTPUT_DIR/",
-			"haxe build.hxml",
-			"cd spec",
-			"../bin/generate --html-root spec.html --tex-root contents.tex spec.txt",
-			"latexmk -xelatex -pdflatex=\"xelatex -interaction=nonstopmode -file-line-error\" spec.tex",
-			"cp spec.html spec.pdf spec.log $ROBRT_OUTPUT_DIR/",
+			"git lfs pull",
+
+			"cd $ROBRT_REPOSITORY_DIR/generator",
+			"haxe -D travis build.hxml",
+			"nodejs bin/tests.js",
+
 			"cd $ROBRT_REPOSITORY_DIR",
-			"cp -r docs/design/web/mockup $ROBRT_OUTPUT_DIR/web-mockup"
+			"mkdir -p $ROBRT_OUTPUT_DIR/bin",
+			"cp generator/bin/{obrt.n,obrt.js} $ROBRT_OUTPUT_DIR/bin/",
+			"cp -r generator/docs/design/web/mockup $ROBRT_OUTPUT_DIR/web-mockup",
+
+			"export DEBUG=1",
+
+			"command time -v neko generator/bin/obrt.n gen guide/the-brt-planning-guide.src",
+
+			"cp -r guide/the-brt-planning-guide.src.html $ROBRT_OUTPUT_DIR/guide",
+
+			"nodejs --version",
+			"command time -v nodejs generator/bin/obrt.js gen guide/the-brt-planning-guide.src",
+
+			"cd guide/the-brt-planning-guide.src.pdf/",
+			"mkdir -p $ROBRT_OUTPUT_DIR/pdf",
+
+			"latexmk -xelatex -pdflatex='xelatex -interaction=nonstopmode' book.tex",
+			"cp book.pdf $ROBRT_OUTPUT_DIR/pdf/guide_xelatex.pdf",
+			"cp book.log $ROBRT_OUTPUT_DIR/pdf/guide_xelatex.log",
+			"latexmk -C book.tex",
+
+			"latexmk -lualatex -pdflatex='lualatex -interaction=nonstopmode' book.tex",
+			"cp book.pdf $ROBRT_OUTPUT_DIR/pdf/guide_lualatex.pdf",
+			"cp book.log $ROBRT_OUTPUT_DIR/pdf/guide_lualatex.log",
+			"latexmk -C book.tex",
+
+			"latexmk -pdf -pdflatex='pdflatex -interaction=nonstopmode' book.tex",
+			"cp book.pdf $ROBRT_OUTPUT_DIR/pdf/guide_pdflatex.pdf",
+			"cp book.log $ROBRT_OUTPUT_DIR/pdf/guide_pdflatex.log",
+			"latexmk -C book.tex"
 		]
 	}
 }

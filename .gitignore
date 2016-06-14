@@ -6,8 +6,22 @@
 *.out
 *.pdf
 *.tex
-bin/
+generator/bin/
+generator/dump/
 
-!spec/spec.tex
-!docs/design/web/mockup/*.html
+*.png
+*.PNG
+*.jpeg
+*.JPEG
+*.jpg
+*.JPG
+
+!guide/*.tex
+!guide/*.css
+
+!generator/docs/spec.tex
+!generator/docs/design/web/mockup/*
+!guide/*/*/assets/*
+
+guide/*.html/
 

@@ -1,0 +1,33 @@
+-lib hxparse
+-lib assertion
+-lib literals
+-cp include
+-cp src
+
+--each
+
+-main Main
+-neko bin/obrt.n
+-cmd nekotools boot bin/obrt.n
+
+--next
+
+-main Main
+-js bin/obrt.js
+-lib hxnodejs
+
+--next
+
+-main RunTests
+-js bin/tests.js
+-cp test
+-lib utest
+-D unittests
+
+--next
+
+-main RunTests
+-neko bin/tests.n
+-cp test
+-lib utest
+-D unittests

@@ -1,0 +1,22 @@
+# basics
+eps ::= ""
+eof ::= end-of-file
+
+# some tokens
+wordspace ::= ??? [ \t\n] | "\r\n", with newline count <= 1
+breakspace ::= ??? [ \t\n] | "\r\n", with newline count >= 2
+whitespace ::= wordspace | breakspace
+word ::= ??? anything else
+
+# horizontal elements
+helem ::= wordspace | word | hlist
+hlist ::= eps | helem | helem hlist
+
+# vertical elements
+paragraph ::= helem
+velem ::= paragraph | vlist
+vlist ::= eps | velem | velem breakspace vlist
+
+# top level
+file ::= velem
+

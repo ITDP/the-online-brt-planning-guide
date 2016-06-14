@@ -1,5 +1,0 @@
--neko bin/unit-tests.n
--main format.tests.Main
--lib utest
--cmd neko bin/unit-tests.n
-
