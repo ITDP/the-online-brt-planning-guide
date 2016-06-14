@@ -184,7 +184,7 @@ guidelines in terms of presentation, color, and typography.
 streamlined by a route map encompassing the logo, system colors, and typography to maintain consistent 
 branding. Photo}{ TransJakarta.}
 
-\figure{assets\/image16.jpeg}{The system map for the Metrovía system in Guayaquil, Ecuador, shows 
+\figure[medium]{assets\/image16.jpeg}{The system map for the Metrovía system in Guayaquil, Ecuador, shows 
 a more detailed version of the BRT line. Photo}{ Lloyd Wright.}
 
 The route map can be a stand-alone piece of collateral and can be assimilated into a network map comprising 
