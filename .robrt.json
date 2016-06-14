@@ -8,11 +8,6 @@
 	"build" : {
 		"cmds" : [
 			"cd $ROBRT_REPOSITORY_DIR",
-			"git config --global user.name 'Brt Robrt'",
-			"git config --global user.email 'self@protocubo.io'",
-			"git remote set-url origin https://github.com/jonasmalacofilho/the-online-brt-planning-guide-with-lfs.git",
-			"git fetch origin",
-			"git merge origin/figures-with-lfs",
 			"git lfs pull",
 
 			"cd $ROBRT_REPOSITORY_DIR/generator",
