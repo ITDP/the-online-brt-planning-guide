@@ -11,6 +11,7 @@ import haxe.io.Path.join in joinPaths;
 
 using Literals;
 using parser.TokenTools;
+using transform.DocumentTools;
 
 typedef Nav = {
 	name : String,
@@ -103,8 +104,15 @@ class HtmlGen {
 				<p><strong>Fig. ${counts[CHA]}.${count}</strong><span class="quad"></span>${caption} <em>${copyright}</em></p>
 			</section>'.doctrim());
 		case TBox(contents):
+			var isLarge = false;
+			function findSize(v:TElem) {
+				if (v.def.match(TFigure(MarginWidth|FullWidth, _) | TTable(MarginWidth|FullWidth, _)))
+					isLarge = true;
+				v.iter(findSize);
+			}
+			findSize(contents);
 			var b = new StringBuf();
-			b.add('<section class="box md">\n');  // FIXME figure out if md or lg depending on contents
+			b.add('<section class="box ${isLarge ? "lg" : "md"}">\n');
 			b.add(vertical(contents, counts, curNav));
 			b.add('</section>\n');
 			return b.toString();
