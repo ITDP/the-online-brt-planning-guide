@@ -22,8 +22,8 @@ for outreach through events, earned media, and other activities. Most importantl
 match system capacity and budget. It’s much better to have a few smart, well-executed activities than 
 to undertake so many that they cannot be done well. 
 
-/*\figure{assets\/image10.jpeg}{Bogotá hosts a range of innovative transport and public space measures, 
-including closing streets to car traffic on Sundays. Image}{ Lloyd Wright.}*/ 
+\figure{assets\/image10.jpeg}{Bogotá hosts a range of innovative transport and public space measures, 
+including closing streets to car traffic on Sundays.}{Image courtesy of Lloyd Wright.}
 
 \subsection{Traditional Media}
 
@@ -42,8 +42,8 @@ BRT. Depending on how media works in your city, this can be made available elect
 or both. This will proactively provide media with up-to-date information on system operation, planning, 
 management, financing, and technical specifications.
 
-/*\figure{assets\/image11.jpeg}{In Jakarta, traditional media covered the Transjakarta BRT extensively, 
-which has significant political ramifications for then Governor Sutiyoso. Image}{ ITDP.}*/
+\figure{assets\/image11.jpeg}{In Jakarta, traditional media covered the Transjakarta BRT extensively, 
+which has significant political ramifications for then Governor Sutiyoso.}{Image courtesy of ITDP.}
 
 Holding briefings for reporters and editorial boards of both print and broadcast media with in-depth 
 background on a project prepares them to cover the BRT-related issues in a more even-handed way.
@@ -78,9 +78,9 @@ wait to be called for comment on a reactionary story. Just as relationships with
 not end when construction finishes; neither should PR and external relations efforts. Both should be 
 closely tied to the daily operation of the BRT.
 
-/*\figure{assets\/image12.jpeg}{This editorial cartoon from Chicago, USA demonstrates a common negative 
+\figure[medium]{assets\/image12.jpeg}{This editorial cartoon from Chicago, USA demonstrates a common negative 
 perception of BRT. Building relationships with local media is extremely important to countering this 
-perception. Image}{ Chicago Gazette.}*/
+perception.}{Image courtesy of Chicago Gazette.}
 
 \beginbox
 
@@ -111,8 +111,7 @@ the project. This was essential in framing the issue as favourable to Rea Vaya,
 and they continued to 
 enjoy public support during this phase.
 
- /*\figure{assets\/image13.jpeg}{The 
-Rea Vaya BRT is Johannesburg, South Africa. Image}{ ITDP.}*/
+\figure[medium]{assets\/image13.jpeg}{The Rea Vaya BRT is Johannesburg, South Africa.}{Image courtesy of ITDP.}
 \endbox
 
  
@@ -141,8 +140,8 @@ The most commonly sought-after information on BRT websites generally includes:
 \item Updates on service enhancements;
 \item Information for tourists (some systems provide this separately, as tourists generally want to know how to get to specific locations and don’t have knowledge of the system as locals do).
 
-/*\figure{assets\/image14.jpeg}{The website for Bogotá’s TransMilenio BRT focuses on trip planning, 
-which is the most common reason for a visit to a public transport website. Image}{ TransMilenio.}*/
+\figure[medium]{assets\/image14.jpeg}{The website for Bogotá’s TransMilenio BRT focuses on trip planning, 
+which is the most common reason for a visit to a public transport website. }{Image courtesy of TransMilenio.}
 
 Other information, while less commonly sought, but expected to be available on the website for public 
 use, includes performance, cost, user data, press releases, and information about the city agency and 
@@ -201,8 +200,7 @@ and even a live station security camera. It also includes an interactive map wit
 service updates, making 
 it easy for everyday rider use.
 
-/*\figure{assets\/image15.jpeg}{Transjakarta’s 
-website showing the route map for Jakarta. Image}{ Transjakarta.}*/
+\figure[medium]{assets\/image15.jpeg}{Transjakarta’s website showing the route map for Jakarta.}{Image courtesy of Transjakarta.}
 
 Transjakarta has several mobile 
 apps. The most popular, called Busway Transjakarta helps users navigate 
@@ -211,16 +209,11 @@ type in the name of the street or building of their destination, and
 are given step-by-step instructions 
 of the shortest route with the fewest transfers.
 
-/*\figure{assets\/image16.jpeg}{A mobile application 
-provides public transport directions. Image}{ 
-Transjakarta.}*/
-
+\figure[medium]{assets\/image16.jpeg}{A mobile application provides public transport directions.}{Image courtesy of Transjakarta.}
 
 \endbox
 
-
-
-\subsection{ Budgeting}
+\subsection{Budgeting}
 
 Defining a discrete marketing budget for a BRT system can be a challenge, particularly if it hasn’t 
 been specified very clearly in any of the existing documentation, and system managers are not entirely 

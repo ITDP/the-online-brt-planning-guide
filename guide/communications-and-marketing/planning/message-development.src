@@ -51,12 +51,9 @@ customers answer these fundamental questions about the BRT:
 
 Tips for messaging:
 \item Keep it clear: Don’t use acronyms or jargon in your messages;
-\item 
-Keep it fresh: A message is not a re-worded mission statement;
-\item Keep it consistent: All messages, 
-for any target group, should support and not contradict;
-\item Keep it positive: Whenever possible, keep 
-your message positive while being honest.
+\item Keep it fresh: A message is not a re-worded mission statement;
+\item Keep it consistent: All messages, for any target group, should support and not contradict;
+\item Keep it positive: Whenever possible, keep your message positive while being honest.
 
 \endbox
 
@@ -68,8 +65,8 @@ what they’ve learned with their families, and encourage their parents to try t
 in Johannesburg, South Africa, they city hired a theater group to perform a play in primary schools, 
 teaching children how to use the Rea Vaya BRT.
 
-/*\figure{assets\/image7.jpeg}{Creative approaches to outreach, such as using entertainers, can be 
-highly effective for disseminating information in a memorable manner. Image}{ Lloyd Wright.}*/
+\figure{assets\/image7.jpeg}{Creative approaches to outreach, such as using entertainers, can be 
+highly effective for disseminating information in a memorable manner.}{Image Lloyd Wright.}
 
 Consistency of messaging with the project’s operating plan is critical, as these messages will be the 
 first interaction users will have with the system and will set the tone for how they judge the system 

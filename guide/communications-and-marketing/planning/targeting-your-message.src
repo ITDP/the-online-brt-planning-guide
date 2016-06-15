@@ -35,9 +35,7 @@ went well beyond communications — incomplete infrastructure and insufficient
 service were also major 
 factors — but citizens who had been left in the dark made the chaos far worse.
 
-/*\figure{assets\/image8.jpeg}{Fig 
-9.8 The Transantiago BRT in Santiago, Chile. Image}{ Wikipedia Creative 
-Commons.}*/
+\figure[medium]{assets\/image8.jpeg}{The Transantiago BRT in Santiago, Chile.}{Image Wikipedia Creative Commons.}
 
 \endbox
 
@@ -98,7 +96,5 @@ to develop more respectful drivers, leading to a more compliant population that 
 produce 
 even more such drivers, and represented a catalyst for change.
 
-/*\figure{assets\/image9.jpeg}{Fig. 9.9The 
-“BRT-Lite” system in Lagos, Nigeria. Image}{ Wikipedia Creative 
-Commons.}*/ 
+\figure{assets\/image9.jpeg}{The “BRT-Lite” system in Lagos, Nigeria.}{Image Wikipedia Creative Commons.} 
 \endbox
