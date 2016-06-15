@@ -10,6 +10,7 @@ import Assertion.*;
 import haxe.io.Path.join in joinPaths;
 
 using Literals;
+using parser.TokenTools;
 
 typedef Nav = {
 	name : String,
@@ -103,9 +104,10 @@ class HtmlGen {
 			</section>'.doctrim());
 		case TBox(contents):
 			var b = new StringBuf();
-			b.add('<section class="box">\n');
+			b.add('<section class="box md">\n');  // FIXME figure out if md or lg depending on contents
 			b.add(vertical(contents, counts, curNav));
-			return ('</section>\n');
+			b.add('</section>\n');
+			return b.toString();
 		case TQuotation(t, a):
 			return ('<blockquote class="md"><q>${horizontal(t)}</q><span>${horizontal(a)}</span></blockquote>');
 		case TParagraph(h):
