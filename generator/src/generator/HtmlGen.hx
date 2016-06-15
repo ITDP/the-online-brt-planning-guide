@@ -144,8 +144,6 @@ class HtmlGen {
 			buff.add(processTable(chd));
 			buff.add("</table></section>");
 			return buff.toString();
-		default:
-			return null;
 		}
 	}
 	
