@@ -9,6 +9,9 @@ import transform.Document;
 import Assertion.*;
 import haxe.io.Path.join in joinPaths;
 
+using Literals;
+using parser.TokenTools;
+
 typedef Nav = {
 	name : String,
 	id : String,
@@ -72,6 +75,15 @@ class HtmlGen {
 			buf.toString();
 		}
 	}
+
+	function sizeToClass(s:BlobSize)
+	{
+		return switch s {
+		case MarginWidth: "sm";
+		case TextWidth: "md";
+		case FullWidth: "lg";
+		}
+	}
 	
 	function vertical(v:TElem, counts : Array<Int>, curNav : Null<Nav>) : String
 	{		
@@ -85,12 +97,17 @@ class HtmlGen {
 			var copyright = horizontal(copyright);
 			var _path = saveAsset(path);
 			//TODO: Make FIG SIZE param
-			return ('<section class="md img-block id="${id}"><img src="../${_path}"/><p><strong>Fig. ${counts[CHA]}.${count}</strong>${caption} <em>${copyright}</em></p></section>');
+			return ('
+			<section class="${sizeToClass(size)} img-block id="${id}">
+				<img src="../${_path}"/>
+				<p><strong>Fig. ${counts[CHA]}.${count}</strong><span class="quad"></span>${caption} <em>${copyright}</em></p>
+			</section>'.doctrim());
 		case TBox(contents):
 			var b = new StringBuf();
-			b.add('<section class="box">\n');
+			b.add('<section class="box md">\n');  // FIXME figure out if md or lg depending on contents
 			b.add(vertical(contents, counts, curNav));
-			return ('</section>\n');
+			b.add('</section>\n');
+			return b.toString();
 		case TQuotation(t, a):
 			return ('<blockquote class="md"><q>${horizontal(t)}</q><span>${horizontal(a)}</span></blockquote>');
 		case TParagraph(h):
@@ -123,19 +140,12 @@ class HtmlGen {
 		case TTable(size, caption, header, chd, count, id):
 			var buff = new StringBuf();
 			counts[OTH] = count;
-			switch size {
-			case MarginWidth: buff.add("<section class='sl'>");
-			case TextWidth: buff.add("<section class='md'>");
-			case FullWidth: buff.add("<section class='lg'>");
-			}
-			buff.add('<h5 id="${id}">Table ${counts[CHA] + "." + counts[OTH]}. ${horizontal(caption)}</h5>'); //TODO:
+			buff.add('<section class="${sizeToClass(size)}"><h5 id="${id}">Table ${counts[CHA] + "." + counts[OTH]}. ${horizontal(caption)}</h5>'); //TODO:
 			buff.add("<table>");
 			buff.add(processTable([header], true));
 			buff.add(processTable(chd));
 			buff.add("</table></section>");
 			return buff.toString();
-		default:
-			return null;
 		}
 	}
 	

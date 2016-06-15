@@ -7,6 +7,9 @@
 	},
 	"build" : {
 		"cmds" : [
+			"cd $ROBRT_REPOSITORY_DIR",
+			"git lfs pull",
+
 			"cd $ROBRT_REPOSITORY_DIR/generator",
 			"haxe -D travis build.hxml",
 			"nodejs bin/tests.js",

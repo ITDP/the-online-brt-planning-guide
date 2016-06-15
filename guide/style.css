@@ -239,6 +239,7 @@ nav li
 	font-family: 'PT Sans', sans-serif;
 	color: #666;
 }
+.img-block p.quad:before { content:"."; }
 
 /* table */
 
