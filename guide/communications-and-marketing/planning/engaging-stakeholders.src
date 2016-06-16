@@ -84,10 +84,10 @@ dispelled with a first-hand view of a working system. Private operators are most
 by their peers in cities that have already converted from conventional services to BRT. Discussions 
 among different private operators are very effective in building an atmosphere of support and trust.
 
-/*\figure{assets\/image5.jpeg}{The 
+\figure[medium]{assets\/image5.jpeg}{The 
 public transport sector in Bogotá prior to TransMilenio was dominated 
 by informal transport and private 
-owners. Image}{ ITDP.}*/
+owners.}{Image ITDP.}
 
 \endbox
 
@@ -130,7 +130,7 @@ for drivers. If the new system does create negative impacts for motorists, then 
 be ready for criticism from this group, and they should create messages that both acknowledge the issues 
 and respond to concerns as well as justify the project on equity or environmental grounds (Figure 9.6). 
 
-/*\figure{assets\/image6.jpeg}{In cities with high car growth, such as Santiago, Chile, car owners are an important stakeholder group that should be made aware of the benefits of BRT. Photo}{ Lloyd Wright.}*/
+\figure{assets\/image6.jpeg}{In cities with high car growth, such as Santiago, Chile, car owners are an important stakeholder group that should be made aware of the benefits of BRT.}{Photo Lloyd Wright.}
 
 \endbox
 

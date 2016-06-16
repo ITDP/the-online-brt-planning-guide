@@ -89,8 +89,8 @@ granted. Keep in mind that stakeholders may shift their positions during differe
 Typically, the dimensions of the map are the influence\/power of stakeholders and their level of interest 
 in the project, such as shown in Figure 9.3 below. 
 
-/*\figure{assets\/image3.jpeg}{Stakeholder map that looks at both the influence\/power and the interest 
-of stakeholders.}{: http:\/\/www.stakeholdermap.com\/stakeholder-analysis.html}*/
+\figure{assets\/image3.jpeg}{Stakeholder map that looks at both the influence\/power and the interest 
+of stakeholders.}{Source: http:\/\/www.stakeholdermap.com\/stakeholder-analysis.html .}
 
 Some of the commonly used “dimensions” include:
 \item Power (high, medium, low);
@@ -102,5 +102,5 @@ Once they are categorized in this way, the map can be used to determine strategi
 each category of stakeholders. The type of mapping or analysis you do with this data depends on what 
 the goals are for the particular group. 
 
-/*\figure{assets\/image4.jpeg}{Stakeholder map that describes each type of stakeholder by both the 
-influence\/power and the interest of stakeholders.}{: http:\/\/www.stakeholdermap.com\/stakeholder-analysis.html}*/
+\figure{assets\/image4.jpeg}{Stakeholder map that describes each type of stakeholder by both the 
+influence\/power and the interest of stakeholders.}{Source: http:\/\/www.stakeholdermap.com\/stakeholder-analysis.html}

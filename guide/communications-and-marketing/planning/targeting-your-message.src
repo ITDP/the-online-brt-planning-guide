@@ -35,7 +35,7 @@ went well beyond communications — incomplete infrastructure and insufficient
 service were also major 
 factors — but citizens who had been left in the dark made the chaos far worse.
 
-\figure{assets\/image8.jpeg}{The Transantiago BRT in Santiago, Chile. Image}{Wikipedia Creative Commons.}
+\figure[medium]{assets\/image8.jpeg}{The Transantiago BRT in Santiago, Chile.}{Image Wikipedia Creative Commons.}
 
 \endbox
 
@@ -68,14 +68,10 @@ your message.
 EXAMPLE: LAMATA
 
 Lagos, Nigeria, successfully implemented a bus project with a strong communications 
-program. The Lagos 
-Metropolitan Area Transit Authority presented the project as more than simply a bus 
-system but about 
-improving and facilitating movement within the corridor, positioning the issue as “congestion 
-vs. flow” 
-and “old-fashioned vs. modern”. The program made good use of quality, professionally produced 
-videos, 
-websites, brochures, and regularly scheduled radio and TV programs.
+program. The Lagos Metropolitan Area Transit Authority presented the project as more than simply a bus 
+system but about improving and facilitating movement within the corridor, positioning the issue as “congestion 
+vs. flow” and “old-fashioned vs. modern”. The program made good use of quality, professionally produced 
+videos, websites, brochures, and regularly scheduled radio and TV programs.
 
 This tapped into public 
 frustration at the lack of transit options in the city, and created acceptance 
@@ -96,7 +92,6 @@ to develop more respectful drivers, leading to a more compliant population that 
 produce 
 even more such drivers, and represented a catalyst for change.
 
-/*\figure{assets\/image9.jpeg}{Fig. 9.9The 
-“BRT-Lite” system in Lagos, Nigeria. Image}{ Wikipedia Creative 
-Commons.}*/ 
 \endbox
+
+\figure{assets\/image9.jpeg}{The “BRT-Lite” system in Lagos, Nigeria.}{Image Wikipedia Creative Commons.} 
