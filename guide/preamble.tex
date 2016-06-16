@@ -1,5 +1,8 @@
 \documentclass[twoside, 8pt]{extreport}
 
+%monkey-patching tools
+\usepackage{etoolbox}
+
 %fonts
 \usepackage[T1]{fontenc}
 \usepackage{paratype}
@@ -36,11 +39,23 @@
 \titleformat{\chapter}[display]{\bfseries\LARGE\color{greenbrt}\sffamily}{}{0pt}{\thechapter.\ }[]
 \titleformat*{\section}{\bfseries\Large\color{greenbrt}\sffamily}
 \titleformat*{\subsection}{\bfseries\large\color{greenbrt}\sffamily}
-\titleformat*{\subsubsection}{\bfseries\\color{greenbrt}\sffamily}
+\titleformat*{\subsubsection}{\bfseries\color{greenbrt}\sffamily}
+\titlespacing*{\chapter}{0mm}{0mm}{0mm}[0pt]
+\titlespacing*{\section}{0mm}{0mm}{0mm}[0pt]
+\titlespacing*{\subsection}{0mm}{0mm}{0mm}[0pt]
+\titlespacing*{\subsubsection}{0mm}{0mm}{0mm}[0pt]
 \let\volume\part
+
+%workaround for titlesec 2.10.1 issue with missing labels
+%http://tex.stackexchange.com/a/300259/46436
+\makeatletter
+\patchcmd{\ttlh@hang}{\parindent\z@}{\parindent\z@\leavevmode}{}{}
+\patchcmd{\ttlh@hang}{\noindent}{}{}{}
+\makeatother
 
 %box
 \usepackage{mdframed}
+\newcommand{\boxtitle}[2]{{\noindent\bfseries\color{greenbrt}\sffamily Box \thechapter.#1. #2} \\ }
 \mdfsetup{innerleftmargin=6.75mm,innerrightmargin=6.75mm,innertopmargin=8.75mm,innerbottommargin=8.75mm,skipabove=12.75pt,skipbelow=12.75pt,linewidth=0.25mm,linecolor=gray50}
 \def\beginbox{
 	\mdframed[usetwoside=false]
@@ -53,19 +68,23 @@
 	
 %list
 \usepackage{enumitem}
-\setlist{nolistsep,leftmargin=28pt,rightmargin=28pt}
-\labelindent=28pt
+\setlist{nolistsep,leftmargin=7mm,rightmargin=7mm}
+\labelindent=7mm
 
 %images - img {width}{filename} - fignote{figure number}{text}{credits}
 \usepackage{graphicx}
-\newcommand{\img}[2]{\noindent\centering\includegraphics[width=#1]{#2} \\}
-\newcommand{\fignote}[3]{\noindent\raggedright\footnotesize\sffamily\color{gray50}{\bfseries Figure \thechapter.#1.} #2 \textit{#3} \par}
+\newcommand{\img}[2]{\noindent\includegraphics[width=#1]{#2} \\}
+\newcommand{\fignote}[3]{\noindent\raggedright\footnotesize\sffamily\color{gray50}{\bfseries Figure \thechapter.#1.} #2 {\itshape #3} \par}
 
 %quotation {quote}{name, about, 1900 - 2000}
 \renewcommand{\quotation}[2]{\begingroup\leftskip=14mm\rightskip=14mm {\small\color{gray50} \noindent\textit{``#1''} \\\hbox{}\hfill --- #2} \par\endgroup}
 
-%tmp
-\usepackage{lipsum}
+%tables
+%note: \tablemodule*46 must match \textwidth+\marginparsep+\marginparwidth
+\usepackage{ifoddpage}
+\newdimen\tablemodule \tablemodule=\textwidth \divide\tablemodule by 30
+\newcommand{\tabletitle}[2]{{\noindent\bfseries\color{greenbrt}\sffamily Table \thechapter.#1. #2} \\ }
+\newcommand{\tablesource}[1]{\noindent\raggedright\footnotesize\sffamily\color{gray50}{\bfseries Source:} #1 \par \smallskip}
 
 \AtBeginDocument{
 	\parskip=12.75pt
@@ -73,3 +92,7 @@
 	\parindent=7mm
 	\color{gray75}
 }
+
+%tmp
+\usepackage{lipsum}
+

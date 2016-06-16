@@ -163,7 +163,7 @@ class Test_04_Transform {
 				@wrap(9, 0) TChapter(@len(1) Word("k"), 3,"volume.a.chapter.k", @skip(1) TVList([TParagraph(@len(1) Word("l")),
 				@wrap(9, 0) TSection(@len(1) Word("m"), 1,"volume.a.chapter.k.section.m", @skip(1) TVList([TParagraph(@len(1) Word("n")),
 				@wrap(12, 0) TSubSection(@len(1) Word("o"), 1, "volume.a.chapter.k.section.m.subsection.o", @skip(1) TVList([TParagraph(@len(1) Word("p")),
-				@wrap(8, 1) TFigure("f", @skip(2 + 1)@len(1) Word("c"), @skip(2)@len(2) Word("cp"),1,"volume.a.chapter.k.section.m.subsection.o.other.3-1")])), //3-1 -> Chapter 3, Fig 1
+				@wrap(8, 1) TFigure(MarginWidth, "f", @skip(2 + 1)@len(1) Word("c"), @skip(2)@len(2) Word("cp"),1,"volume.a.chapter.k.section.m.subsection.o.other.3-1")])), //3-1 -> Chapter 3, Fig 1
 				@wrap(12,0) TSubSection(@len(1) Word("q"), 2,"volume.a.chapter.k.section.m.subsection.q", @skip(1) TParagraph(@len(1) Word("r")))]))]))]))
 			])),
 		transform("\\volume{a}b\\chapter{c}d\\chapter{e}f\\section{g}h\\section{i}j\\chapter{k}l\\section{m}n\\subsection{o}p\\figure{f}{c}{cp}\\subsection{q}r"));
@@ -183,5 +183,65 @@ class Test_04_Transform {
 				@skip(22)@wrap(8,0)TVolume(@len(1)Word("c"),1,"volume.c",@skip(1)TParagraph(@len(1)Word("d")))
 			])),
 			transform("\\volume{a}b\\meta\\reset{volume}{0}\\volume{c}d"));
+	}
+	
+	public function test_005_tables()
+	{
+		Assert.same(
+			expand(@wrap(12,9) TTable(TextWidth, @len(1) Word("a"), @wrap(7,0) [@wrap(4,0) @skip(2)TParagraph(@len(1) Word("b"))], [@wrap(9,0)[TParagraph(@len(1)Word("d"))]], 1, "other.0-1")),
+			transform("\\begintable{a}\\header\\col b\\row\\col d\\endtable"));
+		Assert.same(
+			expand(@wrap(12, 9) TTable(TextWidth, @len(1) Word("a"), 
+				@wrap(7, 0)[@wrap(4, 0) @skip(3) TParagraph(@len(1) Word("b")), @wrap(4, 0) @skip(1) TParagraph(@len(1) Word("c")), @wrap(4, 0) @skip(1) TParagraph(@len(1) Word("d"))], 
+				[@wrap(9, 0)[TParagraph(@len(1) Word("e")), @skip(5) TParagraph(@len(1) Word("f")), @skip(5) TParagraph(@len(1)Word("g"))],
+				@wrap(9,0)[TParagraph(@len(1) Word("h")), @skip(5)TParagraph(@len(1)Word("i")), @skip(5)TParagraph(@len(1)Word("j"))]], 1,"other.0-1"				
+			)),
+			transform("\\begintable{a}\\header \\col b\\col c\\col d\\row\\col e\\col f\\col g\\row\\col h\\col i\\col j\\endtable")
+		);
+	}
+	
+	@:access(transform.Transform)
+	public function test_006_htrim()
+	{
+		Assert.same(
+			expand(TParagraph(HList([Word("b"),Wordspace,Word("a"),Wordspace,Word("c"),Wordspace,Word("d")]))),
+			expand(TParagraph(Transform.htrim(HList([Word("b"), Wordspace, Word("a"), Wordspace, Word("c"), Wordspace, Word("d")]))))
+		);
+		//[a, ,b] == trim([ ,a, ,b, ])
+		Assert.same(
+			expand(TParagraph(HList([Word("a"), Wordspace, Word("b")]))),
+			expand(TParagraph(Transform.htrim(HList([Wordspace, Word("a"), Wordspace, Word("b"), Wordspace]))))
+		);
+		
+		//[ ,Emph([ ,a])]
+		Assert.same(
+			expand(TParagraph(HList([Emphasis(HList([Word("a")]))]))),
+			expand(TParagraph(Transform.htrim(HList([Wordspace, Emphasis(HList([Wordspace, Word("a")]))]))))
+		);
+		
+		//[ , Emph(" a "), ,b]
+		Assert.same(
+			expand(TParagraph(HList([Emphasis(HList([Word("a"), Wordspace])), Word("b")]))),
+			expand(TParagraph(Transform.htrim(HList([Wordspace,Emphasis(HList([Wordspace, Word("a"), Wordspace])), Wordspace, Word("b")]))))
+		);
+		
+		//[a,emph("b "), ]
+		Assert.same(
+			expand(TParagraph(HList([Word("a"), Emphasis(HList([Word("b")]))]))),
+			expand(TParagraph(Transform.htrim(HList([Word("a"), Emphasis(HList([Word("b"), Wordspace])), Wordspace]))))
+		);
+		
+		
+		//[ , emph([ , emph([ , a])]),b]
+		Assert.same(
+			expand(TParagraph(HList([Emphasis(HList([Emphasis(HList([Word("a")]))])) , Word("b")]))),
+			expand(TParagraph(Transform.htrim(HList([Wordspace, Emphasis(HList([Wordspace, Emphasis(HList([Wordspace, Word("a")]))])), Word("b")]))))
+		);
+		
+		//[, emph([ , high([ ,a, ]), ]), ]
+		Assert.same(
+			expand(TParagraph(HList([Emphasis(HList([Highlight(HList([Word("a")]))]))]))),
+			expand(TParagraph(Transform.htrim(HList([Wordspace, Emphasis(HList([Wordspace, Highlight(HList([ Wordspace, Word("a"), Wordspace])), Wordspace])), Wordspace]))))
+		);
 	}
 }

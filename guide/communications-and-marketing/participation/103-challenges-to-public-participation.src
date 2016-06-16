@@ -1,11 +1,19 @@
 
 
-\section{10.3 Challenges to Public Participation}
+\section{Challenges to Public Participation}
 
 > We are like islands in the sea, separate on the surface but connected in the deep.
-@ ―William James, philosopher and psychologist, 1842-1910
+@ William James, philosopher and psychologist, 1842 - 1910
 
-Public transport providers face many challenges when engaging the public. These challenges arise from specific issues within the agency, such as inadequate resources, or from the public, such as feelings of cynicism and distrust, lack of time, and lack of awareness. These challenges are magnified when trying to engage traditionally hard-to-reach populations such as people with limited language proficiency and low-income and minority communities. Responses to these challenges have varied among agencies, as has their success at rising above them. What has worked for some agencies has not always worked for others; however, many have been successful and there are common themes that have tended to lead public transport agencies to greater success in public involvement (TCRP Synthesis 89—Public Participation Strategies for Transit: A Synthesis of Transit Practice. Transportation Research Board. 2011):
+Public transport providers face many challenges when engaging the public. These challenges arise from 
+specific issues within the agency, such as inadequate resources, or from the public, such as feelings 
+of cynicism and distrust, lack of time, and lack of awareness. These challenges are magnified when trying 
+to engage traditionally hard-to-reach populations such as people with limited language proficiency and 
+low-income and minority communities. Responses to these challenges have varied among agencies, as has 
+their success at rising above them. What has worked for some agencies has not always worked for others; 
+however, many have been successful and there are common themes that have tended to lead public transport 
+agencies to greater success in public involvement (TCRP Synthesis 89—Public Participation Strategies 
+for Transit: A Synthesis of Transit Practice. Transportation Research Board. 2011):
 \item The more public involvement, the more likely an agency is at having successful outcomes;
 \item Determining the “right” questions to ask is important;
 \item Dedicating resources to public participation is important, but these do not have to be strictly financial resources;
@@ -13,28 +21,69 @@ Public transport providers face many challenges when engaging the public. These 
 \item Openness and transparency matter, and in many cases are the most important as far as the public is concerned;
 \item Understanding, partnering with, and empowering communities can significantly benefit public involvement efforts and the agency.
 
-/*\figure{assets/image8.jpeg}{Fig. 10.8 Proposed increases in bus fares led to violent protests in Quito, Ecuador. Image }{ Diego Pallero, El Comercio.}*/
-\item 10.3.1 Internal Challenges
+/*\figure{assets\/image8.jpeg}{Proposed increases in bus fares led to violent protests in Quito, Ecuador. 
+Image}{ Diego Pallero, El Comercio.}*/
 
-A survey by the Transportation Research Board in 2011 showed that the biggest internal challenges to public participation are inadequate financial and staff resources, difficulty in getting elected officials interested, and lack of time for public participation. Other challenges included lack of support from upper management, lack of public involvement training for staff, and lack of coordination among agencies.
+\subsection{Internal Challenges}
 
-/*\figure{assets/image9.png}{Fig. 10.9Average transit rating of internal challenges for public involvement. Note: Average rating of responses where: “Not Significant” = 1, “Somewhat Significant” = 2, “Moderately Significant” = 3, “Very Signficant” = 4, and “Highest Significance” = 5. Graph }{ Transportation Research Board.}*/
+A survey by the Transportation Research Board in 2011 showed that the biggest internal challenges to 
+public participation are inadequate financial and staff resources, difficulty in getting elected officials 
+interested, and lack of time for public participation. Other challenges included lack of support from 
+upper management, lack of public involvement training for staff, and lack of coordination among agencies.
 
-A lack of resources is almost always a major challenge for public transport agencies. However, there are many ways to ensure successful public involvement that can be done with a modest budget. The best way this can be managed is to integrate public engagement into all of the agency’s public transport activities, rather than rely on a separate budget. Even informal conversations among drivers, riders, agency staff, and community members all provide important information that can be taken back to the agency.
+/*\figure{assets\/image9.png}{Fig. 10.9Average transit rating of internal challenges for public involvement. 
+Note: Average rating of responses where: “Not Significant” = 1, “Somewhat Significant” = 2, “Moderately 
+Significant” = 3, “Very Signficant” = 4, and “Highest Significance” = 5. Graph}{ Transportation Research 
+Board.}*/
 
-Building partnerships with community organizations can also address the resource problem. It is an effort that takes time and commitment, but it can reap rewards for an agency in both the short and long term. For the Hiawatha LRT project in Minnesota, USA, the Metropolitan Council reimbursed community organizations for costs associated with distributing information about the project, an action that saved the agency money (e.g., labor costs) and allowed it to tap into local distribution channels. Maintaining these relationships rather than having to rebuild them for each project will also provide efficiencies for future efforts.
+A lack of resources is almost always a major challenge for public transport agencies. However, there 
+are many ways to ensure successful public involvement that can be done with a modest budget. The best 
+way this can be managed is to integrate public engagement into all of the agency’s public transport activities, 
+rather than rely on a separate budget. Even informal conversations among drivers, riders, agency staff, 
+and community members all provide important information that can be taken back to the agency.
 
-Most of the other internal challenges have to do with the failure to prioritize public participation in the overall BRT process. This is a common problem that does not have a simple answer. We recommend that public participation plans be built into the system planning from the outset, including in the very first funding proposal (see Chapter 9: Strategic Planning for Communications on the importance of public participation).
-\item 10.3.2 External Challenges
+Building partnerships with community organizations can also address the resource problem. It is an 
+effort that takes time and commitment, but it can reap rewards for an agency in both the short and long 
+term. For the Hiawatha LRT project in Minnesota, USA, the Metropolitan Council reimbursed community organizations 
+for costs associated with distributing information about the project, an action that saved the agency 
+money (e.g., labor costs) and allowed it to tap into local distribution channels. Maintaining these relationships 
+rather than having to rebuild them for each project will also provide efficiencies for future efforts.
 
-There are many complex challenges to overcome in managing external stakeholders, such as feelings of cynicism and distrust, lack of time, and lack of awareness. Agencies are best able to succeed when they (1) have taken the time and effort to understand the challenges and their causes; (2) have a firm understanding of community issues, needs, and local support networks; and (3) approach projects and planning efforts in a collaborative fashion with communities.
+Most of the other internal challenges have to do with the failure to prioritize public participation 
+in the overall BRT process. This is a common problem that does not have a simple answer. We recommend 
+that public participation plans be built into the system planning from the outset, including in the very 
+first funding proposal (see Chapter 9: Strategic Planning for Communications on the importance of public 
+participation).
 
-Public cynicism and distrust of the process can arise from a feeling that participation is not worth the effort—that decisions have already been made and the opportunity for public input is merely a formality. Overcoming these feelings among the public requires building trust within the community. The best way to counteract this is by being as open and transparent as possible.
+\subsection{External Challenges}
 
-Some agencies have found that by structuring public meetings to allow participants to work through and identify solutions to specific problems, they have helped participants feel as though they have a meaningful impact on the planning process. In addition, demonstrating exactly how public involvement is used to inform the planning process can reduce levels of distrust.
+There are many complex challenges to overcome in managing external stakeholders, such as feelings of 
+cynicism and distrust, lack of time, and lack of awareness. Agencies are best able to succeed when they 
+(1) have taken the time and effort to understand the challenges and their causes; (2) have a firm understanding 
+of community issues, needs, and local support networks; and (3) approach projects and planning efforts 
+in a collaborative fashion with communities.
 
-All opportunities for public involvement must compete with the other obligations of people’s lives. Finding time to participate in a community meeting is not generally high on the list of priorities for working people. Providing multiple opportunities for participation, including outside of regular business hours, and offering opportunities that are not dependent on time and place, such as online and mobile engagement, can help increase participation levels. In addition, active engagement, such as going out and meeting people where they are, is essential. These are discussed later in this chapter.
+Public cynicism and distrust of the process can arise from a feeling that participation is not worth 
+the effort—that decisions have already been made and the opportunity for public input is merely a formality. 
+Overcoming these feelings among the public requires building trust within the community. The best way 
+to counteract this is by being as open and transparent as possible.
 
-Lastly, making your financial information and audits available for public review demonstrates that you can be trusted with public funds.
+Some agencies have found that by structuring public meetings to allow participants to work through 
+and identify solutions to specific problems, they have helped participants feel as though they have a 
+meaningful impact on the planning process. In addition, demonstrating exactly how public involvement 
+is used to inform the planning process can reduce levels of distrust.
 
-/*\figure{assets/image10.png}{Fig. 10.10Average transit rating of external challenges for public involvement. Note: Average rating of responses where: “Not Significant” = 1, “Somewhat Significant” = 2, “Moderately Significant” = 3, “Very Signficant” = 4, and “Highest Significance” = 5. Graph }{ Transportation Research Board.}*/
+All opportunities for public involvement must compete with the other obligations of people’s lives. 
+Finding time to participate in a community meeting is not generally high on the list of priorities for 
+working people. Providing multiple opportunities for participation, including outside of regular business 
+hours, and offering opportunities that are not dependent on time and place, such as online and mobile 
+engagement, can help increase participation levels. In addition, active engagement, such as going out 
+and meeting people where they are, is essential. These are discussed later in this chapter.
+
+Lastly, making your financial information and audits available for public review demonstrates that 
+you can be trusted with public funds.
+
+/*\figure{assets\/image10.png}{Fig. 10.10Average transit rating of external challenges for public involvement. 
+Note: Average rating of responses where: “Not Significant” = 1, “Somewhat Significant” = 2, “Moderately 
+Significant” = 3, “Very Signficant” = 4, and “Highest Significance” = 5. Graph}{ Transportation Research 
+Board.}*/

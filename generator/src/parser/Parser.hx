@@ -20,6 +20,9 @@ typedef Path = String;
 typedef FileCache = Map<Path,File>;
 
 class Parser {
+	public static var defaultFigureSize = MarginWidth;
+	public static var defaultTableSize = TextWidth;
+
 	static var verticalCommands = [
 		"volume", "chapter", "section", "subsection", "subsubsection",
 		"figure", "quotation", "item", "beginbox", "endbox", "include",
@@ -47,7 +50,7 @@ class Parser {
 	inline function badArg(pos:Position, ?desc:String)
 		throw new BadValue(lexer, pos.offset(1, -1), desc);
 
-	inline function unknownCmd(cmd:Token)
+	inline function unexpectedCmd(cmd:Token)
 	{
 		// EXPERIMENTAL: use Levenshtein distances to generate command suggestions
 
@@ -57,10 +60,12 @@ class Parser {
 
 		var name = switch cmd.def {
 		case TCommand(n): n;
-		case _: throw new UnknownCommand(lexer, cmd.pos); null;
+		case _: throw new UnexpectedToken(lexer, cmd); null;
 		}
 		name = name.toLowerCase();
 		var cmds = verticalCommands.concat(horizontalCommands);
+		if (Lambda.has(cmds, name))
+			throw new UnexpectedCommand(lexer, cmd.pos);
 		var dist = cmds.map(function (x) return x.split(""))
 			.map(NeedlemanWunsch.globalAlignment.bind(name.split(""), _, df, sf));
 		var best = 0;
@@ -267,25 +272,35 @@ class Parser {
 	function figure(cmd:Token)
 	{
 		assert(cmd.def.match(TCommand("figure")), cmd);
+		var size = blobSize(optArg(rawHorizontal, cmd, "size"), defaultFigureSize);
 		var path = arg(rawHorizontal, cmd, "path");
 		var caption = arg(hlist, cmd, "caption");
 		var copyright = arg(hlist, cmd, "copyright");
 		if (caption.val == null) badArg(caption.pos, "caption cannot be empty");
 		if (copyright.val == null) badArg(copyright.pos, "copyright cannot be empty");
-		return mk(Figure(mkPath(path.val, path.pos), caption.val, copyright.val), cmd.pos.span(copyright.pos));
+		return mk(Figure(size, mkPath(path.val, path.pos), caption.val, copyright.val), cmd.pos.span(copyright.pos));
 	}
 
-	/**
+	/*
 	After having already read a `#FIG#` tag, parse the reaming of the
 	vertical block as a combination of a of path (delimited by `{}`),
 	copyright (after a `@` marker) and caption (everything before the `@`
 	and that isn't part of the path).
-	**/
+	*/
 	function mdFigure(tag:Array<Token>, stop)
 	{
 		assert(tag[0].def.match(THashes(1)), tag[0]);
-		assert(tag[1].def.match(TWord("FIG")), tag[1]);
+		// assert(tag[1].def.match(TWord("FIG") | TWord("FIG:small") | TWord("FIG:medium") | TWord("FIG:large")), tag[1]);
 		assert(tag[2].def.match(THashes(1)), tag[2]);
+
+		var spat = ~/^FIG(:(small|medium|large))?$/;
+		var size = switch tag[1].def {
+		case TWord(n) if (spat.match(n)):
+			var s = spat.matched(2);
+			blobSize(s != null ? { val:s, pos:tag[1].pos } : null, defaultFigureSize);
+		case _:
+			unexpected(tag[1]); null;
+		}
 
 		var captionParts = [];
 		var path = null;
@@ -324,7 +339,7 @@ class Parser {
 				captionParts[0]
 			else
 				mk(HList(captionParts), captionParts[0].pos.span(captionParts[captionParts.length - 1].pos));
-		return mk(Figure(path, caption, copyright), tag[0].pos.span(lastPos));
+		return mk(Figure(size, path, caption, copyright), tag[0].pos.span(lastPos));
 	}
 
 	function tableCell(cmd:Token)
@@ -347,9 +362,22 @@ class Parser {
 		return cells;
 	}
 
+	function blobSize(spec:Null<{ val:String, pos:Position }>, def:BlobSize):Null<BlobSize>
+	{
+		if (spec == null) return def;
+		return switch spec.val.toLowerCase().trim() {
+		case null: badArg(spec.pos, "size cannot be empty"); null;
+		case "small": MarginWidth;
+		case "medium": TextWidth;
+		case "large": FullWidth;
+		case _: badValue(spec.pos, "only sizes 'small', 'medium', and 'large' are valid"); null;
+		}
+	}
+
 	function table(begin:Token)
 	{
 		assert(begin.def.match(TCommand("begintable")), begin);
+		var size = blobSize(optArg(rawHorizontal, begin, "size"), defaultTableSize);
 		var caption = arg(hlist, begin, "caption");
 		if (caption.val == null) badArg(caption.pos, "caption cannot be empty");
 		var rows = [];
@@ -366,7 +394,7 @@ class Parser {
 		var end = pop();  // should have already discarted any vnoise before
 		if (end.def.match(TEof)) unclosed(begin);
 		if (!end.def.match(TCommand("endtable"))) unexpected(end);
-		return mk(Table(caption.val, header, rows), begin.pos.span(end.pos));
+		return mk(Table(size, caption.val, header, rows), begin.pos.span(end.pos));
 	}
 
 	function quotation(cmd:Token)
@@ -495,7 +523,7 @@ class Parser {
 		case [TCommand("meta"), TCommand("reset")]: metaReset({ def:TCommand("meta\\reset"), pos:pos });
 		case [TCommand("html"), TCommand("apply")]: targetInclude({ def:TCommand("html\\apply"), pos:pos });
 		case [TCommand("tex"), TCommand("preamble")]: targetInclude({ def:TCommand("tex\\preamble"), pos:pos });
-		case _: unknownCmd(exec); null;
+		case _: unexpectedCmd(exec); null;
 		}
 	}
 
@@ -520,7 +548,7 @@ class Parser {
 			case "beginbox", "boxstart": box(pop());
 			case "include": include(pop());
 			case name if (Lambda.has(horizontalCommands, name)): paragraph(stop);
-			case _: unknownCmd(peek()); null;
+			case _: unexpectedCmd(peek()); null;
 			}
 		case THashes(1) if (peek(1).def.match(TWord("FIG")) && peek(2).def.match(THashes(1))):
 			mdFigure([pop(), pop(), pop()], stop);

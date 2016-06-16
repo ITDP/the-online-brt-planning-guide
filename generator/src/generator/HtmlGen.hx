@@ -9,6 +9,10 @@ import transform.Document;
 import Assertion.*;
 import haxe.io.Path.join in joinPaths;
 
+using Literals;
+using parser.TokenTools;
+using transform.DocumentTools;
+
 typedef Nav = {
 	name : String,
 	id : String,
@@ -32,7 +36,8 @@ class HtmlGen {
 	var navs : Array<Nav>;
 	var navTop : String;
 	var navLeft : String;
-	var curBuff : StringBuf;
+	
+	var cur_chapter_name : String;
 	
 	var css : Array<String>;
 	
@@ -71,28 +76,50 @@ class HtmlGen {
 			buf.toString();
 		}
 	}
-	
-	function vertical(v:TElem, counts : Array<Int>, curNav : Null<Nav>)
+
+	function sizeToClass(s:BlobSize)
 	{
+		return switch s {
+		case MarginWidth: "sm";
+		case TextWidth: "md";
+		case FullWidth: "lg";
+		}
+	}
+	
+	function vertical(v:TElem, counts : Array<Int>, curNav : Null<Nav>) : String
+	{		
 		switch v.def {
 		case TVolume(name, count, id, children), TChapter(name, count, id, children),
 		TSection(name, count, id, children), TSubSection(name, count, id, children),
 		TSubSubSection(name, count, id, children):
-			hierarchy(v, counts, curNav);
-		case TFigure(path, caption, copyright, count,id):
+			return hierarchy(v, counts, curNav);
+		case TFigure(size, path, caption, copyright, count,id):
 			var caption = horizontal(caption);
 			var copyright = horizontal(copyright);
-			//navs.push({name : '', id : id,type : OTH, chd : null});
+			var _path = saveAsset(path);
 			//TODO: Make FIG SIZE param
-			curBuff.add('<section class="md img-block id="${id}"><img src="${path}"/><p><strong>Fig ${count}</strong>${caption} <em>${caption}</em></p>');
+			return ('
+			<section class="${sizeToClass(size)} img-block id="${id}">
+				<img src="../${_path}"/>
+				<p><strong>Fig. ${counts[CHA]}.${count}</strong><span class="quad"></span>${caption} <em>${copyright}</em></p>
+			</section>'.doctrim());
 		case TBox(contents):
-			curBuff.add('<section class="box">\n');
-			vertical(contents, counts, curNav);
-			curBuff.add('</section>\n');
-		case TQuotation(t,a):
-			curBuff.add('<blockquote class="md"><q>${horizontal(t)}</q><span>${horizontal(a)}</span></blockquote>');
+			var isLarge = false;
+			function findSize(v:TElem) {
+				if (v.def.match(TFigure(MarginWidth|FullWidth, _) | TTable(MarginWidth|FullWidth, _)))
+					isLarge = true;
+				v.iter(findSize);
+			}
+			findSize(contents);
+			var b = new StringBuf();
+			b.add('<section class="box ${isLarge ? "lg" : "md"}">\n');
+			b.add(vertical(contents, counts, curNav));
+			b.add('</section>\n');
+			return b.toString();
+		case TQuotation(t, a):
+			return ('<blockquote class="md"><q>${horizontal(t)}</q><span>${horizontal(a)}</span></blockquote>');
 		case TParagraph(h):
-			curBuff.add('<p>${horizontal(h)}</p>\n');
+			return ('<p>${horizontal(h)}</p>\n');
 		case TList(li):
 			var buf = new StringBuf();
 			buf.add("<ul>\n");
@@ -107,71 +134,121 @@ class HtmlGen {
 				buf.add("</li>\n");
 			}
 			buf.add("</ul>\n");
-			curBuff.add(buf.toString());
+			return (buf.toString());
 		case TVList(li):
-			//var buf = new StringBuf();
+			var buf = new StringBuf();
 			for (i in li)
-				vertical(i, counts, curNav);
+				buf.add(vertical(i, counts, curNav));
+			return buf.toString();
 		case THtmlApply(path):
 			css.push(saveAsset(path));
+			return null;
 		case TLaTeXPreamble(_):
-			null;  // ignore
-		case TTable(caption, header, chd, count, id):
+			return null;  // ignore
+		case TTable(size, caption, header, chd, count, id):
+			var buff = new StringBuf();
 			counts[OTH] = count;
-			curBuff.add("<section class='lg'>");
-			curBuff.add('<h4 id="${id}">Table ${counts[CHA] +"." + counts[OTH]} : ${horizontal(caption)}</h4>'); //TODO:
-			curBuff.add("<table>");
-			processTable([header], true);
-			processTable(chd);
-			curBuff.add("</table></section>");
-			
+			buff.add('<section class="${sizeToClass(size)}"><h5 id="${id}">Table ${counts[CHA] + "." + counts[OTH]}. ${horizontal(caption)}</h5>'); //TODO:
+			buff.add("<table>");
+			buff.add(processTable([header], true));
+			buff.add(processTable(chd));
+			buff.add("</table></section>");
+			return buff.toString();
 		}
 	}
 	
-	//isColumnMode and isHeadMode are optional because I'll call then inside the function
-	//E.G: This function assumes that row0 is always a header, isColumn mode starts with false or null
-	//because it assumes an object is of type TR[TD[Val]] (same as HTML table standard).
 	function processTable(body : Array<Array<TElem>>, ?isHeadMode : Bool)
 	{
-		if (isHeadMode)
-			curBuff.add("<thead>");
-		else
-			curBuff.add("<tbody>");
-			
+		var buff = new StringBuf();
+		buff.add(addTblHeader(isHeadMode, false));
+		
 		for (row in body)
 		{
-			curBuff.add("<tr>");
+			buff.add("<tr>");
 			for (col in row)
 			{
-				if (isHeadMode)
-					curBuff.add("<th>");
-				else
-					curBuff.add("<td>");
-					
-				switch(col.def)
-				{
-					case TParagraph(h):
-						curBuff.add(horizontal(h));
-					default:
-						throw "NI";
-				}
+				buff.add(addColumn(isHeadMode, false));
 				
-				if (isHeadMode)
-					curBuff.add("</th>");
-				else
-					curBuff.add("</td>");
+				buff.add(processTableElem(col));
+				
+				buff.add(addColumn(isHeadMode, true));
 			}
-			curBuff.add("</tr>");
+			buff.add("</tr>");
 		}
 		
+		buff.add(addTblHeader(isHeadMode, true));
+		return buff.toString();
+	}
+	
+	function processTableElem(elem : TElem)
+	{
+		var b = new StringBuf();
+		switch(elem.def)
+		{
+			case TParagraph(h):
+				b.add(horizontal(h));
+			case TList(li):
+				b.add("<ul>\n");
+				for (el in li)
+				{
+					b.add("<li>");
+					switch el.def {
+					case TParagraph(h):
+						b.add(horizontal(h));
+					case TList(li):
+						b.add(processTableElem(el));
+					case _:
+						throw "Invalid table element: " + el.def.getName() + " pos : " + el.pos.min + " at " + el.pos.src;
+					}
+					b.add("</li>\n");
+				}
+				b.add("</ul>\n");
+			default:
+				throw "Invalid table element: " + elem.def.getName() + " pos : " + elem.pos.min + " at " + elem.pos.src;
+		}
+		
+		return b.toString();
+	}
+	
+	function addColumn(isHeadMode : Bool, isEnd : Bool)
+	{
 		if (isHeadMode)
-			curBuff.add("</thead>");
+		{
+			if (!isEnd)
+				return ("<th>");
+			else
+				return ("</th>");
+		}
 		else
-			curBuff.add("</tbody>");
+		{
+			if (!isEnd)
+				return ("<td>");
+			else
+				return ("</td>");
+		}
+	}
+	
+	function addTblHeader(isHead : Bool, isEnd : Bool)
+	{
+		if (isHead)
+		{
+			if (!isEnd)
+				return ("<thead>");
+			else
+				return ("</thead>");
+		}
+		else
+		{
+			if (!isEnd)
+				return ("<tbody>");
+			else
+				return ("</tbody>");
+		}
 	}
 	
 	function hierarchy(cur : TElem, counts : Array<Int>, curNav : Nav)
 	{
+			
 		var buff = new StringBuf();
 		var _children = null;
 		var _name  = "";
@@ -192,6 +269,7 @@ class HtmlGen {
 				counts[CHA] = count;
 				_children = children;
 				type = CHA;
+				cur_chapter_name = _name;
 			case TSection(name, count,id, children):
 				_name = horizontal(name);
 				_id = id;
@@ -227,23 +305,29 @@ class HtmlGen {
 		
 		
 		
-		//Vol. and Chapter doesnt add anything
-		if(type > 1)
-			curBuff.add('<section><h${(type+1)} id="${_id}">${count} ${_name}</h${(type + 1)}>');
+		if(type > 0)
+			buff.add('<section><h${(type+1)} id="${_id}">${count}<span class="quad"></span>${_name}</h${(type + 1)}>');
 		
-		vertical(_children, counts, curNav);
-		
-		if(type > 1)
-			curBuff.add("</section>");
+		buff.add(vertical(_children, counts, curNav));
+			
+		if(type > 0)
+			buff.add("</section>");
 		
 		//Section already processed, clear buff , continue program execution
-		if (type == 2 && curBuff.length > 0)
-		{			
-			fileGen(curBuff.toString(), curNav);
-			curBuff = new StringBuf();
+		if (type == SEC || type == CHA)
+		{
+			var title = (type == SEC) ? 
+			'${counts.slice(1, 3).join(".")} ${_name} [${cur_chapter_name}]' : '${counts[1]} $_name';
+			
+			if(type == SEC)
+				fileGen(buff.toString(), curNav, title);
+			else
+				fileGen(buff.toString(), curNav, title, "index");
+			
+			return "";
 		}
 		
-		
+		return buff.toString();
 	}
 	
 	function processNav(curSec : Null<Nav>) : { sections : String, topNavJs : String}
@@ -262,39 +346,35 @@ class HtmlGen {
 			topBuff.add('<li id="${n.id}"><a href="#">${n.name}</a></li>');
 			if (n.chd != null && n.chd.length > 0)
 			{
-				var cha = '<a> ${n.name} </a><ul class=\"item hide\">';
+				var cha = '<a>${n.name}</a><ul style="margin-left:114px;" class=\"item hide\">';
 				
 				for(c in n.chd)
 				{
-					cha += '<li id="${c.id}"><a href="#">${c.name}</a></li>';
+					var cha_name = c.id.split(".")[3];
+					//var first_sec_name = c.chd[0].id.split(".")[5];
+					cha += '<li id="${c.id}"><a href="../${cha_name}/index.html">${c.name}</a></li>';
 					
 					if (c.chd != null && c.chd.length > 0)
 					{
-						var sec = '<a>${c.name}</a><ul class=\"item hide\">';
+						var sec = '<a>${c.name}</a><ul style="margin-left:317px;" class=\"item hide\">';
 						
 							for (se in c.chd)
 							{
 								var se_params = se.id.split('.');
-								var cha_name = se_params[3];
+								
 								var sec_name = se_params[5];
 								
 								sec += '<li><a href="../${cha_name}/${sec_name}.html">${se.name}</a></li>';
 								
 								if (curSec != null && curSec == se)
 								{
+									leftBuff.add('<li><a href="#${se.id}">${se.name}</li>');
+									
 									for (su in se.chd)
 									{
 										leftBuff.add('<li><a href="#${su.id}">${su.name}</li>');
-										if (se.chd != null && se.chd.length > 0)
-										{
-											leftBuff.add('<li><ul>');
-											for (ss in su.chd)
-											{
-												leftBuff.add('<li><a href="#${ss.id}">${ss.name}</a></li>');
-											}
-											leftBuff.add('</ul></li>');
-										}
 									}
+									//leftBuff.add("</ul></li>");
 								}
 							}
 						sec += '</ul>';
@@ -309,7 +389,6 @@ class HtmlGen {
 			
 		}
 		
-		//topBuff.add();
 		leftBuff.add('</ul></nav>');
 		
 		return {sections : leftBuff.toString(), topNavJs : genNavJs(optBuff, topBuff.toString())};
@@ -351,14 +430,17 @@ class HtmlGen {
 				{
 					var v = {type : ${values.get(key).type}, list : \'${values.get(key).list}\'};
 					var menu = $(".menu");
-					
+					//console.log(v.type);
+					//console.log(menu.children("li").length);
 					while (((v.type)) < ((menu.children("li").length)/2))
 					{
+						//console.log("removed");
 						menu.children("li").last().remove();
 					}
-					
+					//console.log(v.list);
+					if(!(menu.children("li").last().html() == "<a>/</a>"))
+						menu.append("<li><a>/</a></li>");
 					menu.append("<li>" + v.list + "</li>");
-					menu.append("<li>/<li>");
 					
 					//Bind evt again (TODO: Rewrite)
 					hover();
@@ -372,7 +454,7 @@ class HtmlGen {
 		buff.add("}\n");
 		buff.add('function post()
 		{
-			var fullid = $(".col-text").children("section").first().children("h3").attr("id").split(".");
+			var fullid = $(".col-text").children("section").first().children("h3,h2").attr("id").split(".");
 			var vol_id = fullid.slice(0, 2).join("\\\\.");
 			$("#" + vol_id).trigger("click");
 			$("#" + fullid.slice(0, 4).join("\\\\.")).trigger("click");
@@ -384,11 +466,11 @@ class HtmlGen {
 	}
 	
 	//TODO: add custom params...later
-	function headGen(jsFile : String)
+	function headGen(jsFile : String, title : String)
 	{
 		var staticres = '<head>
 			<meta charset="utf-8">
-			<title></title>
+			<title>${title}</title>
 			<!-- Custom CSSs -->
 			${css.map(function (p) return '<link href="../${p}" rel="stylesheet" type="text/css">').join("\n")}
 			<!-- Jquery -->
@@ -406,7 +488,7 @@ class HtmlGen {
 		return staticres;
 	}
 	
-	function fileGen(content : String, nav : Nav)
+	function fileGen(content : String, nav : Nav, title : String, ?filename : String)
 	{
 		if (nav == null) 
 			throw "Invalid access";
@@ -420,25 +502,22 @@ class HtmlGen {
 			FileSystem.createDirectory(path);
 		
 		var buff = new StringBuf();
-		buff.add(headGen("../" + JSName));
+		buff.add(headGen("../" + JSName, title));
 		
 		buff.add('<body><div class="container"><div class="col-text">');
 		buff.add(content);
 		buff.add('</div>');
 		buff.add(processNav(nav).sections);
 		buff.add('</div>');
-		buff.add("<header><ul class='menu'><li><a> BRTPG</a><ul class='item hide volumes'></ul></li><li>/</li></ul></header>");
+		buff.add("<header><ul class='menu'><li><a><strong>BRT Planning Guide</strong></a><ul class='item hide volumes'></ul></li></ul></header>");
 		
-		File.saveContent(joinPaths([path, sec + ".html"]), buff.toString());
-		
-		
+		File.saveContent(joinPaths([path,  ((filename != null) ? filename : sec) + ".html"]), buff.toString());		
 	}
 		
 	function document(doc:Document)
 	{
 		css = new Array<String>();
 		navs = new Array<Nav>();
-		curBuff = new StringBuf();
 		vertical(doc,[0,0,0,0,0,0], null);
 		
 		//JS name

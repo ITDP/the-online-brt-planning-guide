@@ -1,5 +1,6 @@
 package generator;
 
+import generator.tex.*;
 import haxe.io.Path;
 import sys.FileSystem;
 import sys.io.File;
@@ -9,6 +10,7 @@ import Assertion.*;
 
 using Literals;
 using StringTools;
+using parser.TokenTools;
 
 class TexGen {
 	static var FILE_BANNER = "
@@ -20,18 +22,21 @@ class TexGen {
 	var preamble:StringBuf;
 	var bufs:Map<String,StringBuf>;
 
-	function gent(text:String)
+	public function gent(text:String)
 	{
-		text = ~/([%{}\$\/\\])/.replace(text, "\\$1");  // FIXME complete
+		text = ~/([%{}%#\$\/\\])/.replace(text, "\\$1");  // FIXME complete
 		return text;
 	}
 
-	function genp(pos:Position)
+	public function genp(pos:Position)
 	{
-		return '% @ ${pos.src}:${pos.min + 1}-${pos.max}\n';
+		var lpos = pos.toLinePosition();
+		if (Main.debug)
+			return '% @ ${lpos.src}: lines ${lpos.lines.min + 1}-${lpos.lines.max}: chars ${lpos.chars.min + 1}-${lpos.chars.max}\n';  // TODO slow, be careful!
+		return '% @ ${pos.src}: bytes ${pos.min + 1}-${pos.max}\n';
 	}
 
-	function genh(h:HElem)
+	public function genh(h:HElem)
 	{
 		switch h.def {
 		case HList(li):
@@ -50,7 +55,7 @@ class TexGen {
 		}
 	}
 
-	function genv(v:TElem, at:String)
+	public function genv(v:TElem, at:String)
 	{
 		assert(!at.endsWith(".tex"), at, "should not but a directory");
 		switch v.def {
@@ -81,8 +86,9 @@ class TexGen {
 			return '\\subsection{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at)}';
 		case TSubSubSection(name, count, id, children):
 			return '\\subsubsection{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at)}';
-		case TFigure(path, caption, cright, cnt, id):
+		case TFigure(size, path, caption, cright, cnt, id):
 			path = sys.FileSystem.absolutePath(path);  // FIXME maybe move to transform
+			// TODO handle size
 			// TODO escape path
 			// TODO escape count
 			// TODO enable (uncomment)
@@ -114,12 +120,12 @@ class TexGen {
 			return "";
 		case THtmlApply(_):
 			return "";
-		case TTable(caption, header, chd, count, id):
-			return null;//TODO;
+		case TTable(_):
+			return LargeTable.gen(v, this, at);
 		}
 	}
 
-	public function generate(doc:Document)
+	public function writeDocument(doc:Document)
 	{
 		preamble = new StringBuf();
 		preamble.add(FILE_BANNER);

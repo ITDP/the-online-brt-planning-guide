@@ -1,4 +1,4 @@
 @echo off
 cd bin
-neko unit-tests.n
+neko tests.n
 pause
