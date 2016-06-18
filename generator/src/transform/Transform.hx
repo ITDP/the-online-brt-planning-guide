@@ -10,18 +10,18 @@ using parser.TokenTools;
 private typedef Rest = Array<VElem>;
 
 class Transform {
-
-	static inline var VOL = 0;
-	static inline var CHA = 1;
-	static inline var SEC = 2;
-	static inline var SUB = 3;
-	static inline var SUBSUB = 4;
-	//Figs,tbls,etc
-	static inline var OTH = 5;
+	static inline var CNT_VOLUME = 0;
+	static inline var CNT_CHAPTER = 1;
+	static inline var CNT_SECTION = 2;
+	static inline var CNT_2SECTION = 3;
+	static inline var CNT_3SECTION = 4;
+	static inline var CNT_BOX = 5;
+	static inline var CNT_FIGURE = 6;
+	static inline var CNT_TABLE = 7;
+	static inline var CNT_FIRST_LINEAR = CNT_BOX;
 
 	static function mk<T>(def:T, pos:Position):Elem<T>
 		return { def:def, pos:pos };
-
 
 	static function hierarchy(type:Int, name:HElem, rest:Rest, pos:Position, count:Array<Int>, names:Array<String>):TElem
 	{
@@ -30,12 +30,13 @@ class Transform {
 
 		var t = type+1;
 
-		//Reset Sec/Sub/SubSub when sec changes OR when chapter changes everything goes to waste (Reset all BUT VOL AND Chapter)
-		while ((type >= SEC && t < OTH) || (type == CHA && t < count.length))
-		{
-			count[t] = 0;
-			t++;
-		}
+		// volume => reset all children but chapter
+		// chapter => reset all children
+		// sections => reset all hierarchy children, but no boxes, figures or tables
+		var resetMin = type + (type == CNT_VOLUME ? 2 : 1);
+		var resetMax = type <= CNT_CHAPTER ? count.length : CNT_FIRST_LINEAR;
+		for (i in resetMin...resetMax)
+			count[i] = 0;
 
 		names[type] = txtFromHorizontal(name);
 		var tf = consume(rest, type, count, names);
@@ -43,15 +44,15 @@ class Transform {
 
 		return switch(type)
 		{
-			case VOL:
+			case CNT_VOLUME:
 				mk(TVolume(name, c, id, tf), pos.span(tf.pos));
-			case CHA:
+			case CNT_CHAPTER:
 				mk(TChapter(name, c, id, tf), pos.span(tf.pos));
-			case SEC:
+			case CNT_SECTION:
 				mk(TSection(name, c, id, tf), pos.span(tf.pos));
-			case SUB:
+			case CNT_2SECTION:
 				mk(TSubSection(name, c, id, tf), pos.span(tf.pos));
-			case SUBSUB:
+			case CNT_3SECTION:
 				mk(TSubSubSection(name, c, id, tf), pos.span(tf.pos));
 			default:
 				throw "Invalid type " + type; //TODO: FIX
@@ -65,11 +66,11 @@ class Transform {
 			var v = rest.shift();
 			var type = switch(v.def)
 			{
-				case Volume(_): VOL;
-				case Chapter(_): CHA;
-				case Section(_) : SEC;
-				case SubSection(_) : SUB;
-				case SubSubSection(_) : SUBSUB;
+				case Volume(_): CNT_VOLUME;
+				case Chapter(_): CNT_CHAPTER;
+				case Section(_) : CNT_SECTION;
+				case SubSection(_) : CNT_2SECTION;
+				case SubSubSection(_) : CNT_3SECTION;
 				default : null;
 			}
 
@@ -103,22 +104,22 @@ class Transform {
 			}
 			return mk(TVList(tf), v.pos);  // FIXME v.pos.span(???)
 		case Volume(name):
-			return hierarchy(VOL, name, rest, v.pos, count, names);
+			return hierarchy(CNT_VOLUME, name, rest, v.pos, count, names);
 		case Chapter(name):
-			return hierarchy(CHA, name, rest, v.pos, count, names);
+			return hierarchy(CNT_CHAPTER, name, rest, v.pos, count, names);
 		case Section(name):
-			return hierarchy(SEC, name, rest, v.pos, count, names);
+			return hierarchy(CNT_SECTION, name, rest, v.pos, count, names);
 		case SubSection(name):
-			return hierarchy(SUB, name, rest, v.pos, count, names);
+			return hierarchy(CNT_2SECTION, name, rest, v.pos, count, names);
 		case SubSubSection(name):
-			return hierarchy(SUBSUB, name, rest, v.pos, count, names);
+			return hierarchy(CNT_3SECTION, name, rest, v.pos, count, names);
 		case Figure(size, path, caption, cp):
-			count[OTH] = ++count[OTH];
-			names[OTH] = count[CHA] + " " + count[OTH];
-			var name = idGen(names, OTH);
+			count[CNT_FIGURE] = ++count[CNT_FIGURE];
+			names[CNT_FIGURE] = count[CNT_CHAPTER] + " " + count[CNT_FIGURE];
+			var name = idGen(names, CNT_FIGURE);
 			var _caption = htrim(caption);
 			var _cp = htrim(cp);
-			return mk(TFigure(size, path, _caption, _cp, count[OTH], name), v.pos);
+			return mk(TFigure(size, path, _caption, _cp, count[CNT_FIGURE], name), v.pos);
 		case Box(contents):
 			return mk(TBox(vertical(contents, rest, count, names)), v.pos);
 		case Quotation(text, by):
@@ -138,8 +139,8 @@ class Transform {
 			return mk(TParagraph(_h), v.pos);
 		case MetaReset(name, val):
 			switch name {
-			case "volume": count[VOL] = val;
-			case "chapter": count[CHA] = val;
+			case "volume": count[CNT_VOLUME] = val;
+			case "chapter": count[CNT_CHAPTER] = val;
 			case _: throw 'Unexpected counter name: $name';
 			}
 			return null;
@@ -148,9 +149,9 @@ class Transform {
 		case HtmlApply(path):
 			return mk(THtmlApply(path), v.pos);
 		case Table(size, caption, header, rows):
-			count[OTH] = ++count[OTH];
-			names[OTH] = count[CHA] + " " + count[OTH];
-			var name = idGen(names, OTH);
+			count[CNT_TABLE] = ++count[CNT_TABLE];
+			names[CNT_TABLE] = count[CNT_CHAPTER] + " " + count[CNT_TABLE];
+			var name = idGen(names, CNT_TABLE);
 			var _caption = htrim(caption);
 			var rvalues = [];
 			for (r in [header].concat(rows))  // POG
@@ -162,7 +163,7 @@ class Transform {
 				rvalues.push(cellvalues);
 			}
 			//TODO: v.pos.span(?) --> Should I Add its length?
-			return mk(TTable(size, _caption, rvalues[0], rvalues.slice(1), count[OTH], name), v.pos);
+			return mk(TTable(size, _caption, rvalues[0], rvalues.slice(1), count[CNT_TABLE], name), v.pos);
 		}
 	}
 	
@@ -303,9 +304,10 @@ class Transform {
 	
 	public static function transform(parsed:parser.Ast) : TElem
 	{
-		var tf = vertical(parsed, [], [0,0,0,0,0,0],['','','','','','']);
+		var baseCounters = [for (i in CNT_VOLUME...(CNT_TABLE+1)) 0];
+		var baseNames = [for (i in CNT_VOLUME...(CNT_TABLE+1)) ""];
 
-		//return parsed;
+		var tf = vertical(parsed, [], baseCounters, baseNames);
 		return tf;
 	}
 
@@ -318,18 +320,22 @@ class Transform {
 		{
 			var before = switch(i)
 			{
-				case VOL:
+				case CNT_VOLUME:
 					"volume.";
-				case CHA:
+				case CNT_CHAPTER:
 					"chapter.";
-				case SEC:
+				case CNT_SECTION:
 					"section.";
-				case SUB:
+				case CNT_2SECTION:
 					"subsection.";
-				case SUBSUB:
+				case CNT_3SECTION:
 					"subsubsection.";
-				case OTH:
-					"other.";
+				case CNT_BOX:
+					"box.";
+				case CNT_FIGURE:
+					"figure.";
+				case CNT_TABLE:
+					"table.";
 				default:
 					null;
 			}
