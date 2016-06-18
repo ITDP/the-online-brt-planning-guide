@@ -23,31 +23,8 @@ class Transform {
 		return { def:def, pos:pos };
 
 
-	static function hierarchy(cur : VElem, rest : Rest, pos : Position, count : Array<Int>, names : Array<String>) : TElem
+	static function hierarchy(type:Int, name:HElem, rest:Rest, pos:Position, count:Array<Int>, names:Array<String>):TElem
 	{
-		var type = null;
-		var _name = null;
-		switch(cur.def)
-		{
-			case Volume(name):
-				type = VOL;
-				_name = name;
-			case Chapter(name):
-				type = CHA;
-				_name = name;
-			case Section(name):
-				type = SEC;
-				_name = name;
-			case SubSection(name):
-				type = SUB;
-				_name = name;
-			case SubSubSection(name):
-				type = SUBSUB;
-				_name = name;
-			default:
-				throw "Invalid " + cur.def;
-		}
-
 		count[type] = ++count[type];
 		var c = count[type];  // save the count to make sure that \meta\reset only applies to the _next_ element
 
@@ -60,22 +37,22 @@ class Transform {
 			t++;
 		}
 
-		names[type] = txtFromHorizontal(_name);
+		names[type] = txtFromHorizontal(name);
 		var tf = consume(rest, type, count, names);
 		var id = idGen(names, type);
 
 		return switch(type)
 		{
 			case VOL:
-				mk(TVolume(_name, c, id, tf), pos.span(tf.pos));
+				mk(TVolume(name, c, id, tf), pos.span(tf.pos));
 			case CHA:
-				mk(TChapter(_name, c, id, tf), pos.span(tf.pos));
+				mk(TChapter(name, c, id, tf), pos.span(tf.pos));
 			case SEC:
-				mk(TSection(_name, c, id, tf), pos.span(tf.pos));
+				mk(TSection(name, c, id, tf), pos.span(tf.pos));
 			case SUB:
-				mk(TSubSection(_name, c, id, tf), pos.span(tf.pos));
+				mk(TSubSection(name, c, id, tf), pos.span(tf.pos));
 			case SUBSUB:
-				mk(TSubSubSection(_name, c, id, tf), pos.span(tf.pos));
+				mk(TSubSubSection(name, c, id, tf), pos.span(tf.pos));
 			default:
 				throw "Invalid type " + type; //TODO: FIX
 		}
@@ -125,8 +102,16 @@ class Transform {
 					tf.push(v);
 			}
 			return mk(TVList(tf), v.pos);  // FIXME v.pos.span(???)
-		case Volume(name), Chapter(name), Section(name), SubSection(name), SubSubSection(name):
-			return hierarchy(v, rest, v.pos, count, names);
+		case Volume(name):
+			return hierarchy(VOL, name, rest, v.pos, count, names);
+		case Chapter(name):
+			return hierarchy(CHA, name, rest, v.pos, count, names);
+		case Section(name):
+			return hierarchy(SEC, name, rest, v.pos, count, names);
+		case SubSection(name):
+			return hierarchy(SUB, name, rest, v.pos, count, names);
+		case SubSubSection(name):
+			return hierarchy(SUBSUB, name, rest, v.pos, count, names);
 		case Figure(size, path, caption, cp):
 			count[OTH] = ++count[OTH];
 			names[OTH] = count[CHA] + " " + count[OTH];
