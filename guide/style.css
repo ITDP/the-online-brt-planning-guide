@@ -5,21 +5,22 @@ html {
 
 .quad {
 	display: inline-block;
-	width: 1em;
+	width: .75em;
 }
 
 h1, h2, h3, h4, h5, h6, h7 {
 	font-family: 'PT Sans', sans-serif;
+	font-weight: bold;
 }
 h1 { font-size: 32px; color: #00a95e; }
 h2 { font-size: 28px; color: #00a95e; }
 h3 { font-size: 24px; color: #00a95e; }
-h4 { font-size:	20px; color: #00a95e; }
-h5 { font-size:	16px; color: #666; }
-h6 { font-size:	16px; color: #666; }
-h7 { font-size:	16px; color: #666; }
+h4 { font-size: 20px; color: #00a95e; }
+h5 { font-size: 16px; color: #666; }
+h6 { font-size: 16px; color: #666; }
+h7 { font-size: 16px; color: #666; }
 
-.box>h1 { font-size:	16px; color: #666; }
+.box>h1 { font-size: 16px; color: #666; }
 .box>h1.quad:before { content:""; }
 
 p {
