@@ -40,10 +40,10 @@
 \titleformat*{\section}{\bfseries\Large\color{greenbrt}\sffamily}
 \titleformat*{\subsection}{\bfseries\large\color{greenbrt}\sffamily}
 \titleformat*{\subsubsection}{\bfseries\color{greenbrt}\sffamily}
-\titlespacing*{\chapter}{0mm}{0mm}{0mm}[0pt]
-\titlespacing*{\section}{0mm}{0mm}{0mm}[0pt]
-\titlespacing*{\subsection}{0mm}{0mm}{0mm}[0pt]
-\titlespacing*{\subsubsection}{0mm}{0mm}{0mm}[0pt]
+\titlespacing*{\chapter}{0mm}{0mm}{2.25mm plus 2.25mm}[0pt]
+\titlespacing*{\section}{0mm}{4.5mm plus 4.5mm}{2.25mm plus 2.25mm}[0pt]
+\titlespacing*{\subsection}{0mm}{2.25mm plus 2.25mm}{0mm plus 2.25mm}[0pt]
+\titlespacing*{\subsubsection}{0mm}{2.25mm plus 2.25mm}{0mm plus 2.25mm}[0pt]
 \let\volume\part
 
 %workaround for titlesec 2.10.1 issue with missing labels
@@ -56,11 +56,11 @@
 %box
 \usepackage{mdframed}
 \newcommand{\boxtitle}[2]{{\noindent\bfseries\color{greenbrt}\sffamily Box \thechapter.#1. #2} \\ }
-\mdfsetup{innerleftmargin=6.75mm,innerrightmargin=6.75mm,innertopmargin=8.75mm,innerbottommargin=8.75mm,skipabove=12.75pt,skipbelow=12.75pt,linewidth=0.25mm,linecolor=gray50}
+\mdfsetup{innerleftmargin=6.75mm,innerrightmargin=6.75mm,innertopmargin=6.75mm,innerbottommargin=6.75mm,skipabove=4.5mm,skipbelow=4.5mm,linewidth=0.25mm,linecolor=gray50}
 \def\beginbox{
 	\mdframed[usetwoside=false]
-	\parskip=12.75pt
-	\baselineskip=12.75pt
+	\parskip=0pt
+	\baselineskip=4.5mm
 	\parindent=7mm
 	\color{gray50}
 	}
@@ -77,18 +77,18 @@
 \newcommand{\fignote}[3]{\noindent\raggedright\footnotesize\sffamily\color{gray50}{\bfseries Figure \thechapter.#1.} #2 {\itshape #3} \par}
 
 %quotation {quote}{name, about, 1900 - 2000}
-\renewcommand{\quotation}[2]{\begingroup\leftskip=14mm\rightskip=14mm {\small\color{gray50} \noindent\textit{``#1''} \\\hbox{}\hfill --- #2} \par\endgroup}
+\renewcommand{\quotation}[2]{\begingroup\leftskip=14mm\rightskip=14mm {\small\color{gray50} \noindent\textit{``#1''} \\\hbox{}\hfill --- #2} \par\endgroup \smallskip }
 
 %tables
 %note: \tablemodule*46 must match \textwidth+\marginparsep+\marginparwidth
 \usepackage{ifoddpage}
 \newdimen\tablemodule \tablemodule=\textwidth \divide\tablemodule by 30
-\newcommand{\tabletitle}[2]{{\noindent\bfseries\color{greenbrt}\sffamily Table \thechapter.#1. #2} \\ }
+\newcommand{\tabletitle}[2]{{\noindent\bfseries\color{greenbrt}\sffamily Table \thechapter.#1. #2} \par }
 \newcommand{\tablesource}[1]{\noindent\raggedright\footnotesize\sffamily\color{gray50}{\bfseries Source:} #1 \par \smallskip}
 
 \AtBeginDocument{
-	\parskip=12.75pt
-	\baselineskip=12.75pt
+	\parskip=0mm plus 4.5mm
+	\baselineskip=4.5mm
 	\parindent=7mm
 	\color{gray75}
 }
