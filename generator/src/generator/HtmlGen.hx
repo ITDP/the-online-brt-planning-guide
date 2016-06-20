@@ -103,7 +103,7 @@ class HtmlGen {
 				<img src="../${_path}"/>
 				<p><strong>Fig. ${counts[CHA]}.${count}</strong><span class="quad"></span>${caption} <em>${copyright}</em></p>
 			</section>'.doctrim());
-		case TBox(contents):
+		case TBox(name, contents, count, id):
 			var isLarge = false;
 			function findSize(v:TElem) {
 				if (v.def.match(TFigure(MarginWidth|FullWidth, _) | TTable(MarginWidth|FullWidth, _)))
@@ -113,6 +113,7 @@ class HtmlGen {
 			findSize(contents);
 			var b = new StringBuf();
 			b.add('<section class="box ${isLarge ? "lg" : "md"}">\n');
+			b.add('<h3>Box ${counts[CHA]}.${count}<span class="quad"></span>${horizontal(name)}</h3>\n');
 			b.add(vertical(contents, counts, curNav));
 			b.add('</section>\n');
 			return b.toString();

@@ -93,7 +93,8 @@ class TexGen {
 			// TODO escape count
 			// TODO enable (uncomment)
 			return '% \\img{\\hsize}{$path}\n% \\fignote{$cnt}{${genh(caption)}}{${genh(cright)}}\n\n';  // FIXME more neutral names
-		case TBox(contents):
+		case TBox(name, contents, count, id):
+			weakAssert(name == null, "not sure what to do with the box name yet");
 			return '\\beginbox\n\n${genv(contents, at)}\\endbox\n${genp(v.pos)}\n';
 		case TQuotation(text, by):
 			return '\\quotation{${genh(text)}}{${genh(by)}}\n${genp(v.pos)}\n';

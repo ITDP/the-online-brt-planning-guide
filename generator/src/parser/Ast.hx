@@ -37,7 +37,7 @@ enum VDef {
 	Table(size:BlobSize, caption:HElem, header:TableRow, rows:Array<TableRow>);  // copyright/source?
 	Quotation(text:HElem, by:HElem);
 	List(items:Array<VElem>);
-	Box(contents:VElem);
+	Box(name:HElem, contents:VElem);
 	Paragraph(h:HElem);
 	VList(elem:Array<VElem>);
 }

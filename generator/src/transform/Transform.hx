@@ -120,8 +120,11 @@ class Transform {
 			var _caption = htrim(caption);
 			var _cp = htrim(cp);
 			return mk(TFigure(size, path, _caption, _cp, count[CNT_FIGURE], name), v.pos);
-		case Box(contents):
-			return mk(TBox(vertical(contents, rest, count, names)), v.pos);
+		case Box(name, contents):
+			count[CNT_BOX] = ++count[CNT_BOX];
+			names[CNT_BOX] = count[CNT_CHAPTER] + " " + count[CNT_BOX];
+			var id = idGen(names, CNT_BOX);
+			return mk(TBox(htrim(name), vertical(contents, rest, count, names), count[CNT_BOX], id), v.pos);
 		case Quotation(text, by):
 			var _text = htrim(text);
 			var _by = htrim(by);

@@ -21,7 +21,7 @@ enum TDef {
 
 	TFigure(size:BlobSize, path:String, caption:HElem, copyright:HElem, count : Int, id : String);  // TODO size?
 	TTable(size:BlobSize, caption:HElem, header:Array<TElem>, body:Array<Array<TElem>>, count:Int, id:String);
-	TBox(contents:TElem);
+	TBox(name:HElem, contents:TElem, count:Int, id:String);
 	TQuotation(text:HElem, by:HElem);
 	TList(items:Array<TElem>);
 	TParagraph(h:HElem);

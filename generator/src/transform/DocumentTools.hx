@@ -7,7 +7,7 @@ class DocumentTools {
 	{
 		switch v.def {
 		case TVolume(_,_,_,i), TChapter(_,_,_,i), TSection(_,_,_,i),
-			TSubSection(_,_,_,i), TSubSubSection(_,_,_,i), TBox(i):
+			TSubSection(_,_,_,i), TSubSubSection(_,_,_,i), TBox(_,i,_):
 			f(i);
 		case TTable(_, _, header, rows, _):
 			for (v in header)
@@ -43,8 +43,8 @@ class DocumentTools {
 				var _header = [for (v in header) f(v)];
 				var _rows = [for (r in rows) [for (c in r) f(c)]];
 				TTable(size, caption, _header, _rows, count, id);
-			case TBox(contents):
-				TBox(f(contents));
+			case TBox(name, contents, count, id):
+				TBox(name, f(contents), count, id);
 			case TList(items):
 				TList([for (i in items) f(i)]);
 			case TLaTeXPreamble(_), THtmlApply(_), TFigure(_), TQuotation(_), TParagraph(_):
