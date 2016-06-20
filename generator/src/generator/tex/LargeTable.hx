@@ -115,7 +115,7 @@ class LargeTable {
 		switch v.def {
 		case TTable(size, caption, header, rows, count, id):
 			var buf = new StringBuf();
-			buf.add('% FIXME\nTable ${gen.genh(caption)}:\n\n');
+			buf.add('\\tabletitle{$count}{${gen.genh(caption)}}\n\n');
 			var width = header.length;
 
 			switch size {
