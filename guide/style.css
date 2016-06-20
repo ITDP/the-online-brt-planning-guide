@@ -26,6 +26,9 @@ h4>.quad:before { content:"."; }
 h5>.quad:before { content:"."; }
 h6>.quad:before { content:"."; }
 
+.box>h1 { font-size:	16px; color: #666; }
+.box>h1.quad:before { content:""; }
+
 p {
 	font-family: 'PT Serif', serif;
 	color: #333;
