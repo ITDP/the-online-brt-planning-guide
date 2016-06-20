@@ -19,13 +19,6 @@ h5 { font-size:	16px; color: #666; }
 h6 { font-size:	16px; color: #666; }
 h7 { font-size:	16px; color: #666; }
 
-h1>.quad:before { content:"."; }
-h2>.quad:before { content:"."; }
-h3>.quad:before { content:"."; }
-h4>.quad:before { content:"."; }
-h5>.quad:before { content:"."; }
-h6>.quad:before { content:"."; }
-
 .box>h1 { font-size:	16px; color: #666; }
 .box>h1.quad:before { content:""; }
 
