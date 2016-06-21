@@ -225,7 +225,7 @@ nav li
 /* img-block */
 
 .img-block {
-	margin: 0px 0px 15px;
+	margin: 0 0 15px;
 }
 .img-block img {
 	display: block;
@@ -317,10 +317,18 @@ q {
 	outline-offset: 15px;
 	margin: 32px 0;
 	color: #666;
+	overflow: auto;
 }
-.box p {
+.box > p {
 	color: #666;
 	margin-right: 0px;
+	width: 640px;
+}
+.box h5 {
+	margin-top: 0;
+}
+.box .img-block {
+	margin-left: 32px;
 }
 
 @media (min-width: 1240px) {
