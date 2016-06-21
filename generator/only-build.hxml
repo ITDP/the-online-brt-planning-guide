@@ -23,6 +23,8 @@
 -cp test
 -lib utest
 -D unittests
+-cp pseudo
+--macro allowPackage("sys")
 
 --next
 
@@ -31,3 +33,5 @@
 -cp test
 -lib utest
 -D unittests
+-cp pseudo
+

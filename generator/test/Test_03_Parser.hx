@@ -511,10 +511,14 @@ class Test_03_Parser {
 	// {
 	// }
 
-	// TODO
-	// public function test_021_include()
-	// {
-	// }
+	public function test_021_include()
+	{
+		sys.io.File.saveContent("b", "c");
+		Assert.same(
+			expand(@src("b")Paragraph(@len(1)Word("c"))),
+			parse("\\include{b}"));
+		
+	}
 
 	// TODO
 	public function test_022_tables()
