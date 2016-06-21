@@ -20,9 +20,6 @@ h5 { font-size: 16px; color: #666; }
 h6 { font-size: 16px; color: #666; }
 h7 { font-size: 16px; color: #666; }
 
-.box>h1 { font-size: 16px; color: #666; }
-.box>h1.quad:before { content:""; }
-
 p {
 	font-family: 'PT Serif', serif;
 	color: #333;
@@ -321,10 +318,15 @@ q {
 	margin-right: 0px;
 	width: 640px;
 }
-.box h5 {
-	margin-top: 0;
+.box > h1 { 
+	font-size: 16px; 
+	color: #666;
+	margin-top: 0; 
 }
-.box .img-block {
+.box > h1.quad:before {
+	content:"";
+}
+.box .sm {
 	margin-left: 32px;
 }
 
