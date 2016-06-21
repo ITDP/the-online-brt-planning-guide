@@ -448,12 +448,14 @@ class Parser {
 	function box(begin:Token)
 	{
 		assert(begin.def.match(TCommand("beginbox")), begin);
+		var name = arg(hlist, begin, "name");
+		if (name.val == null) badArg(name.pos, "name cannot be empty");
 		var li = vlist({ beforeAny:[TCommand("endbox")] });
 		discardVerticalNoise();
 		var end = pop();
 		if (end.def.match(TEof)) unclosed(begin);
 		if (!end.def.match(TCommand("endbox"))) unexpected(end);
-		return mk(Box(li), begin.pos.span(end.pos));
+		return mk(Box(name.val, li), begin.pos.span(end.pos));
 	}
 
 	function mkPath(rel:String, pos:Position, allowEmpty=false)

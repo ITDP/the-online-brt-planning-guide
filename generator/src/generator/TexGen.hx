@@ -86,11 +86,16 @@ class TexGen {
 			return '\\subsection{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at)}';
 		case TSubSubSection(name, count, id, children):
 			return '\\subsubsection{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at)}';
-		case TFigure(_):
-			trace("TODO figure");
-			return "";
-		case TBox(contents):
-			return '\\beginbox\n\n${genv(contents, at)}\\endbox\n${genp(v.pos)}\n';
+		case TFigure(size, path, caption, cright, cnt, id):
+			path = sys.FileSystem.absolutePath(path);  // FIXME maybe move to transform
+			// TODO handle size
+			// TODO escape path
+			// TODO escape count
+			// TODO enable (uncomment)
+			return '% \\img{\\hsize}{$path}\n% \\fignote{$cnt}{${genh(caption)}}{${genh(cright)}}\n\n';  // FIXME more neutral names
+		case TBox(name, contents, count, id):
+			weakAssert(name == null, "not sure what to do with the box name yet");
+			return '\\beginbox\n% TODO name: ${genh(name)}\n\n${genv(contents, at)}\\endbox\n${genp(v.pos)}\n';
 		case TQuotation(text, by):
 			return '\\quotation{${genh(text)}}{${genh(by)}}\n${genp(v.pos)}\n';
 		case TList(li):

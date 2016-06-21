@@ -475,16 +475,22 @@ class Test_03_Parser {
 	public function test_017_boxes()
 	{
 		Assert.same(
-			expand(@wrap(9,7)Box(null)),
-			parse("\\beginbox\\endbox"));
+			expand(@wrap(10,8)Box(@len(1)Word("a"),null)),
+			parse("\\beginbox{a}\\endbox"));
 		Assert.same(
-			expand(@wrap(10,7)Box(Paragraph(@len(1)Word("a")))),
-			parse("\\beginbox a\\endbox"));
+			expand(@wrap(10,7)Box(@len(1)Word("a"),@skip(1)Paragraph(@len(1)Word("b")))),
+			parse("\\beginbox{a}b\\endbox"));
 		Assert.same(
-			expand(@wrap(10,7)Box(VList([Paragraph(@len(1)Word("a")),@skip(2)Paragraph(@len(1)Word("b"))]))),
-			parse("\\beginbox a\n\nb\\endbox"));
+			expand(@wrap(10,7)Box(@len(1)Word("a"),@skip(1)VList([Paragraph(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))]))),
+			parse("\\beginbox{a}b\n\nc\\endbox"));
 
 		parsingError("\\endbox", UnexpectedCommand, ~/\\endbox/);
+
+		parsingError("\\beginbox", MissingArgument, ~/name.+\\beginbox/i, mkPos(9, 9));
+		parsingError("\\beginbox a", MissingArgument, ~/name.+\\beginbox/i, mkPos(10, 11));
+		parsingError("\\beginbox{a}{}", UnexpectedToken, ~/{/, mkPos(12, 13));
+
+		parsingError("\\beginbox{}", BadValue, ~/name cannot be empty/i, mkPos(10, 10));
 	}
 
 	// FIXME
