@@ -7,6 +7,8 @@
 
 \beginbox{Example: Transantiago}
 
+\figure{assets\/image8.jpeg}{The Transantiago BRT in Santiago, Chile.}{Image courtesy of Wikipedia Creative Commons.}
+
 When officials from the city of Santiago, Chile restructured the 
 city’s bus system, they unintentionally 
 gave us a case study in how NOT to manage messaging to their 
@@ -32,8 +34,6 @@ Transantiago’s problems
 went well beyond communications — incomplete infrastructure and insufficient 
 service were also major 
 factors — but citizens who had been left in the dark made the chaos far worse.
-
-\figure[medium]{assets\/image8.jpeg}{The Transantiago BRT in Santiago, Chile.}{Image Wikipedia Creative Commons.}
 
 \endbox
 
@@ -63,6 +63,8 @@ your message.
 
 \beginbox{Example: LAMATA}
 
+\figure{assets\/image9.jpeg}{The “BRT-Lite” system in Lagos, Nigeria.}{Image courtesy of Wikipedia Creative Commons.} 
+
 Lagos, Nigeria, successfully implemented a bus project with a strong communications 
 program. The Lagos Metropolitan Area Transit Authority presented the project as more than simply a bus 
 system but about improving and facilitating movement within the corridor, positioning the issue as “congestion 
@@ -89,5 +91,3 @@ produce
 even more such drivers, and represented a catalyst for change.
 
 \endbox
-
-\figure{assets\/image9.jpeg}{The “BRT-Lite” system in Lagos, Nigeria.}{Image Wikipedia Creative Commons.} 

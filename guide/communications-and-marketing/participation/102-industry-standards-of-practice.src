@@ -10,6 +10,9 @@ Specific public involvement techniques and the methods by which public transport
 involvement strategies are constantly evolving. There are, however, some overall generalizations about 
 the elements of agency public participation strategies and the process for creating them.
 
+\figure{assets\/image3.jpeg}{This design charette in Rio de Janeiro brought together government, 
+civil society, and private sector representatives in preparation for the TransOeste BRT. Image}{ ITDP.}
+
 Although this chapter focuses primarily on agency-government-user\/civil society interactions, the 
 principles of participation outlined here apply to other stakeholders including operators and drivers 
 (addressed more comprehensively in Chapter 16: Vehicle Operator Contracting and Industry Transition).
@@ -20,9 +23,6 @@ requires a fundamental shift from viewing public engagement and participation as
 it as an opportunity to improve and build the short- and long-term viability of the system. A well-designed 
 participatory process can also strengthen the long-term credibility and viability of organizations that 
 build civil society.
-
-/*\figure{assets\/image3.jpeg}{This design charette in Rio de Janeiro brought together government, 
-civil society, and private sector representatives in preparation for the TransOeste BRT. Image}{ ITDP.}*/
 
 \subsection{Goals and Objectives}
 
@@ -64,8 +64,8 @@ and well-being of the community.
 There are many versions of these good practice principles, and they may be adjusted for local context 
 and to address specific concerns.
 
-/*\figure{assets\/image4.jpeg}{Fig.10.4 A community workshop in Rio de Janeiro, Brazil, asked participants 
-to give input on the future of transportation in their city. Image}{ ITDP.}*/
+\figure{assets\/image4.jpeg}{Fig.10.4 A community workshop in Rio de Janeiro, Brazil, asked participants 
+to give input on the future of transportation in their city.}{Image courtesy of ITDP.}
 
 \subsection{The Passive vs. Active Approach}
 
@@ -87,11 +87,11 @@ public involvement provides the agency with critical missing information. When a
 input agencies typically want from the public, respondents noted that they want to know about community 
 issues that might impact public transport service, as well as chronic customer service problems. 
 
-/*\figure{assets\/image5.jpeg}{Surveys, which are discussed in more detail in Chapter 9: Strategic 
-Planning for Communications, are an important and simple way to begin public outreach. Image}{ ITDP.}*/
+\figure{assets\/image5.jpeg}{Surveys, which are discussed in more detail in Chapter 9: Strategic 
+Planning for Communications, are an important and simple way to begin public outreach.}{Imagecourtesy of  ITDP.}
 
-/*\figure{assets\/image6.png}{Results from an interview of thirty public transport providers about 
-the type of input agencies typically wanted from the public. Graph}{ Transportation Research Board.}*/
+\figure{assets\/image6.png}{Results from an interview of thirty public transport providers about 
+the type of input agencies typically wanted from the public.}{Graph courtesy of Transportation Research Board.}
 
 Informational campaigns take place along a spectrum. At one end, you have one-way communication, which 
 means providing information, usually to a broad public with no ability to receive feedback from the audience. 
@@ -101,9 +101,9 @@ and have more of an impact on people’s thinking, although usually not on their
 end, you have a genuine participation process or an “active approach” that involves more complex two-way 
 or multi-directional communication, usually referred to as deliberation.
 
-/*\figure{assets\/image7.jpeg}{A passive approach to participation as information versus an active 
-approach, where bidirectional communication, feedback and change foster optimum results.}{ Carlos Felipe 
-Pardo and Lake Sagaris.}*/
+\figure{assets\/image7.jpeg}{A passive approach to participation as information versus an active 
+approach, where bidirectional communication, feedback and change foster optimum results.}{Courtesy of Carlos Felipe 
+Pardo and Lake Sagaris.}
 
 Generally speaking, the more active the approach, the better the results. For example, in deliberation, 
 groups are engaged in an intense form of facilitated communication meant to bring crucial information 

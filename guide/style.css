@@ -232,6 +232,7 @@ nav li
 	font-size: 12px;
 	font-family: 'PT Sans', sans-serif;
 	color: #666;
+	text-align: left;
 }
 .img-block p.quad:before { content:"."; }
 
