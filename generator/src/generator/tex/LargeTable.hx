@@ -167,7 +167,7 @@ class LargeTable {
 				if (r.length != width)
 					buf.add("% ");  // FIXME
 				buf.add(r.map(genCell).join("&\n").split("\n").join("\n\t\\color{gray50}"));
-				buf.add("\\cr\n\t\\noalign{\\vskip 2mm}");
+				buf.add("\\cr\n\t\\noalign{\\vskip 2mm \n}");
 			}
 			buf.add('}\n${gen.genp(v.pos)}\n');
 			return buf.toString();
