@@ -1,12 +1,13 @@
 \tex\preamble{preamble.tex}
 \html\apply{style.css}
 
-\meta\reset{volume}{2}
-\meta\reset{chapter}{8}
-/* since we're starting at volume 3/chapter 9 */
-
+\meta\reset{volume}{2}\meta\reset{chapter}{8}  // we're starting at volume 3/chapter 9
 \volume{Communications and Marketing}
 \include{communications-and-marketing\/strategic-planning-for-communications.src}
 \include{communications-and-marketing\/public-participation.src}
 \include{communications-and-marketing\/the-case-for-marketing-and-customer-service.src}
+
+\meta\reset{volume}{4}\meta\reset{chapter}{33}  // contributing should be the last volume and chapters
+\volume{Meta}
+\include{meta\/manual.src}
 
