@@ -203,6 +203,8 @@ class Transform {
 				for(el in li)
 					tokenify(el);
 				tarray.push(mk(LiEnd, elem.pos));				
+			case Code(c):
+				tarray.push(mk(TCode(c), elem.pos));
 		}
 	}
 	
@@ -213,8 +215,7 @@ class Transform {
 		
 		while (i < tarray.length)
 		{
-			//Everything that is NOT Word or Space
-			if(!(tarray[i].def.match(TWord(_)) || tarray[i].def.match(Space)))
+			if(!tarray[i].def.match(TWord(_) | TCode(_) | Space))  // FIXME what if TCode(_.length => size), size == 0?
 			{
 				i++;
 				continue;
@@ -237,8 +238,7 @@ class Transform {
 		tarray.reverse();
 		while(i < tarray.length)
 		{
-			//Everything that is NOT Word or Space
-			if(!(tarray[i].def.match(TWord(_)) || tarray[i].def.match(Space)))
+			if(!tarray[i].def.match(TWord(_) | TCode(_) | Space))  // FIXME what if TCode(_.length => size), size == 0?
 			{
 				i++;
 				continue;
@@ -262,6 +262,8 @@ class Transform {
 		{
 			case TWord(h):
 				return mk(Word(h), c.pos);
+			case TCode(t):
+				return mk(Code(t), c.pos);
 			case Space:
 				return mk(Wordspace, c.pos);
 			case Emph:
@@ -294,7 +296,7 @@ class Transform {
 		{
 			case Wordspace: " ";
 			case Emphasis(t), Highlight(t): txtFromHorizontal(t);
-			case Word(w) : w;
+			case Word(w), Code(w): w;
 			case HList(li):
 				var buf = new StringBuf();
 				for (l in li)
