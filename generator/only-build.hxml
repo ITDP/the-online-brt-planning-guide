@@ -25,6 +25,7 @@
 -D unittests
 -cp pseudo
 --macro allowPackage("sys")
+-D hxnodejs
 
 --next
 
