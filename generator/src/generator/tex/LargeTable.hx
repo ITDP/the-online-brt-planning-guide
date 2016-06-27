@@ -158,15 +158,16 @@ class LargeTable {
 				case _: gen.genv(i, genAt);
 				}
 			}
-			buf.add(header.map(genCell).join("&"));
-			buf.add("\\cr\n");
+			buf.add("\\color{gray75}\\bfseries ");
+			buf.add(header.map(genCell).join("& \\color{gray75}\\bfseries "));
+			buf.add(" \\cr\n\t\\noalign{\\vskip 1mm} \\hline \\noalign{\\vskip 2mm} \n");
 			for (r in rows) {
 				weakAssert(r.length == width, header.length, r.length);
-				buf.add("\t");
+				buf.add("\t\\color{gray50}");
 				if (r.length != width)
 					buf.add("% ");  // FIXME
-				buf.add(r.map(genCell).join("&\n").split("\n").join("\n\t"));
-				buf.add("\\cr\n");
+				buf.add(r.map(genCell).join("&\n").split("\n").join("\n\t\\color{gray50}"));
+				buf.add("\\cr\n\t\\noalign{\\vskip 2mm \n}");
 			}
 			buf.add('}\n${gen.genp(v.pos)}\n');
 			return buf.toString();

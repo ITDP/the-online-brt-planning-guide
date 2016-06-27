@@ -14,15 +14,16 @@ their success at rising above them. What has worked for some agencies has not al
 however, many have been successful and there are common themes that have tended to lead public transport 
 agencies to greater success in public involvement (TCRP Synthesis 89—Public Participation Strategies 
 for Transit: A Synthesis of Transit Practice. Transportation Research Board. 2011):
+
+\figure{assets\/image8.jpeg}{Proposed increases in bus fares led to violent protests in Quito, Ecuador. 
+}{Image courtesy of Diego Pallero, El Comercio.}
+
 \item The more public involvement, the more likely an agency is at having successful outcomes;
 \item Determining the “right” questions to ask is important;
 \item Dedicating resources to public participation is important, but these do not have to be strictly financial resources;
 \item The value that an agency places on public involvement is critical to success;
 \item Openness and transparency matter, and in many cases are the most important as far as the public is concerned;
 \item Understanding, partnering with, and empowering communities can significantly benefit public involvement efforts and the agency.
-
-/*\figure{assets\/image8.jpeg}{Proposed increases in bus fares led to violent protests in Quito, Ecuador. 
-Image}{ Diego Pallero, El Comercio.}*/
 
 \subsection{Internal Challenges}
 
@@ -31,10 +32,10 @@ public participation are inadequate financial and staff resources, difficulty in
 interested, and lack of time for public participation. Other challenges included lack of support from 
 upper management, lack of public involvement training for staff, and lack of coordination among agencies.
 
-/*\figure{assets\/image9.png}{Fig. 10.9Average transit rating of internal challenges for public involvement. 
+\figure[medium]{assets\/image9.png}{Fig. 10.9Average transit rating of internal challenges for public involvement. 
 Note: Average rating of responses where: “Not Significant” = 1, “Somewhat Significant” = 2, “Moderately 
-Significant” = 3, “Very Signficant” = 4, and “Highest Significance” = 5. Graph}{ Transportation Research 
-Board.}*/
+Significant” = 3, “Very Signficant” = 4, and “Highest Significance” = 5. }{Graph courtesy of Transportation Research 
+Board.}
 
 A lack of resources is almost always a major challenge for public transport agencies. However, there 
 are many ways to ensure successful public involvement that can be done with a modest budget. The best 
@@ -83,7 +84,7 @@ and meeting people where they are, is essential. These are discussed later in th
 Lastly, making your financial information and audits available for public review demonstrates that 
 you can be trusted with public funds.
 
-/*\figure{assets\/image10.png}{Fig. 10.10Average transit rating of external challenges for public involvement. 
+\figure[medium]{assets\/image10.png}{Fig. 10.10Average transit rating of external challenges for public involvement. 
 Note: Average rating of responses where: “Not Significant” = 1, “Somewhat Significant” = 2, “Moderately 
-Significant” = 3, “Very Signficant” = 4, and “Highest Significance” = 5. Graph}{ Transportation Research 
-Board.}*/
+Significant” = 3, “Very Signficant” = 4, and “Highest Significance” = 5.}{Graph courtesy of Transportation Research 
+Board.}
