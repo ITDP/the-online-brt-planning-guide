@@ -6,6 +6,7 @@ using StringTools;
 
 class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 	static var buf:StringBuf;
+	static var bang:Null<String>;
 
 	static function mkPos(p:hxparse.Position):Position
 	{
@@ -59,6 +60,26 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		}
 	];
 
+	static var code = @:rule
+	[
+		"\\\\!." => {
+			if (lexer.current == bang) {
+				TCode(buf.toString());
+			} else {
+				buf.add(lexer.current);
+				lexer.token(code);
+			}
+		},
+		"[^\\\\]+" => {
+			buf.add(lexer.current);
+			lexer.token(code);
+		},
+		"\\\\" => {
+			buf.add(lexer.current);
+			lexer.token(code);
+		}
+	];
+
 	//Count how many chars has in a string s
 	static function countmark(s : String, char : String)
 	{
@@ -98,7 +119,6 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 			mk(lexer, def, pos);
 		},
 
-
 		"$" => {
 			buf = new StringBuf();
 			var min = lexer.curPos().pmin;
@@ -109,9 +129,19 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		},
 		"$$$[^\n]*" => mk(lexer, TMath(lexer.current.substr(3))),
 
-		"\\\\\\\\" => mk(lexer, TWord("\\\\")),
+		"\\\\!." => {
+			assert(bang == null, bang);
+			bang = lexer.current;
+			buf = new StringBuf();
+			var min = lexer.curPos().pmin;
+			var def = lexer.token(code);
+			var pos = mkPos(lexer.curPos());
+			pos.min = min;
+			bang = null;
+			mk(lexer, def, pos);
+		},
 
-
+		"\\\\\\\\" => mk(lexer, TWord("\\")),
 
 		"(\\\\[a-z][a-z0-9]*)" => mk(lexer, TCommand(lexer.current.substr(1))),
 

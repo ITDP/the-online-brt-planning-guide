@@ -108,7 +108,7 @@ class Test_02_Lexer {
 
 	public function test_007_escapes()
 	{
-		Assert.same([TWord("\\\\"), TWord("foo"), TEof], defs("\\\\foo"));
+		Assert.same([TWord("\\"), TWord("foo"), TEof], defs("\\\\foo"));
 
 		Assert.raises(defs.bind("foo\\"));
 
@@ -121,7 +121,7 @@ class Test_02_Lexer {
 		Assert.same([TWord("foo"), TWord("@"), TEof], defs("foo\\@"));
 
 		//Just in case
-		Assert.same([TWord("\\\\"), TCommand("foo"), TEof], defs("\\\\\\foo"));
+		Assert.same([TWord("\\"), TCommand("foo"), TEof], defs("\\\\\\foo"));
 		Assert.same([TWord("#"), THashes(1), TWord("foo"), THashes(1), TEof], defs("\\##foo#"));
 
 	}

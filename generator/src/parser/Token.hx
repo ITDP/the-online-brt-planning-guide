@@ -33,6 +33,9 @@ enum TokenDef {
 	// Unformated text
 	TWord(s:String);
 
+	// Code and/or preformated text
+	TCode(s:String);
+
 	// Commands : Usually they follow this syntax \command {param} [opt]
 	TCommand(s : String);
 

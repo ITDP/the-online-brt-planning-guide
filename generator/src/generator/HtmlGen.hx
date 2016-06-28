@@ -473,8 +473,8 @@ class HtmlGen {
 		var staticres = '<head>
 			<meta charset="utf-8">
 			<title>${title}</title>
-			<!-- Custom CSSs -->
-			${css.map(function (p) return '<link href="../${p}" rel="stylesheet" type="text/css">').join("\n")}
+			<!-- Normalize -->
+			<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css" rel="stylesheet" type="text/css">
 			<!-- Jquery -->
 			<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js" ></script>
 			<script src="${jsFile}"></script>
@@ -483,8 +483,8 @@ class HtmlGen {
 			
 			<!-- Google Fonts -->
 			<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700italic,700|PT+Sans:400,400italic,700,700italic" rel="stylesheet" type="text/css">
-			<!-- Normalize -->
-			<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css" rel="stylesheet" type="text/css">
+			<!-- Custom CSSs -->
+			${css.map(function (p) return '<link href="../${p}" rel="stylesheet" type="text/css">').join("\n")}
 			</head> ';
 			
 		return staticres;

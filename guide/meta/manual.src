@@ -16,7 +16,11 @@ Simple, continuous text is the most basic and essential element, and can *usuall
 
 \subsection{Reserved characters and escaping}
 
-To do...
+The most important character with special meaning is the backslash (\!!\\!!).
+It's used to indicate with instructions are special commands (like the \!!\item\!! command), and to use special characters like normal characters.
+
+The backslash itself can be typed as regular text, as in "a \\ backslash", by typing \!!a \\ backslash\!!.  // TODO correct quotes
+By preceding any special character, such as the backslash itself, with another backslash, we indicate that we want that otherwise special character to appear in the output; this is called escaping.
 
 \subsection{Paragraphs}
 
