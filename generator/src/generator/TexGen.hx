@@ -46,6 +46,8 @@ class TexGen {
 			return buf.toString();
 		case Word(word):
 			return gent(word);
+		case Code(code):
+			return '\\texttt{${gent(code)}}';
 		case Wordspace:
 			return " ";
 		case Emphasis(h):

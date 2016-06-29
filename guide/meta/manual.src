@@ -1,0 +1,81 @@
+\chapter{Manual to collaboration}
+
+Overview, to do...
+
+
+
+\section{Getting started}
+
+To do...
+
+
+
+\section{Basic text}
+
+Simple, continuous text is the most basic and essential element, and can *usually* be simply typed in the source files.
+
+\subsection{Reserved characters and escaping}
+
+The most important character with special meaning is the backslash (\!!\\!!).
+It's used to indicate with instructions are special commands (like the \!!\item\!! command), and to use special characters like normal characters.
+
+The backslash itself can be typed as regular text, as in "a \\ backslash", by typing \!!a \\ backslash\!!.  // TODO correct quotes
+By preceding any special character, such as the backslash itself, with another backslash, we indicate that we want that otherwise special character to appear in the output; this is called escaping.
+
+\subsection{Paragraphs}
+
+To do...
+
+\subsection{Math and equations}
+
+To do...
+
+\subsection{Comments and annotations}
+
+To do...
+
+\subsection{Code}
+
+To do...
+
+
+
+
+\section{Content hierarchy}
+
+To do...
+
+\subsection{Organizing the sources}
+
+To do...
+
+
+
+\section{Other visual elements}
+
+To do...
+
+\subsection{Boxes}
+
+To do...
+
+\subsection{Figures}
+
+To do...
+
+\subsection{Tables}
+
+To do...
+
+\subsection{Equation blocks}
+
+To do...
+
+\subsection{Code blocks}
+
+To do...
+
+\section{Formal specification}
+
+To do...
+

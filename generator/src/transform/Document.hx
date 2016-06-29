@@ -33,7 +33,8 @@ typedef BlobSize = parser.BlobSize;
 
 enum HTokenDef
 {
-	TWord(a : String);
+	TWord(w:String);
+	TCode(c:String);
 	Space;
 	Emph;
 	High;

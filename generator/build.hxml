@@ -6,3 +6,5 @@ only-build.hxml
 --interp
 -cp test
 -lib utest
+-cp pseudo
+

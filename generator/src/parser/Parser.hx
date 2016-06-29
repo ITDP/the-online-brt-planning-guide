@@ -184,6 +184,9 @@ class Parser {
 		case { def:TMath(s), pos:pos }:
 			pop();
 			mk(Word(s), pos);  // FIXME
+		case { def:TCode(s), pos:pos }:
+			pop();
+			mk(Code(s), pos);
 		case { def:TCommand(cmdName), pos:pos }:
 			switch cmdName {
 			case "emph", "highlight": emphasis(pop());

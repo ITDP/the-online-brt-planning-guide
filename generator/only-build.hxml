@@ -23,6 +23,9 @@
 -cp test
 -lib utest
 -D unittests
+-cp pseudo
+--macro allowPackage("sys")
+-D hxnodejs
 
 --next
 
@@ -31,3 +34,5 @@
 -cp test
 -lib utest
 -D unittests
+-cp pseudo
+

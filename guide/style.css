@@ -345,3 +345,13 @@ section > ul,ol {
 	font-family: 'PT Serif', serif;
 	text-align: justify;
 }
+
+/* code */
+code {
+	font-size: .8em;
+	background: #f9f9f9;
+	margin: 0 .1em;
+	padding: .05em .25em;
+	border: 1px solid #ccc;
+}
+
