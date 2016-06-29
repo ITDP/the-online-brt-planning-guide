@@ -40,7 +40,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 			buf.add(lexer.current);
 			lexer.token(comment);
 		},
-		"([^*]|(\\*[^/*]))+" => {
+		"([^*]|(\\*[^/*]))+" => {  // optimized for stack size from [^*/]+ (or simply [^*]+)
 			buf.add(lexer.current);
 			lexer.token(comment);
 		}
@@ -70,7 +70,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 				lexer.token(code);
 			}
 		},
-		"([^\\\\]|(\\\\[^!\\\\]))+" => {
+		"([^\\\\]|(\\\\[^!\\\\]))+" => {  // optimized for stack size from [^\\\\]+
 			buf.add(lexer.current);
 			lexer.token(code);
 		},
