@@ -6,7 +6,6 @@ using StringTools;
 
 class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 	static var buf:StringBuf;
-	static var bang:Null<String>;
 
 	static function mkPos(p:hxparse.Position):Position
 	{
@@ -62,22 +61,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 
 	static var code = @:rule
 	[
-		"\\\\!." => {
-			if (lexer.current == bang) {
-				TCode(buf.toString());
-			} else {
-				buf.add(lexer.current);
-				lexer.token(code);
-			}
-		},
-		"([^\\\\]|(\\\\[^!\\\\]))+" => {  // optimized for stack size from [^\\\\]+
-			buf.add(lexer.current);
-			lexer.token(code);
-		},
-		"\\\\" => {
-			buf.add(lexer.current);
-			lexer.token(code);
-		}
+		"." => lexer.current
 	];
 
 	//Count how many chars has in a string s
@@ -113,6 +97,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"/\\*" => {
 			buf = new StringBuf();
 			var min = lexer.curPos().pmin;
+			// FIXME good Eof error reporting
 			var def = lexer.token(comment);
 			var pos = mkPos(lexer.curPos());
 			pos.min = min;
@@ -122,6 +107,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"$" => {
 			buf = new StringBuf();
 			var min = lexer.curPos().pmin;
+			// FIXME good Eof error reporting
 			var def = lexer.token(math);
 			var pos = mkPos(lexer.curPos());
 			pos.min = min;
@@ -129,15 +115,19 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		},
 		"$$$[^\n]*" => mk(lexer, TMath(lexer.current.substr(3))),
 
-		"\\\\!." => {
-			assert(bang == null, bang);
-			bang = lexer.current;
-			buf = new StringBuf();
+		"\\\\code." => {
+			var bang = lexer.current.substr(5);
 			var min = lexer.curPos().pmin;
-			var def = lexer.token(code);
+			var buf = new StringBuf();
+			// FIXME good Eof error reporting
+			while (true) {
+				var char = lexer.token(code);  // FIXME is this hack really necessary?
+				if (char == bang) break;
+				buf.add(char);
+			}
+			var def = TCode(buf.toString());
 			var pos = mkPos(lexer.curPos());
 			pos.min = min;
-			bang = null;
 			mk(lexer, def, pos);
 		},
 
