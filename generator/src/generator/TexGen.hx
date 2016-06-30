@@ -22,9 +22,13 @@ class TexGen {
 	var preamble:StringBuf;
 	var bufs:Map<String,StringBuf>;
 
+	static var texEscapes = ~/([%{}%#\$\/])/;  // FIXME complete
+
 	public function gent(text:String)
 	{
-		text = ~/([%{}%#\$\/\\])/.replace(text, "\\$1");  // FIXME complete
+		
+		text = text.split("\\").map(texEscapes.replace.bind(_, "\\$1")).join("\\textbackslash{}");
+		// FIXME complete
 		return text;
 	}
 
@@ -47,7 +51,7 @@ class TexGen {
 		case Word(word):
 			return gent(word);
 		case Code(code):
-			return '\\texttt{${gent(code)}}';
+			return '\\code{${gent(code)}}';
 		case Wordspace:
 			return " ";
 		case Emphasis(h):
