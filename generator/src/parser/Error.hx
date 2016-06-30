@@ -2,7 +2,6 @@ package parser;
 
 import parser.Token;
 
-
 class GenericError {
 	var lexer:Lexer;
 	public var pos(default,null):Position;
@@ -112,6 +111,7 @@ class UnclosedToken extends GenericError {
 		return switch def {
 		case TBrOpen: "Unclosed braces `{`";
 		case TBrkOpen: "Unclosed brackets `{`";
+		case TCode(_): "Unclosed code excerpt";
 		case other: "Unclosed token " + other;
 		}
 	}

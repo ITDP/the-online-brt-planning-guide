@@ -1,7 +1,8 @@
 package parser;
 
-import parser.Token;
 import Assertion.assert;
+import parser.Error;
+import parser.Token;
 using StringTools;
 
 class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
@@ -61,6 +62,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 
 	static var code = @:rule
 	[
+		"" => "",  // FIXME is this hack really necessary?
 		"." => lexer.current
 	];
 
@@ -78,6 +80,13 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 	{
 		//TODO: Check expr on TeX
 		return TMath(buf.toString());
+	}
+
+	static function unclosedToken(lexer:hxparse.Lexer, partialDef:TokenDef, partialPos:hxparse.Position)
+	{
+		var token = mk(lexer, partialDef, mkPos(partialPos));
+		var lexer = Std.instance(lexer, Lexer);
+		throw new UnclosedToken(lexer, token);
 	}
 
 	public static var tokens = @:rule [
@@ -117,18 +126,17 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 
 		"\\\\code." => {
 			var bang = lexer.current.substr(5);
-			var min = lexer.curPos().pmin;
+			var start = lexer.curPos();
 			var buf = new StringBuf();
-			// FIXME good Eof error reporting
 			while (true) {
 				var char = lexer.token(code);  // FIXME is this hack really necessary?
+				if (char == "") unclosedToken(lexer, TCode("?"), start);
 				if (char == bang) break;
 				buf.add(char);
 			}
-			var def = TCode(buf.toString());
 			var pos = mkPos(lexer.curPos());
-			pos.min = min;
-			mk(lexer, def, pos);
+			pos.min = start.pmin;
+			mk(lexer, TCode(buf.toString()), pos);
 		},
 
 		"\\\\\\\\" => mk(lexer, TWord("\\")),
