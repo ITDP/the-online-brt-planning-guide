@@ -154,6 +154,12 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"#+" => mk(lexer, THashes(countmark(lexer.current, "#"))),
 		">" => mk(lexer, TGreater),
 
+		// tex-style ligatures or typing conventions
+		// use `' and ``'' for proper quotes
+		"`" => mk(lexer, TWord("‘")),
+		"``" => mk(lexer, TWord("“")),
+		"'" => mk(lexer, TWord("’")),
+		"''" => mk(lexer, TWord("”")),
 		// treat -- as en-dash and as --- and em-dash
 		"---" => mk(lexer, TWord("—")),
 		"--" => mk(lexer, TWord("–")),
@@ -170,7 +176,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		// note: 0xE2 is used to exclude en- and em- dashes from being matched;
 		// other utf-8 chars begginning with 0xE2 are restored by the two inclusive patterns
 		// that follow inital exclusion one
-		"([^ \t\r\n/*{}\\[\\]\\\\#>@\\*:$\\-\\xe2]|(\\xE2[^\\x80])|(\\xE2\\x80[^\\x92-\\x95]))+" => mk(lexer, TWord(lexer.current))
+		"([^ \t\r\n/*{}\\[\\]\\\\#>@\\*:$\\-`'\\xe2]|(\\xE2[^\\x80])|(\\xE2\\x80[^\\x92-\\x95]))+" => mk(lexer, TWord(lexer.current))
 	];
 
 	var bytes:haxe.io.Bytes;  // TODO change to a public source abstraction that already has a safe `recover` method
