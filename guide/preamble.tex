@@ -1,11 +1,72 @@
 \documentclass[twoside, 8pt]{extreport}
 
-%monkey-patching tools
+% monkey-patching tools
 \usepackage{etoolbox}
 
-%fonts
-\usepackage[T1]{fontenc}
-\usepackage{paratype}
+% checks for xetex, luatex or either
+\usepackage{ifxetex,ifluatex}
+\newif\ifxelua
+\ifxetex
+	\xeluatrue
+\else\ifluatex
+	\xeluatrue
+\else
+	\xeluafalse
+\fi\fi
+
+% fonts, languages and encoding
+% TODO make paths relative to the preamble, not the generated book
+\ifxelua
+	\usepackage{fontspec}
+	\defaultfontfeatures{
+		Ligatures = {TeX}
+	}
+	\setmainfont{PTF}[  % PT Serif Regular
+		Path = ../fonts/PTSerif/,
+		UprightFont = *55F,
+		BoldFont = *75F,
+		ItalicFont = *56F,
+		BoldItalicFont = *76F
+	]
+	\setsansfont{PTS}[  % PT Sans Regular
+		Path = ../fonts/PTSans/,
+		UprightFont = *55F,
+		BoldFont = *75F,
+		ItalicFont = *56F,
+		BoldItalicFont = *76F
+	]
+	\setmonofont{PTM}[  % PT Mono Regular
+		Path = ../fonts/PTMono/,
+		UprightFont = *55F,
+		BoldFont = *75F,
+	]
+	\newfontfamily\familycaprm{PTZ}[  % PT Serif Caption Regular
+		Path = ../fonts/PTSerif/,
+		UprightFont = *55F,
+		ItalicFont = *56F,
+	]
+	\newfontfamily\familycapsf{PTC}[  % PT Sans Caption Regular
+		Path = ../fonts/PTSans/,
+		UprightFont = *55F,
+		BoldFont = *75F,
+	]
+	\newfontfamily\familynsf{PTN}[  % PT Sans Narrow Regular
+		Path = ../fonts/PTSans/,
+		UprightFont = *57F,
+		BoldFont = *77F,
+	]
+	\usepackage{polyglossia}
+	\setdefaultlanguage{english}
+\else
+	% compatibility with regular pdftex is desired, even if only for tests
+	\usepackage[utf8]{inputenc}
+	\usepackage[T1]{fontenc}
+	\let\familycaprm\rmfamily
+	\let\familycapsf\sffamily
+	\let\familycapnsf\sffamily
+	\usepackage{paratype}
+	\usepackage[main=english]{babel}
+\fi
 
 %font style
 \let\emphasis\textit
@@ -36,9 +97,9 @@
 
 %headings
 \usepackage{titlesec}
-\titleformat{\part}[display]{\centering\bfseries\huge\color{greenbrt}\sffamily}{VOLUME \thepart}{0pt}{}[]
-\titleformat{\chapter}[display]{\bfseries\LARGE\color{greenbrt}\sffamily}{}{0pt}{\thechapter.\ }[]
-\titleformat*{\section}{\bfseries\Large\color{greenbrt}\sffamily}
+\titleformat{\part}[display]{\centering\bfseries\huge\color{greenbrt}\familycapsf}{VOLUME \thepart}{0pt}{}[]
+\titleformat{\chapter}[display]{\bfseries\LARGE\color{greenbrt}\familycapsf}{}{0pt}{\thechapter.\ }[]
+\titleformat*{\section}{\bfseries\Large\color{greenbrt}\familycapsf}
 \titleformat*{\subsection}{\bfseries\large\color{greenbrt}\sffamily}
 \titleformat*{\subsubsection}{\bfseries\color{greenbrt}\sffamily}
 \titlespacing*{\chapter}{0mm}{0mm}{2.25mm plus 2.25mm}[0pt]
@@ -56,7 +117,7 @@
 
 %box
 \usepackage{mdframed}
-\newcommand{\boxtitle}[2]{{\noindent\bfseries\color{greenbrt}\sffamily Box \thechapter.#1. #2} \\ }
+\newcommand{\boxtitle}[2]{{\noindent\bfseries\color{greenbrt}\familycapsf Box \thechapter.#1. #2} \\ }
 \mdfsetup{innerleftmargin=6.75mm,innerrightmargin=6.75mm,innertopmargin=6.75mm,innerbottommargin=6.75mm,skipabove=4.5mm,skipbelow=4.5mm,linewidth=0.25mm,linecolor=gray50}
 \def\beginbox{
 	\mdframed[usetwoside=false]
