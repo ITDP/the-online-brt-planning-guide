@@ -20,15 +20,16 @@
 			"cp -r generator/docs/design/web/mockup $ROBRT_OUTPUT_DIR/web-mockup",
 
 			"export DEBUG=1",
-
-			"command time -v neko generator/bin/obrt.n gen guide/the-brt-planning-guide.src",
-
-			"cp -r guide/the-brt-planning-guide.src.html $ROBRT_OUTPUT_DIR/guide",
-
 			"nodejs --version",
-			"command time -v nodejs generator/bin/obrt.js gen guide/the-brt-planning-guide.src",
 
-			"cd guide/the-brt-planning-guide.src.pdf/",
+			"command time -v neko generator/bin/obrt.n gen guide/the-guide.src .generated-neko",
+			"command time -v nodejs generator/bin/obrt.js gen guide/the-guide.src .generated-js",
+
+			"cp -r .generated-neko $ROBRT_OUTPUT_DIR/debug/",
+			"cp -r .generated-js $ROBRT_OUTPUT_DIR/debug/",
+			"cp -r .generated-js/html $ROBRT_OUTPUT_DIR/guide",
+
+			"cd .generated-js/pdf/",
 			"mkdir -p $ROBRT_OUTPUT_DIR/pdf",
 
 			"latexmk -xelatex -pdflatex='xelatex -interaction=nonstopmode' book.tex",

@@ -6,6 +6,7 @@
 *.out
 *.pdf
 *.tex
+.generated
 generator/bin/
 generator/dump/
 
@@ -22,6 +23,4 @@ generator/dump/
 !generator/docs/spec.tex
 !generator/docs/design/web/mockup/*
 !guide/*/*/assets/*
-
-guide/*.html/
 

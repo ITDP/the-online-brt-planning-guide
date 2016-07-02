@@ -18,13 +18,13 @@ plan:
 \item Budget for success; 
 \item Measure your success.
 
-\include{planning\/define-goals-and-objectives.src}
-\include{planning\/stakeholders-and-target-group-identification-and-analysis.src}
-\include{planning\/stakeholder-analysis.src}
-\include{planning\/engaging-stakeholders.src}
-\include{planning\/message-development.src}
-\include{planning\/targeting-your-message.src}
-\include{planning\/dissemination-tactics.src}
-\include{planning\/measuring-success.src}
-\include{planning\/promoting-brt-system-progress.src}
-\include{planning\/conclusion.src}
+\include{define-goals-and-objectives.src}
+\include{stakeholders-and-target-group-identification-and-analysis.src}
+\include{stakeholder-analysis.src}
+\include{engaging-stakeholders.src}
+\include{message-development.src}
+\include{targeting-your-message.src}
+\include{dissemination-tactics.src}
+\include{measuring-success.src}
+\include{promoting-brt-system-progress.src}
+\include{conclusion.src}
