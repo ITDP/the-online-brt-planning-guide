@@ -7,22 +7,25 @@ class Main {
 	public static var debug(default,null) = false;
 
 	static inline var BANNER = "The Online BRT Planning Guide Tool\n\n";
-	static inline var USAGE = "Usage: obrt generate <input file>\n";
+	static inline var USAGE = "Usage: obrt generate <input file> <output dir>\n";
 
-	static function generate(path)
+	static function generate(ipath, opath)
 	{
 		if (debug) println('The current working dir is: `${Sys.getCwd()}`');
-		if (!FileSystem.exists(path)) throw 'File does not exist: $path';
-		if (FileSystem.isDirectory(path)) throw 'Not a file: $path';
+		if (!FileSystem.exists(ipath)) throw 'File does not exist: $ipath';
+		if (FileSystem.isDirectory(ipath)) throw 'Not a file: $ipath';
 
-		var ast = parser.Parser.parse(path);
+		var ast = parser.Parser.parse(ipath);
 
 		var doc = transform.Transform.transform(ast);
 
-		var hgen = new generator.HtmlGen(path + ".html");
+		if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
+		if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
+
+		var hgen = new generator.HtmlGen(Path.join([opath, "html"]));
 		hgen.generate(doc);
 
-		var tgen = new generator.TexGen(path + ".pdf");
+		var tgen = new generator.TexGen(Path.join([opath, "pdf"]));
 		tgen.writeDocument(doc);
 	}
 
@@ -35,8 +38,8 @@ class Main {
 			var args = Sys.args();
 			if (debug) println('Arguments are: `${args.join("`, `")}`');
 			switch args {
-			case [cmd, path] if (StringTools.startsWith("generate", cmd)):
-				generate(path);
+			case [cmd, ipath, opath] if (StringTools.startsWith("generate", cmd)):
+				generate(ipath, opath);
 			case _:
 				print(USAGE);
 				exit(1);
