@@ -126,6 +126,8 @@ class TexGen {
 			preamble.add("\n\n");
 			return "";
 		case TLaTeXExport(path):
+			assert(FileSystem.isDirectory(destDir));
+			assert(Sys.systemName() != "Windows", Sys.systemName());
 			Sys.command("cp", ["-r", path, destDir]);  // FIXME Windows, validate, make it less fragile
 			return "";
 		case THtmlApply(_):
@@ -137,6 +139,7 @@ class TexGen {
 
 	public function writeDocument(doc:Document)
 	{
+		FileSystem.createDirectory(destDir);
 		preamble = new StringBuf();
 		preamble.add(FILE_BANNER);
 		preamble.add("\n\n");
