@@ -3,11 +3,11 @@
 
 \meta\reset{volume}{2}\meta\reset{chapter}{8}  // we're starting at volume 3/chapter 9
 \volume{Communications and Marketing}
-\include{3-communications\/09-strategic-planning-for-communications\/00-strategic-planning-for-communications.src}
-\include{3-communications\/10-public-participation\/00-public-participation.src}
-\include{3-communications\/11-the-case-for-marketing-and-customer-service\/00-the-case-for-marketing-and-customer-service.src}
+\include{09-strategic-planning-for-communications\/00-strategic-planning-for-communications.src}
+\include{10-public-participation\/00-public-participation.src}
+\include{11-the-case-for-marketing-and-customer-service\/00-the-case-for-marketing-and-customer-service.src}
 
 \meta\reset{volume}{4}\meta\reset{chapter}{33}  // contributing should be the last volume and chapters
 \volume{Meta}
-\include{5-meta\/34-manual-for-collaboration.src}
+\include{34-manual-for-collaboration\/00-manual-for-collaboration.src}
 
