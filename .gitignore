@@ -5,22 +5,7 @@
 *.log
 *.out
 *.pdf
-*.tex
 .generated
 generator/bin/
 generator/dump/
-
-*.png
-*.PNG
-*.jpeg
-*.JPEG
-*.jpg
-*.JPG
-
-!guide/*.tex
-!guide/*.css
-
-!generator/docs/spec.tex
-!generator/docs/design/web/mockup/*
-!guide/*/assets/*
 
