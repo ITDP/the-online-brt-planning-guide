@@ -5,6 +5,7 @@ import haxe.io.Path;
 import sys.FileSystem;
 import sys.io.File;
 import transform.Document;
+import util.sys.FsUtil;
 
 import Assertion.*;
 
@@ -127,8 +128,7 @@ class TexGen {
 			return "";
 		case TLaTeXExport(path):
 			assert(FileSystem.isDirectory(destDir));
-			assert(Sys.systemName() != "Windows", Sys.systemName());
-			Sys.command("cp", ["-r", path, destDir]);  // FIXME Windows, validate, make it less fragile
+			FsUtil.copy(path, destDir);
 			return "";
 		case THtmlApply(_):
 			return "";

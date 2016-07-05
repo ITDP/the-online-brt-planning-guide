@@ -1,6 +1,7 @@
 -lib hxparse
 -lib assertion
 -lib literals
+-lib sys-utils
 -cp include
 -cp src
 
