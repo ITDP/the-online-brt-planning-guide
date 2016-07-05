@@ -25,7 +25,8 @@
 			"command time -v neko generator/bin/obrt.n gen guide/the-guide.src .generated-neko",
 			"command time -v nodejs generator/bin/obrt.js gen guide/the-guide.src .generated-js",
 
-			"ls -l .generated-{neko/js}/pdf/fonts",
+			"ls -l .generated-neko/pdf/fonts",
+			"ls -l .generated-js/pdf/fonts",
 
 			"cp -r .generated-neko $ROBRT_OUTPUT_DIR/debug/",
 			"cp -r .generated-js $ROBRT_OUTPUT_DIR/debug/",
