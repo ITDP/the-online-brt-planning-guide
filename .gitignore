@@ -22,5 +22,5 @@ generator/dump/
 
 !generator/docs/spec.tex
 !generator/docs/design/web/mockup/*
-!guide/*/*/assets/*
+!guide/*/assets/*
 
