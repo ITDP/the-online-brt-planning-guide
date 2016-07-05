@@ -145,7 +145,7 @@ class HtmlGen {
 		case THtmlApply(path):
 			css.push(saveAsset(path));
 			return null;
-		case TLaTeXPreamble(_):
+		case TLaTeXPreamble(_) | TLaTeXExport(_):
 			return null;  // ignore
 		case TTable(size, caption, header, chd, count, id):
 			var buff = new StringBuf();

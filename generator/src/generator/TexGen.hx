@@ -125,6 +125,9 @@ class TexGen {
 			preamble.add(File.getContent(path).trim());
 			preamble.add("\n\n");
 			return "";
+		case TLaTeXExport(path):
+			Sys.command("cp", ["-r", path, destDir]);  // FIXME Windows, validate, make it less fragile
+			return "";
 		case THtmlApply(_):
 			return "";
 		case TTable(_):

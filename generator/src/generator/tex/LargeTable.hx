@@ -43,7 +43,7 @@ class LargeTable {
 	static function pseudoTypeset(v:TElem)
 	{
 		return switch v.def {
-		case TLaTeXPreamble(_), THtmlApply(_): 0;
+		case TLaTeXPreamble(_), TLaTeXExport(_), THtmlApply(_): 0;
 		case TVolume(_), TChapter(_), TSection(_), TSubSection(_), TSubSubSection(_): BAD_COST; // not allowed in tables
 		case TVList(li):
 			var cnt = 0.;

@@ -27,7 +27,7 @@ class Parser {
 		"volume", "chapter", "section", "subsection", "subsubsection",
 		"figure", "quotation", "item", "beginbox", "endbox", "include",
 		"begintable", "header", "row", "col", "endtable",
-		"meta", "reset", "tex", "preamble", "html", "apply"];
+		"meta", "reset", "tex", "preamble", "export", "html", "apply"];
 	static var horizontalCommands = ["emph", "highlight"];
 
 	var location:Path;
@@ -515,6 +515,7 @@ class Parser {
 		return switch cmd.def {
 		case TCommand("html\\apply"): mk(HtmlApply(path), cmd.pos.span(p.pos));
 		case TCommand("tex\\preamble"): mk(LaTeXPreamble(path), cmd.pos.span(p.pos));
+		case TCommand("tex\\export"): mk(LaTeXExport(path), cmd.pos.span(p.pos));
 		case _: unexpected(cmd); null;
 		}
 	}
@@ -528,6 +529,7 @@ class Parser {
 		case [TCommand("meta"), TCommand("reset")]: metaReset({ def:TCommand("meta\\reset"), pos:pos });
 		case [TCommand("html"), TCommand("apply")]: targetInclude({ def:TCommand("html\\apply"), pos:pos });
 		case [TCommand("tex"), TCommand("preamble")]: targetInclude({ def:TCommand("tex\\preamble"), pos:pos });
+		case [TCommand("tex"), TCommand("export")]: targetInclude({ def:TCommand("tex\\export"), pos:pos });
 		case _: unexpectedCmd(exec); null;
 		}
 	}
