@@ -49,14 +49,14 @@ class Main {
 			if (debug) println(CallStack.toString(CallStack.exceptionStack()));
 			exit(2);
 		} catch (e:parser.Error.GenericError) {
-            var linpos = e.lpos;
-            if (linpos.lines.min != linpos.lines.max)
-                println('Error in file ${e.pos.src} from line ${linpos.lines.min} col ${linpos.chars.min+1} to line ${linpos.lines.max} col ${linpos.chars.max} ');
-            else if (linpos.chars.min != linpos.chars.max)
-                println('Error in file ${e.pos.src} line ${linpos.lines.min} from col ${linpos.chars.min+1} to col ${linpos.chars.max} ');
-            else 
-                println('Error in file ${e.pos.src} line ${linpos.lines.min} at col ${linpos.chars.min+1}');
-            println(' --> ${e.text}');
+			var linpos = e.lpos;
+			if (linpos.lines.min != linpos.lines.max)
+				println('Error in file ${e.pos.src} from line ${linpos.lines.min} col ${linpos.chars.min+1} to line ${linpos.lines.max} col ${linpos.chars.max} ');
+			else if (linpos.chars.min != linpos.chars.max)
+				println('Error in file ${e.pos.src} line ${linpos.lines.min} from col ${linpos.chars.min+1} to col ${linpos.chars.max} ');
+			else 
+				println('Error in file ${e.pos.src} line ${linpos.lines.min} at col ${linpos.chars.min+1}');
+			println(' --> ${e.text}');
 			if (debug) println(CallStack.toString(CallStack.exceptionStack()));
 			exit(3);
 		} catch (e:Dynamic) {

@@ -15,11 +15,9 @@ class GenericError {
 	public var at(get,null):String;
 		function get_at()
 			return atEof ? lexer.recover(pos.min, pos.max - pos.min) : "";
-#if !unittests
-	public var lpos(get,never):LinePosition;
+	public var lpos(get,never):LinePosition;  // TODO cache it automatically
 		function get_lpos()
 			return TokenTools.toLinePosition(pos);
-#end
 	public function toString()
 		return '${pos.src}: ${pos.min}-${pos.max}: $text';
 

@@ -23,7 +23,6 @@
 -js bin/tests.js
 -cp test
 -lib utest
--D unittests
 -cp pseudo
 --macro allowPackage("sys")
 -D hxnodejs
@@ -34,6 +33,5 @@
 -neko bin/tests.n
 -cp test
 -lib utest
--D unittests
 -cp pseudo
 
