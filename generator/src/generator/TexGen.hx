@@ -125,9 +125,9 @@ class TexGen {
 			preamble.add(File.getContent(path).trim());
 			preamble.add("\n\n");
 			return "";
-		case TLaTeXExport(path):
+		case TLaTeXExport(src, dest):
 			assert(FileSystem.isDirectory(destDir));
-			FsUtil.copy(path, destDir);
+			FsUtil.copy(src, Path.join([destDir, dest]));
 			return "";
 		case THtmlApply(_):
 			return "";

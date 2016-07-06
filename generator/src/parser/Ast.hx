@@ -28,7 +28,7 @@ enum VDef {
 	MetaReset(name:String, val:Int);  // could we make it a hdef?
 	HtmlApply(path:String);
 	LaTeXPreamble(path:String);
-	LaTeXExport(path:String);
+	LaTeXExport(src:String, dest:String);
 
 	Volume(name:HElem);
 	Chapter(name:HElem);

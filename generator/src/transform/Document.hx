@@ -8,7 +8,7 @@ typedef TElem = Elem<TDef>;
 
 enum TDef {
 	TLaTeXPreamble(path:String);
-	TLaTeXExport(path:String);
+	TLaTeXExport(src:String, dest:String);
 	THtmlApply(path:String);
 
 	TVolume(name : HElem, count : Int, id : String, children : TElem);

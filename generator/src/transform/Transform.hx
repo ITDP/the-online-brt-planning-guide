@@ -149,8 +149,8 @@ class Transform {
 			return null;
 		case LaTeXPreamble(path):
 			return mk(TLaTeXPreamble(path), v.pos);
-		case LaTeXExport(path):
-			return mk(TLaTeXExport(path), v.pos);
+		case LaTeXExport(src, dest):
+			return mk(TLaTeXExport(src, dest), v.pos);
 		case HtmlApply(path):
 			return mk(THtmlApply(path), v.pos);
 		case Table(size, caption, header, rows):
