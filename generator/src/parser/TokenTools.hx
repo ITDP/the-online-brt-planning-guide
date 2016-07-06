@@ -16,11 +16,11 @@ class TokenTools {
 		assert(pos.min + left <= pos.max + right, "positions will become inverted", pos);
 		return { src:pos.src, min:pos.min + left, max:pos.max + right };
 	}
-#if (sys || hxnodejs)
-    public static function toLinePosition(pos:Position):LinePosition
-    {
-        var input = sys.io.File.getBytes(pos.src);
-       	var lineMin = 1;
+
+	public static function toLinePosition(pos:Position):LinePosition
+	{
+		var input = sys.io.File.getBytes(pos.src);
+		var lineMin = 1;
 		var lineMax = 1;
 		var posLineMin = 0;
 		var posLineMax = 0;
@@ -34,12 +34,12 @@ class TokenTools {
 		}
 		lineMax = lineMin;
 		posLineMax = posLineMin;
-		
-        var str = input.getString(posLineMin, pos.min - posLineMin);
-        str = StringTools.replace(str,"\r","");
-        var charMin = haxe.Utf8.length(str);
-		
-        while (cur < pos.max) {
+
+		var str = input.getString(posLineMin, pos.min - posLineMin);
+		str = StringTools.replace(str,"\r","");
+		var charMin = haxe.Utf8.length(str);
+
+		while (cur < pos.max) {
 			if (input.get(cur) == "\n".code) {
 				lineMax++;
 				posLineMax = cur + 1;
@@ -47,17 +47,15 @@ class TokenTools {
 			cur++;
 		}
 
-        var str = input.getString(posLineMax, pos.max - posLineMax);
-        str = StringTools.replace(str,"\r","");
-        var charMax = haxe.Utf8.length(str);
+		var str = input.getString(posLineMax, pos.max - posLineMax);
+		str = StringTools.replace(str,"\r","");
+		var charMax = haxe.Utf8.length(str);
 
-        return {
-            src:pos.src,
+		return {
+			src:pos.src,
 			lines:{ min:lineMin, max:lineMax },  
-            chars:{ min:charMin, max:charMax }  
-			};
-
-    }
-#end
+			chars:{ min:charMin, max:charMax }  
+		};
+	}
 }
 

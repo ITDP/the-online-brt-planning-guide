@@ -477,17 +477,12 @@ class Parser {
 
 	function include(cmd:Token)
 	{
-#if (sys || hxnodejs)
 		assert(cmd.def.match(TCommand("include")), cmd);
 		var p = arg(rawHorizontal, cmd);
 		var path = mkPath(p.val, p.pos);
 		// TODO normalize the (absolute) path
 		// TODO use the cache
 		return parse(path, cache);
-#else
-		unexpected(cmd, "\\include not available in non-sys targets (or Node.js)");
-		return null;
-#end
 	}
 
 	function paragraph(stop:Stop)
@@ -594,13 +589,11 @@ class Parser {
 		this.cache = cache;
 	}
 
-#if (sys || hxnodejs)
 	public static function parse(path:String, ?cache:FileCache)
 	{
 		var lex = new Lexer(sys.io.File.getBytes(path), path);
 		var parser = new Parser(path, lex, cache);
 		return parser.file();
 	}
-#end
 }
 
