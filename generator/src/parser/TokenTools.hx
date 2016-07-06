@@ -19,6 +19,8 @@ class TokenTools {
 
 	public static function toLinePosition(pos:Position):LinePosition
 	{
+		// FIXME chars => codePoints
+		// FIXME lines.min => lines.min - 1
 		var input = sys.io.File.getBytes(pos.src);
 		var lineMin = 1;
 		var lineMax = 1;

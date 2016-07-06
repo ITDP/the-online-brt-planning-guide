@@ -1,6 +1,7 @@
 import utest.Assert;
 import parser.Ast;
 import parser.AstTools.*;
+using parser.TokenTools;
 
 class Test_01_Tools {
 	static inline var SRC = "Test_01_Tools.hx";
@@ -66,6 +67,19 @@ class Test_01_Tools {
 					pos:{ min:0, max:8, src:SRC } }),
 				pos:{ min:0, max:8, src:SRC } },
 			expand(Paragraph(HList([@wrap(1,1)Emphasis(@len(3)Word("foo")),@len(3)Word("bar")]))));
+	}
+
+	public function test_003_line_positions()
+	{
+		sys.io.File.saveContent("a", "0\n2\r\n5\r7");
+		Assert.same({ src:"a", lines:{ min:1, max:1 }, chars:{ min:0, max:1 } }, { src:"a", min:0, max:1 }.toLinePosition());
+		Assert.same({ src:"a", lines:{ min:2, max:2 }, chars:{ min:0, max:1 } }, { src:"a", min:2, max:3 }.toLinePosition());
+		Assert.same({ src:"a", lines:{ min:3, max:3 }, chars:{ min:0, max:1 } }, { src:"a", min:5, max:6 }.toLinePosition());
+		// Assert.same({ src:"a", lines:{ min:4, max:4 }, chars:{ min:0, max:1 } }, { src:"a", min:7, max:8 }.toLinePosition());  // FIXME
+
+		sys.io.File.saveContent("b", "01\n34\n67");
+		Assert.same({ src:"b", lines:{ min:1, max:3 }, chars:{ min:1, max:2 } }, { src:"b", min:1, max:8 }.toLinePosition());
+		Assert.same({ src:"b", lines:{ min:2, max:3 }, chars:{ min:0, max:2 } }, { src:"b", min:3, max:8 }.toLinePosition());
 	}
 }
 
