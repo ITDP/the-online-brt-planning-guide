@@ -1,4 +1,4 @@
-\tex\preamble{preamble.tex}\tex\export{fonts}{fonts\/..\/..}
+\tex\preamble{preamble.tex}\tex\export{fonts}{fonts}
 \html\apply{style.css}
 
 \meta\reset{volume}{2}\meta\reset{chapter}{8}  // we're starting at volume 3/chapter 9
