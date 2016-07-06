@@ -19,9 +19,8 @@ class TokenTools {
 
 	public static function toLinePosition(pos:Position):LinePosition
 	{
-		// FIXME lines.min => lines.min - 1
 		var input = sys.io.File.getBytes(pos.src);
-		var lineMin = 1;
+		var lineMin = 0;
 		var lineMax = 1;
 		var posLineMin = 0;
 		var posLineMax = 0;
@@ -33,7 +32,7 @@ class TokenTools {
 			}
 			cur++;
 		}
-		lineMax = lineMin;
+		lineMax = lineMin + 1;
 		posLineMax = posLineMin;
 
 		var str = input.getString(posLineMin, pos.min - posLineMin);
@@ -54,8 +53,8 @@ class TokenTools {
 
 		return {
 			src:pos.src,
-			lines:{ min:lineMin, max:lineMax },  
-			codes:{ min:charMin, max:charMax }  
+			lines:{ min:lineMin, max:lineMax },
+			codes:{ min:charMin, max:charMax }
 		};
 	}
 }
