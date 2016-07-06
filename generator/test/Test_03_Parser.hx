@@ -506,10 +506,15 @@ class Test_03_Parser {
 	// {
 	// }
 
-	// TODO
-	// public function test_020_tex_metas()
-	// {
-	// }
+	public function test_020_tex_metas()
+	{
+		// \tex\export
+		Assert.same(expand(@len(17)LaTeXExport("a","b")), parse("\\tex\\export{a}{b}"));
+		Assert.same(expand(@len(31)LaTeXExport("a","b")), parse("\\tex\\export{a}{c\\/d\\/..\\/..\\/b}"));
+		parsingError("\\tex\\export{a}{\\/home}", BadValue, ~/absolute/);
+		parsingError("\\tex\\export{a}{..}", BadValue, ~/escape/);
+		parsingError("\\tex\\export{a}{b\\/..\\/..}", BadValue, ~/escape/);
+	}
 
 	public function test_021_include()
 	{
