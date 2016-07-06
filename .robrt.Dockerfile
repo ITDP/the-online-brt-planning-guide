@@ -14,6 +14,7 @@ RUN add-apt-repository -y ppa:haxe/snapshots && apt-get update && apt-get instal
 RUN haxelib setup /usr/share/haxe/lib
 RUN haxelib install utest
 RUN haxelib install hxnodejs
+RUN haxelib install version
 RUN haxelib git hxparse https://github.com/jonasmalacofilho/hxparse && cd /usr/share/haxe/lib/hxparse/git && git checkout e0edc8d; cd -
 RUN haxelib git assertion https://github.com/protocubo/assertion.hx && cd /usr/share/haxe/lib/assertion.hx/git && git checkout e464271; cd -
 RUN haxelib git literals https://github.com/protocubo/literals.hx && cd /usr/share/haxe/lib/literals.hx/git && git checkout 5287256; cd -
