@@ -107,7 +107,12 @@
 \titlespacing*{\section}{0mm}{4.5mm plus 4.5mm}{2.25mm plus 2.25mm}[0pt]
 \titlespacing*{\subsection}{0mm}{2.25mm plus 2.25mm}{0mm plus 2.25mm}[0pt]
 \titlespacing*{\subsubsection}{0mm}{2.25mm plus 2.25mm}{0mm plus 2.25mm}[0pt]
-\let\volume\part
+\newcommand\setnextcounter[2]{\setcounter{#1}{#2}\addtocounter{#1}{-1}}
+\newcommand\volume[2]{\setnextcounter{part}{#1}\part{#2}}
+\let\uchapter=\chapter\renewcommand\chapter[2]{\setnextcounter{chapter}{#1}\uchapter{#2}}
+\let\usection=\section\renewcommand\section[2]{\setnextcounter{section}{#1}\usection{#2}}
+\let\usubsection=\subsection\renewcommand\subsection[2]{\setnextcounter{subsection}{#1}\usubsection{#2}}
+\let\usubsubsection=\subsubsection\renewcommand\subsubsection[2]{\setnextcounter{subsubsection}{#1}\usubsubsection{#2}}
 
 %workaround for titlesec 2.10.1 issue with missing labels
 %http://tex.stackexchange.com/a/300259/46436
@@ -155,13 +160,6 @@
 	\parindent=7mm
 	\color{gray75}
 }
-
-% counters
-\def\resetvolume#1{\setcounter{part}{#1}}
-\def\resetchapter#1{\setcounter{chapter}{#1}}
-\def\resetsection#1{\setcounter{section}{#1}}
-\def\resetsubsection#1{\setcounter{subsection}{#1}}
-\def\resetsubsubsection#1{\setcounter{subsubsection}{#1}}
 
 %tmp
 \usepackage{lipsum}
