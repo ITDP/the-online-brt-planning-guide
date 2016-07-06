@@ -17,6 +17,14 @@ class TokenTools {
 		return { src:pos.src, min:pos.min + left, max:pos.max + right };
 	}
 
+	/**
+	Convert Position into LinePosition.
+
+	This _slow_ operation counts lines and code points from Position.src to
+	generate an appropriate LinePosition object.
+
+	Note: this does not work correctly on inputs with CR-only line breaks.
+	**/
 	public static function toLinePosition(pos:Position):LinePosition
 	{
 		var input = sys.io.File.getBytes(pos.src);
