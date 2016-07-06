@@ -125,7 +125,7 @@
 \usepackage{mdframed}
 \newcommand{\boxtitle}[2]{{\noindent\bfseries\color{greenbrt}\familycapsf Box \thechapter.#1. #2} \\ }
 \mdfsetup{innerleftmargin=6.75mm,innerrightmargin=6.75mm,innertopmargin=6.75mm,innerbottommargin=6.75mm,skipabove=4.5mm,skipbelow=4.5mm,linewidth=0.25mm,linecolor=gray50}
-\def\beginbox{
+\def\beginbox#1#2{
 	\mdframed[usetwoside=false]
 	\parskip=0pt
 	\baselineskip=4.5mm
