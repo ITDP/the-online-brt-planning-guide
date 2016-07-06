@@ -508,6 +508,8 @@ class Test_03_Parser {
 
 	public function test_020_tex_metas()
 	{
+		// TODO \tex\preamble
+
 		// \tex\export
 		Assert.same(expand(@len(17)LaTeXExport("a","b")), parse("\\tex\\export{a}{b}"));
 		Assert.same(expand(@len(31)LaTeXExport("a","b")), parse("\\tex\\export{a}{c\\/d\\/..\\/..\\/b}"));
