@@ -23,8 +23,8 @@ class TexGen {
 	% using the OBRT tool:
 	%  tool version: ${Main.version.commit}
 	%  haxe version: ${Main.version.haxe}
-	%  runtime: ${#if neko "Neko" #elseif js "JS" #end}
-	%  platform: ${Sys.systemName()}
+	%  runtime: ${Main.version.runtime}
+	%  platform: ${Main.version.platform}
 	'.doctrim();  // TODO runtime version, sources version
 
 	var destDir:String;

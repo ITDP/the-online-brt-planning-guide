@@ -9,7 +9,9 @@ class Main {
 	public static var version(default,null) = {
 		commit : Version.getGitCommitHash().substr(0,7),
 		fullCommit : Version.getGitCommitHash(),
-		haxe : Version.getHaxeCompilerVersion()
+		haxe : Version.getHaxeCompilerVersion(),
+		runtime : #if neko "Neko" #elseif js "JS" #end,
+		platform : Sys.systemName()
 	}
 
 	static inline var BANNER = "The Online BRT Planning Guide Tool";
@@ -18,7 +20,9 @@ class Main {
 		  obrt generate <input file> <output dir>
 		  obrt --version
 		  obrt --help".doctrim();
-	static var BUILD_INFO = 'Built from commit ${version.commit} with Haxe ${version.haxe}';
+	static var BUILD_INFO = '
+		OBRT tool for ${version.platform}/${version.runtime}
+		Built from commit ${version.commit} with Haxe ${version.haxe}'.doctrim();
 
 	static function generate(ipath, opath)
 	{
