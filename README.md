@@ -17,5 +17,5 @@ _To simply navigate through foloders and files make sure you click on the file n
 
 ###### The content in the guide 
 
-At the moment, the entry point of processing is in the file [guide/the-brt-planning-guide.src](guide/the-brt-planning-guide.src), where other files are pointed with the `\include{point/to/other/file/.src}` command. How the write sources will be described in a file [spec.src]() ...
+At the moment, the entry point of processing is in the file [guide/the-brt-planning-guide.src](guide/the-brt-planning-guide.src), where other files are pointed with the `\include{point\/to\/other\/file.src}` command. How the write sources will be described in a file [spec.src]() ...
 
