@@ -2,14 +2,14 @@ package parser;
 
 typedef Position = {
 	src : String,
-	min : Int,
-	max : Int
+	min : Int,  // offset from 0, including
+	max : Int   // offset from 0, excluding
 }
 
 typedef LinePosition = {
 	src : String,
-	lines : { min:Int, max:Int },
-	codes : { min:Int, max:Int }  // unicode code points
+	lines : { min:Int, max:Int },  // including–excluding offsets from zero
+	codes : { min:Int, max:Int }   // unicode code points, including–excluding offsets from zero
 }
 
 enum TokenDef {
