@@ -9,7 +9,7 @@ typedef Position = {
 typedef LinePosition = {
 	src : String,
 	lines : { min:Int, max:Int },
-	chars : { min:Int, max:Int }
+	codes : { min:Int, max:Int }  // unicode code points
 }
 
 enum TokenDef {
