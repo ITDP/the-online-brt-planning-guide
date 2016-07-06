@@ -2,6 +2,7 @@
 -lib assertion
 -lib literals
 -lib sys-utils
+-lib version
 -cp include
 -cp src
 

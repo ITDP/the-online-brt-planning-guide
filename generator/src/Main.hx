@@ -2,12 +2,23 @@ import Sys.*;
 import haxe.CallStack;
 import haxe.io.Path;
 import sys.FileSystem;
+using Literals;
 
 class Main {
 	public static var debug(default,null) = false;
+	public static var version(default,null) = {
+		commit : Version.getGitCommitHash().substr(0,7),
+		fullCommit : Version.getGitCommitHash(),
+		haxe : Version.getHaxeCompilerVersion()
+	}
 
-	static inline var BANNER = "The Online BRT Planning Guide Tool\n\n";
-	static inline var USAGE = "Usage: obrt generate <input file> <output dir>\n";
+	static inline var BANNER = "The Online BRT Planning Guide Tool";
+	static var USAGE = "
+		Usage:
+		  obrt generate <input file> <output dir>
+		  obrt --version
+		  obrt --help".doctrim();
+	static var BUILD_INFO = 'Built from commit ${version.commit} with Haxe ${version.haxe}';
 
 	static function generate(ipath, opath)
 	{
@@ -31,7 +42,7 @@ class Main {
 
 	static function main()
 	{
-		print(BANNER);
+		print(BANNER + "\n\n");
 		debug = Sys.getEnv("DEBUG") == "1";
 
 		try {
@@ -40,8 +51,12 @@ class Main {
 			switch args {
 			case [cmd, ipath, opath] if (StringTools.startsWith("generate", cmd)):
 				generate(ipath, opath);
+			case ["--version"]:
+				println(BUILD_INFO);
+			case ["--help"]:
+				println(USAGE);
 			case _:
-				print(USAGE);
+				println(USAGE);
 				exit(1);
 			}
 		} catch (e:hxparse.UnexpectedChar) {
