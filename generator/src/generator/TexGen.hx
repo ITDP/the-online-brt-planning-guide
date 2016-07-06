@@ -79,20 +79,20 @@ class TexGen {
 			var buf = new StringBuf();
 			bufs[path] = buf;
 			buf.add(FILE_BANNER);
-			buf.add('\n\n\\volume{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, dir)}');
+			buf.add('\n\n\\resetvolume{${count - 1}}\n\\volume{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, dir)}');
 			return '\\input{$path}\n\n';
 		case TChapter(name, count, id, children):
 			var path = Path.join([at, id.split(".")[3]+".tex"]);
 			var buf = new StringBuf();
 			bufs[path] = buf;
-			buf.add('\\chapter{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at)}');
+			buf.add('\\resetchapter{${count - 1}}\n\\chapter{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at)}');
 			return '\\input{$path}\n\n';
 		case TSection(name, count, id, children):
-			return '\\section{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at)}';
+			return '\\resetsection{${count - 1}}\n\\section{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at)}';
 		case TSubSection(name, count, id, children):
-			return '\\subsection{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at)}';
+			return '\\resetsubsection{${count - 1}}\n\\subsection{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at)}';
 		case TSubSubSection(name, count, id, children):
-			return '\\subsubsection{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at)}';
+			return '\\resetsubsubsection{${count - 1}}\n\\subsubsection{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at)}';
 		case TFigure(size, path, caption, cright, cnt, id):
 			path = sys.FileSystem.absolutePath(path);  // FIXME maybe move to transform
 			// TODO handle size
