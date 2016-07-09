@@ -112,10 +112,10 @@ class Parser {
 	}
 
 	function discardNoise(permanent=true):Int
-		return discard(function (x) return x.def.match(TWordSpace(_)|TLineComment(_)|TBlockComment(_)));
+		return discard(function (x) return x.def.match(TWordSpace(_)|TComment(_)));
 
 	function discardVerticalNoise(permanent=true):Int
-		return discard(function (x) return x.def.match(TWordSpace(_)|TLineComment(_)|TBlockComment(_)|TBreakSpace(_)));
+		return discard(function (x) return x.def.match(TWordSpace(_)|TComment(_)|TBreakSpace(_)));
 
 	function arg<T>(internal:Stop->T, toToken:Null<Token>, ?desc:String):{ val:T, pos:Position }
 	{
@@ -171,7 +171,7 @@ class Parser {
 
 	function horizontal(stop:Stop):HElem
 	{
-		while (peek().def.match(TLineComment(_) | TBlockComment(_)))
+		while (peek().def.match(TComment(_)))
 			pop();
 		return switch peek() {
 		case { def:tdef } if (stop.before != null && Type.enumEq(tdef, stop.before)):
@@ -231,7 +231,7 @@ class Parser {
 				break;
 			case { def:TBreakSpace(_) } | { def:TEof }:
 				break;
-			case { def:TBlockComment(_) } | { def:TLineComment(_) }:  // not sure about this
+			case { def:TComment(_) }:  // not sure about this
 				pop();
 			case { def:TWord(w) }:
 				pop();

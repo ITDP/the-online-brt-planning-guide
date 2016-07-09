@@ -42,16 +42,14 @@ class Test_02_Lexer {
 
 	public function test_002_comments()
 	{
-		// line comments
-		Assert.same([TLineComment(" foo"),TEof], defs("// foo"));
-		Assert.same([TWord("foo"),TWordSpace("  "),TLineComment(" bar"),TBreakSpace("\n\n"),TEof], defs("foo  // bar\n\n"));
-		Assert.same([TLineComment("foo"),TWordSpace("\n"),TWord("bar"),TEof], defs("//foo\nbar"));
-
 		// block comments
-		Assert.same([TBlockComment(" foo "),TEof], defs("/* foo */"));
-		Assert.same([TWord("a"),TBreakSpace("\n\n"),TBlockComment(" foo "),TEof], defs("a\n\n/* foo */"));
-		Assert.raises(defs.bind("/*"));
-		Assert.raises(defs.bind("*/"));
+		Assert.same([TComment(" foo "),TEof], defs("\\' foo '\\"));
+		Assert.same([TWord("a"),TBreakSpace("\n\n"),TComment(" foo "),TEof], defs("a\n\n\\' foo '\\"));
+		Assert.raises(defs.bind("\\'"));
+		Assert.raises(defs.bind("'\\"));
+
+		// block comments as line comments
+		Assert.same([TComment(" foo "),TEof], defs("\\' foo '\\"));
 	}
 
 	public function test_003_commands()
@@ -163,8 +161,8 @@ class Test_02_Lexer {
 		Assert.same({ min:0, max:1 }, positions(" ")[0]);
 		Assert.same({ min:0, max:2 }, positions(" \t")[0]);
 		Assert.same({ min:1, max:3 }, positions("a\n\n")[1]);
-		Assert.same({ min:1, max:7 }, positions(" // foo\n")[1]);
-		Assert.same({ min:0, max:9 }, positions("/* foo */")[0]);
+		Assert.same({ min:1, max:10 }, positions(" \\' foo '\\\n")[1]);
+		Assert.same({ min:0, max:9 }, positions("\\' foo '\\")[0]);
 
 		Assert.same({ def:TEof, pos:{ min:1, max:1, src:"test" } }, lex(" ")[1]);
 	}

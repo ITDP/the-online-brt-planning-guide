@@ -22,11 +22,8 @@ enum TokenDef {
 	// this terminates paragraph contents and other horizontal lists
 	TBreakSpace(s:String);
 
-	// Line comments: begin at // and end at the first newline
-	TLineComment(s:String);
-
-	// Block comments: begin at /* and at */
-	TBlockComment(s:String);
+	// (Block) comments: begin at \' and end at '\
+	TComment(s:String);
 
 	TMath(s : String);
 

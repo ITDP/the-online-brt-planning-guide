@@ -201,25 +201,19 @@ class Test_03_Parser {
 	public function test_007_comment_surroundings()
 	{
 		Assert.same(
-			expand(Paragraph(HList([@len(1)Word("a"),@skip(3)@len(1)Wordspace,@len(1)Word("b")]))),
-			parse("a//x\nb"));
-		Assert.same(
 			expand(Paragraph(HList([@len(1)Word("a"),@skip(5)@len(1)Wordspace,@len(1)Word("b")]))),
-			parse("a/*x*/\nb"));
+			parse("a\\'x'\\\nb"));
 		Assert.same(
 			expand(Paragraph(HList([@len(1)Word("a"),@len(1)Wordspace,@skip(5)@len(1)Wordspace,@len(1)Word("b")]))),
-			parse("a\t/*x*/ b"));
+			parse("a\t\\'x'\\ b"));
 
 		Assert.same(
-			expand(VList([Paragraph(@len(1)Word("a")),@skip(5)Paragraph(@len(1)Word("b"))])),
-			parse("a//x\n\nb"));
-		Assert.same(
 			expand(VList([Paragraph(@len(1)Word("a")),@skip(7)Paragraph(@len(1)Word("b"))])),
-			parse("a/*x*/\n\nb"));
+			parse("a\\'x'\\\n\nb"));
 
 		Assert.same(
 			expand(null),
-			parse("/* foo */"));
+			parse("\\' foo '\\"));
 	}
 
 	public function test_008_hierarchy_commands()
@@ -405,19 +399,13 @@ class Test_03_Parser {
 			expand(Paragraph(@wrap(6,1)Emphasis(@skip(1)@len(1)Word("a")))),
 			parse("\\emph\n{a}"));
 		Assert.same(
-			expand(Paragraph(@wrap(6,1)Emphasis(@skip(6)@len(1)Word("a")))),
-			parse("\\emph//foo\n{a}"));
-		Assert.same(
 			expand(Paragraph(@wrap(6,1)Emphasis(@skip(7)@len(1)Word("a")))),
-			parse("\\emph/*foo*/{a}"));
+			parse("\\emph\\'foo'\\{a}"));
 
 		// after argument opening braces
 		Assert.same(
-			expand(Paragraph(@wrap(6,1)Emphasis(@skip(5)HList([@len(1)Wordspace,@len(1)Word("a")])))),
-			parse("\\emph{//foo\na}"));  // the HList is needed so that `a//b\nc` doesn't become `ac`
-		Assert.same(
 			expand(Paragraph(@wrap(6,1)Emphasis(@skip(7)@len(1)Word("a")))),
-			parse("\\emph{/*foo*/a}"));
+			parse("\\emph{\\'foo'\\a}"));
 	}
 
 	public function test_015_meta_reset()
@@ -434,7 +422,7 @@ class Test_03_Parser {
 			parse("\\meta \t\n\\reset{volume}{2}"));
 		Assert.same(
 			expand(@len(27)MetaReset("volume", 2)),
-			parse("\\meta/*a*/\\reset{volume}{2}"));
+			parse("\\meta\\'a'\\\\reset{volume}{2}"));
 
 		parsingError("\\meta\\reset{section}{1}", BadValue);
 		parsingError("\\meta\\reset{subsection}{1}", BadValue);
@@ -512,10 +500,10 @@ class Test_03_Parser {
 
 		// \tex\export
 		Assert.same(expand(@len(17)LaTeXExport("a","b")), parse("\\tex\\export{a}{b}"));
-		Assert.same(expand(@len(31)LaTeXExport("a","b")), parse("\\tex\\export{a}{c\\/d\\/..\\/..\\/b}"));
-		parsingError("\\tex\\export{a}{\\/home}", BadValue, ~/absolute/);
+		Assert.same(expand(@len(27)LaTeXExport("a","b")), parse("\\tex\\export{a}{c/d/../../b}"));
+		parsingError("\\tex\\export{a}{/home}", BadValue, ~/absolute/);
 		parsingError("\\tex\\export{a}{..}", BadValue, ~/escape/);
-		parsingError("\\tex\\export{a}{b\\/..\\/..}", BadValue, ~/escape/);
+		parsingError("\\tex\\export{a}{b/../..}", BadValue, ~/escape/);
 	}
 
 	public function test_021_include()

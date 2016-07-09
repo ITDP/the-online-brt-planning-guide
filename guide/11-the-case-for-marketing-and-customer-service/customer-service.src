@@ -17,7 +17,7 @@ users can share feedback directly without having to go online. This is especiall
 little Internet use in low-income areas. These locations should have staff trained to answer users’ queries 
 and offer information on routes, stations, services, disruptions, or other system information.
 
-\figure{assets\/image30.jpeg}{A TransMilenio staff person provides in-person assistance to customers. 
+\figure{assets/image30.jpeg}{A TransMilenio staff person provides in-person assistance to customers. 
 }{Image courtesy of Libros al Viento.}
 
 The overall BRT communications plan should include a process for communicating with customer service 
@@ -39,13 +39,13 @@ and effortless way to navigate through the system, even if they are first-time u
 
 \subsection{User Information}
 
-\figure{assets\/image31.jpeg}{This information kiosk in Brisbane, Australia, helps answer basic questions 
+\figure{assets/image31.jpeg}{This information kiosk in Brisbane, Australia, helps answer basic questions 
 as well as begins the awareness-raising process. }{Image courtesy of ITDP.}
 
-\figure{assets\/image32.jpeg}{Real-time information is displayed along a platform of the Brisbane 
+\figure{assets/image32.jpeg}{Real-time information is displayed along a platform of the Brisbane 
 Busway System. }{Image courtesy of Queensland Transport.}
 
-\figure{assets\/image33.jpeg}{This time-based route map in Nagoya, Japan, allows customers to gauge 
+\figure{assets/image33.jpeg}{This time-based route map in Nagoya, Japan, allows customers to gauge 
 the time required to travel to their destination. }{Image courtesy of Lloyd Wright.}
 
 The development of a user-information system is a process that is determined by the nature of each 
@@ -66,7 +66,7 @@ System Information
 
 \item Network: Where can I get to using the BRT system? How does the system relate to the city? How can I reach areas of the cities outside the BRT coverage?; Before entering the system, maps and network diagrams are usually placed at station entrances (outside the paid area).; 
 \item Ownership: Who is responsible for the system operation? How can I contact them? Is the BRT part of a wider integrated system?; Visual identity (branding) application and clear distinction need to be included between the system brand, the transport authority, the local authority, and the operators. Contact details through various media need to be made available for users.; 
-\item Behavior and rules: What are the rules? What is mandatory and what is desirable? What are the penalties?; On entering and throughout the journey users need to be reassured about what is allowed\/disallowed in the system. National regulation and statutory notices need to be incorporated into the information system from scratch.; 
+\item Behavior and rules: What are the rules? What is mandatory and what is desirable? What are the penalties?; On entering and throughout the journey users need to be reassured about what is allowed/disallowed in the system. National regulation and statutory notices need to be incorporated into the information system from scratch.; 
 \item Fares and payment options: How much does it cost? What are the fare alternatives? How do I pay?; Users need to understand what they are paying for and how to choose the right fare: a single ride, a given time allowance. Payment options are equally important, in particular when the use of cash is restricted. The latter also contributes to enhancing customer movement.; 
 
 Service information
@@ -95,11 +95,11 @@ are visible and readable on the one hand but do not obstruct passing customer fl
 
 \subsubsection{Best practices for visual, customer information}
 
-\figure{assets\/image34.jpeg}{After just a few weeks of operation, stations along the Parajitos busway 
+\figure{assets/image34.jpeg}{After just a few weeks of operation, stations along the Parajitos busway 
 in Santiago, Chile, are covered with graffiti, making their information areas unusable. }{Image courtesy of Lloyd 
 Wright.}
 
-\figure{assets\/image35.jpeg}{Information displays at a BRT station in the Jinan, China, system provide 
+\figure{assets/image35.jpeg}{Information displays at a BRT station in the Jinan, China, system provide 
 the real-time position of BRT buses along the corridor. }{Photo courtesy of ITDP.}
 
 Simplicity: The first and most important rule is that information must be presented as simply as possible. 
@@ -120,9 +120,9 @@ and codes. For instance, it is commonly understood that the color red means “s
 the color green means “go.” Each country or city will have its own particular and historical visual information 
 systems, which must be respected when developing a new traveler information system.
 
-Colors versus numbers\/letters: A common question among designers is whether people understand colors 
+Colors versus numbers/letters: A common question among designers is whether people understand colors 
 better than numbers or letters, and if information should be conveyed exclusively through one or both. 
-Some cities are used to complex numbering\/lettering systems in their streets or other urban information 
+Some cities are used to complex numbering/lettering systems in their streets or other urban information 
 systems, while other cities have used colors and even pictograms to present information. The right answer 
 depends on the population being served, but in general, any option can work as long as the system is 
 clear and consistent.
@@ -171,7 +171,7 @@ to incorporate any changes into the design of information systems.
 
 \subsection{Types of Information}
 
-\figure{assets\/image36.jpeg}{The Quito Trolé line provides an area map and a detailed map of the 
+\figure{assets/image36.jpeg}{The Quito Trolé line provides an area map and a detailed map of the 
 individual line stops at each station. }{Image courtesy of Lloyd Wright.}
 
 Information can be provided in many ways in a BRT system. Technological options have been increasing, 
@@ -186,7 +186,7 @@ of graphics and information lends itself better to print form. This is also rela
 is static or dynamic as described below.
 
 The typical set of information that should be included in any BRT system:
-\item City\/area maps with system indications: Maps of the city or the area of the city with the station and nearby stations indicated. These should be large and located inside or outside of the station near the exits;
+\item City/area maps with system indications: Maps of the city or the area of the city with the station and nearby stations indicated. These should be large and located inside or outside of the station near the exits;
 \item System maps: Schematic maps (i.e., not in geographic scale) with all stations and integration locations. These can be printed out in small sheets and given as leaflets or placed in strategic locations of stations in large size;
 \item Trunk line schematic presentations: Specific trunk line drawings specifying stops and integration points. These can be located inside vehicles and in stations;
 \item Service details: Information on specific services (stopping or express) regarding their schedules or stops;
@@ -195,7 +195,7 @@ The typical set of information that should be included in any BRT system:
 \item Signage: Generally provide directional information helping users to find their way around the transport facility and improve customer movements;
 \item Web and mobile applications (as discussed in Chapter 9).
 
-\figure{assets\/image37.jpeg}{The BRT in Guangzhou, China, provides dynamic real-time information 
+\figure{assets/image37.jpeg}{The BRT in Guangzhou, China, provides dynamic real-time information 
 digitally on vehicle arrivals. }{Image courtesy of ITDP.}
 
 How the information is presented depends on the type of information. Generally, printed information 
@@ -326,7 +326,7 @@ of symbols and sentences may also be useful for quick comprehension for everyone
 
 \subsubsection{People with Visual Impairments}
 
-For the blind or partially blind, availability of tactile and\/or audio information from station entrances 
+For the blind or partially blind, availability of tactile and/or audio information from station entrances 
 through the station and until arriving at the vehicle can be helpful. As a rule, blind customers require 
 audible or tactile information such as tactile guideways, tactile warning strips, and Braille (if desired), 
 or more sophisticated Remote Infrared Audible Signage (RIAS) or other navigation aids. For those who 
@@ -383,11 +383,11 @@ to write accents, and the system should integrate an auto-complete function in t
 The ideal web-based route planner should have software that is able to recognize what the closest station 
 is to where the customer is located, what is the current scheduling that applies (off-peak, peak, nighttime, 
 all day) and which is the best, or shortest, route to arrive at the desired destination. The system should 
-have default\/user-specific values for:
+have default/user-specific values for:
 \item Transfer preferences (generally, none are preferred);
 \item Duration of trip (shortest is generally preferred);
 \item Use of local or express services;
-\item Availability of bicycle parking\/bicycle taxis\/feeder routes\/public bicycles;
+\item Availability of bicycle parking/bicycle taxis/feeder routes/public bicycles;
 \item Desired level of comfort (i.e., crowded or being guaranteed a seat).
 
 These default values should be updated based on current settings and on complex queries given by travelers, 
