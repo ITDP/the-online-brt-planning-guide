@@ -31,11 +31,13 @@ class TexGen {
 	var preamble:StringBuf;
 	var bufs:Map<String,StringBuf>;
 
-	static var texEscapes = ~/([%{}%#\$\/])/;  // FIXME complete
+	static var texEscapes = ~/([%{}%#\$])/;  // FIXME complete
 
 	public function gent(text:String)
 	{
-		text = text.split("\\").map(texEscapes.replace.bind(_, "\\$1")).join("\\textbackslash{}");
+		text = text.split("\\").map(function (safe) {
+			return texEscapes.replace(safe, "\\$1").replace("/", "\\slash{}");
+		}).join("\\textbackslash{}");
 		// FIXME complete
 		return text;
 	}
