@@ -1,7 +1,10 @@
 \tex\preamble{preamble.tex}\tex\export{fonts}{fonts}
 \html\apply{style.css}
 
-\meta\reset{volume}{2}\meta\reset{chapter}{8}  \' we're starting at volume 3/chapter 9 '\
+\volume{Project Preparation}
+\include{01-project-initiation-and-set-up/project-initiation.src}
+
+\meta\reset{chapter}{8}  \' skip to chapter 9 '\
 \volume{Communications and Marketing}
 \include{09-strategic-planning-for-communications/00-strategic-planning-for-communications.src}
 \include{10-public-participation/00-public-participation.src}
