@@ -1,0 +1,41 @@
+\chapter{Project Set-up}
+
+
+
+> Of all the things I’ve done, the most vital is coordinating the talents of those who work for us and 
+pointing them towards a certain goal.
+@ Walt Disney, 1901–1966
+
+
+Few BRT projects share a common origin or startup. In some instances, a certain amount of technical 
+groundwork for a BRT system may precede the championing of the project, thereby adding feasibility and 
+conceptual studies to the political impetus and motivation. Other BRT systems have originated through 
+the drive of a single political champion, only gaining technical support and input once the concept is 
+accepted and approved. 
+
+
+Most BRT projects, however, only truly commence once the political approvals and mandates are in place. 
+The resulting budgetary and legislative support provides the kick start for the project setup, the appointment 
+of the project team, and the commitment to a project program. Giving the structuring and management of 
+the planning phase due consideration at the outset significantly strengthens the BRT project. 
+
+
+This chapter deals with the following topics related to the planning of a BRT project:
+
+\item 3.1 Setup Process;
+\item 3.2 Legal Basis;
+\item 3.3 Procurement;
+\item 3.4 Planning Team Structure;
+\item 3.5 Timeline and Phasing;
+\item 3.6 Planning Budget and Financing;
+\item 3.7 Probity and Risk Management;
+\item 3.8 Avoiding Common Planning Mistakes.
+
+\include{setup/setup-process.src}
+\include{setup/legal-basis.src}
+\include{setup/procurement.src}
+\include{setup/planning-team-structure.src}
+\include{setup/timelines-and-phasing.src}
+\include{setup/planning-budget-and-financing.src}
+\include{setup/probity-and-risk-management.src}
+\include{setup/avoiding-common-planning-mistakes.src}

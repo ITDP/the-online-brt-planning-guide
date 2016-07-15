@@ -1,6 +1,11 @@
 \tex\preamble{preamble.tex}\tex\export{fonts}{fonts}
 \html\apply{style.css}
 
+\meta\reset{volume}{1} \meta\reset{chapter}{3}
+\volume{Project Preparation}
+\include{03-project/project-set-up.src}
+
+
 \meta\reset{volume}{2}\meta\reset{chapter}{8}  \' we're starting at volume 3/chapter 9 '\
 \volume{Communications and Marketing}
 \include{09-strategic-planning-for-communications/00-strategic-planning-for-communications.src}
