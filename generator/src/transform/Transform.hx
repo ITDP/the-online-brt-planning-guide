@@ -187,6 +187,8 @@ class Transform {
 	
 	static function tokenify(elem : HElem)
 	{
+		if (elem == null)
+			return;
 		switch(elem.def)
 		{
 			case Word(s):
