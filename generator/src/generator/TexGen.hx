@@ -31,7 +31,7 @@ class TexGen {
 	var preamble:StringBuf;
 	var bufs:Map<String,StringBuf>;
 
-	static var texEscapes = ~/([%{}%#\$])/;  // FIXME complete
+	static var texEscapes = ~/([%{}%#&\$])/;  // FIXME complete
 
 	public function gent(text:String)
 	{
