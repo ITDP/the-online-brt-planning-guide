@@ -31,11 +31,11 @@ This chapter deals with the following topics related to the planning of a BRT pr
 \item 3.7 Probity and Risk Management;
 \item 3.8 Avoiding Common Planning Mistakes.
 
-\include{setup/setup-process.src}
-\include{setup/legal-basis.src}
-\include{setup/procurement.src}
-\include{setup/planning-team-structure.src}
-\include{setup/timelines-and-phasing.src}
-\include{setup/planning-budget-and-financing.src}
-\include{setup/probity-and-risk-management.src}
-\include{setup/avoiding-common-planning-mistakes.src}
+\include{setup-process.src}
+\include{legal-basis.src}
+\include{procurement.src}
+\include{planning-team-structure.src}
+\include{timelines-and-phasing.src}
+\include{planning-budget-and-financing.src}
+\include{probity-and-risk-management.src}
+\include{avoiding-common-planning-mistakes.src}

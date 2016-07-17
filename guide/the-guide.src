@@ -2,9 +2,9 @@
 \html\apply{style.css}
 
 \volume{Project Preparation}
-\include{01-project-initiation-and-set-up/project-initiation.src}
+\include{01-project-initiation-and-set-up/00-project-initiation.src}
 \meta\reset{chapter}{2}  \' skip to chapter 3 '\
-\include{03-project/project-set-up.src}
+\include{03-project/00-project-set-up.src}
 
 \meta\reset{chapter}{8}  \' skip to chapter 9 '\
 \volume{Communications and Marketing}

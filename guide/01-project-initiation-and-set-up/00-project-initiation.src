@@ -14,7 +14,7 @@ while also increasing, did not grow at such a rate. BRT has proved itself a viab
 mass transit, with easy scalability, low costs, and operational and implementation advantages. 
 
 
- \figure{initiation/assets/image1.jpeg}{Growth in kilometers of mass transit options around the world.}{ 
+ \figure{assets/image1.jpeg}{Growth in kilometers of mass transit options around the world.}{ 
 ITDP.}
 
 
@@ -38,8 +38,8 @@ of public transport operations. The topics discussed in this chapter are:
 \item 1.3 Statement of Vision;
 \item 1.4 Barriers to Project Development;
 \item 1.5 Understanding and Presenting the Benefits.
-\include{initiation/11project-catalyst.src}
-\include{initiation/12political-commitment.src}
-\include{initiation/13statement-of-vision.src}
-\include{initiation/14-barriers-to-project-development.src}
-\include{initiation/15-understanding-and-presenting-the-benefits.src}
+\include{11project-catalyst.src}
+\include{12political-commitment.src}
+\include{13statement-of-vision.src}
+\include{14-barriers-to-project-development.src}
+\include{15-understanding-and-presenting-the-benefits.src}
