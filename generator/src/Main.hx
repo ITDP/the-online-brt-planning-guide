@@ -64,22 +64,34 @@ class Main {
 				exit(1);
 			}
 		} catch (e:hxparse.UnexpectedChar) {
-			println('${e.pos}: $e');
+			if (debug) print("Lexer ");
+			var lpos = e.pos.getLinePosition(byte.ByteData.ofBytes(sys.io.File.getBytes(e.pos.psource)));
+			println('ERROR: Unexpected character `${e.char}`');
+			print('  at ${e.pos.psource}, ');
+			if (lpos.lineMin != lpos.lineMax)
+				println('from (line=${lpos.lineMin}, byte=${lpos.posMin+1}) to (line=${lpos.lineMax}, byte=${lpos.posMax})');
+			else if (lpos.posMin != lpos.posMax)
+				println('line=${lpos.lineMin}, bytes=(${lpos.posMin+1} to ${lpos.posMax+1})');
+			else 
+				println('line=${lpos.lineMin+1}, byte=${lpos.posMin+1}');
 			if (debug) println(CallStack.toString(CallStack.exceptionStack()));
 			exit(2);
 		} catch (e:parser.Error.GenericError) {
-			var linpos = e.lpos;
-			if (linpos.lines.min != linpos.lines.max)
-				println('Error in file ${e.pos.src} from line ${linpos.lines.min+1} col ${linpos.codes.min+1} to line ${linpos.lines.max} col ${linpos.codes.max} ');
-			else if (linpos.codes.min != linpos.codes.max)
-				println('Error in file ${e.pos.src} line ${linpos.lines.min+1} from col ${linpos.codes.min+1} to col ${linpos.codes.max} ');
+			if (debug) print("Parser ");
+			var lpos = e.lpos;
+			println('ERROR: ${e.text}');
+			print('  at ${e.pos.src}, ');
+			if (lpos.lines.min != lpos.lines.max - 1)
+				println('from (line=${lpos.lines.min+1}, column=${lpos.codes.min+1}) to (line=${lpos.lines.max}, column=${lpos.codes.max})');
+			else if (lpos.codes.min != lpos.codes.max - 1)
+				println('line=${lpos.lines.min+1}, columns=(${lpos.codes.min+1} to ${lpos.codes.max})');
 			else 
-				println('Error in file ${e.pos.src} line ${linpos.lines.min+1} at col ${linpos.codes.min+1}');
-			println(' --> ${e.text}');
+				println('line=${lpos.lines.min+1}, column=${lpos.codes.min+1}');
 			if (debug) println(CallStack.toString(CallStack.exceptionStack()));
 			exit(3);
 		} catch (e:Dynamic) {
-			println('Error: $e');
+			if (debug) print("Untyped ");
+			println('ERROR: $e');
 			if (debug) println(CallStack.toString(CallStack.exceptionStack()));
 			exit(9);
 		}
