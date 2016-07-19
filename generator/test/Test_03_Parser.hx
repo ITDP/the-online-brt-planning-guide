@@ -104,7 +104,7 @@ class Test_03_Parser {
 			expand(VList([Paragraph(@len(1)Word("a")),@wrap(9,1)Section(@len(1)Word("b"))])),
 			parse("a\\section{b}"));
 		Assert.same(
-			expand(VList([Paragraph(@len(1)Word("a")),List([@wrap(6,0)Paragraph(@len(1)Word("b"))])])),
+			expand(VList([Paragraph(@len(1)Word("a")),List(false,[@wrap(6,0)Paragraph(@len(1)Word("b"))])])),
 			parse("a\\item b"));
 	}
 
@@ -341,52 +341,122 @@ class Test_03_Parser {
 	public function test_013_lists()
 	{
 		// simple lists
+		// unnumbered
 		Assert.same(
-			expand(List([@wrap(6,0)Paragraph(@len(1)Word("a"))])),
+			expand(List(false,[@wrap(6,0)Paragraph(@len(1)Word("a"))])),
 			parse("\\item a"));
 		Assert.same(
-			expand(List([@wrap(6,0)Paragraph(@len(1)Word("a")),@wrap(6,0)Paragraph(@len(1)Word("b"))])),
+			expand(List(false,[@wrap(6,0)Paragraph(@len(1)Word("a")),@wrap(6,0)Paragraph(@len(1)Word("b"))])),
 			parse("\\item a\\item b"));
 		Assert.same(
 			expand(VList([
 				Paragraph(@len(1)Word("x")),@skip(2)
-				List([@wrap(6,0)Paragraph(@len(1)Word("a")),@wrap(6,0)Paragraph(@len(1)Word("b"))]),@skip(2)
+				List(false,[@wrap(6,0)Paragraph(@len(1)Word("a")),@wrap(6,0)Paragraph(@len(1)Word("b"))]),@skip(2)
 				Paragraph(@len(1)Word("y"))
 			])),
 			parse("x\n\n\\item a\\item b\n\ny"));
-
-		// vertical lists in items
+		// numerated
 		Assert.same(
-			expand(List([@wrap(6,1)Paragraph(@len(1)Word("a"))])),
+			expand(List(true,[@wrap(8,0)Paragraph(@len(1)Word("a"))])),
+			parse("\\number a"));
+		Assert.same(
+			expand(List(true,[@wrap(8,0)Paragraph(@len(1)Word("a")),@wrap(8,0)Paragraph(@len(1)Word("b"))])),
+			parse("\\number a\\number b"));
+		Assert.same(
+			expand(VList([
+				Paragraph(@len(1)Word("x")),@skip(2)
+				List(true,[@wrap(8,0)Paragraph(@len(1)Word("a")),@wrap(8,0)Paragraph(@len(1)Word("b"))]),@skip(2)
+				Paragraph(@len(1)Word("y"))
+			])),
+			parse("x\n\n\\number a\\number b\n\ny"));
+
+		// vlist items
+		// unnumbered
+		Assert.same(
+			expand(List(false,[@wrap(6,1)Paragraph(@len(1)Word("a"))])),
 			parse("\\item[a]"));
 		Assert.same(
-			expand(List([@wrap(6,1)Paragraph(@len(1)Word("a")),@wrap(6,1)Paragraph(@len(1)Word("b"))])),
+			expand(List(false,[@wrap(6,1)Paragraph(@len(1)Word("a")),@wrap(6,1)Paragraph(@len(1)Word("b"))])),
 			parse("\\item[a]\\item[b]"));
 		Assert.same(
 			expand(VList([
 				Paragraph(@len(1)Word("x")),@skip(2)
-				List([@wrap(6,1)Paragraph(@len(1)Word("a")),@wrap(6,1)Paragraph(@len(1)Word("b"))]),@skip(2)
+				List(false,[@wrap(6,1)Paragraph(@len(1)Word("a")),@wrap(6,1)Paragraph(@len(1)Word("b"))]),@skip(2)
 				Paragraph(@len(1)Word("y"))
 			])),
 			parse("x\n\n\\item[a]\\item[b]\n\ny"));
+		// numbered
 		Assert.same(
-			expand(List([
+			expand(List(true,[@wrap(8,1)Paragraph(@len(1)Word("a"))])),
+			parse("\\number[a]"));
+		Assert.same(
+			expand(List(true,[@wrap(8,1)Paragraph(@len(1)Word("a")),@wrap(8,1)Paragraph(@len(1)Word("b"))])),
+			parse("\\number[a]\\number[b]"));
+		Assert.same(
+			expand(VList([
+				Paragraph(@len(1)Word("x")),@skip(2)
+				List(true,[@wrap(8,1)Paragraph(@len(1)Word("a")),@wrap(8,1)Paragraph(@len(1)Word("b"))]),@skip(2)
+				Paragraph(@len(1)Word("y"))
+			])),
+			parse("x\n\n\\number[a]\\number[b]\n\ny"));
+
+		// lists in items
+		// x in x
+		Assert.same(
+			expand(List(false,[
 				@wrap(6,1)VList([
 					Paragraph(@len(1)Word("a")),@skip(2)
-					List([@wrap(6,0)Paragraph(@len(1)Word("x")),@wrap(6,0)Paragraph(@len(1)Word("y"))])]),
+					List(false,[@wrap(6,0)Paragraph(@len(1)Word("x")),@wrap(6,0)Paragraph(@len(1)Word("y"))])]),
 				@wrap(6,1)Paragraph(@len(1)Word("b"))])),
 			parse("\\item[a\n\n\\item x\\item y]\\item[b]"));
+		Assert.same(
+			expand(List(true,[
+				@wrap(8,1)VList([
+					Paragraph(@len(1)Word("a")),@skip(2)
+					List(true,[@wrap(8,0)Paragraph(@len(1)Word("x")),@wrap(8,0)Paragraph(@len(1)Word("y"))])]),
+				@wrap(8,1)Paragraph(@len(1)Word("b"))])),
+			parse("\\number[a\n\n\\number x\\number y]\\number[b]"));
+		// x in !x
+		Assert.same(
+			expand(List(false,[
+				@wrap(6,1)VList([
+					Paragraph(@len(1)Word("a")),@skip(2)
+					List(true,[@wrap(8,0)Paragraph(@len(1)Word("x")),@wrap(8,0)Paragraph(@len(1)Word("y"))])]),
+				@wrap(6,1)Paragraph(@len(1)Word("b"))])),
+			parse("\\item[a\n\n\\number x\\number y]\\item[b]"));
+		Assert.same(
+			expand(List(true,[
+				@wrap(8,1)VList([
+					Paragraph(@len(1)Word("a")),@skip(2)
+					List(false,[@wrap(6,0)Paragraph(@len(1)Word("x")),@wrap(6,0)Paragraph(@len(1)Word("y"))])]),
+				@wrap(8,1)Paragraph(@len(1)Word("b"))])),
+			parse("\\number[a\n\n\\item x\\item y]\\number[b]"));
 
 		// lists end on breakspaces
 		Assert.same(
 			expand(VList([
-				List([@wrap(6,0)Paragraph(@len(1)Word("a")),@wrap(6,0)Paragraph(@len(1)Word("b"))]),@skip(2)
-				List([@wrap(6,0)Paragraph(@len(1)Word("x")),@wrap(6,0)Paragraph(@len(1)Word("y"))])
+				List(false,[@wrap(6,0)Paragraph(@len(1)Word("a")),@wrap(6,0)Paragraph(@len(1)Word("b"))]),@skip(2)
+				List(false,[@wrap(6,0)Paragraph(@len(1)Word("x")),@wrap(6,0)Paragraph(@len(1)Word("y"))])
 			])),
 			parse("\\item a\\item b\n\n\\item x\\item y"));
 
-		// TODO more tests
-		// TODO more error tests
+		// numerated lists end on !numerated (and the opposite)
+		Assert.same(
+			expand(VList([
+				List(false,[@wrap(6,0)Paragraph(@len(1)Word("a")),@wrap(6,0)Paragraph(@len(1)Word("b"))]),
+				List(true,[@wrap(8,0)Paragraph(@len(1)Word("1"))]),
+				List(false,[@wrap(6,0)Paragraph(@len(1)Word("x"))])
+			])),
+			parse("\\item a\\item b\\number 1\\item x"));
+		Assert.same(
+			expand(VList([
+				List(true,[@wrap(8,0)Paragraph(@len(1)Word("1")),@wrap(8,0)Paragraph(@len(1)Word("2"))]),
+				List(false,[@wrap(6,0)Paragraph(@len(1)Word("x"))]),
+				List(true,[@wrap(8,0)Paragraph(@len(1)Word("a"))])
+			])),
+			parse("\\number 1\\number 2\\item x\\number a"));
+
+		// TODO more error tests (invalid vlist items)
 	}
 
 	public function test_014_discardable_tokens()
@@ -528,7 +598,7 @@ class Test_03_Parser {
 		Assert.same(
 			expand(@wrap(12,9)Table(TextWidth,@len(1)Word("a"),@skip(1)
 				[@skip(12)Paragraph(@len(1)Word("x")),@skip(5)Paragraph(@len(1)Word("y"))], [
-				[@skip(9)Paragraph(@len(4)Word("list")),@skip(5)List([
+				[@skip(9)Paragraph(@len(4)Word("list")),@skip(5)List(false,[
 					@wrap(6,0)Paragraph(@len(1)Word("1")),
 					@wrap(6,0)Paragraph(@len(1)Word("2")) ])] ])),
 			parse("\\begintable{a}\\header\\col x\\col y\\row\\col list\\col \\item 1\\item 2\\endtable"));

@@ -116,9 +116,10 @@ class TexGen {
 			return '\\beginbox{$count}{${genh(name)}}\n\n${genv(contents, at)}\\endbox\n${genp(v.pos)}\n';
 		case TQuotation(text, by):
 			return '\\quotation{${genh(text)}}{${genh(by)}}\n${genp(v.pos)}\n';
-		case TList(li):
+		case TList(numbered, li):
 			var buf = new StringBuf();
-			buf.add("\\begin{itemize}\n");
+			var env = numbered ? "enumerate" : "itemize";
+			buf.add('\\begin{$env}\n');
 			for (i in li)
 				switch i.def {
 				case TParagraph(h):
@@ -126,7 +127,7 @@ class TexGen {
 				case _:
 					buf.add('\\item {${genv(i, at)}}\n');
 				}
-			buf.add("\\end{itemize}\n");
+			buf.add('\\end{$env}\n');
 			buf.add(genp(v.pos));
 			buf.add("\n");
 			return buf.toString();

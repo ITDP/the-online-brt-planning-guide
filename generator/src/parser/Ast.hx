@@ -38,7 +38,7 @@ enum VDef {
 	Figure(size:BlobSize, path:String, caption:HElem, copyright:HElem);  // TODO size?
 	Table(size:BlobSize, caption:HElem, header:TableRow, rows:Array<TableRow>);  // copyright/source?
 	Quotation(text:HElem, by:HElem);
-	List(items:Array<VElem>);
+	List(numered:Bool, items:Array<VElem>);
 	Box(name:HElem, contents:VElem);
 	Paragraph(h:HElem);
 	VList(elem:Array<VElem>);

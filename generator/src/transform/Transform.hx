@@ -129,14 +129,14 @@ class Transform {
 			var _text = htrim(text);
 			var _by = htrim(by);
 			return mk(TQuotation(_text, _by), v.pos);
-		case List(items):
+		case List(numbered, items):
 			var tf = [];
 			for (i in items) {
 				var v = vertical(i, rest, count, names);
 				if (v != null)
 					tf.push(v);
 			}
-			return mk(TList(tf), v.pos);
+			return mk(TList(numbered, tf), v.pos);
 		case Paragraph(h):
 			var _h = htrim(h);
 			return mk(TParagraph(_h), v.pos);

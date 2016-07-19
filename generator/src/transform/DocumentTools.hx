@@ -16,7 +16,7 @@ class DocumentTools {
 				for (c in r)
 					f(c);
 			}
-		case TVList(items), TList(items):
+		case TVList(items), TList(_, items):
 			for (i in items)
 				f(i);
 		case TLaTeXPreamble(_), TLaTeXExport(_), THtmlApply(_), TFigure(_), TQuotation(_), TParagraph(_):
@@ -45,8 +45,8 @@ class DocumentTools {
 				TTable(size, caption, _header, _rows, count, id);
 			case TBox(name, contents, count, id):
 				TBox(name, f(contents), count, id);
-			case TList(items):
-				TList([for (i in items) f(i)]);
+			case TList(numbered, items):
+				TList(numbered, [for (i in items) f(i)]);
 			case TLaTeXPreamble(_), TLaTeXExport(_), THtmlApply(_), TFigure(_), TQuotation(_), TParagraph(_):
 				v.def;
 			}

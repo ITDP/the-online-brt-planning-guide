@@ -122,9 +122,9 @@ class HtmlGen {
 			return ('<blockquote class="md"><q>${horizontal(t)}</q><span>${horizontal(a)}</span></blockquote>');
 		case TParagraph(h):
 			return ('<p>${horizontal(h)}</p>\n');
-		case TList(li):
+		case TList(numbered, li):
 			var buf = new StringBuf();
-			buf.add("<ul>\n");
+			buf.add(numbered ? "<ol>\n" : "<ul>\n");
 			for (i in li) {
 				buf.add("<li>");
 				switch i.def {
@@ -135,7 +135,7 @@ class HtmlGen {
 				}
 				buf.add("</li>\n");
 			}
-			buf.add("</ul>\n");
+			buf.add(numbered ? "</ol>\n" : "</ul>\n");
 			return (buf.toString());
 		case TVList(li):
 			var buf = new StringBuf();
@@ -189,22 +189,8 @@ class HtmlGen {
 		{
 			case TParagraph(h):
 				b.add(horizontal(h));
-			case TList(li):
-				b.add("<ul>\n");
-				for (el in li)
-				{
-					b.add("<li>");
-					switch el.def {
-					case TParagraph(h):
-						b.add(horizontal(h));
-					case TList(li):
-						b.add(processTableElem(el));
-					case _:
-						throw "Invalid table element: " + el.def.getName() + " pos : " + el.pos.min + " at " + el.pos.src;
-					}
-					b.add("</li>\n");
-				}
-				b.add("</ul>\n");
+			case TList(numbered, li):
+				vertical(elem, null, null);  // FIXME
 			default:
 				throw "Invalid table element: " + elem.def.getName() + " pos : " + elem.pos.min + " at " + elem.pos.src;
 		}

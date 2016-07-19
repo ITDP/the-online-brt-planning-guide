@@ -25,7 +25,7 @@ class Parser {
 
 	static var verticalCommands = [
 		"volume", "chapter", "section", "subsection", "subsubsection",
-		"figure", "quotation", "item", "beginbox", "endbox", "include",
+		"figure", "quotation", "item", "number", "beginbox", "endbox", "include",
 		"begintable", "header", "row", "col", "endtable",
 		"meta", "reset", "tex", "preamble", "export", "html", "apply"];
 	static var horizontalCommands = ["emph", "highlight"];
@@ -427,7 +427,7 @@ class Parser {
 	// TODO docs
 	function listItem(mark:Token, stop:Stop)
 	{
-		assert(mark.def.match(TCommand("item")), mark);
+		assert(mark.def.match(TCommand("item" | "number")), mark);
 		var item = optArg(vlist, mark, "item content");
 		if (item == null) {
 			var i = vertical(stop);
@@ -439,13 +439,19 @@ class Parser {
 	}
 
 	// see /generator/docs/list-design.md
-	function list(at:Position, stop:Stop)
+	function list(mark:Token, stop:Stop)
 	{
+		assert(mark.def.match(TCommand("item" | "number")), mark);
 		var li = [];
-		while (peek().def.match(TCommand("item")))
+		while (Type.enumEq(peek().def, mark.def))
 			li.push(listItem(pop(), stop));
 		assert(li.length > 0, li);  // we're sure that li.length > 0 since we started with \item
-		return mk(List(li), at.span(li[li.length - 1].pos));
+		var def = switch mark.def {
+		case TCommand("item"): List(false, li);
+		case TCommand("number"): List(true, li);
+		case _: unexpectedCmd(mark); null;
+		}
+		return mk(def, mark.pos.span(li[li.length - 1].pos));
 	}
 
 	function box(begin:Token)
@@ -556,7 +562,7 @@ class Parser {
 			case "figure": figure(pop());
 			case "begintable": table(pop());
 			case "quotation": quotation(pop());
-			case "item": list(peek().pos, stop);
+			case "item", "number": list(peek(), stop);
 			case "meta", "tex", "html": meta(pop());
 			case "beginbox", "boxstart": box(pop());
 			case "include": include(pop());

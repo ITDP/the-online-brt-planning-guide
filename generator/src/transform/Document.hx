@@ -24,7 +24,7 @@ enum TDef {
 	TTable(size:BlobSize, caption:HElem, header:Array<TElem>, body:Array<Array<TElem>>, count:Int, id:String);
 	TBox(name:HElem, contents:TElem, count:Int, id:String);
 	TQuotation(text:HElem, by:HElem);
-	TList(items:Array<TElem>);
+	TList(numered:Bool, items:Array<TElem>);
 	TParagraph(h:HElem);
 }
 

@@ -53,10 +53,13 @@ class LargeTable {
 		case TFigure(_, _, caption, cright, _): TBL_MARK_COST + pseudoHTypeset(caption) + SPACE_COST + pseudoHTypeset(cright);
 		case TTable(_), TBox(_): BAD_COST; // not allowed (for now?)
 		case TQuotation(text, by): QUOTE_COST + pseudoHTypeset(text) + QUOTE_COST + LINE_BREAK_COST + EM_DASH_COST + pseudoHTypeset(by);
-		case TList(li):
+		case TList(numbered, li):
+			var markCost = BULLET_COST + SPACE_COST;
+			if (numbered)
+				markCost += 2*CHAR_COST;
 			var cnt = 0.;
 			for (i in li)
-				cnt += BULLET_COST + SPACE_COST + pseudoTypeset(i);
+				cnt += markCost + pseudoTypeset(i);
 			cnt/li.length;
 		case TParagraph(h): pseudoHTypeset(h);
 		}
