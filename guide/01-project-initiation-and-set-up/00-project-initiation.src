@@ -33,11 +33,12 @@ a city’s urban transport system. This chapter also cites examples of how some 
 commitment for a project and how that support has been translated into a wider vision for a transformation 
 of public transport operations. The topics discussed in this chapter are:
 
-\item 1.1 Project Catalyst;
-\item 1.2 Political Commitment;
-\item 1.3 Statement of Vision;
-\item 1.4 Barriers to Project Development;
-\item 1.5 Understanding and Presenting the Benefits.
+\item Project Catalyst;
+\item Political Commitment;
+\item Statement of Vision;
+\item Barriers to Project Development;
+\item Understanding and Presenting the Benefits.
+
 \include{11project-catalyst.src}
 \include{12political-commitment.src}
 \include{13statement-of-vision.src}
