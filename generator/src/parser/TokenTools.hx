@@ -65,5 +65,14 @@ class TokenTools {
 			codes:{ min:charMin, max:charMax }
 		};
 	}
+
+	public static function toPosition(p:hxparse.Position):Position
+	{
+		return {
+			src : p.psource,
+			min : p.pmin,
+			max : p.pmax
+		}
+	}
 }
 

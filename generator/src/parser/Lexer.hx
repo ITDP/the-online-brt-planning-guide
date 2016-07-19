@@ -1,21 +1,14 @@
 package parser;
 
-import Assertion.assert;
 import parser.Error;
 import parser.Token;
+
+import Assertion.*;
+import parser.TokenTools.toPosition in mkPos;
 using StringTools;
 
 class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 	static var buf:StringBuf;
-
-	static function mkPos(p:hxparse.Position):Position
-	{
-		return {
-			src : p.psource,
-			min : p.pmin,
-			max : p.pmax
-		}
-	}
 
 	static function mk(lex:hxparse.Lexer, tokDef:TokenDef, ?pos:Position)
 	{

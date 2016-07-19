@@ -1,8 +1,11 @@
-import Sys.*;
 import haxe.CallStack;
 import haxe.io.Path;
+import parser.Token;
 import sys.FileSystem;
+
+import Sys.*;
 using Literals;
+using parser.TokenTools;
 
 class Main {
 	public static var debug(default,null) = false;
@@ -44,6 +47,18 @@ class Main {
 		tgen.writeDocument(doc);
 	}
 
+	static function printPos(p:Position)
+	{
+		var lpos = p.toLinePosition();
+		print('  at ${p.src}, ');
+		if (lpos.lines.min != lpos.lines.max - 1)
+			println('from (line=${lpos.lines.min+1}, column=${lpos.codes.min+1}) to (line=${lpos.lines.max}, column=${lpos.codes.max})');
+		else if (lpos.codes.min < lpos.codes.max - 1)
+			println('line=${lpos.lines.min+1}, columns=(${lpos.codes.min+1} to ${lpos.codes.max})');
+		else
+			println('line=${lpos.lines.min+1}, column=${lpos.codes.min+1}');
+	}
+
 	static function main()
 	{
 		print(BANNER + "\n\n");
@@ -65,28 +80,14 @@ class Main {
 			}
 		} catch (e:hxparse.UnexpectedChar) {
 			if (debug) print("Lexer ");
-			var lpos = e.pos.getLinePosition(byte.ByteData.ofBytes(sys.io.File.getBytes(e.pos.psource)));
 			println('ERROR: Unexpected character `${e.char}`');
-			print('  at ${e.pos.psource}, ');
-			if (lpos.lineMin != lpos.lineMax)
-				println('from (line=${lpos.lineMin}, byte=${lpos.posMin+1}) to (line=${lpos.lineMax}, byte=${lpos.posMax})');
-			else if (lpos.posMin != lpos.posMax)
-				println('line=${lpos.lineMin}, bytes=(${lpos.posMin+1} to ${lpos.posMax+1})');
-			else 
-				println('line=${lpos.lineMin+1}, byte=${lpos.posMin+1}');
+			printPos(e.pos.toPosition());
 			if (debug) println(CallStack.toString(CallStack.exceptionStack()));
 			exit(2);
 		} catch (e:parser.Error.GenericError) {
 			if (debug) print("Parser ");
-			var lpos = e.lpos;
 			println('ERROR: ${e.text}');
-			print('  at ${e.pos.src}, ');
-			if (lpos.lines.min != lpos.lines.max - 1)
-				println('from (line=${lpos.lines.min+1}, column=${lpos.codes.min+1}) to (line=${lpos.lines.max}, column=${lpos.codes.max})');
-			else if (lpos.codes.min != lpos.codes.max - 1)
-				println('line=${lpos.lines.min+1}, columns=(${lpos.codes.min+1} to ${lpos.codes.max})');
-			else 
-				println('line=${lpos.lines.min+1}, column=${lpos.codes.min+1}');
+			printPos(e.pos);
 			if (debug) println(CallStack.toString(CallStack.exceptionStack()));
 			exit(3);
 		} catch (e:Dynamic) {
