@@ -1,13 +1,26 @@
 package transform;  // TODO move out of the package
 
-import Assertion.*;
 import parser.Ast;
 import parser.Token;
 import transform.Document;
 
+import Assertion.*;
 using parser.TokenTools;
 
 private typedef Rest = Array<VElem>;
+
+private enum HTokenDef
+{
+	TWord(w:String);
+	TCode(c:String);
+	Space;
+	Emph;
+	High;
+	LiStart;
+	LiEnd;
+}
+
+private typedef HToken = Elem<HTokenDef>;
 
 class Transform {
 	static inline var CNT_VOLUME = 0;
