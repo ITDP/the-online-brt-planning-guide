@@ -11,7 +11,7 @@ enum HDef {
 	Emphasis(el:HElem);
 	Highlight(el:HElem);
 	Word(w:String);
-	Code(c:String);
+	InlineCode(c:String);
 	HList(elem:Array<HElem>);
 }
 

@@ -207,7 +207,7 @@ class Transform {
 				for(el in li)
 					tokenify(el);
 				tarray.push(mk(LiEnd, elem.pos));				
-			case Code(c):
+			case InlineCode(c):
 				tarray.push(mk(TCode(c), elem.pos));
 		}
 	}
@@ -267,7 +267,7 @@ class Transform {
 			case TWord(h):
 				return mk(Word(h), c.pos);
 			case TCode(t):
-				return mk(Code(t), c.pos);
+				return mk(InlineCode(t), c.pos);
 			case Space:
 				return mk(Wordspace, c.pos);
 			case Emph:
@@ -300,7 +300,7 @@ class Transform {
 		{
 			case Wordspace: " ";
 			case Emphasis(t), Highlight(t): txtFromHorizontal(t);
-			case Word(w), Code(w): w;
+			case Word(w), InlineCode(w): w;
 			case HList(li):
 				var buf = new StringBuf();
 				for (l in li)

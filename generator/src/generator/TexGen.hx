@@ -60,7 +60,7 @@ class TexGen {
 			return buf.toString();
 		case Word(word):
 			return gent(word);
-		case Code(code):
+		case InlineCode(code):
 			return '\\code{${gent(code)}}';
 		case Wordspace:
 			return " ";

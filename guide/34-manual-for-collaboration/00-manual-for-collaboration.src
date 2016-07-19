@@ -14,6 +14,10 @@ To do...
 
 Simple, continuous text is the most basic and essential element, and can *usually* be simply typed in the source files.
 
+Paragraphs are separated by blank lines, or more specificaly, visibly empty lines.
+
+\' TODO code block
+
 \subsection{Reserved characters and escaping}
 
 The most important character with special meaning is the backslash (\code!\!).

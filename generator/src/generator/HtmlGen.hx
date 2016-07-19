@@ -69,7 +69,7 @@ class HtmlGen {
 		case Emphasis(i): '<em>${horizontal(i)}</em>';
 		case Highlight(i): '<strong>${horizontal(i)}</strong>';
 		case Word(w): w;
-		case Code(c): '<code>$c</code>';
+		case InlineCode(c): '<code>$c</code>';
 		case HList(li):
 			var buf = new StringBuf();
 			for (i in li)

@@ -31,7 +31,7 @@ class LargeTable {
 		return switch h.def {
 		case Wordspace: SPACE_COST;
 		case Emphasis(i), Highlight(i): pseudoHTypeset(i);
-		case Word(w), Code(w): w.length;
+		case Word(w), InlineCode(w): w.length;
 		case HList(li):
 			var cnt = 0;
 			for (i in li)
