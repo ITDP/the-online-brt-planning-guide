@@ -187,6 +187,8 @@ class HtmlGen {
 
 	function processTableElem(elem : TElem)
 	{
+		if (elem == null)
+			return "";
 		var b = new StringBuf();
 		switch(elem.def)
 		{
