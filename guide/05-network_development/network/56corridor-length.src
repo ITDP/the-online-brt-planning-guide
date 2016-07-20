@@ -1,0 +1,189 @@
+
+
+\section{Corridor Length }
+
+> Time is the longest distance between two places.
+@ Tennessee Williams, dramatist, 1911–1983
+
+\figure{assets/image27.jpeg}{The availability of land for terminal and depot space can be a consideration 
+of the end point for a specific corridor.}{ TransMilenio SA.}
+
+The basis for the cost-benefit analysis of corridor length is typically the time savings generated 
+by the exclusive busway. Once the exclusive busway no longer provides a net time savings benefit in comparison 
+to the construction costs, then the point has been reached when the exclusive busway is no longer cost 
+justifiable. As the number of customers falls with the distance from the city center, the total time 
+savings benefit is reduced. Further, since congestion levels will also likely fall with distance from 
+the city center, the travel-time advantage of an exclusive busway will likewise fall. Table 5.3 provides 
+an example of a cost and benefit analysis plotted against a corridor’s length.
+
+Of course, this time savings benefit will tend to increase as congestion worsens over time. Since a 
+BRT system is likely to last a long time, it is standard practice to roughly estimate the likely congestion 
+along the corridor in the next ten to twenty years rather than simply assuming that current congestion 
+conditions will prevail long into the future.
+\begintable{Cost-benefit analysis of corridor length}
+\header
+\col \highlight{Corridor segment}
+\col \highlight{Length of segment (km)}
+\col \highlight{Demand along segment (x 1000)}
+\col \highlight{Time savings (minutes)}
+\col \highlight{Cost}
+\col \highlight{Benefit}
+\col \highlight{Benefit / cost ratio (B / C)}
+\row
+\col 
+\col 
+\col 
+\col Total
+\col / km
+\col Total
+\col / km
+\col / km
+\col 
+\row
+\col A
+\col 3
+\col 13
+\col 6
+\col 2.00
+\col 5
+\col 1.67
+\col 26.00
+\col 15.60
+\row
+\col B
+\col 2
+\col 12
+\col 4
+\col 2.00
+\col 4
+\col 2.00
+\col 24.00
+\col 12.00
+\row
+\col C
+\col 1.5
+\col 13
+\col 5
+\col 3.33
+\col 3
+\col 2.00
+\col 43.33
+\col 21.67
+\row
+\col D
+\col 3
+\col 11
+\col 4
+\col 1.33
+\col 4
+\col 1.33
+\col 14.67
+\col 11.00
+\row
+\col E
+\col 1.8
+\col 9
+\col 1.2
+\col 0.67
+\col 2
+\col 1.11
+\col 6.00
+\col 5.40
+\row
+\col F
+\col 3.1
+\col 7.5
+\col 2.5
+\col 0.81
+\col 4
+\col 1.29
+\col 6.05
+\col 4.69
+\row
+\col G
+\col 2.3
+\col 6
+\col 0.5
+\col 0.22
+\col 3
+\col 1.30
+\col 1.30
+\col 1.00
+\row
+\col H
+\col 1.5
+\col 4.5
+\col 0.6
+\col 0.40
+\col 2
+\col 1.33
+\col 1.80
+\col 1.35
+\row
+\col I
+\col 3.1
+\col 3
+\col 1
+\col 0.32
+\col 5
+\col 1.61
+\col 0.97
+\col 0.60
+\row
+\col J
+\col 1.9
+\col 2.2
+\col 0.2
+\col 0.11
+\col 3
+\col 1.58
+\col 0.23
+\col 0.15
+\endtable
+
+In the example given in Table 5.1, the corridor would end after segment “H” if the decision was based 
+only on benefit to cost considerations. After segment “H,” the benefit to cost ratio falls below a value 
+of one, meaning that the costs of extending the exclusive busway corridor outweigh the time savings benefits.
+
+\subsection{Where to Build Infrastructure Versus Where to Run BRT Services}
+
+Modern thinking in BRT planning has evolved to separate BRT infrastructure from BRT services in such 
+a way that BRT services may operate both on- and off-corridor in a way that optimizes customer benefits 
+versus infrastructure cost. Therefore, in the sections above, “BRT corridor” refers directly to the infrastructure 
+built on a segment of road, rather than to the services that are needed. 
+
+Once a corridor has been selected, it is important to make an informed judgment regarding where to 
+design BRT infrastructure and for how long of a stretch. This is best done by graphing the demand distribution 
+and speeds during the peak hour, and selecting the location with both the highest demand and lowest speeds. 
+Per the definition of BRT, the selected corridor must be at least 3 kilometers.
+
+Building BRT infrastructure on the segment of roadway along the corridor with the highest demand means 
+that infrastructure investment will yield the greatest benefits. Oftentimes, however, the sections of 
+a corridor with the highest demand are precisely the sections where politicians are less willing to propose 
+BRT infrastructure, as those sections often face more constraints. As a result, BRT infrastructure often 
+stops just before the segment where it is needed most. *The BRT Standard *(2014) awards maximum points 
+to corridors that include the highest quality of BRT infrastructure on the highest demand segment. This 
+often means extending the BRT directly into the city center. For other corridors that do not come near 
+the city center, this may simply mean the area with higher demand than the rest of the city.
+
+Once the location for BRT infrastructure has been selected, one must consider what to do beyond the 
+infrastructure. Many cities propose lower-quality bus treatments beyond the infrastructure. Generally, 
+however, it is preferable to allow BRT services to simply enter mixed traffic beyond the infrastructure. 
+This sends a clear signal to the public that there is a difference between BRT and everything else, and 
+leaves open the possibility of building out the rest of the corridor as full BRT at a later date. If 
+lower-quality bus treatments are implemented beyond the BRT infrastructure, it is less likely that they 
+will ever be upgraded to full BRT.
+
+Finally, it is possible to design BRT services to extend beyond the BRT infrastructure into many parts 
+of the city. This expands the catchment area of the BRT to many more beneficiaries than simply a service 
+that directly matches the infrastructure. It also provides an opportunity to bring new BRT services to 
+sections of the city where no bus services previously existed but where stakeholders wished to see a 
+BRT corridor. That is, in some cases, during the corridor selection process, some selection of stakeholders 
+may advocate for a corridor with no preexisting bus demand. It is unlikely that such a corridor will 
+make it to the list of top corridors for BRT implementation. However, if the requested corridor is located 
+near the corridor ultimately selected, it may be reasonable to run a service into that area to begin 
+to grow demand for future BRT infrastructure in that location, as well as to demonstrate to stakeholders 
+that such an area will be a beneficiary of BRT.
+
+The next chapter covers how to develop and optimize a BRT service plan. But it is worth noting here 
+that a BRT corridor with multiple services receives maximum points on *The BRT Standard *(2014). 
