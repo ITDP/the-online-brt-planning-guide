@@ -6,6 +6,9 @@
 \meta\reset{chapter}{2}  \' skip to chapter 3 '\
 \include{03-project/00-project-set-up.src}
 
+\meta\reset{chapter}{4}  \' skip to chapter 5 '\ 
+\include{05-network_development/corridor-and-network-development.src}
+
 \meta\reset{chapter}{8}  \' skip to chapter 9 '\
 \volume{Communications and Marketing}
 \include{09-strategic-planning-for-communications/00-strategic-planning-for-communications.src}
