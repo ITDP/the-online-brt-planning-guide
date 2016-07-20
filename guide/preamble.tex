@@ -69,11 +69,9 @@
 	\usepackage[main=english]{babel}
 \fi
 
-%font style
+% font style
 \let\emphasis\textit
 \let\highlight\textbf
-\let\code\texttt
-\def\codeblock#1{\itseries#1\par}
 
 %pagesize
 \usepackage{geometry}
@@ -135,7 +133,18 @@
 	\boxtitle{#1}{#2}
 	}
 \def\endbox{\endmdframed}
-	
+
+% code
+\let\code\texttt
+\def\begincode{
+	\mdframed[usetwoside=false]
+	\parskip=0pt
+	\baselineskip=4.5mm
+	\parindent=7mm
+	\ttfamily  % FIXME
+}
+\def\endcode{\endmdframed}
+
 %list
 \usepackage{enumitem}
 \setlist{nolistsep,leftmargin=7mm,rightmargin=7mm}
