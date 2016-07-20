@@ -6,6 +6,7 @@ class DocumentTools {
 	public static function iter(v:TElem, f:TElem->Void)
 	{
 		switch v.def {
+		case null:
 		case TVolume(_,_,_,i), TChapter(_,_,_,i), TSection(_,_,_,i),
 			TSubSection(_,_,_,i), TSubSubSection(_,_,_,i), TBox(_,i,_):
 			f(i);
@@ -26,6 +27,7 @@ class DocumentTools {
 	{
 		return { pos:v.pos, def:
 			switch v.def {
+			case null: null;
 			case TVolume(name, count, id, children):
 				TVolume(name, count, id, f(children));
 			case TChapter(name, count, id, children):

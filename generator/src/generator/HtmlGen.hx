@@ -107,6 +107,7 @@ class HtmlGen {
 		case TBox(name, contents, count, id):
 			var isLarge = false;
 			function findSize(v:TElem) {
+				if (v == null) return;
 				if (v.def.match(TFigure(MarginWidth|FullWidth, _) | TTable(MarginWidth|FullWidth, _)))
 					isLarge = true;
 				v.iter(findSize);
