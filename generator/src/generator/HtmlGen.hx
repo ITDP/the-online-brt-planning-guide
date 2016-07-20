@@ -75,6 +75,7 @@ class HtmlGen {
 			for (i in li)
 				buf.add(horizontal(i));
 			buf.toString();
+		case HEmpty: "";
 		}
 	}
 

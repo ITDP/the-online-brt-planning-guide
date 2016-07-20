@@ -58,6 +58,8 @@ class TexGen {
 			for (i in li)
 				buf.add(genh(i));
 			return buf.toString();
+		case HEmpty:
+			return "";
 		case Word(word):
 			return gent(word);
 		case InlineCode(code):

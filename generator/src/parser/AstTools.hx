@@ -120,16 +120,23 @@ class AstTools {
 
 	If the list has 1 or none elements, simplify the structure to a single element or `null`.
 	*/
-	public static macro function mkList(def:Expr)
+	public static macro function mkList(def:Expr, lexer:ExprOf<Lexer>)
 	{
 		switch def.expr {
 		case ECall({ expr:EConst(CIdent(c)) }, [li]) if (Lambda.has(getDefs(), c) && c.endsWith("List")):
+			var empty = macro $i{c.charAt(0) + "Empty"};
 			return macro {
-				($li:Array<Dynamic>);
-				if ($li.length < 2)
-					$li[0];
-				else
-					parser.AstTools.mk($def, parser.TokenTools.span($li[0].pos, $li[$li.length - 1].pos));
+				switch ($li:Array<Dynamic>) {
+				case []:
+					var pos = parser.TokenTools.toPosition($lexer.curPos());
+					pos.max = pos.min;  // empty -> has zero length
+					parser.AstTools.mk($empty, pos);
+				case [single]:
+					 single;
+				case _:
+					var pos = parser.TokenTools.span($li[0].pos, $li[$li.length - 1].pos);
+					parser.AstTools.mk($def, pos);
+				}
 			}
 		case _:
 			return error('Unexpected argument for mkList: ${def.toString}', def.pos);

@@ -108,6 +108,8 @@ class Transform {
 	static function vertical(v:VElem, rest:Rest, count : Array<Int>, names : Array<String>):TElem
 	{
 		switch v.def {
+		case VEmpty:
+			return null;
 		case VList(li):
 			var tf = [];
 			while (li.length > 0) {
@@ -186,10 +188,10 @@ class Transform {
 			return mk(TTable(size, _caption, rvalues[0], rvalues.slice(1), count[CNT_TABLE], name), v.pos);
 		}
 	}
-	
-	
+
+
 	static var tarray : Array<HToken>;
-	
+
 	static function htrim(elem : HElem)
 	{
 		tarray = new Array<HToken>();
@@ -199,7 +201,7 @@ class Transform {
 		elem = rebuild();
 		return elem;
 	}
-	
+
 	static function tokenify(elem : HElem)
 	{
 		if (elem == null)
@@ -221,17 +223,18 @@ class Transform {
 				tarray.push(mk(LiStart, elem.pos));
 				for(el in li)
 					tokenify(el);
-				tarray.push(mk(LiEnd, elem.pos));				
+				tarray.push(mk(LiEnd, elem.pos));
 			case InlineCode(c):
 				tarray.push(mk(TCode(c), elem.pos));
+			case HEmpty:
 		}
 	}
-	
+
 	static function ltrim()
 	{
 		var cur : HToken = null;
 		var i = 0;
-		
+
 		while (i < tarray.length)
 		{
 			if(!tarray[i].def.match(TWord(_) | TCode(_) | Space))  // FIXME what if TCode(_.length => size), size == 0?
@@ -239,7 +242,7 @@ class Transform {
 				i++;
 				continue;
 			}
-			
+
 			if(!checkBrothers(tarray[i], cur))
 			{
 				cur = tarray[i];
@@ -249,7 +252,7 @@ class Transform {
 				tarray.remove(tarray[i]);
 		}
 	}
-	
+
 	static function rtrim()
 	{
 		var cur : HToken = null;
@@ -272,11 +275,11 @@ class Transform {
 		}
 		tarray.reverse();
 	}
-	
+
 	static function rebuild() : HElem
 	{
 		var c = tarray.shift();
-		
+
 		switch(c.def)
 		{
 			case TWord(h):
@@ -293,7 +296,7 @@ class Transform {
 				var list = [];
 				while(!tarray[0].def.match(LiEnd))
 				{
-					list.push(rebuild());	
+					list.push(rebuild());
 				}
 				tarray.shift();
 				return mk(HList(list), c.pos);
@@ -301,14 +304,14 @@ class Transform {
 				throw "Unexpected token : " + c.def.getName() + " at line: " + c.pos.min + " with src: " + c.pos.src;
 		}
 	}
-	
+
 	static function checkBrothers(cur : HToken, oth : HToken)
 	{
 		if (oth == null) return cur.def == Space;
 		else 			 return(cur.def == Space && oth.def == cur.def);
 	}
-	
-	
+
+
 	static function txtFromHorizontal(elem : HElem)
 	{
 		return switch(elem.def)
@@ -323,9 +326,10 @@ class Transform {
 					buf.add(txtFromHorizontal(l));
 				}
 				buf.toString();
+			case HEmpty: "";
 		}
 	}
-	
+
 	public static function transform(parsed:parser.Ast) : TElem
 	{
 		var baseCounters = [for (i in CNT_VOLUME...(CNT_TABLE+1)) 0];
@@ -370,15 +374,15 @@ class Transform {
 			clearstr = StringTools.replace(clearstr," ", "-");
 
 			var reg = ~/[^a-zA-Z0-9-]+/g;
-				
+
 			if(clearstr.length == 0)
 			{
 				i++;
 				continue;
 			}
-			
+
 			clearstr = reg.replace(clearstr, "").toLowerCase();
-			
+
 			if(i != elem)
 				str.add(before + clearstr + ".");
 			else

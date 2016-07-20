@@ -129,7 +129,7 @@ class Test_03_Parser {
 
 		// there's only one level of markdown emphasis
 		Assert.same(
-			expand(Paragraph(HList([@len(2)Emphasis(null),@len(1)Word("a"),@len(2)Emphasis(null)]))),
+			expand(Paragraph(HList([@wrap(1,1)Emphasis(HEmpty),@len(1)Word("a"),@wrap(1,1)Emphasis(HEmpty)]))),
 			parse("**a**"));
 		Assert.same(
 			expand(Paragraph(HList([@wrap(1,1)Emphasis(HList([@len(1)Word("a"),@len(1)Wordspace])),@wrap(1,1)Emphasis(@len(1)Word("b")),@wrap(1,1)Emphasis(HList([@len(1)Wordspace,@len(1)Word("c")]))]))),
@@ -212,7 +212,7 @@ class Test_03_Parser {
 			parse("a\\'x'\\\n\nb"));
 
 		Assert.same(
-			expand(null),
+			expand(VEmpty),
 			parse("\\' foo '\\"));
 	}
 

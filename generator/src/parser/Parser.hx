@@ -215,7 +215,7 @@ class Parser {
 			if (v == null) break;
 			li.push(v);
 		}
-		return mkList(HList(li));
+		return mkList(HList(li), lexer);
 	}
 
 	// FIXME try to avoid escaping the /, extremely common in paths
@@ -311,7 +311,7 @@ class Parser {
 		var lastPos = null;
 		while (true) {
 			var h = hlist({ beforeAny:[TBrOpen,TAt] });  // FIXME consider current stop
-			if (h != null) {
+			if (!h.def.match(HEmpty)) {
 				captionParts.push(h);
 				lastPos = h.pos;
 				continue;
@@ -419,8 +419,8 @@ class Parser {
 		if (!at.def.match(TAt)) missingArg(at.pos, greaterThan, "author (prefixed with @)");
 		discardNoise();
 		var author = hlist(stop);
-		if (text == null) badValue(greaterThan.pos.span(at.pos).offset(1, -1), "text cannot be empty");
-		if (author == null) badValue(at.pos.offset(1,0), "author cannot be empty");
+		if (text.def.match(HEmpty)) badValue(greaterThan.pos.span(at.pos).offset(1, -1), "text cannot be empty");
+		if (author.def.match(HEmpty)) badValue(at.pos.offset(1,0), "author cannot be empty");
 		return mk(Quotation(text, author), greaterThan.pos.span(author.pos));
 	}
 
@@ -594,7 +594,7 @@ class Parser {
 			if (v == null) break;
 			li.push(v);
 		}
-		return mkList(VList(li));
+		return mkList(VList(li), lexer);
 	}
 
 	public function file():File
