@@ -14,9 +14,16 @@ To do...
 
 Simple, continuous text is the most basic and essential element, and can *usually* be simply typed in the source files.
 
-Paragraphs are separated by blank lines, or more specificaly, visibly empty lines.
+Paragraphs can be split into several lines for improved readibility.
+Instead, paragraphs end at blank lines, or more specificaly, visibly empty lines.
 
-\' TODO code block
+\codeblock\end
+This is the first paragraph.
+This previous line break didn't end this paragraph.
+
+Now *this* is a new paragraph, because of the
+previous empty line.
+\end
 
 \subsection{Reserved characters and escaping}
 

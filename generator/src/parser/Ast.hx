@@ -40,6 +40,7 @@ enum VDef {
 	Quotation(text:HElem, by:HElem);
 	List(numered:Bool, items:Array<VElem>);
 	Box(name:HElem, contents:VElem);
+	CodeBlock(c:String);
 	Paragraph(h:HElem);
 	VList(elem:Array<VElem>);
 }

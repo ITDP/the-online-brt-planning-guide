@@ -131,6 +131,8 @@ class TexGen {
 			buf.add(genp(v.pos));
 			buf.add("\n");
 			return buf.toString();
+		case TCodeBlock(code):
+			return '\\codeblock{${gent(code)}}';
 		case TLaTeXPreamble(path):
 			// TODO validate path (or has Transform done so?)
 			preamble.add('% included from `$path`\n');

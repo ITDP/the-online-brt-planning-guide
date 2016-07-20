@@ -575,6 +575,8 @@ class Parser {
 			mdHeading(pop(), stop);
 		case TGreater:
 			mdQuotation(pop(), stop);
+		case TCodeBlock(c):
+			mk(CodeBlock(c), pop().pos);
 		case TWord(_), TAsterisk:
 			paragraph(stop);
 		case TColon(q) if (q != 3):

@@ -319,10 +319,10 @@ q {
 	margin-right: 0px;
 	width: 640px;
 }
-.box > h1 { 
-	font-size: 16px; 
+.box > h1 {
+	font-size: 16px;
 	color: #666;
-	margin-top: 0; 
+	margin-top: 0;
 }
 .box > h1.quad:before {
 	content:"";
@@ -349,6 +349,13 @@ section > ul,ol {
 /* code */
 code {
 	font-size: .8em;
+}
+
+pre {
+	display: inline-block;
+}
+
+:not(pre)>code, pre {
 	background: #f9f9f9;
 	margin: 0 .1em;
 	padding: .05em .25em;

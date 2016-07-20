@@ -25,6 +25,7 @@ enum TDef {
 	TBox(name:HElem, contents:TElem, count:Int, id:String);
 	TQuotation(text:HElem, by:HElem);
 	TList(numered:Bool, items:Array<TElem>);
+	TCodeBlock(c:String);
 	TParagraph(h:HElem);
 }
 

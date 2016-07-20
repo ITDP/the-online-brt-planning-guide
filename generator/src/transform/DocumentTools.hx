@@ -19,8 +19,7 @@ class DocumentTools {
 		case TVList(items), TList(_, items):
 			for (i in items)
 				f(i);
-		case TLaTeXPreamble(_), TLaTeXExport(_), THtmlApply(_), TFigure(_), TQuotation(_), TParagraph(_):
-			trace(v.pos);
+		case TLaTeXPreamble(_), TLaTeXExport(_), THtmlApply(_), TFigure(_), TQuotation(_), TCodeBlock(_), TParagraph(_):
 		}
 	}
 	public static function map(v:TElem, f:TElem->TElem)
@@ -47,7 +46,7 @@ class DocumentTools {
 				TBox(name, f(contents), count, id);
 			case TList(numbered, items):
 				TList(numbered, [for (i in items) f(i)]);
-			case TLaTeXPreamble(_), TLaTeXExport(_), THtmlApply(_), TFigure(_), TQuotation(_), TParagraph(_):
+			case TLaTeXPreamble(_), TLaTeXExport(_), THtmlApply(_), TFigure(_), TQuotation(_), TCodeBlock(_), TParagraph(_):
 				v.def;
 			}
 		}

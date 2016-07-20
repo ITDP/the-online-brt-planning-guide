@@ -61,6 +61,7 @@ class LargeTable {
 			for (i in li)
 				cnt += markCost + pseudoTypeset(i);
 			cnt/li.length;
+		case TCodeBlock(code): code.length;
 		case TParagraph(h): pseudoHTypeset(h);
 		}
 	}

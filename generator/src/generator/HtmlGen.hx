@@ -21,7 +21,7 @@ typedef Nav = {
 }
 
 class HtmlGen {
-	
+
 	static inline var JSName =  "navscript.js";
 	static inline var ASSET_SUBDIR = "assets";
 
@@ -32,15 +32,15 @@ class HtmlGen {
 	static inline var SUBSUB = 4;
 	//Figs,tbls,etc
 	static inline var OTH = 5;
-	
+
 	var navs : Array<Nav>;
 	var navTop : String;
 	var navLeft : String;
-	
+
 	var cur_chapter_name : String;
-	
+
 	var css : Array<String>;
-	
+
 	var dest:String;
 
 	function saveAsset(path:String)
@@ -86,9 +86,9 @@ class HtmlGen {
 		case FullWidth: "lg";
 		}
 	}
-	
+
 	function vertical(v:TElem, counts : Array<Int>, curNav : Null<Nav>) : String
-	{		
+	{
 		switch v.def {
 		case TVolume(name, count, id, children), TChapter(name, count, id, children),
 		TSection(name, count, id, children), TSubSection(name, count, id, children),
@@ -103,7 +103,7 @@ class HtmlGen {
 			<section class="${sizeToClass(size)} img-block id="${id}">
 				<img src="../${_path}"/>
 				<p><strong>Fig. ${counts[CHA]}.${count}</strong><span class="quad"></span>${caption} <em>${copyright}</em></p>
-			</section>'.doctrim());
+			</section>\n'.doctrim());
 		case TBox(name, contents, count, id):
 			var isLarge = false;
 			function findSize(v:TElem) {
@@ -119,7 +119,9 @@ class HtmlGen {
 			b.add('</section>\n');
 			return b.toString();
 		case TQuotation(t, a):
-			return ('<blockquote class="md"><q>${horizontal(t)}</q><span>${horizontal(a)}</span></blockquote>');
+			return ('<blockquote class="md"><q>${horizontal(t)}</q><span>${horizontal(a)}</span></blockquote>\n');
+		case TCodeBlock(c):
+			return '<pre><code>$c</code></pre>\n';
 		case TParagraph(h):
 			return ('<p>${horizontal(h)}</p>\n');
 		case TList(numbered, li):
@@ -154,34 +156,34 @@ class HtmlGen {
 			buff.add("<table>");
 			buff.add(processTable([header], true));
 			buff.add(processTable(chd));
-			buff.add("</table></section>");
+			buff.add("</table></section>\n");
 			return buff.toString();
 		}
 	}
-	
+
 	function processTable(body : Array<Array<TElem>>, ?isHeadMode : Bool)
 	{
 		var buff = new StringBuf();
 		buff.add(addTblHeader(isHeadMode, false));
-		
+
 		for (row in body)
 		{
 			buff.add("<tr>");
 			for (col in row)
 			{
 				buff.add(addColumn(isHeadMode, false));
-				
+
 				buff.add(processTableElem(col));
-				
+
 				buff.add(addColumn(isHeadMode, true));
 			}
 			buff.add("</tr>");
 		}
-		
+
 		buff.add(addTblHeader(isHeadMode, true));
 		return buff.toString();
 	}
-	
+
 	function processTableElem(elem : TElem)
 	{
 		var b = new StringBuf();
@@ -194,10 +196,10 @@ class HtmlGen {
 			default:
 				throw "Invalid table element: " + elem.def.getName() + " pos : " + elem.pos.min + " at " + elem.pos.src;
 		}
-		
+
 		return b.toString();
 	}
-	
+
 	function addColumn(isHeadMode : Bool, isEnd : Bool)
 	{
 		if (isHeadMode)
@@ -215,7 +217,7 @@ class HtmlGen {
 				return ("</td>");
 		}
 	}
-	
+
 	function addTblHeader(isHead : Bool, isEnd : Bool)
 	{
 		if (isHead)
@@ -233,10 +235,10 @@ class HtmlGen {
 				return ("</tbody>");
 		}
 	}
-	
+
 	function hierarchy(cur : TElem, counts : Array<Int>, curNav : Nav)
 	{
-			
+
 		var buff = new StringBuf();
 		var _children = null;
 		var _name  = "";
@@ -279,55 +281,55 @@ class HtmlGen {
 			default:
 				throw "Invalid element " + cur.def;
 		}
-		
+
 		var _nav = {id : _id , name : _name, type : type, chd : []};
-		
+
 		if(curNav != null)
 			curNav.chd.push(_nav);
 		else
 			navs.push(_nav);
-			
+
 		curNav = _nav;
-		
+
 		var count = counts.slice(1, type + 1).join(".");
-		
-		
-		
+
+
+
 		if(type > 0)
-			buff.add('<section><h${(type+1)} id="${_id}">${count}<span class="quad"></span>${_name}</h${(type + 1)}>');
-		
+			buff.add('<section><h${(type+1)} id="${_id}">${count}<span class="quad"></span>${_name}</h${(type + 1)}>\n');
+
 		buff.add(vertical(_children, counts, curNav));
-			
+
 		if(type > 0)
-			buff.add("</section>");
-		
+			buff.add("</section>\n");
+
 		//Section already processed, clear buff , continue program execution
 		if (type == SEC || type == CHA)
 		{
-			var title = (type == SEC) ? 
+			var title = (type == SEC) ?
 			'${counts.slice(1, 3).join(".")} ${_name} [${cur_chapter_name}]' : '${counts[1]} $_name';
-			
+
 			if(type == SEC)
 				fileGen(buff.toString(), curNav, title);
 			else
 				fileGen(buff.toString(), curNav, title, "index");
-			
+
 			return "";
 		}
-		
+
 		return buff.toString();
 	}
-	
+
 	function processNav(curSec : Null<Nav>) : { sections : String, topNavJs : String}
 	{
 		var topBuff = new StringBuf();
 		var leftBuff = new StringBuf();
-		
+
 		//Nav options (will gen a JS);
 		var optBuff = new Map<String, {list : String, type : Int}>();
-		
+
 		leftBuff.add("<nav><ul>");
-		
+
 		//Should be volumes
 		for (n in navs)
 		{
@@ -335,29 +337,29 @@ class HtmlGen {
 			if (n.chd != null && n.chd.length > 0)
 			{
 				var cha = '<a>${n.name}</a><ul style="margin-left:114px;" class=\"item hide\">';
-				
+
 				for(c in n.chd)
 				{
 					var cha_name = c.id.split(".")[3];
 					//var first_sec_name = c.chd[0].id.split(".")[5];
 					cha += '<li id="${c.id}"><a href="../${cha_name}/index.html">${c.name}</a></li>';
-					
+
 					if (c.chd != null && c.chd.length > 0)
 					{
 						var sec = '<a>${c.name}</a><ul style="margin-left:317px;" class=\"item hide\">';
-						
+
 							for (se in c.chd)
 							{
 								var se_params = se.id.split('.');
-								
+
 								var sec_name = se_params[5];
-								
+
 								sec += '<li><a href="../${cha_name}/${sec_name}.html">${se.name}</a></li>';
-								
+
 								if (curSec != null && curSec == se)
 								{
 									leftBuff.add('<li><a href="#${se.id}">${se.name}</li>');
-									
+
 									for (su in se.chd)
 									{
 										leftBuff.add('<li><a href="#${su.id}">${su.name}</li>');
@@ -369,33 +371,33 @@ class HtmlGen {
 						optBuff.set(c.id, {list : sec, type : SEC});
 					}
 				}
-				
+
 				cha += "</ul>";
 				optBuff.set(n.id, {list : cha, type : CHA});
 			}
-			
-			
+
+
 		}
-		
+
 		leftBuff.add('</ul></nav>');
-		
+
 		return {sections : leftBuff.toString(), topNavJs : genNavJs(optBuff, topBuff.toString())};
 	}
-	
-	
+
+
 	function genNavJs(values : Map<String,{list : String, type : Int}>, volumesList : String) : String
 	{
 		var buff = new StringBuf();
-		
+
 		buff.add('function init()
 		{
 			$(".volumes").append(\'${volumesList}\');
 		}');
-		
+
 		buff.add("function hover()
 		{
 			$('header li ul').off('hover');
-			
+
 			$('header li ul').hide().removeClass('hide');
 			$('header li').hover(
 			  function () {
@@ -406,7 +408,7 @@ class HtmlGen {
 			  }
 			);
 		}");
-		
+
 		buff.add('\nfunction onClick(){');
 		for (key in values.keys())
 		{
@@ -429,14 +431,14 @@ class HtmlGen {
 					if(!(menu.children("li").last().html() == "<a>/</a>"))
 						menu.append("<li><a>/</a></li>");
 					menu.append("<li>" + v.list + "</li>");
-					
+
 					//Bind evt again (TODO: Rewrite)
 					hover();
 					onClick();
-					
+
 				});'
 			);
-		
+
 			buff.add("\n");
 		}
 		buff.add("}\n");
@@ -452,7 +454,7 @@ class HtmlGen {
 
 		return buff.toString();
 	}
-	
+
 	//TODO: add custom params...later
 	function headGen(jsFile : String, title : String)
 	{
@@ -466,51 +468,51 @@ class HtmlGen {
 			<script src="${jsFile}"></script>
 			<!-- MathJax -->
 			<script src = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" ></script>
-			
+
 			<!-- Google Fonts -->
 			<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700italic,700|PT+Sans:400,400italic,700,700italic" rel="stylesheet" type="text/css">
 			<!-- Custom CSSs -->
 			${css.map(function (p) return '<link href="../${p}" rel="stylesheet" type="text/css">').join("\n")}
 			</head> ';
-			
+
 		return staticres;
 	}
-	
+
 	function fileGen(content : String, nav : Nav, title : String, ?filename : String)
 	{
-		if (nav == null) 
+		if (nav == null)
 			throw "Invalid access";
-		
+
 		var params = nav.id.split(".");
-		
+
 		var chap = params[3];
 		var sec = params[5];
 		var path = dest + "/" + chap;
 		if (!FileSystem.exists(path))
 			FileSystem.createDirectory(path);
-		
+
 		var buff = new StringBuf();
 		buff.add(headGen("../" + JSName, title));
-		
+
 		buff.add('<body><div class="container"><div class="col-text">');
 		buff.add(content);
 		buff.add('</div>');
 		buff.add(processNav(nav).sections);
 		buff.add('</div>');
 		buff.add("<header><ul class='menu'><li><a><strong>BRT Planning Guide</strong></a><ul class='item hide volumes'></ul></li></ul></header>");
-		
-		File.saveContent(joinPaths([path,  ((filename != null) ? filename : sec) + ".html"]), buff.toString());		
+
+		File.saveContent(joinPaths([path,  ((filename != null) ? filename : sec) + ".html"]), buff.toString());
 	}
-		
+
 	function document(doc:Document)
 	{
 		css = new Array<String>();
 		navs = new Array<Nav>();
 		vertical(doc,[0,0,0,0,0,0], null);
-		
+
 		//JS name
 		File.saveContent(joinPaths([dest, JSName]), processNav(null).topNavJs);
-		
+
 	}
 
 	public function generate(doc:Document)

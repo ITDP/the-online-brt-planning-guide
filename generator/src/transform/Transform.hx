@@ -150,6 +150,8 @@ class Transform {
 					tf.push(v);
 			}
 			return mk(TList(numbered, tf), v.pos);
+		case CodeBlock(c):
+			return mk(TCodeBlock(c), v.pos);
 		case Paragraph(h):
 			var _h = htrim(h);
 			return mk(TParagraph(_h), v.pos);

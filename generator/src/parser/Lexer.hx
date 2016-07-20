@@ -59,6 +59,12 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"." => lexer.current
 	];
 
+	static var codeBlock = @:rule
+	[
+		"" => "",  // FIXME is this hack really necessary?
+		"((\n)|(\r\n))|([^\r\n]*)" => lexer.current
+	];
+
 	//Count how many chars has in a string s
 	static function countmark(s : String, char : String)
 	{
@@ -129,6 +135,31 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 			var pos = mkPos(lexer.curPos());
 			pos.min = start.pmin;
 			mk(lexer, TCode(buf.toString()), pos);
+		},
+
+		"\\\\codeblock[^\r\n]*" => {
+			var bang = lexer.current.substr(10);
+			var start = lexer.curPos();
+			var buf = new StringBuf();
+			while (true) {
+				var next = lexer.token(codeBlock);  // FIXME is this hack really necessary?
+				switch next {
+				case "":
+					unclosedToken(lexer, TCodeBlock("?"), start);
+				case "\n", "\r\n":
+					if (buf.length != 0)
+						buf.add("\n");
+				case line if (line == bang):
+					break;
+				case line:
+					buf.add(line);
+				}
+			}
+			var pos = mkPos(lexer.curPos());
+			pos.min = start.pmin;
+			var code = buf.toString();
+			code = code.substr(0, code.length - 1);
+			mk(lexer, TCodeBlock(code), pos);
 		},
 
 		"\\\\\\\\" => mk(lexer, TWord("\\")),
