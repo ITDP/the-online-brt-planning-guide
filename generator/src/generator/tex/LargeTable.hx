@@ -42,6 +42,7 @@ class LargeTable {
 
 	static function pseudoTypeset(v:TElem)
 	{
+		if (v == null) return 0.;
 		return switch v.def {
 		case TLaTeXPreamble(_), TLaTeXExport(_), THtmlApply(_): 0;
 		case TVolume(_), TChapter(_), TSection(_), TSubSection(_), TSubSubSection(_): BAD_COST; // not allowed in tables
@@ -76,7 +77,8 @@ class LargeTable {
 			if (r.length != width) continue;  // FIXME
 			for (j in 0...width) {
 				var c = r[j];
-				cost[j] += pseudoTypeset(c);
+				var type = pseudoTypeset(c);
+				cost[j] += type;
 			}
 		}
 		var tcost = Lambda.fold(cost, function (p,x) return p+x, 0);
@@ -157,6 +159,8 @@ class LargeTable {
 
 			buf.add("\\cr\n\t");
 			function genCell(i:TElem) {
+				if (i == null)
+					return "";
 				return switch i.def {
 				case TParagraph(h): gen.genh(h);
 				case _: gen.genv(i, genAt);

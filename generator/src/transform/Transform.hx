@@ -107,6 +107,8 @@ class Transform {
 
 	static function vertical(v:VElem, rest:Rest, count : Array<Int>, names : Array<String>):TElem
 	{
+		if (v == null)
+			return null;
 		switch v.def {
 		case VList(li):
 			var tf = [];
