@@ -116,30 +116,49 @@ class AstTools {
 		return { def:def, pos:pos };
 #end
 	/*
-	Build a VList/HList full element from `def`.
+	Build a compatible list of `ind` individual processing calls.
 
-	If the list has 1 or none elements, simplify the structure to a single element or `null`.
+	This is suitable to automagically make HLists and VLists.  According to
+	the number of found elements, this macro will either result in an empty
+	element, a single (unwraped) element, or a list of elements.
 	*/
-	public static macro function mkList(def:Expr, lexer:ExprOf<Lexer>)
+	public static macro function mkList(ind:Expr, stop:Expr)
 	{
-		switch def.expr {
-		case ECall({ expr:EConst(CIdent(c)) }, [li]) if (Lambda.has(getDefs(), c) && c.endsWith("List")):
-			var empty = macro $i{c.charAt(0) + "Empty"};
+		switch ind.expr {
+		case EConst(CIdent(c)):
+			var c = switch typeof(ind) {
+			case TFun(_, TType(_.get() => { name:name }, [])) if (name.endsWith("Elem")):  // TODO strict type check, but also support Elem<?Def>
+				c = name.charAt(0);
+			case other:
+				error('Unexpected type for mkList argument: $other', ind.pos);
+			}
+			var list = macro $i{c + "List"};
+			var empty = macro $i{c + "Empty"};
 			return macro {
-				switch ($li:Array<Dynamic>) {
+				var start = peek().pos;
+				var li = [];
+				while (true) {
+					var i = $ind($stop);
+					if (i == null) break;
+					li.push(i);
+				}
+				switch (li) {
 				case []:
-					var pos = parser.TokenTools.toPosition($lexer.curPos());
-					pos.max = pos.min;  // empty -> has zero length
-					parser.AstTools.mk($empty, pos);
+					var at = peek().pos;
+					// hack to get the usual empty <=> length == 0 (when possible);
+					// don't eliminate the implicit copy with .offset, since we'll be changing the
+					// position of a token used elsewhere
+					at = at.offset(0, at.min - at.max);
+					start = start.offset(0, start.min - start.max);
+					parser.AstTools.mk($empty, parser.TokenTools.span(start, at));
 				case [single]:
-					 single;
+					single;
 				case _:
-					var pos = parser.TokenTools.span($li[0].pos, $li[$li.length - 1].pos);
-					parser.AstTools.mk($def, pos);
+					parser.AstTools.mk($list(li), parser.TokenTools.span(li[0].pos, li[li.length - 1].pos));
 				}
 			}
 		case _:
-			return error('Unexpected argument for mkList: ${def.toString}', def.pos);
+			return error('Unexpected argument for mkList: ${ind.toString}', ind.pos);
 		}
 	}
 

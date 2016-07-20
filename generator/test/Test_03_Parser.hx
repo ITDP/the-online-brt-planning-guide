@@ -212,7 +212,7 @@ class Test_03_Parser {
 			parse("a\\'x'\\\n\nb"));
 
 		Assert.same(
-			expand(VEmpty),
+			expand(@len(9)VEmpty),
 			parse("\\' foo '\\"));
 	}
 
@@ -533,7 +533,7 @@ class Test_03_Parser {
 	public function test_017_boxes()
 	{
 		Assert.same(
-			expand(@wrap(10,8)Box(@len(1)Word("a"),null)),
+			expand(@wrap(10,7)Box(@len(1)Word("a"),@skip(1)VEmpty)),
 			parse("\\beginbox{a}\\endbox"));
 		Assert.same(
 			expand(@wrap(10,7)Box(@len(1)Word("a"),@skip(1)Paragraph(@len(1)Word("b")))),
