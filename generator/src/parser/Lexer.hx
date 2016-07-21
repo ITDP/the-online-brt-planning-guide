@@ -189,12 +189,14 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"-" => mk(lexer, TWord(lexer.current)),
 
 		// separate hyphen-dashes, en-dashes and em-dashes from regular words;
-		// em-dashes have special meaning in markdown-like quotations;
-		// however, compact figure dashes into en-dashes and horizontal bars into em-dashes
+		// compact figure dashes into en-dashes and horizontal bars into em-dashes
 		"–|‒" => mk(lexer, TWord("–")),  // u2013,u2012 -> u2013
 		"—|―" => mk(lexer, TWord("—")),  // u2014,u2015 -> u2014
+		// treat unicode (non breaking) hyphens as simple ascii dashes
+		"‐" => mk(lexer, TWord("-")),  // u2010 -> u002d
+		"‑" => mk(lexer, TWord("-")),  // u2011 -> u002d
 
-		"\\\\([${}\\[\\]\\*:@#>`\\-]|‒|―)" => mk(lexer, TWord(lexer.current.substr(1))),
+		"\\\\([${}\\[\\]\\*:@#>`\\-]|‒|―|‐|‑)" => mk(lexer, TWord(lexer.current.substr(1))),
 		// more (special) escpaes
 		"\\\\^" => mk(lexer, TWord("'")),  // a way to specically type an ascii apostrophe
 
