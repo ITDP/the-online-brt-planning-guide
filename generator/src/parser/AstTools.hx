@@ -126,8 +126,8 @@ class AstTools {
 	{
 		switch ind.expr {
 		case EConst(CIdent(c)):
-			var c = switch typeof(ind) {
-			case TFun(_, TType(_.get() => { name:name }, [])) if (name.endsWith("Elem")):  // TODO strict type check, but also support Elem<?Def>
+			var c = switch typeof(ind) {  // TODO strict type check, but also support Elem<?Def>
+			case TFun(_,TType(_.get()=>{name:"Null"},[TType(_.get()=>{name:name},[])])) if (name.endsWith("Elem")):
 				c = name.charAt(0);
 			case other:
 				error('Unexpected type for mkList argument: $other', ind.pos);

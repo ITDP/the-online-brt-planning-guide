@@ -35,22 +35,22 @@ class Parser {
 	var cache:FileCache;
 	var next:GenericCell<Token>;
 
-	inline function unexpected(t:Token, ?desc)
+	inline function unexpected(t:Token, ?desc):Dynamic
 		throw new UnexpectedToken(lexer, t, desc);
 
-	inline function unclosed(t:Token)
+	inline function unclosed(t:Token):Dynamic
 		throw new UnclosedToken(lexer, t);
 
-	inline function missingArg(p:Position, ?toToken:Token, ?desc:String)
+	inline function missingArg(p:Position, ?toToken:Token, ?desc:String):Dynamic
 		throw new MissingArgument(lexer, p, toToken, desc);
 
-	inline function badValue(pos:Position, ?desc:String)
+	inline function badValue(pos:Position, ?desc:String):Dynamic
 		throw new BadValue(lexer, pos, desc);
 
-	inline function badArg(pos:Position, ?desc:String)
+	inline function badArg(pos:Position, ?desc:String):Dynamic
 		throw new BadValue(lexer, pos.offset(1, -1), desc);
 
-	inline function unexpectedCmd(cmd:Token)
+	inline function unexpectedCmd(cmd:Token):Dynamic
 	{
 		// EXPERIMENTAL: use Levenshtein distances to generate command suggestions
 
@@ -60,7 +60,7 @@ class Parser {
 
 		var name = switch cmd.def {
 		case TCommand(n): n;
-		case _: throw new UnexpectedToken(lexer, cmd); null;
+		case _: throw new UnexpectedToken(lexer, cmd);
 		}
 		name = name.toLowerCase();
 		var cmds = verticalCommands.concat(horizontalCommands);
@@ -155,7 +155,7 @@ class Parser {
 		return switch cmd.def {
 		case TCommand("emph"): mk(Emphasis(content.val), cmd.pos.span(content.pos));
 		case TCommand("highlight"): mk(Highlight(content.val), cmd.pos.span(content.pos));
-		case _: unexpected(cmd); null;
+		case _: unexpected(cmd);
 		}
 	}
 
@@ -169,7 +169,7 @@ class Parser {
 		return mk(Emphasis(li), open.pos.span(close.pos));
 	}
 
-	function horizontal(stop:Stop):HElem
+	function horizontal(stop:Stop):Null<HElem>
 	{
 		while (peek().def.match(TComment(_)))
 			pop();
@@ -203,16 +203,17 @@ class Parser {
 		case { def:tdef } if (tdef.match(TBreakSpace(_) | TEof)):
 			null;
 		case other:
-			unexpected(other); null;
+			unexpected(other);
 		}
 	}
 
 	function hlist(stop:Stop)
 		return mkList(horizontal, stop);
 
-	// FIXME try to avoid escaping the /, extremely common in paths
-	// FIXME handle dash conversion, or document it accordingly
-	function rawHorizontal(stop:Stop)
+	// FIXME document slash behavior
+	// FIXME document automagically converted chars (TeX ligatures)
+	// FIXME document chars that need to be escaped (including the ones used in the above TeX ligatures)
+	function rawHorizontal(stop:Stop):Null<String>
 	{
 		var buf = new StringBuf();
 		while (true) {
@@ -246,7 +247,7 @@ class Parser {
 		case TCommand("section"): mk(Section(name.val), cmd.pos.span(name.pos));
 		case TCommand("subsection"): mk(SubSection(name.val), cmd.pos.span(name.pos));
 		case TCommand("subsubsection"): mk(SubSubSection(name.val), cmd.pos.span(name.pos));
-		case _: unexpected(cmd); null;
+		case _: unexpected(cmd);
 		}
 	}
 
@@ -254,13 +255,13 @@ class Parser {
 	{
 		discardNoise();
 		var name = hlist(stop);
-		assert(name != null, "obvisouly empty header");  // FIXME maybe
+		assert(!name.def.match(HEmpty), "obvisouly empty header");  // FIXME proper error? if so, needs to be tested
 
 		return switch hashes.def {
 		case THashes(1): mk(Section(name), hashes.pos.span(name.pos));
 		case THashes(2): mk(SubSection(name), hashes.pos.span(name.pos));
 		case THashes(3): mk(SubSubSection(name), hashes.pos.span(name.pos));
-		case _: unexpected(hashes, 'only sections (#), subsections (##) and subsubsections (###) allowed'); null;
+		case _: unexpected(hashes, 'only sections (#), subsections (##) and subsubsections (###) allowed');
 		}
 	}
 
@@ -361,11 +362,10 @@ class Parser {
 	{
 		if (spec == null) return def;
 		return switch spec.val.toLowerCase().trim() {
-		case null: badArg(spec.pos, "size cannot be empty"); null;
 		case "small": MarginWidth;
 		case "medium": TextWidth;
 		case "large": FullWidth;
-		case _: badValue(spec.pos, "only sizes 'small', 'medium', and 'large' are valid"); null;
+		case _: badValue(spec.pos, "only sizes 'small', 'medium', and 'large' are valid");
 		}
 	}
 
@@ -422,7 +422,15 @@ class Parser {
 		assert(mark.def.match(TCommand("item" | "number")), mark);
 		var item = optArg(vlist, mark, "item content");
 		if (item == null) {
+			var st = peek().pos;
 			var i = vertical(stop);
+			if (i == null) {
+				// FIXME duplicated from mkList and delicate
+				var at = peek().pos;
+				at = at.offset(0, at.min - at.max);
+				st = st.offset(0, st.min - st.max);
+				i = mk(VEmpty, st.span(at));
+			}
 			item = { val:i, pos:i.pos };
 		}
 		// TODO validation and error handling
@@ -441,7 +449,7 @@ class Parser {
 		var def = switch mark.def {
 		case TCommand("item"): List(false, li);
 		case TCommand("number"): List(true, li);
-		case _: unexpectedCmd(mark); null;
+		case _: unexpectedCmd(mark);
 		}
 		return mk(def, mark.pos.span(li[li.length - 1].pos));
 	}
@@ -462,8 +470,8 @@ class Parser {
 	function mkPath(rel:String, pos:Position, allowEmpty=false)
 	{
 		// TODO don't allow absolute paths (they mean nothing in a collaborative repository)
-		// TODO absolute paths?
-		rel = rel != null ? StringTools.trim(rel) : "";
+		// TODO maybe return absolute paths?
+		assert(rel != null);
 		if (rel == "") {
 			if (allowEmpty)
 				return rel;
@@ -508,7 +516,7 @@ class Parser {
 		return switch cmd.def {
 		case TCommand("html\\apply"): mk(HtmlApply(path), cmd.pos.span(p.pos));
 		case TCommand("tex\\preamble"): mk(LaTeXPreamble(path), cmd.pos.span(p.pos));
-		case _: unexpected(cmd); null;
+		case _: unexpected(cmd);
 		}
 	}
 
@@ -534,11 +542,11 @@ class Parser {
 		case [TCommand("html"), TCommand("apply")]: targetInclude({ def:TCommand("html\\apply"), pos:pos });
 		case [TCommand("tex"), TCommand("preamble")]: targetInclude({ def:TCommand("tex\\preamble"), pos:pos });
 		case [TCommand("tex"), TCommand("export")]: texExport({ def:TCommand("tex\\export"), pos:pos });
-		case _: unexpectedCmd(exec); null;
+		case _: unexpectedCmd(exec);
 		}
 	}
 
-	function vertical(stop:Stop):VElem
+	function vertical(stop:Stop):Null<VElem>
 	{
 		discardVerticalNoise();
 		return switch peek().def {
@@ -574,7 +582,7 @@ class Parser {
 		case TColon(q) if (q != 3):
 			paragraph(stop);
 		case _:
-			unexpected(peek()); null;
+			unexpected(peek());
 		}
 	}
 
