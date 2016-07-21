@@ -605,5 +605,15 @@ class Test_03_Parser {
 
 		parsingError("\\endtable", UnexpectedCommand, ~/\\endtable/);
 	}
+
+	public function test_023_escapes()
+	{
+		// automatically inactive; no need to escape
+		Assert.same(expand(Paragraph(@len(1)Word(":"))), parse(":"));
+		Assert.same(expand(Paragraph(@len(2)Word("::"))), parse("::"));
+		Assert.same(expand(Paragraph(@len(4)Word("::::"))), parse("::::"));
+		// double check
+		Assert.same(expand(Paragraph(HList([@len(2)Word("::"),@len(2)Word(":")]))), parse("::\\:"));
+	}
 }
 

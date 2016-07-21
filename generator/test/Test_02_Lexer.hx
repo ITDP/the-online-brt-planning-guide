@@ -106,22 +106,35 @@ class Test_02_Lexer {
 
 	public function test_007_escapes()
 	{
-		Assert.same([TWord("\\"), TWord("foo"), TEof], defs("\\\\foo"));
+		Assert.raises(defs.bind("\\"));
 
-		Assert.raises(defs.bind("foo\\"));
-
-		Assert.same([TWord("#"), TWord("foo"), TEof], defs("\\#foo"));
-		Assert.same([TWord("foo"), TWord("#"),  TEof], defs("foo\\#"));
-
+		Assert.same([TWord("\\"), TEof], defs("\\\\"));
+		Assert.same([TWord("$"), TEof], defs("\\$"));
+		Assert.same([TWord("{"), TEof], defs("\\{"));
+		Assert.same([TWord("}"), TEof], defs("\\}"));
+		Assert.same([TWord("["), TEof], defs("\\["));
+		Assert.same([TWord("]"), TEof], defs("\\]"));
+		Assert.same([TWord("*"), TEof], defs("\\*"));
+		Assert.same([TWord(":"), TEof], defs("\\:"));
 		Assert.same([TWord("@"), TEof], defs("\\@"));
-		Assert.same([TWord("@"), TWord("@"), TEof], defs("\\@\\@"));
+		Assert.same([TWord("#"), TEof], defs("\\#"));
+		Assert.same([TWord(">"), TEof], defs("\\>"));
+		Assert.same([TWord("`"), TEof], defs("\\`"));
+		Assert.same([TWord("-"), TEof], defs("\\-"));
+		Assert.same([TWord("‒"), TEof], defs("\\‒"));
+		Assert.same([TWord("―"), TEof], defs("\\―"));
 
-		Assert.same([TWord("foo"), TWord("@"), TEof], defs("foo\\@"));
+		// special cases
+		Assert.same([TWord("’"), TEof], defs("'"));  // this is usually enough
+		Assert.same([TWord("'"), TEof], defs('\\^'));  // should only be needed for paths: joe's => joe\^s
 
-		//Just in case
+		// just in case
 		Assert.same([TWord("\\"), TCommand("foo"), TEof], defs("\\\\\\foo"));
-		Assert.same([TWord("#"), THashes(1), TWord("foo"), THashes(1), TEof], defs("\\##foo#"));
+		Assert.same([TWord("\\"), TWord("’"), TEof], defs("\\\\'"));
+		Assert.same([TWord("\\"), TWord("code!"), TEof], defs("\\\\code!"));
+		Assert.same([TWord("\\"), TWord("codeblock!"), TWordSpace("\n"), TWord("foo"), TWordSpace("\n"), TWord("!"), TWordSpace("\n"), TEof], defs("\\\\codeblock!\nfoo\n!\n"));
 
+		// TODO some escapes depend on the parser
 	}
 
 	public function test_008_dash_treatment()
