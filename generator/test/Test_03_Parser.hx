@@ -582,7 +582,7 @@ class Test_03_Parser {
 		Assert.same(
 			expand(@src("b")Paragraph(@len(1)Word("c"))),
 			parse("\\include{b}"));
-		
+
 	}
 
 	// TODO
