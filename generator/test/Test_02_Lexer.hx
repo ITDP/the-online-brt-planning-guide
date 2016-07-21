@@ -150,11 +150,17 @@ class Test_02_Lexer {
 		Assert.same([TWord("–"), TEof], defs("‒"));
 		Assert.same([TWord("—"), TEof], defs("―"));
 
+		// simplification of U+2010 (unicode hyphen) and U+2011 (non breaking hyphen)
+		Assert.same([TWord("-"), TEof], defs("‐"));
+		Assert.same([TWord("-"), TEof], defs("‑"));
+
 		// dashes isolated from the environment
+		Assert.same([TWord("a"), TWord("-"), TWord("b"), TEof], defs("a‐b"));
+		Assert.same([TWord("a"), TWord("-"), TWord("b"), TEof], defs("a‑b"));
+		Assert.same([TWord("a"), TWord("–"), TWord("b"), TEof], defs("a‒b"));
+		Assert.same([TWord("a"), TWord("–"), TWord("b"), TEof], defs("a–b"));
 		Assert.same([TWord("a"), TWord("—"), TWord("b"), TEof], defs("a—b"));
-		Assert.same([TWord("a"), TWord("–"), TWord("b"), TEof], defs("a–b"));  // but leave it unspecified
-		Assert.same([TWord("a"), TWord("–"), TWord("b"), TEof], defs("a‒b"));  // but leave it unspecified
-		Assert.same([TWord("a"), TWord("—"), TWord("b"), TEof], defs("a―b"));  // but leave it unspecified
+		Assert.same([TWord("a"), TWord("—"), TWord("b"), TEof], defs("a―b"));
 	}
 
 	public function test_009_utf8_text()
