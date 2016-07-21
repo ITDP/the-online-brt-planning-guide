@@ -129,7 +129,7 @@ remain in the mixed-traffic lanes. All the vehicles that will not be incorporate
 including the buses not incorporated into the system then need to be converted into PCUs, and allocated 
 to the remaining number of lanes (or three-meter road widths).  Table 5.2 provides an example of this 
 type of analysis.
-\begintable{PCU calculation for BRT scenario}
+\begintable[large]{PCU calculation for BRT scenario}
 \header
 \col \highlight{Vehicle type}
 \col \highlight{Traffic volume}
@@ -330,7 +330,7 @@ stakeholder group (transit users and car users). In this first case, each
 group is given an equal weighting.
 
 
-\begintable{Time 
+\begintable[large]{Time 
 savings benefits, Scenario 1}
 \header
 \col \highlight{Corridor }
@@ -393,14 +393,13 @@ this amount of prioritization
 to car interests would not change the overall result.
 
 
-\begintable{Time 
-savings benefits, Scenario 2}
+\begintable[large]{Time savings benefits, Scenario 2}
 \header
 \col \highlight{Corridor }
 \col \highlight{Time savings benefits} \' TODO: Multicol && multirow '\
 \col 
 \col 
-\highlight{Cost}
+\col \highlight{Cost}
 \col \highlight{Benefits to cost ratio}
 \row
 \col 
@@ -440,7 +439,7 @@ weighting of ten
 to private vehicles, then the result would change.
 
 
-\begintable{Time savings benefits, Scenario 3}
+\begintable[large]{Time savings benefits, Scenario 3}
 \header
 \col 
 \highlight{Corridor }
