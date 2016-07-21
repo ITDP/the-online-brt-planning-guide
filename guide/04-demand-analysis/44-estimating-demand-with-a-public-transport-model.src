@@ -561,6 +561,11 @@ each direction at each survey point. Table 4.8 outlines the general form of a tw
 \header
 \col Origins
 \col Destinations
+\col
+\col
+\col
+\col
+\col
 \row
 \col 
 \col 1
@@ -763,10 +768,15 @@ will have some OD pairs with actual values, and some OD pairs with zero trips (T
 
 \begintable{OD Matrix \#1 Eastbound Morogoro Road and United Nations Intersection}
 \header
-\col 
-\col Destinations
-\row
 \col Origins
+\col Destinations
+\col
+\col
+\col
+\col
+\col
+\row
+\col
 \col 1
 \col 2
 \col 3
@@ -826,10 +836,15 @@ will have some OD pairs with actual values, and some OD pairs with zero trips (T
 
 \begintable{OD Matrix \#2 Southbound Old Bagamoyo Road and United Nations Intersection}
 \header
-\col 
-\col Destinations
-\row
 \col Origins
+\col Destinations
+\col
+\col
+\col
+\col
+\col
+\row
+\col
 \col 1
 \col 2
 \col 3
@@ -910,10 +925,15 @@ tables have been combined to form a complete OD matrix (assuming that only two p
 
 \begintable{OD Matrix Dar es Salaam}
 \header
-\col 
-\col Destinations
-\row
 \col Origins
+\col Destinations
+\col
+\col
+\col
+\col
+\col
+\row
+\col
 \col 1
 \col 2
 \col 3

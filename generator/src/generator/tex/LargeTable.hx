@@ -68,7 +68,7 @@ class LargeTable {
 	}
 
 	// TODO document the objective and the implementation
-	static function computeTableWidths(noModules, header, rows:Array<Array<TElem>>)
+	static function computeTableWidths(noModules, header, rows:Array<Array<TElem>>, pos:Position)
 	{
 		var width = header.length;
 		var cost = header.map(pseudoTypeset);
@@ -111,7 +111,7 @@ class LargeTable {
 			}
 		}
 		var check = available - Lambda.fold(icost, function (p,x) return p+x, 0);
-		weakAssert(check == 0 && Lambda.foreach(icost, function (x) return x >= MIN_COLUMN), check, width, ncost, icost, priori, itCnt);
+		weakAssert(check == 0 && Lambda.foreach(icost, function (x) return x >= MIN_COLUMN), check, width, ncost, icost, priori, itCnt, pos.toLinePosition());
 		return icost;
 	}
 
@@ -135,7 +135,7 @@ class LargeTable {
 			case _:
 				var large = size.match(FullWidth);
 				var noModules = large ? NO_MODULES_LARGE : NO_MODULES;
-				var colWidths = computeTableWidths(noModules, header, rows);
+				var colWidths = computeTableWidths(noModules, header, rows, v.pos);
 				if (Main.debug) {
 					trace(v.pos.toLinePosition());
 					trace(colWidths);
