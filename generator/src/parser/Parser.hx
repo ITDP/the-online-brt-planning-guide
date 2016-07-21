@@ -358,7 +358,7 @@ class Parser {
 		return cells;
 	}
 
-	function blobSize(spec:Null<{ val:String, pos:Position }>, def:BlobSize):Null<BlobSize>
+	function blobSize(spec:Null<{ val:String, pos:Position }>, def:BlobSize):BlobSize
 	{
 		if (spec == null) return def;
 		return switch spec.val.toLowerCase().trim() {
