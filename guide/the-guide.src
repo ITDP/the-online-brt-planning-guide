@@ -7,7 +7,7 @@
 \include{03-project/00-project-set-up.src}
 
 \volume{Operations}
-\include{04-demand-analysis/demand-analysis.src}
+\include{04-demand-analysis/00-demand-analysis.src}
 \include{05-network_development/00-corridor-and-network-development.src}
 
 \volume{Communications and Marketing}
