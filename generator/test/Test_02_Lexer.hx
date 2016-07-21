@@ -123,6 +123,8 @@ class Test_02_Lexer {
 		Assert.same([TWord("-"), TEof], defs("\\-"));
 		Assert.same([TWord("‒"), TEof], defs("\\‒"));
 		Assert.same([TWord("―"), TEof], defs("\\―"));
+		Assert.same([TWord("‐"), TEof], defs("\\‐"));
+		Assert.same([TWord("‑"), TEof], defs("\\‑"));
 
 		// special cases
 		Assert.same([TWord("’"), TEof], defs("'"));  // this is usually enough
