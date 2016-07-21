@@ -194,7 +194,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"–|‒" => mk(lexer, TWord("–")),  // u2013,u2012 -> u2013
 		"—|―" => mk(lexer, TWord("—")),  // u2014,u2015 -> u2014
 
-		"\\\\[\\*@:#>$]" => mk(lexer, TWord(lexer.current.substr(1))),
+		"\\\\[\\[\\]\\*@:#>$]" => mk(lexer, TWord(lexer.current.substr(1))),
 
 		// note: 0xE2 is used to exclude en- and em- dashes from being matched;
 		// other utf-8 chars begginning with 0xE2 are restored by the two inclusive patterns
