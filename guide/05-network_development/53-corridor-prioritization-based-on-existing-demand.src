@@ -29,7 +29,7 @@ in the first year of operation. Each corridor should be color-coded based on its
 corridors with unusually high speeds for the region should be screened out, as they are likely already 
 functioning at a relatively high efficiency. Additionally, those corridors on which another public transport 
 project is currently being planned should also be screened out.
-\begintable{Rank order of Boston corridors from map in Figure 5.13.
+\begintable[large]{Rank order of Boston corridors from map in Figure 5.13.
  Yellow represents the least delay, orange moderate delay, and red the most delay. 
  The City Center to Government Center route currently does not exist, 
  and thus the pphpd is not provided. Analysis done by ITDP.}
