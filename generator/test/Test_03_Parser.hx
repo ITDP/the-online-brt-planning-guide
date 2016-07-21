@@ -582,7 +582,7 @@ class Test_03_Parser {
 		Assert.same(
 			expand(@src("b")Paragraph(@len(1)Word("c"))),
 			parse("\\include{b}"));
-		
+
 	}
 
 	// TODO
@@ -604,6 +604,16 @@ class Test_03_Parser {
 			parse("\\begintable{a}\\header\\col x\\col y\\row\\col list\\col \\item 1\\item 2\\endtable"));
 
 		parsingError("\\endtable", UnexpectedCommand, ~/\\endtable/);
+	}
+
+	public function test_023_escapes()
+	{
+		// automatically inactive; no need to escape
+		Assert.same(expand(Paragraph(@len(1)Word(":"))), parse(":"));
+		Assert.same(expand(Paragraph(@len(2)Word("::"))), parse("::"));
+		Assert.same(expand(Paragraph(@len(4)Word("::::"))), parse("::::"));
+		// double check
+		Assert.same(expand(Paragraph(HList([@len(2)Word("::"),@len(2)Word(":")]))), parse("::\\:"));
 	}
 }
 
