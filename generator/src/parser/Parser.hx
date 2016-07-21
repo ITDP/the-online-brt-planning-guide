@@ -118,7 +118,7 @@ class Parser {
 	function discardVerticalNoise(permanent=true):Int
 		return discard(function (x) return x.def.match(TWordSpace(_)|TComment(_)|TBreakSpace(_)));
 
-	function arg<T>(internal:Stop->T, toToken:Null<Token>, ?desc:String):{ val:T, pos:Position }
+	function arg<T>(internal:Stop->T, ?toToken:Token, ?desc:String):{ val:T, pos:Position }
 	{
 		discardNoise();
 		var open = pop();
@@ -132,7 +132,7 @@ class Parser {
 		return { val:li, pos:open.pos.span(close.pos) };
 	}
 
-	function optArg<T>(internal:Stop->T, toToken:Null<Token>, ?desc:String):Nullable<{ val:T, pos:Position }>
+	function optArg<T>(internal:Stop->T, ?toToken:Token, ?desc:String):Nullable<{ val:T, pos:Position }>
 	{
 		var i = discardNoise(false);
 		if (!peek(i).def.match(TBrkOpen))
