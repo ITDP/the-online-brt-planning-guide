@@ -145,7 +145,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 				var next = lexer.token(codeBlock);  // FIXME is this hack really necessary?
 				switch next {
 				case "":
-					unclosedToken(lexer, TCodeBlock("?"), start);
+					unclosedToken(lexer, TCodeBlock("?"), start);  // FIXME Eof should (attempt to) close
 				case "\n", "\r\n":
 					if (buf.length != 0)
 						buf.add("\n");
@@ -194,7 +194,10 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"–|‒" => mk(lexer, TWord("–")),  // u2013,u2012 -> u2013
 		"—|―" => mk(lexer, TWord("—")),  // u2014,u2015 -> u2014
 
-		"\\\\[\\*@:#>$]" => mk(lexer, TWord(lexer.current.substr(1))),
+		// (regular) escapes
+		"\\\\([${}\\[\\]\\*:@#>`\\-]|‒|―)" => mk(lexer, TWord(lexer.current.substr(1))),
+		// more (special) escpaes
+		"\\\\^" => mk(lexer, TWord("'")),  // a way to specically type an ascii apostrophe
 
 		// note: 0xE2 is used to exclude en- and em- dashes from being matched;
 		// other utf-8 chars begginning with 0xE2 are restored by the two inclusive patterns
