@@ -1,6 +1,7 @@
 package parser;  // TODO move out of the package
 
 import haxe.ds.GenericStack.GenericCell;
+import haxe.ds.Option;
 import parser.Ast;
 import parser.Error;
 import parser.Token;
@@ -131,7 +132,7 @@ class Parser {
 		return { val:li, pos:open.pos.span(close.pos) };
 	}
 
-	function optArg<T>(internal:Stop->T, toToken:Null<Token>, ?desc:String):Null<{ val:T, pos:Position }>
+	function optArg<T>(internal:Stop->T, toToken:Null<Token>, ?desc:String):Nullable<{ val:T, pos:Position }>
 	{
 		var i = discardNoise(false);
 		if (!peek(i).def.match(TBrkOpen))
@@ -358,14 +359,14 @@ class Parser {
 		return cells;
 	}
 
-	function blobSize(spec:Null<{ val:String, pos:Position }>, def:BlobSize):BlobSize
+	function blobSize(spec:Nullable<{ val:String, pos:Position }>, def:BlobSize):BlobSize
 	{
-		if (spec == null) return def;
-		return switch spec.val.toLowerCase().trim() {
+		if (spec.isNull()) return def;
+		return switch spec.sure().val.toLowerCase().trim() {
 		case "small": MarginWidth;
 		case "medium": TextWidth;
 		case "large": FullWidth;
-		case _: badValue(spec.pos, "only sizes 'small', 'medium', and 'large' are valid");
+		case _: badValue(spec.sure().pos, "only sizes 'small', 'medium', and 'large' are valid");
 		}
 	}
 
@@ -420,8 +421,11 @@ class Parser {
 	function listItem(mark:Token, stop:Stop)
 	{
 		assert(mark.def.match(TCommand("item" | "number")), mark);
-		var item = optArg(vlist, mark, "item content");
-		if (item == null) {
+		var item:VElem = switch optArg(vlist, mark, "item content").cases() {
+		case Some(vlist):
+			vlist.val.pos = vlist.pos;
+			vlist.val;
+		case None:
 			var st = peek().pos;
 			var i = vertical(stop);
 			if (i == null) {
@@ -431,11 +435,11 @@ class Parser {
 				st = st.offset(0, st.min - st.max);
 				i = mk(VEmpty, st.span(at));
 			}
-			item = { val:i, pos:i.pos };
+			i;
 		}
 		// TODO validation and error handling
-		item.val.pos = mark.pos.span(item.pos);
-		return item.val;
+		item.pos = mark.pos.span(item.pos);
+		return item;
 	}
 
 	// see /generator/docs/list-design.md
