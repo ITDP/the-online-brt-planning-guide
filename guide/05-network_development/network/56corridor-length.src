@@ -20,13 +20,15 @@ Of course, this time savings benefit will tend to increase as congestion worsens
 BRT system is likely to last a long time, it is standard practice to roughly estimate the likely congestion 
 along the corridor in the next ten to twenty years rather than simply assuming that current congestion 
 conditions will prevail long into the future.
-\begintable{Cost-benefit analysis of corridor length}
+\begintable[large]{Cost-benefit analysis of corridor length}
 \header
 \col \highlight{Corridor segment}
 \col \highlight{Length of segment (km)}
 \col \highlight{Demand along segment (x 1000)}
 \col \highlight{Time savings (minutes)}
+\col
 \col \highlight{Cost}
+\col
 \col \highlight{Benefit}
 \col \highlight{Benefit / cost ratio (B / C)}
 \row
