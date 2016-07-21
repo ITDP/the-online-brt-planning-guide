@@ -134,7 +134,7 @@ class HtmlGen {
 				case TParagraph(h):
 					buf.add(horizontal(h));
 				case _:
-					vertical(i, counts, curNav);
+					buf.add(vertical(i, counts, curNav));
 				}
 				buf.add("</li>\n");
 			}
