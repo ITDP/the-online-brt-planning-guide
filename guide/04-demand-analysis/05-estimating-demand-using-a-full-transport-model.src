@@ -151,7 +151,7 @@ they travel. This can be calibrated from the survey data, normally home intervie
 of all possible lengths.
 
 This procedure is commonly referred to as the “Gravity Model,” with its mathematical expression to
-satisfy the fulfillment of the matrix in the above condition given by trips between $i$ and $j$ ($T_{ij}$):
+satisfy the fulfillment of the matrix in the above condition given by trips between $$i$$ and $$j$$ ($$T_{ij}$$):
 
 Eq. 4.1\' TODO Math:
 
@@ -238,9 +238,9 @@ In this case, α is equal to *f/a* and is often interpreted as the inverse of th
 
 
 An initial estimate could be the length of working time required to earn one unit of currency, for
-example how many minutes it takes for the average earner to earn US\$1. The average earner in question
+example how many minutes it takes for the average earner to earn US$1. The average earner in question
 is the type of user the new BRT is trying to benefit most. For example, if the average wage rate per
-hour for the population of interest is US\$2, then *α* is thirty minutes per dollar. The generalized
+hour for the population of interest is US$2, then *α* is thirty minutes per dollar. The generalized
 costs in this case would be measures in generalized in-bus minutes.
 
 \highlight{For private transport:}
