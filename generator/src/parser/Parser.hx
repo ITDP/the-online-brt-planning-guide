@@ -181,9 +181,9 @@ class Parser {
 		case { def:TWord(s), pos:pos }:
 			pop();
 			mk(Word(s), pos);
-		case { def:TMath(s), pos:pos }:
+		case { def:TMath(tex), pos:pos }:
 			pop();
-			mk(Word(s), pos);  // FIXME
+			mk(Math(tex), pos);  // FIXME
 		case { def:TCode(s), pos:pos }:
 			pop();
 			mk(InlineCode(s), pos);
