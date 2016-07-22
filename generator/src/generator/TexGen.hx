@@ -62,6 +62,8 @@ class TexGen {
 			return gent(word);
 		case InlineCode(code):
 			return '\\code{${gent(code)}}';
+		case Math(tex):
+			return '$$$tex$$';
 		case Wordspace:
 			return " ";
 		case Emphasis(h):

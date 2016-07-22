@@ -13,6 +13,7 @@ private enum HTokenDef
 {
 	TWord(w:String);
 	TCode(c:String);
+	TMath(tex:String);
 	Space;
 	Emph;
 	High;
@@ -226,6 +227,8 @@ class Transform {
 				tarray.push(mk(LiEnd, elem.pos));				
 			case InlineCode(c):
 				tarray.push(mk(TCode(c), elem.pos));
+			case Math(tex):
+				tarray.push(mk(TMath(tex), elem.pos));
 		}
 	}
 	
@@ -236,7 +239,7 @@ class Transform {
 		
 		while (i < tarray.length)
 		{
-			if(!tarray[i].def.match(TWord(_) | TCode(_) | Space))  // FIXME what if TCode(_.length => size), size == 0?
+			if(!tarray[i].def.match(TWord(_) | TCode(_) | TMath(_) | Space))  // FIXME what if TCode(_.length => size), size == 0?
 			{
 				i++;
 				continue;
@@ -259,7 +262,7 @@ class Transform {
 		tarray.reverse();
 		while(i < tarray.length)
 		{
-			if(!tarray[i].def.match(TWord(_) | TCode(_) | Space))  // FIXME what if TCode(_.length => size), size == 0?
+			if(!tarray[i].def.match(TWord(_) | TCode(_) | TMath(_) | Space))  // FIXME what if TCode(_.length => size), size == 0?
 			{
 				i++;
 				continue;
@@ -285,6 +288,8 @@ class Transform {
 				return mk(Word(h), c.pos);
 			case TCode(t):
 				return mk(InlineCode(t), c.pos);
+			case TMath(tex):
+				return mk(Math(tex), c.pos);
 			case Space:
 				return mk(Wordspace, c.pos);
 			case Emph:
@@ -317,7 +322,7 @@ class Transform {
 		{
 			case Wordspace: " ";
 			case Emphasis(t), Highlight(t): txtFromHorizontal(t);
-			case Word(w), InlineCode(w): w;
+			case Word(w), InlineCode(w), Math(w): w;
 			case HList(li):
 				var buf = new StringBuf();
 				for (l in li)

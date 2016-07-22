@@ -12,6 +12,7 @@ enum HDef {
 	Highlight(el:HElem);
 	Word(w:String);
 	InlineCode(c:String);
+	Math(tex:String);
 	HList(elem:Array<HElem>);
 }
 
