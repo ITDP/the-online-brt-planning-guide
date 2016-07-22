@@ -20,6 +20,12 @@
 
 --next
 
+-main tools.Stats
+-js bin/obrt-stats.js
+-lib hxnodejs
+
+--next
+
 -main RunTests
 -js bin/tests.js
 -cp test
