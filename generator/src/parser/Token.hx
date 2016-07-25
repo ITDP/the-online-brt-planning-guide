@@ -66,8 +66,16 @@ enum TokenDef {
 	TGreater;
 }
 
+#if !cpp
 typedef Token = {
 	def : TokenDef,
 	pos : Position
 }
+#else
+@:structInit
+class Token {
+	public var def:TokenDef;
+	public var pos:Position;
+}
+#end
 

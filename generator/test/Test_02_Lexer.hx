@@ -185,7 +185,7 @@ class Test_02_Lexer {
 		Assert.same({ min:1, max:10 }, positions(" \\' foo '\\\n")[1]);
 		Assert.same({ min:0, max:9 }, positions("\\' foo '\\")[0]);
 
-		Assert.same({ def:TEof, pos:{ min:1, max:1, src:"test" } }, lex(" ")[1]);
+		Assert.same(({ def:TEof, pos:{ min:1, max:1, src:"test" } }:Token), lex(" ")[1]);
 	}
 }
 
