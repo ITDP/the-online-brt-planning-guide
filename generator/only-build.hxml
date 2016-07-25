@@ -20,11 +20,6 @@
 
 --next
 
--main Main
--cpp bin/cpp/obrt
-
---next
-
 -main tools.Stats
 -js bin/obrt-stats.js
 -lib hxnodejs
@@ -48,7 +43,12 @@
 -cp pseudo
 
 # --next
-
+#
+# -main Main
+# -cpp bin/cpp/obrt
+#
+# --next
+#
 # -main cpp.cppia.Host
 # -cpp bin/cppia
 # -lib utest
@@ -56,9 +56,9 @@
 # -dce no
 # -debug
 # -D analyzer
-
+#
 # --next
-
+#
 # -main RunTests
 # -cppia bin/cppia/tests.cppia
 # -cp test
@@ -66,9 +66,9 @@
 # -lib utest
 # -debug
 # -D analyzer
-
+#
 # --next
-
+#
 # -main RunTests
 # -cpp bin/cpp/tests
 # -cp test
