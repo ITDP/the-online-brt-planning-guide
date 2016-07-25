@@ -6,6 +6,7 @@ class RunTests {
 		r.addCase(new Test_02_Lexer());
 		r.addCase(new Test_03_Parser());
 		r.addCase(new Test_04_Transform());
+		r.addCase(new NeedlemanWunschTests());
 
 		utest.ui.Report.create(r);
 		r.run();
