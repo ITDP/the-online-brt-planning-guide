@@ -13,7 +13,7 @@ class Main {
 		commit : Version.getGitCommitHash().substr(0,7),
 		fullCommit : Version.getGitCommitHash(),
 		haxe : Version.getHaxeCompilerVersion(),
-		runtime : #if neko "Neko" #elseif js "JS" #end,
+		runtime : #if neko "Neko" #elseif js "JS" #elseif cpp "C++" #end,
 		platform : Sys.systemName()
 	}
 
