@@ -1,0 +1,77 @@
+-lib hxparse
+-lib assertion
+-lib literals
+-lib sys-utils
+-lib version
+-cp include
+-cp src
+
+--each
+
+-main Main
+-neko bin/obrt.n
+-cmd nekotools boot bin/obrt.n
+
+--next
+
+-main Main
+-js bin/obrt.js
+-lib hxnodejs
+
+--next
+
+-main Main
+-cpp bin/cpp/obrt
+
+--next
+
+-main tools.Stats
+-js bin/obrt-stats.js
+-lib hxnodejs
+
+--next
+
+-main RunTests
+-js bin/tests.js
+-cp test
+-lib utest
+-cp pseudo
+--macro allowPackage("sys")
+-D hxnodejs
+
+--next
+
+-main RunTests
+-neko bin/tests.n
+-cp test
+-lib utest
+-cp pseudo
+
+# --next
+
+# -main cpp.cppia.Host
+# -cpp bin/cppia
+# -lib utest
+# -D scriptable
+# -dce no
+# -debug
+# -D analyzer
+
+# --next
+
+# -main RunTests
+# -cppia bin/cppia/tests.cppia
+# -cp test
+# -cp pseudo
+# -lib utest
+# -debug
+# -D analyzer
+
+# --next
+
+# -main RunTests
+# -cpp bin/cpp/tests
+# -cp test
+# -lib utest
+# -cp pseudo
+
