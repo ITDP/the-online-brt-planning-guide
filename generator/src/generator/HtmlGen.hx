@@ -248,7 +248,7 @@ class HtmlGen {
 		var _children = null;
 		var _name  = "";
 		var _id = "";
-		var type : Int = null;
+		var type : Null<Int> = null;
 
 		switch(cur.def)
 		{
