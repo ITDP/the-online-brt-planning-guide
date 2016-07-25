@@ -38,7 +38,8 @@ work plan and time lines in all circumstances.
 
 \subsection{Project Phases}
 
-*Benefits of Project Phasing*
+
+\highlight{Benefits of Project Phasing} \'FIXME Title'\
 
 A BRT can be phased in over several distinct periods or built in a massive single effort. Typically, 
 cities choose to construct a system over a series of phases, necessitated by a combination of several 
@@ -72,7 +73,8 @@ a large-scale approach is typically unlikely due to physical and budgetary const
 medium-sized cities may be able to deliver the bulk of their entire network through a carefully planned 
 single phase.  
 
-*A Whole-System Vision*
+
+\highlight{A Whole-System Vision} \'FIXME Title'\
 
 Even when a system is to be built over a series of phases, it is still worthwhile to formulate and 
 adopt a vision for the entire BRT system. Such a vision may consist simply of a route map showing a schematic 
@@ -101,7 +103,8 @@ typically means that a single corridor cannot achieve sufficient customer flows 
 The limited usefulness of a one-corridor system will also be detrimental to the general support for the 
 future system. 
 
-*Evolution Versus Revolution*
+
+\highlight{Evolution Versus Revolution} \'FIXME Title'\
 
 The critical question is whether to approach a BRT system by a strategy of evolvement (evolution) or 
 intervention (revolution). 
@@ -156,7 +159,6 @@ Paulo have effectively decided to restructure and reorganize the entire city bus
 The entire network is being bid and concessioned at once. These systems have tended to incorporate more 
 of the existing bus operations into the new system, whereas in Bogotá there is a sharp distinction between 
 the BRT system and the non-BRT system, with the latter characterized by old, poor quality buses and minibuses. 
-
 
 To an extent, the type of BRT found in cities like Santiago, São Paulo, and Seoul may be seen as hybrids 
 between BRT and standard bus services, akin to the definition of a “BRT light” system given in the introductory 
