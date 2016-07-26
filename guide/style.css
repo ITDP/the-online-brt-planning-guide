@@ -11,15 +11,19 @@ html {
 h1, h2, h3, h4, h5, h6, h7 {
 	font-family: 'PT Sans', sans-serif;
 	font-weight: bold;
+	color: #666;
 }
-h1 { font-size: 32px; color: #00a95e; }
-h2 { font-size: 28px; color: #00a95e; }
-h3 { font-size: 24px; color: #00a95e; }
-h4 { font-size: 20px; color: #00a95e; }
-h5 { font-size: 16px; color: #666; }
-h6 { font-size: 16px; color: #666; }
-h7 { font-size: 16px; color: #666; }
+h1 { font-size: 32px; }
+h2 { font-size: 28px; }
+h3 { font-size: 24px; }
+h4 { font-size: 20px; }
+h5 { font-size: 16px; }
+h6 { font-size: 16px; }
+h7 { font-size: 16px; }
 
+.brtcolor {
+	color: #00a95e;
+}
 p {
 	font-family: 'PT Serif', serif;
 	color: #333;
@@ -118,43 +122,36 @@ header li a {
 	margin:-48px 0 0; /* negative fixed header height */
 }
 
-/* volume i */
-.volume1 li {
-	border-left: 4px solid #C8E85B;
-	padding-left: 20px;
+/* volume */
+.volume1 {
+	color: #c32063;
+	font-weight: bold;
 }
-.volume2 li {
-	border-left: 4px solid #FFD230;
-	padding-left: 20px;
+.volume2 {
+	color: #532a64;
+	font-weight: bold;
 }
-.volume3 li {
-	border-left: 4px solid #E8792A;
-	padding-left: 20px;
+.volume3 {
+	color: #12507f;
+	font-weight: bold;
 }
-.volume4 li {
-	border-left: 4px solid #FF3C3A;
-	padding-left: 20px;
+.volume4 {
+	color: #1e7ba6;
+	font-weight: bold;
 }
-.volume5 li {
-	border-left: 4px solid #CD3CE8;
-	padding-left: 20px;
+.volume5 {
+	color: #6b9531;
+	font-weight: bold;
 }
-.volume6 li {
-	border-left: 4px solid #4752FF;
-	padding-left: 20px;
+.volume6 {
+	color: #b36c14;
+	font-weight: bold;
 }
-.volume7 li {
-	border-left: 4px solid #4EE1FF;
-	padding-left: 20px;
+.volume7 {
+	color: #a8151b;
+	font-weight: bold;
 }
 
-/* volume ii */
-
-.vol7 {
-	padding: 0px 5px;
-	color: #FFF;
-	background-color: #4EE1FF;
-}
 
 /* footer */
 
@@ -187,19 +184,22 @@ nav li
 	padding: 0;
 	margin: 0;
 	list-style: none;
+	font-size: 12px;
+	color: #999;
 }
 
 nav a {
 	color: #666;
 }
 
-nav ul li:first-child {
-	font-weight: bold;
-	padding-left: 0;
-}
-nav li
+nav ul ul
 {
-	padding-left: 4px;
+	padding-left: 8px;
+}
+
+.active {
+	font-weight: bold;
+	color: #333;
 }
 
 /* col-text */
@@ -361,4 +361,3 @@ pre {
 	padding: .05em .25em;
 	border: 1px solid #ccc;
 }
-
