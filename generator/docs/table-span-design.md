@@ -165,9 +165,9 @@ After:
 \header
 foo            \c bar                \c red  \lf  \' this \lf is optional, cound be infered by \data '\
 \data
-1              \cspan{2} 2,3         \skip  \lf
-\rspan{2} 1,4  \mspan{2}{2} 5,6,7,8  \skip  \lf
-\skip          \skip                 \skip  \lf  \' this \lf is optional, could be infered by \endtable '\
+1              \cspan{2} 2,3         \skip   \lf
+\rspan{2} 1,4  \mspan{2}{2} 5,6,7,8  \skip   \lf
+\skip          \skip                 \skip   \lf  \' this \lf is optional, could be infered by \endtable '\
 \endtable
 ```
 
@@ -176,12 +176,12 @@ On another example we go from:
 ```
 \begintable
 \header
-\row  \rspan{2} Name  \cspan{2} Cost  \skip
-\row  \skip           \col Fixed      \col Marginal
+\row  \rspan{2} Name   \cspan{2} Cost  \skip
+\row  \skip            \col Fixed      \col Marginal
 \data
-\row  \col Bus        \col 33.4       \col 5.2
-\row  \col Metro      \col 290        \col 4.6
-\row  \col Hoverboard \col 1.2        \col 12.3
+\row  \col Bus         \col 33.4       \col 5.2
+\row  \col Metro       \col 290        \col 4.6
+\row  \col Hoverboard  \col 1.2        \col 12.3
 \endtable
 ```
 
@@ -190,18 +190,47 @@ to:
 ```
 \begintable
 \header
-\rspan{2} Name  \cspan{2} Cost  \skip  \lf
+\rspan{2} Name  \cspan{2} Cost  \skip        \lf
 \skip           \c Fixed        \c Marginal  \lf
 \data
-Bus             \c 33.4         \c 5.2  \lf
-Metro           \c 290          \c 4.6  \lf
-Hoverboard      \c 1.2          \c 12.3  \lf
+Bus             \c 33.4         \c 5.2       \lf
+Metro           \c 290          \c 4.6       \lf
+Hoverboard      \c 1.2          \c 12.3      \lf
 \endtable
 ```
 
 While having two separate sections `\header` and `\row` already solves on issue
 (multi-row headers), the rest obviously doesn't maintain it's beauty when we
 add first column spans.
+
+Going back to Solution 2 + extended header–data syntax + shorter command names,
+we go from (279 chars):
+
+```
+\begintable
+\header
+\row  \rspan{2} Name   \cspan{2} Cost  \skip
+\row  \skip            \col Fixed      \col Marginal
+\data
+\row  \col Bus         \col 33.4       \col 5.2
+\row  \col Metro       \col 290        \col 4.6
+\row  \col Hoverboard  \col 1.2        \col 12.3
+\endtable
+```
+
+to (251 chars, 10% reduction):
+
+```
+\begintable
+\header
+\r \rspan{2} Name  \cspan{2} Cost  \skip
+\r \skip           \c Fixed        \c Marginal
+\data
+\r \c Bus          \c 33.4         \c 5.2
+\r \c Metro        \c 290          \c 4.6
+\r \c Hoverboard   \c 1.2          \c 12.3
+\endtable
+```
 
 
 ## Notes
