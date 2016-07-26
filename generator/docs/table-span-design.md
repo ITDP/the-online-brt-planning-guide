@@ -136,8 +136,82 @@ commands are (so far) the third most used token throughout the guide.
 
 But this alternate syntax fails to work with vlist cells.
 
+
+## Separator syntax, instead of command syntax
+
+This is more about general table syntax than of table cell spans.
+
+A separator syntax could reduce the number of `\col` (or `\c`) tokens by
+`1*rows*tables`.
+
+Independently, the smaller `\c` instead of `\col` could reduce the number of
+typed chars by (at least) `2*columns*rows*tables`
+
+Before:
+
+```
+\begintable
+\header  \col foo       \col bar              \col red
+\row     \col 1         \cspan{2} 2,3         \skip
+\row     \rspan{2} 1,4  \mspan{2}{2} 5,6,7,8  \skip
+\row     \skip          \skip                 \skip
+\endtable
+```
+
+After:
+
+```
+\begintable
+\header
+foo            \c bar                \c red  \lf  \' this \lf is optional, cound be infered by \data '\
+\data
+1              \cspan{2} 2,3         \skip  \lf
+\rspan{2} 1,4  \mspan{2}{2} 5,6,7,8  \skip  \lf
+\skip          \skip                 \skip  \lf  \' this \lf is optional, could be infered by \endtable '\
+\endtable
+```
+
+On another example we go from:
+
+```
+\begintable
+\header
+\row  \rspan{2} Name  \cspan{2} Cost  \skip
+\row  \skip           \col Fixed      \col Marginal
+\data
+\row  \col Bus        \col 33.4       \col 5.2
+\row  \col Metro      \col 290        \col 4.6
+\row  \col Hoverboard \col 1.2        \col 12.3
+\endtable
+```
+
+to:
+
+```
+\begintable
+\header
+\rspan{2} Name  \cspan{2} Cost  \skip  \lf
+\skip           \c Fixed        \c Marginal  \lf
+\data
+Bus             \c 33.4         \c 5.2  \lf
+Metro           \c 290          \c 4.6  \lf
+Hoverboard      \c 1.2          \c 12.3  \lf
+\endtable
+```
+
+While having two separate sections `\header` and `\row` already solves on issue
+(multi-row headers), the rest obviously doesn't maintain it's beauty when we
+add first column spans.
+
+
 ## Notes
 
 This is an improvement.  Keep this in mind, and go over other ways to improve
 general table input in the guide.
+
+Next steps:
+
+ - study the actual performance and restrictions of `html` `colspan` and
+   `tablespan` attributes;
+ - study how to best implement spans on TeX, particularly of rowspans
 
