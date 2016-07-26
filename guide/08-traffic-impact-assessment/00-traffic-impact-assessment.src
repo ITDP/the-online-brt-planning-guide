@@ -1,13 +1,7 @@
 \chapter{Traffic-Impact Assessment}
 
-
-
 > A life is not important except in the impact it has on other lives.
 @ Jackie Robinson, first African American to play in Major League Baseball, 1919–1972
-
-
-*Overview*
-
 
 Any changes in a transportation network could result in changes to the operations of that network. 
 This also applies to the introduction of a BRT system along city streets and arterials. The planning 
@@ -39,14 +33,13 @@ for all private vehicles, but could also have a positive impact on business-trav
 during all times of the day. 
 
 
-\figure[medium]{assets/image1.jpeg}{The Gangding bus stop (left), and Gangding BRT station (right) 
-in Guangzhou, China. Despite 24 meters being taken from the center of the roadway for the BRT stations 
+\figure[medium]{assets/image1.jpeg}{The Gangding conventional bus stop,in Guangzhou, China}{ Karl Fjellstrom, itdp-china.org.}
+
+
+\figure[medium]{assets/image2.jpeg}{The Gangding BRT station in Guangzhou, China. Despite 24 meters being taken from the center of the roadway for the BRT stations 
 and roadways, both capacity and speed of the road for mixed traffic and buses improved dramatically. 
 Conditions for pedestrians were also greatly improved, with customers waiting in the station rather than 
-on the side of the road. Images}{ Karl Fjellstrom.}
-
-
-\figure[medium]{assets/image2.jpeg}{Fig FixMe}{ Copyright}
+on the side of the road.}{ Duan Xiaomei, GMEDRI}
 
 \include{81-requirements-for-a-traffic-impact-assessment.src}
 \include{82-data-needs.src}
