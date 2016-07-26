@@ -4,11 +4,9 @@
 have a heart? If it does, then the path is good. If it doesn't, it is of no use.
 @ Carlos Castaneda, author, 1925–1998
 
-*The BRT Standard* (2014) currently provides a definition of a corridor that can be evaluated as: 
-
-> A section of road or contiguous roads served by a bus route or multiple bus routes with a minimum 
-length of 3 kilometers (1.9 miles) that has dedicated bus lanes.
-@ BRT Standard, 2014
+*The BRT Standard* (2014) currently provides a definition of a corridor that can be evaluated as "a section of road or 
+contiguous roads served by a bus route or multiple bus routes with a minimum 
+length of 3 kilometers (1.9 miles) that has dedicated bus lanes."
 
 It then uses a minimum definition of BRT, defined as a minimum score in the “BRT basics,” to determine 
 whether the investments in that corridor constitute BRT or simple bus lanes.
@@ -29,6 +27,7 @@ harder to quantify, harder to determine factors should be discussed as part of t
 but should not necessarily be included in the data collection process. This chapter provides a basic 
 approach to defining a BRT network and prioritizing the corridors within that network for phased implementation. 
 
+\'FIXME: The bellow is the table of contents'\
 The contents of this subchapter on corridor and network development are:
 
 \item Demand Analysis for Corridor Selection;

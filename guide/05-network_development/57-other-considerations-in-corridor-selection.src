@@ -31,6 +31,7 @@ for calculating the customer time savings.
 
 Eq. 5.1 Customer time savings
 \' TODO: Equation: Total time savings = P * (T_p - T_f) '\
+
 Where:
 
 P = Number of passengers;
@@ -47,6 +48,7 @@ also suffice. The more complete time savings formula is given in Equation 5.2.
 
 Eq. 5.2 Detailed time savings calculation
 \' TODO: Equation: Total time savings = ∑i ∑h P_ih*ΔH_h*(Tp_ih-Tf_ih) '\
+
 Where:
 
 i = Link;
@@ -84,19 +86,18 @@ problem. The three most important indicators of the likely impacts of BRT on mix
 traffic mix; the available right-of-way relative to the existing road; and the possible behavioral and 
 travel changes of motorists once the new public transport system is in place.
 
-*Current Traffic Mix*
+
+\highlight{Current Traffic Mix} \'FIXME Title'\
 
 Normally, for a BRT system to be considered an option, there is likely to be significant congestion 
 on at least part of the corridor. As a general rule, the greater the current contribution of public transport 
 vehicles to the current congestion problem, the greater will be the chance that a new BRT system will 
 actually decongest the mixed traffic-lanes (Figures 5.25 and 5.26).
 
-\figure{assets/image28.jpeg}{and An exclusive busway on a road in Dallas, Texas, USA (left), will likely 
-make congestion for mixed traffic worse. An exclusive busway on the road in Bangladesh (right) would 
-likely make mixed traffic less congested because of the high number of buses in mixed traffic.}{Left photo 
-by Richard Stouffer (iStockphoto). Right photo by Karl Fjellstrom.}
+\figure{assets/image28.jpeg}{An exclusive busway on a road in Dallas, Texas, USA, will likely 
+make congestion for mixed traffic worse.}{Richard Stouffer (iStockphoto)}
 
-\figure{assets/image29.jpeg}{FixMe!.}{ Copyright}
+\figure{assets/image29.jpeg}{An exclusive busway on the road in Bangladesh would likely make mixed traffic less congested because of the high number of buses in mixed traffic.}{Karl Fjellstrom.}
 
 In countries with higher bus volumes, public transport vehicles frequently have a disproportionately 
 higher impact on congestion relative to private vehicles. This impact occurs because the vehicles often 
@@ -112,7 +113,8 @@ incorporated into the new BRT system and which are excluded. The more public tra
 be incorporated into the BRT system, the less adverse impact the remaining public transport trips will 
 have on the mixed-traffic lanes. 
 
-*Methodology for Estimating Impacts on Mixed Traffic*
+
+\highlight{Methodology for Estimating Impacts on Mixed Traffic} \'FIXME Title'\
 
 As a rough estimate, one can calculate the likely impact of a planned exclusive busway on mixed traffic 
 in the following manner: The existing traffic flow at the most congested point of the road (based on 
@@ -193,70 +195,38 @@ space required at BRT stations.
 
 \beginbox{Calculating Time Savings for Vehicle Occupants in General Traffic}
 
-On 
-some critical sections (i), present general traffic volume on peak periods (j) will exceed the road’s 
-
+On some critical sections (i), present general traffic volume on peak periods (j) will exceed the road’s 
 capacity, by a certain amount: ΔSij. The total general traffic prejudice on that point “i” is then estimated 
-
 by Equation 5.3.
-
-
 
 Equation 5.3 Time savings for general traffic
 
 \' TODO: Equation : TGCj= ∑i(ΔS_j  * (Tcong_ij)^2/(2*K_i ))*np_i '\
 
-
-
-
 Where:
-
-
-
 i = Point of evaluation 
 where one of the following effects takes place:
-
-
 \item 1. The point is the bottleneck of the corridor
 \item 2. The point is not the bottleneck, but future capacity (after BRT) will fall below present peak volume
 
-
-
 j = A specific peak hour. There are normally two peak periods, a morning peak and an evening peak. 
-A velocity 
-survey for cars will more accurately identify the peak periods.
+A velocity survey for cars will more accurately identify the peak periods.
 
+TGCj = Total time savings for general traffic
 
-
-TGCj = Total time savings for general 
-traffic
-
-
-
-ΔSj = the amount of change on capacity to the new scheme. This value will be negative value 
-if there 
+ΔSj = the amount of change on capacity to the new scheme. This value will be negative value if there 
 is a reduction in capacity; this value will be positive if there is an increase in capacity.
 
-
-
-Tcongji 
-= duration of the congestion period being considered. The peak period can be better estimated 
+Tcongji = duration of the congestion period being considered. The peak period can be better estimated 
 by traffic velocity surveys that show when travel times increase more drastically. 
 Usual values are around 0.5 to 3 hours.
 
-
 Ki = reflects a group of factors derived form network analysis and demand elasticity. 
-
 
 It should be noted that reductions of capacity on two successive nearby points are not independent, 
 and the more congested point should usually be considered the important one.
 
-
-
-
 \endbox
-
-
 
 \subsection{Implementation Costs}
 
@@ -317,9 +287,7 @@ Ci= Implementation cost.
 Box 5.2 provides an example of a multi-criteria analysis using two of the factors presented in this 
 section.
 
-\beginbox {Box 5.2 Calculating the Benefit to Cost Ratio}
-
-
+\beginbox {Calculating the Benefit to Cost Ratio}
 
 As a simplified example of 
 this calculation, the table below presents a hypothetical example of time 
