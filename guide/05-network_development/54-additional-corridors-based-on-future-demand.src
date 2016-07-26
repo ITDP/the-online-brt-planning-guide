@@ -7,10 +7,10 @@
 
 There are cases in which corridors without existing bus routes, or with existing bus routes with low 
 demand, may still be good BRT corridors. There are four main reasons for this:
-\item 1. Route Shift: Some trips may shift from nearby public transit routes; 
-\item 2. Mode Shift: Some customers may be new to public transport due to the dramatic service improvements that BRT can offer;
-\item 3. Land Use Changes: Land use may change, generating new trips altogether, or BRT can be used to help stimulate land use changes;
-\item 4. Downtown Infiltration: BRT may provide a new link into a city’s downtown, where public or private buses were not previously permitted to go.
+\number Route Shift: Some trips may shift from nearby public transit routes; 
+\number Mode Shift: Some customers may be new to public transport due to the dramatic service improvements that BRT can offer;
+\number Land Use Changes: Land use may change, generating new trips altogether, or BRT can be used to help stimulate land use changes;
+\number Downtown Infiltration: BRT may provide a new link into a city’s downtown, where public or private buses were not previously permitted to go.
 
 Transit ridership during the first year of operation, however, is difficult to predict with any accuracy. 
 Hence, future projections of this type are subject to interpretation and manipulation. As such, it is 

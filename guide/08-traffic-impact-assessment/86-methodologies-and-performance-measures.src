@@ -101,7 +101,7 @@ travel speed.
 \row
 \col 
 \col <= 1.0
-\col \>= 1.0
+\col \> 1.0
 \row
 \col \>85
 \col A
@@ -132,21 +132,24 @@ travel speed.
 volume-to-capacity ratio at each boundary intersection in the subject direction of travel. The critical 
 volume-to-capacity ratio is the largest ratio of those considered.
 
-\highlight{Source: Highway Capacity Manual, 2010.}
+Source: Highway Capacity Manual, 2010.
 
 The pedestrian LOS presented below is a function of both density of pedestrians and a “score,” which 
 is based on several factors such as:
 
-Widths of the traffic lane, bike lane, shoulders, and sidewalk;
+\item Widths of the traffic lane, bike lane, shoulders, and sidewalk;
 
-Buffer presence of open space, on-street parking, and street trees;
+\item Buffer presence of open space, on-street parking, and street trees;
 
-Volumes and speeds of general traffic and permitted turns on red at signals;
+\item Volumes and speeds of general traffic and permitted turns on red at signals;
 
-Crossing distance and distance to the nearest cross walk;
+\item Crossing distance and distance to the nearest cross walk;
 
-Pedestrian delay.
-\figure[medium]{assets/image3.png}{Table 8.2 Pedestrian LOS Criteria.}{Highway Capacity Manual, 2010.}
+\item Pedestrian delay.
+
+\'TODO: Change to fake table '\
+\figure[medium]{assets/image3.png}{Pedestrian LOS Criteria.}{Highway Capacity Manual, 2010.}
+
 
 As pointed out earlier, the values used for the actual scoring outlined in the *HCM* are not necessarily 
 internationally applicable. However, the methodology provides a framework within which calibration for 
@@ -188,7 +191,7 @@ reentry delay, as well as the pedestrian scores.
 \col \> 5.00
 \endtable
 
-\highlight{Source: Highway Capacity Manual, 2010.}
+Source: Highway Capacity Manual, 2010.
 
 Similar to the analysis for pedestrians, the local conditions related to cyclist operations can vary 
 among different countries, depending on the local climate, the prevalence of the mode, and the mindset 
