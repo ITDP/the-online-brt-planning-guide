@@ -361,12 +361,12 @@ class Parser {
 
 	function blobSize(spec:Nullable<{ val:String, pos:Position }>, def:BlobSize):BlobSize
 	{
-		if (spec.isNull()) return def;
-		return switch spec.sure().val.toLowerCase().trim() {
+		var spec = spec.extractOr(return def);
+		return switch spec.val.toLowerCase().trim() {
 		case "small": MarginWidth;
 		case "medium": TextWidth;
 		case "large": FullWidth;
-		case _: badValue(spec.sure().pos, "only sizes 'small', 'medium', and 'large' are valid");
+		case _: badValue(spec.pos, "only sizes 'small', 'medium', and 'large' are valid");
 		}
 	}
 
@@ -427,15 +427,13 @@ class Parser {
 			vlist.val;
 		case None:
 			var st = peek().pos;
-			var i = vertical(stop);
-			if (i.isNull()) {
+			vertical(stop).extractOr({
 				// FIXME duplicated from mkList and delicate
 				var at = peek().pos;
 				at = at.offset(0, at.min - at.max);
 				st = st.offset(0, st.min - st.max);
-				i = mk(VEmpty, st.span(at));
-			}
-			i.sure();
+				mk(VEmpty, st.span(at));
+			});
 		}
 		// TODO validation and error handling
 		item.pos = mark.pos.span(item.pos);
