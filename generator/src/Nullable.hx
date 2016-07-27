@@ -30,7 +30,8 @@ abstract Nullable<T>(Null<T>) from Null<T> {
 	public inline function cases():Option<T>
 		return notNull() ? Some(this) : None;
 
-	function new(value) this = value;
+	inline function new(value)
+		this = value;
 }
 
 private abstract NullableResolver<T>(Nullable<T>) from Nullable<T> {

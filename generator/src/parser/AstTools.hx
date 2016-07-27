@@ -126,21 +126,27 @@ class AstTools {
 	{
 		switch ind.expr {
 		case EConst(CIdent(c)):
+			var compat = false;
 			var c = switch typeof(ind) {  // TODO strict type check, but also support Elem<?Def>
 			case TFun(_,TType(_.get()=>{name:"Null"},[TType(_.get()=>{name:name},[])])) if (name.endsWith("Elem")):
-				c = name.charAt(0);
+				compat = true;
+				name.charAt(0);
+			case TFun(_,TAbstract(_.get()=>{name:"Nullable"},[TType(_.get()=>{name:name},[])])) if (name.endsWith("Elem")):
+				name.charAt(0);
 			case other:
 				error('Unexpected type for mkList argument: $other', ind.pos);
 			}
 			var list = macro $i{c + "List"};
 			var empty = macro $i{c + "Empty"};
+			var nullCheck = compat ? (macro i == null) : (macro i.isNull());
+			var valAccess = compat ? (macro i) : (macro i.sure());
 			return macro {
 				var start = peek().pos;
 				var li = [];
 				while (true) {
 					var i = $ind($stop);
-					if (i == null) break;
-					li.push(i);
+					if ($nullCheck) break;
+					li.push($valAccess);
 				}
 				switch (li) {
 				case []:
