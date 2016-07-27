@@ -10,7 +10,7 @@ using StringTools;
 class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 	static var buf:StringBuf;
 
-	static function mk(lex:hxparse.Lexer, tokDef:TokenDef, ?pos:Position)
+	static function mk(lex:hxparse.Lexer, tokDef:TokenDef, ?pos:Position):Token
 	{
 		return {
 			def : tokDef,
@@ -41,12 +41,12 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 
 	static var math = @:rule
 	[
-		"$" => checkExpr(),
+		"$$" => checkExpr(),
 		"\\\\$" => {
 			buf.add(lexer.current);
 			lexer.token(math);
 		},
-		"[^$\\\\]+" =>
+		"[^$\\\\]+" =>  // TODO check/optimize
 		{
 			buf.add(lexer.current);
 			lexer.token(math);
@@ -111,7 +111,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 			mk(lexer, def, pos);
 		},
 
-		"$" => {
+		"$$" => {
 			buf = new StringBuf();
 			var min = lexer.curPos().pmin;
 			// FIXME good Eof error reporting
@@ -120,7 +120,6 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 			pos.min = min;
 			mk(lexer, def, pos);
 		},
-		"$$$[^\n]*" => mk(lexer, TMath(lexer.current.substr(3))),
 
 		"\\\\code." => {
 			var bang = lexer.current.substr(5);
@@ -145,7 +144,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 				var next = lexer.token(codeBlock);  // FIXME is this hack really necessary?
 				switch next {
 				case "":
-					unclosedToken(lexer, TCodeBlock("?"), start);
+					unclosedToken(lexer, TCodeBlock("?"), start);  // FIXME Eof should (attempt to) close
 				case "\n", "\r\n":
 					if (buf.length != 0)
 						buf.add("\n");
@@ -189,17 +188,23 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"-" => mk(lexer, TWord(lexer.current)),
 
 		// separate hyphen-dashes, en-dashes and em-dashes from regular words;
-		// em-dashes have special meaning in markdown-like quotations;
-		// however, compact figure dashes into en-dashes and horizontal bars into em-dashes
+		// compact figure dashes into en-dashes and horizontal bars into em-dashes
 		"–|‒" => mk(lexer, TWord("–")),  // u2013,u2012 -> u2013
 		"—|―" => mk(lexer, TWord("—")),  // u2014,u2015 -> u2014
+		// treat unicode (non breaking) hyphens as simple ascii dashes
+		"‐" => mk(lexer, TWord("-")),  // u2010 -> u002d
+		"‑" => mk(lexer, TWord("-")),  // u2011 -> u002d
 
-		"\\\\[\\*@:#>$]" => mk(lexer, TWord(lexer.current.substr(1))),
+		"\\\\([{}\\[\\]\\*:@#>`\\-]|‒|―|‐|‑)" => mk(lexer, TWord(lexer.current.substr(1))),
+		// more (special) escpaes
+		"\\\\^" => mk(lexer, TWord("'")),  // a way to specically type an ascii apostrophe
+		// not really an escape, but a special case no less
+		"$" => mk(lexer, TWord(lexer.current)),
 
 		// note: 0xE2 is used to exclude en- and em- dashes from being matched;
 		// other utf-8 chars begginning with 0xE2 are restored by the two inclusive patterns
 		// that follow inital exclusion one
-		"([^ \t\r\n*{}\\[\\]\\\\#>@\\*:$\\-`'\\xe2]|(\\xE2[^\\x80])|(\\xE2\\x80[^\\x92-\\x95]))+" => mk(lexer, TWord(lexer.current))
+		"([^ \t\r\n*{}\\[\\]\\\\#>@\\*:$\\-`'\\xe2]|(\\xE2[^\\x80])|(\\xE2\\x80[^\\x90-\\x95]))+" => mk(lexer, TWord(lexer.current))
 	];
 
 	var bytes:haxe.io.Bytes;  // TODO change to a public source abstraction that already has a safe `recover` method

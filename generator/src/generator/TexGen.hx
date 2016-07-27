@@ -64,6 +64,8 @@ class TexGen {
 			return gent(word);
 		case InlineCode(code):
 			return '\\code{${gent(code)}}';
+		case Math(tex):
+			return '$$$tex$$';
 		case Wordspace:
 			return " ";
 		case Emphasis(h):
@@ -134,7 +136,7 @@ class TexGen {
 			buf.add("\n");
 			return buf.toString();
 		case TCodeBlock(code):
-			weakAssert(false, "code blocks in TeX improperly implemented");
+			show("code blocks in TeX improperly implemented");
 			return '\\begincode\n${gent(code)}\n\\endcode\n${genp(v.pos)}\n';
 		case TLaTeXPreamble(path):
 			// TODO validate path (or has Transform done so?)
