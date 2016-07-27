@@ -108,6 +108,7 @@ class Transform {
 
 	static function vertical(v:VElem, rest:Rest, count : Array<Int>, names : Array<String>):TElem
 	{
+		assert(v != null);
 		if (v == null)
 			return null;
 		switch v.def {
@@ -197,6 +198,7 @@ class Transform {
 
 	static function htrim(elem : HElem)
 	{
+		assert(elem != null);
 		tarray = new Array<HToken>();
 		tokenify(elem);
 		ltrim();
