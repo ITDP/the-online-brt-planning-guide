@@ -88,6 +88,7 @@ class Parser {
 				c.next = new GenericCell(lexer.token(Lexer.tokens), null);
 			c = c.next;
 		}
+		assert(c.elt != null);
 		return c.elt;
 	}
 
@@ -170,7 +171,7 @@ class Parser {
 		return mk(Emphasis(li), open.pos.span(close.pos));
 	}
 
-	function horizontal(stop:Stop):Null<HElem>
+	function horizontal(stop:Stop):Nullable<HElem>
 	{
 		while (peek().def.match(TComment(_)))
 			pop();
@@ -214,7 +215,7 @@ class Parser {
 	// FIXME document slash behavior
 	// FIXME document automagically converted chars (TeX ligatures)
 	// FIXME document chars that need to be escaped (including the ones used in the above TeX ligatures)
-	function rawHorizontal(stop:Stop):Null<String>
+	function rawHorizontal(stop:Stop):String
 	{
 		var buf = new StringBuf();
 		while (true) {
@@ -296,7 +297,7 @@ class Parser {
 			var s = spat.matched(2);
 			blobSize(s != null ? { val:s, pos:tag[1].pos } : null, defaultFigureSize);
 		case _:
-			unexpected(tag[1]); null;
+			unexpected(tag[1]);
 		}
 
 		var captionParts = [];
@@ -330,8 +331,7 @@ class Parser {
 		assert(lastPos != null);
 		if (captionParts.length == 0) badValue(lastPos, "caption cannot be empty");
 		if (path == null) missingArg(lastPos, tag[1], "path");
-		if (copyright.def.match(HEmpty)) missingArg(lastPos, tag[1], "copyright");  // TODO test
-
+		if (copyright == null || copyright.def.match(HEmpty)) missingArg(lastPos, tag[1], "copyright");  // TODO test
 		var caption = if (captionParts.length == 1)
 				captionParts[0]
 			else
@@ -428,14 +428,14 @@ class Parser {
 		case None:
 			var st = peek().pos;
 			var i = vertical(stop);
-			if (i == null) {
+			if (i.isNull()) {
 				// FIXME duplicated from mkList and delicate
 				var at = peek().pos;
 				at = at.offset(0, at.min - at.max);
 				st = st.offset(0, st.min - st.max);
 				i = mk(VEmpty, st.span(at));
 			}
-			i;
+			i.sure();
 		}
 		// TODO validation and error handling
 		item.pos = mark.pos.span(item.pos);
@@ -550,7 +550,7 @@ class Parser {
 		}
 	}
 
-	function vertical(stop:Stop):Null<VElem>
+	function vertical(stop:Stop):Nullable<VElem>
 	{
 		discardVerticalNoise();
 		return switch peek().def {
@@ -604,7 +604,7 @@ class Parser {
 		this.cache = cache;
 	}
 
-	public static function parse(path:String, ?cache:FileCache)
+	public static function parse(path:String, ?cache:FileCache):File
 	{
 		var lex = new Lexer(sys.io.File.getBytes(path), path);
 		var parser = new Parser(path, lex, cache);
