@@ -6,13 +6,27 @@
 \meta\reset{chapter}{2}  \' skip to chapter 3 '\
 \include{03-project/00-project-set-up.src}
 
-\meta\reset{chapter}{8}  \' skip to chapter 9 '\
+\volume{Operations}
+\include{04-demand-analysis/00-demand-analysis.src}
+\include{05-network_development/00-corridor-and-network-development.src}
+\meta\reset{chapter}{7}  \' skip to chapter 8 '\
+\include{08-traffic-impact-assessment/00-traffic-impact-assessment.src}
+
 \volume{Communications and Marketing}
 \include{09-strategic-planning-for-communications/00-strategic-planning-for-communications.src}
 \include{10-public-participation/00-public-participation.src}
 \include{11-the-case-for-marketing-and-customer-service/00-the-case-for-marketing-and-customer-service.src}
 
-\meta\reset{volume}{4}\meta\reset{chapter}{33}  \' contributing should be the last volume and chapters '\
+\' \volume{Business Plan} '\
+
+\' \volume{Technology} '\
+
+\' \volume{Infrastructure} '\
+
+\' \volume{Integration} '\
+
+\meta\reset{volume}{7}  \' skip to volume 8 '\
 \volume{Meta}
+\meta\reset{chapter}{33}  \' contributing should be the last volume and chapters '\
 \include{34-manual-for-collaboration/00-manual-for-collaboration.src}
 

@@ -12,6 +12,7 @@ import haxe.io.Path.join in joinPaths;
 using Literals;
 using parser.TokenTools;
 using transform.DocumentTools;
+using StringTools;
 
 typedef Nav = {
 	name : String,
@@ -68,8 +69,9 @@ class HtmlGen {
 		case Wordspace: " ";
 		case Emphasis(i): '<em>${horizontal(i)}</em>';
 		case Highlight(i): '<strong>${horizontal(i)}</strong>';
-		case Word(w): w;
-		case InlineCode(c): '<code>$c</code>';
+		case Word(w): w.htmlEscape();
+		case InlineCode(c): '<code>${c.htmlEscape()}</code>';
+		case Math(tex): '<span class="mathjax">\\(${tex.htmlEscape()}\\)</span>';
 		case HList(li):
 			var buf = new StringBuf();
 			for (i in li)
@@ -135,7 +137,7 @@ class HtmlGen {
 				case TParagraph(h):
 					buf.add(horizontal(h));
 				case _:
-					vertical(i, counts, curNav);
+					buf.add(vertical(i, counts, curNav));
 				}
 				buf.add("</li>\n");
 			}
@@ -188,13 +190,15 @@ class HtmlGen {
 
 	function processTableElem(elem : TElem)
 	{
+		if (elem == null)
+			return "";
 		var b = new StringBuf();
 		switch(elem.def)
 		{
 			case TParagraph(h):
 				b.add(horizontal(h));
 			case TList(numbered, li):
-				vertical(elem, null, null);  // FIXME
+				b.add(vertical(elem, null, null));  // FIXME
 			default:
 				throw "Invalid table element: " + elem.def.getName() + " pos : " + elem.pos.min + " at " + elem.pos.src;
 		}
@@ -245,7 +249,7 @@ class HtmlGen {
 		var _children = null;
 		var _name  = "";
 		var _id = "";
-		var type : Int = null;
+		var type : Null<Int> = null;
 
 		switch(cur.def)
 		{
@@ -469,7 +473,15 @@ class HtmlGen {
 			<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js" ></script>
 			<script src="${jsFile}"></script>
 			<!-- MathJax -->
-			<script src = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" ></script>
+			<script type="text/x-mathjax-config">
+				MathJax.Hub.Config({
+					tex2jax: {
+						ignoreClass: ".+",
+						processClass: "mathjax"
+					}
+				});
+			</script>
+			<script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML" ></script>
 
 			<!-- Google Fonts -->
 			<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700italic,700|PT+Sans:400,400italic,700,700italic" rel="stylesheet" type="text/css">

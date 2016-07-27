@@ -60,13 +60,20 @@
 	\setdefaultlanguage{english}
 \else
 	% compatibility with regular pdftex is desired, even if only for tests
-	\usepackage[utf8]{inputenc}
+	\usepackage{ucs}
+	\usepackage[utf8x]{inputenc}
 	\usepackage[T1]{fontenc}
 	\let\familycaprm\rmfamily
 	\let\familycapsf\sffamily
 	\let\familycapnsf\sffamily
 	\usepackage{paratype}
 	\usepackage[main=english]{babel}
+	% hacks for unavailable chars
+	\DeclareTextCommandDefault{\textalpha}{\,\texttt{alpha}\,}
+	\DeclareTextCommandDefault{\textbeta}{\,\texttt{beta}\,}
+	\DeclareTextCommandDefault{\textlambda}{\,\texttt{lambda}\,}
+	\DeclareTextCommandDefault{\textDelta}{\,\texttt{DELTA}\,}
+	\DeclareUnicodeCharacter{9608}{\kern -0.1em\rule[-0.2em]{.8em}{1.2em}}
 \fi
 
 % font style

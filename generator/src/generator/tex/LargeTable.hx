@@ -31,7 +31,7 @@ class LargeTable {
 		return switch h.def {
 		case Wordspace: SPACE_COST;
 		case Emphasis(i), Highlight(i): pseudoHTypeset(i);
-		case Word(w), InlineCode(w): w.length;
+		case Word(w), InlineCode(w), Math(w): w.length;
 		case HList(li):
 			var cnt = 0;
 			for (i in li)
@@ -43,6 +43,7 @@ class LargeTable {
 
 	static function pseudoTypeset(v:TElem)
 	{
+		if (v == null) return 0.;
 		return switch v.def {
 		case TLaTeXPreamble(_), TLaTeXExport(_), THtmlApply(_): 0;
 		case TVolume(_), TChapter(_), TSection(_), TSubSection(_), TSubSubSection(_): BAD_COST; // not allowed in tables
@@ -68,7 +69,7 @@ class LargeTable {
 	}
 
 	// TODO document the objective and the implementation
-	static function computeTableWidths(noModules, header, rows:Array<Array<TElem>>)
+	static function computeTableWidths(noModules, header, rows:Array<Array<TElem>>, pos:Position)
 	{
 		var width = header.length;
 		var cost = header.map(pseudoTypeset);
@@ -77,7 +78,8 @@ class LargeTable {
 			if (r.length != width) continue;  // FIXME
 			for (j in 0...width) {
 				var c = r[j];
-				cost[j] += pseudoTypeset(c);
+				var type = pseudoTypeset(c);
+				cost[j] += type;
 			}
 		}
 		var tcost = Lambda.fold(cost, function (p,x) return p+x, 0);
@@ -110,7 +112,7 @@ class LargeTable {
 			}
 		}
 		var check = available - Lambda.fold(icost, function (p,x) return p+x, 0);
-		weakAssert(check == 0 && Lambda.foreach(icost, function (x) return x >= MIN_COLUMN), check, width, ncost, icost, priori, itCnt);
+		weakAssert(check == 0 && Lambda.foreach(icost, function (x) return x >= MIN_COLUMN), check, width, ncost, icost, priori, itCnt, pos.toLinePosition());
 		return icost;
 	}
 
@@ -134,7 +136,7 @@ class LargeTable {
 			case _:
 				var large = size.match(FullWidth);
 				var noModules = large ? NO_MODULES_LARGE : NO_MODULES;
-				var colWidths = computeTableWidths(noModules, header, rows);
+				var colWidths = computeTableWidths(noModules, header, rows, v.pos);
 				if (Main.debug) {
 					trace(v.pos.toLinePosition());
 					trace(colWidths);
@@ -158,6 +160,8 @@ class LargeTable {
 
 			buf.add("\\cr\n\t");
 			function genCell(i:TElem) {
+				if (i == null)
+					return "";
 				return switch i.def {
 				case TParagraph(h): gen.genh(h);
 				case _: gen.genv(i, genAt);
