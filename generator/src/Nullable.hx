@@ -5,7 +5,7 @@ import haxe.ds.Option;
 Safe nullable values.
 
 Inspired on:
- - Dan's Mayble<T> from the Cookbook.
+ - Dan's Maybe<T> from the Cookbook
  - Kotlin's null safety
 **/
 abstract Nullable<T>(Null<T>) from Null<T> {
