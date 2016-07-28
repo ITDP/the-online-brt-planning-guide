@@ -6,6 +6,7 @@ import transform.NewDocument;  // TODO remove
 
 import parser.AstTools.*;
 
+// TODO split in transform/vertical/horizontal classes (or even modules)
 class NewTransform {
 	/*
 	Trim redundant wordspace.
@@ -69,7 +70,6 @@ class NewTransform {
 	}
 
 	@:allow(transform.Transform)  // TODO remove
-	@:allow(Test_04_Transform)  // TODO remove
 	static function horizontal(h:HElem):HElem
 	{
 		h = htrim(h, { prevSpace:true, reverse:false });
@@ -78,10 +78,27 @@ class NewTransform {
 		return h;
 	}
 
-	public static function transform(ast:Ast):NewDocument
+	// end of horizontal stuff
+
+	static function mkd(def, pos, id=""):DElem
+		return { id:id, def:def, pos:pos };
+
+	@:allow(transform.Transform)  // TODO remove
+	static function vertical(v:VElem):DElem
 	{
-		// TODO
-		return { id:"", def:DEmpty, pos:ast.pos };
+		switch v.def {
+		case CodeBlock(cte):
+			return mkd(DCodeBlock(cte), v.pos);
+		case Quotation(text, by):
+			return mkd(DQuotation(horizontal(text), horizontal(by)), v.pos);
+		case Paragraph(text):
+			return mkd(DParagraph(horizontal(text)), v.pos);
+		case _:  // TODO remove
+			return mkd(DEmpty, v.pos);
+		}
 	}
+
+	public static function transform(ast:Ast):NewDocument
+		return vertical(ast);
 }
 
