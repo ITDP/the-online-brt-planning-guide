@@ -95,6 +95,10 @@ class NewTransform {
 			return mkd(DQuotation(horizontal(text), horizontal(by)), v.pos);
 		case Paragraph(text):
 			return mkd(DParagraph(horizontal(text)), v.pos);
+		case VElemList(li):
+			return mkd(DElemList([ for (i in li) vertical(i) ]), v.pos);
+		case VEmpty:
+			return mkd(DEmpty, v.pos);
 		case _:  // TODO remove
 			return mkd(DEmpty, v.pos);
 		}

@@ -250,6 +250,8 @@ class Test_04_Transform {
 
 	public function test_007_vertical_element_survival()
 	{
+		Assert.same(     expand(TList(true, [TParagraph(Word("a")), TElemList([TParagraph(Word("b")),TParagraph(Word("c"))])])),
+ 		    rawTransform(expand(List(true, [Paragraph(Word("a")), VElemList([Paragraph(Word("b")),Paragraph(Word("c"))])]))));
 		Assert.same(     expand(TList(true, [TParagraph(Word("a")), TParagraph(Word("b"))])),
  		    rawTransform(expand(List(true, [Paragraph(Word("a")), Paragraph(Word("b"))]))));
 		Assert.same(     expand(TCodeBlock("a")),

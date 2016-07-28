@@ -133,6 +133,11 @@ class HtmlGen {
 			buf.add(numbered ? "<ol>\n" : "<ul>\n");
 			for (i in li) {
 				buf.add("<li>");
+				// the following asserts are here since we've
+				// eliminated some seeminly unnecessary null
+				// checks from the new transform implementation
+				assert(i != null, v.pos.toLinePosition(), li);
+				assert(i.def != null, i.pos.toLinePosition(), li);
 				switch i.def {
 				case TParagraph(h):
 					buf.add(horizontal(h));
