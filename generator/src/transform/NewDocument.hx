@@ -21,12 +21,12 @@ enum DDef {
 	// TODO box
 	// TODO figure
 	// TODO table
-	// TODO list
+	DList(numbered:Bool, li:Array<DElem>);
 	DCodeBlock(cte:String);
 	DQuotation(text:HElem, by:HElem);
 	DParagraph(text:HElem);
 
-	DList(li:Array<DElem>);  // TODO rename avoiding confusion with (un)numbered lists
+	DElemList(li:Array<DElem>);  // TODO rename avoiding confusion with (un)numbered lists
 	DEmpty;
 }
 

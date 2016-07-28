@@ -32,7 +32,7 @@ class LargeTable {
 		case Wordspace: SPACE_COST;
 		case Emphasis(i), Highlight(i): pseudoHTypeset(i);
 		case Word(w), InlineCode(w), Math(w): w.length;
-		case HList(li):
+		case HElemList(li):
 			var cnt = 0;
 			for (i in li)
 				cnt += pseudoHTypeset(i);
@@ -47,7 +47,7 @@ class LargeTable {
 		return switch v.def {
 		case TLaTeXPreamble(_), TLaTeXExport(_), THtmlApply(_): 0;
 		case TVolume(_), TChapter(_), TSection(_), TSubSection(_), TSubSubSection(_): BAD_COST; // not allowed in tables
-		case TVList(li):
+		case TElemList(li):
 			var cnt = 0.;
 			for (i in li)
 				cnt += pseudoTypeset(i);

@@ -17,7 +17,7 @@ class DocumentTools {
 				for (c in r)
 					f(c);
 			}
-		case TVList(items), TList(_, items):
+		case TElemList(items), TList(_, items):
 			for (i in items)
 				f(i);
 		case TLaTeXPreamble(_), TLaTeXExport(_), THtmlApply(_), TFigure(_), TQuotation(_), TCodeBlock(_), TParagraph(_):
@@ -38,8 +38,8 @@ class DocumentTools {
 				TSubSection(name, count, id, f(children));
 			case TSubSubSection(name, count, id, children):
 				TSubSubSection(name, count, id, f(children));
-			case TVList(elem):
-				TVList([for (i in elem) f(i)]);
+			case TElemList(elem):
+				TElemList([for (i in elem) f(i)]);
 			case TTable(size, caption, header, rows, count, id):
 				var _header = [for (v in header) f(v)];
 				var _rows = [for (r in rows) [for (c in r) f(c)]];

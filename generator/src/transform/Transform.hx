@@ -34,10 +34,11 @@ class Transform {
 		case DHtmlApply(p): THtmlApply(p);
 		case DLaTeXPreamble(p): TLaTeXPreamble(p);
 		case DLaTeXExport(src, dst): TLaTeXExport(src, dst);
+		case DList(numbered, li): TList(numbered, [ for (i in li) compat(i) ]);
 		case DCodeBlock(cte): TCodeBlock(cte);
 		case DQuotation(text, by): TQuotation(text, by);
 		case DParagraph(text): TParagraph(text);
-		case DList(li): TVList([ for (i in li) compat(i) ]);
+		case DElemList(li): TElemList([ for (i in li) compat(i) ]);
 		case DEmpty: null;
 		}
 		return mk(def, d.pos);
@@ -105,7 +106,7 @@ class Transform {
 		}
 
 		if(tf.length > 1)
-			return mk(TVList(tf), tf[0].pos.span(tf[tf.length - 1].pos));
+			return mk(TElemList(tf), tf[0].pos.span(tf[tf.length - 1].pos));
 		else if(tf.length == 1)
 			return tf[0];
 		else //TODO: THROW
@@ -120,14 +121,14 @@ class Transform {
 		switch v.def {
 		case VEmpty:
 			return null;
-		case VList(li):
+		case VElemList(li):
 			var tf = [];
 			while (li.length > 0) {
 				var v = vertical(li.shift(), li, count, names);
 				if (v != null)
 					tf.push(v);
 			}
-			return mk(TVList(tf), v.pos);  // FIXME v.pos.span(???)
+			return mk(TElemList(tf), v.pos);  // FIXME v.pos.span(???)
 		case Volume(name):
 			return hierarchy(CNT_VOLUME, name, rest, v.pos, count, names);
 		case Chapter(name):
@@ -150,14 +151,6 @@ class Transform {
 			names[CNT_BOX] = count[CNT_CHAPTER] + " " + count[CNT_BOX];
 			var id = idGen(names, CNT_BOX);
 			return mk(TBox(newHorizontal(name), vertical(contents, rest, count, names), count[CNT_BOX], id), v.pos);
-		case List(numbered, items):
-			var tf = [];
-			for (i in items) {
-				var v = vertical(i, rest, count, names);
-				if (v != null)
-					tf.push(v);
-			}
-			return mk(TList(numbered, tf), v.pos);
 		case MetaReset(name, val):
 			switch name {
 			case "volume": count[CNT_VOLUME] = val;
@@ -199,7 +192,7 @@ class Transform {
 			case Wordspace: " ";
 			case Emphasis(t), Highlight(t): txtFromHorizontal(t);
 			case Word(w), InlineCode(w), Math(w): w;
-			case HList(li):
+			case HElemList(li):
 				var buf = new StringBuf();
 				for (l in li)
 				{

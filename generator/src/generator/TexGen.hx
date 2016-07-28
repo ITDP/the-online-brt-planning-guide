@@ -53,7 +53,7 @@ class TexGen {
 	public function genh(h:HElem)
 	{
 		switch h.def {
-		case HList(li):
+		case HElemList(li):
 			var buf = new StringBuf();
 			for (i in li)
 				buf.add(genh(i));
@@ -79,7 +79,7 @@ class TexGen {
 	{
 		assert(!at.endsWith(".tex"), at, "should not but a directory");
 		switch v.def {
-		case TVList(li):
+		case TElemList(li):
 			var buf = new StringBuf();
 			for (i in li)
 				buf.add(genv(i, at));

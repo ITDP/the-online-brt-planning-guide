@@ -26,7 +26,7 @@ class NewTransform {
 			h = mk(Highlight(htrim(i, ctx)), h.pos);
 		case Word(_), InlineCode(_), Math(_):
 			ctx.prevSpace = false;
-		case HList(li):
+		case HElemList(li):
 			if (ctx.reverse) {
 				li = li.copy();
 				li.reverse();
@@ -34,7 +34,7 @@ class NewTransform {
 			li = [ for (i in li) htrim(i, ctx) ];
 			if (ctx.reverse)
 				li.reverse();
-			h = mk(HList(li), h.pos);
+			h = mk(HElemList(li), h.pos);
 		case HEmpty:
 			// NOOP
 		}
@@ -55,7 +55,7 @@ class NewTransform {
 		case Highlight(i):
 			i = hclean(i);
 			!i.def.match(HEmpty) ? Highlight(i) : HEmpty;
-		case HList(li):
+		case HElemList(li):
 			var cli = [];
 			for (i in li) {
 				i = hclean(i);
@@ -64,7 +64,7 @@ class NewTransform {
 			}
 			// don't collapse one-element lists because that would
 			// destroy position information that came from trimmed children
-			cli.length != 0 ? HList(cli) : HEmpty;
+			cli.length != 0 ? HElemList(cli) : HEmpty;
 		}
 		return mk(def, h.pos);
 	}
@@ -87,6 +87,8 @@ class NewTransform {
 	static function vertical(v:VElem):DElem
 	{
 		switch v.def {
+		case List(numbered, li):
+			return mkd(DList(numbered, [ for (i in li) vertical(i) ]), v.pos);
 		case CodeBlock(cte):
 			return mkd(DCodeBlock(cte), v.pos);
 		case Quotation(text, by):
