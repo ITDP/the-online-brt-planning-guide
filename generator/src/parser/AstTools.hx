@@ -136,7 +136,7 @@ class AstTools {
 			case other:
 				error('Unexpected type for mkList argument: $other', ind.pos);
 			}
-			var list = macro $i{c + "List"};
+			var list = macro $i{c + "ElemList"};
 			var empty = macro $i{c + "Empty"};
 			var nullCheck = compat ? (macro i == null) : (macro i.isNull());
 			var valAccess = compat ? (macro i) : (macro i.sure());

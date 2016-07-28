@@ -335,7 +335,7 @@ class Parser {
 		var caption = if (captionParts.length == 1)
 				captionParts[0]
 			else
-				mk(HList(captionParts), captionParts[0].pos.span(captionParts[captionParts.length - 1].pos));
+				mk(HElemList(captionParts), captionParts[0].pos.span(captionParts[captionParts.length - 1].pos));
 		return mk(Figure(size, path, caption, copyright), tag[0].pos.span(lastPos));
 	}
 

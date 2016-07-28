@@ -72,7 +72,7 @@ class HtmlGen {
 		case Word(w): w.htmlEscape();
 		case InlineCode(c): '<code>${c.htmlEscape()}</code>';
 		case Math(tex): '<span class="mathjax">\\(${tex.htmlEscape()}\\)</span>';
-		case HList(li):
+		case HElemList(li):
 			var buf = new StringBuf();
 			for (i in li)
 				buf.add(horizontal(i));
@@ -143,7 +143,7 @@ class HtmlGen {
 			}
 			buf.add(numbered ? "</ol>\n" : "</ul>\n");
 			return (buf.toString());
-		case TVList(li):
+		case TElemList(li):
 			var buf = new StringBuf();
 			for (i in li)
 				buf.add(vertical(i, counts, curNav));

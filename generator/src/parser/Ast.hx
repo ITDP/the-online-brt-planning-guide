@@ -14,7 +14,7 @@ enum HDef {
 	InlineCode(c:String);
 	Math(tex:String);
 
-	HList(elem:Array<HElem>);
+	HElemList(elem:Array<HElem>);
 	HEmpty;
 }
 
@@ -46,7 +46,7 @@ enum VDef {
 	CodeBlock(c:String);
 	Paragraph(h:HElem);
 
-	VList(elem:Array<VElem>);
+	VElemList(elem:Array<VElem>);
 	VEmpty;
 }
 // TODO labels?
