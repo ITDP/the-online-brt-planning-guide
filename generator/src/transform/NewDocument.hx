@@ -19,14 +19,14 @@ enum DDef {
 
 	// TODO hierarchy
 	// TODO box
-	// TODO list
 	// TODO figure
 	// TODO table
-	// TODO code block
-	// TODO quotation
-	// TODO paragraph
+	// TODO list
+	DCodeBlock(cte:String);
+	DQuotation(text:HElem, by:HElem);
+	DParagraph(text:HElem);
 
-	DList(elem:Array<DElem>);
+	DList(li:Array<DElem>);  // TODO rename avoiding confusion with (un)numbered lists
 	DEmpty;
 }
 

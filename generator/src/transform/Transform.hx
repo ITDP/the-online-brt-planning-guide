@@ -1,7 +1,8 @@
 package transform;  // TODO move out of the package
 
 import transform.NewDocument;
-import transform.NewTransform.horizontal;
+import transform.NewTransform.horizontal in newHorizontal;
+import transform.NewTransform.vertical in newVertical;
 
 import parser.Ast;
 import parser.Token;
@@ -25,6 +26,22 @@ class Transform {
 
 	static function mk<T>(def:T, pos:Position):Elem<T>
 		return { def:def, pos:pos };
+
+	// TODO remove
+	static function compat(d:DElem):TElem
+	{
+		var def = switch d.def {
+		case DHtmlApply(p): THtmlApply(p);
+		case DLaTeXPreamble(p): TLaTeXPreamble(p);
+		case DLaTeXExport(src, dst): TLaTeXExport(src, dst);
+		case DCodeBlock(cte): TCodeBlock(cte);
+		case DQuotation(text, by): TQuotation(text, by);
+		case DParagraph(text): TParagraph(text);
+		case DList(li): TVList([ for (i in li) compat(i) ]);
+		case DEmpty: null;
+		}
+		return mk(def, d.pos);
+	}
 
 	static function hierarchy(type:Int, name:HElem, rest:Rest, pos:Position, count:Array<Int>, names:Array<String>):TElem
 	{
@@ -125,18 +142,14 @@ class Transform {
 			count[CNT_FIGURE] = ++count[CNT_FIGURE];
 			names[CNT_FIGURE] = count[CNT_CHAPTER] + " " + count[CNT_FIGURE];
 			var name = idGen(names, CNT_FIGURE);
-			var _caption = horizontal(caption);
-			var _cp = horizontal(cp);
+			var _caption = newHorizontal(caption);
+			var _cp = newHorizontal(cp);
 			return mk(TFigure(size, path, _caption, _cp, count[CNT_FIGURE], name), v.pos);
 		case Box(name, contents):
 			count[CNT_BOX] = ++count[CNT_BOX];
 			names[CNT_BOX] = count[CNT_CHAPTER] + " " + count[CNT_BOX];
 			var id = idGen(names, CNT_BOX);
-			return mk(TBox(horizontal(name), vertical(contents, rest, count, names), count[CNT_BOX], id), v.pos);
-		case Quotation(text, by):
-			var _text = horizontal(text);
-			var _by = horizontal(by);
-			return mk(TQuotation(_text, _by), v.pos);
+			return mk(TBox(newHorizontal(name), vertical(contents, rest, count, names), count[CNT_BOX], id), v.pos);
 		case List(numbered, items):
 			var tf = [];
 			for (i in items) {
@@ -145,11 +158,6 @@ class Transform {
 					tf.push(v);
 			}
 			return mk(TList(numbered, tf), v.pos);
-		case CodeBlock(c):
-			return mk(TCodeBlock(c), v.pos);
-		case Paragraph(h):
-			var _h = horizontal(h);
-			return mk(TParagraph(_h), v.pos);
 		case MetaReset(name, val):
 			switch name {
 			case "volume": count[CNT_VOLUME] = val;
@@ -167,7 +175,7 @@ class Transform {
 			count[CNT_TABLE] = ++count[CNT_TABLE];
 			names[CNT_TABLE] = count[CNT_CHAPTER] + " " + count[CNT_TABLE];
 			var name = idGen(names, CNT_TABLE);
-			var _caption = horizontal(caption);
+			var _caption = newHorizontal(caption);
 			var rvalues = [];
 			for (r in [header].concat(rows))  // POG
 			{
@@ -179,6 +187,8 @@ class Transform {
 			}
 			//TODO: v.pos.span(?) --> Should I Add its length?
 			return mk(TTable(size, _caption, rvalues[0], rvalues.slice(1), count[CNT_TABLE], name), v.pos);
+		case _:
+			return compat(newVertical(v));
 		}
 	}
 
