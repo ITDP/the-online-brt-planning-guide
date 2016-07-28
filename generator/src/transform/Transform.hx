@@ -1,5 +1,8 @@
 package transform;  // TODO move out of the package
 
+import transform.NewDocument;
+import transform.NewTransform.horizontal;
+
 import parser.Ast;
 import parser.Token;
 import transform.Document;
@@ -8,20 +11,6 @@ import Assertion.*;
 using parser.TokenTools;
 
 private typedef Rest = Array<VElem>;
-
-private enum HTokenDef
-{
-	TWord(w:String);
-	TCode(c:String);
-	TMath(tex:String);
-	Space;
-	Emph;
-	High;
-	LiStart;
-	LiEnd;
-}
-
-private typedef HToken = Elem<HTokenDef>;
 
 class Transform {
 	static inline var CNT_VOLUME = 0;
@@ -136,17 +125,17 @@ class Transform {
 			count[CNT_FIGURE] = ++count[CNT_FIGURE];
 			names[CNT_FIGURE] = count[CNT_CHAPTER] + " " + count[CNT_FIGURE];
 			var name = idGen(names, CNT_FIGURE);
-			var _caption = htrim(caption);
-			var _cp = htrim(cp);
+			var _caption = horizontal(caption);
+			var _cp = horizontal(cp);
 			return mk(TFigure(size, path, _caption, _cp, count[CNT_FIGURE], name), v.pos);
 		case Box(name, contents):
 			count[CNT_BOX] = ++count[CNT_BOX];
 			names[CNT_BOX] = count[CNT_CHAPTER] + " " + count[CNT_BOX];
 			var id = idGen(names, CNT_BOX);
-			return mk(TBox(htrim(name), vertical(contents, rest, count, names), count[CNT_BOX], id), v.pos);
+			return mk(TBox(horizontal(name), vertical(contents, rest, count, names), count[CNT_BOX], id), v.pos);
 		case Quotation(text, by):
-			var _text = htrim(text);
-			var _by = htrim(by);
+			var _text = horizontal(text);
+			var _by = horizontal(by);
 			return mk(TQuotation(_text, _by), v.pos);
 		case List(numbered, items):
 			var tf = [];
@@ -159,7 +148,7 @@ class Transform {
 		case CodeBlock(c):
 			return mk(TCodeBlock(c), v.pos);
 		case Paragraph(h):
-			var _h = htrim(h);
+			var _h = horizontal(h);
 			return mk(TParagraph(_h), v.pos);
 		case MetaReset(name, val):
 			switch name {
@@ -178,7 +167,7 @@ class Transform {
 			count[CNT_TABLE] = ++count[CNT_TABLE];
 			names[CNT_TABLE] = count[CNT_CHAPTER] + " " + count[CNT_TABLE];
 			var name = idGen(names, CNT_TABLE);
-			var _caption = htrim(caption);
+			var _caption = horizontal(caption);
 			var rvalues = [];
 			for (r in [header].concat(rows))  // POG
 			{
@@ -192,134 +181,6 @@ class Transform {
 			return mk(TTable(size, _caption, rvalues[0], rvalues.slice(1), count[CNT_TABLE], name), v.pos);
 		}
 	}
-
-
-	static var tarray : Array<HToken>;
-
-	static function htrim(elem : HElem)
-	{
-		assert(elem != null);
-		tarray = new Array<HToken>();
-		tokenify(elem);
-		ltrim();
-		rtrim();
-		elem = rebuild();
-		return elem;
-	}
-
-	static function tokenify(elem : HElem)
-	{
-		if (elem == null)
-			return;
-		switch(elem.def)
-		{
-			case Word(s):
-				Assertion.weakAssert(!StringTools.endsWith(s, " "));
-				tarray.push(mk(TWord(s), elem.pos));
-			case Wordspace:
-				tarray.push(mk(Space, elem.pos));
-			case Emphasis(el):
-				tarray.push(mk(Emph, elem.pos));
-				tokenify(el);
-			case Highlight(el):
-				tarray.push(mk(High, elem.pos));
-				tokenify(el);
-			case HList(li):
-				tarray.push(mk(LiStart, elem.pos));
-				for(el in li)
-					tokenify(el);
-				tarray.push(mk(LiEnd, elem.pos));
-			case InlineCode(c):
-				tarray.push(mk(TCode(c), elem.pos));
-			case Math(tex):
-				tarray.push(mk(TMath(tex), elem.pos));
-			case HEmpty:
-		}
-	}
-
-	static function ltrim()
-	{
-		var cur : HToken = null;
-		var i = 0;
-
-		while (i < tarray.length)
-		{
-			if(!tarray[i].def.match(TWord(_) | TCode(_) | TMath(_) | Space))  // FIXME what if TCode(_.length => size), size == 0?
-			{
-				i++;
-				continue;
-			}
-
-			if(!checkBrothers(tarray[i], cur))
-			{
-				cur = tarray[i];
-				i++;
-			}
-			else
-				tarray.remove(tarray[i]);
-		}
-	}
-
-	static function rtrim()
-	{
-		var cur : HToken = null;
-		var i = 0;
-		tarray.reverse();
-		while(i < tarray.length)
-		{
-			if(!tarray[i].def.match(TWord(_) | TCode(_) | TMath(_) | Space))  // FIXME what if TCode(_.length => size), size == 0?
-			{
-				i++;
-				continue;
-			}
-			if(!checkBrothers(tarray[i], cur))
-			{
-				cur = tarray[i];
-				i++;
-			}
-			else
-				tarray.remove(tarray[i]);
-		}
-		tarray.reverse();
-	}
-
-	static function rebuild() : HElem
-	{
-		var c = tarray.shift();
-
-		switch(c.def)
-		{
-			case TWord(h):
-				return mk(Word(h), c.pos);
-			case TCode(t):
-				return mk(InlineCode(t), c.pos);
-			case TMath(tex):
-				return mk(Math(tex), c.pos);
-			case Space:
-				return mk(Wordspace, c.pos);
-			case Emph:
-				return mk(Emphasis(rebuild()), c.pos);
-			case High:
-				return mk(Highlight(rebuild()), c.pos);
-			case LiStart:
-				var list = [];
-				while(!tarray[0].def.match(LiEnd))
-				{
-					list.push(rebuild());
-				}
-				tarray.shift();
-				return mk(HList(list), c.pos);
-			default:
-				throw "Unexpected token : " + c.def.getName() + " at line: " + c.pos.min + " with src: " + c.pos.src;
-		}
-	}
-
-	static function checkBrothers(cur : HToken, oth : HToken)
-	{
-		if (oth == null) return cur.def == Space;
-		else 			 return(cur.def == Space && oth.def == cur.def);
-	}
-
 
 	static function txtFromHorizontal(elem : HElem)
 	{
