@@ -17,7 +17,6 @@ enum TDef {
 	TSubSection(name : HElem, count : Int, id : String, children : TElem);
 	TSubSubSection(name : HElem, count : Int, id : String, children : TElem);
 
-	//TODO: Box
 	TVList(elem:Array<TElem>);
 
 	TFigure(size:BlobSize, path:String, caption:HElem, copyright:HElem, count : Int, id : String);  // TODO size?
