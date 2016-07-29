@@ -175,9 +175,9 @@ nav {
 	font-size: 14px;
 	float: left;
 	top: 64px;
+	bottom: 0;
 	width: 256px;
 	position: fixed;
-	height:	auto;
 	overflow: auto;
 }
 
