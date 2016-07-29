@@ -1,10 +1,15 @@
 package transform;
 
 import parser.Ast;
+import transform.Context;
 import transform.Document;
 import transform.NewDocument;  // TODO remove
 
+import Assertion.*;
 import parser.AstTools.*;
+
+using parser.TokenTools;
+using StringTools;
 
 // TODO split in transform/vertical/horizontal classes (or even modules)
 class NewTransform {
@@ -80,15 +85,88 @@ class NewTransform {
 
 	// end of horizontal stuff
 
-	static function mkd(def, pos, id=""):DElem
+	static function mkd(def, pos, ?id):DElem
 		return { id:id, def:def, pos:pos };
 
+	static function genId(h:HElem):String
+	{
+		var buf = new StringBuf();
+		switch h.def {
+		case Wordspace:
+			buf.add("-");
+		case Emphasis(i), Highlight(i):
+			buf.add(genId(i));
+		case Word(cte), InlineCode(cte), Math(cte):
+			buf.add(~/[^a-z0-9]/i.replace(cte, ""));
+		case HElemList(li):
+			for (i in li)
+				buf.add(genId(i));
+		case HEmpty:
+			// NOOP
+		}
+		return buf.toString();
+	}
+
+	static function consume(parent:VElem, pool:Array<VElem>, idc:IdCtx, noc:NoCtx):DElem
+	{
+		var li = [];
+		while (pool.length > 0) {
+			switch [parent.def, pool[0].def] {
+			case [Volume(_), Volume(_)]: break;
+			case [Chapter(_), Chapter(_)|Volume(_)]: break;
+			case [Section(_), Section(_)|Chapter(_)|Volume(_)]: break;
+			case [SubSection(_), SubSection(_)|Section(_)|Chapter(_)|Volume(_)]: break;
+			case [SubSubSection(_), SubSubSection(_)|SubSection(_)|Section(_)|Chapter(_)|Volume(_)]: break;
+			case _:
+				var v = pool.shift();
+				li.push(vertical(v, pool, idc, noc));
+			}
+		}
+		return switch li {
+		case []: mkd(DEmpty, parent.pos.offset(parent.pos.max - parent.pos.min, 0));
+		case [single]: single;
+		case _: mkd(DElemList(li), li[0].pos.span(li[li.length -1 ].pos));
+		}
+	}
+
 	@:allow(transform.Transform)  // TODO remove
-	static function vertical(v:VElem):DElem
+	static function vertical(v:VElem, siblings:Array<VElem>, idc:IdCtx, noc:NoCtx):DElem  // MAYBE rename idc/noc to id/no
 	{
 		switch v.def {
+		case MetaReset(name, val):
+			switch name.toLowerCase().trim() {
+			case "volume": noc.lastVolume = val;
+			case "chapter": noc.lastChapter = val;
+			case other: throw other;
+			}
+			return mkd(DEmpty, v.pos);
+		case Volume(horizontal(_) => name):
+			var id = idc.volume = genId(name);
+			var no = noc.volume = noc.lastVolume + 1;
+			var children = consume(v, siblings, idc, noc);
+			return mkd(DVolume(no, name, children), v.pos.span(children.pos), id);
+		case Chapter(horizontal(_) => name):
+			var id = idc.chapter = genId(name);
+			var no = noc.chapter = noc.lastChapter + 1;
+			var children = consume(v, siblings, idc, noc);
+			return mkd(DChapter(no, name, children), v.pos.span(children.pos), id);
+		case Section(horizontal(_) => name):
+			var id = idc.section = genId(name);
+			var no = ++noc.section;
+			var children = consume(v, siblings, idc, noc);
+			return mkd(DSection(no, name, children), v.pos.span(children.pos), id);
+		case SubSection(horizontal(_) => name):
+			var id = idc.subSection = genId(name);
+			var no = ++noc.subSection;
+			var children = consume(v, siblings, idc, noc);
+			return mkd(DSubSection(no, name, children), v.pos.span(children.pos), id);
+		case SubSubSection(horizontal(_) => name):
+			var id = idc.subSubSection = genId(name);
+			var no = ++noc.subSubSection;
+			var children = consume(v, siblings, idc, noc);
+			return mkd(DSubSubSection(no, name, children), v.pos.span(children.pos), id);
 		case List(numbered, li):
-			return mkd(DList(numbered, [ for (i in li) vertical(i) ]), v.pos);
+			return mkd(DList(numbered, [ for (i in li) vertical(i, siblings, idc, noc) ]), v.pos);
 		case CodeBlock(cte):
 			return mkd(DCodeBlock(cte), v.pos);
 		case Quotation(text, by):
@@ -96,7 +174,15 @@ class NewTransform {
 		case Paragraph(text):
 			return mkd(DParagraph(horizontal(text)), v.pos);
 		case VElemList(li):
-			return mkd(DElemList([ for (i in li) vertical(i) ]), v.pos);
+			var li = [ while (li.length > 0) vertical(li.shift(), li, idc, noc) ];
+			// don't collapse one-element lists because that would
+			// destroy position information that came from trimmed children;
+			// also, even thought the end of the list might have
+			// changed, make sure to keep the original list start
+			return switch li {
+			case []: mkd(DEmpty, v.pos);
+			case _: mkd(DElemList(li), v.pos.span(li[li.length -1 ].pos));
+			}
 		case VEmpty:
 			return mkd(DEmpty, v.pos);
 		case _:  // TODO remove
@@ -104,7 +190,44 @@ class NewTransform {
 		}
 	}
 
+	/*
+	Remove DEmpty elements.
+	*/
+	@:allow(transform.Transform)  // TODO remove
+	static function clean(d:DElem)
+	{
+		var def = switch d.def {
+		case DHtmlApply(_), DLaTeXPreamble(_), DLaTeXExport(_), DCodeBlock(_), DQuotation(_), DEmpty:
+			d.def;
+		case DVolume(no, name, children):
+			DVolume(no, name, clean(children));
+		case DChapter(no, name, children):
+			DChapter(no, name, clean(children));
+		case DSection(no, name, children):
+			DSection(no, name, clean(children));
+		case DSubSection(no, name, children):
+			DSubSection(no, name, clean(children));
+		case DSubSubSection(no, name, children):
+			DSubSubSection(no, name, clean(children));
+		case DList(numbered, li):
+			DList(numbered, [ for (i in li) clean(i) ]);
+		case DParagraph(text):
+			!text.def.match(HEmpty) ? d.def : DEmpty;
+		case DElemList(li):
+			var cli = [];
+			for (i in li) {
+				i = clean(i);
+				if (!i.def.match(DEmpty))
+					cli.push(i);
+			}
+			// don't collapse one-element lists because that would
+			// destroy position information that came from trimmed children
+			cli.length != 0 ? DElemList(cli) : DEmpty;
+		}
+		return mkd(def, d.pos, d.id);
+	}
+
 	public static function transform(ast:Ast):NewDocument
-		return vertical(ast);
+		return clean(vertical(ast, [], new IdCtx(), new NoCtx()));
 }
 

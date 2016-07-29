@@ -17,7 +17,11 @@ enum DDef {
 	DLaTeXPreamble(path:String);
 	DLaTeXExport(src:String, dest:String);
 
-	// TODO hierarchy
+	DVolume(no:Int, name:HElem, children:DElem);
+	DChapter(no:Int, name:HElem, children:DElem);
+	DSection(no:Int, name:HElem, children:DElem);
+	DSubSection(no:Int, name:HElem, children:DElem);
+	DSubSubSection(no:Int, name:HElem, children:DElem);
 	// TODO box
 	// TODO figure
 	// TODO table
