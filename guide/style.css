@@ -369,3 +369,12 @@ pre {
 	padding: .05em .25em;
 	border: 1px solid #ccc;
 }
+
+/* target */
+
+.target {
+	display: none;
+}
+:target {
+	display: block;
+}
