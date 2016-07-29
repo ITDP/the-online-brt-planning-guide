@@ -88,6 +88,7 @@ class NewTransform {
 	static function mkd(def, pos, ?id):DElem
 		return { id:id, def:def, pos:pos };
 
+	// TODO test id generation (it took me two tries to get this right)
 	static function genId(h:HElem):String
 	{
 		var buf = new StringBuf();
@@ -97,7 +98,7 @@ class NewTransform {
 		case Emphasis(i), Highlight(i):
 			buf.add(genId(i));
 		case Word(cte), InlineCode(cte), Math(cte):
-			buf.add(~/[^a-z0-9]/i.replace(cte, ""));
+			buf.add(~/[^a-z0-9-]/i.replace(cte, "").toLowerCase());
 		case HElemList(li):
 			for (i in li)
 				buf.add(genId(i));
