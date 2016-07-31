@@ -17,6 +17,8 @@
 -main Main
 -js bin/obrt.js
 -lib hxnodejs
+# -D source-map-content
+-debug
 
 --next
 
