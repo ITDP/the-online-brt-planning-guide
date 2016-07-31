@@ -1,5 +1,6 @@
 class Context {
 	public static var debug = false;
+	public static var draft = false;
 
 	public static function prepareSourceMaps()
 	{

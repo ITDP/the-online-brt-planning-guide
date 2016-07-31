@@ -90,6 +90,10 @@ class HtmlGen {
 		}
 	}
 
+	static inline var DRAFT_IMG_PLACEHOLDER = "https://upload.wikimedia.org/wikipedia/commons/5/56/Sauroposeidon_Scale_Diagram_Steveoc86.svg";
+
+	static inline var DRAFT_IMG_PLACEHOLDER_COPYRIGHT = "Placeholder image by Steveoc 86 (Own work) <a href='http://creativecommons.org/licenses/by-sa/3.0'>CC BY-SA 3.0</a> or <a href='http://www.gnu.org/copyleft/fdl.html'>GFDL</a>, via Wikimedia Commons";
+
 	function vertical(v:TElem, counts : Array<Int>, curNav : Null<Nav>) : String
 	{
 		switch v.def {
@@ -99,12 +103,13 @@ class HtmlGen {
 			return hierarchy(v, counts, curNav);
 		case TFigure(size, path, caption, copyright, count,id):
 			var caption = horizontal(caption);
-			var copyright = horizontal(copyright);
-			var _path = saveAsset(path);
+			var copyright = !Context.draft ? horizontal(copyright) : DRAFT_IMG_PLACEHOLDER_COPYRIGHT;
+			var _path = !Context.draft ? "../" + saveAsset(path) : DRAFT_IMG_PLACEHOLDER;
+			var img = '<img src="$_path"/>';
 			//TODO: Make FIG SIZE param
 			return ('
 			<section class="${sizeToClass(size)} img-block id="${id}">
-				<img src="../${_path}"/>
+				$img
 				<p><strong>Fig. ${counts[CHA]}.${count}</strong><span class="quad"></span>${caption} <em>${copyright}</em></p>
 			</section>\n'.doctrim());
 		case TBox(name, contents, count, id):
