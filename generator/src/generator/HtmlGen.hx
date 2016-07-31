@@ -110,7 +110,7 @@ class HtmlGen {
 		case TBox(name, contents, count, id):
 			var isLarge = false;
 			function findSize(v:TElem) {
-				if (v == null) return;
+				if (v == null || v.def == null) return;
 				if (v.def.match(TFigure(MarginWidth|FullWidth, _) | TTable(MarginWidth|FullWidth, _)))
 					isLarge = true;
 				v.iter(findSize);
@@ -200,6 +200,7 @@ class HtmlGen {
 		var b = new StringBuf();
 		switch(elem.def)
 		{
+			case null:  // NOOP
 			case TParagraph(h):
 				b.add(horizontal(h));
 			case TList(numbered, li):

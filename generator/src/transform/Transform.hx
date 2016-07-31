@@ -18,21 +18,13 @@ using parser.TokenTools;
 private typedef Rest = Array<VElem>;
 
 class Transform {
-	static inline var CNT_VOLUME = 0;
-	static inline var CNT_CHAPTER = 1;
-	static inline var CNT_SECTION = 2;
-	static inline var CNT_2SECTION = 3;
-	static inline var CNT_3SECTION = 4;
-	static inline var CNT_BOX = 5;
-	static inline var CNT_FIGURE = 6;
-	static inline var CNT_TABLE = 7;
-	static inline var CNT_FIRST_LINEAR = CNT_BOX;
-
 	static function mk<T>(def:T, pos:Position):Elem<T>
 		return { def:def, pos:pos };
 
 	static function compat(d:DElem, id:String):TElem
 	{
+		assert(d != null);
+		assert(d.def != null);
 		var def = switch d.def {
 		case DHtmlApply(p): THtmlApply(p);
 		case DLaTeXPreamble(p): TLaTeXPreamble(p);
@@ -53,7 +45,14 @@ class Transform {
 			var sid = id + (id != "" ? "." : "") + "subsubsection." + d.id.sure();
 			TSubSubSection(name, no, sid, compat(children, sid));
 		case DBox(no, name, children):
-			TBox(name, compat(children, ""), no, d.id.sure());  // FIXME ids
+			var sid = id + (id != "" ? "." : "") + "box." + d.id.sure();
+			TBox(name, compat(children, sid), no, sid);  // FIXME ids
+		case DFigure(no, size, path, caption, copyright):
+			var sid = id + (id != "" ? "." : "") + "figure." + d.id.sure();
+			TFigure(size, path, caption, copyright, no, sid);  // FIXME ids
+		case DTable(no, size, caption, header, rows):
+			var sid = id + (id != "" ? "." : "") + "table." + d.id.sure();
+			TTable(size, caption, header.map(compat.bind(_, sid)), rows.map(function (r) return r.map(compat.bind(_, sid))), no, sid);  // FIXME ids
 		case DList(numbered, li): TList(numbered, [ for (i in li) compat(i, id) ]);
 		case DCodeBlock(cte): TCodeBlock(cte);
 		case DQuotation(text, by): TQuotation(text, by);
@@ -64,108 +63,11 @@ class Transform {
 		return mk(def, d.pos);
 	}
 
-	static function vertical(v:VElem, rest:Rest, count : Array<Int>, names : Array<String>):TElem
-	{
-		assert(v != null);
-		switch v.def {
-		case Figure(size, path, caption, cp):
-			count[CNT_FIGURE] = ++count[CNT_FIGURE];
-			names[CNT_FIGURE] = count[CNT_CHAPTER] + " " + count[CNT_FIGURE];
-			var name = idGen(names, CNT_FIGURE);
-			var _caption = newHorizontal(caption);
-			var _cp = newHorizontal(cp);
-			return mk(TFigure(size, path, _caption, _cp, count[CNT_FIGURE], name), v.pos);
-		case LaTeXPreamble(path):
-			return mk(TLaTeXPreamble(path), v.pos);
-		case LaTeXExport(src, dest):
-			return mk(TLaTeXExport(src, dest), v.pos);
-		case HtmlApply(path):
-			return mk(THtmlApply(path), v.pos);
-		case Table(size, caption, header, rows):
-			count[CNT_TABLE] = ++count[CNT_TABLE];
-			names[CNT_TABLE] = count[CNT_CHAPTER] + " " + count[CNT_TABLE];
-			var name = idGen(names, CNT_TABLE);
-			var _caption = newHorizontal(caption);
-			var rvalues = [];
-			for (r in [header].concat(rows))  // POG
-			{
-				var cellvalues = [];
-				for (value in r)
-					cellvalues.push(vertical(value, rest, count, names));
-					//TODO: v.pos.span(?) --> Should I Add its length?
-				rvalues.push(cellvalues);
-			}
-			//TODO: v.pos.span(?) --> Should I Add its length?
-			return mk(TTable(size, _caption, rvalues[0], rvalues.slice(1), count[CNT_TABLE], name), v.pos);
-		case _:
-			var idc = new IdCtx();
-			var noc = new NoCtx();
-			return compat(newClean(newVertical(v, rest, idc, noc)), "");
-		}
-	}
-
 	public static function transform(parsed:parser.Ast) : TElem
 	{
-		var baseCounters = [for (i in CNT_VOLUME...(CNT_TABLE+1)) 0];
-		var baseNames = [for (i in CNT_VOLUME...(CNT_TABLE+1)) ""];
-
-		var tf = vertical(parsed, [], baseCounters, baseNames);
-		return tf;
-	}
-
-	static function idGen(names : Array<String>, elem : Int)
-	{
-		var i = 0;
-		var str = new StringBuf();
-
-		while (i <= elem)
-		{
-			var before = switch(i)
-			{
-				case CNT_VOLUME:
-					"volume.";
-				case CNT_CHAPTER:
-					"chapter.";
-				case CNT_SECTION:
-					"section.";
-				case CNT_2SECTION:
-					"subsection.";
-				case CNT_3SECTION:
-					"subsubsection.";
-				case CNT_BOX:
-					"box.";
-				case CNT_FIGURE:
-					"figure.";
-				case CNT_TABLE:
-					"table.";
-				default:
-					null;
-			}
-
-			var clearstr = names[i];
-
-
-			clearstr = StringTools.replace(clearstr," ", "-");
-
-			var reg = ~/[^a-zA-Z0-9-]+/g;
-
-			if(clearstr.length == 0)
-			{
-				i++;
-				continue;
-			}
-
-			clearstr = reg.replace(clearstr, "").toLowerCase();
-
-			if(i != elem)
-				str.add(before + clearstr + ".");
-			else
-				str.add(before + clearstr);
-
-			i++;
-		}
-
-		return str.toString();
+		var idc = new IdCtx();
+		var noc = new NoCtx();
+		return compat(newClean(newVertical(parsed, [], idc, noc)), "");
 	}
 }
 
