@@ -62,6 +62,7 @@ class Main {
 	{
 		print(BANNER + "\n\n");
 		Context.debug = Sys.getEnv("DEBUG") == "1";
+		Context.draft = Sys.getEnv("DRAFT") == "1";
 		Context.prepareSourceMaps();
 
 		try {
