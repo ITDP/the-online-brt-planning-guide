@@ -64,6 +64,15 @@ class Main {
 		print(BANNER + "\n\n");
 		debug = Sys.getEnv("DEBUG") == "1";
 
+#if (debug && hxnodejs)
+		try {
+			var sms = js.Lib.require("source-map-support");
+			sms.install();
+			haxe.CallStack.wrapCallSite = sms.wrapCallSite;
+		} catch (e:Dynamic) {
+			if (debug) println('WARNING: could enable source maps: $e');
+		}
+#end
 		try {
 			var args = Sys.args();
 			if (debug) println('Arguments are: `${args.join("`, `")}`');
