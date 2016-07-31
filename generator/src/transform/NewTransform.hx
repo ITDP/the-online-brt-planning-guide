@@ -98,7 +98,7 @@ class NewTransform {
 		case Emphasis(i), Highlight(i):
 			buf.add(genId(i));
 		case Word(cte), InlineCode(cte), Math(cte):
-			buf.add(~/[^a-z0-9-]/i.replace(cte, "").toLowerCase());
+			buf.add(~/[^a-z0-9\-]/ig.replace(cte, "").toLowerCase());
 		case HElemList(li):
 			for (i in li)
 				buf.add(genId(i));
@@ -166,6 +166,10 @@ class NewTransform {
 			var no = ++noc.subSubSection;
 			var children = consume(v, siblings, idc, noc);
 			return mkd(DSubSubSection(no, name, children), v.pos.span(children.pos), id);
+		case Box(name, contents):
+			var id = idc.box = genId(name);
+			var no = ++noc.box;
+			return mkd(DBox(no, name, vertical(contents, null, idc, noc)), v.pos, id);  // FIXME resolve null and not allowing hierarchy elements inside boxes
 		case List(numbered, li):
 			return mkd(DList(numbered, [ for (i in li) vertical(i, siblings, idc, noc) ]), v.pos);
 		case CodeBlock(cte):
@@ -210,6 +214,8 @@ class NewTransform {
 			DSubSection(no, name, clean(children));
 		case DSubSubSection(no, name, children):
 			DSubSubSection(no, name, clean(children));
+		case DBox(no, name, children):
+			DBox(no, name, clean(children));
 		case DList(numbered, li):
 			DList(numbered, [ for (i in li) clean(i) ]);
 		case DParagraph(text):

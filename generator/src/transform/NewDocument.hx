@@ -22,7 +22,7 @@ enum DDef {
 	DSection(no:Int, name:HElem, children:DElem);
 	DSubSection(no:Int, name:HElem, children:DElem);
 	DSubSubSection(no:Int, name:HElem, children:DElem);
-	// TODO box
+	DBox(no:Int, name:HElem, children:DElem);
 	// TODO figure
 	// TODO table
 	DList(numbered:Bool, li:Array<DElem>);
