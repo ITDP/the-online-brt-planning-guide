@@ -1,19 +1,28 @@
 package transform;
 
+@:allow(transform.NewTransform)  // allow NewTransform meta handling to change lastVolume/lastChapter
 private class DocumentContext<T> {
 	var zero:T;
+	public var lastVolume(default,null):T;
+	public var lastChapter(default,null):T;
+	public var box:T;
+	public var figure:T;
+	public var table:T;
 
 	public var volume(default,set):T;
 		function set_volume(v)
 		{
+			var lc = chapter;
 			chapter = zero;
-			return volume = v;
+			if (lc != null)  // requires chapter:Null<T>
+				lastChapter = lc;
+			return lastVolume = volume = v;
 		}
-	public var chapter(default,set):T;
+	public var chapter(default,set):Null<T>;
 		function set_chapter(v)
 		{
-			section = zero;
-			return chapter = v;
+			box = figure = table = section = zero;
+			return lastChapter = chapter = v;
 		}
 	public var section(default,set):T;
 		function set_section(v)
@@ -37,37 +46,12 @@ private class DocumentContext<T> {
 	}
 }
 
-@:allow(transform.NewTransform)
-private class ChapterContext<T> extends DocumentContext<T> {
-	// TODO move lastVolume/lastChapter to DocumentContext
-	public var lastVolume(default,null):T;
-	public var lastChapter(default,null):T;
-	public var box:T;
-	public var figure:T;
-	public var table:T;
-
-	override function set_volume(v)
-	{
-		var lc = chapter;
-		chapter = zero;
-		if (lc != null)  // requires Null<T> for T == Int on static targets
-			lastChapter = lc;
-		return lastVolume = volume = v;
-	}
-
-	override function set_chapter(v)
-	{
-		box = figure = table = section = zero;
-		return lastChapter = chapter = v;
-	}
-}
-
 class IdCtx extends DocumentContext<String> {
 	public function new()
 		super("");
 }
 
-class NoCtx extends ChapterContext<Null<Int>> {
+class NoCtx extends DocumentContext<Int> {
 	public function new()
 	{
 		lastChapter = 0;

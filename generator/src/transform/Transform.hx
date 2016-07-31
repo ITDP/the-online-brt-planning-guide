@@ -52,6 +52,8 @@ class Transform {
 		case DSubSubSection(no, name, children):
 			var sid = id + (id != "" ? "." : "") + "subsubsection." + d.id.sure();
 			TSubSubSection(name, no, sid, compat(children, sid));
+		case DBox(no, name, children):
+			TBox(name, compat(children, ""), no, d.id.sure());  // FIXME ids
 		case DList(numbered, li): TList(numbered, [ for (i in li) compat(i, id) ]);
 		case DCodeBlock(cte): TCodeBlock(cte);
 		case DQuotation(text, by): TQuotation(text, by);
@@ -73,11 +75,6 @@ class Transform {
 			var _caption = newHorizontal(caption);
 			var _cp = newHorizontal(cp);
 			return mk(TFigure(size, path, _caption, _cp, count[CNT_FIGURE], name), v.pos);
-		case Box(name, contents):
-			count[CNT_BOX] = ++count[CNT_BOX];
-			names[CNT_BOX] = count[CNT_CHAPTER] + " " + count[CNT_BOX];
-			var id = idGen(names, CNT_BOX);
-			return mk(TBox(newHorizontal(name), vertical(contents, rest, count, names), count[CNT_BOX], id), v.pos);
 		case LaTeXPreamble(path):
 			return mk(TLaTeXPreamble(path), v.pos);
 		case LaTeXExport(src, dest):
