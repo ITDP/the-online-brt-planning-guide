@@ -19,4 +19,5 @@ RUN haxelib git hxparse https://github.com/jonasmalacofilho/hxparse && cd /usr/s
 RUN haxelib git assertion https://github.com/protocubo/assertion.hx && cd /usr/share/haxe/lib/assertion.hx/git && git checkout 5e37f06; cd -
 RUN haxelib git literals https://github.com/protocubo/literals.hx && cd /usr/share/haxe/lib/literals.hx/git && git checkout 5287256; cd -
 RUN haxelib git sys-utils https://github.com/jonasmalacofilho/sys-utils.hx && cd /usr/share/haxe/lib/sys-utils/git && git checkout 43b7ddd; cd -
+RUN apt-get install -y npm
 
