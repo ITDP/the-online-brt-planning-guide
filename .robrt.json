@@ -9,6 +9,7 @@
 		"cmds" : [
 			"cd $ROBRT_REPOSITORY_DIR",
 			"git lfs pull",
+			"npm install source-map-support",
 
 			"cd $ROBRT_REPOSITORY_DIR/generator",
 			"haxe -D travis build.hxml",
