@@ -137,7 +137,7 @@ class LargeTable {
 				var large = size.match(FullWidth);
 				var noModules = large ? NO_MODULES_LARGE : NO_MODULES;
 				var colWidths = computeTableWidths(noModules, header, rows, v.pos);
-				if (Main.debug) {
+				if (Context.debug) {
 					trace(v.pos.toLinePosition());
 					trace(colWidths);
 				}

@@ -8,40 +8,53 @@
 
 --each
 
+# The main tool, to run on Node
+# use --debug for source-map generation
+-main Main
+-js bin/obrt.js
+-lib hxnodejs
+-debug
+
+--next
+
+# A stat tool, to run on Node
+# use --debug for source-map generation
+-main tools.Stats
+-js bin/obrt-stats.js
+-lib hxnodejs
+-debug
+
+--next
+
+# The Node unit tests
+# use --debug for source-map generation
+-main RunTests
+-js bin/tests.js
+-cp test
+-lib utest
+# use a pseudo fs library
+-cp pseudo
+# don't load hxnodejs, but emulate it been loaded
+-D hxnodejs
+--macro allowPackage("sys")
+-debug
+
+--next
+
+# Alternate tool target: Neko
+# This much easier to debug; it's is also much slower
 -main Main
 -neko bin/obrt.n
 -cmd nekotools boot bin/obrt.n
 
 --next
 
--main Main
--js bin/obrt.js
--lib hxnodejs
-# -D source-map-content
--debug
-
---next
-
--main tools.Stats
--js bin/obrt-stats.js
--lib hxnodejs
-
---next
-
--main RunTests
--js bin/tests.js
--cp test
--lib utest
--cp pseudo
---macro allowPackage("sys")
--D hxnodejs
-
---next
-
+# The Neko unit tests
 -main RunTests
 -neko bin/tests.n
 -cp test
 -lib utest
+# use a pseudo fs library
 -cp pseudo
 
 # --next
