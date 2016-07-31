@@ -9,7 +9,7 @@ class Context {
 			sms.install();
 			haxe.CallStack.wrapCallSite = sms.wrapCallSite;
 		} catch (e:Dynamic) {
-			trace("WARNING: could not prepare source map support:", e);
+			if (debug) trace("WARNING: could not prepare source map support:", e);
 		}
 #else
 		// NOOP
