@@ -57,36 +57,29 @@
 # use a pseudo fs library
 -cp pseudo
 
-# --next
-#
-# -main Main
-# -cpp bin/cpp/obrt
-#
-# --next
-#
-# -main cpp.cppia.Host
-# -cpp bin/cppia
-# -lib utest
-# -D scriptable
-# -dce no
-# -debug
-# -D analyzer
-#
-# --next
-#
+--next
+
+# # The Cppia unit tests
 # -main RunTests
-# -cppia bin/cppia/tests.cppia
+# -cppia bin/tests.cppia
 # -cp test
-# -cp pseudo
 # -lib utest
-# -debug
-# -D analyzer
-#
+# # use a pseudo fs library
+# -cp pseudo
+
 # --next
 #
+# # Alternate tool target: C++
+# -main Main
+# -cpp bin/cpp
+
+# --next
+#
+# # The C++ unit tests
 # -main RunTests
 # -cpp bin/cpp/tests
 # -cp test
 # -lib utest
+# # use a pseudo fs library
 # -cp pseudo
 
