@@ -1,6 +1,9 @@
 class RunTests {
 	static function main()
 	{
+		Context.debug = true;
+		Context.prepareSourceMaps();
+
 		var r = new utest.Runner();
 		r.addCase(new Test_01_Tools());
 		r.addCase(new Test_02_Lexer());

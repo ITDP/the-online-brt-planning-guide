@@ -2,9 +2,11 @@ only-build.hxml
 
 --next
 
+# The macro interpreter unit tests
 -main RunTests
 --interp
 -cp test
 -lib utest
+# use a pseudo fs library
 -cp pseudo
 

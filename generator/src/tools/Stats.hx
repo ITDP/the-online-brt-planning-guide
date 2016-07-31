@@ -51,6 +51,8 @@ class Stats {
 
 	static function main()
 	{
+		Context.prepareSourceMaps();
+
 		var args = Sys.args();
 		switch args {
 		case ["--help"]:

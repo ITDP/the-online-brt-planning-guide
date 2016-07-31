@@ -45,7 +45,7 @@ class TexGen {
 	public function genp(pos:Position)
 	{
 		var lpos = pos.toLinePosition();
-		if (Main.debug)
+		if (Context.debug)
 			return '% @ ${lpos.src}: lines ${lpos.lines.min + 1}-${lpos.lines.max}: code points ${lpos.codes.min + 1}-${lpos.codes.max}\n';  // TODO slow, be careful!
 		return '% @ ${pos.src}: bytes ${pos.min + 1}-${pos.max}\n';
 	}

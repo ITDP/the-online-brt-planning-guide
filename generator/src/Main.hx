@@ -8,7 +8,6 @@ using Literals;
 using parser.TokenTools;
 
 class Main {
-	public static var debug(default,null) = false;
 	public static var version(default,null) = {
 		commit : Version.getGitCommitHash().substr(0,7),
 		fullCommit : Version.getGitCommitHash(),
@@ -29,7 +28,7 @@ class Main {
 
 	static function generate(ipath, opath)
 	{
-		if (debug) println('The current working dir is: `${Sys.getCwd()}`');
+		if (Context.debug) println('The current working dir is: `${Sys.getCwd()}`');
 		if (!FileSystem.exists(ipath)) throw 'File does not exist: $ipath';
 		if (FileSystem.isDirectory(ipath)) throw 'Not a file: $ipath';
 
@@ -59,23 +58,15 @@ class Main {
 			println('line=${lpos.lines.min+1}, column=${lpos.codes.min+1}');
 	}
 
-	static function main()
+	public static function main()
 	{
 		print(BANNER + "\n\n");
-		debug = Sys.getEnv("DEBUG") == "1";
+		Context.debug = Sys.getEnv("DEBUG") == "1";
+		Context.prepareSourceMaps();
 
-#if (debug && hxnodejs)
-		try {
-			var sms = js.Lib.require("source-map-support");
-			sms.install();
-			haxe.CallStack.wrapCallSite = sms.wrapCallSite;
-		} catch (e:Dynamic) {
-			if (debug) println('WARNING: could enable source maps: $e');
-		}
-#end
 		try {
 			var args = Sys.args();
-			if (debug) println('Arguments are: `${args.join("`, `")}`');
+			if (Context.debug) println('Arguments are: `${args.join("`, `")}`');
 			switch args {
 			case [cmd, ipath, opath] if (StringTools.startsWith("generate", cmd)):
 				generate(ipath, opath);
@@ -88,21 +79,21 @@ class Main {
 				exit(1);
 			}
 		} catch (e:hxparse.UnexpectedChar) {
-			if (debug) print("Lexer ");
+			if (Context.debug) print("Lexer ");
 			println('ERROR: Unexpected character `${e.char}`');
 			printPos(e.pos.toPosition());
-			if (debug) println(CallStack.toString(CallStack.exceptionStack()));
+			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
 			exit(2);
 		} catch (e:parser.Error.GenericError) {
-			if (debug) print("Parser ");
+			if (Context.debug) print("Parser ");
 			println('ERROR: ${e.text}');
 			printPos(e.pos);
-			if (debug) println(CallStack.toString(CallStack.exceptionStack()));
+			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
 			exit(3);
 		} catch (e:Dynamic) {
-			if (debug) print("Untyped ");
+			if (Context.debug) print("Untyped ");
 			println('ERROR: $e');
-			if (debug) println(CallStack.toString(CallStack.exceptionStack()));
+			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
 			exit(9);
 		}
 	}
