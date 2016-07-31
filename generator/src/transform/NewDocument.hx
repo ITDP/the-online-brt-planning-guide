@@ -23,8 +23,8 @@ enum DDef {
 	DSubSection(no:Int, name:HElem, children:DElem);
 	DSubSubSection(no:Int, name:HElem, children:DElem);
 	DBox(no:Int, name:HElem, children:DElem);
-	// TODO figure
-	// TODO table
+	DFigure(no:Int, size:BlobSize, path:String, caption:HElem, copyright:HElem);
+	DTable(no:Int, size:BlobSize, caption:HElem, header:Array<DElem>, rows:Array<Array<DElem>>);
 	DList(numbered:Bool, li:Array<DElem>);
 	DCodeBlock(cte:String);
 	DQuotation(text:HElem, by:HElem);

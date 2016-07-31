@@ -43,7 +43,7 @@ class LargeTable {
 
 	static function pseudoTypeset(v:TElem)
 	{
-		if (v == null) return 0.;
+		if (v == null || v.def == null) return 0.;
 		return switch v.def {
 		case TLaTeXPreamble(_), TLaTeXExport(_), THtmlApply(_): 0;
 		case TVolume(_), TChapter(_), TSection(_), TSubSection(_), TSubSubSection(_): BAD_COST; // not allowed in tables
@@ -160,7 +160,7 @@ class LargeTable {
 
 			buf.add("\\cr\n\t");
 			function genCell(i:TElem) {
-				if (i == null)
+				if (i == null || i.def == null)
 					return "";
 				return switch i.def {
 				case TParagraph(h): gen.genh(h);

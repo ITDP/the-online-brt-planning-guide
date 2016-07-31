@@ -133,7 +133,16 @@ class NewTransform {
 	@:allow(transform.Transform)  // TODO remove
 	static function vertical(v:VElem, siblings:Array<VElem>, idc:IdCtx, noc:NoCtx):DElem  // MAYBE rename idc/noc to id/no
 	{
+		// the parser should not output any nulls
+		assert(v != null);
+		assert(v.def != null);
 		switch v.def {
+		case HtmlApply(path):
+			return mkd(DHtmlApply(path), v.pos);
+		case LaTeXPreamble(path):
+			return mkd(DLaTeXPreamble(path), v.pos);
+		case LaTeXExport(src, dst):
+			return mkd(DLaTeXExport(src, dst), v.pos);
 		case MetaReset(name, val):
 			switch name.toLowerCase().trim() {
 			case "volume": noc.lastVolume = val;
@@ -170,6 +179,18 @@ class NewTransform {
 			var id = idc.box = genId(name);
 			var no = ++noc.box;
 			return mkd(DBox(no, name, vertical(contents, null, idc, noc)), v.pos, id);  // FIXME resolve null and not allowing hierarchy elements inside boxes
+		case Figure(size, path, horizontal(_) => caption, horizontal(_) => copyright):
+			// figure id could be generated from paths, but let's keep things uniform across elements
+			var id = idc.figure = genId(caption);
+			var no = ++noc.figure;
+			return mkd(DFigure(no, size, path, caption, copyright), v.pos, id);
+		case Table(size, horizontal(_) => caption, header, rows):
+			var id = idc.table = genId(caption);
+			var no = ++noc.table;
+			// FIXME resolve null and forbid hierarchy elements inside tables
+			var dheader = header.map(vertical.bind(_, null, idc, noc));
+			var drows = rows.map(function (r) return r.map(vertical.bind(_, null, idc, noc)));
+			return mkd(DTable(no, size, caption, dheader, drows), v.pos, id);
 		case List(numbered, li):
 			return mkd(DList(numbered, [ for (i in li) vertical(i, siblings, idc, noc) ]), v.pos);
 		case CodeBlock(cte):
@@ -201,8 +222,11 @@ class NewTransform {
 	@:allow(transform.Transform)  // TODO remove
 	static function clean(d:DElem)
 	{
+		// we shouldn't generate nulls either
+		assert(d != null);
+		assert(d.def != null);
 		var def = switch d.def {
-		case DHtmlApply(_), DLaTeXPreamble(_), DLaTeXExport(_), DCodeBlock(_), DQuotation(_), DEmpty:
+		case DHtmlApply(_), DLaTeXPreamble(_), DLaTeXExport(_), DFigure(_), DCodeBlock(_), DQuotation(_), DEmpty:
 			d.def;
 		case DVolume(no, name, children):
 			DVolume(no, name, clean(children));
@@ -216,6 +240,8 @@ class NewTransform {
 			DSubSubSection(no, name, clean(children));
 		case DBox(no, name, children):
 			DBox(no, name, clean(children));
+		case DTable(no, size, caption, header, rows):
+			DTable(no, size, caption, header.map(clean), rows.map(function (r) return r.map(clean)));
 		case DList(numbered, li):
 			DList(numbered, [ for (i in li) clean(i) ]);
 		case DParagraph(text):
