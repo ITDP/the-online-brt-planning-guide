@@ -28,7 +28,7 @@ abstract Nullable<T>(Null<T>) from Null<T> {
 	public inline function safe():NullableResolver<T>
 		return this;
 
-	public inline function cases():Option<T>
+	public function cases():Option<T>
 		return notNull() ? Some(this) : None;
 
 	public macro function extractOr(ethis:Expr, alt:Expr):ExprOf<T>

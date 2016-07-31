@@ -58,7 +58,7 @@ class Main {
 			println('line=${lpos.lines.min+1}, column=${lpos.codes.min+1}');
 	}
 
-	public static function main()
+	static function main()
 	{
 		print(BANNER + "\n\n");
 		Context.debug = Sys.getEnv("DEBUG") == "1";
