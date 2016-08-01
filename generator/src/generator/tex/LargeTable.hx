@@ -37,6 +37,7 @@ class LargeTable {
 			for (i in li)
 				cnt += pseudoHTypeset(i);
 			cnt;
+		case HEmpty: 0;
 		}
 	}
 

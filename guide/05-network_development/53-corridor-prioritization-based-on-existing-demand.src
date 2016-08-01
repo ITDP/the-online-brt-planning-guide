@@ -29,8 +29,9 @@ in the first year of operation. Each corridor should be color-coded based on its
 corridors with unusually high speeds for the region should be screened out, as they are likely already 
 functioning at a relatively high efficiency. Additionally, those corridors on which another public transport 
 project is currently being planned should also be screened out.
+
 \begintable[large]{Rank order of Boston corridors from map in Figure 5.13.
- Yellow represents the least delay, orange moderate delay, and red the most delay. 
+ █ represents the least delay, ██ moderate delay, and ███ the most delay. 
  The City Center to Government Center route currently does not exist, 
  and thus the pphpd is not provided. Analysis done by ITDP.}
 \header
@@ -42,52 +43,52 @@ project is currently being planned should also be screened out.
 \col 1a
 \col Upgrade of existing Washington Silver Line
 \col 1,615
-\col 
+\col █ 
 \row
 \col 1b
 \col Extension Dudley Square to Mattapan
 \col 976
-\col 
+\col ██
 \row
 \col 1c
 \col Extension City Center to Government Center
 \col -
-\col 
+\col ███
 \row
 \col 2
 \col Allston Union Square to Dudley Square
 \col 1,273
-\col 
+\col ███
 \row
 \col 3
 \col Downtown Chelsea to Government Center
 \col 1,215
-\col 
+\col ██
 \row
 \col 4
 \col Forest Hills to West Roxbury
 \col 1,077
-\col 
+\col ███
 \row
 \col 5
 \col Harvard Square South to Newton Corner
 \col 998
-\col 
+\col ███
 \row
 \col 6
 \col Forest Hills to Wolcott Square
 \col 799
-\col 
+\col █
 \row
 \col 7
 \col Allston Union Square to Longwood
 \col 741
-\col 
+\col ███
 \row
 \col 8
 \col Harvard Square to Watertown
 \col 413
-\col 
+\col ██
 \endtable
 
 In many parts of the world, demand far surpasses these minimums. In such cases, it is generally reasonable 

@@ -1,6 +1,7 @@
 package parser;  // TODO move out of the package
 
 import haxe.ds.GenericStack.GenericCell;
+import haxe.ds.Option;
 import parser.Ast;
 import parser.Error;
 import parser.Token;
@@ -35,22 +36,22 @@ class Parser {
 	var cache:FileCache;
 	var next:GenericCell<Token>;
 
-	inline function unexpected(t:Token, ?desc)
+	inline function unexpected(t:Token, ?desc):Dynamic
 		throw new UnexpectedToken(lexer, t, desc);
 
-	inline function unclosed(t:Token)
+	inline function unclosed(t:Token):Dynamic
 		throw new UnclosedToken(lexer, t);
 
-	inline function missingArg(p:Position, ?toToken:Token, ?desc:String)
+	inline function missingArg(p:Position, ?toToken:Token, ?desc:String):Dynamic
 		throw new MissingArgument(lexer, p, toToken, desc);
 
-	inline function badValue(pos:Position, ?desc:String)
+	inline function badValue(pos:Position, ?desc:String):Dynamic
 		throw new BadValue(lexer, pos, desc);
 
-	inline function badArg(pos:Position, ?desc:String)
+	inline function badArg(pos:Position, ?desc:String):Dynamic
 		throw new BadValue(lexer, pos.offset(1, -1), desc);
 
-	inline function unexpectedCmd(cmd:Token)
+	inline function unexpectedCmd(cmd:Token):Dynamic
 	{
 		// EXPERIMENTAL: use Levenshtein distances to generate command suggestions
 
@@ -60,7 +61,7 @@ class Parser {
 
 		var name = switch cmd.def {
 		case TCommand(n): n;
-		case _: throw new UnexpectedToken(lexer, cmd); null;
+		case _: throw new UnexpectedToken(lexer, cmd);
 		}
 		name = name.toLowerCase();
 		var cmds = verticalCommands.concat(horizontalCommands);
@@ -87,6 +88,7 @@ class Parser {
 				c.next = new GenericCell(lexer.token(Lexer.tokens), null);
 			c = c.next;
 		}
+		assert(c.elt != null);
 		return c.elt;
 	}
 
@@ -117,7 +119,7 @@ class Parser {
 	function discardVerticalNoise(permanent=true):Int
 		return discard(function (x) return x.def.match(TWordSpace(_)|TComment(_)|TBreakSpace(_)));
 
-	function arg<T>(internal:Stop->T, toToken:Null<Token>, ?desc:String):{ val:T, pos:Position }
+	function arg<T>(internal:Stop->T, ?toToken:Token, ?desc:String):{ val:T, pos:Position }
 	{
 		discardNoise();
 		var open = pop();
@@ -131,7 +133,7 @@ class Parser {
 		return { val:li, pos:open.pos.span(close.pos) };
 	}
 
-	function optArg<T>(internal:Stop->T, toToken:Null<Token>, ?desc:String):Null<{ val:T, pos:Position }>
+	function optArg<T>(internal:Stop->T, ?toToken:Token, ?desc:String):Nullable<{ val:T, pos:Position }>
 	{
 		var i = discardNoise(false);
 		if (!peek(i).def.match(TBrkOpen))
@@ -155,7 +157,7 @@ class Parser {
 		return switch cmd.def {
 		case TCommand("emph"): mk(Emphasis(content.val), cmd.pos.span(content.pos));
 		case TCommand("highlight"): mk(Highlight(content.val), cmd.pos.span(content.pos));
-		case _: unexpected(cmd); null;
+		case _: unexpected(cmd);
 		}
 	}
 
@@ -169,7 +171,7 @@ class Parser {
 		return mk(Emphasis(li), open.pos.span(close.pos));
 	}
 
-	function horizontal(stop:Stop):HElem
+	function horizontal(stop:Stop):Nullable<HElem>
 	{
 		while (peek().def.match(TComment(_)))
 			pop();
@@ -203,24 +205,17 @@ class Parser {
 		case { def:tdef } if (tdef.match(TBreakSpace(_) | TEof)):
 			null;
 		case other:
-			unexpected(other); null;
+			unexpected(other);
 		}
 	}
 
 	function hlist(stop:Stop)
-	{
-		var li = [];
-		while (true) {
-			var v = horizontal(stop);
-			if (v == null) break;
-			li.push(v);
-		}
-		return mkList(HList(li));
-	}
+		return mkList(horizontal, stop);
 
-	// FIXME try to avoid escaping the /, extremely common in paths
-	// FIXME handle dash conversion, or document it accordingly
-	function rawHorizontal(stop:Stop)
+	// FIXME document slash behavior
+	// FIXME document automagically converted chars (TeX ligatures)
+	// FIXME document chars that need to be escaped (including the ones used in the above TeX ligatures)
+	function rawHorizontal(stop:Stop):String
 	{
 		var buf = new StringBuf();
 		while (true) {
@@ -247,14 +242,14 @@ class Parser {
 	function hierarchy(cmd:Token)
 	{
 		var name = arg(hlist, cmd, "name");
-		if (name.val == null) badArg(name.pos, "name cannot be empty");
+		if (name.val.def.match(HEmpty)) badArg(name.pos, "name cannot be empty");
 		return switch cmd.def {
 		case TCommand("volume"): mk(Volume(name.val), cmd.pos.span(name.pos));
 		case TCommand("chapter"): mk(Chapter(name.val), cmd.pos.span(name.pos));
 		case TCommand("section"): mk(Section(name.val), cmd.pos.span(name.pos));
 		case TCommand("subsection"): mk(SubSection(name.val), cmd.pos.span(name.pos));
 		case TCommand("subsubsection"): mk(SubSubSection(name.val), cmd.pos.span(name.pos));
-		case _: unexpected(cmd); null;
+		case _: unexpected(cmd);
 		}
 	}
 
@@ -262,13 +257,13 @@ class Parser {
 	{
 		discardNoise();
 		var name = hlist(stop);
-		assert(name != null, "obvisouly empty header");  // FIXME maybe
+		assert(!name.def.match(HEmpty), "obvisouly empty header");  // FIXME proper error? if so, needs to be tested
 
 		return switch hashes.def {
 		case THashes(1): mk(Section(name), hashes.pos.span(name.pos));
 		case THashes(2): mk(SubSection(name), hashes.pos.span(name.pos));
 		case THashes(3): mk(SubSubSection(name), hashes.pos.span(name.pos));
-		case _: unexpected(hashes, 'only sections (#), subsections (##) and subsubsections (###) allowed'); null;
+		case _: unexpected(hashes, 'only sections (#), subsections (##) and subsubsections (###) allowed');
 		}
 	}
 
@@ -279,8 +274,8 @@ class Parser {
 		var path = arg(rawHorizontal, cmd, "path");
 		var caption = arg(hlist, cmd, "caption");
 		var copyright = arg(hlist, cmd, "copyright");
-		if (caption.val == null) badArg(caption.pos, "caption cannot be empty");
-		if (copyright.val == null) badArg(copyright.pos, "copyright cannot be empty");
+		if (caption.val.def.match(HEmpty)) badArg(caption.pos, "caption cannot be empty");  // TODO test
+		if (copyright.val.def.match(HEmpty)) badArg(copyright.pos, "copyright cannot be empty");  // TODO test
 		return mk(Figure(size, mkPath(path.val, path.pos), caption.val, copyright.val), cmd.pos.span(copyright.pos));
 	}
 
@@ -302,7 +297,7 @@ class Parser {
 			var s = spat.matched(2);
 			blobSize(s != null ? { val:s, pos:tag[1].pos } : null, defaultFigureSize);
 		case _:
-			unexpected(tag[1]); null;
+			unexpected(tag[1]);
 		}
 
 		var captionParts = [];
@@ -311,7 +306,7 @@ class Parser {
 		var lastPos = null;
 		while (true) {
 			var h = hlist({ beforeAny:[TBrOpen,TAt] });  // FIXME consider current stop
-			if (h != null) {
+			if (!h.def.match(HEmpty)) {
 				captionParts.push(h);
 				lastPos = h.pos;
 				continue;
@@ -336,8 +331,7 @@ class Parser {
 		assert(lastPos != null);
 		if (captionParts.length == 0) badValue(lastPos, "caption cannot be empty");
 		if (path == null) missingArg(lastPos, tag[1], "path");
-		if (copyright == null) missingArg(lastPos, tag[1], "copyright");
-
+		if (copyright == null || copyright.def.match(HEmpty)) missingArg(lastPos, tag[1], "copyright");  // TODO test
 		var caption = if (captionParts.length == 1)
 				captionParts[0]
 			else
@@ -365,15 +359,14 @@ class Parser {
 		return cells;
 	}
 
-	function blobSize(spec:Null<{ val:String, pos:Position }>, def:BlobSize):Null<BlobSize>
+	function blobSize(spec:Nullable<{ val:String, pos:Position }>, def:BlobSize):BlobSize
 	{
-		if (spec == null) return def;
+		var spec = spec.extractOr(return def);
 		return switch spec.val.toLowerCase().trim() {
-		case null: badArg(spec.pos, "size cannot be empty"); null;
 		case "small": MarginWidth;
 		case "medium": TextWidth;
 		case "large": FullWidth;
-		case _: badValue(spec.pos, "only sizes 'small', 'medium', and 'large' are valid"); null;
+		case _: badValue(spec.pos, "only sizes 'small', 'medium', and 'large' are valid");
 		}
 	}
 
@@ -382,7 +375,7 @@ class Parser {
 		assert(begin.def.match(TCommand("begintable")), begin);
 		var size = blobSize(optArg(rawHorizontal, begin, "size"), defaultTableSize);
 		var caption = arg(hlist, begin, "caption");
-		if (caption.val == null) badArg(caption.pos, "caption cannot be empty");
+		if (caption.val.def.match(HEmpty)) badArg(caption.pos, "caption cannot be empty");  // TODO test
 		var rows = [];
 		discardVerticalNoise();
 		if (!peek().def.match(TCommand("header"))) missingArg(peek().pos, begin, "\\header line");
@@ -405,8 +398,8 @@ class Parser {
 		assert(cmd.def.match(TCommand("quotation")), cmd);
 		var text = arg(hlist, cmd, "text");
 		var author = arg(hlist, cmd, "author");
-		if (text.val == null) badArg(text.pos, "text cannot be empty");
-		if (author.val == null) badArg(author.pos, "author cannot be empty");
+		if (text.val.def.match(HEmpty)) badArg(text.pos, "text cannot be empty");
+		if (author.val.def.match(HEmpty)) badArg(author.pos, "author cannot be empty");
 		return mk(Quotation(text.val, author.val), cmd.pos.span(author.pos));
 	}
 
@@ -419,8 +412,8 @@ class Parser {
 		if (!at.def.match(TAt)) missingArg(at.pos, greaterThan, "author (prefixed with @)");
 		discardNoise();
 		var author = hlist(stop);
-		if (text == null) badValue(greaterThan.pos.span(at.pos).offset(1, -1), "text cannot be empty");
-		if (author == null) badValue(at.pos.offset(1,0), "author cannot be empty");
+		if (text.def.match(HEmpty)) badValue(greaterThan.pos.span(at.pos).offset(1, -1), "text cannot be empty");
+		if (author.def.match(HEmpty)) badValue(at.pos.offset(1,0), "author cannot be empty");
 		return mk(Quotation(text, author), greaterThan.pos.span(author.pos));
 	}
 
@@ -428,14 +421,23 @@ class Parser {
 	function listItem(mark:Token, stop:Stop)
 	{
 		assert(mark.def.match(TCommand("item" | "number")), mark);
-		var item = optArg(vlist, mark, "item content");
-		if (item == null) {
-			var i = vertical(stop);
-			item = { val:i, pos:i.pos };
+		var item:VElem = switch optArg(vlist, mark, "item content").cases() {
+		case Some(vlist):
+			vlist.val.pos = vlist.pos;
+			vlist.val;
+		case None:
+			var st = peek().pos;
+			vertical(stop).extractOr({
+				// FIXME duplicated from mkList and delicate
+				var at = peek().pos;
+				at = at.offset(0, at.min - at.max);
+				st = st.offset(0, st.min - st.max);
+				mk(VEmpty, st.span(at));
+			});
 		}
 		// TODO validation and error handling
-		item.val.pos = mark.pos.span(item.pos);
-		return item.val;
+		item.pos = mark.pos.span(item.pos);
+		return item;
 	}
 
 	// see /generator/docs/list-design.md
@@ -449,7 +451,7 @@ class Parser {
 		var def = switch mark.def {
 		case TCommand("item"): List(false, li);
 		case TCommand("number"): List(true, li);
-		case _: unexpectedCmd(mark); null;
+		case _: unexpectedCmd(mark);
 		}
 		return mk(def, mark.pos.span(li[li.length - 1].pos));
 	}
@@ -458,7 +460,7 @@ class Parser {
 	{
 		assert(begin.def.match(TCommand("beginbox")), begin);
 		var name = arg(hlist, begin, "name");
-		if (name.val == null) badArg(name.pos, "name cannot be empty");
+		if (name.val.def.match(HEmpty)) badArg(name.pos, "name cannot be empty");
 		var li = vlist({ beforeAny:[TCommand("endbox")] });
 		discardVerticalNoise();
 		var end = pop();
@@ -470,8 +472,8 @@ class Parser {
 	function mkPath(rel:String, pos:Position, allowEmpty=false)
 	{
 		// TODO don't allow absolute paths (they mean nothing in a collaborative repository)
-		// TODO absolute paths?
-		rel = rel != null ? StringTools.trim(rel) : "";
+		// TODO maybe return absolute paths?
+		assert(rel != null);
 		if (rel == "") {
 			if (allowEmpty)
 				return rel;
@@ -494,7 +496,7 @@ class Parser {
 	function paragraph(stop:Stop)
 	{
 		var text = hlist(stop);
-		if (text == null) return null;
+		if (text.def.match(HEmpty)) return mk(VEmpty, text.pos);  // TODO test
 		return mk(Paragraph(text), text.pos);
 	}
 
@@ -516,7 +518,7 @@ class Parser {
 		return switch cmd.def {
 		case TCommand("html\\apply"): mk(HtmlApply(path), cmd.pos.span(p.pos));
 		case TCommand("tex\\preamble"): mk(LaTeXPreamble(path), cmd.pos.span(p.pos));
-		case _: unexpected(cmd); null;
+		case _: unexpected(cmd);
 		}
 	}
 
@@ -542,11 +544,11 @@ class Parser {
 		case [TCommand("html"), TCommand("apply")]: targetInclude({ def:TCommand("html\\apply"), pos:pos });
 		case [TCommand("tex"), TCommand("preamble")]: targetInclude({ def:TCommand("tex\\preamble"), pos:pos });
 		case [TCommand("tex"), TCommand("export")]: texExport({ def:TCommand("tex\\export"), pos:pos });
-		case _: unexpectedCmd(exec); null;
+		case _: unexpectedCmd(exec);
 		}
 	}
 
-	function vertical(stop:Stop):VElem
+	function vertical(stop:Stop):Nullable<VElem>
 	{
 		discardVerticalNoise();
 		return switch peek().def {
@@ -582,20 +584,12 @@ class Parser {
 		case TColon(q) if (q != 3):
 			paragraph(stop);
 		case _:
-			unexpected(peek()); null;
+			unexpected(peek());
 		}
 	}
 
 	function vlist(stop:Stop)
-	{
-		var li = [];
-		while (true) {
-			var v = vertical(stop);
-			if (v == null) break;
-			li.push(v);
-		}
-		return mkList(VList(li));
-	}
+		return mkList(vertical, stop);
 
 	public function file():File
 		return vlist({});  // TODO update the cache
@@ -608,7 +602,7 @@ class Parser {
 		this.cache = cache;
 	}
 
-	public static function parse(path:String, ?cache:FileCache)
+	public static function parse(path:String, ?cache:FileCache):File
 	{
 		var lex = new Lexer(sys.io.File.getBytes(path), path);
 		var parser = new Parser(path, lex, cache);

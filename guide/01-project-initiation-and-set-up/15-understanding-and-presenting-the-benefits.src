@@ -18,7 +18,7 @@ police force, and the judicial system. By reducing these costs, municipal resour
 other areas such as preventive health care, education, and nutrition.
 \begintable{The benefits of public transport initiatives}
 \header
-\col \highlight{Factor}; ; 
+\col \highlight{Factor} 
 \col \highlight{Impacts/}\highlight{I}\highlight{ndicators}
 \row
 \col Time-savings benefit to transit users
@@ -73,14 +73,15 @@ Mode Selection: Why BRT? features a more detailed discussion on these benefits a
 
 \subsection{Listing of Benefits Commonly Sought with Major Public Transport Projects}
 
-Mobility deficiency, like congestion, that needs to be alleviated
+\highlight{Mobility deficiency, like congestion, that needs to be alleviated} \'FIXME Title'\
 
 Perhaps the most obvious reason for a project is to significantly improve mobility within some district 
 of the city/region or some corridor within the city/region. Mere increases in the number of buses, jitneys, 
 or such, or increases in service duration during the day, either will not provide enough additional capacity, 
 its quality will not be high enough, or due to congestion it will not have much effect. 
 
-Current pollution needs to be alleviated and future pollution increases curtailed 
+\highlight{Current pollution needs to be alleviated and future pollution increases curtailed} \'FIXME Title'\
+
 
 The current mix of vehicles within a district or city/region results in pollution that is judged to 
 be detrimental to health, visibility, buildings and plants, or some combination of all of them. Or it 
@@ -88,7 +89,8 @@ has become evident that the current trend in the mix of vehicles will soon resul
 problems. Note that this benefit can also be interpreted as a reduction in cost. This is a distinction 
 that sometimes causes confusion or ambiguity during the evaluation process. 
 
-Safety problems need to be alleviated 
+\highlight{Safety problems need to be alleviated} \'FIXME Title'\
+
 
 It has been widely reported that traffic collisions count as one of the greatest causes of death in 
 countries both rich and poor. In developing countries, there is often an additional element of injustice, 
@@ -98,7 +100,8 @@ many high user-vulnerability vehicles like motorcycles and bicycles in mixed tra
 transport can simultaneously reduce the number of user-vulnerable vehicles by attracting former users 
 as well as tame street conditions.  
 
-Health problems need to be alleviated 
+\highlight{Health problems need to be alleviated} \'FIXME Title'\
+
 
 Many metropolitan areas have now reached the point where peoples’ lives are being shortened, and their 
 ability to participate in daily life hampered, due to poor environmental quality. While transport can 
@@ -108,7 +111,8 @@ and dust particulates. Reductions in total vehicle pollution can result from maj
 that reduce the number and use of smaller, less efficient, obsolete, and/or poorly maintained vehicles. 
 
 
-*Energy conservation by current population and future energy-efficiency improvements* 
+\highlight{Energy conservation by current population and future energy-efficiency improvements} \'FIXME Title'\
+
 
 Energy production is related to a host of potentially serious problems, depending on the fuel sources. 
 There is greenhouse gas generation, costs of investments in fuel exploration and power plant construction, 
@@ -119,7 +123,7 @@ Even if current impacts and costs are manageable, future impacts may be worse. F
 is closely related to other problems, such as pollution and health issues. Energy reduction will usually 
 result in reductions to these as well. 
 
-*Redirection or elimination of excessive or ineffective subsidies* 
+\highlight{Redirection or elimination of excessive or ineffective subsidies} \'FIXME Title'\
 
 Attempts to improve the mobility of the masses and the need for affordable mobility options for lower-income 
 populations make the case for the provision of subsidies to public transport operators. On the other 
@@ -129,7 +133,8 @@ too slowly to ever be efficient or to attract customers willing to pay higher fa
 a more formal public transport system, with right-of-way upgrades, and more centralized control could 
 use the same level of subsidies to much better effect. 
 
-*Economic development improvements as a result of the previous five items *
+\highlight{Economic development improvements as a result of the previous five items} \'FIXME Title'\
+
 
 There are always opportunity costs associated with public expenditures. Decreased public spending on 
 health problems, on harm caused by accidents, on policing, on imported fuels, and so on, liberate this 
@@ -141,7 +146,7 @@ When public transport investments succeed in reducing congestion, the decreases 
 result in less productivity loss to both individuals and to commerce that depends on the timely movement 
 of goods and key staff across the region. 
 
-*Transport**-**sector employees need more secure employment and better wages* 
+\highlight{Transport-sector employees need more secure employment and better wages} \'FIXME Title'\
 
 Ad hoc transport systems that are not the result of coherent projects are often characterized by high 
 employee turnover, due to low pay and perhaps abusive or highly stressful working conditions. This is 
@@ -150,15 +155,14 @@ being forced to wait until a jitney is absolutely full before departure. It can 
 poor safety, with low wages and operating margins resulting in poorly maintained brakes, tires, exhaust 
 systems, and overloaded vehicles combined with aggressive driving where operators compete for customers. 
 
-
-*Population growth within a region needs to be absorbed more efficiently *
+\highlight{Population growth within a region needs to be absorbed more efficiently} \'FIXME Title'\
 
 Fast-growing populations often expand into lower-density perimeters. On the other hand, the existing 
 built-up areas may not have the transport capacity to absorb more people, even if the zoning laws would 
 permit higher-density development. Space-efficient public transport systems can be central to managing 
 spatial change and growth.
 
-*Tourism in decline or unlikely to increase under the status quo* 
+\highlight{Tourism in decline or unlikely to increase under the status quo} \'FIXME Title'\
 
 A location with a reputation for very unpleasant or unsafe traffic conditions, poor environmental quality, 
 and a lack of suitable mobility options for visitors will conspire to reduce the desirability of the 
@@ -173,7 +177,8 @@ distinguish a promising project worthy of support from the often numerous propos
 by concerned political activists, citizens, businesses, and technological boosters, which may be well 
 intentioned but lack sufficient justification. 
 
-*Listing of potential benefits and potential obstacles*
+
+\highlight{Listing of potential benefits and potential obstacles} \'FIXME Title'\
 
 The best way to justify a project for further study, and to convince decision makers of the same, is 
 to provide a short summary that includes the nature and scope of the project and the higher-level goals 
@@ -186,7 +191,8 @@ What follows is a description of what a typical short summary should contain. So
 be necessary, in addition to doing “meta-research” into all relevant research and survey work done to 
 date.
 
-*Concise description of project scope and goals *
+
+\highlight{Concise description of project scope and goals} \'FIXME Title'\
 
 There is always a set of questions that needs to be answered immediately in order to hold the interest 
 of people who need to know why they should spend their time on this particular project proposal. They 
@@ -216,11 +222,12 @@ be clear, should be linked to specific benefits, and if possible, prioritized. T
 easier to evaluate project alternatives. There may also be project benefits that are not directly linked 
 to the formal goals, but can be used to build support. Project benefits can be divided into three broad 
 groups:
-\item Direct benefits that can be monetized, that is, estimated in quantitative terms in units of currency. Direct benefits are those for which the connection between project completion and improvements is clear. Monetizable benefits may already take the form of local currency, or can be assigned a unit of monetary value with reference to the marketplace. For example, fuel-purchase savings may occur to users, and operating-cost reductions may be achieved by transport operators. Users may experience reduced travel times, and the entire region experience a reduction in greenhouse gas emissions; for both of these, a monetary value can be imputed;
-\item Direct benefits that can be estimated quantitatively, but for which it is difficult to assign a monetary value. These would include improvements in accessibility (i.e., the number of employment opportunities that can be reached within a reasonable travel time), or safety; 
-\item Indirect benefits are more contentious because the link between the project and the benefit is not always straightforward, and estimation techniques can be complex or controversial. Nevertheless, they can be compelling reasons for a project. For example, reduced congestion can contribute to an improvement in the efficiency of commerce through the lowering of transport times and costs. Poverty might be reduced through improved mobility to employment or education for some subpopulations. Land in the perimeter might be preserved through densification enabled by higher capacity transport. Reduction in petroleum imports is yet another.
+\number Direct benefits that can be monetized, that is, estimated in quantitative terms in units of currency. Direct benefits are those for which the connection between project completion and improvements is clear. Monetizable benefits may already take the form of local currency, or can be assigned a unit of monetary value with reference to the marketplace. For example, fuel-purchase savings may occur to users, and operating-cost reductions may be achieved by transport operators. Users may experience reduced travel times, and the entire region experience a reduction in greenhouse gas emissions; for both of these, a monetary value can be imputed;
+\number Direct benefits that can be estimated quantitatively, but for which it is difficult to assign a monetary value. These would include improvements in accessibility (i.e., the number of employment opportunities that can be reached within a reasonable travel time), or safety; 
+\number Indirect benefits are more contentious because the link between the project and the benefit is not always straightforward, and estimation techniques can be complex or controversial. Nevertheless, they can be compelling reasons for a project. For example, reduced congestion can contribute to an improvement in the efficiency of commerce through the lowering of transport times and costs. Poverty might be reduced through improved mobility to employment or education for some subpopulations. Land in the perimeter might be preserved through densification enabled by higher capacity transport. Reduction in petroleum imports is yet another.
 
-*Recognize potential conflicts between analysts and between community stakeholders *
+
+\highlight{Recognize potential conflicts between analysts and between community stakeholders} \'FIXME Title'\
 
 There is likely to be some skepticism about a project’s worthiness, or how realistic it is, even from 
 well-intentioned people. While some opposition is to be expected from those with stakes in the status 
@@ -230,14 +237,15 @@ to be overcome. There is also the chance that aggrieved parties will take redres
 interest of minimizing the chances of such eventualities, here are some questions to attempt to answer 
 early on:
 \item \highlight{Are there important goals that conflict?} This is not uncommon for public transport projects, and points to the need to prioritize goals. Project goals can often express the tension between reducing operating-support requirements (subsidy) and increasing ridership or delivering other user benefits such as improved comfort. Claims that one can optimize two conflicting goals at once cast doubt on whether the importance of goals has been decided. This leaves other analysts with the opportunity to criticize and oppose based on their own judgments;
-\item \highlight{Are there conflicts between the short}\highlight{-}\highlight{term and longer}\highlight{-}\highlight{term needs and goals}\highlight{? }An example: Reducing car use is an example of a longer-term goal, but the achievement of the shorter-term goal of congestion reduction may actually promote it. This may imply that measures to restrain auto use might be needed if the longer-term goal is a serious one;
+\item \highlight{Are there conflicts between the short-term and longer-term needs and goals?} An example: Reducing car use is an example of a longer-term goal, but the achievement of the shorter-term goal of congestion reduction may actually promote it. This may imply that measures to restrain auto use might be needed if the longer-term goal is a serious one;
 \item \highlight{Are there conflicts of interests for project decision makers?} While this can happen anywhere, it is of particular relevance where only small numbers of people own autos. They are likely to also be the ones who would have to approve the taking of lanes from autos when this is essential to a project;
 \item \highlight{Are there conflicts of interests for governing institutions and authorities?} A typical example is a multimodal planning agency that is trying to improve conditions for both private motorists and public transport customers. It might not be able to advocate fairly or evenhandedly for both parties; 
-\item Can one identify inequitable incidences of costs versus benefits? It is axiomatic that the good of the majority outweighs the good of the few. If it were not, very few transport projects could ever advance, as almost all projects impose some costs disproportionately—better to identify them up front to ascertain the degree of inequity and to see if it is excessive or something that might derail a project.
-\item Can one include mitigations of inequities in project design?\highlight{ }In some cases, mitigations could be easily affordable relative to the size of the project budget. In others, there may be no mitigation possible, leaving only unsatisfactory solutions or drastic measures. An example of an unsatisfactory solution would be overpasses or underpasses to connect severed neighborhoods. An example of a drastic measure would be the relocation of people against their will due to condemnations. 
+\item \highlight{Can one identify inequitable incidences of costs versus benefits?} It is axiomatic that the good of the majority outweighs the good of the few. If it were not, very few transport projects could ever advance, as almost all projects impose some costs disproportionately—better to identify them up front to ascertain the degree of inequity and to see if it is excessive or something that might derail a project.
+\item \highlight{Can one include mitigations of inequities in project design?} In some cases, mitigations could be easily affordable relative to the size of the project budget. In others, there may be no mitigation possible, leaving only unsatisfactory solutions or drastic measures. An example of an unsatisfactory solution would be overpasses or underpasses to connect severed neighborhoods. An example of a drastic measure would be the relocation of people against their will due to condemnations. 
 
-*Develop a more limited set of benefits that can still justify a project if some benefits are a source 
-of contention*
+\highlight{Develop a more limited set of benefits that can still justify a project if some benefits are a source 
+of contention} \'FIXME Title'\
+
 
 If it is apparent that some of the indirect (sometimes even direct) benefits are going to be disputed, 
 a reduced list can be developed. This can be done by eliminating some types of benefits entirely, or 
@@ -256,7 +264,8 @@ Projects are called “robust” if they do not depend on only one particular ty
 a very high level of a particular benefit in order to be judged successful, and can adapt to circumstances 
 well. This is a very positive attribute for projects with long life spans.
 
-Recognize the opportunity costs 
+
+\highlight{Recognize the opportunity costs} \'FIXME Title'\
 
 The “opportunity cost” is defined as the alternative use for the same resources. If the opportunity 
 is to be funded by the same mechanisms, having the same criteria, and staffed by the same resources as 
