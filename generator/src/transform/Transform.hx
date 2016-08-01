@@ -21,7 +21,7 @@ class Transform {
 	static function mk<T>(def:T, pos:Position):Elem<T>
 		return { def:def, pos:pos };
 
-	static function compat(d:DElem, id:String):TElem
+	public static function compat(d:DElem, id:String):TElem
 	{
 		assert(d != null);
 		assert(d.def != null);

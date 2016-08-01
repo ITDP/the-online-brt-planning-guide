@@ -34,13 +34,14 @@ class Main {
 
 		var ast = parser.Parser.parse(ipath);
 
-		var doc = transform.Transform.transform(ast);
+		var doc = transform.NewTransform.transform(ast);
+		var compatDoc = transform.Transform.compat(doc, "");
 
 		if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
 		if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
 
 		var hgen = new generator.HtmlGen(Path.join([opath, "html"]));
-		hgen.generate(doc);
+		hgen.generate(compatDoc);
 
 		var tgen = new generator.TexGen(Path.join([opath, "pdf"]));
 		tgen.writeDocument(doc);

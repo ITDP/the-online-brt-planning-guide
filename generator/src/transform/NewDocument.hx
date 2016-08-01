@@ -4,10 +4,9 @@ import parser.Ast;
 
 // expose the reused definitions from parser.Ast so that downstream users don't
 // need to import both types
-// TODO uncomment
-// typedef HElem = parser.HElem;
-// typedef Position = parser.Token.Position;
-// typedef BlobSize = parser.BlobSize;
+typedef HElem = parser.HElem;
+typedef Position = parser.Token.Position;
+typedef BlobSize = parser.BlobSize;
 
 /*
 A document level definition.

@@ -1,6 +1,7 @@
 package generator.tex;
 
-import transform.Document;
+import transform.NewDocument;
+import transform.Context;
 
 import Assertion.*;
 
@@ -41,21 +42,21 @@ class LargeTable {
 		}
 	}
 
-	static function pseudoTypeset(v:TElem)
+	static function pseudoTypeset(v:DElem)
 	{
 		if (v == null || v.def == null) return 0.;
 		return switch v.def {
-		case TLaTeXPreamble(_), TLaTeXExport(_), THtmlApply(_): 0;
-		case TVolume(_), TChapter(_), TSection(_), TSubSection(_), TSubSubSection(_): BAD_COST; // not allowed in tables
-		case TElemList(li):
+		case DLaTeXPreamble(_), DLaTeXExport(_), DHtmlApply(_), DEmpty: 0;
+		case DVolume(_), DChapter(_), DSection(_), DSubSection(_), DSubSubSection(_): BAD_COST; // not allowed in tables
+		case DElemList(li):
 			var cnt = 0.;
 			for (i in li)
 				cnt += pseudoTypeset(i);
 			cnt/li.length;
-		case TFigure(_, _, caption, cright, _): TBL_MARK_COST + pseudoHTypeset(caption) + SPACE_COST + pseudoHTypeset(cright);
-		case TTable(_), TBox(_): BAD_COST; // not allowed (for now?)
-		case TQuotation(text, by): QUOTE_COST + pseudoHTypeset(text) + QUOTE_COST + LINE_BREAK_COST + EM_DASH_COST + pseudoHTypeset(by);
-		case TList(numbered, li):
+		case DFigure(_, _, _, caption, cright): TBL_MARK_COST + pseudoHTypeset(caption) + SPACE_COST + pseudoHTypeset(cright);
+		case DTable(_), DBox(_): BAD_COST; // not allowed (for now?)
+		case DQuotation(text, by): QUOTE_COST + pseudoHTypeset(text) + QUOTE_COST + LINE_BREAK_COST + EM_DASH_COST + pseudoHTypeset(by);
+		case DList(numbered, li):
 			var markCost = BULLET_COST + SPACE_COST;
 			if (numbered)
 				markCost += 2*CHAR_COST;
@@ -63,13 +64,13 @@ class LargeTable {
 			for (i in li)
 				cnt += markCost + pseudoTypeset(i);
 			cnt/li.length;
-		case TCodeBlock(code): code.length;
-		case TParagraph(h): pseudoHTypeset(h);
+		case DCodeBlock(code): code.length;
+		case DParagraph(h): pseudoHTypeset(h);
 		}
 	}
 
 	// TODO document the objective and the implementation
-	static function computeTableWidths(noModules, header, rows:Array<Array<TElem>>, pos:Position)
+	static function computeTableWidths(noModules, header, rows:Array<Array<DElem>>, pos:Position)
 	{
 		var width = header.length;
 		var cost = header.map(pseudoTypeset);
@@ -116,13 +117,14 @@ class LargeTable {
 		return icost;
 	}
 
-	public static function gen(v:TElem, gen:TexGen, genAt:String)
+	public static function gen(v:DElem, gen:TexGen, genAt:String, genIdc:IdCtx)
 	{
-		assert(v.def.match(TTable(_)), v);
+		assert(v.def.match(DTable(_)), v);
 		switch v.def {
-		case TTable(size, caption, header, rows, count, id):
+		case DTable(no, size, caption, header, rows):
 			var buf = new StringBuf();
-			buf.add('\\tabletitle{$count}{${gen.genh(caption)}}\n\n');
+			// TODO label
+			buf.add('\\tabletitle{$no}{${gen.genh(caption)}}\n\n');
 			var width = header.length;
 
 			switch size {
@@ -159,12 +161,12 @@ class LargeTable {
 			}
 
 			buf.add("\\cr\n\t");
-			function genCell(i:TElem) {
+			function genCell(i:DElem) {
 				if (i == null || i.def == null)
 					return "";
 				return switch i.def {
-				case TParagraph(h): gen.genh(h);
-				case _: gen.genv(i, genAt);
+				case DParagraph(h): gen.genh(h);
+				case _: gen.genv(i, genAt, genIdc);
 				}
 			}
 			buf.add("\\color{gray75}\\bfseries ");
