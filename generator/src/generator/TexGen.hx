@@ -102,7 +102,6 @@ class TexGen {
 			bufs[path] = buf;
 			buf.add("% This file is part of the\n");
 			buf.add(FILE_BANNER);
-			// FIXME label
 			buf.add('\n\n\\volume{$no}{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, dir, idc)}');
 			return '\\input{$path}\n\n';
 		case DChapter(no, name, children):
@@ -113,44 +112,45 @@ class TexGen {
 			bufs[path] = buf;
 			buf.add("% This file is part of the\n");
 			buf.add(FILE_BANNER);
-			// FIXME label
 			buf.add('\n\n\\chapter{$no}{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at, idc)}');
 			return '\\input{$path}\n\n';
 		case DSection(no, name, children):
 			idc.section = v.id.sure();
 			var id = idc.join(true, ":", volume, chapter, section);
-			// FIXME label
 			return '\\section{$no}{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at, idc)}';
 		case DSubSection(no, name, children):
 			idc.subSection = v.id.sure();
 			var id = idc.join(true, ":", volume, chapter, section, subSection);
-			// FIXME label
 			return '\\subsection{$no}{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at, idc)}';
 		case DSubSubSection(no, name, children):
 			idc.subSubSection = v.id.sure();
 			var id = idc.join(true, ":", volume, chapter, section, subSection, subSubSection);
-			// FIXME label
 			return '\\subsubsection{$no}{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at, idc)}';
 		case DBox(no, name, children):
-			// TODO label
-			return '\\beginbox{$no}{${genh(name)}}\n\n${genv(children, at, idc)}\\endbox\n${genp(v.pos)}\n';
+			idc.box = v.id.sure();
+			var id = idc.join(true, ":", chapter, box);
+			return '\\beginbox{$no}{${genh(name)}}\n\\label{$id}\n${genv(children, at, idc)}\\endbox\n${genp(v.pos)}\n';
 		case DFigure(no, size, path, caption, cright):
+			idc.figure = v.id.sure();
+			var id = idc.join(true, ":", chapter, figure);
 			path = sys.FileSystem.absolutePath(path);  // FIXME maybe move to transform
 			// TODO handle size
-			// TODO escape path
 			// TODO enable on XeLaTeX too
-			// TODO label
+			// FIXME escape path
+			// FIXME label
 			return '
 			\\ifxetex
 				% disabled for now
 			\\else
 				{  % group required to avoid fignote settings escaping
 					\\img{\\hsize}{$path}
-					\\fignote{$no}{${genh(caption)}}{${genh(cright)}}
+					\\fignote{$no}{${genh(caption)}\\label{$id}}{${genh(cright)}}
 				}
 			\\fi'.doctrim() + "\n\n";  // FIXME use more neutral names
 		case DTable(_):
-			return LargeTable.gen(v, this, at, idc);
+			idc.table = v.id.sure();
+			var id = idc.join(true, ":", chapter, table);
+			return LargeTable.gen(v, id, this, at, idc);
 		case DList(numbered, li):
 			var buf = new StringBuf();
 			var env = numbered ? "enumerate" : "itemize";
