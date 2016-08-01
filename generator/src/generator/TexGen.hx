@@ -54,6 +54,18 @@ class TexGen {
 	public function genh(h:HElem)
 	{
 		switch h.def {
+		case Wordspace:
+			return " ";
+		case Emphasis(h):
+			return '\\emphasis{${genh(h)}}';
+		case Highlight(h):
+			return '\\highlight{${genh(h)}}';
+		case Word(word):
+			return gent(word);
+		case InlineCode(code):
+			return '\\code{${gent(code)}}';
+		case Math(tex):
+			return '$$$tex$$';
 		case HElemList(li):
 			var buf = new StringBuf();
 			for (i in li)
@@ -61,18 +73,6 @@ class TexGen {
 			return buf.toString();
 		case HEmpty:
 			return "";
-		case Word(word):
-			return gent(word);
-		case InlineCode(code):
-			return '\\code{${gent(code)}}';
-		case Math(tex):
-			return '$$$tex$$';
-		case Wordspace:
-			return " ";
-		case Emphasis(h):
-			return '\\emphasis{${genh(h)}}';
-		case Highlight(h):
-			return '\\highlight{${genh(h)}}';
 		}
 	}
 
@@ -80,13 +80,19 @@ class TexGen {
 	{
 		assert(!at.endsWith(".tex"), at, "should not but a directory");
 		switch v.def {
-		case DElemList(li):
-			var buf = new StringBuf();
-			for (i in li)
-				buf.add(genv(i, at, idc));
-			return buf.toString();
-		case DParagraph(h):
-			return '${genh(h)}\\par\n${genp(v.pos)}\n';
+		case DHtmlApply(_):
+			return "";
+		case DLaTeXPreamble(path):
+			// TODO validate path (or has Transform done so?)
+			preamble.add('% included from `$path`\n');
+			preamble.add(genp(v.pos));
+			preamble.add(File.getContent(path).trim());
+			preamble.add("\n\n");
+			return "";
+		case DLaTeXExport(src, dest):
+			assert(FileSystem.isDirectory(destDir));
+			FsUtil.copy(src, Path.join([destDir, dest]));
+			return "";
 		case DVolume(no, name, children):
 			idc.volume = v.id.sure();
 			var id = idc.join(true, ":", volume);
@@ -125,6 +131,9 @@ class TexGen {
 			var id = idc.join(true, ":", volume, chapter, section, subSection, subSubSection);
 			// FIXME label
 			return '\\subsubsection{$no}{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at, idc)}';
+		case DBox(no, name, children):
+			// TODO label
+			return '\\beginbox{$no}{${genh(name)}}\n\n${genv(children, at, idc)}\\endbox\n${genp(v.pos)}\n';
 		case DFigure(no, size, path, caption, cright):
 			path = sys.FileSystem.absolutePath(path);  // FIXME maybe move to transform
 			// TODO handle size
@@ -132,11 +141,8 @@ class TexGen {
 			// TODO enable (uncomment)
 			// TODO label
 			return '% \\img{\\hsize}{$path}\n% \\fignote{$no}{${genh(caption)}}{${genh(cright)}}\n\n';  // FIXME more neutral names
-		case DBox(no, name, children):
-			// TODO label
-			return '\\beginbox{$no}{${genh(name)}}\n\n${genv(children, at, idc)}\\endbox\n${genp(v.pos)}\n';
-		case DQuotation(text, by):
-			return '\\quotation{${genh(text)}}{${genh(by)}}\n${genp(v.pos)}\n';
+		case DTable(_):
+			return LargeTable.gen(v, this, at, idc);
 		case DList(numbered, li):
 			var buf = new StringBuf();
 			var env = numbered ? "enumerate" : "itemize";
@@ -155,21 +161,15 @@ class TexGen {
 		case DCodeBlock(code):
 			show("code blocks in TeX improperly implemented");
 			return '\\begincode\n${gent(code)}\n\\endcode\n${genp(v.pos)}\n';
-		case DLaTeXPreamble(path):
-			// TODO validate path (or has Transform done so?)
-			preamble.add('% included from `$path`\n');
-			preamble.add(genp(v.pos));
-			preamble.add(File.getContent(path).trim());
-			preamble.add("\n\n");
-			return "";
-		case DLaTeXExport(src, dest):
-			assert(FileSystem.isDirectory(destDir));
-			FsUtil.copy(src, Path.join([destDir, dest]));
-			return "";
-		case DHtmlApply(_):
-			return "";
-		case DTable(_):
-			return LargeTable.gen(v, this, at, idc);
+		case DQuotation(text, by):
+			return '\\quotation{${genh(text)}}{${genh(by)}}\n${genp(v.pos)}\n';
+		case DParagraph(h):
+			return '${genh(h)}\\par\n${genp(v.pos)}\n';
+		case DElemList(li):
+			var buf = new StringBuf();
+			for (i in li)
+				buf.add(genv(i, at, idc));
+			return buf.toString();
 		case DEmpty:
 			return "";
 		}
