@@ -31,7 +31,7 @@ class TexGen {
 	var preamble:StringBuf;
 	var bufs:Map<String,StringBuf>;
 
-	static var texEscapes = ~/([%{}%#&\$])/;  // FIXME complete
+	static var texEscapes = ~/([{}\$&#\^_%~])/;  // FIXME complete
 
 	public function gent(text:String)
 	{
@@ -58,6 +58,8 @@ class TexGen {
 			for (i in li)
 				buf.add(genh(i));
 			return buf.toString();
+		case HEmpty:
+			return "";
 		case Word(word):
 			return gent(word);
 		case InlineCode(code):
@@ -134,7 +136,7 @@ class TexGen {
 			buf.add("\n");
 			return buf.toString();
 		case TCodeBlock(code):
-			weakAssert(false, "code blocks in TeX improperly implemented");
+			show("code blocks in TeX improperly implemented");
 			return '\\begincode\n${gent(code)}\n\\endcode\n${genp(v.pos)}\n';
 		case TLaTeXPreamble(path):
 			// TODO validate path (or has Transform done so?)

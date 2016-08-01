@@ -23,7 +23,8 @@ If average bus speeds in a corridor are relatively high, BRT infrastructure is l
 a significant improvement in bus speeds. If, on the other hand, speeds are very low, then BRT investments 
 are more likely to bring about significant passenger time savings and operational benefits. 
 
-*Gold Standard*
+
+\highlight{Gold Standard} \'FIXME Title'\
 
 Figure 5.9 is a graphic taken from an analysis of two parallel corridors in Chicago. It compares the 
 existing running time on two proposed BRT corridors to what could be achieved on the corridor were “Gold 
@@ -44,8 +45,6 @@ Standard BRT systems operating on urban arterials are likely to increase average
 More corridor-specific data about the existing causes of delay can yield far more refined estimates of 
 the likely time savings benefits of BRT infrastructure. 
 
-\figure{assets/image10.png}{A graphical example of two possible BRT corridors and their existing 
-speeds in relation to potential speeds on those particular corridors. In this case, the potential time 
-savings is much greater on US Route 29 southbound than on Veirs Mill Road westbound.}{ITDP.}
+\figure{assets/image10.png}{A graphical example of a possible BRT corridor in US29, in Montgomery County, Maryland, USA, and its existing speeds in relation to potential speeds.}{ITDP.}
 
-\figure{assets/image11.jpeg}{FixMe}{ Copyright}
+\figure{assets/image11.jpeg}{Another graphical example of a possible BRT corridor in the same area of previous image. Here (Veirs Mill Road), the potential time savings is much greater on US Route 29.}{ITDP.}

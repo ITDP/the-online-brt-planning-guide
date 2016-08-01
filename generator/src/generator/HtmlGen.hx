@@ -77,6 +77,7 @@ class HtmlGen {
 			for (i in li)
 				buf.add(horizontal(i));
 			buf.toString();
+		case HEmpty: "";
 		}
 	}
 
@@ -197,7 +198,7 @@ class HtmlGen {
 			case TParagraph(h):
 				b.add(horizontal(h));
 			case TList(numbered, li):
-				vertical(elem, null, null);  // FIXME
+				b.add(vertical(elem, null, null));  // FIXME
 			default:
 				throw "Invalid table element: " + elem.def.getName() + " pos : " + elem.pos.min + " at " + elem.pos.src;
 		}
@@ -248,7 +249,7 @@ class HtmlGen {
 		var _children = null;
 		var _name  = "";
 		var _id = "";
-		var type : Int = null;
+		var type : Null<Int> = null;
 
 		switch(cur.def)
 		{

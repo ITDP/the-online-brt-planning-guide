@@ -60,6 +60,7 @@
 	\setdefaultlanguage{english}
 \else
 	% compatibility with regular pdftex is desired, even if only for tests
+	\usepackage{ucs}
 	\usepackage[utf8x]{inputenc}
 	\usepackage[T1]{fontenc}
 	\let\familycaprm\rmfamily
@@ -72,6 +73,7 @@
 	\DeclareTextCommandDefault{\textbeta}{\,\texttt{beta}\,}
 	\DeclareTextCommandDefault{\textlambda}{\,\texttt{lambda}\,}
 	\DeclareTextCommandDefault{\textDelta}{\,\texttt{DELTA}\,}
+	\DeclareUnicodeCharacter{9608}{\kern -0.1em\rule[-0.2em]{.8em}{1.2em}}
 \fi
 
 % font style

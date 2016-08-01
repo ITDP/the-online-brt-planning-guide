@@ -10,7 +10,7 @@ using StringTools;
 class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 	static var buf:StringBuf;
 
-	static function mk(lex:hxparse.Lexer, tokDef:TokenDef, ?pos:Position)
+	static function mk(lex:hxparse.Lexer, tokDef:TokenDef, ?pos:Position):Token
 	{
 		return {
 			def : tokDef,
