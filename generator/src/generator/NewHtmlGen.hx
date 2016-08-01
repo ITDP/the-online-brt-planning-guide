@@ -1,18 +1,28 @@
 package generator;
 
-import generator.tex.*;
+import haxe.io.Bytes;
 import haxe.io.Path;
 import sys.FileSystem;
 import sys.io.File;
-import transform.NewDocument;
 import transform.Context;
+import transform.NewDocument;
 import util.sys.FsUtil;
 
 import Assertion.*;
+import generator.tex.*;
 
 using Literals;
 using StringTools;
 using parser.TokenTools;
+
+enum NavItem {
+	NDocument(children:Array<NavItem>);
+	NVolume(no:Int, nameHtml:String, url:String, children:Array<NavItem>);
+	NChapter(no:Int, nameHtml:String, url:String, children:Array<NavItem>);
+	NSection(no:Int, nameHtml:String, url:String, children:Array<NavItem>);
+	NSubSection(no:Int, nameHtml:String, url:String, children:Array<NavItem>);
+	NSubSubSection(no:Int, nameHtml:String, url:String);
+}
 
 class NewHtmlGen {
 	static inline var ASSET_SUBDIR = "assets";
@@ -89,7 +99,7 @@ class NewHtmlGen {
 		}
 	}
 
-	function saveAsset(src:String)
+	function saveAsset(src:String, ?content:Bytes)
 	{
 		if (assetCache.exists(src))
 			return assetCache[src];
@@ -101,7 +111,7 @@ class NewHtmlGen {
 
 		var ext = Path.extension(src).toLowerCase();
 		assert(ext != "", src);
-		var data = File.getBytes(src);
+		var data = content != null ? content : File.getBytes(src);
 		var hash = haxe.crypto.Sha1.make(data).toHex();
 
 		var name = hash + "." + ext;
@@ -155,7 +165,7 @@ class NewHtmlGen {
 	static inline var DRAFT_IMG_PLACEHOLDER = "https://upload.wikimedia.org/wikipedia/commons/5/56/Sauroposeidon_Scale_Diagram_Steveoc86.svg";
 	static inline var DRAFT_IMG_PLACEHOLDER_COPYRIGHT = "Placeholder image by Steveoc 86 (Own work) <a href='http://creativecommons.org/licenses/by-sa/3.0'>CC BY-SA 3.0</a> or <a href='http://www.gnu.org/copyleft/fdl.html'>GFDL</a>, via Wikimedia Commons";
 
-	function genv(v:DElem, idc:IdCtx, noc:NoCtx)
+	function genv(v:DElem, idc:IdCtx, noc:NoCtx, navParent:Array<NavItem>)
 	{
 		switch v.def {
 		case DHtmlApply(path):
@@ -169,13 +179,15 @@ class NewHtmlGen {
 			var path = Path.join(["volume", idc.volume+"index.html"]);
 			var title = 'Volume $no: ${genn(name)}';
 			var buf = bufs[path] = openBuffer(title, "..");
+			var links = [];
 			buf.add('
 				<section>
 				<h1 id="heading"${genp(v.pos)}>$no$QUAD${genh(name)}</h1>
-				${genv(children, idc, noc)}
+				${genv(children, idc, noc, links)}
 				</section>
 			'.doctrim());
 			buf.add("\n");
+			navParent.push(NVolume(no, genh(name), path, links));
 			return "";
 		case DChapter(no, name, children):
 			idc.chapter = v.id.sure();
@@ -183,28 +195,32 @@ class NewHtmlGen {
 			var path = Path.join([idc.chapter, "index.html"]);
 			var title = 'Chapter $no: ${genn(name)}';
 			var buf = bufs[path] = openBuffer(title, "..");
+			var links = [];
 			buf.add('
 				<section>
 				<h2 id="heading"${genp(v.pos)}>$no$QUAD${genh(name)}</h1>
-				${genv(children, idc, noc)}
+				${genv(children, idc, noc, links)}
 				</section>
 			'.doctrim());
 			buf.add("\n");
+			navParent.push(NChapter(no, genh(name), path, links));
 			return "";
 		case DSection(no, name, children):
 			idc.section = v.id.sure();
 			noc.section = no;
-			var no = noc.join(false, ".", chapter, section);
+			var lno = noc.join(false, ".", chapter, section);
 			var path = Path.join([idc.chapter, idc.section+".html"]);
-			var title = '$no ${genn(name)}';  // TODO chapter name
+			var title = '$lno ${genn(name)}';  // TODO chapter name
 			var buf = bufs[path] = openBuffer(title, "..");
+			var links = [];
 			buf.add('
 				<section>
-				<h3 id="heading"${genp(v.pos)}>$no$QUAD${genh(name)}</h1>
-				${genv(children, idc, noc)}
+				<h3 id="heading"${genp(v.pos)}>$lno$QUAD${genh(name)}</h1>
+				${genv(children, idc, noc, links)}
 				</section>
 			'.doctrim());
 			buf.add("\n");
+			navParent.push(NSection(no, genh(name), path, links));
 			return "";
 		case DSubSection(no, name, children):
 			idc.subSection = v.id.sure();
@@ -214,7 +230,7 @@ class NewHtmlGen {
 			return '
 				<section>
 				<h4 id="$id"${genp(v.pos)}>$no$QUAD${genh(name)}</h1>
-				${genv(children, idc, noc)}
+				${genv(children, idc, noc, navParent)}
 				</section>
 			'.doctrim() + "\n";
 		case DSubSubSection(no, name, children):
@@ -225,7 +241,7 @@ class NewHtmlGen {
 			return '
 				<section>
 				<h5 id="$id"${genp(v.pos)}>$no$QUAD${genh(name)}</h1>
-				${genv(children, idc, noc)}
+				${genv(children, idc, noc, navParent)}
 				</section>
 			'.doctrim() + "\n";
 		case DBox(no, name, children):
@@ -237,7 +253,7 @@ class NewHtmlGen {
 			return '
 				<section class="box $size">
 				<h1 id="$id"${genp(v.pos)}>Box $no <em>${genh(name)}</em></h1>
-				${genv(children, idc, noc)}
+				${genv(children, idc, noc, navParent)}
 				</section>
 			'.doctrim() + "\n";
 		case DFigure(no, size, path, caption, cright):
@@ -274,7 +290,7 @@ class NewHtmlGen {
 				case DParagraph(h):
 					buf.add(genh(h));
 				case _:
-					buf.add(genv(i, idc, noc));
+					buf.add(genv(i, idc, noc, navParent));
 				}
 				buf.add("</li>\n");
 			}
@@ -289,7 +305,7 @@ class NewHtmlGen {
 		case DElemList(li):
 			var buf = new StringBuf();
 			for (i in li)
-				buf.add(genv(i, idc, noc));
+				buf.add(genv(i, idc, noc, navParent));
 			return buf.toString();
 		case DEmpty:
 			return "";
@@ -303,17 +319,29 @@ class NewHtmlGen {
 		stylesheets = [];
 		var idc = new IdCtx();
 		var noc = new NoCtx();
-		var contents = genv(doc, idc, noc);
+		var navRoot = [];
+		var contents = genv(doc, idc, noc, navRoot);
+
+		var nav = new StringBuf();
+		var s = new haxe.Serializer();
+		s.useCache = true;
+		s.useEnumIndex = true;
+		s.serialize(NDocument(navRoot));
+		var navPath = saveAsset("nav.haxedata", Bytes.ofString(s.toString()));
 
 		var root = openBuffer("The Online BRT Planning Guide");  // FIXME get it elsewhere
 		root.add(contents);
-		root.add("</div>\n</div>\n</body>\n</html>\n");
 		bufs["index.html"] = root;
 
 		for (p in bufs.keys()) {
+			var b = bufs[p];
+			b.add("</div>\n</div>\n");
+			b.add('<div class="nav" x-data-href="$navPath"></div>\n');
+			b.add("</body>\n</html>\n");
+
 			var path = Path.join([destDir, p]);
 			FileSystem.createDirectory(Path.directory(path));
-			File.saveContent(path, bufs[p].toString());
+			File.saveContent(path, b.toString());
 		}
 	}
 
