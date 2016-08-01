@@ -138,9 +138,17 @@ class TexGen {
 			path = sys.FileSystem.absolutePath(path);  // FIXME maybe move to transform
 			// TODO handle size
 			// TODO escape path
-			// TODO enable (uncomment)
+			// TODO enable on XeLaTeX too
 			// TODO label
-			return '% \\img{\\hsize}{$path}\n% \\fignote{$no}{${genh(caption)}}{${genh(cright)}}\n\n';  // FIXME more neutral names
+			return '
+			\\ifxetex
+				% disabled for now
+			\\else
+				{  % group required to avoid fignote settings escaping
+					\\img{\\hsize}{$path}
+					\\fignote{$no}{${genh(caption)}}{${genh(cright)}}
+				}
+			\\fi'.doctrim() + "\n\n";  // FIXME use more neutral names
 		case DTable(_):
 			return LargeTable.gen(v, this, at, idc);
 		case DList(numbered, li):
