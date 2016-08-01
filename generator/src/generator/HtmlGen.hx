@@ -5,6 +5,7 @@ import parser.Ast.HElem;
 import sys.FileSystem;
 import sys.io.File;
 import transform.Document;
+import transform.NewDocument;
 
 import Assertion.*;
 import haxe.io.Path.join in joinPaths;

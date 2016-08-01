@@ -1,5 +1,8 @@
 package transform;
 
+import haxe.macro.Expr;
+import haxe.macro.Context.*;
+
 @:allow(transform.NewTransform)  // allow NewTransform meta handling to change lastVolume/lastChapter
 private class DocumentContext<T> {
 	var zero:T;
@@ -39,6 +42,22 @@ private class DocumentContext<T> {
 	public var subSubSection(default,set):T;
 		function set_subSubSection(v)
 			return subSubSection = v;
+
+	public macro function join(ethis:Expr, prefix:Bool, separator:String, fields:Array<Expr>)
+	{
+		var comp = [];
+		for (f in fields) {
+			switch f.expr {
+			case EConst(CIdent(name)):
+				if (prefix)
+					comp.push(macro $v{name});
+				comp.push(macro $ethis.$name);
+			case _:
+				error('Unsupported field expression (expected EConst(CIdent(_))): $f', f.pos);
+			}
+		}
+		return macro $a{comp}.join($v{separator});
+	}
 
 	function new(zero:T) {
 		this.zero = zero;

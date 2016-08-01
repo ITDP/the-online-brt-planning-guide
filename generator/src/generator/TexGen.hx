@@ -4,7 +4,8 @@ import generator.tex.*;
 import haxe.io.Path;
 import sys.FileSystem;
 import sys.io.File;
-import transform.Document;
+import transform.NewDocument;
+import transform.Context;
 import util.sys.FsUtil;
 
 import Assertion.*;
@@ -75,95 +76,114 @@ class TexGen {
 		}
 	}
 
-	public function genv(v:TElem, at:String)
+	public function genv(v:DElem, at:String, idc:IdCtx)
 	{
 		assert(!at.endsWith(".tex"), at, "should not but a directory");
 		switch v.def {
-		case TElemList(li):
+		case DElemList(li):
 			var buf = new StringBuf();
 			for (i in li)
-				buf.add(genv(i, at));
+				buf.add(genv(i, at, idc));
 			return buf.toString();
-		case TParagraph(h):
+		case DParagraph(h):
 			return '${genh(h)}\\par\n${genp(v.pos)}\n';
-		case TVolume(name, count, id, children):
-			var path = Path.join([at, id.split(".")[1]+".tex"]);
-			var dir = Path.join([at, id.split(".")[1]]);
+		case DVolume(no, name, children):
+			idc.volume = v.id.sure();
+			var id = idc.join(true, ":", volume);
+			var path = Path.join([at, idc.volume+".tex"]);
+			var dir = Path.join([at, idc.volume]);
 			var buf = new StringBuf();
 			bufs[path] = buf;
 			buf.add("% This file is part of the\n");
 			buf.add(FILE_BANNER);
-			buf.add('\n\n\\volume{$count}{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, dir)}');
+			// FIXME label
+			buf.add('\n\n\\volume{$no}{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, dir, idc)}');
 			return '\\input{$path}\n\n';
-		case TChapter(name, count, id, children):
-			var path = Path.join([at, id.split(".")[3]+".tex"]);
+		case DChapter(no, name, children):
+			idc.chapter = v.id.sure();
+			var id = idc.join(true, ":", volume, chapter);
+			var path = Path.join([at, idc.chapter+".tex"]);
 			var buf = new StringBuf();
 			bufs[path] = buf;
 			buf.add("% This file is part of the\n");
 			buf.add(FILE_BANNER);
-			buf.add('\n\n\\chapter{$count}{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at)}');
+			// FIXME label
+			buf.add('\n\n\\chapter{$no}{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at, idc)}');
 			return '\\input{$path}\n\n';
-		case TSection(name, count, id, children):
-			return '\\section{$count}{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at)}';
-		case TSubSection(name, count, id, children):
-			return '\\subsection{$count}{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at)}';
-		case TSubSubSection(name, count, id, children):
-			return '\\subsubsection{$count}{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at)}';
-		case TFigure(size, path, caption, cright, cnt, id):
+		case DSection(no, name, children):
+			idc.section = v.id.sure();
+			var id = idc.join(true, ":", volume, chapter, section);
+			// FIXME label
+			return '\\section{$no}{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at, idc)}';
+		case DSubSection(no, name, children):
+			idc.subSection = v.id.sure();
+			var id = idc.join(true, ":", volume, chapter, section, subSection);
+			// FIXME label
+			return '\\subsection{$no}{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at, idc)}';
+		case DSubSubSection(no, name, children):
+			idc.subSubSection = v.id.sure();
+			var id = idc.join(true, ":", volume, chapter, section, subSection, subSubSection);
+			// FIXME label
+			return '\\subsubsection{$no}{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at, idc)}';
+		case DFigure(no, size, path, caption, cright):
 			path = sys.FileSystem.absolutePath(path);  // FIXME maybe move to transform
 			// TODO handle size
 			// TODO escape path
-			// TODO escape count
 			// TODO enable (uncomment)
-			return '% \\img{\\hsize}{$path}\n% \\fignote{$cnt}{${genh(caption)}}{${genh(cright)}}\n\n';  // FIXME more neutral names
-		case TBox(name, contents, count, id):
-			return '\\beginbox{$count}{${genh(name)}}\n\n${genv(contents, at)}\\endbox\n${genp(v.pos)}\n';
-		case TQuotation(text, by):
+			// TODO label
+			return '% \\img{\\hsize}{$path}\n% \\fignote{$no}{${genh(caption)}}{${genh(cright)}}\n\n';  // FIXME more neutral names
+		case DBox(no, name, children):
+			// TODO label
+			return '\\beginbox{$no}{${genh(name)}}\n\n${genv(children, at, idc)}\\endbox\n${genp(v.pos)}\n';
+		case DQuotation(text, by):
 			return '\\quotation{${genh(text)}}{${genh(by)}}\n${genp(v.pos)}\n';
-		case TList(numbered, li):
+		case DList(numbered, li):
 			var buf = new StringBuf();
 			var env = numbered ? "enumerate" : "itemize";
 			buf.add('\\begin{$env}\n');
 			for (i in li)
 				switch i.def {
-				case TParagraph(h):
+				case DParagraph(h):
 					buf.add('\\item ${genh(h)}${genp(i.pos)}');
 				case _:
-					buf.add('\\item {${genv(i, at)}}\n');
+					buf.add('\\item {${genv(i, at, idc)}}\n');
 				}
 			buf.add('\\end{$env}\n');
 			buf.add(genp(v.pos));
 			buf.add("\n");
 			return buf.toString();
-		case TCodeBlock(code):
+		case DCodeBlock(code):
 			show("code blocks in TeX improperly implemented");
 			return '\\begincode\n${gent(code)}\n\\endcode\n${genp(v.pos)}\n';
-		case TLaTeXPreamble(path):
+		case DLaTeXPreamble(path):
 			// TODO validate path (or has Transform done so?)
 			preamble.add('% included from `$path`\n');
 			preamble.add(genp(v.pos));
 			preamble.add(File.getContent(path).trim());
 			preamble.add("\n\n");
 			return "";
-		case TLaTeXExport(src, dest):
+		case DLaTeXExport(src, dest):
 			assert(FileSystem.isDirectory(destDir));
 			FsUtil.copy(src, Path.join([destDir, dest]));
 			return "";
-		case THtmlApply(_):
+		case DHtmlApply(_):
 			return "";
-		case TTable(_):
-			return LargeTable.gen(v, this, at);
+		case DTable(_):
+			return LargeTable.gen(v, this, at, idc);
+		case DEmpty:
+			return "";
 		}
 	}
 
-	public function writeDocument(doc:Document)
+	public function writeDocument(doc:NewDocument)
 	{
 		FileSystem.createDirectory(destDir);
 		preamble = new StringBuf();
 		preamble.add(FILE_BANNER);
 		preamble.add("\n\n");
 
-		var contents = genv(doc, "./");
+		var idc = new IdCtx();
+		var contents = genv(doc, "./", idc);
 
 		var root = new StringBuf();
 		root.add(preamble.toString());
