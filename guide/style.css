@@ -378,3 +378,14 @@ pre {
 :target {
 	display: block;
 }
+
+/* selection */
+
+::selection {
+  background: #00a95e; /* WebKit/Blink Browsers */
+	color: #FFF;
+}
+::-moz-selection {
+  background: #00a95e; /* Gecko Browsers */
+	color: #FFF;
+}
