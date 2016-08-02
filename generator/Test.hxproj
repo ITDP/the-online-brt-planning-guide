@@ -30,7 +30,12 @@
   </build>
   <!-- haxelib libraries -->
   <haxelib>
-    <!-- example: <library name="..." /> -->
+    <library name="hxparse" />
+    <library name="assertion" />
+    <library name="literals" />
+    <library name="sys-utils" />
+    <library name="version" />
+    <library name="tink_template" />
   </haxelib>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>
