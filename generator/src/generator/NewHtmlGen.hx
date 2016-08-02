@@ -278,8 +278,43 @@ class NewHtmlGen {
 					</section>
 				'.doctrim() + "\n";
 			}
-		case DTable(_):
-			return "";
+		case DTable(no, size, caption, header, rows):
+			idc.table = v.id.sure();
+			noc.table = no;
+			var no = noc.join(false, ".", chapter, table);
+			var id = idc.join(true, ".", table);
+			var buf = new StringBuf();
+			function writeCell(cell:DElem, header:Bool)
+			{
+				var tag = header ? "th" : "td";
+				buf.add('<$tag>');
+				switch cell.def {
+				case DParagraph(h):
+					buf.add(genh(h));
+				case _:
+					buf.add(genv(cell, idc, noc, navParent));
+				}
+				buf.add('</$tag>');
+			}
+			function writeRow(row:Array<DElem>, header:Bool)
+			{
+				buf.add("<tr>");
+				for (c in row)
+					writeCell(c, header);
+				buf.add("</tr>\n");
+			}
+			buf.add('
+				<section class="$size">
+				<h5 id="$id"${genp(v.pos)}>Table $no$QUAD${genh(caption)}</h5>
+				<table>
+			'.doctrim());
+			buf.add("\n<thead>");
+			writeRow(header, true);
+			buf.add("</thead>\n");
+			for (r in rows)
+				writeRow(r, false);
+			buf.add("</table>\n</section>\n");
+			return buf.toString();
 		case DList(numbered, li):
 			var buf = new StringBuf();
 			var tag = numbered ? "ol" : "ul";
