@@ -1,8 +1,14 @@
+--times
+# -D macro-times
+# -D dump=pretty
+
 -lib hxparse
 -lib assertion
 -lib literals
 -lib sys-utils
 -lib version
+-lib tink_template
+-D tink_template_pos=off
 -cp include
 -cp src
 

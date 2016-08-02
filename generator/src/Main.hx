@@ -40,7 +40,7 @@ class Main {
 		if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
 		if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
 
-		var hgen = new html.Generator(Path.join([opath, "html"]));
+		var hgen = new html.Generator(Path.join([opath, "html"]), true);
 		hgen.writeDocument(doc);
 
 		var tgen = new tex.Generator(Path.join([opath, "pdf"]));
