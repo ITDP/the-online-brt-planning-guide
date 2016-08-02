@@ -52,7 +52,7 @@ class NewHtmlGen {
 	{
 		// TODO only in god/author mode
 		var lpos = pos.toLinePosition();
-		return ' x-src:"${haxe.Serializer.run(lpos)}" ';
+		return ' x-src="${haxe.Serializer.run(lpos)}" ';
 	}
 
 	function genh(h:HElem)
@@ -198,7 +198,7 @@ class NewHtmlGen {
 			var links = [];
 			buf.add('
 				<section>
-				<h2 id="heading" class="volume${noc.volume}"${genp(v.pos)}>$no$QUAD${genh(name)}</h1>
+				<h2 id="heading" class="volume${noc.volume}"${genp(v.pos)}>$no$QUAD${genh(name)}</h2>
 				${genv(children, idc, noc, links)}
 				</section>
 			'.doctrim());
@@ -215,7 +215,7 @@ class NewHtmlGen {
 			var links = [];
 			buf.add('
 				<section>
-				<h3 id="heading" class="volume${noc.volume}"${genp(v.pos)}>$lno$QUAD${genh(name)}</h1>
+				<h3 id="heading" class="volume${noc.volume}"${genp(v.pos)}>$lno$QUAD${genh(name)}</h3>
 				${genv(children, idc, noc, links)}
 				</section>
 			'.doctrim());
@@ -229,7 +229,7 @@ class NewHtmlGen {
 			var id = idc.join(true, ".", subSection);
 			return '
 				<section>
-				<h4 id="$id" class="volume${noc.volume}"${genp(v.pos)}>$no$QUAD${genh(name)}</h1>
+				<h4 id="$id" class="volume${noc.volume}"${genp(v.pos)}>$no$QUAD${genh(name)}</h4>
 				${genv(children, idc, noc, navParent)}
 				</section>
 			'.doctrim() + "\n";
@@ -240,7 +240,7 @@ class NewHtmlGen {
 			var id = idc.join(true, ".", subSection, subSubSection);
 			return '
 				<section>
-				<h5 id="$id" class="volume${noc.volume}"${genp(v.pos)}>$no$QUAD${genh(name)}</h1>
+				<h5 id="$id" class="volume${noc.volume}"${genp(v.pos)}>$no$QUAD${genh(name)}</h5>
 				${genv(children, idc, noc, navParent)}
 				</section>
 			'.doctrim() + "\n";
