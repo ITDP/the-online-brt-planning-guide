@@ -101,14 +101,23 @@
 \definecolor{gray50}{gray}{0.5}
 \definecolor{gray25}{gray}{0.75}
 \definecolor{greenbrt}{cmyk}{0.75,0,0.75,0.25}
+%volumecolors
+\definecolor{volumeI}{cmyk}{0.2,1,0.4,0}
+\definecolor{volumeII}{cmyk}{0.8,1,0.3,0.2}
+\definecolor{volumeIII}{cmyk}{1,0.7,0.25,0.1}
+\definecolor{volumeIV}{cmyk}{0.85,0.45,0.2,0}
+\definecolor{volumeV}{cmyk}{0.65,0.2,1,0.05}
+\definecolor{volumeVI}{cmyk}{0.25,0.6,1,0.1}
+\definecolor{volumeVII}{cmyk}{0.25,1,1.4,0.15}
+\definecolor{volumeVIII}{gray}{0.75}
 
 %headings
 \usepackage{titlesec}
-\titleformat{\part}[display]{\centering\bfseries\huge\color{greenbrt}\familycapsf}{VOLUME \thepart}{0pt}{}[]
-\titleformat{\chapter}[display]{\bfseries\LARGE\color{greenbrt}\familycapsf}{}{0pt}{\thechapter.\ }[]
-\titleformat*{\section}{\bfseries\Large\color{greenbrt}\familycapsf}
-\titleformat*{\subsection}{\bfseries\large\color{greenbrt}\sffamily}
-\titleformat*{\subsubsection}{\bfseries\color{greenbrt}\sffamily}
+\titleformat{\part}[display]{\bfseries\huge\color{volume\thepart}\familycapsf}{{\fontsize{10mm}{10mm}\selectfont VOLUME \thepart}}{0pt}{\vskip 5mm \rule{105mm}{1.5mm} \\ \vskip 2.25mm}[]
+\titleformat{\chapter}[display]{\bfseries\LARGE\color{volume\thepart}\familycapsf}{}{0pt}{\thechapter.\ }[]
+\titleformat*{\section}{\bfseries\Large\color{volume\thepart}\familycapsf}
+\titleformat*{\subsection}{\bfseries\large\color{volume\thepart}\sffamily}
+\titleformat*{\subsubsection}{\bfseries\sffamily}
 \titlespacing*{\chapter}{0mm}{0mm}{2.25mm plus 2.25mm}[0pt]
 \titlespacing*{\section}{0mm}{4.5mm plus 4.5mm}{2.25mm plus 2.25mm}[0pt]
 \titlespacing*{\subsection}{0mm}{2.25mm plus 2.25mm}{0mm plus 2.25mm}[0pt]
