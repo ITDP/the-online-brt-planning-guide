@@ -1,4 +1,4 @@
-package generator;
+package html;
 
 import haxe.io.Bytes;
 import haxe.io.Path;
@@ -24,7 +24,7 @@ enum NavItem {
 	NSubSubSection(no:Int, nameHtml:String, url:String);
 }
 
-class NewHtmlGen {
+class Generator {
 	static inline var ASSET_SUBDIR = "assets";
 	static var FILE_BANNER = '
 	<!--
