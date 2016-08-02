@@ -1,4 +1,4 @@
-\documentclass[twoside, 8pt]{extreport}
+\documentclass[8pt]{extreport}
 
 % monkey-patching tools
 \usepackage{etoolbox}
@@ -137,18 +137,27 @@
 \makeatother
 
 %box
-\usepackage{mdframed}
-\newcommand{\boxtitle}[2]{{\noindent\bfseries\color{greenbrt}\familycapsf Box \thechapter.#1. #2} \\ }
-\mdfsetup{innerleftmargin=6.75mm,innerrightmargin=6.75mm,innertopmargin=6.75mm,innerbottommargin=6.75mm,skipabove=4.5mm,skipbelow=4.5mm,linewidth=0.25mm,linecolor=gray50}
-\def\beginbox#1#2{
-	\mdframed[usetwoside=false]
-	\parskip=0pt
-	\baselineskip=4.5mm
-	\parindent=7mm
-	\color{gray50}
-	\boxtitle{#1}{#2}
-	}
-\def\endbox{\endmdframed}
+\usepackage{framed}
+
+\renewenvironment{leftbar}[1][\hsize]
+{%
+    \def\FrameCommand
+    {%
+        {\hspace{-9mm} \color{volume\thepart}\vrule width 3.5mm}
+        \hspace{3.0mm}
+        \fboxsep=0mm
+    }%
+    \MakeFramed{\hsize#1}%
+}
+{\endMakeFramed}
+
+\newcommand{\boxtitle}[2]{{\noindent\bfseries\color{volume\thepart}\familycapsf Box \thechapter.#1. #2} \\ }
+\def\beginbox#1#2{ 
+	\begin{leftbar} 
+	\vskip 3.5mm
+	\boxtitle{#1}{#2} 
+}
+\def\endbox{ \vskip 3.5mm \end{leftbar} }
 
 % code
 \let\code\texttt
@@ -179,7 +188,7 @@
 %note: \tablemodule*46 must match \textwidth+\marginparsep+\marginparwidth
 \usepackage{ifoddpage}
 \newdimen\tablemodule \tablemodule=\textwidth \divide\tablemodule by 30
-\newcommand{\tabletitle}[2]{{\noindent\bfseries\color{greenbrt}\sffamily Table \thechapter.#1. #2} \par }
+\newcommand{\tabletitle}[2]{{\noindent\bfseries\color{volume\thepart}\sffamily Table \thechapter.#1. #2} \par }
 \newcommand{\tablesource}[1]{\noindent\raggedright\footnotesize\sffamily\color{gray50}{\bfseries Source:} #1 \par \smallskip}
 
 \AtBeginDocument{
