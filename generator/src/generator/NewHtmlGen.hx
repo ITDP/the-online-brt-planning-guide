@@ -124,12 +124,13 @@ class NewHtmlGen {
 
 	function openBuffer(title:String, base="")
 	{
-		// TODO get normalize and google fonts with \html\apply
+		// TODO get normalize and google fonts with \html\apply or \html\link
 		// TODO get jquery and mathjax with \html\run
 		var buf = new StringBuf();
+		show(FILE_BANNER);
+		buf.add("<!DOCTYPE html>");
+		buf.add(FILE_BANNER);
 		buf.add('
-			<!DOCTYPE html>
-			$FILE_BANNER
 			<html>
 			<head>
 			<meta charset="utf-8">
@@ -152,7 +153,10 @@ class NewHtmlGen {
 			<!-- Google Fonts -->
 			<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700italic,700|PT+Sans:400,400italic,700,700italic" rel="stylesheet" type="text/css">
 			<!-- Custom CSSs -->
-			${stylesheets.map(function (p) return '<link href="./${p}" rel="stylesheet" type="text/css">').join("\n")}
+		'.doctrim());
+		for (p in stylesheets)
+			buf.add('<link href="./${p}" rel="stylesheet" type="text/css">\n');
+		buf.add('
 			</head>
 			<body>
 			<div class="container">
