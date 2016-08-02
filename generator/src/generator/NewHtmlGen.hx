@@ -182,7 +182,7 @@ class NewHtmlGen {
 			var links = [];
 			buf.add('
 				<section>
-				<h1 id="heading"${genp(v.pos)}>$no$QUAD${genh(name)}</h1>
+				<h1 id="heading" class="volume${noc.volume}"${genp(v.pos)}>$no$QUAD${genh(name)}</h1>
 				${genv(children, idc, noc, links)}
 				</section>
 			'.doctrim());
@@ -198,7 +198,7 @@ class NewHtmlGen {
 			var links = [];
 			buf.add('
 				<section>
-				<h2 id="heading"${genp(v.pos)}>$no$QUAD${genh(name)}</h1>
+				<h2 id="heading" class="volume${noc.volume}"${genp(v.pos)}>$no$QUAD${genh(name)}</h1>
 				${genv(children, idc, noc, links)}
 				</section>
 			'.doctrim());
@@ -215,7 +215,7 @@ class NewHtmlGen {
 			var links = [];
 			buf.add('
 				<section>
-				<h3 id="heading"${genp(v.pos)}>$lno$QUAD${genh(name)}</h1>
+				<h3 id="heading" class="volume${noc.volume}"${genp(v.pos)}>$lno$QUAD${genh(name)}</h1>
 				${genv(children, idc, noc, links)}
 				</section>
 			'.doctrim());
@@ -229,7 +229,7 @@ class NewHtmlGen {
 			var id = idc.join(true, ".", subSection);
 			return '
 				<section>
-				<h4 id="$id"${genp(v.pos)}>$no$QUAD${genh(name)}</h1>
+				<h4 id="$id" class="volume${noc.volume}"${genp(v.pos)}>$no$QUAD${genh(name)}</h1>
 				${genv(children, idc, noc, navParent)}
 				</section>
 			'.doctrim() + "\n";
@@ -240,7 +240,7 @@ class NewHtmlGen {
 			var id = idc.join(true, ".", subSection, subSubSection);
 			return '
 				<section>
-				<h5 id="$id"${genp(v.pos)}>$no$QUAD${genh(name)}</h1>
+				<h5 id="$id" class="volume${noc.volume}"${genp(v.pos)}>$no$QUAD${genh(name)}</h1>
 				${genv(children, idc, noc, navParent)}
 				</section>
 			'.doctrim() + "\n";
@@ -252,7 +252,7 @@ class NewHtmlGen {
 			var size = "md";  // TODO auto figure out it's size
 			return '
 				<section class="box $size">
-				<h1 id="$id"${genp(v.pos)}>Box $no <em>${genh(name)}</em></h1>
+				<h1 id="$id" class="volume${noc.volume}"${genp(v.pos)}>Box $no <em>${genh(name)}</em></h1>
 				${genv(children, idc, noc, navParent)}
 				</section>
 			'.doctrim() + "\n";
