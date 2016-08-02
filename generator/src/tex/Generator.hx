@@ -1,4 +1,4 @@
-package generator;
+package tex;
 
 import generator.tex.*;
 import haxe.io.Path;
@@ -14,7 +14,7 @@ using Literals;
 using StringTools;
 using parser.TokenTools;
 
-class TexGen {
+class Generator {
 	static var FILE_BANNER = '
 	% The Online BRT Planning Guide
 	%
