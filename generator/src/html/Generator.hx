@@ -124,6 +124,9 @@ class Generator {
 		return dst;
 	}
 
+	@:template function renderHead(title:String, base:String);
+	@:template function renderBreadcrumbs();  // FIXME
+
 	function openBuffer(title:String, base="")
 	{
 		// TODO get normalize and google fonts with \html\apply or \html\link
@@ -132,38 +135,10 @@ class Generator {
 		show(FILE_BANNER);
 		buf.add("<!DOCTYPE html>");
 		buf.add(FILE_BANNER);
-		buf.add('
-			<html>
-			<head>
-			<meta charset="utf-8">
-			<title>${gent(title)}</title>
-			<base href="$base">
-			<!-- Normalize -->
-			<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css" rel="stylesheet" type="text/css">
-			<!-- Jquery -->
-			<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js" ></script>
-			<!-- MathJax -->
-			<script type="text/x-mathjax-config">
-				MathJax.Hub.Config({
-					tex2jax: {
-						ignoreClass: ".+",
-						processClass: "mathjax"
-					}
-				});
-			</script>
-			<script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML" ></script>
-			<!-- Google Fonts -->
-			<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700italic,700|PT+Sans:400,400italic,700,700italic" rel="stylesheet" type="text/css">
-			<!-- Custom CSSs -->
-		'.doctrim());
-		for (p in stylesheets)
-			buf.add('<link href="./${p}" rel="stylesheet" type="text/css">\n');
-		buf.add('
-			</head>
-			<body>
-			<div class="container">
-			<div class="col-text">
-		'.doctrim());
+		buf.add("<html>\n");
+		buf.add(renderHead(title, base));
+		buf.add(renderBreadcrumbs());  // FIXME
+		buf.add('<body>\n<div class="container">\n<div class="col-text">\n');
 		return buf;
 	}
 
