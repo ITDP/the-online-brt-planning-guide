@@ -109,7 +109,7 @@
 \definecolor{volumeV}{cmyk}{0.65,0.2,1,0.05}
 \definecolor{volumeVI}{cmyk}{0.25,0.6,1,0.1}
 \definecolor{volumeVII}{cmyk}{0.25,1,1.4,0.15}
-\definecolor{volumeVIII}{gray}{0.75}
+\definecolor{volumeVIII}{gray}{0.25}
 
 %headings
 \usepackage{titlesec}
@@ -162,12 +162,22 @@
 % code
 \let\code\texttt
 \def\begincode{
-	\parskip=0pt
-	\baselineskip=4.5mm
-	\parindent=7mm
-	\color{gray50}\ttfamily  % FIXME
+	\vskip 3.5mm
+	\parindent=0mm
+	\parskip=0mm
+	\color{gray50}
+	\scriptsize 
+	\ttfamily  % FIXME
 }
-\def\endcode{ }
+\def\endcode{	
+	\parindent=7mm
+	\parskip=0mm plus 4.5mm 
+	\color{gray75}
+	\normalsize
+	\normalfont
+	\baselineskip=4.5mm
+	\vskip 3.5mm
+}
 
 %list
 \usepackage{enumitem}
