@@ -1,4 +1,4 @@
-\documentclass[twoside, 8pt]{extreport}
+\documentclass[8pt]{extreport}
 
 % monkey-patching tools
 \usepackage{etoolbox}
@@ -109,7 +109,7 @@
 \definecolor{volumeV}{cmyk}{0.65,0.2,1,0.05}
 \definecolor{volumeVI}{cmyk}{0.25,0.6,1,0.1}
 \definecolor{volumeVII}{cmyk}{0.25,1,1.4,0.15}
-\definecolor{volumeVIII}{gray}{0.75}
+\definecolor{volumeVIII}{gray}{0.25}
 
 %headings
 \usepackage{titlesec}
@@ -137,29 +137,44 @@
 \makeatother
 
 %box
-\usepackage{mdframed}
-\newcommand{\boxtitle}[2]{{\noindent\bfseries\color{greenbrt}\familycapsf Box \thechapter.#1. #2} \\ }
-\mdfsetup{innerleftmargin=6.75mm,innerrightmargin=6.75mm,innertopmargin=6.75mm,innerbottommargin=6.75mm,skipabove=4.5mm,skipbelow=4.5mm,linewidth=0.25mm,linecolor=gray50}
-\def\beginbox#1#2{
-	\mdframed[usetwoside=false]
-	\parskip=0pt
-	\baselineskip=4.5mm
-	\parindent=7mm
-	\color{gray50}
-	\boxtitle{#1}{#2}
-	}
-\def\endbox{\endmdframed}
+\usepackage{framed}
+
+\renewenvironment{leftbar}[1][\hsize]
+{%
+    \def\FrameCommand
+    {%
+        {\hspace{-6.5mm} \color{volume\thepart}\vrule width 1mm}
+        \hspace{3.0mm}
+        \fboxsep=0mm
+    }%
+    \MakeFramed{\hsize#1}%
+}
+{\endMakeFramed}
+
+\newcommand{\boxtitle}[2]{{\noindent\bfseries\color{volume\thepart}\familycapsf Box \thechapter.#1. #2} \\ }
+\def\beginbox#1#2{ 
+	\begin{leftbar} 
+	\vskip 3.5mm
+	\boxtitle{#1}{#2} 
+}
+\def\endbox{ \vskip 3.5mm \end{leftbar} }
 
 % code
 \let\code\texttt
 \def\begincode{
-	\mdframed[usetwoside=false]
-	\parskip=0pt
-	\baselineskip=4.5mm
-	\parindent=7mm
+	\begingroup
+	\vskip 3.5mm
+	\parindent=0mm
+	\parskip=0mm
+	\baselineskip=0mm
+	\color{gray50}
+	\small
 	\ttfamily  % FIXME
 }
-\def\endcode{\endmdframed}
+\def\endcode{
+	\vskip 3.5mm
+	\endgroup
+}
 
 %list
 \usepackage{enumitem}
@@ -179,7 +194,7 @@
 %note: \tablemodule*46 must match \textwidth+\marginparsep+\marginparwidth
 \usepackage{ifoddpage}
 \newdimen\tablemodule \tablemodule=\textwidth \divide\tablemodule by 30
-\newcommand{\tabletitle}[2]{{\noindent\bfseries\color{greenbrt}\sffamily Table \thechapter.#1. #2} \par }
+\newcommand{\tabletitle}[2]{{\noindent\bfseries\color{volume\thepart}\sffamily Table \thechapter.#1. #2} \par }
 \newcommand{\tablesource}[1]{\noindent\raggedright\footnotesize\sffamily\color{gray50}{\bfseries Source:} #1 \par \smallskip}
 
 \AtBeginDocument{
