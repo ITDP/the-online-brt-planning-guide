@@ -177,6 +177,7 @@ nav {
 	font-family: 'PT Sans', sans-serif;
 	font-size: 14px;
 	float: left;
+	padding: 32px 0;
 	top: 33px;
 	bottom: 0px;
 	width: 256px;
@@ -411,13 +412,16 @@ label {
 	left:0;
 	right:0;
 	bottom:0;
-	background-color: rgba(255,255,255,.5);
+	background-color: rgba(255,255,255,.75);
 	visibility: hidden;
 	text-align:center;
 	z-index: 999;
 }
 .overlay img {
 	margin-top: 96px;
+	height: 80%;
+	width: auto;
+	display: inline;
 }
 .overlay-trigger:checked + .overlay {
 	visibility: visible;
@@ -438,7 +442,7 @@ label {
 ::-webkit-scrollbar-thumb {
 	background: #CCC;
 	border: 0px;
-	border-radius: 3px;
+	border-radius: 0px;
 }
 ::-webkit-scrollbar-thumb:hover {
 	background: #00a95e;
@@ -447,7 +451,6 @@ label {
 	background: #00a95e;
 }
 ::-webkit-scrollbar-track {
-	width: 12px;
 	background: #fff;
 	border: 0px;
 }
