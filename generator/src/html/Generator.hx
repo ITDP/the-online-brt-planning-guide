@@ -16,15 +16,6 @@ using Literals;
 using StringTools;
 using parser.TokenTools;
 
-enum NavItem {
-	NDocument(children:Array<NavItem>);
-	NVolume(no:Int, name:Html, url:String, children:Array<NavItem>);
-	NChapter(no:Int, name:Html, url:String, children:Array<NavItem>);
-	NSection(no:Int, name:Html, url:String, children:Array<NavItem>);
-	NSubSection(no:Int, name:Html, url:String, children:Array<NavItem>);
-	NSubSubSection(no:Int, name:Html, url:String);
-}
-
 typedef BreadcrumbItem = {
 	no:Int,
 	name:Html,
@@ -38,6 +29,7 @@ typedef Breadcrumbs = {
 }
 
 class Generator {
+	static var assetCache = new Map<String,String>();
 	static inline var ASSET_SUBDIR = "assets";
 	@:template static var FILE_BANNER;
 
@@ -47,7 +39,7 @@ class Generator {
 	var stylesheets:Array<String>;
 	var srcCache:Map<String,Int>;
 	var lastSrcId:Int;
-	static var assetCache = new Map<String,String>();
+	var nav:StringBuf;
 
 	function gent(text:String)
 		return text.htmlEscape();
@@ -158,7 +150,7 @@ class Generator {
 	static inline var DRAFT_IMG_PLACEHOLDER = "https://upload.wikimedia.org/wikipedia/commons/5/56/Sauroposeidon_Scale_Diagram_Steveoc86.svg";
 	static inline var DRAFT_IMG_PLACEHOLDER_COPYRIGHT = "Placeholder image by Steveoc 86 (Own work) <a href='http://creativecommons.org/licenses/by-sa/3.0'>CC BY-SA 3.0</a> or <a href='http://www.gnu.org/copyleft/fdl.html'>GFDL</a>, via Wikimedia Commons";
 
-	function genv(v:DElem, idc:IdCtx, noc:NoCtx, bcs:Breadcrumbs, navBucket:Array<NavItem>)
+	function genv(v:DElem, idc:IdCtx, noc:NoCtx, bcs:Breadcrumbs)
 	{
 		switch v.def {
 		case DHtmlApply(path):
@@ -173,16 +165,15 @@ class Generator {
 			bcs.volume = { no:no, name:new Html(genh(name)), url:path };  // FIXME raw html
 			var title = 'Volume $no: ${genn(name)}';
 			var buf = bufs[path] = openBuffer(title, "..", bcs);
-			var navChildren = [];
+			nav.add('<li>\n${renderNav(no, Std.string(no), new Html(genh(name)), path)}\n<ul>\n');
 			buf.add('
 				<section>
 				<h1 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h1>
-				${genv(children, idc, noc, bcs, navChildren)}
+				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim());
-			buf.add("\n");
+			nav.add("\n</ul>\n</li>\n");
 			bcs.volume = null;  // FIXME hack
-			navBucket.push(NVolume(no, new Html(genh(name)), path, navChildren));
 			return "";
 		case DChapter(no, name, children):
 			idc.chapter = v.id.sure();
@@ -191,16 +182,16 @@ class Generator {
 			bcs.chapter = { no:no, name:new Html(genh(name)), url:path };  // FIXME raw html
 			var title = 'Chapter $no: ${genn(name)}';
 			var buf = bufs[path] = openBuffer(title, "..", bcs);
-			var navChildren = [];
+			nav.add('<li>\n${renderNav(null, Std.string(noc.chapter), new Html(genh(name)), path)}\n<ul>\n');
 			buf.add('
 				<section>
 				<h2 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h2>
-				${genv(children, idc, noc, bcs, navChildren)}
+				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim());
+			nav.add("\n</ul>\n</li>\n");
 			buf.add("\n");
 			bcs.chapter = null;  // FIXME hack
-			navBucket.push(NChapter(no, new Html(genh(name)), path, navChildren));
 			return "";
 		case DSection(no, name, children):
 			idc.section = v.id.sure();
@@ -210,30 +201,30 @@ class Generator {
 			bcs.section = { no:no, name:new Html(genh(name)), url:path };  // FIXME raw html
 			var title = '$lno ${genn(name)}';  // TODO chapter name
 			var buf = bufs[path] = openBuffer(title, "..", bcs);
-			var navChildren = [];
+			nav.add('<li>\n${renderNav(null, lno, new Html(genh(name)), path)}\n<ul>\n');
 			buf.add('
 				<section>
 				<h3 id="heading" class="volume${noc.volume}">$lno$QUAD${genh(name)}</h3>
-				${genv(children, idc, noc, bcs, navChildren)}
+				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim());
+			nav.add("\n</ul>\n</li>\n");
 			buf.add("\n");
 			bcs.section = null;  // FIXME hack
-			navBucket.push(NSection(no, new Html(genh(name)), path, navChildren));
 			return "";
 		case DSubSection(no, name, children):
 			idc.subSection = v.id.sure();
 			noc.subSection = no;
 			var lno = noc.join(false, ".", chapter, section, subSection);
 			var id = idc.join(true, ".", subSection);
-			var navChildren = [];
+			nav.add('<li>\n${renderNav(null, lno, new Html(genh(name)), bcs.section.url+"#"+id)}\n<ul>\n');
 			var html = '
 				<section>
 				<h4 id="$id" class="volume${noc.volume}">$lno$QUAD${genh(name)}</h4>
-				${genv(children, idc, noc, bcs, navChildren)}
+				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim() + "\n";
-			navBucket.push(NSubSection(no, new Html(genh(name)), bcs.section.url+"#"+id, navChildren));
+			nav.add("\n</ul>\n</li>\n");
 			return html;
 		case DSubSubSection(no, name, children):
 			idc.subSubSection = v.id.sure();
@@ -243,10 +234,10 @@ class Generator {
 			var html = '
 				<section>
 				<h5 id="$id" class="volume${noc.volume}">$lno$QUAD${genh(name)}</h5>
-				${genv(children, idc, noc, bcs, navBucket)}
+				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim() + "\n";
-			navBucket.push(NSubSubSection(no, new Html(genh(name)), bcs.section.url+"#"+id));
+			nav.add('<li>\n${renderNav(null, lno, new Html(genh(name)), bcs.section.url+"#"+id)}</li>');
 			return html;
 		case DBox(no, name, children):
 			idc.box = v.id.sure();
@@ -257,7 +248,7 @@ class Generator {
 			return '
 				<section class="box $size">
 				<h1 id="$id" class="volume${noc.volume}">Box $no <em>${genh(name)}</em></h1>
-				${genv(children, idc, noc, bcs, navBucket)}
+				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim() + "\n";
 		case DFigure(no, size, path, caption, cright):
@@ -296,7 +287,7 @@ class Generator {
 				case DParagraph(h):
 					buf.add(genh(h));
 				case _:
-					buf.add(genv(cell, idc, noc, bcs, navBucket));
+					buf.add(genv(cell, idc, noc, bcs));
 				}
 				buf.add('</$tag>');
 			}
@@ -329,7 +320,7 @@ class Generator {
 				case DParagraph(h):
 					buf.add(genh(h));
 				case _:
-					buf.add(genv(i, idc, noc, bcs, navBucket));
+					buf.add(genv(i, idc, noc, bcs));
 				}
 				buf.add("</li>\n");
 			}
@@ -344,36 +335,30 @@ class Generator {
 		case DElemList(li):
 			var buf = new StringBuf();
 			for (i in li)
-				buf.add(genv(i, idc, noc, bcs, navBucket));
+				buf.add(genv(i, idc, noc, bcs));
 			return buf.toString();
 		case DEmpty:
 			return "";
 		}
 	}
 
-	@:template function renderNav(i:NavItem, prefix:String);
+	@:template function renderNav(vno:Int, lno:String, name:Html, url:String);
 
 	public function writeDocument(doc:NewDocument)
 	{
-		FileSystem.createDirectory(destDir);
-
 		bufs = new Map();
 		stylesheets = [];
-		srcCache = new Map();
+		srcCache = new Map();  // TODO abstract
 		lastSrcId = 0;
+		nav = new StringBuf();
+		nav.add("<nav><ul>");
 
-		var idc = new IdCtx();
-		var noc = new NoCtx();
-		var bcs = {};
-		var navRoot = [];
-		var contents = genv(doc, idc, noc, bcs, navRoot);
+		// FIXME get the document name elsewhere
+		var root = bufs["index.html"] = openBuffer("The Online BRT Planning Guide", "", {});
+		var contents = genv(doc, new IdCtx(), new NoCtx(), {});
+		root.add(contents);
+		nav.add("</ul></nav>");
 
-		var nav = new StringBuf();
-		var s = new haxe.Serializer();
-		s.useCache = true;
-		s.useEnumIndex = true;
-		s.serialize(NDocument(navRoot));
-		var navPath = saveAsset("nav.haxedata", Bytes.ofString(s.toString()));
 
 		var srcMap = [
 			for (p in srcCache.keys())
@@ -383,20 +368,19 @@ class Generator {
 		s.useCache = true;
 		s.useEnumIndex = true;
 		s.serialize(srcMap);
+
 		var srcMapPath = saveAsset("src.haxedata", Bytes.ofString(s.toString()));
-
-		var root = openBuffer("The Online BRT Planning Guide", "", bcs);  // FIXME get it elsewhere
-		root.add(contents);
-		bufs["index.html"] = root;
-
+		var navPath = saveAsset("nav.html", Bytes.ofString(nav.toString()));
 		for (p in bufs.keys()) {
 			var b = bufs[p];
-			b.add("</div>\n");
-			b.add(renderNav(NDocument(navRoot), ""));  // FIXME temporary
-			b.add("</div>\n");
-			b.add('<div class="data-nav" data-href="$navPath"></div>\n');
-			b.add('<div class="data-src-map" data-href="$srcMapPath"></div>\n');
-			b.add("</body>\n</html>\n");
+			if (p.endsWith(".html")) {
+				b.add("</div>\n");
+				b.add('<div class="data-nav" data-href="$navPath"></div>\n');
+				b.add(nav.toString()); // temp
+				b.add("<div>\n");
+				b.add('<div class="data-src-map" data-href="$srcMapPath"></div>\n');
+				b.add("</body>\n</html>\n");
+			}
 
 			var path = Path.join([destDir, p]);
 			FileSystem.createDirectory(Path.directory(path));
