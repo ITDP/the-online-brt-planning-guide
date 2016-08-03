@@ -19,7 +19,6 @@ h3 { font-size: 24px; }
 h4 { font-size: 20px; }
 h5 { font-size: 16px; }
 h6 { font-size: 16px; }
-h7 { font-size: 16px; }
 
 .brtcolor {
 	color: #00a95e;
@@ -126,6 +125,7 @@ header ul li ul {
 }
 
 /* volume */
+
 .volume1 {
 	color: #c32063;
 	font-weight: bold;
@@ -154,7 +154,10 @@ header ul li ul {
 	color: #a8151b;
 	font-weight: bold;
 }
-
+.volume8 {
+	color: #333;
+	font-weight: bold;
+}
 
 /* footer */
 
@@ -175,7 +178,7 @@ nav {
 	font-size: 14px;
 	float: left;
 	top: 33px;
-	bottom: 0;
+	bottom: 32px;
 	width: 256px;
 	position: fixed;
 	overflow: auto;
@@ -193,6 +196,10 @@ nav li
 
 nav a {
 	color: #666;
+}
+
+nav ul ul ul ul a {
+	color: #999;
 }
 
 nav ul ul
@@ -217,6 +224,7 @@ nav ul hr {
 	float: left;
 	width: 928px;
 	margin-top: 33px;
+	padding-top: 31px;
 }
 
 .col-text p {
@@ -299,6 +307,7 @@ blockquote span::before {
 blockquote.md {
 	width: 600px;
 	padding: 20px;
+	margin-bottom: 16px;
 }
 
 blockquote.lg {
@@ -355,6 +364,7 @@ section > ul,ol {
 }
 
 /* code */
+
 code {
 	font-size: .8em;
 }
@@ -371,6 +381,7 @@ pre {
 }
 
 /* target */
+
 .target {
 	display: none;
 }
@@ -379,6 +390,7 @@ pre {
 }
 
 /* selection */
+
 ::selection {
 	background: #00a95e;
 	color: #FFF;
@@ -389,6 +401,7 @@ pre {
 }
 
 /* overlay */
+
 label {
 	cursor:pointer;
 }
@@ -413,6 +426,7 @@ label {
 }
 
 /* scrollbar */
+
 ::-webkit-scrollbar {
 	width: 6px;
 }
