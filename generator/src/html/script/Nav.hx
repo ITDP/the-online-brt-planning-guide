@@ -19,6 +19,8 @@ class Nav {
 		var nav = J(JQuery.parseHTML(data));
 		assert(document.URL.startsWith(document.baseURI));
 		var myUrl = document.URL.replace(document.baseURI, "").replace(window.location.hash, "");
+		if (myUrl == "")
+			myUrl = "index.html";
 		var me = nav.find('a[href="$myUrl"]').parent();
 		assert(me.length > 0, myUrl);
 		assert(me.is("li"));
