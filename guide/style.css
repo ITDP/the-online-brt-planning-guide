@@ -380,12 +380,35 @@ pre {
 }
 
 /* selection */
-
 ::selection {
-  background: #00a95e; /* WebKit/Blink Browsers */
+	background: #00a95e;
 	color: #FFF;
 }
 ::-moz-selection {
-  background: #00a95e; /* Gecko Browsers */
+	background: #00a95e;
 	color: #FFF;
+}
+
+/* overlay */
+label {
+  cursor:pointer;
+}
+.overlay {
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background-color: rgba(255,255,255,.5);
+  visibility: hidden;
+  text-align:center;
+}
+.overlay img {
+  margin-top: 96px;
+}
+.overlay-trigger:checked + .overlay {
+  visibility: visible;
+}
+.overlay-trigger {
+  display: none;
 }
