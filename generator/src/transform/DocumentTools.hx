@@ -1,54 +1,55 @@
 package transform;
 
-import transform.Document;
+import transform.NewDocument;
 
 class DocumentTools {
-	public static function iter(v:TElem, f:TElem->Void)
+	public static function iter(v:DElem, f:DElem->Void)
 	{
 		switch v.def {
 		case null:
-		case TVolume(_,_,_,i), TChapter(_,_,_,i), TSection(_,_,_,i),
-			TSubSection(_,_,_,i), TSubSubSection(_,_,_,i), TBox(_,i,_):
+		case DVolume(_,_,i), DChapter(_,_,i), DSection(_,_,i),
+			DSubSection(_,_,i), DSubSubSection(_,_,i), DBox(_,_,i):
 			f(i);
-		case TTable(_, _, header, rows, _):
+		case DTable(_, _, _, header, rows):
 			for (v in header)
 				f(v);
 			for (r in rows) {
 				for (c in r)
 					f(c);
 			}
-		case TElemList(items), TList(_, items):
+		case DElemList(items), DList(_, items):
 			for (i in items)
 				f(i);
-		case TLaTeXPreamble(_), TLaTeXExport(_), THtmlApply(_), TFigure(_), TQuotation(_), TCodeBlock(_), TParagraph(_):
+		case DLaTeXPreamble(_), DLaTeXExport(_), DHtmlApply(_), DFigure(_), DQuotation(_), DCodeBlock(_), DParagraph(_), DEmpty:
 		}
 	}
-	public static function map(v:TElem, f:TElem->TElem)
+
+	public static function map(v:DElem, f:DElem->DElem)
 	{
-		return { pos:v.pos, def:
+		return { pos:v.pos, id:v.id, def:
 			switch v.def {
 			case null: null;
-			case TVolume(name, count, id, children):
-				TVolume(name, count, id, f(children));
-			case TChapter(name, count, id, children):
-				TChapter(name, count, id, f(children));
-			case TSection(name, count, id, children):
-				TSection(name, count, id, f(children));
-			case TSubSection(name, count, id, children):
-				TSubSection(name, count, id, f(children));
-			case TSubSubSection(name, count, id, children):
-				TSubSubSection(name, count, id, f(children));
-			case TElemList(elem):
-				TElemList([for (i in elem) f(i)]);
-			case TTable(size, caption, header, rows, count, id):
+			case DVolume(no, name, children):
+				DVolume(no, name, f(children));
+			case DChapter(no, name, children):
+				DChapter(no, name, f(children));
+			case DSection(no, name, children):
+				DSection(no, name, f(children));
+			case DSubSection(no, name, children):
+				DSubSection(no, name, f(children));
+			case DSubSubSection(no, name, children):
+				DSubSubSection(no, name, f(children));
+			case DElemList(elem):
+				DElemList([for (i in elem) f(i)]);
+			case DTable(no, size, caption, header, rows):
 				var _header = [for (v in header) f(v)];
 				var _rows = [for (r in rows) [for (c in r) f(c)]];
-				TTable(size, caption, _header, _rows, count, id);
-			case TBox(name, contents, count, id):
-				TBox(name, f(contents), count, id);
-			case TList(numbered, items):
-				TList(numbered, [for (i in items) f(i)]);
-			case TLaTeXPreamble(_), TLaTeXExport(_), THtmlApply(_), TFigure(_), TQuotation(_), TCodeBlock(_), TParagraph(_):
+				DTable(no, size, caption, _header, _rows);
+			case DBox(no, name, contents):
+				DBox(no, name, f(contents));
+			case DList(numbered, items):
+				DList(numbered, [for (i in items) f(i)]);
+			case DLaTeXPreamble(_), DLaTeXExport(_), DHtmlApply(_), DFigure(_), DQuotation(_), DCodeBlock(_), DParagraph(_), DEmpty:
 				v.def;
 			}
 		}

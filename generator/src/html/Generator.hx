@@ -15,6 +15,7 @@ import generator.tex.*;
 using Literals;
 using StringTools;
 using parser.TokenTools;
+using transform.DocumentTools;
 
 typedef BreadcrumbItem = {
 	no:Int,
@@ -253,7 +254,14 @@ class Generator {
 			noc.box = no;
 			var no = noc.join(false, ".", chapter, box);
 			var id = idc.join(true, ".", box);
-			var size = sizeToClass(FullWidth);  // TODO auto figure out it's size
+			var sz = TextWidth;
+			function autoSize(d:DElem) {
+				if (d.def.match(DTable(_, FullWidth|MarginWidth, _) | DFigure(_, FullWidth|MarginWidth, _)))
+					sz = FullWidth;
+				d.iter(autoSize);
+			}
+			autoSize(v);
+			var size = sizeToClass(sz);
 			return '
 				<section class="box $size">
 				<h1 id="$id" class="volume${noc.volume}">Box $no <em>${genh(name)}</em></h1>
