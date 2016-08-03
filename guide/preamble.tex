@@ -162,6 +162,7 @@
 % code
 \let\code\texttt
 \def\begincode{
+	\begingroup
 	\vskip 3.5mm
 	\parindent=0mm
 	\parskip=0mm
@@ -170,14 +171,9 @@
 	\small
 	\ttfamily  % FIXME
 }
-\def\endcode{	
-	\parindent=7mm
-	\parskip=0mm plus 4.5mm 
-	\baselineskip=4.5mm
-	\color{gray75}
-	\normalsize
-	\normalfont
+\def\endcode{
 	\vskip 3.5mm
+	\endgroup
 }
 
 %list
