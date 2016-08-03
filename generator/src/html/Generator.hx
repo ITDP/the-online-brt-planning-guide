@@ -391,10 +391,11 @@ class Generator {
 
 		for (p in bufs.keys()) {
 			var b = bufs[p];
-			b.add("</div>\n</div>\n");
+			b.add("</div>\n");
+			b.add(renderNav(NDocument(navRoot), ""));  // FIXME temporary
+			b.add("</div>\n");
 			b.add('<div class="data-nav" data-href="$navPath"></div>\n');
 			b.add('<div class="data-src-map" data-href="$srcMapPath"></div>\n');
-			b.add(renderNav(NDocument(navRoot), ""));  // FIXME temporary
 			b.add("</body>\n</html>\n");
 
 			var path = Path.join([destDir, p]);
