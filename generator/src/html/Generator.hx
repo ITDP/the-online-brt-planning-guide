@@ -35,7 +35,6 @@ class Generator {
 
 	var destDir:String;
 	var godOn:Bool;
-	var navScript:String;
 	var bufs:Map<String,StringBuf>;
 	var stylesheets:Array<String>;
 	var srcCache:Map<String,Int>;
@@ -175,7 +174,7 @@ class Generator {
 			bcs.volume = { no:no, name:new Html(genh(name)), url:path };  // FIXME raw html
 			var title = 'Volume $no: ${genn(name)}';
 			var buf = bufs[path] = openBuffer(title, "..", bcs);
-			nav.add('<li>\n${renderNav(no, Std.string(no), new Html(genh(name)), path)}\n<ul>\n');
+			nav.add('<li class="volume">\n${renderNav(no, Std.string(no), new Html(genh(name)), path)}\n<ul>\n');
 			buf.add('
 				<section>
 				<h1 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h1>
@@ -192,7 +191,7 @@ class Generator {
 			bcs.chapter = { no:no, name:new Html(genh(name)), url:path };  // FIXME raw html
 			var title = 'Chapter $no: ${genn(name)}';
 			var buf = bufs[path] = openBuffer(title, "..", bcs);
-			nav.add('<li>${renderNav(null, Std.string(noc.chapter), new Html(genh(name)), path)}<ul>\n');
+			nav.add('<li class="chapter">${renderNav(null, Std.string(noc.chapter), new Html(genh(name)), path)}<ul>\n');
 			buf.add('
 				<section>
 				<h2 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h2>
@@ -211,7 +210,7 @@ class Generator {
 			bcs.section = { no:no, name:new Html(genh(name)), url:path };  // FIXME raw html
 			var title = '$lno ${genn(name)}';  // TODO chapter name
 			var buf = bufs[path] = openBuffer(title, "..", bcs);
-			nav.add('<li>${renderNav(null, lno, new Html(genh(name)), path)}<ul>\n');
+			nav.add('<li class="section">${renderNav(null, lno, new Html(genh(name)), path)}<ul>\n');
 			buf.add('
 				<section>
 				<h3 id="heading" class="volume${noc.volume}">$lno$QUAD${genh(name)}</h3>
@@ -355,7 +354,6 @@ class Generator {
 
 	public function writeDocument(doc:NewDocument)
 	{
-		navScript = saveAsset("nav.js", haxe.Resource.getBytes("nav.js"));
 		bufs = new Map();
 		stylesheets = [];  // FIXME unique stylesheet collection
 		srcCache = new Map();  // TODO abstract
@@ -378,15 +376,17 @@ class Generator {
 		s.useEnumIndex = true;
 		s.serialize(srcMap);
 
+		var navBundle = "__navBundle__ = " + haxe.Json.stringify(nav.toString()) + ";\n" + haxe.Resource.getString("nav.js");
+		var navScript = saveAsset("nav.js", Bytes.ofString(navBundle));
 		var srcMapPath = saveAsset("src.haxedata", Bytes.ofString(s.toString()));
-		var navPath = saveAsset("nav.html", Bytes.ofString(nav.toString()));
 		for (p in bufs.keys()) {
 			var b = bufs[p];
 			if (p.endsWith(".html")) {
 				b.add("</div>\n");
-				b.add(nav.toString()); // temp
-				b.add("<div>\n");
-				b.add('<div class="data-nav" data-href="$navPath"></div>\n');
+				// TODO noscript nav
+				// b.add(nav.toString()); // temp
+				b.add("</div>\n");
+				b.add('<script src="$navScript"></script>');
 				b.add('<div class="data-src-map" data-href="$srcMapPath"></div>\n');
 				b.add("</body>\n</html>\n");
 			}
