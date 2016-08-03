@@ -35,6 +35,7 @@ class Generator {
 
 	var destDir:String;
 	var godOn:Bool;
+	var navScript:String;
 	var bufs:Map<String,StringBuf>;
 	var stylesheets:Array<String>;
 	var srcCache:Map<String,Int>;
@@ -354,6 +355,7 @@ class Generator {
 
 	public function writeDocument(doc:NewDocument)
 	{
+		navScript = saveAsset("nav.js", haxe.Resource.getBytes("nav.js"));
 		bufs = new Map();
 		stylesheets = [];  // FIXME unique stylesheet collection
 		srcCache = new Map();  // TODO abstract
