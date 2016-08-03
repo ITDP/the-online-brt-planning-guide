@@ -174,7 +174,7 @@ nav {
 	font-family: 'PT Sans', sans-serif;
 	font-size: 14px;
 	float: left;
-	top: 64px;
+	top: 33px;
 	bottom: 0;
 	width: 256px;
 	position: fixed;
@@ -371,7 +371,6 @@ pre {
 }
 
 /* target */
-
 .target {
 	display: none;
 }
@@ -391,24 +390,51 @@ pre {
 
 /* overlay */
 label {
-  cursor:pointer;
+	cursor:pointer;
 }
 .overlay {
-  position: fixed;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  background-color: rgba(255,255,255,.5);
-  visibility: hidden;
-  text-align:center;
+	position: fixed;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background-color: rgba(255,255,255,.5);
+	visibility: hidden;
+	text-align:center;
 }
 .overlay img {
-  margin-top: 96px;
+	margin-top: 96px;
 }
 .overlay-trigger:checked + .overlay {
-  visibility: visible;
+	visibility: visible;
 }
 .overlay-trigger {
-  display: none;
+	display: none;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+	width: 6px;
+}
+::-webkit-scrollbar-button {
+	width: 0px;
+	height: 0px;
+}
+::-webkit-scrollbar-thumb {
+	background: #CCC;
+	border: 0px;
+	border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #00a95e;
+}
+::-webkit-scrollbar-thumb:active {
+	background: #00a95e;
+}
+::-webkit-scrollbar-track {
+	background: #fff;
+	border: 0px;
+}
+::-webkit-scrollbar-corner {
+	background: transparent;
 }
