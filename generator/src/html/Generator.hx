@@ -366,12 +366,14 @@ class Generator {
 		var contents = genv(doc, new IdCtx(), new NoCtx(), {});  // TODO here for a hack
 		var root = bufs["index.html"] = openBuffer("The Online BRT Planning Guide", ".", {});
 		root.add(contents);
+		// TODO tt, commit in downloads, chapter download
 		nav.add('
 			<li class="keep">
-			<a href="#download">Download PDF</a>
-			<ul class="target" id="download">
-			<li><a href="../pdf/book-lualatex.pdf">Book: BRT Planning Guide</a></li>
+			<a href="#nav-options">More options</a>
+			<ul class="target" id="nav-options">
+			<li><a href="pdf/the-brt-planning-guide.pdf">Download the guide as PDF</a></li>
 			<!--<li>Chapter: Corridor And Network Development</li>-->
+			<li><a href="../">Server debug</a></li>
 			</ul>
 			</li>
 		'.doctrim());
