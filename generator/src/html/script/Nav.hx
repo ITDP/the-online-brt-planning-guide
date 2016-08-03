@@ -42,7 +42,7 @@ class Nav {
 			me.siblings("li.section").find("li").not(me.find("li")).not("keep").remove();
 		}
 
-		// fix download
+		// fix fragments
 		nav.find('a[href^="#"]').attr("href", function (_, u) return myUrl + u);
 
 		// insert
