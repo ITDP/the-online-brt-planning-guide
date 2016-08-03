@@ -14,11 +14,18 @@
 
 --each
 
+# The html nav scrip
+-main html.script.Nav
+-js bin/bundle/nav.js
+
+--next
+
 # The main tool, to run on Node
 # use --debug for source-map generation
 -main Main
 -js bin/obrt.js
 -lib hxnodejs
+-resource bin/bundle/nav.js@nav.js
 -debug
 
 --next
@@ -51,6 +58,7 @@
 # This much easier to debug; it's is also much slower
 -main Main
 -neko bin/obrt.n
+-resource bin/bundle/nav.js@nav.js
 -cmd nekotools boot bin/obrt.n
 
 --next
@@ -77,6 +85,7 @@
 #
 # # Alternate tool target: C++
 # -main Main
+# -resource bin/bundle/nav.js@nav.js
 # -cpp bin/cpp
 
 # --next

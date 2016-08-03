@@ -16,6 +16,8 @@
 	});
 </script>
 <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML" ></script>
+<!-- Nav -->
+<script async src="(:navScript:)"></script>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700italic,700|PT+Sans:400,400italic,700,700italic" rel="stylesheet" type="text/css">
 <!-- Custom CSSs -->
