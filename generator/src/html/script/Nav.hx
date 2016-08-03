@@ -18,9 +18,9 @@ class Nav {
 		assert(data != null, "no data bundled");
 		var nav = J(JQuery.parseHTML(data));
 		assert(document.URL.startsWith(document.baseURI));
-		var myUrl = document.URL.substr(document.baseURI.length);
+		var myUrl = document.URL.replace(document.baseURI, "").replace(window.location.hash, "");
 		var me = nav.find('a[href="$myUrl"]').parent();
-		assert(me.length > 0);
+		assert(me.length > 0, myUrl);
 		assert(me.is("li"));
 		assert(me.hasClass("volume") || me.hasClass("chapter") || me.hasClass("section"), "classes used in selectors");
 
@@ -37,7 +37,7 @@ class Nav {
 		} else if (me.hasClass("section")) {
 			nav.find("li.chapter").not(me.parents("li.chapter")).remove();
 			nav.find("li.section").not(me).not(me.siblings("li.section")).remove();
-			me.siblings("li.section").find("li").not(me.find("li")).remove();
+			me.siblings("li.section").find("li").not(me.find("li")).not("keep").remove();
 		}
 
 		// insert
