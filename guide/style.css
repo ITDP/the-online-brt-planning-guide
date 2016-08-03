@@ -177,8 +177,8 @@ nav {
 	font-family: 'PT Sans', sans-serif;
 	font-size: 14px;
 	float: left;
-	top: 64px;
-	bottom: 32px;
+	top: 33px;
+	bottom: 0px;
 	width: 256px;
 	position: fixed;
 	overflow: auto;
@@ -414,6 +414,7 @@ label {
 	background-color: rgba(255,255,255,.5);
 	visibility: hidden;
 	text-align:center;
+	z-index: 999;
 }
 .overlay img {
 	margin-top: 96px;
