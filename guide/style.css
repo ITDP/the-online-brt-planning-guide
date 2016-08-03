@@ -296,11 +296,11 @@ blockquote {
 	background-color: #EEE;
 	border-radius: 2px;
 }
-blockquote span {
+blockquote .by {
 	display: block;
 	text-align: right;
 }
-blockquote span::before {
+blockquote .by::before {
 	content: "— ";
 }
 
