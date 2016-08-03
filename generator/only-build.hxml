@@ -2,6 +2,7 @@
 # -D macro-times
 # -D dump=pretty
 
+-lib utest
 -lib hxparse
 -lib assertion
 -lib literals
