@@ -177,7 +177,7 @@ nav {
 	font-family: 'PT Sans', sans-serif;
 	font-size: 14px;
 	float: left;
-	top: 33px;
+	top: 64px;
 	bottom: 32px;
 	width: 256px;
 	position: fixed;
@@ -431,8 +431,8 @@ label {
 	width: 6px;
 }
 ::-webkit-scrollbar-button {
-	width: 0px;
-	height: 0px;
+	width: 6px;
+	height: 6px;
 }
 ::-webkit-scrollbar-thumb {
 	background: #CCC;
@@ -446,6 +446,7 @@ label {
 	background: #00a95e;
 }
 ::-webkit-scrollbar-track {
+	width: 12px;
 	background: #fff;
 	border: 0px;
 }
