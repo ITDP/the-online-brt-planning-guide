@@ -1,4 +1,4 @@
-package generator.tex;
+package tex;
 
 import transform.NewDocument;
 import transform.Context;
@@ -117,14 +117,14 @@ class LargeTable {
 		return icost;
 	}
 
-	public static function gen(v:DElem, gen:TexGen, genAt:String, genIdc:IdCtx)
+	public static function gen(v:DElem, id:String, gen:Generator, genAt:String, genIdc:IdCtx)
 	{
 		assert(v.def.match(DTable(_)), v);
 		switch v.def {
 		case DTable(no, size, caption, header, rows):
 			var buf = new StringBuf();
 			// TODO label
-			buf.add('\\tabletitle{$no}{${gen.genh(caption)}}\n\n');
+			buf.add('\\tabletitle{$no}{${gen.genh(caption)}}\n\\label{$id}\n');
 			var width = header.length;
 
 			switch size {
