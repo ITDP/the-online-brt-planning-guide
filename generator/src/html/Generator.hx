@@ -365,7 +365,9 @@ class Generator {
 		// FIXME get the document name elsewhere
 		var contents = genv(doc, new IdCtx(), new NoCtx(), {});  // TODO here for a hack
 		var root = bufs["index.html"] = openBuffer("The Online BRT Planning Guide", ".", {});
+		root.add('<section>\n<h1 id="heading" class="brtcolor">${gent("The Online BRT Planning Guide")}</h1>\n');
 		root.add(contents);
+		root.add('</section>\n');
 		// TODO tt, commit in downloads, chapter download
 		nav.add('
 			<li class="keep">
