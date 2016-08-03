@@ -150,6 +150,15 @@ class Generator {
 	static inline var DRAFT_IMG_PLACEHOLDER = "https://upload.wikimedia.org/wikipedia/commons/5/56/Sauroposeidon_Scale_Diagram_Steveoc86.svg";
 	static inline var DRAFT_IMG_PLACEHOLDER_COPYRIGHT = "Placeholder image by Steveoc 86 (Own work) <a href='http://creativecommons.org/licenses/by-sa/3.0'>CC BY-SA 3.0</a> or <a href='http://www.gnu.org/copyleft/fdl.html'>GFDL</a>, via Wikimedia Commons";
 
+	static function sizeToClass(size:BlobSize):String
+	{
+		return switch size {
+		case MarginWidth: "sm";
+		case TextWidth: "md";
+		case FullWidth: "lg";
+		}
+	}
+
 	function genv(v:DElem, idc:IdCtx, noc:NoCtx, bcs:Breadcrumbs)
 	{
 		switch v.def {
@@ -244,7 +253,7 @@ class Generator {
 			noc.box = no;
 			var no = noc.join(false, ".", chapter, box);
 			var id = idc.join(true, ".", box);
-			var size = "md";  // TODO auto figure out it's size
+			var size = sizeToClass(FullWidth);  // TODO auto figure out it's size
 			return '
 				<section class="box $size">
 				<h1 id="$id" class="volume${noc.volume}">Box $no <em>${genh(name)}</em></h1>
@@ -256,10 +265,9 @@ class Generator {
 			noc.figure = no;
 			var no = noc.join(false, ".", chapter, figure);
 			var id = idc.join(true, ".", figure);
-			var size = "md";  // FIXME
 			if (Context.draft) {
 				return '
-					<section class="img-block $size">
+					<section class="img-block ${sizeToClass(size)}">
 					<img src="$DRAFT_IMG_PLACEHOLDER"/>
 					<p id="$id"><strong>Fig. $no</strong>$QUAD${genh(caption)} <em>$DRAFT_IMG_PLACEHOLDER_COPYRIGHT</em></p>
 					</section>
@@ -267,7 +275,7 @@ class Generator {
 			} else {
 				var p = saveAsset(path);
 				return '
-					<section class="img-block $size">
+					<section class="img-block ${sizeToClass(size)}">
 					<img src="$p"/>
 					<p id="$id"><strong>Fig. $no</strong>$QUAD${genh(caption)} <em>${genh(cright)}</em></p>
 					</section>
@@ -299,7 +307,7 @@ class Generator {
 				buf.add("</tr>\n");
 			}
 			buf.add('
-				<section class="$size">
+				<section class="${sizeToClass(size)}">
 				<h5 id="$id">Table $no$QUAD${genh(caption)}</h5>
 				<table>
 			'.doctrim());
@@ -347,18 +355,17 @@ class Generator {
 	public function writeDocument(doc:NewDocument)
 	{
 		bufs = new Map();
-		stylesheets = [];
+		stylesheets = [];  // FIXME unique stylesheet collection
 		srcCache = new Map();  // TODO abstract
 		lastSrcId = 0;
 		nav = new StringBuf();
 		nav.add("<nav><ul>");
 
 		// FIXME get the document name elsewhere
+		var contents = genv(doc, new IdCtx(), new NoCtx(), {});  // TODO here for a hack
 		var root = bufs["index.html"] = openBuffer("The Online BRT Planning Guide", "", {});
-		var contents = genv(doc, new IdCtx(), new NoCtx(), {});
 		root.add(contents);
 		nav.add("</ul></nav>");
-
 
 		var srcMap = [
 			for (p in srcCache.keys())
