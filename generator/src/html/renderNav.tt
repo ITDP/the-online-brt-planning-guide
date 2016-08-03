@@ -1,0 +1,8 @@
+(:switch i:)
+(:case NDocument(children):)<nav><ul>(:for i in children:)(:renderNav(i):)(:end:)</ul></nav>
+(:case NVolume(no, name, url, children):)<a href="(:url:)" class="volume(:no:)">Volume (:no:) (:name:)</a><ul>(:for i in children:)(:renderNav(i):)(:end:)</ul>
+(:case NChapter(no, name, url, children):)<a href="(:url:)">(:no:) (:name:)</a><ul>(:for i in children:)(:renderNav(i):)(:end:)</ul>
+(:case NSection(no, name, url, children):)<a href="(:url:)">(:no:) (:name:)</a><ul>(:for i in children:)(:renderNav(i):)(:end:)</ul>
+(:case NSubSection(no, name, url, children):)<a href="(:url:)">(:no:) (:name:)</a><ul>(:for i in children:)(:renderNav(i):)(:end:)</ul>
+(:case NSubSubSection(no, name, url):)<a href="(:url:)">(:no:) (:name:)</a>
+(:end:)

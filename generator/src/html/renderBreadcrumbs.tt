@@ -1,11 +1,17 @@
 <header>
 <ul>
-<li><a class="brtcolor"><strong>BRT Planning Guide</strong></a></li>
+<li><a class="brtcolor" href="index.html"><strong>BRT Planning Guide</strong></a></li>
+(:if bcs.volume != null:)
 <li>/</li>
-<li><a class="volume2" href="#"><strong>Operations</strong></a></li>
+<li><a class="volume(:bcs.volume.no:)" href="(:bcs.volume.url:)"><strong>(:bcs.volume.name:)</strong></a></li>
+(:end:)
+(:if bcs.chapter != null:)
 <li>/</li>
-<li><a href="#"><strong>Corridor And Network Development</strong></a></li>
+<li><a href="(:bcs.chapter.url:)"><strong>(:bcs.chapter.name:)</strong></a></li>
+(:end:)
+(:if bcs.section != null:)
 <li>/</li>
-<li><a href="#"><strong>Corridor Length</strong></a></li>
+<li><a href="(:bcs.section.url:)"><strong>(:bcs.section.name:)</strong></a></li>
+(:end:)
 </ul>
 </header>
