@@ -360,12 +360,22 @@ class Generator {
 		lastSrcId = 0;
 		nav = new StringBuf();
 		nav.add("<nav><ul>");
+		nav.add('<li class="volume">${renderNav(null, null, "BRT Planning Guide", "index.html")}</li>');
 
 		// FIXME get the document name elsewhere
 		var contents = genv(doc, new IdCtx(), new NoCtx(), {});  // TODO here for a hack
-		var root = bufs["index.html"] = openBuffer("The Online BRT Planning Guide", "", {});
+		var root = bufs["index.html"] = openBuffer("The Online BRT Planning Guide", ".", {});
 		root.add(contents);
-		nav.add("</ul></nav>");
+		nav.add('
+			<li class="keep">
+			<a href="#download">Download PDF</a>
+			<ul class="target" id="download">
+			<li><a href="../pdf/book-lualatex.pdf">Book: BRT Planning Guide</a></li>
+			<!--<li>Chapter: Corridor And Network Development</li>-->
+			</ul>
+			</li>
+		'.doctrim());
+		nav.add("\n</ul></nav>");
 
 		var srcMap = [
 			for (p in srcCache.keys())
