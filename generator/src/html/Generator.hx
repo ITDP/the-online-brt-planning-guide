@@ -18,11 +18,11 @@ using parser.TokenTools;
 
 enum NavItem {
 	NDocument(children:Array<NavItem>);
-	NVolume(no:Int, nameHtml:String, url:String, children:Array<NavItem>);
-	NChapter(no:Int, nameHtml:String, url:String, children:Array<NavItem>);
-	NSection(no:Int, nameHtml:String, url:String, children:Array<NavItem>);
-	NSubSection(no:Int, nameHtml:String, url:String, children:Array<NavItem>);
-	NSubSubSection(no:Int, nameHtml:String, url:String);
+	NVolume(no:Int, name:Html, url:String, children:Array<NavItem>);
+	NChapter(no:Int, name:Html, url:String, children:Array<NavItem>);
+	NSection(no:Int, name:Html, url:String, children:Array<NavItem>);
+	NSubSection(no:Int, name:Html, url:String, children:Array<NavItem>);
+	NSubSubSection(no:Int, name:Html, url:String);
 }
 
 typedef BreadcrumbItem = {
@@ -182,7 +182,7 @@ class Generator {
 			'.doctrim());
 			buf.add("\n");
 			bcs.volume = null;  // FIXME hack
-			navBucket.push(NVolume(no, genh(name), path, navChildren));
+			navBucket.push(NVolume(no, new Html(genh(name)), path, navChildren));
 			return "";
 		case DChapter(no, name, children):
 			idc.chapter = v.id.sure();
@@ -200,7 +200,7 @@ class Generator {
 			'.doctrim());
 			buf.add("\n");
 			bcs.chapter = null;  // FIXME hack
-			navBucket.push(NChapter(no, genh(name), path, navChildren));
+			navBucket.push(NChapter(no, new Html(genh(name)), path, navChildren));
 			return "";
 		case DSection(no, name, children):
 			idc.section = v.id.sure();
@@ -219,7 +219,7 @@ class Generator {
 			'.doctrim());
 			buf.add("\n");
 			bcs.section = null;  // FIXME hack
-			navBucket.push(NSection(no, genh(name), path, navChildren));
+			navBucket.push(NSection(no, new Html(genh(name)), path, navChildren));
 			return "";
 		case DSubSection(no, name, children):
 			idc.subSection = v.id.sure();
@@ -233,7 +233,7 @@ class Generator {
 				${genv(children, idc, noc, bcs, navChildren)}
 				</section>
 			'.doctrim() + "\n";
-			navBucket.push(NSubSection(no, genh(name), bcs.section.url+"#"+id, navChildren));
+			navBucket.push(NSubSection(no, new Html(genh(name)), bcs.section.url+"#"+id, navChildren));
 			return html;
 		case DSubSubSection(no, name, children):
 			idc.subSubSection = v.id.sure();
@@ -246,7 +246,7 @@ class Generator {
 				${genv(children, idc, noc, bcs, navBucket)}
 				</section>
 			'.doctrim() + "\n";
-			navBucket.push(NSubSubSection(no, genh(name), bcs.section.url+"#"+id));
+			navBucket.push(NSubSubSection(no, new Html(genh(name)), bcs.section.url+"#"+id));
 			return html;
 		case DBox(no, name, children):
 			idc.box = v.id.sure();
@@ -351,7 +351,7 @@ class Generator {
 		}
 	}
 
-	@:template function renderNav(i:NavItem);
+	@:template function renderNav(i:NavItem, prefix:String);
 
 	public function writeDocument(doc:NewDocument)
 	{
@@ -394,7 +394,7 @@ class Generator {
 			b.add("</div>\n</div>\n");
 			b.add('<div class="data-nav" data-href="$navPath"></div>\n');
 			b.add('<div class="data-src-map" data-href="$srcMapPath"></div>\n');
-			b.add(renderNav(NDocument(navRoot)));  // FIXME temporary
+			b.add(renderNav(NDocument(navRoot), ""));  // FIXME temporary
 			b.add("</body>\n</html>\n");
 
 			var path = Path.join([destDir, p]);
