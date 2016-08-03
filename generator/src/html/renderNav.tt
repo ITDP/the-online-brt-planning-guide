@@ -1,8 +1,8 @@
 (:switch i:)
-(:case NDocument(children):)<nav><ul>(:for i in children:)(:renderNav(i, prefix):)(:end:)</ul></nav>
-(:case NVolume(no, name, url, children):)<a href="(:url:)" class="volume(:no:)">Volume (:prefix:)(:no:) (:name:)</a><ul>(:for i in children:)(:renderNav(i, '$prefix$no.'):)(:end:)</ul>
-(:case NChapter(no, name, url, children):)<a href="(:url:)">(:prefix:)(:no:) (:name:)</a><ul>(:for i in children:)(:renderNav(i, '$prefix$no.'):)(:end:)</ul>
-(:case NSection(no, name, url, children):)<a href="(:url:)">(:prefix:)(:no:) (:name:)</a><ul>(:for i in children:)(:renderNav(i, '$prefix$no.'):)(:end:)</ul>
-(:case NSubSection(no, name, url, children):)<a href="(:url:)">(:prefix:)(:no:) (:name:)</a><ul>(:for i in children:)(:renderNav(i, '$prefix$no.'):)(:end:)</ul>
+(:case NDocument(children):)<nav><ul>(:for i in children:)<li>(:renderNav(i, prefix):)</li>(:end:)</ul></nav>
+(:case NVolume(no, name, url, children):)<a href="(:url:)" class="volume(:no:)">Volume (:prefix:)(:no:) (:name:)</a><ul>(:for i in children:)<li>(:renderNav(i, prefix):)</li>(:end:)</ul>
+(:case NChapter(no, name, url, children):)<a href="(:url:)">(:prefix:)(:no:) (:name:)</a><ul>(:for i in children:)<li>(:renderNav(i, '$prefix$no.'):)</li>(:end:)</ul>
+(:case NSection(no, name, url, children):)<a href="(:url:)">(:prefix:)(:no:) (:name:)</a><ul>(:for i in children:)<li>(:renderNav(i, '$prefix$no.'):)</li>(:end:)</ul>
+(:case NSubSection(no, name, url, children):)<a href="(:url:)">(:prefix:)(:no:) (:name:)</a><ul>(:for i in children:)<li>(:renderNav(i, '$prefix$no.'):)</li>(:end:)</ul>
 (:case NSubSubSection(no, name, url):)<a href="(:url:)">(:prefix:)(:no:) (:name:)</a>
 (:end:)
