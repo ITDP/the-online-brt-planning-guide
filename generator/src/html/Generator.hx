@@ -172,7 +172,7 @@ class Generator {
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim());
-			nav.add("\n</ul>\n</li>\n");
+			nav.add("</ul>\n</li>\n");
 			bcs.volume = null;  // FIXME hack
 			return "";
 		case DChapter(no, name, children):
@@ -182,14 +182,14 @@ class Generator {
 			bcs.chapter = { no:no, name:new Html(genh(name)), url:path };  // FIXME raw html
 			var title = 'Chapter $no: ${genn(name)}';
 			var buf = bufs[path] = openBuffer(title, "..", bcs);
-			nav.add('<li>\n${renderNav(null, Std.string(noc.chapter), new Html(genh(name)), path)}\n<ul>\n');
+			nav.add('<li>${renderNav(null, Std.string(noc.chapter), new Html(genh(name)), path)}<ul>\n');
 			buf.add('
 				<section>
 				<h2 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h2>
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim());
-			nav.add("\n</ul>\n</li>\n");
+			nav.add("</ul>\n</li>\n");
 			buf.add("\n");
 			bcs.chapter = null;  // FIXME hack
 			return "";
@@ -201,14 +201,14 @@ class Generator {
 			bcs.section = { no:no, name:new Html(genh(name)), url:path };  // FIXME raw html
 			var title = '$lno ${genn(name)}';  // TODO chapter name
 			var buf = bufs[path] = openBuffer(title, "..", bcs);
-			nav.add('<li>\n${renderNav(null, lno, new Html(genh(name)), path)}\n<ul>\n');
+			nav.add('<li>${renderNav(null, lno, new Html(genh(name)), path)}<ul>\n');
 			buf.add('
 				<section>
 				<h3 id="heading" class="volume${noc.volume}">$lno$QUAD${genh(name)}</h3>
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim());
-			nav.add("\n</ul>\n</li>\n");
+			nav.add("</ul>\n</li>\n");
 			buf.add("\n");
 			bcs.section = null;  // FIXME hack
 			return "";
@@ -217,14 +217,14 @@ class Generator {
 			noc.subSection = no;
 			var lno = noc.join(false, ".", chapter, section, subSection);
 			var id = idc.join(true, ".", subSection);
-			nav.add('<li>\n${renderNav(null, lno, new Html(genh(name)), bcs.section.url+"#"+id)}\n<ul>\n');
+			nav.add('<li>${renderNav(null, lno, new Html(genh(name)), bcs.section.url+"#"+id)}<ul>\n');
 			var html = '
 				<section>
 				<h4 id="$id" class="volume${noc.volume}">$lno$QUAD${genh(name)}</h4>
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim() + "\n";
-			nav.add("\n</ul>\n</li>\n");
+			nav.add("</ul>\n</li>\n");
 			return html;
 		case DSubSubSection(no, name, children):
 			idc.subSubSection = v.id.sure();
@@ -237,7 +237,7 @@ class Generator {
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim() + "\n";
-			nav.add('<li>\n${renderNav(null, lno, new Html(genh(name)), bcs.section.url+"#"+id)}</li>');
+			nav.add('<li>${renderNav(null, lno, new Html(genh(name)), bcs.section.url+"#"+id)}</li>');
 			return html;
 		case DBox(no, name, children):
 			idc.box = v.id.sure();
@@ -375,9 +375,9 @@ class Generator {
 			var b = bufs[p];
 			if (p.endsWith(".html")) {
 				b.add("</div>\n");
-				b.add('<div class="data-nav" data-href="$navPath"></div>\n');
 				b.add(nav.toString()); // temp
 				b.add("<div>\n");
+				b.add('<div class="data-nav" data-href="$navPath"></div>\n');
 				b.add('<div class="data-src-map" data-href="$srcMapPath"></div>\n');
 				b.add("</body>\n</html>\n");
 			}
