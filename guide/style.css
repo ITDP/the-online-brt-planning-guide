@@ -232,6 +232,9 @@ nav ul hr {
 	margin-right: 288px;
 	text-align: justify;
 }
+.col-text li p {
+	margin: 0;
+}
 
 /* img-block */
 
@@ -457,3 +460,4 @@ label {
 ::-webkit-scrollbar-corner {
 	background: transparent;
 }
+
