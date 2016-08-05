@@ -36,22 +36,10 @@
 			"cd .generated-js/pdf/",
 			"mkdir -p $ROBRT_OUTPUT_DIR/pdf $ROBRT_OUTPUT_DIR/guide/pdf",
 
-			"latexmk -xelatex -pdflatex='xelatex -interaction=nonstopmode' book.tex",
-			"cp book.pdf $ROBRT_OUTPUT_DIR/pdf/guide_xelatex.pdf",
-			"cp book.log $ROBRT_OUTPUT_DIR/pdf/guide_xelatex.log",
-			"latexmk -C book.tex",
-
 			"latexmk -lualatex -pdflatex='lualatex -interaction=nonstopmode' book.tex",
-			"cp book.pdf $ROBRT_OUTPUT_DIR/pdf/guide_lualatex.pdf",
-			"cp book.log $ROBRT_OUTPUT_DIR/pdf/guide_lualatex.log",
 			"cp book.pdf $ROBRT_OUTPUT_DIR/guide/pdf/the-brt-planning-guide.pdf",
-			"latexmk -C book.tex",
-
-			"latexmk -pdf -pdflatex='pdflatex -interaction=nonstopmode' book.tex",
-			"cp book.pdf $ROBRT_OUTPUT_DIR/pdf/guide_pdflatex.pdf",
-			"cp book.log $ROBRT_OUTPUT_DIR/pdf/guide_pdflatex.log",
+			"cp book.log $ROBRT_OUTPUT_DIR/pdf/guide_lualatex.log",
 			"latexmk -C book.tex"
-
 		]
 	}
 }
