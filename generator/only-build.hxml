@@ -2,6 +2,7 @@
 # -D macro-times
 # -D dump=pretty
 
+-lib utest
 -lib hxparse
 -lib assertion
 -lib literals
@@ -44,7 +45,6 @@
 -main RunTests
 -js bin/tests.js
 -cp test
--lib utest
 # use a pseudo fs library
 -cp pseudo
 # don't load hxnodejs, but emulate it been loaded
@@ -67,7 +67,6 @@
 -main RunTests
 -neko bin/tests.n
 -cp test
--lib utest
 # use a pseudo fs library
 -cp pseudo
 
@@ -77,7 +76,6 @@
 # -main RunTests
 # -cppia bin/tests.cppia
 # -cp test
-# -lib utest
 # # use a pseudo fs library
 # -cp pseudo
 
@@ -94,7 +92,6 @@
 # -main RunTests
 # -cpp bin/cpp/tests
 # -cp test
-# -lib utest
 # # use a pseudo fs library
 # -cp pseudo
 
