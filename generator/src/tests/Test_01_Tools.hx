@@ -1,3 +1,5 @@
+package tests;
+
 import utest.Assert;
 import parser.Ast;
 import parser.AstTools.*;
@@ -5,7 +7,7 @@ using parser.TokenTools;
 
 class Test_01_Tools {
 	static inline var TMP = "/tmp/";
-	static inline var SRC = "Test_01_Tools.hx";
+	static inline var SRC = "tests.Test_01_Tools.hx";
 
 	public function new() {}
 

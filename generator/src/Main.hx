@@ -77,7 +77,7 @@ class Main {
 			case _[0] => cmd if (cmd != null && StringTools.startsWith("statistics", cmd)):
 				tools.Stats.run(args.slice(1));
 			case [cmd] if (StringTools.startsWith("unit-tests", cmd)):
-				RunTests.runAll();
+				tests.RunAll.runAll();
 			case ["--version"]:
 				println(BUILD_INFO);
 			case ["--help"]:

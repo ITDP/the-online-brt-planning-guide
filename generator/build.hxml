@@ -3,6 +3,6 @@ only-build.hxml
 --next
 
 # The macro interpreter unit tests
--main RunTests
+-main tests.RunAll
 --interp
 
