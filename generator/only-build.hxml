@@ -8,9 +8,11 @@
 -lib sys-utils
 -lib version
 -lib tink_template
+-lib utest
 -D tink_template_pos=off
 -cp include
 -cp src
+-cp test
 
 --each
 
@@ -30,21 +32,6 @@
 
 --next
 
-# The Node unit tests
-# use --debug for source-map generation
--main RunTests
--js bin/tests.js
--cp test
--lib utest
-# use a pseudo fs library
--cp pseudo
-# don't load hxnodejs, but emulate it been loaded
--D hxnodejs
---macro allowPackage("sys")
--debug
-
---next
-
 # Alternate tool target: Neko
 # This much easier to debug; it's is also much slower
 -main Main
@@ -54,38 +41,8 @@
 
 --next
 
-# The Neko unit tests
--main RunTests
--neko bin/tests.n
--cp test
--lib utest
-# use a pseudo fs library
--cp pseudo
-
---next
-
-# # The Cppia unit tests
-# -main RunTests
-# -cppia bin/tests.cppia
-# -cp test
-# -lib utest
-# # use a pseudo fs library
-# -cp pseudo
-
-# --next
-#
 # # Alternate tool target: C++
 # -main Main
 # -resource bin/bundle/nav.js@nav.js
 # -cpp bin/cpp
-
-# --next
-#
-# # The C++ unit tests
-# -main RunTests
-# -cpp bin/cpp/tests
-# -cp test
-# -lib utest
-# # use a pseudo fs library
-# -cp pseudo
 

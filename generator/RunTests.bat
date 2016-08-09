@@ -1,4 +1,4 @@
 @echo off
 cd bin
-neko tests.n
+neko obrt.n unit-tests
 pause
