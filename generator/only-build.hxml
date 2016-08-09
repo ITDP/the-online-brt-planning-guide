@@ -30,15 +30,6 @@
 
 --next
 
-# A stat tool, to run on Node
-# use --debug for source-map generation
--main tools.Stats
--js bin/obrt-stats.js
--lib hxnodejs
--debug
-
---next
-
 # The Node unit tests
 # use --debug for source-map generation
 -main RunTests
