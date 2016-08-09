@@ -1,4 +1,6 @@
-class RunTests {
+package tests;
+
+class RunAll {
 	public static function runAll()
 	{
 		Context.debug = true;

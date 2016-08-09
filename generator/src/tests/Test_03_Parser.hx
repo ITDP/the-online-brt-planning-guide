@@ -1,3 +1,5 @@
+package tests;
+
 import parser.Ast;
 import parser.AstTools.*;
 import parser.Error;
@@ -6,7 +8,7 @@ import utest.Assert;
 
 class Test_03_Parser {
 	static inline var TMP = "/tmp/";
-	static inline var SRC = "Test_03_Parser.hx";
+	static inline var SRC = "tests.Test_03_Parser.hx";
 	public function new() {}
 
 	function parse(s:String)

@@ -12,7 +12,6 @@
 -D tink_template_pos=off
 -cp include
 -cp src
--cp test
 
 --each
 
