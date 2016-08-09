@@ -1,3 +1,5 @@
+package tests;
+
 import haxe.io.Bytes;
 import parser.Lexer;
 import parser.Parser;
@@ -11,7 +13,7 @@ import parser.AstTools.*;
 import transform.Transform.transform in rawTransform;
 
 class Test_04_Transform {
-	static inline var SRC = "Test_04_Transform.hx";
+	static inline var SRC = "tests.Test_04_Transform.hx";
 
 	public function new() {}
 

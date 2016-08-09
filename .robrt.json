@@ -13,7 +13,7 @@
 
 			"cd $ROBRT_REPOSITORY_DIR/generator",
 			"haxe -D travis build.hxml",
-			"nodejs bin/tests.js",
+			"nodejs bin/obrt.js unit-tests",
 
 			"cd $ROBRT_REPOSITORY_DIR",
 			"mkdir -p $ROBRT_OUTPUT_DIR/bin",
@@ -23,8 +23,8 @@
 			"export DEBUG=1",
 			"nodejs --version",
 
-			"DRAFT=1 command time -v neko generator/bin/obrt.n gen guide/the-guide.src .generated-neko",
-			"command time -v nodejs generator/bin/obrt.js gen guide/the-guide.src .generated-js",
+			"DRAFT=1 command time -v neko generator/bin/obrt.n generate guide/the-guide.src .generated-neko",
+			"command time -v nodejs generator/bin/obrt.js generate guide/the-guide.src .generated-js",
 
 			"ls -l .generated-neko/pdf/fonts",
 			"ls -l .generated-js/pdf/fonts",

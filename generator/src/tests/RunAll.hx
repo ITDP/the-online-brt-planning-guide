@@ -1,8 +1,9 @@
-class RunTests {
-	static function main()
+package tests;
+
+class RunAll {
+	public static function runAll()
 	{
 		Context.debug = true;
-		Context.prepareSourceMaps();
 
 		var r = new utest.Runner();
 		r.addCase(new Test_01_Tools());
@@ -13,6 +14,12 @@ class RunTests {
 
 		utest.ui.Report.create(r);
 		r.run();
+	}
+
+	static function main()
+	{
+		Context.prepareSourceMaps();
+		runAll();
 	}
 }
 
