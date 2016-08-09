@@ -1,3 +1,5 @@
+package tests;
+
 import parser.Ast;
 import parser.AstTools.*;
 import parser.Error;
@@ -5,7 +7,8 @@ import parser.Token;
 import utest.Assert;
 
 class Test_03_Parser {
-	static inline var SRC = "Test_03_Parser.hx";
+	static inline var TMP = "/tmp/";
+	static inline var SRC = "tests.Test_03_Parser.hx";
 	public function new() {}
 
 	function parse(s:String)
@@ -578,10 +581,10 @@ class Test_03_Parser {
 
 	public function test_021_include()
 	{
-		sys.io.File.saveContent("b", "c");
-		Assert.same(
-			expand(@src("b")Paragraph(@len(1)Word("c"))),
-			parse("\\include{b}"));
+		sys.io.File.saveContent('$TMP/b', "c");
+		Assert.equals(
+			haxe.io.Path.normalize('$TMP/b'),
+			parse('\\include{$TMP/b}').pos.src);
 
 	}
 

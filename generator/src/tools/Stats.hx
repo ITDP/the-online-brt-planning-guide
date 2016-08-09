@@ -10,11 +10,10 @@ using Literals;
 using parser.TokenTools;
 
 class Stats {
-	static inline var BANNER = "The Online BRT Planning Guide Tool";
 	static var USAGE = "
 		Usage:
-		  obrt-stats tokens <input file> [...]
-		  obrt --help".doctrim();
+		  obrt stats tokens <input file> [...]
+		  obrt stats --help".doctrim();
 
 	static function tokenStats(paths:Array<String>)
 	{
@@ -49,15 +48,12 @@ class Stats {
 		println([for (r in res) '${r.name}: ${r.count} (${r.share}%)'].join("\n"));
 	}
 
-	static function main()
+	public static function run(args:Array<String>)
 	{
-		Context.prepareSourceMaps();
-
-		var args = Sys.args();
 		switch args {
 		case ["--help"]:
 			println(USAGE);
-		case _[0] => cmd if (StringTools.startsWith("tokens", cmd)):
+		case _[0] => cmd if (cmd != null && StringTools.startsWith("tokens", cmd)):
 			tokenStats(args.slice(1));
 		case _:
 			println(USAGE);

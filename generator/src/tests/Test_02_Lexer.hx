@@ -1,3 +1,5 @@
+package tests;
+
 import parser.*;
 import parser.Token;
 import utest.Assert;
