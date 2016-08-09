@@ -20,6 +20,7 @@ class Main {
 	static var USAGE = "
 		Usage:
 		  obrt generate <input file> <output dir>
+		  obrt statistics ... (run `obrt statistics --help` for more)
 		  obrt --version
 		  obrt --help".doctrim();
 	static var BUILD_INFO = '
@@ -72,6 +73,8 @@ class Main {
 			switch args {
 			case [cmd, ipath, opath] if (StringTools.startsWith("generate", cmd)):
 				generate(ipath, opath);
+			case _[0] => cmd if (cmd != null && StringTools.startsWith("statistics", cmd)):
+				tools.Stats.run(args.slice(1));
 			case ["--version"]:
 				println(BUILD_INFO);
 			case ["--help"]:
