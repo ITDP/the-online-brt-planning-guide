@@ -29,6 +29,7 @@ typedef Breadcrumbs = {
 	?section:BreadcrumbItem
 }
 
+@:hasTemplates
 class Generator {
 	static var assetCache = new Map<String,String>();
 	static inline var ASSET_SUBDIR = "assets";
