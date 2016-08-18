@@ -6,7 +6,7 @@ This is a work in progress, that shall later be hosted under ITDP's github accou
 
 - [Git](https://en.wikipedia.org/wiki/Git_%28software%29) is a computer program [ideally] to be installed on a contributor's computer, where it shall manage a copy (clone) of the required content to produce the BRT Planning Guide (this repository) and submit proposals for changes. Git is originally a command line tool, but there are several graphic tools. It may require a two hour effort to install it and learn the basics of using it without assistance and 20 minutes with assistance. More about git in the [Pro Git book](https://git-scm.com/book/en/v2).
 
-- [Github](github.com) is a website for centrally host repositories like this one, it is free for open-source projects. Contributors to the BRT Planning Guide are required to have a *github* account, with that only it is possible to submit changes proposals to the guide, although it is not practical for large ones.
+- [Github](github.com) is a website that hosts repositories like this one, where contribution from several people can be centralized, its use is free for open-source projects. Contributors to the BRT Planning Guide are required to have a *github* account, with that only it is possible to submit changes proposals to the guide, although it is not practical for large ones.
 
 _To simply navigate through foloders and files make sure you click on the file name (in light blue on the left side) and *NOT* in the gray message in the middle of the same container (that will lead you to the last changes on the file)_
 
