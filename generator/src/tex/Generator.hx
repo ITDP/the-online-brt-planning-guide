@@ -32,12 +32,12 @@ class Generator {
 	var preamble:StringBuf;
 	var bufs:Map<String,StringBuf>;
 
-	static var texEscapes = ~/([{}\$&#\^_%~])/;  // FIXME complete
+	static var texEscapes = ~/([{}\$&#\^_%~])/g;  // FIXME complete with LaTeX/Math
 
 	public function gent(text:String)
 	{
 		text = text.split("\\").map(function (safe) {
-			return texEscapes.replace(safe, "\\$1").replace("/", "\\slash{}");
+			return texEscapes.replace(safe, "\\$1").replace("/", "\\slash{}");  // assumes texEscapes has 'g' flag
 		}).join("\\textbackslash{}");
 		// FIXME complete
 		return text;
