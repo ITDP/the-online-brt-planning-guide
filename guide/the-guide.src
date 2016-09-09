@@ -29,7 +29,7 @@ Project teams will need to look at a number of factors that are described in det
 
 \volume{Operations}
 
-There should be some introductory text here on this volume.
+\include{volume-2-landing-page}
 
 \include{04-demand-analysis/00-demand-analysis.src}
 \include{05-network_development/00-corridor-and-network-development.src}
