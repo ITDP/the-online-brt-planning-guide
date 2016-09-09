@@ -37,7 +37,7 @@ class Nav {
 			nav.find("li.chapter").not(me).not(me.siblings("li.chapter")).remove();
 			nav.find("li.section").not(me.find("li.section")).remove();
 		} else if (me.hasClass("section")) {
-			nav.find("li.chapter").not(me.parents("li.chapter")).remove();
+			nav.find("li.chapter").not(me.parents("li.volume").find("li.chapter")).remove();
 			nav.find("li.section").not(me).not(me.siblings("li.section")).remove();
 			me.siblings("li.section").find("li").not(me.find("li")).not("keep").remove();
 		}
