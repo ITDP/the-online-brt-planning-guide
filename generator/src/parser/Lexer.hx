@@ -42,11 +42,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 	static var math = @:rule
 	[
 		"$$" => checkExpr(),
-		"\\\\$" => {
-			buf.add(lexer.current);
-			lexer.token(math);
-		},
-		"[^$\\\\]+" =>  // TODO check/optimize
+		"((\\\\($?))|[^$\\\\])+" =>  // TODO revise the stack growth
 		{
 			buf.add(lexer.current);
 			lexer.token(math);
