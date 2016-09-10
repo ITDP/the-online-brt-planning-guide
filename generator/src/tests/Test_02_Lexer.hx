@@ -101,7 +101,9 @@ class Test_02_Lexer {
 	{
 		Assert.same([TMath("bla"), TEof], defs("$$bla$$"));
 		Assert.same([TMath("bla\n\n"), TEof], defs("$$bla\n\n$$"));
-		Assert.same([TMath("bla\\$\n\n"), TEof], defs("$$bla\\$\n\n$$"));
+
+		Assert.same([TMath("\\bla"), TEof], defs("$$\\bla$$"));
+		Assert.same([TMath("\\$"), TEof], defs("$$\\$$$"));
 
 		Assert.same([TWord("$"), TWord("foo"), TEof], defs("$foo"));
 		Assert.same([TWord("foo"), TWord("$"), TWord("bar"), TEof], defs("foo$bar"));
