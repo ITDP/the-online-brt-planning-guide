@@ -618,5 +618,20 @@ class Test_03_Parser {
 		// double check
 		Assert.same(expand(Paragraph(HElemList([@len(2)Word("::"),@len(2)Word(":")]))), parse("::\\:"));
 	}
+
+	// TODO
+	// public function test_024_paragraph_beginning()
+	// {
+	// }
+
+	public function test_025_math()
+	{
+		Assert.same(
+			expand(Paragraph(HElemList([@len(1)Word("a"),@len(1)Wordspace,@len(7)Math("x_z"),@len(1)Wordspace,@len(1)Word("b")]))),
+			parse("a $$x_z$$ b"));
+		Assert.same(
+			expand(Paragraph(HElemList([@len(1)Word("a"),@len(1)Wordspace,@len(16)Math("\\text{speed}"),@len(1)Wordspace,@len(1)Word("b")]))),
+			parse("a $$\\text{speed}$$ b"));
+	}
 }
 
