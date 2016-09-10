@@ -619,10 +619,16 @@ class Test_03_Parser {
 		Assert.same(expand(Paragraph(HElemList([@len(2)Word("::"),@len(2)Word(":")]))), parse("::\\:"));
 	}
 
-	// TODO
-	// public function test_024_paragraph_beginning()
-	// {
-	// }
+	public function test_024_paragraph_beginning()
+	{
+		Assert.same(expand(Paragraph(@len(1)Word("a"))), parse("a"));
+		Assert.same(expand(Paragraph(@len(1)Word(":"))), parse(":"));
+		Assert.same(expand(Paragraph(@wrap(1,1)Emphasis(@len(1)Word("a")))), parse("*a*"));
+		Assert.same(expand(Paragraph(@wrap(6,1)Emphasis(@len(1)Word("a")))), parse("\\emph{a}"));
+		Assert.same(expand(Paragraph(@wrap(11,1)Highlight(@len(1)Word("a")))), parse("\\highlight{a}"));
+		Assert.same(expand(Paragraph(@len(10)InlineCode("x_z"))), parse("\\code!x_z!"));
+		Assert.same(expand(Paragraph(@len(7)Math("x_z"))), parse("$$x_z$$"));
+	}
 
 	public function test_025_math()
 	{

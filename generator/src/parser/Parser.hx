@@ -579,7 +579,7 @@ class Parser {
 			mdQuotation(pop(), stop);
 		case TCodeBlock(c):
 			mk(CodeBlock(c), pop().pos);
-		case TWord(_), TAsterisk:
+		case TWord(_), TAsterisk, TCode(_), TMath(_):
 			paragraph(stop);
 		case TColon(q) if (q != 3):
 			paragraph(stop);
