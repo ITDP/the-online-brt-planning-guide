@@ -17,7 +17,7 @@
 
 			"cd $ROBRT_REPOSITORY_DIR",
 			"mkdir -p $ROBRT_OUTPUT_DIR/bin",
-			"cp generator/bin/{obrt.n,obrt.js} $ROBRT_OUTPUT_DIR/bin/",
+			"cp generator/bin/obrt.js $ROBRT_OUTPUT_DIR/bin/",
 			"cp -r generator/docs/design/web/mockup $ROBRT_OUTPUT_DIR/web-mockup",
 
 			"export DEBUG=1",
