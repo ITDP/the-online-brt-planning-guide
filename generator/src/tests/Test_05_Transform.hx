@@ -1,3 +1,5 @@
+package tests;
+
 import haxe.io.Bytes;
 import parser.Lexer;
 import parser.Parser;

@@ -34,6 +34,14 @@ class Test_09_Issues {
 	// 	new TexGen(texDir).writeDocument(dast);
 	// }
 
+	public function test_issue_0001()
+	{
+		var a = parse("\\subsection{a}\\subsection{b}");
+		var b = transform(a);
+		// generate(b);  // TODO
+		Assert.pass();
+	}
+
 	public function test_issue_0008()
 	{
 		var g = new TexGen("/a/b/c/d");
