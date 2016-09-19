@@ -151,6 +151,23 @@ class Generator {
 			idc.table = v.id.sure();
 			var id = idc.join(true, ":", chapter, table);
 			return LargeTable.gen(v, id, this, at, idc);
+		case DImgTable(no, size, caption, path):
+			idc.table = v.id.sure();
+			var id = idc.join(true, ":", chapter, table);
+			path = sys.FileSystem.absolutePath(path);  // FIXME maybe move to transform
+			// TODO handle size
+			// TODO enable on XeLaTeX too
+			// FIXME escape path
+			// FIXME label
+			return '
+			\\ifxetex
+				% disabled for now
+			\\else
+				{  % group required to avoid fignote settings escaping
+					\\tabletitle{$no}{${genh(caption)}}\n\\label{$id}\n
+					\\img{\\hsize}{$path}
+				}
+			\\fi'.doctrim() + "\n\n";  // FIXME use more neutral names
 		case DList(numbered, li):
 			var buf = new StringBuf();
 			var env = numbered ? "enumerate" : "itemize";

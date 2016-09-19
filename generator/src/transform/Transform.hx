@@ -59,6 +59,7 @@ class Transform {
 		case DParagraph(text): TParagraph(text);
 		case DElemList(li): TElemList([ for (i in li) compat(i, id) ]);
 		case DEmpty: null;
+		case DImgTable(_): null;  // unsupported new syntax
 		}
 		return mk(def, d.pos);
 	}
