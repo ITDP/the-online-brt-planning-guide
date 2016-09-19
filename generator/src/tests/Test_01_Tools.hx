@@ -70,6 +70,21 @@ class Test_01_Tools {
 					pos:{ min:0, max:8, src:SRC } }),
 				pos:{ min:0, max:8, src:SRC } },
 			expand(Paragraph(HElemList([@wrap(1,1)Emphasis(@len(3)Word("foo")),@len(3)Word("bar")]))));
+
+		Assert.same(
+			{ def:Paragraph(
+				{ def:Emphasis(
+					{ def:Word("foo"), pos:{ min:6, max:9, src:"a" } }),
+					pos:{ min:0, max:10, src:"a" } }),
+				pos:{ min:0, max:10, src:SRC } },
+			expand(Paragraph(@src("a")@wrap(6,1)Emphasis(@len(3)Word("foo")))));
+		Assert.same(
+			{ def:Paragraph(
+				{ def:Emphasis(
+					{ def:Word("foo"), pos:{ min:6, max:9, src:"a" } }),
+					pos:{ min:0, max:10, src:"a" } }),
+				pos:{ min:0, max:10, src:SRC } },
+			expand(Paragraph(@wrap(6,1)@src("a")Emphasis(@len(3)Word("foo")))));
 	}
 
 	public function test_003_line_positions()
