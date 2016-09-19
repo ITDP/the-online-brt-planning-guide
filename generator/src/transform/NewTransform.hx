@@ -191,6 +191,10 @@ class NewTransform {
 			var dheader = header.map(vertical.bind(_, null, idc, noc));
 			var drows = rows.map(function (r) return r.map(vertical.bind(_, null, idc, noc)));
 			return mkd(DTable(no, size, caption, dheader, drows), v.pos, id);
+		case ImgTable(size, horizontal(_) => caption, path):
+			var id = idc.table = genId(caption);
+			var no = ++noc.table;
+			return mkd(DImgTable(no, size, caption, path), v.pos, id);
 		case List(numbered, li):
 			return mkd(DList(numbered, [ for (i in li) vertical(i, siblings, idc, noc) ]), v.pos);
 		case CodeBlock(cte):
@@ -226,7 +230,7 @@ class NewTransform {
 		assert(d != null);
 		assert(d.def != null);
 		var def = switch d.def {
-		case DHtmlApply(_), DLaTeXPreamble(_), DLaTeXExport(_), DFigure(_), DCodeBlock(_), DQuotation(_), DEmpty:
+		case DHtmlApply(_), DLaTeXPreamble(_), DLaTeXExport(_), DFigure(_), DImgTable(_), DCodeBlock(_), DQuotation(_), DEmpty:
 			d.def;
 		case DVolume(no, name, children):
 			DVolume(no, name, clean(children));

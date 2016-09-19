@@ -20,7 +20,7 @@ class DocumentTools {
 		case DElemList(items), DList(_, items):
 			for (i in items)
 				f(i);
-		case DLaTeXPreamble(_), DLaTeXExport(_), DHtmlApply(_), DFigure(_), DQuotation(_), DCodeBlock(_), DParagraph(_), DEmpty:
+		case DLaTeXPreamble(_), DLaTeXExport(_), DHtmlApply(_), DFigure(_), DImgTable(_), DQuotation(_), DCodeBlock(_), DParagraph(_), DEmpty:
 		}
 	}
 
@@ -49,7 +49,7 @@ class DocumentTools {
 				DBox(no, name, f(contents));
 			case DList(numbered, items):
 				DList(numbered, [for (i in items) f(i)]);
-			case DLaTeXPreamble(_), DLaTeXExport(_), DHtmlApply(_), DFigure(_), DQuotation(_), DCodeBlock(_), DParagraph(_), DEmpty:
+			case DLaTeXPreamble(_), DLaTeXExport(_), DHtmlApply(_), DFigure(_), DImgTable(_), DQuotation(_), DCodeBlock(_), DParagraph(_), DEmpty:
 				v.def;
 			}
 		}
