@@ -37,7 +37,6 @@ class Main {
 		var ast = parser.Parser.parse(ipath);
 
 		var doc = transform.NewTransform.transform(ast);
-		var compatDoc = transform.Transform.compat(doc, "");
 
 		if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
 		if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
