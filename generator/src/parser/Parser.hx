@@ -378,19 +378,29 @@ class Parser {
 		if (caption.val.def.match(HEmpty)) badArg(caption.pos, "caption cannot be empty");  // TODO test
 		var rows = [];
 		discardVerticalNoise();
-		if (!peek().def.match(TCommand("header"))) missingArg(peek().pos, begin, "\\header line");
-		var header = tableRow(pop());
-		while (true) {
+		if (peek().def.match(TCommand("useimage"))) {
+			var path = arg(rawHorizontal, pop(), "path");
 			discardVerticalNoise();
-			if (!peek().def.match(TCommand("row"))) break;
-			var row = tableRow(pop());
-			rows.push(row);
-			assert(row.length == header.length, row.length, header.length, rows.length, begin.pos);
+			var end = pop();  // should have already discarted any vnoise before
+			if (end.def.match(TEof)) unclosed(begin);
+			if (!end.def.match(TCommand("endtable"))) unexpected(end);
+			return mk(ImgTable(size, caption.val, mkPath(path.val, path.pos)), begin.pos.span(end.pos));
+		} else if (peek().def.match(TCommand("header"))) {
+			var header = tableRow(pop());
+			while (true) {
+				discardVerticalNoise();
+				if (!peek().def.match(TCommand("row"))) break;
+				var row = tableRow(pop());
+				rows.push(row);
+				assert(row.length == header.length, row.length, header.length, rows.length, begin.pos);
+			}
+			var end = pop();  // should have already discarted any vnoise before
+			if (end.def.match(TEof)) unclosed(begin);
+			if (!end.def.match(TCommand("endtable"))) unexpected(end);
+			return mk(Table(size, caption.val, header, rows), begin.pos.span(end.pos));
+		} else {
+			missingArg(peek().pos, begin, "\\header line");
 		}
-		var end = pop();  // should have already discarted any vnoise before
-		if (end.def.match(TEof)) unclosed(begin);
-		if (!end.def.match(TCommand("endtable"))) unexpected(end);
-		return mk(Table(size, caption.val, header, rows), begin.pos.span(end.pos));
 	}
 
 	function quotation(cmd:Token)

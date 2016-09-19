@@ -327,6 +327,27 @@ class Generator {
 				writeRow(r, false);
 			buf.add("</table>\n</section>\n");
 			return buf.toString();
+		case DImgTable(no, size, caption, path):
+			idc.table = v.id.sure();
+			noc.table = no;
+			var no = noc.join(false, ".", chapter, table);
+			var id = idc.join(true, ".", table);
+			if (Context.draft) {
+				return '
+					<section class="img-block ${sizeToClass(size)}">
+					<h5 id="$id">Table $no$QUAD${genh(caption)} <em>$DRAFT_IMG_PLACEHOLDER_COPYRIGHT</em></h5>
+					<img src="$DRAFT_IMG_PLACEHOLDER"/>
+					</section>
+				'.doctrim() + "\n";
+			} else {
+				var p = saveAsset(path);
+				return '
+					<section class="img-block ${sizeToClass(size)}">
+					<h5 id="$id">Table $no$QUAD${genh(caption)}</h5>
+					<img src="$p"/>
+					</section>
+				'.doctrim() + "\n";
+			}
 		case DList(numbered, li):
 			var buf = new StringBuf();
 			var tag = numbered ? "ol" : "ul";
