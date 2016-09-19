@@ -10,18 +10,18 @@ import transform.NewTransform;
 import utest.Assert;
 
 import parser.AstTools.*;
-import transform.Transform.transform in rawTransform;
+import transform.Transform.transform;
 
 class Test_04_Transform {
 	static inline var SRC = "tests.Test_04_Transform.hx";
 
 	public function new() {}
 
-	function transform(str : String)
+	function parse(str : String)
 	{
 		var l = new Lexer(Bytes.ofString(str), SRC);
 		var p = new Parser(SRC, l).file();
-		return rawTransform(p);
+		return transform(p);
 	}
 
 	public function test_001_example()
@@ -66,7 +66,7 @@ class Test_04_Transform {
 			}
 		]),
 		pos : {min : 0, max : 22, src : SRC}
-		}, transform("\\volume{a}b\\volume{c}d"));
+		}, parse("\\volume{a}b\\volume{c}d"));
 	}
 
 	public function test_002_hierarchy_content_binding()
@@ -75,20 +75,20 @@ class Test_04_Transform {
 		Assert.same(
 			expand(TElemList([
 				@wrap(8,0)TVolume(@len(1)Word("a"), 1, "volume.a", @skip(1)TParagraph(@len(1)Word("b")))])),
-			transform("\\volume{a}b"));
+			parse("\\volume{a}b"));
 
 		Assert.same(
 			expand(TElemList([
 				@wrap(8,0)TVolume(@len(1)Word("a"), 1,"volume.a", @skip(1)TParagraph(@len(1)Word("b"))),
 				@wrap(8,0)TVolume(@len(1)Word("c"), 2,"volume.c", @skip(1)TParagraph(@len(1)Word("d")))])),
-			transform("\\volume{a}b\\volume{c}d"));
+			parse("\\volume{a}b\\volume{c}d"));
 
 		Assert.same(
 			expand(TElemList([
 				@wrap(8, 0) TVolume(@len(1) Word("a"), 1,"volume.a", @skip(1) TElemList([TParagraph(@len(1) Word("b")),
 				@wrap(9,0) TChapter(@len(1) Word("c"),1,"volume.a.chapter.c",@skip(1)TParagraph(@len(1) Word("d")))
 			]))])),
-			transform('\\volume{a}b\\chapter{c}d'));
+			parse('\\volume{a}b\\chapter{c}d'));
 
 		Assert.same(
 			expand(TElemList([
@@ -99,7 +99,7 @@ class Test_04_Transform {
 				@wrap(15, 0) TSubSubSection(@len(1) Word("i"), 1,"volume.a.chapter.c.section.e.subsection.g.subsubsection.i", @skip(1) TParagraph(@len(1) Word("j")))
 				]))]))]))]))]))
 			,
-			transform("\\volume{a}b\\chapter{c}d\\section{e}f\\subsection{g}h\\subsubsection{i}j"));
+			parse("\\volume{a}b\\chapter{c}d\\section{e}f\\subsection{g}h\\subsubsection{i}j"));
 
 		Assert.same(
 			expand(TElemList([
@@ -109,7 +109,7 @@ class Test_04_Transform {
 				@wrap(9, 0) TSection(@len(1) Word("g"), 1,"volume.a.chapter.e.section.g", @skip(1) TParagraph(@len(1) Word("h")))
 				]))]))]))
 			,
-			transform("\\volume{a}b\\chapter{c}d\\chapter{e}f\\section{g}h"));
+			parse("\\volume{a}b\\chapter{c}d\\chapter{e}f\\section{g}h"));
 
 
 		Assert.same(
@@ -127,7 +127,7 @@ class Test_04_Transform {
 					@wrap(9, 0) TChapter(@len(1) Word("o"), 4,"volume.m.chapter.o", @skip(1) TElemList([TParagraph(@len(1) Word("p")),
 						@wrap(9,0) TSection(@len(1) Word("r"), 1,"volume.m.chapter.o.section.r", @skip(1) TParagraph(@len(1) Word("s")))]))]))
 			])),
-			transform("\\volume{a}b\\chapter{c}d\\chapter{e}f\\section{g}h\\chapter{i}j\\section{k}l\\volume{m}n\\chapter{o}p\\section{r}s"));
+			parse("\\volume{a}b\\chapter{c}d\\chapter{e}f\\section{g}h\\chapter{i}j\\section{k}l\\volume{m}n\\chapter{o}p\\section{r}s"));
 
 		// TODO test other hierarchy constructs
 	}
@@ -139,14 +139,14 @@ class Test_04_Transform {
 			expand(TElemList([
 				@wrap(8,0) TVolume(@len(1) Word("a"),1,"volume.a", @skip(1) TParagraph(@len(1) Word("b")))
 			])),
-			transform("\\volume{a}b"));
+			parse("\\volume{a}b"));
 
 		Assert.same(
 			expand(TElemList([
 				@wrap(8, 0) TVolume(@len(1) Word("a"), 1, "volume.a",@skip(1) TParagraph(@len(1) Word("b"))),
 				@wrap(8,0) TVolume(@len(1) Word("c"),2,"volume.c", @skip(1) TParagraph(@len(1) Word("d")))
 			])),
-			transform("\\volume{a}b\\volume{c}d"));
+			parse("\\volume{a}b\\volume{c}d"));
 		//TODO: Rewrite this so I can test Sec+ Changes
 		Assert.same(
 			expand(TElemList([
@@ -156,7 +156,7 @@ class Test_04_Transform {
 				//VOL != Chapter so when I change the vol I cant change chapter#
 				@wrap(9,0) TChapter(@len(1) Word("g") , 2,"volume.e.chapter.g", @skip(1) TParagraph(@len(1) Word("h")))]))
 			])),
-			transform("\\volume{a}b\\chapter{c}d\\volume{e}f\\chapter{g}h"));
+			parse("\\volume{a}b\\chapter{c}d\\volume{e}f\\chapter{g}h"));
 
 
 		Assert.same(
@@ -172,7 +172,7 @@ class Test_04_Transform {
 				@wrap(8, 1) TFigure(MarginWidth, "f", @skip(2 + 1)@len(1) Word("c"), @skip(2)@len(2) Word("cp"),1,"volume.a.chapter.k.section.m.subsection.o.figure.c")])), //3-1 -> Chapter 3, Fig 1
 				@wrap(12,0) TSubSection(@len(1) Word("q"), 2,"volume.a.chapter.k.section.m.subsection.q", @skip(1) TParagraph(@len(1) Word("r")))]))]))]))
 			])),
-		transform("\\volume{a}b\\chapter{c}d\\chapter{e}f\\section{g}h\\section{i}j\\chapter{k}l\\section{m}n\\subsection{o}p\\figure{f}{c}{cp}\\subsection{q}r"));
+		parse("\\volume{a}b\\chapter{c}d\\chapter{e}f\\section{g}h\\section{i}j\\chapter{k}l\\section{m}n\\subsection{o}p\\figure{f}{c}{cp}\\subsection{q}r"));
 	}
 
 	public function test_004_reset_counters()
@@ -181,27 +181,27 @@ class Test_04_Transform {
 			expand(TElemList([
 				@skip(23)@wrap(8,0)TVolume(@len(1)Word("a"),42,"volume.a",@skip(1)TParagraph(@len(1)Word("b")))
 			])),
-			transform("\\meta\\reset{volume}{41}\\volume{a}b"));
+			parse("\\meta\\reset{volume}{41}\\volume{a}b"));
 		Assert.same(
 			expand(TElemList([
 				@wrap(8,0)TVolume(@len(1)Word("a"),1,"volume.a",@skip(1)@wrap(0,22)TElemList([TParagraph(@len(1)Word("b"))])),
 				@wrap(8,0)TVolume(@len(1)Word("c"),1,"volume.c",@skip(1)TParagraph(@len(1)Word("d")))
 			])),
-			transform("\\volume{a}b\\meta\\reset{volume}{0}\\volume{c}d"));
+			parse("\\volume{a}b\\meta\\reset{volume}{0}\\volume{c}d"));
 	}
 
 	public function test_005_tables()
 	{
 		Assert.same(
 			expand(@wrap(12,9) TTable(TextWidth, @len(1) Word("a"), @wrap(7,0) [@wrap(4,0) @skip(2)TParagraph(@len(1) Word("b"))], [@wrap(9,0)[TParagraph(@len(1)Word("d"))]], 1, "table.a")),
-			transform("\\begintable{a}\\header\\col b\\row\\col d\\endtable"));
+			parse("\\begintable{a}\\header\\col b\\row\\col d\\endtable"));
 		Assert.same(
 			expand(@wrap(12, 9) TTable(TextWidth, @len(1) Word("a"),
 				@wrap(7, 0)[@wrap(4, 0) @skip(3) TParagraph(@len(1) Word("b")), @wrap(4, 0) @skip(1) TParagraph(@len(1) Word("c")), @wrap(4, 0) @skip(1) TParagraph(@len(1) Word("d"))],
 				[@wrap(9, 0)[TParagraph(@len(1) Word("e")), @skip(5) TParagraph(@len(1) Word("f")), @skip(5) TParagraph(@len(1)Word("g"))],
 				@wrap(9,0)[TParagraph(@len(1) Word("h")), @skip(5)TParagraph(@len(1)Word("i")), @skip(5)TParagraph(@len(1)Word("j"))]], 1,"table.a"
 			)),
-			transform("\\begintable{a}\\header \\col b\\col c\\col d\\row\\col e\\col f\\col g\\row\\col h\\col i\\col j\\endtable")
+			parse("\\begintable{a}\\header \\col b\\col c\\col d\\row\\col e\\col f\\col g\\row\\col h\\col i\\col j\\endtable")
 		);
 	}
 
@@ -209,59 +209,59 @@ class Test_04_Transform {
 	{
 		Assert.same(
 			expand(TParagraph(HElemList([Word("b"),Wordspace,Word("a"),Wordspace,Word("c"),Wordspace,Word("d")]))),
-			rawTransform(expand(Paragraph(HElemList([Word("b"),Wordspace,Word("a"),Wordspace,Word("c"),Wordspace,Word("d")]))))
+			transform(expand(Paragraph(HElemList([Word("b"),Wordspace,Word("a"),Wordspace,Word("c"),Wordspace,Word("d")]))))
 		);
 
 		//[a, ,b] == trim([ ,a, ,b, ])
 		Assert.same(
 			expand(TParagraph(HElemList([Word("a"), Wordspace, Word("b")]))),
-			rawTransform(expand(Paragraph(HElemList([Wordspace,Word("a"),Wordspace,Word("b"),Wordspace]))))
+			transform(expand(Paragraph(HElemList([Wordspace,Word("a"),Wordspace,Word("b"),Wordspace]))))
 		);
 
 		//[ ,Emph([ ,a])]
 		Assert.same(
 			expand(TParagraph(HElemList([Emphasis(HElemList([Word("a")]))]))),
-			rawTransform(expand(Paragraph(HElemList([Wordspace,Emphasis(HElemList([Wordspace,Word("a")]))]))))
+			transform(expand(Paragraph(HElemList([Wordspace,Emphasis(HElemList([Wordspace,Word("a")]))]))))
 		);
 
 		//[ , Emph(" a "), ,b]
 		Assert.same(
 			expand(TParagraph(HElemList([Emphasis(HElemList([Word("a"),Wordspace])),Word("b")]))),
-			rawTransform(expand(Paragraph(HElemList([Wordspace,Emphasis(HElemList([Wordspace,Word("a"),Wordspace])),Wordspace,Word("b")]))))
+			transform(expand(Paragraph(HElemList([Wordspace,Emphasis(HElemList([Wordspace,Word("a"),Wordspace])),Wordspace,Word("b")]))))
 		);
 
 		//[a,emph("b "), ]
 		Assert.same(
 			expand(TParagraph(HElemList([Word("a"),Emphasis(HElemList([Word("b")]))]))),
-			rawTransform(expand(Paragraph(HElemList([Word("a"),Emphasis(HElemList([Word("b"),Wordspace])),Wordspace]))))
+			transform(expand(Paragraph(HElemList([Word("a"),Emphasis(HElemList([Word("b"),Wordspace])),Wordspace]))))
 		);
 
 
 		//[ , emph([ , emph([ , a])]),b]
 		Assert.same(
 			expand(TParagraph(HElemList([Emphasis(HElemList([Emphasis(HElemList([Word("a")]))])),Word("b")]))),
-			rawTransform(expand(Paragraph(HElemList([Wordspace,Emphasis(HElemList([Wordspace,Emphasis(HElemList([Wordspace,Word("a")]))])),Word("b")]))))
+			transform(expand(Paragraph(HElemList([Wordspace,Emphasis(HElemList([Wordspace,Emphasis(HElemList([Wordspace,Word("a")]))])),Word("b")]))))
 		);
 
 		//[, emph([ , high([ ,a, ]), ]), ]
 		Assert.same(
 			expand(TParagraph(HElemList([Emphasis(HElemList([Highlight(HElemList([Word("a")]))]))]))),
-			rawTransform(expand(Paragraph(HElemList([Wordspace,Emphasis(HElemList([Wordspace,Highlight(HElemList([Wordspace,Word("a"),Wordspace])),Wordspace])),Wordspace]))))
+			transform(expand(Paragraph(HElemList([Wordspace,Emphasis(HElemList([Wordspace,Highlight(HElemList([Wordspace,Word("a"),Wordspace])),Wordspace])),Wordspace]))))
 		);
 	}
 
 	public function test_007_vertical_element_survival()
 	{
 		Assert.same(     expand(TList(true, [TParagraph(Word("a")), TElemList([TParagraph(Word("b")),TParagraph(Word("c"))])])),
- 		    rawTransform(expand(List(true, [Paragraph(Word("a")), VElemList([Paragraph(Word("b")),Paragraph(Word("c"))])]))));
+ 		    transform(expand(List(true, [Paragraph(Word("a")), VElemList([Paragraph(Word("b")),Paragraph(Word("c"))])]))));
 		Assert.same(     expand(TList(true, [TParagraph(Word("a")), TParagraph(Word("b"))])),
- 		    rawTransform(expand(List(true, [Paragraph(Word("a")), Paragraph(Word("b"))]))));
+ 		    transform(expand(List(true, [Paragraph(Word("a")), Paragraph(Word("b"))]))));
 		Assert.same(     expand(TCodeBlock("a")),
- 		    rawTransform(expand(CodeBlock("a"))));
+ 		    transform(expand(CodeBlock("a"))));
 		Assert.same(     expand(TQuotation(Word("a"), Word("b"))),
- 		    rawTransform(expand(Quotation(Word("a"), Word("b")))));
+ 		    transform(expand(Quotation(Word("a"), Word("b")))));
 		Assert.same(     expand(TParagraph(HElemList([Word("a")]))),
- 		    rawTransform(expand(Paragraph(HElemList([Word("a")])))));
+ 		    transform(expand(Paragraph(HElemList([Word("a")])))));
 		// TODO improve when expand begins to support DElems
 	}
 }
