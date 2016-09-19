@@ -2,7 +2,6 @@ package transform;
 
 import parser.Ast;
 import transform.Context;
-import transform.Document;
 import transform.NewDocument;  // TODO remove
 
 import Assertion.*;

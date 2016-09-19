@@ -23,7 +23,7 @@ class AstTools {
 	{
 		if (!clear && cachedDefs != null) return cachedDefs;
 		var ret = [];
-		var modules = [getModule("parser.Ast"), getModule("transform.Document")];
+		var modules = [getModule("parser.Ast"), getModule("transform.NewDocument")];
 		for (m in modules) {
 			for (t in m) {
 				switch t {
@@ -51,14 +51,16 @@ class AstTools {
 		catch (e:Dynamic)
 			error('Wrong argument type for @$name: ${e.split("\n")[0]}', pos);
 
-	static function transform(expr:Expr, src:String, pp:{ min:Int, max:Int }, ?wrap:{ before:Int, after:Int }) {
+	static function transform(expr:Expr, src:String, id:String, pp:{ min:Int, max:Int }, ?wrap:{ before:Int, after:Int }) {
 		// trace('${expr.toString()}: $pp');
 		return switch expr.expr {
 		case EMeta({ name:name, params:[v] }, sub):
+			var passWrap = null;  // not really sure when to pass (see test 01:002)
 			switch lastPart(name, ":") {
 			case "src":
 				type(name, macro ($v:String), v.pos);
 				src = v.getValue();
+				passWrap = wrap;
 			case "len":
 				type(name, macro ($v:Int), v.pos);
 				pp.max += v.getValue();
@@ -67,24 +69,27 @@ class AstTools {
 				var skip = v.getValue();
 				pp.min += skip;
 				pp.max += skip;
+			case "id":
+				id = v.getValue();
+				passWrap = wrap;
 			case _:
 				warning('Unsupported @$name or wrong number of params, ignoring', expr.pos);
 			}
-			transform(sub, src, pp);
+			transform(sub, src, id, pp, passWrap);
 		case EMeta({ name:name, params:[before,after] }, sub) if (lastPart(name, ":") == "wrap"):
 			type(name, macro ($before:Int), before.pos);
 			type(name, macro ($after:Int), after.pos);
 			var skip = before.getValue();
 			pp.min += skip;
 			pp.max += skip;
-			transform(sub, src, pp, { before:skip, after:after.getValue() });
+			transform(sub, src, id, pp, { before:skip, after:after.getValue() });
 		case EMeta({ name:name }, sub):
 			warning('Unsupported @$name or wrong number of params, ignoring', expr.pos);
-			transform(sub, src, pp);
+			transform(sub, src, id, pp);
 		case ECall({ expr:EConst(CIdent(lastPart(_, ".") => c)) }, params)
 		if (Lambda.has(getDefs(), c)):
 			var min = pp.min;
-			params = params.map(transform.bind(_, src, pp));
+			params = params.map(transform.bind(_, src, null, pp));
 			if (wrap != null) {
 				min -= wrap.before;
 				pp.max += wrap.after;
@@ -92,7 +97,10 @@ class AstTools {
 			pp.min = pp.max;
 			// trace('AFTER CALL ${expr.toString()}: $pp');
 			var edef = { expr:ECall({ expr:EConst(CIdent(c)), pos:expr.pos }, params), pos:expr.pos };
-			macro { def:$edef, pos:{ src:$v{src}, min:$v{min}, max:$v{pp.max} } };
+			if (c.startsWith("D"))
+				macro { id:$v{id}, def:$edef, pos:{ src:$v{src}, min:$v{min}, max:$v{pp.max} } };
+			else
+				macro { def:$edef, pos:{ src:$v{src}, min:$v{min}, max:$v{pp.max} } };
 		case EConst(CIdent(lastPart(_, ".") => c)) if (Lambda.has(getDefs(), c)):
 			var min = pp.min;
 			if (wrap != null) {
@@ -101,9 +109,12 @@ class AstTools {
 			}
 			pp.min = pp.max;
 			// trace('AFTER IDENT ${expr.toString()}: $pp');
-			macro { def:$expr, pos:{ src:$v{src}, min:$v{min}, max:$v{pp.max} } };
+			if (c.startsWith("D"))
+				macro { id:$v{id}, def:$expr, pos:{ src:$v{src}, min:$v{min}, max:$v{pp.max} } };
+			else
+				macro { def:$expr, pos:{ src:$v{src}, min:$v{min}, max:$v{pp.max} } };
 		case _:
-			expr.map(transform.bind(_, src, pp));
+			expr.map(transform.bind(_, src, id, pp));
 		}
 	}
 #else
@@ -172,6 +183,6 @@ class AstTools {
 	Generate real Document ASTs from pseudo ASTs with only VDefs and HDefs.
 	*/
 	public static macro function expand(pseudo:Expr):Expr
-		return transform(pseudo, getLocalModule()+".hx", { min:0, max:0 });
+		return transform(pseudo, getLocalModule()+".hx", null, { min:0, max:0 });
 }
 
