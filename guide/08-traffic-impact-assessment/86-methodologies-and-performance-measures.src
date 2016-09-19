@@ -147,9 +147,9 @@ is based on several factors such as:
 
 \item Pedestrian delay.
 
-\'TODO: Change to fake table '\
-\figure[medium]{assets/image3.png}{Pedestrian LOS Criteria.}{Highway Capacity Manual, 2010.}
-
+\begintable{Pedestrian LOS Criteria} \' MAYBE include src? src := Highway Capacity Manual, 2010 '\
+\useimage{assets/image3.png}
+\endtable
 
 As pointed out earlier, the values used for the actual scoring outlined in the *HCM* are not necessarily 
 internationally applicable. However, the methodology provides a framework within which calibration for 
