@@ -23,13 +23,10 @@
 			"export DEBUG=1",
 			"nodejs --version",
 
-			"DRAFT=1 command time -v neko generator/bin/obrt.n generate guide/the-guide.src .generated-neko",
 			"command time -v nodejs generator/bin/obrt.js generate guide/the-guide.src .generated-js",
 
-			"ls -l .generated-neko/pdf/fonts",
 			"ls -l .generated-js/pdf/fonts",
 
-			"cp -r .generated-neko $ROBRT_OUTPUT_DIR/debug/",
 			"cp -r .generated-js $ROBRT_OUTPUT_DIR/debug/",
 			"cp -r .generated-js/html $ROBRT_OUTPUT_DIR/guide",
 
