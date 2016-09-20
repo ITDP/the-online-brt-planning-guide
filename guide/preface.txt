@@ -1,1 +1,3 @@
 placeholder text for BRT PG preface
+
+\figure{itdp-logo.jpg}{ITDP logo}{ITDP}
