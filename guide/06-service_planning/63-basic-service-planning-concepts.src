@@ -747,7 +747,6 @@ Eq. 6.3:
 $$\text{Ren}_\text{route} = {D_\text{route} \over \text{MaxLoad}_\text{route}}$$ 
 
 Where:
-
 \item $$\text{Ren}_\text{route}$$: Renovation factor of a route;
 \item $$D_\text{route}$$: Route demand (in passengers);
 \item $$\text{MaxLoad}_\text{route}$$: Route demand on the critical link.
@@ -776,7 +775,7 @@ minus one, given by:
 
 Eq. 6.5: 
 
-$$V_\text{hdwy} = {\sum_{i=1}^{N_\text{obs}}\text{hdwy}_i - \text{hdwy}_\text{average} ^ 2 \over {N_\text{obs} - 1}} $$ 
+$$V_\text{hdwy} = {\sum_{i=1}^{N_\text{obs}} (\text{hdwy}_i - \text{hdwy}_\text{average}) ^ 2 \over {N_\text{obs} - 1}} $$ 
 
 Where:
 
@@ -857,7 +856,6 @@ Eq. 6.6b with “peak hour to cycle correction factor” (PHtoCC):
 $$ \text{MaxLoadperCycle} = \text{MaxLoad} * TC * [ 1 - \text{PHtoCC} * (\text{TC} -1) ] $$
 
  Where:
-
 \item[$$\text{PHtoCC}$$: Nonnegative correction factor, the calibration of which is based on survey data, is discussed in Box 6.2. The usual value is near 0.1;
 \item If $$\text{TC}$$  is larger than one hour: correction $$ 1 - \text{PHtoCC} * (\text{TC} -1) $$ will result smaller than one;
 \item If $$\text{TC}$$ is smaller than one hour: correction $$ 1 - \text{PHtoCC} * (\text{TC} -1) $$ will result larger than one;
@@ -875,22 +873,18 @@ of the observed headway of the route. Hence, the wait time per customer is the h
 0.5, plus a little extra if there is irregularity in the actual headways from scheduled service (Irr). 
 The equation below expresses this, replacing headway with frequency (its inverse value).
 
-Eq. 6.7\' TODO Math: 
+Eq. 6.7: 
 
-Twait= 0.5*1+Irrroute*hdwy =0.5*1+IrrrouteFreq '\
+$$ T_\text{wait}= 0.5 * 1 + \text{Irr}_\text{route} * \text{hdwy} = {0.5 * 1 + \text{Irr}_\text{route} \over \text{Freq}}$$
 
 Where:
-
-Twait = Time spent waiting per customer;
-
-Irr = Irregularity index; measure of the variance between the actual headways and the scheduled headways 
+\item $$T_\text{wait}$$: Time spent waiting per customer;
+\item $$\text{Irr}$$: Irregularity index; measure of the variance between the actual headways and the scheduled headways 
 (usually near 0.3, see Section 6.3.9);
+\item $$\text{hdwy}$$: Route Headway;
+\item $$\text{Freq}$$: Route Frequency.
 
-hdwy = Route Headway;
-
-Freq = Route Frequency.
-
-The cost of waiting (Costwait) is defined as the amount an average customer would spend to avoid waiting 
+The cost of waiting ($$\text{Cost}_\text{wait}$$) is defined as the amount an average customer would spend to avoid waiting 
 for a vehicle, it is measured in currency per unit of time—for example: “5 Rp. per minute” and “6 US$ 
 per hour”—and is calculated as a fraction of customer income. Costwait varies depending on a city’s income 
 and proclivity, but typically, people value their time at about one-third of the average wage rate, and 
@@ -902,24 +896,21 @@ is known (initially it can be approximated by using the demand on a similar exis
 waiting cost caused by a route is the sum of the cost of waiting time imposed on all its customers (assuming 
 for now that this is captive demand), then multiplied by their value of waiting time: 
 
-Eq. 6.8a\' TODO Math: 
+Eq. 6.8a: 
 
-WaitCostroute=Droute*Costwait*Twait '\
+$$\text{WaitCost}_\text{route} = \text{D}_\text{route} * \text{Cost}_\text{wait}*\text{T}_\text{wait}$$ 
 
 Where:
 
-WaitCostRoute = Total waiting time cost for the users of the route (in US$);
-
-Droute = Route demand (in passengers);
-
-Costwait = Average user waiting cost ($/time);
-
-Twait = Average user waiting time (time/passenger).
+\item $$\text{WaitCost}_\text{Route}$$: Total waiting time cost for the users of the route (in US$);
+\item $$\text{D}_\text{route}$$: Route demand (in passengers);
+\item $$ \text{Cost}_\text{wait}$$: Average user waiting cost ($/time);
+\item $$\text{T}_\text{wait}$$: Average user waiting time (time/passenger).
 
 This is the total cost of waiting faced by all the customers on a particular route during the peak 
 hour. The average value of waiting as defined is the same all day. 
 
-The Droute formula for estimating the cost of waiting on the route would be more usefully expressed 
+The $$\text{D}_\text{route}$$ formula for estimating the cost of waiting on the route would be more usefully expressed 
 as a function of the maximum load on the critical link and of the route frequency because normally one 
 has a sense of where the most crowded link on a public transport route is, and one can count the number 
 of buses per hour, and estimate their occupancy from vehicle frequency and occupancy counts. One might 
@@ -927,9 +918,9 @@ know the total ridership on one route, but not all of them, so one can estimate 
 corridor for all the routes by using an average renovation rate on the corridor. To do this, the formula 
 can be rewritten as follows:
 
-Eq. 6.3 can be rewritten:\' TODO Math: 
+Eq. 6.3 can be rewritten: 
 
-Renroute=DrouteMaxLoadroute   ⟺ Droute= MaxLoadroute* Renroute '\
+$$\text{Ren}_\text{route} = {{D}_\text{route} \over \text{MaxLoad}_\text{route}}  \Leftrightarrow  \text{D}_\text{route} = \text{MaxLoad}_\text{route} * \text{Ren}_\text{route}$$ 
 
 This is simply true by definition. Remember that the renovation rate of the route is by definition 
 the total demand on the route divided by the maximum load on the critical link, or that the demand on 
@@ -938,27 +929,21 @@ the route is a function of the maximum load on the critical link multiplied by t
 We can then replace Droute and Twait from Equation 6.2 and Equation 6.6 in Equation 6.7, so that we 
 have:
 
-Eq. 6.8b\' TODO Math: 
+Eq. 6.8b: 
 
-WaitCostroute=Droute*Costwait*Twait '\\' TODO Math: 
+$$ \text{WaitCost}_\text{route} = \text{D}_\text{route} * \text{Cost}_\text{wait} * \text{T}_\text{wait}$$ 
 
-WaitCostroute=MaxLoadroute*Renroute*Costwait*0.5*1+IrrrouteFreq '\
+$$ \text{WaitCost}_\text{route}= {\text{MaxLoad}_\text{route} *\text{Ren}_\text{route} * \text{Cost}_\text{wait} * 0.5  * (1 + \text{Irr}_\text{route} \over \text{Freq} }$$ 
 
 Where:
-
-WaitCostRoute = Total waiting time cost generated to the route users (now in $/hour because instead 
+\item $$WaitCostRoute$$ = Total waiting time cost generated to the route users (now in $/hour because instead 
 of giving Droute absolute value in passengers, it is being given in passengers/hour);
-
-Renroute = Renovation factor of a route;
-
-MaxLoadroute = Route demand on the critical link (now in passengers/hour or “pax” per hour);
-
-Costwait = Average user waiting cost ($/time);
-
-Irrroute = Irregularity index of the route; measure of the variance between the actual headways and 
+\item $$ \text{Ren}_\text{route}$$: Renovation factor of a route;
+\item $$ \text{MaxLoadroute}$$: Route demand on the critical link (now in passengers/hour or “pax” per hour);
+\item $$ \text{Cost}_\text{wait}$$: Average user waiting cost ($/time);
+\item $$ \text{Irr}\text{route}$$: Irregularity index of the route; measure of the variance between the actual headways and 
 the scheduled headways (usually near 0.3, see Section 6.3.9);
-
-Freqroute = Frequency of the route (vehicles/time).
+\item $$\text{Freq}_\text{route}$$: Frequency of the route (vehicles/time).
 
 \subsection{ Vehicle Operating Cost}
 
@@ -980,17 +965,14 @@ per vehicle hour, or per vehicle kilometer.
 To calculate the total fixed operational cost for a route, simply multiply the fixed operating cost 
 per vehicle times the total fleet needed to service that route, or: 
 
-Eq. 6.9\' TODO Math: 
+Eq. 6.9: 
 
-RouteFixedCost=BusFixedCost*Fleetroute '\
+$$\text{RouteFixedCost} = \text{BusFixedCost} * \text{Fleet}_\text{route} $$
 
 Where:
-
-RouteFixedCost = Total fixed operational cost for the route;
-
-BusFixedCost = Fixed operating costs per vehicle;
-
-Fleetroute = Number of buses needed to operate the route.
+\item $$ \text{RouteFixedCost}$$: Total fixed operational cost for the route;
+\item $$ \text{BusFixedCost}$$: Fixed operating costs per vehicle;
+\item $$ \text{Fleet}_\text{route}$$: Number of buses needed to operate the route.
 
 Total operating cost per vehicle goes down when a stop is removed, as the speed of the vehicles increases. 
 As such, total vehicle operating costs are used in Section 6.7 on limited stop services. When optimizing 
