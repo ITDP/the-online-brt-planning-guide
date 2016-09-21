@@ -3,7 +3,7 @@
 \section{ Costs}
 
 > The price is what you pay; the value is what you receive.
-@ —Anonymous
+@ Anonymous
 
 Calculation of various costs involved in planning, implementing, and maintaining intelligent transport 
 systems is a critical component for the transit agency. The BRT agency should estimate the probable capital 
@@ -17,8 +17,11 @@ Fare collection for BRT systems typically accounts for 7–12 percent of total o
 varied from 5 to 15 percent. In Bogotá’s TransMilenio, the fare collection operator receives between 
 7.56–9.1 percent of system revenue.
 
-\highlight{Table 18.4 Fare and ITS costs (Phase I Project of 50 kilometers)}
-\begintable{(empty)}
+\begintable{Fare and ITS costs (Phase I Project of 50 kilometers)}
+\useimage{assets/image9.png}
+\endtable
+
+\begintable{Capital Cost Components}
 \header
 \col Fare Collection
 \col Card validators; Ticket printers; POS (point of sales) machines; Computers; Access control barriers; Station servers; UPS; Communication network; Smart cards; 

@@ -3,7 +3,7 @@
 \section{ Back-End Components}
 
 > The way to build a complex system that works is to build it from very simple systems that work.
-@ —Kevin Kelly, publisher, 1952–
+@ Kevin Kelly, publisher, 1952
 
 Fare collection systems require a robust back-end to process fare payments, store fare data, and generate 
 reports for system managers. Most systems incorporate a computer at each fare collection location (i.e., 

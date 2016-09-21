@@ -3,7 +3,7 @@
 \section{ Gates and Turnstiles}
 
 > The world is all gates, all opportunities, strings of tension waiting to be struck.
-@ —Ralph Waldo Emerson, poet, 1803-82
+@ Ralph Waldo Emerson, poet, 1803-82
 
 Off-board fare collection systems generally employ physical barriers to prevent passengers from entering 
 the system without paying. Most early entry control systems made use of rotating turnstiles. Later developments 
@@ -39,7 +39,7 @@ where there is less oversight. For example, Quito employs a half-body height tur
 that also include the presence of a fare agent.
 
 \figure{assets/image5.jpeg}{The BRT system in Chengdu, China, utilizes wing gates to control access 
-to the system. Image}{ Karl Fjellstrom.}
+to the system.}{ Karl Fjellstrom.}
 
 The typical dimensions and capacities of the different gates are summarized in Table 18.2 (turnstile 
 dimensions are also often customized). The space limitations for BRT stations constructed in road medians 
@@ -49,7 +49,8 @@ set the orientation of the gates to match the direction of peak passenger flows.
 
 \figure{assets/image6.jpeg}{Urumqi, China, streamlines customer flow by offsetting the gates and making 
 them unidirectional. Image}{ Karl Fjellstrom.}
-\begintable{Table  SEQ Table \* ARABIC 18.2 Turnstile Widths}
+
+\begintable{Turnstile Widths}
 \header
 \col Category
 \col Type

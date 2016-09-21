@@ -3,7 +3,7 @@
 \section{ Fare Collection Media}
 
 > The real problem is not whether machines think but whether men do.
-@ —B. F. Skinner, psychologist, 1904–90
+@ B. F. Skinner, psychologist, 1904–90
 
 The following payment mediums are in common use in BRT systems around the world: 
 \item Coins;
@@ -35,7 +35,7 @@ cards as the preferred payment medium. This technology has become popular becaus
 both in terms of upfront investment and in recurring maintenance costs, while providing numerous operational 
 features. 
 
-\subsection{ Coin/Token Systems}
+\subsection{Coin/Token Systems}
 
 Mechanical coin and token-based systems are among the simplest technologies available to handle fare 
 collection and fare verification. These systems can be quite robust and economical to operate. New York 
@@ -137,7 +137,7 @@ process the card increases the boarding delay. In addition, magnetic-strip cards
 coated paper, and can be damaged relatively easily. Some system providers utilizing magnetic-strip cards 
 also elect to permit discounted fares for individuals purchasing multiple trips.
 
-\figure{assets/image3.jpeg}{All-purpose bus fare collection machine in Nagoya, Japan. Image}{ Karl 
+\figure{assets/image3.jpeg}{All-purpose bus fare collection machine in Nagoya, Japan.}{Karl 
 Fjellstrom.}
 
 \subsection{ RFID-Based Smart Cards}
@@ -223,7 +223,7 @@ more difficult than many other payment mediums. Smart-card systems are not yet i
 technology, as much software programming and specialized skills must accompany the implementation.
 
 \figure{assets/image4.jpeg}{A fare collection machine in Chengdu, China, that accepts tokens and smart 
-cards. Image}{ Xianyuan Zhu.}
+cards.}{ Xianyuan Zhu.}
 
 \subsection{ Advanced Technologies}
 
