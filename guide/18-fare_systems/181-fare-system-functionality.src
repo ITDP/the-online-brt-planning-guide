@@ -84,12 +84,12 @@ also creates a lower-market image for the service. Off-board payment and verific
 of a more metro-like system.
 \begintable{Observed Boarding and Alighting Times for Different Vehicle Configurations. Table courtesy of ITDP.}
 \header
-\col Configuration
-\col characteristcs
+\col Configuration characteristcs
+\col 
 \col
 \col
-\col Boarding and
-\col alighting times
+\col Boarding and alighting times
+\col 
 \row
 \col Fare collection method
 \col Doorway width (meters)
