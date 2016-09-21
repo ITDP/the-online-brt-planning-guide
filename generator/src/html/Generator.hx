@@ -64,6 +64,10 @@ class Generator {
 		switch h.def {
 		case Wordspace:
 			return " ";
+		case Superscript(h):
+			return '<sup${genp(h.pos)}>${genh(h)}</sup>';
+		case Subscript(h):
+			return '<sub${genp(h.pos)}>${genh(h)}</sub>';
 		case Emphasis(h):
 			return '<em${genp(h.pos)}>${genh(h)}</em>';
 		case Highlight(h):
@@ -93,7 +97,7 @@ class Generator {
 		switch h.def {
 		case Wordspace:
 			return " ";
-		case Emphasis(h), Highlight(h):
+		case Superscript(h), Subscript(h), Emphasis(h), Highlight(h):
 			return genn(h);
 		case Word(cte), InlineCode(cte), Math(cte):
 			return cte;

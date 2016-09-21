@@ -56,6 +56,10 @@ class Generator {
 		switch h.def {
 		case Wordspace:
 			return " ";
+		case Superscript(h):
+			return '\\textsuperscript{${genh(h)}}';
+		case Subscript(h):
+			return '\\textsubscript{${genh(h)}}';
 		case Emphasis(h):
 			return '\\emphasis{${genh(h)}}';
 		case Highlight(h):

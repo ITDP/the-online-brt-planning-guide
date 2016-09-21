@@ -643,5 +643,43 @@ class Test_03_Parser {
 			expand(Paragraph(HElemList([@len(1)Word("a"),@len(1)Wordspace,@len(16)Math("\\text{speed}"),@len(1)Wordspace,@len(1)Word("b")]))),
 			parse("a $$\\text{speed}$$ b"));
 	}
+
+	public function test_026_super_sub_scripts()
+	{
+		Assert.same(
+			expand(Paragraph(HElemList([@len(1)Word("a"),@wrap(5,1)Superscript(@len(1)Word("b"))]))),
+			parse("a\\sup{b}"));
+		Assert.same(
+			expand(Paragraph(HElemList([@len(1)Word("a"),@wrap(5,1)Superscript(HElemList([@len(1)Word("b"),@len(1)Wordspace,@len(1)Word("c")]))]))),
+			parse("a\\sup{b c}"));
+		Assert.same(
+			expand(Paragraph(HElemList([@len(1)Word("a"),@wrap(5,1)Superscript(HElemList([@len(1)Word("b"),@wrap(5,1)Superscript(@len(1)Word("c"))]))]))),
+			parse("a\\sup{b\\sup{c}}"));
+
+		Assert.same(
+			expand(Paragraph(HElemList([@len(1)Word("a"),@wrap(5,1)Subscript(@len(1)Word("b"))]))),
+			parse("a\\sub{b}"));
+		Assert.same(
+			expand(Paragraph(HElemList([@len(1)Word("a"),@wrap(5,1)Subscript(HElemList([@len(1)Word("b"),@len(1)Wordspace,@len(1)Word("c")]))]))),
+			parse("a\\sub{b c}"));
+		Assert.same(
+			expand(Paragraph(HElemList([@len(1)Word("a"),@wrap(5,1)Subscript(HElemList([@len(1)Word("b"),@wrap(5,1)Subscript(@len(1)Word("c"))]))]))),
+			parse("a\\sub{b\\sub{c}}"));
+
+		Assert.same(
+			expand(Paragraph(HElemList([@len(1)Word("a"),@wrap(5,1)Superscript(HElemList([@len(1)Word("b"),@wrap(5,1)Subscript(@len(1)Word("c"))]))]))),
+			parse("a\\sup{b\\sub{c}}"));
+		Assert.same(
+			expand(Paragraph(HElemList([@len(1)Word("a"),@wrap(5,1)Subscript(HElemList([@len(1)Word("b"),@wrap(5,1)Superscript(@len(1)Word("c"))]))]))),
+			parse("a\\sub{b\\sup{c}}"));
+
+		parsingError("\\sup", MissingArgument, ~/argument.+\\sup/i, mkPos(4, 4));
+		parsingError("\\sup a", MissingArgument, ~/argument.+\\sup/i, mkPos(5, 6));
+		parsingError("\\sup{a}{}", UnexpectedToken, ~/{/, mkPos(7, 8));
+
+		parsingError("\\sub", MissingArgument, ~/argument.+\\sub/i, mkPos(4, 4));
+		parsingError("\\sub a", MissingArgument, ~/argument.+\\sub/i, mkPos(5, 6));
+		parsingError("\\sub{a}{}", UnexpectedToken, ~/{/, mkPos(7, 8));
+	}
 }
 
