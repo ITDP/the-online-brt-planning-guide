@@ -1,0 +1,68 @@
+\chapter{Fare Systems}
+
+
+
+\highlight{Buy the ticket, take the ride.}
+
+
+\highlight{Hunter S. Thompson, journalist and author, 1937–2005}
+
+
+\highlight{Overview}
+
+
+Fare collection systems play a vital role in success or failure of any public transport system. Unaffordable 
+fares and inappropriate collection methods may result in dissatisfaction and disappointment of passengers, 
+while affordable fares, simplicity, and ease of use can attract more ridership. This chapter provides 
+a brief description of fare collection systems. An explanation of fare structures and policies is provided 
+in Chapter 15: Fare Policy and Structure.
+
+
+Relying on the manual issue of paper tickets for fare collection involves considerable human effort, 
+resulting in delays for customers and revenue leakage. Recent technological advances have introduced 
+smart means of fare collection by using electronic devices, making the fare collection process faster 
+and more secure. However, technology has its own limits that should be understood before adoption. 
+
+
+There are two types of fare collection processes: onboard systems, inside public transport vehicles, 
+and off-board systems, outside the vehicles. Historically, onboard systems have functioned by means of 
+a conductor inside the vehicle who issues paper tickets and collects cash payments. Some onboard systems 
+make use of handheld ticketing machines that issue printed paper tickets (but still require a conductor 
+inside the bus to issue tickets and collect the fares). Other onboard systems do not involve a conductor 
+but require the passenger to pay a cash fare to the driver. Onboard systems may also incorporate prepayment 
+mechanisms by means of smart card or token readers.
+
+
+Off-board systems emerged as a means of handling large passenger volumes efficiently and without the 
+inconvenience of onboard collection. Most rapid transit systems, including BRT and metros, collect fares 
+at the station, before passengers enter the vehicle. Most successful BRT systems, such as Bogotá’s TransMilenio, 
+rely on smart-card based, prepaid fare collection. Prepayment avoids the delays that occur when passengers 
+need to file past the driver to pay their fares, or the inconvenience of having a conductor move through 
+the bus and collect fares.
+
+
+In general, a fare collection system must include:
+
+
+The payment media and devices for validation of payment media;
+
+
+Access control mechanisms;
+
+
+A central system for information processing and report generation with communication links between 
+system components;
+
+
+Customer interface (signs, web pages, user complaints, etc.).
+
+
+The sections below discuss each of these components in more detail.
+\include{181-fare-system-functionality.src}
+\include{182-fare-collection-media.src}
+\include{183-gates-and-turnstiles.src}
+\include{184-back-end-components.src}
+\include{185-institutional-structure.src}
+\include{186-tendering-process.src}
+\include{187-costs.src}
+\include{188-case-studies.src}

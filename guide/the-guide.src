@@ -52,16 +52,22 @@ Aliquam in bibendum elit, at accumsan odio. Maecenas a lorem interdum, aliquet d
 
 \' \volume{Business Plan} '\
 
-\' \volume{Technology} '\
+\meta\reset{volume}{4} \' skip to volume 5 '\
+\volume{Technology}
+\meta\reset{chapter}{17} \' skip to chapter 18 '\
+\include{18-fare_systems/fare-systems.src}
 
 \' \volume{Infrastructure} '\
 
 \' \volume{Integration} '\
 
+
+
 \meta\reset{volume}{7}  \' skip to volume 8 '\
 \volume{Meta}
 
 There should be some introductory text here on this volume.
+
 
 \meta\reset{chapter}{33}  \' contributing should be the last volume and chapters '\
 \include{34-manual-for-collaboration/00-manual-for-collaboration.src}
