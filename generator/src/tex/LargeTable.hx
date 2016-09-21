@@ -135,7 +135,7 @@ class LargeTable {
 				for (i in 0...width) {
 					if (i > 0)
 						buf.add('\\hbox to ${SEPAR_SIZE*.5}\\tablemodule{}&\n\t\\hbox to ${SEPAR_SIZE*.5}\\tablemodule{}');
-					buf.add("\\sffamily\\footnotesize\\noindent#");
+					buf.add("{\\sffamily\\footnotesize\\noindent#}");
 				}
 			case _:
 				var large = size.match(FullWidth);
