@@ -102,22 +102,22 @@ of a more metro-like system.
 \col 0.6
 \col Stairway
 \col High
-\col 3.01 \' FIXME: It is 3.0 superscript 1 '\
+\col 3.0\sup{1}
 \col NA
 \row
 \col Onboard, contactless smart card (no turnstile)
 \col 0.6
 \col Stairway
 \col High
-\col 2.02 \' FIXME: It is 2.0 superscript 2 '\
+\col 2.0\sup{2}
 \col NA
 \row
 \col Off-board
 \col 0.6
 \col Stairway
 \col High
-\col 23 \' FIXME: It is 2 superscript 3 '\
-\col 1.53 \' FIXME: It is 1.5 superscript 3 '\
+\col 2\sup{3}
+\col 1.5\sup{3}
 \row
 \col Off-board
 \col 0.6
@@ -144,17 +144,11 @@ of a more metro-like system.
 \col 1.1
 \col Level
 \col High
-\col 0.751 \' FIXME: It is 0.75 superscript 1 '\
-\col 0.51 \' FIXME: It is 0.51 superscript 1 '\
+\col 0.75\sup{1}
+\col 0.51\sup{1}
 \endtable
 
-1. Colombia; Mexico
-
-2. China
-
-3. Brazil
-
-NA—Not available
+Where: (1) Colombia/Mexico; (2) China; (3) Brazil; (NA) not available.
 
 Off-board payment collection is not necessarily the only way to reduce boarding and alighting times, 
 but there are institutional reasons why this approach is generally more successful in the developing-country 
