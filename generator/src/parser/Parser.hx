@@ -29,7 +29,7 @@ class Parser {
 		"figure", "quotation", "item", "number", "beginbox", "endbox", "include",
 		"begintable", "header", "row", "col", "endtable",
 		"meta", "reset", "tex", "preamble", "export", "html", "apply"];
-	static var horizontalCommands = ["emph", "highlight"];
+	static var horizontalCommands = ["sup", "sub", "emph", "highlight"];
 
 	var location:Path;
 	var lexer:Lexer;
@@ -183,12 +183,16 @@ class Parser {
 			var cmd = pop();
 			var content = arg(hlist, cmd);
 			switch cname {
+			case "sup":
+				mk(Superscript(content.val), cmd.pos.span(content.pos));
+			case "sub":
+				mk(Subscript(content.val), cmd.pos.span(content.pos));
 			case "emph":
 				mk(Emphasis(content.val), cmd.pos.span(content.pos));
 			case "highlight":
 				mk(Highlight(content.val), cmd.pos.span(content.pos));
 			case _:
-				unexpected(peek());
+				unexpected(cmd);
 			}
 		case { def:TCommand(_) }:
 			// vertical commands end the current hlist; unknown commands will be handled later
