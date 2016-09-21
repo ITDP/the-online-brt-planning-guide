@@ -3,7 +3,7 @@
 \section{ Fare System Functionality}
 
 > Customers require the effective integration of technologies to simplify their workflow and boost efficiency.
-@ Anne M. Mulcahy, businesswoman, 1952-
+@ Anne M. Mulcahy, businesswoman, 1952--
 
 Rapid transit systems are designed to cater to large passenger volumes. Managing peak-hour volumes 
 has been a challenge for public transport agencies around the world. While paper tickets were historically 
@@ -102,22 +102,22 @@ of a more metro-like system.
 \col 0.6
 \col Stairway
 \col High
-\col 3.01
+\col 3.01 \' FIXME: It is 3.0 superscript 1 '\
 \col NA
 \row
 \col Onboard, contactless smart card (no turnstile)
 \col 0.6
 \col Stairway
 \col High
-\col 2.02
+\col 2.02 \' FIXME: It is 2.0 superscript 2 '\
 \col NA
 \row
 \col Off-board
 \col 0.6
 \col Stairway
 \col High
-\col 23
-\col 1.53
+\col 23 \' FIXME: It is 2 superscript 3 '\
+\col 1.53 \' FIXME: It is 1.5 superscript 3 '\
 \row
 \col Off-board
 \col 0.6
@@ -144,8 +144,8 @@ of a more metro-like system.
 \col 1.1
 \col Level
 \col High
-\col 0.751
-\col 0.51
+\col 0.751 \' FIXME: It is 0.75 superscript 1 '\
+\col 0.51 \' FIXME: It is 0.51 superscript 1 '\
 \endtable
 
 1. Colombia; Mexico
