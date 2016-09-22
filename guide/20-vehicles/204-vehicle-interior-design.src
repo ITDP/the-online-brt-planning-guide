@@ -1,0 +1,153 @@
+
+
+\section{ Vehicle Interior Design}
+
+> Art has to move you, and design does not; unless it’s a good design for a bus.
+@ David Hockney, painter and designer, 1937-
+
+From a customer perspective, the interior of the vehicle is far more important than the mechanical 
+components propelling it. The interior design will directly affect comfort, customer capacity, security, 
+and safety. 
+
+A basic starting point for developing the interior design is to determine the amount of seated and 
+standing space in the vehicle. The amount of space dedicated to standing areas and to seated areas will 
+be based upon expected customer flows, especially accounting for peak capacities. In general, customers 
+will have a preference for as much seating as possible. However, the operational economics of the system 
+may require a certain number of standing customers, especially during peak periods, in order to deliver 
+an affordable fare.
+
+A sharp peak period will tend to force a greater number of standing customers. However, there are also 
+other considerations. If travel distances are relatively long in the city (e.g., an average trip distance 
+over fifteen kilometers), then it will be quite tiring for customers to be standing. By contrast, if 
+average trip distances are relatively short (e.g., under five kilometers), then standing is less of an 
+issue (Figures 20.13 and 20.14).
+
+\figure{assets/image13.jpeg}{In cities, such as Quito and Bogotá, with relatively short average-trip 
+distances, there can be more tolerance for having many standing customers. In cities with long travel 
+distances, it can be quite tiring to customers.}{Lloyd Wright}
+
+\figure{assets/image14.jpeg}{In cities, such as Quito and Bogotá, with relatively short average-trip 
+distances, there can be more tolerance for having many standing customers. In cities with long travel 
+distances, it can be quite tiring to customers.}{Carlos Pardo.}
+
+However, even in cases of relatively short trip distances, the value of a seat to a customer should 
+not be underestimated. After a day of work or school, many patrons are not pleased to stand for even 
+a few kilometers (Figure 20.15). Every effort should thus be made to provide sufficient seating and/or 
+manage operations to minimize standing.
+
+\figure{assets/image15.jpeg}{Customers in Bogotá make their own seating on the floor of the vehicle. Every effort should be made to maximize seating to the extent possible.}{Carlos Pardo.}
+
+A standard 18-meter articulated vehicle may have anywhere from forty to fifty-five seated customers, 
+depending upon the seating and doorway configuration. With more doorways, there will be less space for 
+seating. The width of aisleways will also be part of this equation. To lessen the discomfort of standing, 
+quality holding devices (poles, straps, etc.) should be provided. Table 20.5 shows how the dimensions 
+of the customer areas vary between vehicles sizes and engine location. 
+\begintable{Dimensions of the customer compartment from the Mexico City Manual on Safety, Accessibility, Comfort, and Manufacturing of Buses}
+\header
+\col DESCRIPTION
+\col SHORT VEHICLE
+\col
+\col MEDIUM AND LONG VEHICLE
+\col LONG VEHICLE
+\row
+\col 
+\col HIGH-FLOOR
+\col LOW-ENTRY
+\col HIGH-FLOOR
+\col LOW-ENTRY
+\row
+\col Distance from floor to ceiling
+\col 2,000 mm minimum, measured in aisle
+\col 2,250 mm minimum, measured in aisle
+\col 2,000 mm minimum, measured in aisle
+\col 2,250 mm minimum, measured in aisle
+\row
+\col Width of customer compartment
+\col 2,280 mm minimum, measured at 800 mm height from the floor
+\col
+\col 2,320 mm minimum, measured at 800 mm height from the floor
+\col
+\endtable
+
+Seating facing to the sides, rather than to the front, can be effective in opening up space for standing 
+customers (Figure 20.16). Front-facing single seats can also be preferred by customers who wish to maintain 
+a degree of privacy. Double seats can create difficulties when customers prefer the aisle seat in order 
+to be more accessible to the exit. In such circumstances, other customers must step over the aisle-seated 
+customer to access the window seat. In other cases, customers may place belongings on one of the double 
+seats in order to prevent others from sitting alongside. These circumstances can create conflicts between 
+customers. Instead, good design practices should be employed to avoid potentially awkward customer situations.
+
+\figure{assets/image16.jpeg}{Side-facing seating, as shown in this example from Jakarta, Indonesia, 
+will tend to maximize space for standing customers, and thus such a configuration will maximize overall 
+customer capacity per vehicle.}{ Karl Otta, courtesy of GIZ.}
+
+The vehicle’s internal layout must comply with legal restrictions and also consider the number and 
+location of doors in the vehicle, in such a way that internal circulation, handicap access, and access 
+at stops is readily available in the least amount of time possible. 
+
+\figure{assets/image17.jpeg}{Example of customer configuration for a short vehicle.}{ITDP}
+
+\figure{assets/image18.jpeg}{Example of customer configuration for medium and long vehicles.}{ITDP}
+
+An 18-meter articulated vehicle will typically have either three or four sets of double doorways. There 
+is a trade-off with each configuration. With only three doorways, there will be more space for seating. 
+However, four doorways are considerably more efficient in allowing rapid boarding and alighting (Figure 
+20.20). As always, much depends on the local context to determine which trade-off is the most important. 
+
+
+\figure{assets/image19.png}{The aisle located between the doors in all types of vehicles must not have 
+double seats on both sides.}{ITDP}
+
+\figure{assets/image20.jpeg}{Bogotá utilizes a four-door configuration that helps to reduce boarding 
+and alighting times.}{ TransMilenio TM.}
+
+Special arrangements should also be made to cater to the needs of physically disabled and elderly customers. 
+The station entry ramps are an important feature, but likewise, adequate interior space for wheelchairs 
+is key. Additionally, the safe attachment of wheelchairs to a fixed interior structure may be required. 
+Space for wheelchairs can also double as standing capacity during peak periods (Figure 20.24). See Chapter 
+30: Universal Access for more information about universal access. 
+
+\figure{assets/image21.png}{Wheelchair dimensions and the anthropometric 
+measurements indicated in the preceding diagrams should be considered in sizing the backrest.}{ITDP}
+
+\figure{assets/image22.png}{Wheelchair dimensions and the anthropometric 
+measurements indicated in the preceding diagrams should be considered in sizing the backrest.}{ITDP}  
+
+\figure{assets/image23.png}{Wheelchair dimensions and the anthropometric 
+measurements indicated in the preceding diagrams should be considered in sizing the backrest.}{ITDP}
+
+\figure{assets/image24.jpeg}{Space allocated for special-needs customers, such as those with wheelchairs, 
+can also be useful in meeting standing capacity during peak periods.}{Lloyd Wright.}
+
+Bicycles can also be safely and effectively secured inside the vehicle. With the ramped entryways of 
+BRT vehicles, bicycles can easily be brought on board, especially during non-peak periods. The space 
+permitted for bicycles can also be an effective open space for standing customers during peak times. 
+Unfortunately, the bicycle is needlessly banned from many bus systems.
+
+In typical conditions, a seated customer consumes as much as twice the space as that required by a 
+standing customer. However, the amount of personal space each customer requires can vary between different 
+cultures. In Latin America, it is somewhat acceptable to tolerate relatively packed conditions. Knowledge 
+of local preferences in conjunction with stated preference surveys can help evaluate the best spatial 
+arrangement. The interior of the Bogotá TransMilenio vehicles is designed to a standard of as many as 
+seven customers per square meter. In other cultures this level of crowding would be completely unacceptable.
+
+The type of seating can greatly affect customer comfort. Cloth and padded seating offers additional 
+comfort to customers (Figure 20.25). However, there are cost and maintenance issues to consider with 
+these types of seats. While plastic seating is not as comfortable, such seating is less costly and is 
+easier to clean and maintain.
+
+Special panoramic windows allow better views of the external environment. Panoramic windows offer a 
+larger visible area for customer views (Figure 20.26). Being able to see upcoming stations and station 
+name plates is especially important for customers unfamiliar with a particular corridor. Clean and highly 
+visible windows also make the journey more enjoyable for customers who wish to view the outside environment. 
+
+
+\figure{assets/image25.jpeg}{Cloth seating can enhance the customer experience, but may be harder to 
+maintain.}{ Advanced Public Transport Systems.}
+
+\figure{assets/image26.jpeg}{Panoramic windows, as in this bus in Aichi, Japan, can dramatically improve 
+the customer’s ability to see the outside environment. }{Lloyd Wright.}
+
+The aesthetic design of the interior can also affect the customer’s opinion of the system. As shown 
+in Figures 20.25 and 20.26, the right choice of shapes, colors, and textures can all do much to create 
+a professional and friendly environment. 
