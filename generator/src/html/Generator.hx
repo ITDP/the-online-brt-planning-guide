@@ -142,7 +142,6 @@ class Generator {
 		// TODO get normalize and google fonts with \html\apply or \html\link
 		// TODO get jquery and mathjax with \html\run
 		var buf = new StringBuf();
-		show(FILE_BANNER);
 		buf.add("<!DOCTYPE html>");
 		buf.add(FILE_BANNER);
 		buf.add("<html>\n");
