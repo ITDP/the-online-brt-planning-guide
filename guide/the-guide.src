@@ -52,7 +52,10 @@ Aliquam in bibendum elit, at accumsan odio. Maecenas a lorem interdum, aliquet d
 
 \' \volume{Business Plan} '\
 
-\' \volume{Technology} '\
+\meta\reset{volume}{4} \' Reset volume to 5 '\
+\volume{Technology} 
+\meta\reset{chapter}{18} \'Reset Chapter to 19 '\
+\include{19-technology\technology.src}
 
 \' \volume{Infrastructure} '\
 
