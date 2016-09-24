@@ -184,6 +184,9 @@ nav {
 	position: fixed;
 	overflow: auto;
 }
+/* nav ul { */
+/* 	display: block; */
+/* } */
 nav ul, nav li {
 	padding: 0;
 	margin: 0;
@@ -447,7 +450,7 @@ label {
 }
 
 /* menu */
-.menu {
+#menu {
 	display: none;
 }
 
@@ -553,7 +556,7 @@ label {
 	}
 	
 	/* menu */
-	.menu {
+	#menu {
 		display: block;
 		text-align: center;
 		font-family: 'PT Sans', sans-serif;
