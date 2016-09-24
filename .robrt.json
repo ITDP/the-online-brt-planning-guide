@@ -7,6 +7,8 @@
 	},
 	"build" : {
 		"cmds" : [
+			"export GL_ANALYTICS_UA_ID=UA-77667300-3",
+
 			"cd $ROBRT_REPOSITORY_DIR",
 			"git lfs pull",
 			"npm install source-map-support",
