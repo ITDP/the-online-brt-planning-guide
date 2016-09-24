@@ -1,20 +1,46 @@
-### _Online collaborative version of the BRT Planning Guide_
+# The Online BRT Planning Guide
 
-This is a work in progress, that shall later be hosted under ITDP's github account.
+The Bus Rapid Transit Planning Guide is the most comprehensive resource for
+planning a bus rapid transit (BRT) system, beginning with project preparation
+all the way through to implementation.
 
-###### Newcomers to git
+It is a huge effort by the Institute of Transportation and Development Policy
+(ITDP), and dozens of authors and reviewers.
 
-- [Git](https://en.wikipedia.org/wiki/Git_%28software%29) is a computer program [ideally] to be installed on a contributor's computer, where it shall manage a copy (clone) of the required content to produce the BRT Planning Guide (this repository) and submit proposals for changes. Git is originally a command line tool, but there are several graphic tools. It may require a two hour effort to install it and learn the basics of using it without assistance and 20 minutes with assistance. More about git in the [Pro Git book](https://git-scm.com/book/en/v2).
+This project aims to make the guide more accessible and keep it up-to-date:
 
-- [Github](github.com) is a website that hosts repositories like this one, where contribution from several people can be centralized, its use is free for open-source projects. Contributors to the BRT Planning Guide are required to have a *github* account, with that only it is possible to submit changes proposals to the guide, although it is not practical for large ones.
+ - the guide is now available online in a website format that is easy to navigate
+ - PDFs are also available to those that need to print it
+ - the online publication of updates is automatic
+ - the entire history of the guide is kept with Git
+ - revisions and contributions are easier with GitHub
 
-_To simply navigate through foloders and files make sure you click on the file name (in light blue on the left side) and *NOT* in the gray message in the middle of the same container (that will lead you to the last changes on the file)_
 
-###### Files structure
+## File structure
 
-*Generator* directory holds code files that will process the content in the *Guide* directory, which contains the source (text files and assets as images referenced in the text files) for the BRT Planning Guide, the *dot files* have configuration information (describing where and how processing the repository must take place and about git itself).
+Essentially, the project is divided in two top-level folders: the
+[`/guide`](guide) and the [`/generator`](generator).
 
-###### The content in the guide 
+The first has the files for the entire contents of the guide (text, images,
+tables, etc).  The text is written in a simple but powerful format, that at the
+same allows ease of use, independence of content from style and is compatible
+with version control.
 
-At the moment, the entry point of processing is in the file [`guide/the-guide.src`](guide/the-guide.src), where other files are pointed with the `\include{point/to/other/file.src}` command. A user manual on how to contribute and of the supported syntax is being developed in the chapter called [Manual for Collaboration](https://brt.robrt.io/branch/development/guide/manual-to-collaboration/).
+The second contains the source-code for the generator tool, that takes the text
+for the guide and the assets and builds, in a single run, both the full website
+and the PDFs.
+
+
+## Contributing
+
+You can ask questions or report problems in the guide by [opening a GitHub
+issue](https://github.com/protocubo/the-online-brt-planning-guide/issues/new).
+
+If instead you want to propose changes to either the guide (i.e. a typo fix or
+a new section) or, if you're a programmer or a designer, to the generator tool,
+please (fork the repository and) open a pull request.
+
+More documentation on how to work with the guide and with GitHub will gradually
+become available. In the mean time, if you need help, do not hesitate to
+[contact the geeks behind the curtain](mailto:contato@protocubo.io).
 
