@@ -423,6 +423,7 @@ class Generator {
 		s.useEnumIndex = true;
 		s.serialize(srcMap);
 
+		var glId = Sys.getEnv("GL_ANALYTICS_UA_ID");
 		var navBundle = "__navBundle__ = " + haxe.Json.stringify(nav.toString()) + ";\n" + haxe.Resource.getString("nav.js");
 		var navScript = saveAsset("nav.js", Bytes.ofString(navBundle));
 		var srcMapPath = saveAsset("src.haxedata", Bytes.ofString(s.toString()));
@@ -435,6 +436,19 @@ class Generator {
 				b.add("</div>\n");
 				b.add('<script src="$navScript"></script>');
 				b.add('<div class="data-src-map" data-href="$srcMapPath"></div>\n');
+				if (glId != null) {
+					b.add('
+						<script>
+							(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
+							(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+							m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+							})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");
+							ga("create", "$glId", "auto");
+							ga("send", "pageview");
+						</script>
+					'.doctrim());
+					b.add("\n");
+				}
 				b.add("</body>\n</html>\n");
 			}
 
