@@ -392,7 +392,7 @@ class Generator {
 		srcCache = new Map();  // TODO abstract
 		lastSrcId = 0;
 		nav = new StringBuf();
-		nav.add("<nav><ul>");
+		nav.add('<nav><a id="menu" href="">MENU</a><ul>');
 		nav.add('<li class="volume">${renderNav(null, null, "BRT Planning Guide", "index.html")}</li>');
 
 		// FIXME get the document name elsewhere
