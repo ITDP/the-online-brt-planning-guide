@@ -1,6 +1,6 @@
 
 
-\section{ Fare System Functionality}
+\section{Fare System Functionality}
 
 > Customers require the effective integration of technologies to simplify their workflow and boost efficiency.
 @ Anne M. Mulcahy, businesswoman, 1952--
@@ -201,7 +201,7 @@ transport agency estimates that an off-board fare system is cost justified when 
 2,500 passengers per hour per direction. The development of a cost-benefit analysis may help determine 
 this capacity point, provided the costing data is available. 
 
-\figure{assets/image1.jpeg}{Off-board fare collection system in Beijing.}{ Karl Fjellstrom.}
+\figure[medium]{assets/image1.jpeg}{Off-board fare collection system in Beijing.}{ Karl Fjellstrom.}
 
 BRT systems with off-board fare collection may use manned points of sale, automatic ticket vending 
 machines, or a combination of both. Paper tickets can be issued during initial stages from ticket counters 
@@ -218,7 +218,7 @@ to travel in the trunk bus. Transfer discounts are facilitated through the use o
 systems in both trunk and feeder systems. For example, there can be a common smart card that can be used 
 in the BRT as well as feeder services. 
 
-\figure{assets/image2.jpeg}{Onboard fare collection on a feeder bus in Yancheng, China, allows customers 
+\figure[medium]{assets/image2.jpeg}{Onboard fare collection on a feeder bus in Yancheng, China, allows customers 
 to connect to the BRT using a smart card payment system.}{ Liu Henian.}
 
 The operating costs of fare collection in feeder services are generally higher than on-station, since 

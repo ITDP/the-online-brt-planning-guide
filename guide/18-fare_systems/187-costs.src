@@ -17,7 +17,7 @@ Fare collection for BRT systems typically accounts for 7–12 percent of total o
 varied from 5 to 15 percent. In Bogotá’s TransMilenio, the fare collection operator receives between 
 7.56–9.1 percent of system revenue.
 
-\begintable{Fare and ITS costs (Phase I Project of 50 kilometers)}
+\begintable[large]{Fare and ITS costs (Phase I Project of 50 kilometers)}
 \useimage{assets/image9.png}
 \endtable
 

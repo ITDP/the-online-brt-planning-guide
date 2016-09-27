@@ -23,7 +23,7 @@ be closely associated, while the fare system operator is separate. This allows t
 manager to monitor the fare system operator in order to avoid corruption. Figure 18.7 outlines a typical 
 system structure.
 
-\figure{assets/image7.jpeg}{Institutional relationships in a typical fare system. Graphic}{ Fabio Gordillo.}
+\figure[medium]{assets/image7.jpeg}{Institutional relationships in a typical fare system. Graphic}{ Fabio Gordillo.}
 
 In the case of TransJakarta, splitting the responsibility for operating the fare system and procuring 
 the fare system equipment led to major problems. When problems with the equipment technology emerged, 
