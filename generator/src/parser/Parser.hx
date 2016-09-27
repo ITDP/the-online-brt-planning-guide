@@ -5,6 +5,7 @@ import haxe.ds.Option;
 import parser.Ast;
 import parser.Error;
 import parser.Token;
+import sys.FileSystem;
 
 import Assertion.*;
 import parser.AstTools.*;
@@ -484,14 +485,13 @@ class Parser {
 
 	function mkPath(rel:String, pos:Position, allowEmpty=false)
 	{
-		// TODO don't allow absolute paths (they mean nothing in a collaborative repository)
-		// TODO maybe return absolute paths?
 		assert(rel != null);
 		if (rel == "") {
 			if (allowEmpty)
 				return rel;
 			badArg(pos, "path cannot be empty");
 		}
+		if (haxe.io.Path.isAbsolute(rel)) badArg(pos, "path cannot be absolute");
 		var path = haxe.io.Path.join([haxe.io.Path.directory(pos.src), rel]);
 		return haxe.io.Path.normalize(path);
 	}
@@ -501,8 +501,9 @@ class Parser {
 		assert(cmd.def.match(TCommand("include")), cmd);
 		var p = arg(rawHorizontal, cmd);
 		var path = mkPath(p.val, p.pos);
-		// TODO normalize the (absolute) path
-		// TODO use the cache
+		// TODO use the cache and/or a stack to improve performance and prevent infinite recursion
+		if (!FileSystem.exists(path)) return badArg(p.pos, "File not found or not accessible");
+		if (FileSystem.isDirectory(path)) return badArg(p.pos, "Expected file, but is directory");
 		return parse(path, cache);
 	}
 

@@ -581,11 +581,11 @@ class Test_03_Parser {
 
 	public function test_021_include()
 	{
-		sys.io.File.saveContent('$TMP/b', "c");
-		Assert.equals(
-			haxe.io.Path.normalize('$TMP/b'),
-			parse('\\include{$TMP/b}').pos.src);
-
+		sys.io.File.saveContent(".testfile", "c");
+		Assert.same(expand(@src(".testfile")Paragraph(@len(1)Word("c"))), parse("\\include{.testfile}"));
+		parsingError("\\include{.nonexistant}", BadValue, ~/not found/);
+		// TODO test "not a file" error
+		sys.FileSystem.deleteFile(".testfile");
 	}
 
 	// TODO
