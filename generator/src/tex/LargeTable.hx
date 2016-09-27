@@ -19,6 +19,7 @@ class LargeTable {
 	static inline var BAD_COST = 1000;
 	static inline var QUOTE_COST = 1;
 	static inline var EM_DASH_COST = 2;
+	static inline var SUBTEXT_FACTOR = .5;
 
 	// external parameters
 	// TODO make metas commands to change them
@@ -31,6 +32,7 @@ class LargeTable {
 	{
 		return switch h.def {
 		case Wordspace: SPACE_COST;
+		case Superscript(i), Subscript(i): Math.round(pseudoHTypeset(i)*SUBTEXT_FACTOR);
 		case Emphasis(i), Highlight(i): pseudoHTypeset(i);
 		case Word(w), InlineCode(w), Math(w): w.length;
 		case HElemList(li):
@@ -133,7 +135,7 @@ class LargeTable {
 				for (i in 0...width) {
 					if (i > 0)
 						buf.add('\\hbox to ${SEPAR_SIZE*.5}\\tablemodule{}&\n\t\\hbox to ${SEPAR_SIZE*.5}\\tablemodule{}');
-					buf.add("\\sffamily\\footnotesize\\noindent#");
+					buf.add("{\\sffamily\\footnotesize\\noindent#}");
 				}
 			case _:
 				var large = size.match(FullWidth);

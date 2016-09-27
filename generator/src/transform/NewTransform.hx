@@ -24,6 +24,10 @@ class NewTransform {
 			if (ctx.prevSpace)
 				h = mk(HEmpty, h.pos);
 			ctx.prevSpace = true;
+		case Superscript(i):
+			h = mk(Superscript(htrim(i, ctx)), h.pos);
+		case Subscript(i):
+			h = mk(Subscript(htrim(i, ctx)), h.pos);
 		case Emphasis(i):
 			h = mk(Emphasis(htrim(i, ctx)), h.pos);
 		case Highlight(i):
@@ -53,6 +57,12 @@ class NewTransform {
 		var def = switch h.def {
 		case Wordspace, Word(_), InlineCode(_), Math(_), HEmpty:
 			h.def;
+		case Superscript(i):
+			i = hclean(i);
+			!i.def.match(HEmpty) ? Superscript(i) : HEmpty;
+		case Subscript(i):
+			i = hclean(i);
+			!i.def.match(HEmpty) ? Subscript(i) : HEmpty;
 		case Emphasis(i):
 			i = hclean(i);
 			!i.def.match(HEmpty) ? Emphasis(i) : HEmpty;
@@ -94,7 +104,7 @@ class NewTransform {
 		switch h.def {
 		case Wordspace:
 			buf.add("-");
-		case Emphasis(i), Highlight(i):
+		case Superscript(i), Subscript(i), Emphasis(i), Highlight(i):
 			buf.add(genId(i));
 		case Word(cte), InlineCode(cte), Math(cte):
 			buf.add(~/[^a-z0-9\-]/ig.replace(cte, "").toLowerCase());

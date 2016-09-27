@@ -21,7 +21,7 @@ class Nav {
 		var myUrl = document.URL.replace(document.baseURI, "").replace(window.location.hash, "");
 		if (myUrl == "")
 			myUrl = "index.html";
-		var me = nav.find('a[href="$myUrl"]').parent();
+		var me = nav.find('a[href="$myUrl"]').not("#menu").parent();
 		assert(me.length > 0, myUrl);
 		assert(me.is("li"));
 		assert(me.hasClass("volume") || me.hasClass("chapter") || me.hasClass("section"), "classes used in selectors");
@@ -46,7 +46,13 @@ class Nav {
 		nav.find('a[href^="#"]').attr("href", function (_, u) return myUrl + u);
 
 		// insert
-		JTHIS.find("div.container").append(nav);
+		J("div.container").prepend(nav);
+
+		// set-up the responsive behaviour
+		J("#menu").click(function (e) {
+			J("nav ul").css("display", function (_, cur) return cur == "none" ? "block" : "");
+			e.preventDefault();
+		});
 	}
 
 	static function main()

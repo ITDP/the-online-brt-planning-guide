@@ -64,6 +64,10 @@ class Generator {
 		switch h.def {
 		case Wordspace:
 			return " ";
+		case Superscript(h):
+			return '<sup${genp(h.pos)}>${genh(h)}</sup>';
+		case Subscript(h):
+			return '<sub${genp(h.pos)}>${genh(h)}</sub>';
 		case Emphasis(h):
 			return '<em${genp(h.pos)}>${genh(h)}</em>';
 		case Highlight(h):
@@ -93,7 +97,7 @@ class Generator {
 		switch h.def {
 		case Wordspace:
 			return " ";
-		case Emphasis(h), Highlight(h):
+		case Superscript(h), Subscript(h), Emphasis(h), Highlight(h):
 			return genn(h);
 		case Word(cte), InlineCode(cte), Math(cte):
 			return cte;
@@ -138,7 +142,6 @@ class Generator {
 		// TODO get normalize and google fonts with \html\apply or \html\link
 		// TODO get jquery and mathjax with \html\run
 		var buf = new StringBuf();
-		show(FILE_BANNER);
 		buf.add("<!DOCTYPE html>");
 		buf.add(FILE_BANNER);
 		buf.add("<html>\n");
@@ -389,7 +392,7 @@ class Generator {
 		srcCache = new Map();  // TODO abstract
 		lastSrcId = 0;
 		nav = new StringBuf();
-		nav.add("<nav><ul>");
+		nav.add('<nav><a id="menu" href="">MENU</a><ul>');
 		nav.add('<li class="volume">${renderNav(null, null, "BRT Planning Guide", "index.html")}</li>');
 
 		// FIXME get the document name elsewhere
@@ -420,6 +423,7 @@ class Generator {
 		s.useEnumIndex = true;
 		s.serialize(srcMap);
 
+		var glId = Sys.getEnv("GL_ANALYTICS_UA_ID");
 		var navBundle = "__navBundle__ = " + haxe.Json.stringify(nav.toString()) + ";\n" + haxe.Resource.getString("nav.js");
 		var navScript = saveAsset("nav.js", Bytes.ofString(navBundle));
 		var srcMapPath = saveAsset("src.haxedata", Bytes.ofString(s.toString()));
@@ -432,6 +436,19 @@ class Generator {
 				b.add("</div>\n");
 				b.add('<script src="$navScript"></script>');
 				b.add('<div class="data-src-map" data-href="$srcMapPath"></div>\n');
+				if (glId != null) {
+					b.add('
+						<script>
+							(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
+							(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+							m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+							})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");
+							ga("create", "$glId", "auto");
+							ga("send", "pageview");
+						</script>
+					'.doctrim());
+					b.add("\n");
+				}
 				b.add("</body>\n</html>\n");
 			}
 
