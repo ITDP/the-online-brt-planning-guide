@@ -22,7 +22,7 @@ The AFC system may be integrated with payment mechanisms on feeder buses and oth
 use electronic media or buy tickets from conductors using handheld ticketing machines. At the end of 
 a shift, the information is downloaded to a terminal server, where it is transmitted to CCC. 
 
-\figure{assets/image4.gif}{Electronic Ticketing and Smart Card Recharge Overview.}{ Prodigy 
+\figure[medium]{assets/image4.png}{Electronic Ticketing and Smart Card Recharge Overview.}{Prodigy 
 Electronics.}
 
 Data from all AFC transactions are stored at the CCC. Authorized BRT agency staff can view the financial 
@@ -31,6 +31,12 @@ use the output from the AFC system to monitor financial performance on a continu
 and an IT service provider may jointly staff the CCC. Cash collection from stations and terminals can 
 be the responsibility of a service provider or bank. The service provider issues a daily report on total 
 cash collection, and the bank issues a daily deposit report to the BRT agency. 
+
+\figure{assets/image5.png}{Handheld Ticket Machine.}{ITDP}
+\figure{assets/image6.jpeg}{Handheld smartcard reader.}{ITDP}
+\figure{assets/image7.jpeg}{Onboard smartcard reader.}{ITDP}
+\figure{assets/image8.jpeg}{Off-board smartcard reader}{ITDP}
+
 \begintable{AFC Devices Required in Different Parts of the System}
 \header
 \col Device
@@ -42,8 +48,8 @@ cash collection, and the bank issues a daily deposit report to the BRT agency.
 \col
 \row
 \col Fig 19.5 \'TODO: Ref. to image5 '\
-\col Onboard; ; 
-\col Issue paper tickets; ; 
+\col Onboard
+\col Issue paper tickets
 \row
 \col 
 \col Off board
@@ -66,7 +72,3 @@ cash collection, and the bank issues a daily deposit report to the BRT agency.
 \col 
 \endtable
 
-\figure{assets/image5.png}{Handheld Ticket Machine.}{ITDP}
-\figure{assets/image6.jpeg}{Handheld smartcard reader.}{ITDP}
-\figure{assets/image7.jpeg}{Onboard smartcard reader.}{ITDP}
-\figure{assets/image8.jpeg}{Off-board smartcard reader}{ITDP}

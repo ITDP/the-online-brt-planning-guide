@@ -25,7 +25,7 @@ passenger transport”.
 \col Project; Management; 
 \col Submission of reports
 \col 100%
-\col Minutes of meetings; ; 
+\col Minutes of meetings
 \col 2% of monthly CCC charges for every default
 \row
 \col Data Center Operations
@@ -34,14 +34,14 @@ passenger transport”.
 \col Report
 \col 0.2 % of monthly charges
 \row
-\col Incident; Management; 
-\col Resolution of ticket logged in incident; management tool; 
-\col 99%; ; 
+\col Incident & Management
+\col Resolution of ticket logged in incident; management tool
+\col 99%
 \col Reports generated from ticket logging system
-\col 0.5% of monthly charges; ; 
+\col 0.5% of monthly charges
 \endtable
 
-\highlight{Additional References }
+\subsection{Additional References }
 
 Several bodies have worked toward creating standards for IT systems:
 \item In the USA, the National ITS Architecture is published at . This website also contains detailed 

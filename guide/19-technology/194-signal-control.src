@@ -11,4 +11,4 @@ may be so high that signal priority would result in continuous green lights, and
 Coordination between the BRT agency and other entities responsible for traffic management is necessary 
 to arrive at a common set of criteria for managing signaling systems.
 
-\figure{assets/image9.jpeg}{Signal control system. Diagram}{ Sumitomo Electric.}
+\figure[medium]{assets/image9.jpeg}{Signal control system.}{ Sumitomo Electric.}

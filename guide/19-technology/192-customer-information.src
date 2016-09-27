@@ -41,7 +41,7 @@ is programmed in advance of the journey and uploaded to the onboard device.
 \col LED board, Speakers, LCD screens
 \col Next station, advertisements, general messages
 \endtable
-\begintable{SEQ Table \* ARABIC 4 Off-Board PIS Components}
+\begintable{4 Off-Board PIS Components}
 \header
 \col Display Area
 \col Display Type

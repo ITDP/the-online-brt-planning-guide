@@ -3,7 +3,7 @@
 \section{ Implementation Phasing}
 
 > It is not always what we know or analyzed before we make a decision that makes it a great decision. It is what we do after we make the decision to implement and execute it that makes it a good decision.
-@ —William Pollard, clergyman, 1828–93
+@ William Pollard, clergyman, 1828–93
 
 Preparation of implementation schedule is very important in deployment of IT systems for BRT. The aim 
 is to minimize the organizational/operational impacts, avoiding large-scale problems that frequently 
@@ -39,11 +39,11 @@ the lowest cost among the bidders. The overall tendering procedure should be def
 factor only comes into play among the bidders whose proposals are acceptable in technical terms. Various 
 tendering schemes are available to achieve this objective. A typical tendering procedure includes the 
 following steps: 
-\item Tender specifications; 
-\item Invitation to tender (which may follow from prequalification);
-\item Pre-bid meeting;
-\item Proposal application and evaluation;
-\item Negotiation and contracting.
+\number Tender specifications; 
+\number Invitation to tender (which may follow from prequalification);
+\number Pre-bid meeting;
+\number Proposal application and evaluation;
+\number Negotiation and contracting.
 
 The tender specifications must clearly identify the systems/tools (hardware, software) and the support 
 services in order to allow bidders to define the price. The overall cost estimation should include not 
@@ -53,7 +53,7 @@ with contractors, resources necessary for detailed design, management, etc.).
 
 The following are key articles of tendering prescriptions and contractual rules:
 
-Award criteria (technical and financial qualification criteria, experience). The mutual relevance between 
+\item Award criteria (technical and financial qualification criteria, experience). The mutual relevance between 
 technical and financial criteria must be defined in such a way to preserve the technical value of the 
 proposal. The most common approach is to require bidders to submit the financial proposal in a separately 
 sealed envelope. The technical proposal is evaluated first, and only proposals with a satisfactory technical 
@@ -62,8 +62,7 @@ ways to define evaluation criteria and related calculation formula. The options 
 relevance the Client should assign to the criteria. Factors used as technical criteria are: technical 
 quality of the proposal, quality of the maintenance service, description of the implementation modalities, 
 technical assistance for the start up of the system, technical documentation, etc.;
-
-Warranties. Warranties can be of different form and objective: requirement for the eligibility of the 
+\item Warranties. Warranties can be of different form and objective: requirement for the eligibility of the 
 offer, for the compliance of the implementation to technical specifications and contract rules, for the 
 compliance of services and prescriptions after the implementation is completed (in case also the operation 
 of system/service is contracted). The tender should oblige the bidder to provide unlimited software licenses. 
@@ -74,8 +73,7 @@ to declare/list the cost of each device, component, or services (onboard termina
 contact/contactless reader, training day, etc.). It should also require that the contractor is obliged 
 to maintain these prices for a specified time period (e.g., five years in case of up-scaling of some 
 system components); 
-
-Technical specifications and annexure. Technical specifications of products required and annexure are 
+\item Technical specifications and annexure. Technical specifications of products required and annexure are 
 based on the main results of a feasibility analysis. It is recommended to focus on functionalities and 
 operative requirements rather than technology solutions and technical features of each component. Functional 
 specifications should be described in terms of “operational scenarios.” This provides the bidder with 
@@ -93,10 +91,8 @@ including system description, functionality, data elements, etc. The technical s
 the bid document should mention in general the requirements of the system, of various gadgets and compulsion 
 of certified standards. The annexure section should provide bidders with all the required formats for 
 bid submission like cover letter, price bid, declaration form, power of attorney, etc.; 
-
-Implementation timeline. This should include milestones and corresponding payments;
-
-Service level benchmarks and service provider obligations. This should include penalties for inadequate 
+\item Implementation timeline. This should include milestones and corresponding payments;
+\item Service level benchmarks and service provider obligations. This should include penalties for inadequate 
 performance and procedures for conflict resolution.
 
 As a standard practice, the bid submission process should follow a two-cover system: one sealed cover 
@@ -108,6 +104,7 @@ bottom level of criteria or sub-criteria defined in the tendering documentation,
 is considered appropriate. One example of this methodology is based on a scoring system. The bidder must 
 score minimum marks as specified in technical capability criteria. Sample criteria and their corresponding 
 weights are presented in Table 19.5.
+
 \begintable{Technical Criteria for the Bidding Process}
 \header
 \col Criteria
@@ -152,18 +149,14 @@ be involved in the functional specification and detailed design phases. This is 
 they have a deep understanding of what the IT system should achieve and how it is intended to work. Building 
 relevant expertise and capacity of this team can be achieved by:
 
-Engaging consultants and technical experts for roles such as project management, system integration, 
+\item Engaging consultants and technical experts for roles such as project management, system integration, 
 design verification, system and component testing, system commissioning, supplier interface; 
-
-Bringing in IT and software specialists who have experience with complex IT projects and system integration 
+\item Bringing in IT and software specialists who have experience with complex IT projects and system integration 
 (not necessarily in the ITS or even transportation domain);
-
-Partnering with cities and/or transport operators who have ITS system experience, and who are willing 
+\item Partnering with cities and/or transport operators who have ITS system experience, and who are willing 
 to act as mentors and perhaps provide some of their staff on a support basis or temporary reassignment;
-
-Organizing study tours for the team at places where such systems are already successfully functional;
-
-Enrolling a third party as a project management consultant with expertise in sector.
+\item Organizing study tours for the team at places where such systems are already successfully functional;
+\item Enrolling a third party as a project management consultant with expertise in sector.
 
 The team may be built up as deployment approaches, gradually bringing in people from the units that 
 will utilize the ITS functions, and from support functions that will be involved in the installation 
@@ -176,23 +169,18 @@ The testing procedure takes place at the end of each implementation phase (miles
 of the realization (for final acceptance of the whole system). The testing of the results of each phase 
 (both intermediate and final) is organized into three different levels:
 
-Quantitative and technical congruency of system supply and components;
-
-Functional test (base/core functions, other functions);
-
-Performance test.
+\item Quantitative and technical congruency of system supply and components;
+\item Functional test (base/core functions, other functions);
+\item Performance test.
 
 The testing procedures should be devised and agreed with the supplier(s), and conducted either in-house 
 or by an independent firm with the relevant expertise. The conformance of the system is based on the 
 following verifications: 
 
-Actual number of installed components; 
-
-Technical and operational conformity of installation activities;
-
-Presence of software licenses; 
-
-Technical documents and manuals included in the object of the contract. 
+\item Actual number of installed components; 
+\item Technical and operational conformity of installation activities;
+\item Presence of software licenses; 
+\item Technical documents and manuals included in the object of the contract. 
 
 Functional tests measure the level of responsiveness of functions to contractual specifications: they 
 can be divided in tests of a single subsystem and of the whole system. Each functionality must be tested 
@@ -202,12 +190,11 @@ the functionality properly over a certain time period or number of tests. The po
 each milestone (phase) testing leads to the processing of related payment. If not all the results of 
 the testing are positive the contracting authority can decide if:
 
-The test should be entirely repeated and the implementation activities/installation of the next phase 
+\item The test should be entirely repeated and the implementation activities/installation of the next phase 
 should be stopped (waiting for positive verification of repeated tests). In this case no payment will 
 be processed—this situation implies major incompliance from the supplier side and the presence of critical 
 factors impeding the work progress;
-
-The test should be partly repeated, the system functionalities and performances are such to go on with 
+\item The test should be partly repeated, the system functionalities and performances are such to go on with 
 the implementation activities/installation for next phase. A percentage of the payment will be transferred 
 to the supplier, and the remaining quota will be paid too when current problems are solved—in these situations 
 incompliance is less significant and has no impact on the following stages of work.
