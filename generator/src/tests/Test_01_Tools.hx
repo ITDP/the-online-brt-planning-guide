@@ -89,16 +89,19 @@ class Test_01_Tools {
 
 	public function test_003_line_positions()
 	{
-		var a = '$TMP/a';
+		var a = ".testfile_a";
 		sys.io.File.saveContent(a, "0\n2\r\n5\r7");
 		Assert.same({ src:a, lines:{ min:0, max:1 }, codes:{ min:0, max:1 } }, { src:a, min:0, max:1 }.toLinePosition());
 		Assert.same({ src:a, lines:{ min:1, max:2 }, codes:{ min:0, max:1 } }, { src:a, min:2, max:3 }.toLinePosition());
 		Assert.same({ src:a, lines:{ min:2, max:3 }, codes:{ min:0, max:1 } }, { src:a, min:5, max:6 }.toLinePosition());
 
-		var b = '$TMP/b';
+		var b = ".testfile_b";
 		sys.io.File.saveContent(b, "01\n34\n67");
 		Assert.same({ src:b, lines:{ min:0, max:3 }, codes:{ min:1, max:2 } }, { src:b, min:1, max:8 }.toLinePosition());
 		Assert.same({ src:b, lines:{ min:1, max:3 }, codes:{ min:0, max:2 } }, { src:b, min:3, max:8 }.toLinePosition());
+		
+		for (f in [a,b])
+			sys.FileSystem.deleteFile(f);
 	}
 }
 
