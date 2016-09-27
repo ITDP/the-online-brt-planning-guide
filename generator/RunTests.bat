@@ -1,4 +1,4 @@
 @echo off
 cd bin
-neko obrt.n unit-tests
+node obrt.js unit-tests
 pause
