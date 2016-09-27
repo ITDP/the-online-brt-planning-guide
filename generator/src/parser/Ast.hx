@@ -8,6 +8,8 @@ typedef HElem = Elem<HDef>;
 
 enum HDef {
 	Wordspace;
+	Superscript(el:HElem);
+	Subscript(el:HElem);
 	Emphasis(el:HElem);
 	Highlight(el:HElem);
 	Word(w:String);

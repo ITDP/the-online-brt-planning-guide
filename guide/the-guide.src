@@ -19,11 +19,7 @@ Phasellus sed lacus ac erat luctus pretium a at massa. Ut quis massa nec dui rut
 
 \volume{Project Preparation}
 
-There should be some introductory text here on this volume.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac bibendum dui. Aliquam neque ligula, aliquet vitae felis at, auctor condimentum libero. Aliquam id diam nibh. Donec condimentum sodales felis vel viverra. Phasellus semper metus sit amet dui congue, a dignissim nibh accumsan. Suspendisse pellentesque sem quis tortor consectetur, vel imperdiet leo cursus. Fusce bibendum, nibh in viverra suscipit, erat lorem ornare ipsum, a lobortis elit nulla ac ante. Mauris id consequat sapien. Nunc laoreet augue eget finibus interdum. Suspendisse eu metus fermentum, vestibulum turpis ut, venenatis urna. Nulla vitae metus sit amet ligula imperdiet euismod. Vivamus vitae nisi tellus. Cras varius tortor quis nunc pretium luctus. Cras justo erat, posuere quis ante sed, fermentum fermentum libero. Duis consequat, magna eu consectetur iaculis, felis dolor convallis dui, id dignissim turpis tortor id risus. Vivamus feugiat efficitur pellentesque.
-
-Aliquam in bibendum elit, at accumsan odio. Maecenas a lorem interdum, aliquet diam a, iaculis odio. Sed congue molestie nulla sed varius. In id congue ipsum. Aliquam elit sapien, lacinia id dictum gravida, porttitor a massa. Donec pulvinar iaculis ex, id consequat nulla ultricies id. Fusce sed sem sit amet sem mollis gravida non eget quam. Vivamus consequat lectus enim, eu posuere augue vulputate eget. In ac cursus nulla. Nam convallis mollis erat suscipit blandit. Nam ligula arcu, laoreet in enim non, tristique varius lorem. Integer condimentum tortor sit amet malesuada pellentesque. Maecenas at massa sit amet felis cursus blandit eget ut nisi. Pellentesque ut suscipit augue. Fusce eget ante quis ex varius vulputate. Aliquam eget sodales enim, id pellentesque purus.
+\include{volume-1-landing-page.txt}
 
 \include{01-project-initiation-and-set-up/00-project-initiation.src}
 \meta\reset{chapter}{2}  \' skip to chapter 3 '\
@@ -31,7 +27,7 @@ Aliquam in bibendum elit, at accumsan odio. Maecenas a lorem interdum, aliquet d
 
 \volume{Operations}
 
-There should be some introductory text here on this volume.
+\include{volume-2-landing-page.txt}
 
 \include{04-demand-analysis/00-demand-analysis.src}
 \include{05-network_development/00-corridor-and-network-development.src}
@@ -40,28 +36,31 @@ There should be some introductory text here on this volume.
 
 \volume{Communications and Marketing}
 
-There should be some introductory text here on this volume.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac bibendum dui. Aliquam neque ligula, aliquet vitae felis at, auctor condimentum libero. Aliquam id diam nibh. Donec condimentum sodales felis vel viverra. Phasellus semper metus sit amet dui congue, a dignissim nibh accumsan. Suspendisse pellentesque sem quis tortor consectetur, vel imperdiet leo cursus. Fusce bibendum, nibh in viverra suscipit, erat lorem ornare ipsum, a lobortis elit nulla ac ante. Mauris id consequat sapien. Nunc laoreet augue eget finibus interdum. Suspendisse eu metus fermentum, vestibulum turpis ut, venenatis urna. Nulla vitae metus sit amet ligula imperdiet euismod. Vivamus vitae nisi tellus. Cras varius tortor quis nunc pretium luctus. Cras justo erat, posuere quis ante sed, fermentum fermentum libero. Duis consequat, magna eu consectetur iaculis, felis dolor convallis dui, id dignissim turpis tortor id risus. Vivamus feugiat efficitur pellentesque.
-
-Aliquam in bibendum elit, at accumsan odio. Maecenas a lorem interdum, aliquet diam a, iaculis odio. Sed congue molestie nulla sed varius. In id congue ipsum. Aliquam elit sapien, lacinia id dictum gravida, porttitor a massa. Donec pulvinar iaculis ex, id consequat nulla ultricies id. Fusce sed sem sit amet sem mollis gravida non eget quam. Vivamus consequat lectus enim, eu posuere augue vulputate eget. In ac cursus nulla. Nam convallis mollis erat suscipit blandit. Nam ligula arcu, laoreet in enim non, tristique varius lorem. Integer condimentum tortor sit amet malesuada pellentesque. Maecenas at massa sit amet felis cursus blandit eget ut nisi. Pellentesque ut suscipit augue. Fusce eget ante quis ex varius vulputate. Aliquam eget sodales enim, id pellentesque purus.
+\include{volume-3-landing-page.txt}
 
 \include{09-strategic-planning-for-communications/00-strategic-planning-for-communications.src}
 \include{10-public-participation/00-public-participation.src}
 \include{11-the-case-for-marketing-and-customer-service/00-the-case-for-marketing-and-customer-service.src}
 
-\' \volume{Business Plan} '\
+\volume{Business Plan}
 
-\meta\reset{volume}{4} \' Reset volume to 5 '\
-\volume{Technology} 
+\include{volume-4-landing-page.txt}
+
+\volume{Technology}
+
+\include{volume-5-landing-page.txt}
+
 \meta\reset{chapter}{18} \'Reset Chapter to 19 '\
 \include{19-technology\technology.src}
 
-\' \volume{Infrastructure} '\
+\volume{Infrastructure}
+\include{volume-6-landing-page.txt}
 
-\' \volume{Integration} '\
+\volume{Integration}
 
-\meta\reset{volume}{7}  \' skip to volume 8 '\
+\include{volume-7-landing-page.txt}
+
+\' \meta\reset{volume}{7} skip to volume 8 '\
 \volume{Meta}
 
 There should be some introductory text here on this volume.

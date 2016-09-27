@@ -5,6 +5,7 @@ import haxe.ds.Option;
 import parser.Ast;
 import parser.Error;
 import parser.Token;
+import sys.FileSystem;
 
 import Assertion.*;
 import parser.AstTools.*;
@@ -29,7 +30,7 @@ class Parser {
 		"figure", "quotation", "item", "number", "beginbox", "endbox", "include",
 		"begintable", "header", "row", "col", "endtable",
 		"meta", "reset", "tex", "preamble", "export", "html", "apply"];
-	static var horizontalCommands = ["emph", "highlight"];
+	static var horizontalCommands = ["sup", "sub", "emph", "highlight"];
 
 	var location:Path;
 	var lexer:Lexer;
@@ -151,16 +152,6 @@ class Parser {
 		return { val:li, pos:open.pos.span(close.pos) };
 	}
 
-	function emphasis(cmd:Token)
-	{
-		var content = arg(hlist, cmd);
-		return switch cmd.def {
-		case TCommand("emph"): mk(Emphasis(content.val), cmd.pos.span(content.pos));
-		case TCommand("highlight"): mk(Highlight(content.val), cmd.pos.span(content.pos));
-		case _: unexpected(cmd);
-		}
-	}
-
 	function mdEmph()
 	{
 		var open = pop();
@@ -189,11 +180,24 @@ class Parser {
 		case { def:TCode(s), pos:pos }:
 			pop();
 			mk(InlineCode(s), pos);
-		case { def:TCommand(cmdName), pos:pos }:
-			switch cmdName {
-			case "emph", "highlight": emphasis(pop());
-			case _: null;  // vertical commands end the current hlist; unknown commands will be handled later
+		case { def:TCommand(cname), pos:pos } if (Lambda.has(horizontalCommands, cname)):
+			var cmd = pop();
+			var content = arg(hlist, cmd);
+			switch cname {
+			case "sup":
+				mk(Superscript(content.val), cmd.pos.span(content.pos));
+			case "sub":
+				mk(Subscript(content.val), cmd.pos.span(content.pos));
+			case "emph":
+				mk(Emphasis(content.val), cmd.pos.span(content.pos));
+			case "highlight":
+				mk(Highlight(content.val), cmd.pos.span(content.pos));
+			case _:
+				unexpected(cmd);
 			}
+		case { def:TCommand(_) }:
+			// vertical commands end the current hlist; unknown commands will be handled later
+			null;
 		case { def:TAsterisk }:
 			mdEmph();
 		case { def:TWordSpace(s), pos:pos }:
@@ -481,14 +485,13 @@ class Parser {
 
 	function mkPath(rel:String, pos:Position, allowEmpty=false)
 	{
-		// TODO don't allow absolute paths (they mean nothing in a collaborative repository)
-		// TODO maybe return absolute paths?
 		assert(rel != null);
 		if (rel == "") {
 			if (allowEmpty)
 				return rel;
 			badArg(pos, "path cannot be empty");
 		}
+		if (haxe.io.Path.isAbsolute(rel)) badArg(pos, "path cannot be absolute");
 		var path = haxe.io.Path.join([haxe.io.Path.directory(pos.src), rel]);
 		return haxe.io.Path.normalize(path);
 	}
@@ -498,8 +501,9 @@ class Parser {
 		assert(cmd.def.match(TCommand("include")), cmd);
 		var p = arg(rawHorizontal, cmd);
 		var path = mkPath(p.val, p.pos);
-		// TODO normalize the (absolute) path
-		// TODO use the cache
+		// TODO use the cache and/or a stack to improve performance and prevent infinite recursion
+		if (!FileSystem.exists(path)) return badArg(p.pos, "File not found or not accessible");
+		if (FileSystem.isDirectory(path)) return badArg(p.pos, "Expected file, but is directory");
 		return parse(path, cache);
 	}
 
