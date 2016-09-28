@@ -87,7 +87,7 @@ lowest-cost buses in the world, but they leave much to be desired from the point
 comfort. New vehicle technologies will generally have lower manufacturing volumes and may incur additional 
 research and tooling costs (Figure 20.47). 
 
-\figure{assets/image47.jpeg}{Specialized manufacturing of low-volume vehicles can dramatically increase 
+\figure[medium]{assets/image47.jpeg}{Specialized manufacturing of low-volume vehicles can dramatically increase 
 overall costs.}{TCRP BRT image library.}
 
 The location of the manufactured vehicle will also be a factor. Production sites in developing countries 

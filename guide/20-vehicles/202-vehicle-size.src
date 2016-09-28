@@ -3,7 +3,7 @@
 \section{ Vehicle Size}
 
 > It's not the size of the dog in the fight, it's the size of the fight in the dog.
-@ —Mark Twain, author, 1835–1910
+@ Mark Twain, author, 1835–1910
 
 The size and required customer capacity of the vehicle are largely determined by the modeling analysis 
 conducted at the outset of the project. The analysis process will have determined a projected customer 
@@ -49,21 +49,23 @@ seated versus standing customers, and cultural norms regarding the space require
 \col 10–16 customers
 \endtable
 
-\subsection{ Calculating the Optimum Vehicle Size}
+\subsection{Calculating the Optimum Vehicle Size}
 
 The methodology for calculating the appropriate vehicle type in any given situation has already been 
 put forward in Chapter 6: Service Planning. Equation 20.1 summarizes the principal calculation required 
 to determine the optimum vehicle size.
 
-Eq. 20.1 Determining Required Vehicle Capacity\' TODO Math: 
+Eq. 20.1 Determining Required Vehicle Capacity
+
+\' TODO Math: 
 
 Cb = CcorridorL*F*SB '\
 
 Where:
 
-Cb = Customer capacity of the vehicle, in passengers per vehicle
+C\sub{b} = Customer capacity of the vehicle, in passengers per vehicle
 
-Ccorridor = Number of people the corridor can transport, in passengers per hour per direction (pphpd)
+C\sub{corridor} = Number of people the corridor can transport, in passengers per hour per direction (pphpd)
 
 L = Load factor, is the average occupancy of the vehicles, expressed as a percent
 
@@ -131,8 +133,7 @@ customer level with a double-decker configuration is another option that is occa
 being less popular at a global level, double-decker vehicles have successfully created a niche market 
 in such cities as Singapore, London, and Hong Kong (Figure 20.6).
 
-\figure{assets/image6.jpeg}{In Hong Kong, the double-decker represents an iconic image for the city. 
-Photo}{ Volvo Bus Corporation.}
+\figure[medium]{assets/image6.jpeg}{In Hong Kong, the double-decker represents an iconic image for the city.}{ Volvo Bus Corporation.}
 
 The double decker has been successful in creating an iconic image for cities. Double-deckers can generate 
 an intriguing image to a public-transport system and can be quite popular when applied to tourist routes, 
@@ -152,7 +153,7 @@ boarding and alighting. Double-deckers are best used on conventional commuter ro
 boarding and alighting takes place at a few station points in the center of the city and then again at 
 a distant suburban location. To date, double-decker vehicles have not been utilized in a full BRT system.
 
-\subsection{ Fleet Size}
+\subsection{Fleet Size}
 
 The vehicle size will impact the number of vehicles needed to meet the demand. Depending on that decision, 
 the fleet size may need to be adjusted and is determined entirely by the operational plan. A method for 
