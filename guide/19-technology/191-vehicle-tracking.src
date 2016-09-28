@@ -26,7 +26,7 @@ the CCC in real time;
 A communications system between the vehicle and the CCC that can prompt the driver with service information, 
 and facilitates driver communication with the CCC. 
 
-\figure{assets/image1.jpeg}{The automatic vehicle location system.}{Prodigy Electronics.} 
+\figure[medium]{assets/image1.jpeg}{The automatic vehicle location system.}{Prodigy Electronics.} 
 
 \figure{assets/image2.jpeg}{TransMilenio control center for BRT operations management in Bogotá.}{ ITDP}
 
@@ -44,7 +44,7 @@ single implementing agency or multiple agencies. In the latter case, appropriate
 must be defined in order to guarantee the confidentiality of data. Recorded data transmitted from vehicles 
 and gathered by the CCC are stored in the same database, but one agency can monitor and manage the information 
 only from its own system.
-\begintable{Descriptions of AVM Devices}
+\begintable[large]{Descriptions of AVM Devices}
 \header
 \col Component
 \col Description
