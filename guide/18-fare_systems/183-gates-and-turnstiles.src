@@ -108,7 +108,7 @@ BRT in Johannesburg, South Africa, also employ fare gates on feeder buses to fac
 integrated, distance-based fare on the entire BRT network. Rea Vaya feeder buses have tripod gates at 
 the exit doors of buses. The passenger must tap to exit the bus, allowing the system to calculate the 
 distance traveled and the appropriate fare.
-\begintable{Different Fare Collections Systems in Place in BRT Systems around the World.}
+\begintable[large]{Different Fare Collections Systems in Place in BRT Systems around the World.}
 \header
 \col City
 \col BRT Standard Level
@@ -118,7 +118,7 @@ distance traveled and the appropriate fare.
 \col Fare Collection Media
 \col Fare Type
 \row
-\col US
+\col \highlight{US}
 \col 
 \col 
 \col 
@@ -150,7 +150,7 @@ distance traveled and the appropriate fare.
 \col Proof-of-payment, random inspection
 \col Flat rate
 \row
-\col South America
+\col \highlight{South America}
 \col 
 \col 
 \col 
@@ -222,7 +222,7 @@ distance traveled and the appropriate fare.
 \col Smart card
 \col Flat rate
 \row
-\col Asia
+\col \highlight{Asia}
 \col 
 \col 
 \col 
@@ -254,7 +254,7 @@ distance traveled and the appropriate fare.
 \col Smart card, tokens
 \col Zonal rate
 \row
-\col Africa
+\col \highlight{Africa}
 \col 
 \col 
 \col 
