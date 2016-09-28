@@ -353,7 +353,7 @@ Diesel oxidation catalysts, which can reduce PM emissions by 20 to 30 percent, c
 with sulfur levels up to 500 ppm. Diesel particulate filters, which can reduce more than 90 percent of 
 PM emissions, generally require sulfur levels to be under 50 ppm. 
 
-\figure{assets/image31.png}{There is a close relationship between the emissions of sulfur and emissions 
+\figure[medium]{assets/image31.png}{There is a close relationship between the emissions of sulfur and emissions 
 of particulate matter (PM).}{ Luis Willumsen.}
 
 Hydrocarbons (HC), carbon monoxide (CO), and even nitrogen oxides (NOx) are also affected by emissions 

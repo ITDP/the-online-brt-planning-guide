@@ -35,7 +35,7 @@ not be underestimated. After a day of work or school, many patrons are not pleas
 a few kilometers (Figure 20.15). Every effort should thus be made to provide sufficient seating and/or 
 manage operations to minimize standing.
 
-\figure[medium]{assets/image15.jpeg}{Customers in Bogotá make their own seating on the floor of the vehicle. Every effort should be made to maximize seating to the extent possible.}{Carlos Pardo.}
+\figure{assets/image15.jpeg}{Customers in Bogotá make their own seating on the floor of the vehicle. Every effort should be made to maximize seating to the extent possible.}{Carlos Pardo.}
 
 A standard 18-meter articulated vehicle may have anywhere from forty to fifty-five seated customers, 
 depending upon the seating and doorway configuration. With more doorways, there will be less space for 
@@ -85,9 +85,9 @@ The vehicle’s internal layout must comply with legal restrictions and also con
 location of doors in the vehicle, in such a way that internal circulation, handicap access, and access 
 at stops is readily available in the least amount of time possible. 
 
-\figure{assets/image17.jpeg}{Example of customer configuration for a short vehicle.}{ITDP}
+\figure[medium]{assets/image17.jpeg}{Example of customer configuration for a short vehicle.}{ITDP}
 
-\figure{assets/image18.jpeg}{Example of customer configuration for medium and long vehicles.}{ITDP}
+\figure[medium]{assets/image18.jpeg}{Example of customer configuration for medium and long vehicles.}{ITDP}
 
 An 18-meter articulated vehicle will typically have either three or four sets of double doorways. There 
 is a trade-off with each configuration. With only three doorways, there will be more space for seating. 
@@ -95,7 +95,7 @@ However, four doorways are considerably more efficient in allowing rapid boardin
 20.20). As always, much depends on the local context to determine which trade-off is the most important. 
 
 
-\figure{assets/image19.png}{The aisle located between the doors in all types of vehicles must not have 
+\figure[medium]{assets/image19.png}{The aisle located between the doors in all types of vehicles must not have 
 double seats on both sides.}{ITDP}
 
 \figure{assets/image20.jpeg}{Bogotá utilizes a four-door configuration that helps to reduce boarding 
@@ -107,13 +107,13 @@ is key. Additionally, the safe attachment of wheelchairs to a fixed interior str
 Space for wheelchairs can also double as standing capacity during peak periods (Figure 20.24). See Chapter 
 30: Universal Access for more information about universal access. 
 \' TODO: Fix IMG DESC '\
-\figure{assets/image21.png}{Wheelchair dimensions and the anthropometric 
+\figure[medium]{assets/image21.png}{Wheelchair dimensions and the anthropometric 
 measurements indicated in the preceding diagrams should be considered in sizing the backrest.}{ITDP}
 
-\figure{assets/image22.png}{Wheelchair dimensions and the anthropometric 
+\figure[medium]{assets/image22.png}{Wheelchair dimensions and the anthropometric 
 measurements indicated in the preceding diagrams should be considered in sizing the backrest.}{ITDP}  
 
-\figure{assets/image23.png}{Wheelchair dimensions and the anthropometric 
+\figure[medium]{assets/image23.png}{Wheelchair dimensions and the anthropometric 
 measurements indicated in the preceding diagrams should be considered in sizing the backrest.}{ITDP}
 
 \figure{assets/image24.jpeg}{Space allocated for special-needs customers, such as those with wheelchairs, 
@@ -145,7 +145,7 @@ visible windows also make the journey more enjoyable for customers who wish to v
 \figure{assets/image25.jpeg}{Cloth seating can enhance the customer experience, but may be harder to 
 maintain.}{ Advanced Public Transport Systems.}
 
-\figure{assets/image26.jpeg}{Panoramic windows, as in this bus in Aichi, Japan, can dramatically improve 
+\figure[medium]{assets/image26.jpeg}{Panoramic windows, as in this bus in Aichi, Japan, can dramatically improve 
 the customer’s ability to see the outside environment. }{Lloyd Wright.}
 
 The aesthetic design of the interior can also affect the customer’s opinion of the system. As shown 
