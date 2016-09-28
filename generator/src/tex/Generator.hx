@@ -34,6 +34,34 @@ class Generator {
 
 	static var texEscapes = ~/([{}\$&#\^_%~])/g;  // FIXME complete with LaTeX/Math
 
+	static inline var ASSET_SUBDIR = "assets";
+
+	public function saveAsset(at:String, src:String):String
+	{
+		var ldir = Path.join([at, ASSET_SUBDIR]);
+		var dir = Path.join([destDir, ldir]);
+		if (!FileSystem.exists(dir))
+			FileSystem.createDirectory(dir);
+
+		var ext = Path.extension(src).toLowerCase();
+		assert(ext != "", src);
+		var data = File.getBytes(src);
+		var hash = haxe.crypto.Sha1.make(data).toHex();
+
+		var name = hash + "." + ext;
+		var dst = Path.join([dir, name]);
+		File.saveBytes(dst, data);
+
+		var lpath = Path.join([ldir, name]);
+		if (~/windows/i.match(Sys.systemName()))
+			lpath = lpath.replace("\\", "/");
+		assert(lpath.indexOf(" ") < 0, lpath, "spaces are toxic in TeX paths");
+		assert(lpath.indexOf(".") == lpath.lastIndexOf("."), lpath, "unprotected dots are toxic in TeX paths");
+		weakAssert(!Path.isAbsolute(lpath), "absolute paths might be toxic in TeX paths");
+		weakAssert(~/[a-z\/-]+/.match(lpath), lpath, "weird chars are dangerous in TeX paths");
+		return lpath;
+	}
+
 	public function gent(text:String)
 	{
 		text = text.split("\\").map(function (safe) {
@@ -137,10 +165,9 @@ class Generator {
 		case DFigure(no, size, path, caption, cright):
 			idc.figure = v.id.sure();
 			var id = idc.join(true, ":", chapter, figure);
-			path = sys.FileSystem.absolutePath(path);  // FIXME maybe move to transform
+			path = saveAsset(at, path);
 			// TODO handle size
 			// TODO enable on XeLaTeX too
-			// FIXME escape path
 			// FIXME label
 			return '
 			\\ifxetex
@@ -158,10 +185,9 @@ class Generator {
 		case DImgTable(no, size, caption, path):
 			idc.table = v.id.sure();
 			var id = idc.join(true, ":", chapter, table);
-			path = sys.FileSystem.absolutePath(path);  // FIXME maybe move to transform
+			path = saveAsset(at, path);
 			// TODO handle size
 			// TODO enable on XeLaTeX too
-			// FIXME escape path
 			// FIXME label
 			return '
 			\\ifxetex
