@@ -228,7 +228,7 @@ operating on the system. The age specification will help to maintain long-term s
 as ensure all private operators are competing on an equal basis. The maximum age will also play a fundamental 
 role in calculating the operator’s amortization rate for the vehicle. 
 
-\figure{assets/image27.jpeg}{Technology is not the only solution to ensuring low emissions, as maintenance, 
+\figure[medium]{assets/image27.jpeg}{Technology is not the only solution to ensuring low emissions, as maintenance, 
 fuel quality, and driving habits all contribute to the actual emission levels.}{Lloyd Wright}
 
 \subsection{ Fuel Quality}
@@ -308,7 +308,7 @@ vehicles (Figure 20.30):
 \item Hybrid-electric (diesel-electric and CNG-electric);
 \item Hydrogen (fuel-cell technology).
 
-\figure{assets/image30.png}{Fuel and propulsion system options. Image}{ ITDP.}
+\figure[medium]{assets/image30.png}{Fuel and propulsion system options. Image}{ ITDP.}
 
 A range of other possibilities also exists, such as fly-wheel technology, di-methyl ether (DME), and 
 blended fuels (e.g., water-in-oil emulsions). 
@@ -354,7 +354,7 @@ with sulfur levels up to 500 ppm. Diesel particulate filters, which can reduce m
 PM emissions, generally require sulfur levels to be under 50 ppm. 
 
 \figure{assets/image31.png}{There is a close relationship between the emissions of sulfur and emissions 
-of particulate matter (PM). Graph}{ Luis Willumsen.}
+of particulate matter (PM).}{ Luis Willumsen.}
 
 Hydrocarbons (HC), carbon monoxide (CO), and even nitrogen oxides (NOx) are also affected by emissions 
 standards and contingent on fuel quality. As can be seen in Table 20.5, the Euro standards are scheduled 
@@ -390,7 +390,7 @@ costly to develop.
 Refueling time is also a consideration for CNG vehicles. Typically, refueling time per vehicle will 
 range from 20 to 40 minutes. 
 
-\figure{assets/image32.jpeg}{Los Angeles has developed the infrastructure to use CNG technology for 
+\figure[medium]{assets/image32.jpeg}{Los Angeles has developed the infrastructure to use CNG technology for 
 the entire fleet on its Orange Line.}{Los Angeles County Metropolitan Transport Authority.}
 
 Nevertheless, CNG holds much potential for emission reductions of PM and sulfur oxides, and thus, if 
@@ -454,12 +454,12 @@ derived oils are separated from the glycerin, creating a combustible fuel. Bio-d
 derived predominantly from soya. 
 
 Biofuels hold the potential to deliver a product with net zero greenhouse-gas emissions. The CO2 emitted 
-by biofuels can be balanced by the CO2 absorbed during plant growth, potentially resulting in a fixed 
+by biofuels can be balanced by the CO\sub{2} absorbed during plant growth, potentially resulting in a fixed 
 carbon cycle. However, the reality is more complicated. Total greenhouse emissions from biofuel production 
 are still quite poorly understood, including certain factors that could increase net greenhouse gas emissions 
 considerably. These factors include: energy inputs into the cultivation of crops; secondary emissions 
 that have climate-change impacts (e.g., black soot); amount of fertilizer use and resultant emissions 
-of nitrous oxide (N2O); amount of pesticide use; and, type of biomass being displaced by energy crops. 
+of nitrous oxide (N\sub{2}O); amount of pesticide use; and, type of biomass being displaced by energy crops. 
 In some instances, such as soy-based fuels, the resulting greenhouse-gas emissions from nitrogen releases 
 may overwhelm other benefits (Deluchi, 2003). Additionally, it is unclear if the amount of agricultural 
 land is sufficient to produce biofuels in a quantity sufficient to dramatically offset petroleum fuels 
@@ -476,7 +476,7 @@ can also imply greater depletion of input resources such as soil quality and wat
 \figure{assets/image34.jpeg}{The growing demand for soy has fueled further destruction of the Amazon 
 rainforest.}{ iStockphotos.}
 
-\figure{assets/image35.jpeg}{As the demand for biofuel increases, production inputs, such as water, 
+\figure[medium]{assets/image35.jpeg}{As the demand for biofuel increases, production inputs, such as water, 
 will also come under increasing demand. }{Lloyd Wright.}
 
 There is also increasing concern over the impact biofuel production will have upon food prices. It 
@@ -559,7 +559,7 @@ Current price levels in different countries are well documented through the GIZ 
 publication (Wagner et al., 2012/2013). As evidenced in Figure 20.37, subsidy and tax levels can make 
 a significant difference in actual fuel costs.
 
-\figure{assets/image37.jpeg}{The yellow and red areas represent countries with significant fuel subsidies as of November 
+\figure[large]{assets/image37.jpeg}{The yellow and red areas represent countries with significant fuel subsidies as of November 
 2012.}{International Fuel Prices 2012/2013 provided by GIZ.}
 
 Natural gas as a bus fuel requires a supply network in close proximity to fleet maintenance and parking 

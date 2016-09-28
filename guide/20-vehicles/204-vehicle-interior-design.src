@@ -35,7 +35,7 @@ not be underestimated. After a day of work or school, many patrons are not pleas
 a few kilometers (Figure 20.15). Every effort should thus be made to provide sufficient seating and/or 
 manage operations to minimize standing.
 
-\figure{assets/image15.jpeg}{Customers in Bogotá make their own seating on the floor of the vehicle. Every effort should be made to maximize seating to the extent possible.}{Carlos Pardo.}
+\figure[medium]{assets/image15.jpeg}{Customers in Bogotá make their own seating on the floor of the vehicle. Every effort should be made to maximize seating to the extent possible.}{Carlos Pardo.}
 
 A standard 18-meter articulated vehicle may have anywhere from forty to fifty-five seated customers, 
 depending upon the seating and doorway configuration. With more doorways, there will be less space for 
@@ -106,7 +106,7 @@ The station entry ramps are an important feature, but likewise, adequate interio
 is key. Additionally, the safe attachment of wheelchairs to a fixed interior structure may be required. 
 Space for wheelchairs can also double as standing capacity during peak periods (Figure 20.24). See Chapter 
 30: Universal Access for more information about universal access. 
-
+\' TODO: Fix IMG DESC '\
 \figure{assets/image21.png}{Wheelchair dimensions and the anthropometric 
 measurements indicated in the preceding diagrams should be considered in sizing the backrest.}{ITDP}
 
