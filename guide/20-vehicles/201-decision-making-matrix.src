@@ -3,13 +3,13 @@
 \section{ Decision-making Matrix}
 
 > You can't make decisions based on fear and the possibility of what might happen.
-@ — Michelle Obama, first lady of the United States, 1964-
+@ Michelle Obama, first lady of the United States, 1964-
 
 Vehicle-fleet technology selection, provision, and operation are complex and depend on legal, operational, 
 institutional, and strategic factors particular to each individual case. Figure 20.2 displays a recommended 
 methodology for vehicle selection and provision mechanisms.
 
-\figure{assets/image2.jpeg}{Decision-making process for vehicle selection. }{ITDP}
+\figure[medium]{assets/image2.jpeg}{Decision-making process for vehicle selection.}{ITDP}
 
 Following through the four main activities described in Figure 20.2 can 
 guarantee that the characteristics of the chosen vehicle will meet all the operational requirements necessary 
@@ -26,6 +26,7 @@ the vehicle type prior to defining the system’s operational design can result 
 more expensive vehicles than is necessary or vehicles too small to provide the required capacity without 
 serious overcrowding or busway congestion. Table 20.1 summarizes many of the factors to consider in deciding 
 on a technology and a manufacturer.
+
 \begintable{Decision Factors for Choosing a Vehicle Technology}
 \header
 \col Category
@@ -60,14 +61,9 @@ Once the principal system requirements and needs have been identified, there rem
 technical considerations that need to be decided before finalizing the technical specification. In general, 
 the basic decision areas for the vehicle include:
 
-1. Vehicle size;
-
-2. Chassis and body configuration;
-
-3. Interior design options;
-
-4. Fuel and propulsion technology;
-
-5. Aesthetic options;
-
-6. Vehicle docking options.
+\number Vehicle size;
+\number Chassis and body configuration;
+\number Interior design options;
+\number Fuel and propulsion technology;
+\number Aesthetic options;
+\number Vehicle docking options.

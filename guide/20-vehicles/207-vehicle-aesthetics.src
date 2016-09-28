@@ -33,8 +33,9 @@ reaction include:
 \item Interior layout and design (Figure 20.43);
 \item Information systems for customers (electronic information boards and sound systems).
 
-\figure{assets/image42.jpeg}{Covered wheels and well-designed interiors are seemingly small 
+\' Fix description '\
+\figure[medium]{assets/image42.jpeg}{Covered wheels and well-designed interiors are seemingly small 
 details that can have a big impact on the public’s perception of the vehicle.}{ NBRTI}
 
-\figure{assets/image43.jpeg}{Covered wheels and well-designed interiors are seemingly small 
+\figure[medium]{assets/image43.jpeg}{Covered wheels and well-designed interiors are seemingly small 
 details that can have a big impact on the public’s perception of the vehicle.}{Advanced Public Transport Systems (APTS)}
