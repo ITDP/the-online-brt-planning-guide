@@ -1,16 +1,22 @@
 package tests;
 
+import haxe.io.Bytes;
 import parser.*;
 import parser.Token;
 import utest.Assert;
 
+import Assertion.*;
+
 class Test_02_Lexer {
 	public function new() {}
 
-	static function lex(s:String)
+	static function lex(?s:String, ?b:Bytes)
 	{
+		assert(s == null || b == null);
 		var tokens = [];
-		var lexer = new Lexer(haxe.io.Bytes.ofString(s), "test");
+		if (b == null)
+			b = Bytes.ofString(s);
+		var lexer = new Lexer(b, "test");
 		do {
 			var tok = lexer.token(Lexer.tokens);
 			tokens.push(tok);
@@ -20,11 +26,11 @@ class Test_02_Lexer {
 		return tokens;
 	}
 
-	static function defs(s:String)
-		return lex(s).map(function (t) return t.def);
+	static function defs(?s:String, ?b:Bytes)
+		return lex(s, b).map(function (t) return t.def);
 
-	static function positions(s:String)
-		return lex(s).map(function (t) return { min:t.pos.min, max:t.pos.max });
+	static function positions(?s:String, ?b:Bytes)
+		return lex(s, b).map(function (t) return { min:t.pos.min, max:t.pos.max });
 
 	public function test_000_startup()
 	{
@@ -178,6 +184,33 @@ class Test_02_Lexer {
 		// special cases
 		Assert.same([TWord("“"), TEof], defs("“"));
 		Assert.same([TWord("”"), TEof], defs("”"));
+	}
+
+	public function test_010_strict_utf8()
+	{
+		var ascii = Bytes.ofString("a");
+		var latin1 = Bytes.ofString("ç");
+		var utf8 = Bytes.ofString("–");
+		var utf8bom = Bytes.alloc(3 + utf8.length);
+			utf8bom.set(0, 0xef);
+			utf8bom.set(1, 0xbb);
+			utf8bom.set(2, 0xbf);
+			utf8bom.blit(3, utf8, 0, utf8.length);
+		var utf8notbom1 = Bytes.ofString("ﺰ");
+		var utf8notbom2 = Bytes.ofString("ﻒ");
+
+		Assert.same([TWord("a"), TEof], defs(ascii));
+		Assert.same([TWord("ç"), TEof], defs(latin1));
+		Assert.same([TWord("–"), TEof], defs(utf8));
+		Assert.same([TWord("–"), TEof], defs(utf8bom));
+		Assert.same([TWord("ﺰ"), TEof], defs(utf8notbom1));
+		Assert.same([TWord("ﻒ"), TEof], defs(utf8notbom2));
+
+		var brokenutf8 = utf8.sub(0, 1);
+		var win1252 = Bytes.alloc(1);
+			win1252.set(0, 0x92);
+		Assert.raises(defs.bind(null, brokenutf8));
+		Assert.raises(defs.bind(null, win1252));
 	}
 
 	public function test_999_position()

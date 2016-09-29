@@ -197,10 +197,19 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		// not really an escape, but a special case no less
 		"$" => mk(lexer, TWord(lexer.current)),
 
-		// note: 0xE2 is used to exclude en- and em- dashes from being matched;
-		// other utf-8 chars begginning with 0xE2 are restored by the two inclusive patterns
-		// that follow inital exclusion one
-		"([^ \t\r\n*{}\\[\\]\\\\#>@\\*:$\\-`'\\xe2]|(\\xE2[^\\x80])|(\\xE2\\x80[^\\x90-\\x95]))+" => mk(lexer, TWord(lexer.current))
+		// utf-8 BOM: if mid file, silently ignore it; this seems ok,
+		// since in unicode this can either mean a BOM or a zero width
+		// no-break space
+		"\\xEF\\xBB\\xBF" => lexer.token(tokens),
+
+		// note 1:
+		// > 0xE2 is used to exclude en- and em- dashes from being
+		// > matched; other utf-8 chars beginning with 0xE2 are
+		// > restored later
+		// note 2:
+		// > 0xEF is used to exclude the BOM; other utf-8 chars
+		// > beginning with 0xEF are restored later
+		"([^ \t\r\n*{}\\[\\]\\\\#>@\\*:$\\-`'\\xE2\\xEF]|(\\xE2[^\\x80])|(\\xE2\\x80[^\\x90-\\x95])|(\\xEF[^\\xBB])|(\\xEF\\xBB[^\\xBF]))+" => mk(lexer, TWord(lexer.current))
 	];
 
 	var bytes:haxe.io.Bytes;  // TODO change to a public source abstraction that already has a safe `recover` method
@@ -216,6 +225,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 	public function new(bytes, sourceName)
 	{
 		this.bytes = bytes;
+		if (!haxe.Utf8.validate(bytes.toString())) throw 'Invalid UTF-8 content: $sourceName';
 		super(new byte.ByteData(bytes), sourceName);
 	}
 }
