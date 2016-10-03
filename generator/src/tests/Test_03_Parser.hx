@@ -402,13 +402,6 @@ class Test_03_Parser {
 				Paragraph(@len(1)Word("y"))
 			])),
 			parse("x\n\n\\number[a]\\number[b]\n\ny"));
-		// whitespace (since optional arguments are harder to clean)
-		Assert.same(
-			expand(List(false,[@wrap(7,1)Paragraph(@len(1)Word("a"))])),
-			parse("\\item [a]"));
-		Assert.same(
-			expand(List(true,[@wrap(9,1)Paragraph(@len(1)Word("a"))])),
-			parse("\\number [a]"));
 
 		// lists in items
 		// x in x
@@ -481,6 +474,15 @@ class Test_03_Parser {
 		Assert.same(
 			expand(Paragraph(@wrap(6,1)Emphasis(@skip(7)@len(1)Word("a")))),
 			parse("\\emph\\'foo'\\{a}"));
+		Assert.same(
+			expand(List(false,[@wrap(6,1)Paragraph(@skip(1)@len(1)Word("a"))])),
+			parse("\\item [a]"));
+		Assert.same(
+			expand(List(false,[@wrap(6,1)Paragraph(@skip(1)@len(1)Word("a"))])),
+			parse("\\item\n[a]"));
+		Assert.same(
+			expand(List(false,[@wrap(6,1)Paragraph(@skip(7)@len(1)Word("a"))])),
+			parse("\\item\\'foo'\\[a]"));
 
 		// after argument opening braces
 		Assert.same(
