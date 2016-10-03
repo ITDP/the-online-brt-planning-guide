@@ -459,8 +459,10 @@ class Parser {
 	{
 		assert(mark.def.match(TCommand("item" | "number")), mark);
 		var li = [];
-		while (Type.enumEq(peek().def, mark.def))
+		while (peek().def.equals(mark.def)) {
 			li.push(listItem(pop(), stop));
+			discardNoise();
+		}
 		assert(li.length > 0, li);  // we're sure that li.length > 0 since we started with \item
 		var def = switch mark.def {
 		case TCommand("item"): List(false, li);

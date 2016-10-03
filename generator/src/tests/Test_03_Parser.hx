@@ -488,6 +488,11 @@ class Test_03_Parser {
 		Assert.same(
 			expand(Paragraph(@wrap(6,1)Emphasis(@skip(7)@len(1)Word("a")))),
 			parse("\\emph{\\'foo'\\a}"));
+
+		// in between list items
+		Assert.same(
+			expand(List(false,[@wrap(6,1)Paragraph(@len(1)Word("a")),@skip(7)@wrap(6,1)Paragraph(@len(1)Word("b"))])),
+			parse("\\item[a]\\'foo'\\\\item[b]"));
 	}
 
 	public function test_015_meta_reset()
