@@ -10,6 +10,7 @@ import transform.Context;
 import transform.NewDocument;
 import transform.NewTransform;
 import utest.Assert;
+import parser.Error;
 
 import Assertion.*;
 import parser.AstTools.*;
@@ -47,6 +48,18 @@ class Test_09_Issues {
 		var g = new TexGen("/a/b/c/d");
 		Assert.equals("\\}\\}", g.gent("}}"));
 	}
+
+	public function test_possible_issue_with_unexpected_hashes()
+	{
+		Assert.raises(parse.bind("a#b"), UnexpectedToken);
+		Assert.raises(parse.bind("a # b"), UnexpectedToken);
+	}
+
+	// FIXME
+	// public function test_issue_43()
+	// {
+	// 	// Assert.same(expand(Quotation(HElemList([Word("a"),Word("@"),Word("b")]), Word("c"))), parse(">a@b@c"));
+	// }
 
 	public function new() {}
 }
