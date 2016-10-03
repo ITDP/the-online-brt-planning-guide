@@ -55,12 +55,10 @@ class Test_09_Issues {
 		Assert.raises(parse.bind("a # b"));
 	}
 
-	// FIXME
-	// public function test_issue_43()
-	// {
-	// 	parse(">a@b@c");
-	//	Assert.pass();
-	// }
+	public function test_issue_43()
+	{
+		Assert.raises(parse.bind("a@b"));
+	}
 
 	public function test_issue_44()
 	{
