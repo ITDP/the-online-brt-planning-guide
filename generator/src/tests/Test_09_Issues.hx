@@ -62,12 +62,11 @@ class Test_09_Issues {
 	//	Assert.pass();
 	// }
 
-	// FIXME
-	// public function test_issue_44()
-	// {
-	// 	parse("\\item [a\n\nb]");
-	// 	Assert.pass();
-	// }
+	public function test_issue_44()
+	{
+		parse("\\item [a\n\nb]");
+		Assert.pass();
+	}
 
 	public function new() {}
 }

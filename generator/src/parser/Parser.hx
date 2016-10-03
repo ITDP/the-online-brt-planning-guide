@@ -115,10 +115,10 @@ class Parser {
 	}
 
 	function discardNoise(permanent=true):Int
-		return discard(function (x) return x.def.match(TWordSpace(_)|TComment(_)));
+		return discard(function (x) return x.def.match(TWordSpace(_)|TComment(_)), permanent);
 
 	function discardVerticalNoise(permanent=true):Int
-		return discard(function (x) return x.def.match(TWordSpace(_)|TComment(_)|TBreakSpace(_)));
+		return discard(function (x) return x.def.match(TWordSpace(_)|TComment(_)|TBreakSpace(_)), permanent);
 
 	function arg<T>(internal:Stop->T, ?toToken:Token, ?desc:String):{ val:T, pos:Position }
 	{
@@ -140,7 +140,7 @@ class Parser {
 		if (!peek(i).def.match(TBrkOpen))
 			return null;
 
-		while (--i > 0) pop();
+		while (i-- > 0) pop();
 		var open = pop();
 		if (!open.def.match(TBrkOpen)) missingArg(open.pos, toToken, desc);
 
