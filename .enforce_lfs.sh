@@ -2,7 +2,7 @@ set -e
 exts=$(cat .gitattributes | grep 'filter=lfs' | sed -e 's/^\*\.\([^ ]\+\).\+/\1/')
 range=${TRAVIS_COMMIT_RANGE/.../..}
 
-if [ "$range" == "" ]
+if [ "$range" = "" ]
 then
 	commits=$TRAVIS_COMMIT
 else
@@ -23,7 +23,7 @@ do
 			&& echo "ERROR: rogue $ext files found" && status=1 \
 			|| echo "Ok: no rogue $ext files found"
 	done
-	if [ $status!=0 ]
+	if [ $status != 0 ]
 	then
 		exit $status
 	fi
