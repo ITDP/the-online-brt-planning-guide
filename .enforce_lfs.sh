@@ -9,12 +9,11 @@ else
 	commits=$(git rev-list $range)
 fi
 
-echo "Checking extesions $exts"
 echo "Looking at commits $commits"
+# TODO fetch all commits or handle missing commits from initial shallow clone
 
 for rev in $commits
 do
-	echo "Checking commit $rev"
 	git checkout $rev
 	status=0
 	for ext in $exts
