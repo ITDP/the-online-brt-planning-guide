@@ -17,7 +17,7 @@ status=0
 for rev in $commits
 do
 	echo "Checking commit $rev"
-	git --quiet checkout $rev
+	git checkout --quiet $rev
 	for ext in $exts
 	do
 		status=0
