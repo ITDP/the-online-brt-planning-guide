@@ -7,7 +7,7 @@
 	},
 	"build" : {
 		"cmds" : [
-			"starting build at $(date)",
+			"echo starting build at $(date)",
 			"nodejs --version",
 			"alias time='command time -p'",
 
@@ -43,7 +43,7 @@
 			"cp book.log $ROBRT_OUTPUT_DIR/pdf/guide_lualatex.log",
 			"latexmk -C book.tex",
 
-			"finishing build at $(date)"
+			"echo finishing build at $(date)"
 		]
 	}
 }
