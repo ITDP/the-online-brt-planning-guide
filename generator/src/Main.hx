@@ -38,14 +38,29 @@ class Main {
 
 		var doc = transform.NewTransform.transform(ast);
 
-		if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
-		if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
+		var errCnt = 0;
+		transform.Validator.validate(doc,
+			function (err) {
+				errCnt++;
+				println('ERROR: ${err.msg}');
+				println('  details: ${err.details}');
+				printPos(err.pos);
+			},
+			function () {
+				if (errCnt > 0) {
+					println("Validation has failed, aborting");
+					exit(4);
+				}
 
-		var hgen = new html.Generator(Path.join([opath, "html"]), true);
-		hgen.writeDocument(doc);
+				if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
+				if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
 
-		var tgen = new tex.Generator(Path.join([opath, "pdf"]));
-		tgen.writeDocument(doc);
+				var hgen = new html.Generator(Path.join([opath, "html"]), true);
+				hgen.writeDocument(doc);
+
+				var tgen = new tex.Generator(Path.join([opath, "pdf"]));
+				tgen.writeDocument(doc);
+			});
 	}
 
 	static function printPos(p:Position)

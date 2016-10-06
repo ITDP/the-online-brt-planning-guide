@@ -11,7 +11,7 @@
 
 			"cd $ROBRT_REPOSITORY_DIR",
 			"git lfs pull",
-			"npm install source-map-support",
+			"npm install",
 
 			"cd $ROBRT_REPOSITORY_DIR/generator",
 			"haxe -D travis build.hxml",
