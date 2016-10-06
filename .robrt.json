@@ -7,7 +7,7 @@
 	},
 	"build" : {
 		"cmds" : [
-			"alias time='command time -a'",
+			"alias time='command time -p'",
 			"alias timev='command time -v'",
 			"alias",
 
