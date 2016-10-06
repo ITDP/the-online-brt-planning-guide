@@ -12,10 +12,12 @@ fi
 echo "Looking at commits $commits"
 # TODO fetch all commits or handle missing commits from initial shallow clone
 
+status=0
+
 for rev in $commits
 do
-	git checkout $rev
-	status=0
+	echo "Checking commit $rev"
+	git --quiet checkout $rev
 	for ext in $exts
 	do
 		status=0
@@ -23,9 +25,7 @@ do
 			&& echo "ERROR: rogue $ext files found" && status=1 \
 			|| echo "Ok: no rogue $ext files found"
 	done
-	if [ $status != 0 ]
-	then
-		exit $status
-	fi
 done
+
+exit $status
 
