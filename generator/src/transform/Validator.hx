@@ -6,10 +6,9 @@ import Assertion.*;
 using parser.TokenTools;
 
 class Validator {
+	var wait = 0;
 	var final = false;
-	var mathQueue = 0;
-	var onError:ValidationError->Void;
-	var onDone:Void->Void;
+	var cback:Bool->Null<ValidationError>->Void;
 
 	/*
 	Validate TeX math.
@@ -17,22 +16,23 @@ class Validator {
 	function validateMath(tex:String, pos:Position)
 	{
 		// FIXME this completly ignores that the return is async ; )
-		mathQueue++;
+		wait++;
 		mathjax.Single.typeset({
 			math:tex,
 			format:mathjax.Single.SingleTypesetFormat.TEX,
 			mml:true
 		}, function (res) {
-			mathQueue--;
-			if (res.errors != null) {
-				onError({
+			wait--;
+			var err = if (res.errors != null)
+				{
+					fatal : true,
 					msg : 'Bad math: $$$$$tex$$$$',
 					details : res.errors,
 					pos : pos
-				});
-			} else if (final && mathQueue == 0) {
-				onDone();
-			}
+				}
+			else
+				null;
+			cback(final && wait == 0, err);
 		});
 	}
 
@@ -99,20 +99,27 @@ class Validator {
 	function complete()
 	{
 		final = true;
-		if (mathQueue == 0)
-			onDone;
+		if (wait == 0)
+			cback(true, null);
 	}
 
-	function new(onError, onDone)
+	function new(cback)
 	{
-		this.onError = onError;
-		this.onDone = onDone;
+		this.cback = cback;
 	}
-	
-	public static function validate(doc, onError, onDone)
+
+	/*
+	Validate the document.
+
+	Runs `cback(final, err)` for every error found, or once if no errors
+	are found.  Check the `find` argument to find out whether or not the
+	callback will be executed again.
+	*/
+	public static function validate(doc, cback)
 	{
-		var d = new Validator(onError, onDone);
+		var d = new Validator(cback);
 		d.diter(doc);
+		d.final = true;
 		d.complete();
 	}
 }

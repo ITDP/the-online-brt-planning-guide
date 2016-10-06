@@ -3,6 +3,7 @@ import haxe.io.Path;
 import parser.Token;
 import sys.FileSystem;
 
+import Assertion.*;
 import Sys.*;
 using Literals;
 using parser.TokenTools;
@@ -38,28 +39,31 @@ class Main {
 
 		var doc = transform.NewTransform.transform(ast);
 
-		var errCnt = 0;
+		var abort = false;
 		transform.Validator.validate(doc,
-			function (err) {
-				errCnt++;
-				println('ERROR: ${err.msg}');
-				println('  details: ${err.details}');
-				printPos(err.pos);
-			},
-			function () {
-				if (errCnt > 0) {
-					println("Validation has failed, aborting");
-					exit(4);
+			function (final, err) {
+				if (err != null) {
+					if (err.fatal)
+						abort = true;
+					println('ERROR: ${err.msg}');
+					println('  details: ${err.details}');
+					printPos(err.pos);
 				}
+				if (final) {
+					if (abort) {
+						println("Validation has failed, aborting");
+						exit(4);
+					}
 
-				if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
-				if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
+					if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
+					if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
 
-				var hgen = new html.Generator(Path.join([opath, "html"]), true);
-				hgen.writeDocument(doc);
+					var hgen = new html.Generator(Path.join([opath, "html"]), true);
+					hgen.writeDocument(doc);
 
-				var tgen = new tex.Generator(Path.join([opath, "pdf"]));
-				tgen.writeDocument(doc);
+					var tgen = new tex.Generator(Path.join([opath, "pdf"]));
+					tgen.writeDocument(doc);
+				}
 			});
 	}
 
