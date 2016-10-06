@@ -7,15 +7,18 @@
 	},
 	"build" : {
 		"cmds" : [
+			"alias time='command time -a",
+			"alias timev='command time -v",
+
 			"export GL_ANALYTICS_UA_ID=UA-77667300-3",
 
 			"cd $ROBRT_REPOSITORY_DIR",
-			"git lfs pull",
-			"npm install",
+			"time git lfs pull",
+			"time npm install",
 
 			"cd $ROBRT_REPOSITORY_DIR/generator",
-			"haxe -D travis build.hxml",
-			"nodejs bin/obrt.js unit-tests",
+			"time haxe -D travis build.hxml",
+			"time nodejs bin/obrt.js unit-tests",
 
 			"cd $ROBRT_REPOSITORY_DIR",
 			"cp LICENSE.md $ROBRT_OUTPUT_DIR/",
@@ -26,7 +29,7 @@
 			"export DEBUG=1",
 			"nodejs --version",
 
-			"command time -v nodejs generator/bin/obrt.js generate guide/the-guide.src .generated-js",
+			"timev nodejs generator/bin/obrt.js generate guide/the-guide.src .generated-js",
 
 			"ls -l .generated-js/pdf/fonts",
 
@@ -36,7 +39,7 @@
 			"cd .generated-js/pdf/",
 			"mkdir -p $ROBRT_OUTPUT_DIR/pdf $ROBRT_OUTPUT_DIR/guide/pdf",
 
-			"latexmk -lualatex -pdflatex='lualatex -interaction=nonstopmode' book.tex",
+			"time latexmk -lualatex -pdflatex='lualatex -interaction=nonstopmode' book.tex",
 			"cp book.pdf $ROBRT_OUTPUT_DIR/guide/pdf/the-brt-planning-guide.pdf",
 			"cp book.log $ROBRT_OUTPUT_DIR/pdf/guide_lualatex.log",
 			"latexmk -C book.tex"
