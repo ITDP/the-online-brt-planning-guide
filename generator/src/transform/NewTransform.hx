@@ -83,47 +83,12 @@ class NewTransform {
 		return mk(def, h.pos);
 	}
 
-	static function validateMath(tex:String, pos:Position)
-	{
-		// FIXME this completly ignores that the return is async ; )
-		mathjax.Single.typeset({
-			math:tex,
-			format:mathjax.Single.SingleTypesetFormat.TEX,
-			mml:true
-		}, function (res) {
-			if (res.errors != null) {
-				show(pos.toLinePosition());
-				show(res.errors);
-				throw 'Bad math: $tex';
-			}
-		});
-	}
-
-	/*
-	Validate the contents of elements
-	*/
-	static function hvalidate(h:HElem)
-	{
-		switch h.def {
-		case Math(tex):
-			validateMath(tex, h.pos);
-		case Superscript(i), Subscript(i), Emphasis(i), Highlight(i):
-			hvalidate(i);
-		case HElemList(li):
-			for (i in li)
-				hvalidate(i);
-		case Wordspace, Word(_), InlineCode(_), HEmpty:
-			// nothing to do
-		}
-	}
-
 	@:allow(transform.Transform)  // TODO remove
 	static function horizontal(h:HElem):HElem
 	{
 		h = htrim(h, { prevSpace:true, reverse:false });
 		h = htrim(h, { prevSpace:true, reverse:true });
 		h = hclean(h);
-		hvalidate(h);
 		return h;
 	}
 
