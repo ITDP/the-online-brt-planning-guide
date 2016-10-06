@@ -8,8 +8,6 @@
 	"build" : {
 		"cmds" : [
 			"alias time='command time -p'",
-			"alias timev='command time -v'",
-			"alias",
 
 			"export GL_ANALYTICS_UA_ID=UA-77667300-3",
 
@@ -30,7 +28,7 @@
 			"export DEBUG=1",
 			"nodejs --version",
 
-			"timev nodejs generator/bin/obrt.js generate guide/the-guide.src .generated-js",
+			"command time -v nodejs generator/bin/obrt.js generate guide/the-guide.src .generated-js",
 
 			"ls -l .generated-js/pdf/fonts",
 
