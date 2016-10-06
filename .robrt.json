@@ -9,6 +9,7 @@
 		"cmds" : [
 			"alias time='command time -a'",
 			"alias timev='command time -v'",
+			"alias",
 
 			"export GL_ANALYTICS_UA_ID=UA-77667300-3",
 
