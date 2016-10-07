@@ -44,11 +44,11 @@ class Generator {
 			FileSystem.createDirectory(dir);
 
 		var ext = Path.extension(src).toLowerCase();
-		assert(ext != "", src);
 		var data = File.getBytes(src);
 		var hash = haxe.crypto.Sha1.make(data).toHex();
 
-		var name = hash + "." + ext;
+		// TODO question: is the extension even neccessary?
+		var name = ext != "" ? hash + "." + ext : hash;
 		var dst = Path.join([dir, name]);
 		File.saveBytes(dst, data);
 

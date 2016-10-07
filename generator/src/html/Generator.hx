@@ -122,11 +122,11 @@ class Generator {
 			FileSystem.createDirectory(ldir);
 
 		var ext = Path.extension(src).toLowerCase();
-		assert(ext != "", src);
+		weakAssert(ext != "", src, "web server might expect an extension for automatic content-type headers");
 		var data = content != null ? content : File.getBytes(src);
 		var hash = haxe.crypto.Sha1.make(data).toHex();
 
-		var name = hash + "." + ext;
+		var name = ext != "" ? hash + "." + ext : hash;
 		var dst = Path.join([dir, name]);
 		var lpath = Path.join([ldir, name]);
 		File.saveBytes(lpath, data);
