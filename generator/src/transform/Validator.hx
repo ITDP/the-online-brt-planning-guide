@@ -1,14 +1,29 @@
 package transform;
 
 import transform.NewDocument;
+import sys.FileSystem;
+import haxe.io.Path;
 
 import Assertion.*;
 using parser.TokenTools;
+
+enum FileType {
+	Directory;
+	File;
+	Jpeg;
+	Png;
+	Js;
+	Css;
+	Tex;
+}
 
 class Validator {
 	var wait = 0;
 	var final = false;
 	var cback:Bool->Null<ValidationError>->Void;
+
+	function error(err)
+		cback(final && wait == 0, err);
 
 	/*
 	Validate TeX math.
@@ -34,6 +49,33 @@ class Validator {
 				null;
 			cback(final && wait == 0, err);
 		});
+	}
+
+	function validateSrcPath(pos, src, types:Array<FileType>)
+	{
+		var exists = FileSystem.exists(src);
+		if (!exists) {
+			error({ fatal:true, msg:"File not found or not accessible (tip: paths are relative and case sensitive)", details:{ src:src }, pos:pos });
+			return;
+		}
+		var isDirectory = FileSystem.isDirectory(src);
+		var ext = Path.extension(src);
+		for (t in types) {
+			switch [isDirectory, t, ext.toLowerCase()] {
+			case [true, Directory, _]: return;
+			case [false, File, _]: return;
+			case [false, Jpeg, "jpeg"|"jpg"]: return;
+			case [false, Png, "png"]: return;
+			case [false, Js, "js"]: return;
+			case [false, Css, "css"]: return;
+			case [false, Tex, "tex"]: return;
+			case _: // keep going
+			}
+		}
+		if (isDirectory)
+			error({ fatal:true, msg:"Expected file, not directory", details:{ src:src }, pos:pos });
+		else
+			error({ fatal:true, msg:"File does not match expected types", details:{ src:src, types:types }, pos:pos });
 	}
 
 	/*
@@ -79,19 +121,25 @@ class Validator {
 					diter(c);
 			}
 		case DFigure(_, _, path, caption, copyright):
-			// TODO path
+			validateSrcPath(d.pos, path, [Jpeg, Png]);
 			hiter(caption);
 			hiter(copyright);
 		case DImgTable(_, _, caption, path):
-			// TODO path
+			validateSrcPath(d.pos, path, [Jpeg, Png]);
 			hiter(caption);
 		case DQuotation(text, by):
 			hiter(text);
 			hiter(by);
 		case DParagraph(text):
 			hiter(text);
-		case DLaTeXPreamble(_), DLaTeXExport(_), DHtmlApply(_), DCodeBlock(_), DEmpty:
-			// TODO paths
+		case DLaTeXPreamble(path):
+			validateSrcPath(d.pos, path, [Tex]);
+		case DLaTeXExport(src, dest):
+			validateSrcPath(d.pos, src, [Directory, File]);
+			// TODO dest
+		case DHtmlApply(path):
+			validateSrcPath(d.pos, path, [Css]);
+		case DCodeBlock(_), DEmpty:
 			// nothing to do
 		}
 	}
