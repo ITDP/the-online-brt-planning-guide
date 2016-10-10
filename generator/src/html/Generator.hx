@@ -383,7 +383,7 @@ class Generator {
 		}
 	}
 
-	@:template function renderNav(vno:Int, lno:String, name:Html, url:String);
+	@:template function renderNav(vno:Null<Int>, lno:String, name:Html, url:String);
 
 	public function writeDocument(doc:NewDocument)
 	{
