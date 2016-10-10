@@ -18,12 +18,16 @@ enum FileType {
 }
 
 class Validator {
+	var errors:Array<ValidationError> = [];
 	var wait = 0;
 	var final = false;
-	var cback:Bool->Null<ValidationError>->Void;
+	var cback:Null<Array<ValidationError>>->Void;
 
-	function error(err)
-		cback(final && wait == 0, err);
+	function tick()
+	{
+		if (final && wait == 0)
+			cback(errors.length > 0 ? errors : null);
+	}
 
 	/*
 	Validate TeX math.
@@ -38,24 +42,23 @@ class Validator {
 			format:mathjax.Single.SingleTypesetFormat.TEX,
 			mml:true
 		}, function (res) {
-			wait--;
-			var err = if (res.errors != null)
-				{
+			if (res.errors != null) {
+				errors.push({
 					fatal : true,
 					msg : 'Bad math: $$$$$tex$$$$',
 					details : res.errors,
 					pos : pos
-				}
-			else
-				null;
-			cback(final && wait == 0, err);
+				});
+			}
+			wait--;
+			tick();
 		});
 	}
 #else
-	dynamic function validateMath(tex:String, pos:Position)
+	static dynamic function validateMath(tex:String, pos:Position)
 	{
-		show("skipping math validation, no tex implementation available on this platform");
-		this.validateMath = function (t, p) {};
+		show("WARNING will skip all math validation, no tex implementation available");
+		validateMath = function (t, p) {};
 	}
 #end
 
@@ -63,7 +66,7 @@ class Validator {
 	{
 		var exists = FileSystem.exists(src);
 		if (!exists) {
-			error({ fatal:true, msg:"File not found or not accessible (tip: paths are relative and case sensitive)", details:{ src:src }, pos:pos });
+			errors.push({ fatal:true, msg:"File not found or not accessible (tip: paths are relative and case sensitive)", details:{ src:src }, pos:pos });
 			return;
 		}
 		var isDirectory = FileSystem.isDirectory(src);
@@ -81,9 +84,9 @@ class Validator {
 			}
 		}
 		if (isDirectory)
-			error({ fatal:true, msg:"Expected file, not directory", details:{ src:src }, pos:pos });
+			errors.push({ fatal:true, msg:"Expected file, not directory", details:{ src:src }, pos:pos });
 		else
-			error({ fatal:true, msg:"File does not match expected types", details:{ src:src, types:types }, pos:pos });
+			errors.push({ fatal:true, msg:"File does not match expected types", details:{ src:src, types:types }, pos:pos });
 	}
 
 	/*
@@ -155,8 +158,7 @@ class Validator {
 	function complete()
 	{
 		final = true;
-		if (wait == 0)
-			cback(true, null);
+		tick();
 	}
 
 	function new(cback)
@@ -167,9 +169,8 @@ class Validator {
 	/*
 	Validate the document.
 
-	Runs `cback(final, err)` for every error found, or once if no errors
-	are found.  Check the `find` argument to find out whether or not the
-	callback will be executed again.
+	Runs asynchronously and, when done, calls `cback` with either `null` or
+	an array with all discovered errors.
 	*/
 	public static function validate(doc, cback)
 	{

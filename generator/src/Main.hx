@@ -39,31 +39,31 @@ class Main {
 
 		var doc = transform.NewTransform.transform(ast);
 
-		var abort = false;
 		transform.Validator.validate(doc,
-			function (final, err) {
-				if (err != null) {
-					if (err.fatal)
-						abort = true;
-					println('ERROR: ${err.msg}');
-					println('  details: ${err.details}');
-					printPos(err.pos);
-				}
-				if (final) {
+			function (errors) {
+				if (errors != null) {
+					var abort = false;
+					for (err in errors) {
+						if (err.fatal)
+							abort = true;
+						println('ERROR: ${err.msg}');
+						println('  details: ${err.details}');
+						printPos(err.pos);
+					}
 					if (abort) {
 						println("Validation has failed, aborting");
 						exit(4);
 					}
-
-					if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
-					if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
-
-					var hgen = new html.Generator(Path.join([opath, "html"]), true);
-					hgen.writeDocument(doc);
-
-					var tgen = new tex.Generator(Path.join([opath, "pdf"]));
-					tgen.writeDocument(doc);
 				}
+
+				if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
+				if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
+
+				var hgen = new html.Generator(Path.join([opath, "html"]), true);
+				hgen.writeDocument(doc);
+
+				var tgen = new tex.Generator(Path.join([opath, "pdf"]));
+				tgen.writeDocument(doc);
 			});
 	}
 
