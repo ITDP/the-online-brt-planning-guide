@@ -53,7 +53,8 @@ Phasellus sed lacus ac erat luctus pretium a at massa. Ut quis massa nec dui rut
 \volume{Infrastructure}
 
 \include{volume-6-landing-page.txt}
-
+\meta\reset{chapter}{22}  \' skip to chapter 23 '\
+\include{roadway-design/roadway-design.src}
 \volume{Integration}
 
 \include{volume-7-landing-page.txt}
@@ -65,4 +66,3 @@ There should be some introductory text here on this volume.
 
 \meta\reset{chapter}{33}  \' contributing should be the last volume and chapters '\
 \include{34-manual-for-collaboration/00-manual-for-collaboration.src}
-
