@@ -44,7 +44,8 @@ class Test_04_Validation {
 	public function test_002_math()
 	{
 		// mathjax needs a timeout longer than utest's 250 ms default
-		var timeout = 1000;
+		// initializaion and queueing are yet to explain this
+		var timeout = 10000;
 
 		// this is rossmos's formula, missing the definitions for \\phi_{ij};
 		// fun fact, it can be applied to certain transportation data
