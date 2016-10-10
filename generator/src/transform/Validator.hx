@@ -28,6 +28,7 @@ class Validator {
 	/*
 	Validate TeX math.
 	*/
+#if nodejs
 	function validateMath(tex:String, pos:Position)
 	{
 		// FIXME this completly ignores that the return is async ; )
@@ -50,6 +51,13 @@ class Validator {
 			cback(final && wait == 0, err);
 		});
 	}
+#else
+	dynamic function validateMath(tex:String, pos:Position)
+	{
+		show("skipping math validation, no tex implementation available on this platform");
+		this.validateMath = function (t, p) {};
+	}
+#end
 
 	function validateSrcPath(pos, src, types:Array<FileType>)
 	{

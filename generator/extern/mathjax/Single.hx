@@ -20,7 +20,11 @@ Externs for MathJax-node mj-single.js
 
 Documentation taken from the original source.
 **/
+#if nodejs
 @:jsRequire("mathjax-node/lib/mj-single.js")
+#else
+#error "MathJax-node requires Node.js.  Compile with `-lib hxnodejs`."
+#end
 extern class Single {
 	/**
 	The API call to typeset an equation.

@@ -1,0 +1,18 @@
+only-build.hxml
+
+--next
+
+# neko
+-main Main
+-neko bin/obrt.n
+-resource bin/bundle/nav.js@nav.js
+-debug
+
+--next
+
+# cppia
+-main Main
+-cppia bin/obrt.cppia
+-resource bin/bundle/nav.js@nav.js
+-debug
+
