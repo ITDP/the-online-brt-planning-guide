@@ -167,11 +167,11 @@ class AstTools {
 					// position of a token used elsewhere
 					at = at.offset(0, at.min - at.max);
 					start = start.offset(0, start.min - start.max);
-					parser.AstTools.mk($empty, parser.TokenTools.span(start, at));
+					parser.AstTools.mk($empty, PositionTools.span(start, at));
 				case [single]:
 					single;
 				case _:
-					parser.AstTools.mk($list(li), parser.TokenTools.span(li[0].pos, li[li.length - 1].pos));
+					parser.AstTools.mk($list(li), PositionTools.span(li[0].pos, li[li.length - 1].pos));
 				}
 			}
 		case _:

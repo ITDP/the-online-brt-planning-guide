@@ -2,7 +2,7 @@ package tests;
 
 import parser.Ast;
 import parser.AstTools.*;
-import parser.Error;
+import parser.ParserError;
 import parser.Token;
 import utest.Assert;
 
@@ -18,13 +18,13 @@ class Test_03_Parser {
 		return p.file();
 	}
 
-	function parsingError(text:String, ?etype:Class<GenericError>, ?etext:EReg, ?epos:Position, ?p:haxe.PosInfos)
+	function parsingError(text:String, ?etype:Class<ParserError>, ?etext:EReg, ?epos:Position, ?p:haxe.PosInfos)
 	{
 		Assert.raises(parse.bind(text), etype, p);
 		if (etext != null || epos != null) {
 			try {
 				parse(text);
-			} catch (err:GenericError) {
+			} catch (err:ParserError) {
 				if (etext != null)
 					Assert.match(etext, err.text, p);
 				if (epos != null)

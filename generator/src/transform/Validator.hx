@@ -1,20 +1,21 @@
 package transform;
 
-import transform.NewDocument;
-import sys.FileSystem;
 import haxe.io.Path;
+import sys.FileSystem;
+import transform.NewDocument;
+import transform.ValidationError;
 
 import Assertion.*;
-using parser.TokenTools;
+using PositionTools;
 
-enum FileType {
-	Directory;
-	File;
-	Jpeg;
-	Png;
-	Js;
-	Css;
-	Tex;
+@:enum abstract FileType(String) to String {
+	public var Directory = "Directory";
+	public var File = "Generic file";
+	public var Jpeg = "JPEG/JPG image file";
+	public var Png = "PNG image file";
+	public var Js = "Javascript source file";
+	public var Css = "Cascading style sheet (CSS) file";
+	public var Tex = "TeX source file";
 }
 
 class Validator {
@@ -42,14 +43,8 @@ class Validator {
 			format:mathjax.Single.SingleTypesetFormat.TEX,
 			mml:true
 		}, function (res) {
-			if (res.errors != null) {
-				errors.push({
-					fatal : true,
-					msg : 'Bad math: $$$$$tex$$$$',
-					details : res.errors,
-					pos : pos
-				});
-			}
+			if (res.errors != null)
+				errors.push(new BadMath(tex, res.errors, pos));
 			wait--;
 			tick();
 		});
@@ -66,7 +61,7 @@ class Validator {
 	{
 		var exists = FileSystem.exists(src);
 		if (!exists) {
-			errors.push({ fatal:true, msg:"File not found or not accessible (tip: paths are relative and case sensitive)", details:{ src:src }, pos:pos });
+			errors.push(new FileNotFound(src, pos));
 			return;
 		}
 		var isDirectory = FileSystem.isDirectory(src);
@@ -84,9 +79,9 @@ class Validator {
 			}
 		}
 		if (isDirectory)
-			errors.push({ fatal:true, msg:"Expected file, not directory", details:{ src:src }, pos:pos });
+			errors.push(new FileIsDirectory(src, pos));
 		else
-			errors.push({ fatal:true, msg:"File does not match expected types", details:{ src:src, types:types }, pos:pos });
+			errors.push(new WrongFileType(types, src, pos));
 	}
 
 	/*

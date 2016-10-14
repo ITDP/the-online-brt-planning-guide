@@ -1,10 +1,10 @@
 package parser;
 
-import parser.Error;
+import parser.ParserError;
 import parser.Token;
 
 import Assertion.*;
-import parser.TokenTools.toPosition in mkPos;
+import PositionTools.toPosition in mkPos;
 using StringTools;
 
 class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {

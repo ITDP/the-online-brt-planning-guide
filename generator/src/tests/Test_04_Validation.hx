@@ -28,7 +28,7 @@ class Test_04_Validation {
 		});
 	}
 
-	function fails(str, fatal, ?msgPat, ?timeout:Null<Int>, ?pos:PosInfos)
+	function fails(str, fatal, ?pattern, ?timeout:Null<Int>, ?pos:PosInfos)
 	{
 		var done = Assert.createAsync(timeout);
 		validate(str, function (errors) {
@@ -36,7 +36,7 @@ class Test_04_Validation {
 			Assert.equals(1, errors.length, pos);
 			var err = errors[0];
 			Assert.equals(err.fatal, fatal, pos);
-			if (msgPat != null) Assert.match(msgPat, err.msg, pos);
+			if (pattern != null) Assert.match(pattern, err.text, pos);
 			done();
 		});
 	}

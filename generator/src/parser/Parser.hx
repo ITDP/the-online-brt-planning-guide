@@ -3,7 +3,7 @@ package parser;  // TODO move out of the package
 import haxe.ds.GenericStack.GenericCell;
 import haxe.ds.Option;
 import parser.Ast;
-import parser.Error;
+import parser.ParserError;
 import parser.Token;
 import sys.FileSystem;
 
@@ -11,7 +11,7 @@ import Assertion.*;
 import parser.AstTools.*;
 
 using StringTools;
-using parser.TokenTools;
+using PositionTools;
 
 typedef Stop = {
 	?before:TokenDef,

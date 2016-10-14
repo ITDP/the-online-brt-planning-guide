@@ -3,7 +3,7 @@ package tests;
 import utest.Assert;
 import parser.Ast;
 import parser.AstTools.*;
-using parser.TokenTools;
+using PositionTools;
 
 class Test_01_Tools {
 	static inline var TMP = "/tmp/";

@@ -10,7 +10,6 @@ import transform.Context;
 import transform.NewDocument;
 import transform.NewTransform;
 import utest.Assert;
-import parser.Error;
 
 import Assertion.*;
 import parser.AstTools.*;

@@ -2,33 +2,24 @@ package parser;
 
 import parser.Token;
 
-class GenericError {
+class ParserError extends GenericError {
 	var lexer:Lexer;
-	public var pos(default,null):Position;
 
-	public var text(get,null):String;
-		function get_text()
-			return "Unknown error";
-	public var atEof(get,null):Bool;
-		function get_atEof()
-			return pos.min != pos.max;
 	public var at(get,null):String;
 		function get_at()
 			return atEof ? lexer.recover(pos.min, pos.max - pos.min) : "";
-	public var lpos(get,never):LinePosition;  // TODO cache it automatically
-		function get_lpos()
-			return TokenTools.toLinePosition(pos);
-	public function toString()
-		return '${pos.src}: ${pos.min}-${pos.max}: $text';
+
+	override function get_text()
+		return "Unknown parsing error";
 
 	public function new(lexer, pos)
 	{
 		this.lexer = lexer;
-		this.pos = pos;
+		super(pos);
 	}
 }
 
-class UnexpectedToken extends GenericError {
+class UnexpectedToken extends ParserError {
 	var def:TokenDef;
 	var expDesc:Null<String>;
 
@@ -60,7 +51,7 @@ class UnexpectedToken extends GenericError {
 		return haxe.io.Bytes.ofString(s).toHex();
 }
 
-class MissingArgument extends GenericError {
+class MissingArgument extends ParserError {
 	var toToken:Null<Token>;
 	var argDesc:Null<String>;
 
@@ -95,7 +86,7 @@ class MissingArgument extends GenericError {
 	}
 }
 
-class UnclosedToken extends GenericError {
+class UnclosedToken extends ParserError {
 	var def:TokenDef;
 
 	public function new(lexer, tok)
@@ -115,7 +106,7 @@ class UnclosedToken extends GenericError {
 	}
 }
 
-class BadValue extends GenericError {
+class BadValue extends ParserError {
 	var details:Null<String>;
 
 	public function new(lexer, pos, ?details)
@@ -133,14 +124,14 @@ class BadValue extends GenericError {
 	}
 }
 
-class UnexpectedCommand extends GenericError {
+class UnexpectedCommand extends ParserError {
 	var suggestion:Null<String>;
 
 	override public function get_text()
 		return 'Unexpected command $at';
 }
 
-class UnknownCommand extends GenericError {
+class UnknownCommand extends ParserError {
 	var suggestion:Null<String>;
 
 	public function new(lexer, pos, ?suggestion)

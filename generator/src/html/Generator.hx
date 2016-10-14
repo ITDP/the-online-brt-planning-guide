@@ -14,7 +14,7 @@ import generator.tex.*;
 
 using Literals;
 using StringTools;
-using parser.TokenTools;
+using PositionTools;
 using transform.DocumentTools;
 
 typedef BreadcrumbItem = {
