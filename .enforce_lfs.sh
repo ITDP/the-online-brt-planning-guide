@@ -9,7 +9,9 @@ else
 	commits=$(git rev-list $range)
 fi
 
-echo "Looking at commits $commits"
+echo "Looking at commits"
+echo $commits
+echo "in reverse chrnological order"
 # TODO fetch all commits or handle missing commits from initial shallow clone
 
 status=0
