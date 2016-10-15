@@ -7,7 +7,7 @@ import sys.io.File;
 
 import Sys.*;
 using Literals;
-using parser.TokenTools;
+using PositionTools;
 
 class Stats {
 	static var USAGE = "

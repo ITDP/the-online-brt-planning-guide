@@ -6,7 +6,7 @@ import sys.FileSystem;
 import Assertion.*;
 import Sys.*;
 using Literals;
-using parser.TokenTools;
+using PositionTools;
 
 class Main {
 	public static var version(default,null) = {
@@ -46,8 +46,7 @@ class Main {
 					for (err in errors) {
 						if (err.fatal)
 							abort = true;
-						println('ERROR: ${err.msg}');
-						println('  details: ${err.details}');
+						println('ERROR: ${err.text}');
 						printPos(err.pos);
 					}
 					if (abort) {
@@ -110,7 +109,7 @@ class Main {
 			printPos(e.pos.toPosition());
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
 			exit(2);
-		} catch (e:parser.Error.GenericError) {
+		} catch (e:parser.ParserError) {
 			if (Context.debug) print("Parser ");
 			println('ERROR: ${e.text}');
 			printPos(e.pos);

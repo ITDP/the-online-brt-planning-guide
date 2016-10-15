@@ -1,9 +1,6 @@
-package parser;
-
-import parser.Token;
 import Assertion.assert;
 
-class TokenTools {
+class PositionTools {
 	public static function span(left:Position, right:Position)
 	{
 		if (left.src != right.src) return left;

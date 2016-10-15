@@ -1,20 +1,22 @@
 package transform;
 
-import transform.NewDocument;
-import sys.FileSystem;
 import haxe.io.Path;
+import sys.FileSystem;
+import transform.NewDocument;
+import transform.ValidationError;
 
 import Assertion.*;
-using parser.TokenTools;
+using PositionTools;
+using StringTools;
 
-enum FileType {
-	Directory;
-	File;
-	Jpeg;
-	Png;
-	Js;
-	Css;
-	Tex;
+@:enum abstract FileType(String) to String {
+	public var Directory = "Directory";
+	public var File = "Generic file";
+	public var Jpeg = "JPEG/JPG image file";
+	public var Png = "PNG image file";
+	public var Js = "Javascript source file";
+	public var Css = "Cascading style sheet (CSS) file";
+	public var Tex = "TeX source file";
 }
 
 class Validator {
@@ -42,14 +44,8 @@ class Validator {
 			format:mathjax.Single.SingleTypesetFormat.TEX,
 			mml:true
 		}, function (res) {
-			if (res.errors != null) {
-				errors.push({
-					fatal : true,
-					msg : 'Bad math: $$$$$tex$$$$',
-					details : res.errors,
-					pos : pos
-				});
-			}
+			if (res.errors != null)
+				errors.push(new BadMath(tex, res.errors, pos));
 			wait--;
 			tick();
 		});
@@ -66,7 +62,7 @@ class Validator {
 	{
 		var exists = FileSystem.exists(src);
 		if (!exists) {
-			errors.push({ fatal:true, msg:"File not found or not accessible (tip: paths are relative and case sensitive)", details:{ src:src }, pos:pos });
+			errors.push(new FileNotFound(src, pos));
 			return;
 		}
 		var isDirectory = FileSystem.isDirectory(src);
@@ -84,9 +80,9 @@ class Validator {
 			}
 		}
 		if (isDirectory)
-			errors.push({ fatal:true, msg:"Expected file, not directory", details:{ src:src }, pos:pos });
+			errors.push(new FileIsDirectory(src, pos));
 		else
-			errors.push({ fatal:true, msg:"File does not match expected types", details:{ src:src, types:types }, pos:pos });
+			errors.push(new WrongFileType(types, src, pos));
 	}
 
 	/*
@@ -109,6 +105,15 @@ class Validator {
 		}
 	}
 
+	function notHEmpty(h:HElem, parent:DElem, name:String)
+	{
+		if (h.def.match(HEmpty)) {
+			errors.push(new BlankValue(parent, name, h.pos));
+			return false;
+		}
+		return true;
+	}
+
 	/*
 	Validate document elements.
 
@@ -118,13 +123,15 @@ class Validator {
 	{
 		switch d.def {
 		case DVolume(_, name, children), DChapter(_, name, children), DSection(_, name, children), DSubSection(_, name, children), DSubSubSection(_, name, children), DBox(_, name, children):
-			hiter(name);
+			if (notHEmpty(name, d, "name"))
+				hiter(name);
 			diter(children);
 		case DElemList(items), DList(_, items):
 			for (i in items)
 				diter(i);
 		case DTable(_, _, caption, header, rows):
-			hiter(caption);
+			if (notHEmpty(caption, d, "caption"))
+				hiter(caption);
 			for (c in header)
 				diter(c);
 			for (columns in rows) {
@@ -133,21 +140,30 @@ class Validator {
 			}
 		case DFigure(_, _, path, caption, copyright):
 			validateSrcPath(d.pos, path, [Jpeg, Png]);
-			hiter(caption);
-			hiter(copyright);
+			if (notHEmpty(caption, d, "caption"))
+				hiter(caption);
+			if (notHEmpty(copyright, d, "copyright"))
+				hiter(copyright);
 		case DImgTable(_, _, caption, path):
+			if (notHEmpty(caption, d, "caption"))
+				hiter(caption);
 			validateSrcPath(d.pos, path, [Jpeg, Png]);
-			hiter(caption);
 		case DQuotation(text, by):
-			hiter(text);
-			hiter(by);
+			if (notHEmpty(text, d, "text"))
+				hiter(text);
+			if (notHEmpty(by, d, "author"))
+				hiter(by);
 		case DParagraph(text):
 			hiter(text);
 		case DLaTeXPreamble(path):
 			validateSrcPath(d.pos, path, [Tex]);
 		case DLaTeXExport(src, dest):
 			validateSrcPath(d.pos, src, [Directory, File]);
-			// TODO dest
+			assert(dest == Path.normalize(dest));
+			if (Path.isAbsolute(dest))
+				errors.push(new AbsolutePath(dest, d.pos));
+			if (dest.startsWith(".."))
+				errors.push(new EscapingPath("the destination directory", dest, d.pos));
 		case DHtmlApply(path):
 			validateSrcPath(d.pos, path, [Css]);
 		case DCodeBlock(_), DEmpty:

@@ -12,7 +12,7 @@ import Assertion.*;
 
 using Literals;
 using StringTools;
-using parser.TokenTools;
+using PositionTools;
 
 class Generator {
 	static var FILE_BANNER = '

@@ -7,7 +7,7 @@ import transform.NewDocument;  // TODO remove
 import Assertion.*;
 import parser.AstTools.*;
 
-using parser.TokenTools;
+using PositionTools;
 using StringTools;
 
 // TODO split in transform/vertical/horizontal classes (or even modules)
