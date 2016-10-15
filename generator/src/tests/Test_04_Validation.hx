@@ -19,26 +19,46 @@ class Test_04_Validation {
 		transform.Validator.validate(doc, cback);
 	}
 
-	function passes(str:String, ?timeout:Null<Int>, ?pos:PosInfos)
+	function passes(str:String, ?timeout:Null<Int>, ?assertPos:PosInfos)
 	{
 		var done = Assert.createAsync();
 		validate(str, function (errors) {
-			Assert.isNull(errors, pos);
+			Assert.isNull(errors, assertPos);
 			done();
 		});
 	}
 
-	function fails(str, fatal, ?pattern, ?timeout:Null<Int>, ?pos:PosInfos)
+	function fails(str, fatal, ?cl:Class<ValidationError>, ?pattern, ?timeout:Null<Int>, ?assertPos:PosInfos)
 	{
 		var done = Assert.createAsync(timeout);
 		validate(str, function (errors) {
-			Assert.notNull(errors, pos);
-			Assert.equals(1, errors.length, pos);
-			var err = errors[0];
-			Assert.equals(err.fatal, fatal, pos);
-			if (pattern != null) Assert.match(pattern, err.text, pos);
+			Assert.notNull(errors, assertPos);
+			if (errors != null) {
+				assert(errors.length == 1);
+				var err = errors[0];
+				Assert.equals(err.fatal, fatal, assertPos);
+				if (cl != null)
+					Assert.equals(Type.getClassName(cl), Type.getClassName(Type.getClass(err)));
+				if (pattern != null)
+					Assert.match(pattern, err.text, assertPos);
+			}
 			done();
 		});
+	}
+
+	function saveContent(base, content)
+	{
+		var path = haxe.io.Path.join([Const.UNIT_TEMP_DIR, base]);
+		sys.FileSystem.createDirectory(haxe.io.Path.directory(path));
+		sys.io.File.saveContent(path, content);
+		return path;
+	}
+
+	function openDir(base)
+	{
+		var path = haxe.io.Path.join([Const.UNIT_TEMP_DIR, base]);
+		sys.FileSystem.createDirectory(path);
+		return path;
 	}
 
 	public function test_002_math()
@@ -67,8 +87,8 @@ class Test_04_Validation {
 		passes("$$a_{ij}$$", timeout);
 
 #if nodejs
-		fails("$$a\\neb$$", true, ~/bad math/i, timeout);
-		fails("$$a_{ij$$", true, ~/bad math/i, timeout);
+		fails("$$a\\neb$$", true, BadMath, timeout);
+		fails("$$a_{ij$$", true, BadMath, timeout);
 #elseif js
 #error "no JS platforms expected other than Node.js"
 #end
@@ -76,21 +96,6 @@ class Test_04_Validation {
 
 	public function test_003_src_paths()
 	{
-		function saveContent(base, content)
-		{
-			var path = haxe.io.Path.join([Const.UNIT_TEMP_DIR, base]);
-			sys.FileSystem.createDirectory(haxe.io.Path.directory(path));
-			sys.io.File.saveContent(path, content);
-			return path;
-		}
-
-		function openDir(base)
-		{
-			var path = haxe.io.Path.join([Const.UNIT_TEMP_DIR, base]);
-			sys.FileSystem.createDirectory(path);
-			return path;
-		}
-
 		var file = saveContent("testfile.txt", "hello");
 		var dir = openDir("testdir");
 		var css = saveContent("testcss.css", "body { width: 600px; }");
@@ -110,12 +115,41 @@ class Test_04_Validation {
 		passes('\\begintable{foo}\\useimage{$jpg}\\endtable');
 		passes('\\begintable{foo}\\useimage{$png}\\endtable');
 
-		fails('\\tex\\export{$file.noexists}{nothing}', true, ~/file not found/i);
-		fails('\\tex\\export{$dir.noexists}{nothing}', true, ~/file not found/i);
-		fails('\\html\\apply{$png}', true, ~/file does not match expected types/i);
-		fails('\\tex\\preamble{$dir}', true, ~/expected file, not directory/i);
-		fails('\\figure{$css}{foo}{bar}', true, ~/file does not match expected types/i);
-		fails('\\begintable{foo}\\useimage{$tex}\\endtable', true, ~/file does not match expected types/i);
+		fails('\\tex\\export{$file.noexists}{nothing}', true, FileNotFound, ~/file not found/i);
+		fails('\\tex\\export{$dir.noexists}{nothing}', true, FileNotFound);
+		fails('\\tex\\preamble{$dir}', true, FileIsDirectory, ~/expected file, not directory/i);
+		fails('\\html\\apply{$png}', true, WrongFileType, ~/file does not match expected types/i);
+		fails('\\figure{$css}{foo}{bar}', true, WrongFileType);
+		fails('\\begintable{foo}\\useimage{$tex}\\endtable', true, WrongFileType);
+
+		fails('\\tex\\export{$jpg}{/home}', true, AbsolutePath, ~/path cannot be absolute/i);
+		fails('\\tex\\export{$png}{..}', true, EscapingPath, ~/path cannot escape/);
+		fails('\\tex\\export{$tex}{b/../..}', true, EscapingPath, ~/path cannot escape/);
+	}
+
+	public function test_004_empty_arguments()
+	{
+		var png = saveContent("testpng.png", "todo");
+
+		fails("\\volume{}", true, BlankValue, ~/name cannot be blank/i);
+		fails("\\chapter{}", true, BlankValue);
+		fails("\\section{}", true, BlankValue);
+		fails("# ", true, BlankValue);
+		fails("\\subsection{}", true, BlankValue);
+		fails("## ", true, BlankValue);
+		fails("\\subsubsection{}", true, BlankValue);
+		fails("### ", true, BlankValue);
+		fails("\\beginbox{}\\endbox", true, BlankValue);
+		fails("\\begintable{}\\header\\col a\\col b\\row\\col 1\\col b\\endtable", true, BlankValue, ~/caption cannot be blank/i);
+		fails('\\begintable{}\\useimage{$png}\\endtable', true, BlankValue, ~/caption cannot be blank/i);
+		fails('\\figure{$png}{}{copyright}', true, BlankValue, ~/caption cannot be blank/i);
+		fails('\\figure{$png}{caption}{}', true, BlankValue, ~/copyright cannot be blank/i);
+		fails("\\quotation{a}{}", true, BlankValue, ~/author cannot be blank/i);
+		fails("\\quotation{}{b}", true, BlankValue, ~/text cannot be blank/i);
+		fails(">a@\n\nb", true, BlankValue, ~/author cannot be blank/i);
+		fails(">@a\n\nb", true, BlankValue, ~/text cannot be blank/i);
+
+		// TODO test empty path errors
 	}
 
 	public function new() {}

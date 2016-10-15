@@ -246,7 +246,6 @@ class Parser {
 	function hierarchy(cmd:Token)
 	{
 		var name = arg(hlist, cmd, "name");
-		if (name.val.def.match(HEmpty)) badArg(name.pos, "name cannot be empty");
 		return switch cmd.def {
 		case TCommand("volume"): mk(Volume(name.val), cmd.pos.span(name.pos));
 		case TCommand("chapter"): mk(Chapter(name.val), cmd.pos.span(name.pos));
@@ -261,7 +260,6 @@ class Parser {
 	{
 		discardNoise();
 		var name = hlist(stop);
-		assert(!name.def.match(HEmpty), "obvisouly empty header");  // FIXME proper error? if so, needs to be tested
 
 		return switch hashes.def {
 		case THashes(1): mk(Section(name), hashes.pos.span(name.pos));
@@ -278,8 +276,6 @@ class Parser {
 		var path = arg(rawHorizontal, cmd, "path");
 		var caption = arg(hlist, cmd, "caption");
 		var copyright = arg(hlist, cmd, "copyright");
-		if (caption.val.def.match(HEmpty)) badArg(caption.pos, "caption cannot be empty");  // TODO test
-		if (copyright.val.def.match(HEmpty)) badArg(copyright.pos, "copyright cannot be empty");  // TODO test
 		return mk(Figure(size, mkPath(path.val, path.pos), caption.val, copyright.val), cmd.pos.span(copyright.pos));
 	}
 
@@ -335,7 +331,7 @@ class Parser {
 		assert(lastPos != null);
 		if (captionParts.length == 0) badValue(lastPos, "caption cannot be empty");
 		if (path == null) missingArg(lastPos, tag[1], "path");
-		if (copyright == null || copyright.def.match(HEmpty)) missingArg(lastPos, tag[1], "copyright");  // TODO test
+		if (copyright == null) missingArg(lastPos, tag[1], "copyright");  // TODO test
 		var caption = if (captionParts.length == 1)
 				captionParts[0]
 			else
@@ -379,7 +375,6 @@ class Parser {
 		assert(begin.def.match(TCommand("begintable")), begin);
 		var size = blobSize(optArg(rawHorizontal, begin, "size"), defaultTableSize);
 		var caption = arg(hlist, begin, "caption");
-		if (caption.val.def.match(HEmpty)) badArg(caption.pos, "caption cannot be empty");  // TODO test
 		var rows = [];
 		discardVerticalNoise();
 		if (peek().def.match(TCommand("useimage"))) {
@@ -412,8 +407,6 @@ class Parser {
 		assert(cmd.def.match(TCommand("quotation")), cmd);
 		var text = arg(hlist, cmd, "text");
 		var author = arg(hlist, cmd, "author");
-		if (text.val.def.match(HEmpty)) badArg(text.pos, "text cannot be empty");
-		if (author.val.def.match(HEmpty)) badArg(author.pos, "author cannot be empty");
 		return mk(Quotation(text.val, author.val), cmd.pos.span(author.pos));
 	}
 
@@ -426,8 +419,6 @@ class Parser {
 		if (!at.def.match(TAt)) missingArg(at.pos, greaterThan, "author (prefixed with @)");
 		discardNoise();
 		var author = hlist(stop);
-		if (text.def.match(HEmpty)) badValue(greaterThan.pos.span(at.pos).offset(1, -1), "text cannot be empty");
-		if (author.def.match(HEmpty)) badValue(at.pos.offset(1,0), "author cannot be empty");
 		return mk(Quotation(text, author), greaterThan.pos.span(author.pos));
 	}
 
@@ -476,7 +467,6 @@ class Parser {
 	{
 		assert(begin.def.match(TCommand("beginbox")), begin);
 		var name = arg(hlist, begin, "name");
-		if (name.val.def.match(HEmpty)) badArg(name.pos, "name cannot be empty");
 		var li = vlist({ beforeAny:[TCommand("endbox")] });
 		discardVerticalNoise();
 		var end = pop();
@@ -545,8 +535,6 @@ class Parser {
 		var d = arg(rawHorizontal, cmd, "destination path");
 		var src = mkPath(s.val, s.pos);
 		var dest = haxe.io.Path.normalize(d.val);
-		if (haxe.io.Path.isAbsolute(dest)) badArg(d.pos, "destination path cannot be absolute");
-		if (dest.startsWith("..")) badArg(d.pos, "destination path cannot escape the destination directory");
 		return mk(LaTeXExport(src, dest), cmd.pos.span(d.pos));
 	}
 

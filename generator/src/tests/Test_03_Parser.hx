@@ -261,12 +261,6 @@ class Test_03_Parser {
 		parsingError("\\volume{a}{}", UnexpectedToken, ~/{/, mkPos(10, 11));
 		parsingError("\\section{\\volume{a}}", UnexpectedToken, ~/\\volume/, mkPos(9, 16));
 		parsingError("\\section{a\\volume{b}}", UnexpectedToken, ~/\\volume/, mkPos(10, 17));
-
-		parsingError("\\volume{}", BadValue, ~/name cannot be empty/i, mkPos(8, 8));
-		parsingError("\\chapter{}", BadValue, ~/name cannot be empty/i, mkPos(9, 9));
-		parsingError("\\section{}", BadValue, ~/name cannot be empty/i, mkPos(9, 9));
-		parsingError("\\subsection{}", BadValue, ~/name cannot be empty/i, mkPos(12, 12));
-		parsingError("\\subsubsection{}", BadValue, ~/name cannot be empty/i, mkPos(15, 15));
 	}
 
 	public function test_009_argument_parsing_errors()
@@ -322,11 +316,6 @@ class Test_03_Parser {
 		parsingError("\\quotation{a} b", MissingArgument, ~/author.+\\quotation/i, mkPos(14, 15));
 		parsingError("\\quotation{a}{b}{}", UnexpectedToken, ~/{/, mkPos(16, 17));
 		parsingError(">a\n\nb", MissingArgument, ~/author.+quotation/);
-
-		parsingError("\\quotation{a}{}", BadValue, ~/author cannot be empty/i, mkPos(14,14));
-		parsingError("\\quotation{}{b}", BadValue, ~/text cannot be empty/i, mkPos(11, 11));
-		parsingError(">a@\n\nb", BadValue, ~/author cannot be empty/i, mkPos(3, 3));
-		parsingError(">@a\n\nb", BadValue, ~/text cannot be empty/i, mkPos(1, 1));
 	}
 
 	public function test_012_figures()
@@ -531,7 +520,7 @@ class Test_03_Parser {
 
 	public function test_016_break_spaces_in_arguments()
 	{
-		// Section name must be a hlist, hence to break spaces can happen
+		// Section name must be a hlist, hence no break spaces can happen
 		parsingError("\\section{\n\nname}");
 
 		// It's hard to decide whether raw arguments should accept
@@ -564,8 +553,6 @@ class Test_03_Parser {
 		parsingError("\\beginbox", MissingArgument, ~/name.+\\beginbox/i, mkPos(9, 9));
 		parsingError("\\beginbox a", MissingArgument, ~/name.+\\beginbox/i, mkPos(10, 11));
 		parsingError("\\beginbox{a}{}", UnexpectedToken, ~/{/, mkPos(12, 13));
-
-		parsingError("\\beginbox{}", BadValue, ~/name cannot be empty/i, mkPos(10, 10));
 	}
 
 	// FIXME
@@ -588,9 +575,6 @@ class Test_03_Parser {
 		// \tex\export
 		Assert.same(expand(@len(17)LaTeXExport("a","b")), parse("\\tex\\export{a}{b}"));
 		Assert.same(expand(@len(27)LaTeXExport("a","b")), parse("\\tex\\export{a}{c/d/../../b}"));
-		parsingError("\\tex\\export{a}{/home}", BadValue, ~/absolute/);
-		parsingError("\\tex\\export{a}{..}", BadValue, ~/escape/);
-		parsingError("\\tex\\export{a}{b/../..}", BadValue, ~/escape/);
 	}
 
 	public function test_021_include()
