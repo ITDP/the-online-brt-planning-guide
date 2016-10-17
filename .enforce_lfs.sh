@@ -1,7 +1,22 @@
 set -e
-exts=$(cat .gitattributes | grep 'filter=lfs' | sed -e 's/^\*\.\([^ ]\+\).\+/\1/')
-range=${TRAVIS_COMMIT_RANGE/.../..}
 
+ok=0
+fail=1
+exts=$(cat .gitattributes | grep 'filter=lfs' | sed -e 's/^\*\.\([^ ]\+\).\+/\1/')
+
+function check_for_lfs_files_on_working_tree()
+{
+	ret=$ok
+	for ext in $exts
+	do
+		find . -name \*.$ext -type f -exec file {} \; | grep -v 'ASCII text' \
+			&& echo "ERROR: rogue $ext files found" && ret=$fail \
+			|| echo "Ok: no rogue $ext files found"
+	done
+	return $ret
+}
+
+range=${TRAVIS_COMMIT_RANGE/.../..}
 if [ "$range" = "" ]
 then
 	commits=$TRAVIS_COMMIT
@@ -9,24 +24,30 @@ else
 	commits=$(git rev-list $range)
 fi
 
+if [ "$TRAVIS_PULL_REQUEST" != "false" ]
+then
+	echo "Looking at the merged working tree"
+	check_for_lfs_files_on_working_tree
+	status=$?
+else
+	status=$ok
+fi
+
 echo "Looking at commits"
 echo $commits
-echo "in reverse chrnological order"
+echo "(in reverse chrnological order)"
 # TODO fetch all commits or handle missing commits from initial shallow clone
-
-status=0
 
 for rev in $commits
 do
 	echo "Checking commit $rev"
 	git checkout --quiet $rev
-	for ext in $exts
-	do
-		status=0
-		find . -name \*.$ext -type f -exec file {} \; | grep -v 'ASCII text' \
-			&& echo "ERROR: rogue $ext files found" && status=1 \
-			|| echo "Ok: no rogue $ext files found"
-	done
+	check_for_lfs_files_on_working_tree
+	if [ "$?" -ne 0 ]
+	then
+		status=$fail
+	fi
+
 done
 
 exit $status
