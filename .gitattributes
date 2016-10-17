@@ -1,6 +1,7 @@
 *.[jJ][pP][eE][gG] filter=lfs diff=lfs merge=lfs -text
 *.[jJ][pP][gG] filter=lfs diff=lfs merge=lfs -text
 *.[oO][tT][fF] filter=lfs diff=lfs merge=lfs -text
+*.[pP][nN][gG] filter=lfs diff=lfs merge=lfs -text
 *.[tT][tT][fF] filter=lfs diff=lfs merge=lfs -text
 *.[gG][iI][fF] filter=lfs diff=lfs merge=lfs -text
 *.[eE][mM][fF] filter=lfs diff=lfs merge=lfs -text
