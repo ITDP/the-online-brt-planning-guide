@@ -1,5 +1,3 @@
-set -e
-
 ok=0
 fail=1
 exts=$(cat .gitattributes | grep 'filter=lfs' | sed -e 's/^\*\.\([^ ]\+\).\+/\1/')
