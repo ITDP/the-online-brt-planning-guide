@@ -19,7 +19,7 @@ typedef Stop = {
 }
 
 typedef Path = String;
-typedef FileCache = Map<Path,File>;
+typedef FileCache = Map<Path,{ parent:Position, ast:Option<File> }>;
 
 class Parser {
 	public static var defaultFigureSize = MarginWidth;
@@ -32,6 +32,7 @@ class Parser {
 		"meta", "reset", "tex", "preamble", "export", "html", "apply"];
 	static var horizontalCommands = ["sup", "sub", "emph", "highlight"];
 
+	var parent:Position;
 	var location:Path;
 	var lexer:Lexer;
 	var cache:FileCache;
@@ -493,10 +494,9 @@ class Parser {
 		assert(cmd.def.match(TCommand("include")), cmd);
 		var p = arg(rawHorizontal, cmd);
 		var path = mkPath(p.val, p.pos);
-		// TODO use the cache and/or a stack to improve performance and prevent infinite recursion
-		if (!FileSystem.exists(path)) return badArg(p.pos, "File not found or not accessible");
-		if (FileSystem.isDirectory(path)) return badArg(p.pos, "Expected file, but is directory");
-		return parse(path, cache);
+		if (!FileSystem.exists(path)) return badValue(p.pos, "File not found or not accessible");
+		if (FileSystem.isDirectory(path)) return badValue(p.pos, "Expected file, but is directory");
+		return parse(path, p.pos, cache);
 	}
 
 	function paragraph(stop:Stop)
@@ -596,20 +596,41 @@ class Parser {
 		return mkList(vertical, stop);
 
 	public function file():File
-		return vlist({});  // TODO update the cache
+	{
+		assert(!haxe.io.Path.isAbsolute(location), location);
+		assert(location == haxe.io.Path.normalize(location), location);
+		switch cache[location] {
+		case null:
+			var entry = cache[location] = { parent:parent, ast:None };
+			var ast = vlist({});
+			entry.ast = Some(ast);
+			return ast;
+		case { parent:original, ast:None }:
+			return throw 'Cyclic path: $location already accessed from ${original.toString()}\n  at ${parent.toString()}';
+		case { ast:Some(ast) }:
+			return ast;
+		}
+	}
 
-	public function new(location:String, lexer:Lexer, ?cache:FileCache)
+	public function new(location:String, lexer:Lexer, ?parent:Position, ?cache:FileCache)
 	{
 		this.location = location;
 		this.lexer = lexer;
+		assert(!haxe.io.Path.isAbsolute(location), location);
+		assert(location == haxe.io.Path.normalize(location), location);
+		if (parent == null) parent = { min:0, max:0, src:location };
+		this.parent = parent;
 		if (cache == null) cache = new FileCache();
 		this.cache = cache;
 	}
 
-	public static function parse(path:String, ?cache:FileCache):File
+	public static function parse(path:String, ?parent:Position, ?cache:FileCache):File
 	{
 		var lex = new Lexer(sys.io.File.getBytes(path), path);
-		var parser = new Parser(path, lex, cache);
+		var location = haxe.io.Path.normalize(path);  // FIXME missing other checks from mkPath
+		if (!FileSystem.exists(location)) return throw new BadValue(lex, parent, "File not found or not accessible");
+		if (FileSystem.isDirectory(location)) return throw new BadValue(lex, parent, "Expected file, but is directory");
+		var parser = new Parser(location, lex, parent, cache);
 		return parser.file();
 	}
 }

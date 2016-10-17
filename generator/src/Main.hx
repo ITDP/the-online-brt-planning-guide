@@ -67,16 +67,7 @@ class Main {
 	}
 
 	static function printPos(p:Position)
-	{
-		var lpos = p.toLinePosition();
-		print('  at ${p.src}, ');
-		if (lpos.lines.min != lpos.lines.max - 1)
-			println('from (line=${lpos.lines.min+1}, column=${lpos.codes.min+1}) to (line=${lpos.lines.max}, column=${lpos.codes.max})');
-		else if (lpos.codes.min < lpos.codes.max - 1)
-			println('line=${lpos.lines.min+1}, columns=(${lpos.codes.min+1} to ${lpos.codes.max})');
-		else
-			println('line=${lpos.lines.min+1}, column=${lpos.codes.min+1}');
-	}
+		println('  at ${p.toString()}');
 
 	static function main()
 	{
