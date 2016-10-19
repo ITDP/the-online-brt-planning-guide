@@ -7,6 +7,7 @@ import Assertion.*;
 import Sys.*;
 using Literals;
 using PositionTools;
+using StringTools;
 
 class Main {
 	public static var version(default,null) = {
@@ -47,7 +48,7 @@ class Main {
 						if (err.fatal)
 							abort = true;
 						println('ERROR: ${err.text}');
-						printPos(err.pos);
+						println('  at ${err.pos.toString()}');
 					}
 					if (abort) {
 						println("Validation has failed, aborting");
@@ -65,9 +66,6 @@ class Main {
 				tgen.writeDocument(doc);
 			});
 	}
-
-	static function printPos(p:Position)
-		println('  at ${p.toString()}');
 
 	static function main()
 	{
@@ -97,13 +95,16 @@ class Main {
 		} catch (e:hxparse.UnexpectedChar) {
 			if (Context.debug) print("Lexer ");
 			println('ERROR: Unexpected character `${e.char}`');
-			printPos(e.pos.toPosition());
+			println('  at ${e.pos.toPosition().toString()}');
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
 			exit(2);
 		} catch (e:parser.ParserError) {
 			if (Context.debug) print("Parser ");
+			var hl = e.pos.highlight(80);
 			println('ERROR: ${e.text}');
-			printPos(e.pos);
+			println('  at ${e.pos.toString()}:');
+			println("    " + ${hl.line});
+			println("    " + "".rpad(" ", hl.start) + "".rpad("^", hl.finish - hl.start));
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
 			exit(3);
 		} catch (e:Dynamic) {

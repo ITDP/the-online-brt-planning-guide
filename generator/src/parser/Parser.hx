@@ -38,20 +38,20 @@ class Parser {
 	var cache:FileCache;
 	var next:GenericCell<Token>;
 
-	inline function unexpected(t:Token, ?desc):Dynamic
-		throw new UnexpectedToken(lexer, t, desc);
+	inline function unexpected(tok:Token, ?desc):Dynamic
+		throw new ParserError(tok.pos, UnexpectedToken(tok.def, desc));
 
-	inline function unclosed(t:Token):Dynamic
-		throw new UnclosedToken(lexer, t);
+	inline function unclosed(tok:Token):Dynamic
+		throw new ParserError(tok.pos, UnclosedToken(tok.def));
 
-	inline function missingArg(p:Position, ?toToken:Token, ?desc:String):Dynamic
-		throw new MissingArgument(lexer, p, toToken, desc);
+	inline function missingArg(pos:Position, ?parent:Token, ?desc:String):Dynamic
+		throw new ParserError(pos, MissingArgument(parent.def, desc));
 
 	inline function badValue(pos:Position, ?desc:String):Dynamic
-		throw new BadValue(lexer, pos, desc);
+		throw new ParserError(pos, BadValue(desc));
 
 	inline function badArg(pos:Position, ?desc:String):Dynamic
-		throw new BadValue(lexer, pos.offset(1, -1), desc);
+		throw new ParserError(pos.offset(1, -1), BadValue(desc));
 
 	inline function unexpectedCmd(cmd:Token):Dynamic
 	{
@@ -63,12 +63,12 @@ class Parser {
 
 		var name = switch cmd.def {
 		case TCommand(n): n;
-		case _: throw new UnexpectedToken(lexer, cmd);
+		case _: unexpected(cmd);
 		}
 		name = name.toLowerCase();
 		var cmds = verticalCommands.concat(horizontalCommands);
 		if (Lambda.has(cmds, name))
-			throw new UnexpectedCommand(lexer, cmd.pos);
+			throw unexpected(cmd);
 		var dist = cmds.map(function (x) return x.split(""))
 			.map(NeedlemanWunsch.globalAlignment.bind(name.split(""), _, df, sf));
 		var best = 0;
@@ -77,7 +77,7 @@ class Parser {
 				best = i;
 		}
 		// trace(untyped [cmds[best], dist[best]]);
-		throw new UnknownCommand(lexer, cmd.pos, cmds[best]);
+		throw new ParserError(cmd.pos, UnknownCommand(name, cmds[best]));
 	}
 
 	function peek(offset=0):Token
@@ -631,8 +631,8 @@ class Parser {
 	{
 		var lex = new Lexer(sys.io.File.getBytes(path), path);
 		var location = haxe.io.Path.normalize(path);  // FIXME missing other checks from mkPath
-		if (!FileSystem.exists(location)) return throw new BadValue(lex, parent, "File not found or not accessible");
-		if (FileSystem.isDirectory(location)) return throw new BadValue(lex, parent, "Expected file, but is directory");
+		if (!FileSystem.exists(location)) return throw new ParserError(parent, BadValue("File not found or not accessible"));
+		if (FileSystem.isDirectory(location)) return throw new ParserError(parent, BadValue("Expected file, but is directory"));
 		var parser = new Parser(location, lex, parent, cache);
 		return parser.file();
 	}

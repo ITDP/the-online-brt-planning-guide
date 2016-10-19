@@ -84,7 +84,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 	{
 		var token = mk(lexer, partialDef, mkPos(partialPos));
 		var lexer = Std.instance(lexer, Lexer);
-		throw new UnclosedToken(lexer, token);
+		throw new ParserError(token.pos, UnclosedToken(token.def));
 	}
 
 	public static var tokens = @:rule [

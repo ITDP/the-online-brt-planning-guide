@@ -1,4 +1,4 @@
-import Assertion.assert;
+import Assertion.*;
 
 class PositionTools {
 	public static function span(left:Position, right:Position)
@@ -81,6 +81,50 @@ class PositionTools {
 			return '${p.src}, line=${lpos.lines.min+1}, columns=(${lpos.codes.min+1} to ${lpos.codes.max})';
 		else
 			return '${p.src}, line=${lpos.lines.min+1}, column=${lpos.codes.min+1}';
+	}
+
+	public static function getBytesAt(p:Position):haxe.io.Bytes
+		return sys.io.File.getBytes(p.src).sub(p.min, p.max - p.min);
+
+	public static function getTextAt(p:Position):String
+		return getBytesAt(p).toString();
+
+	public static function highlight(p:Position, ?lineLength:Null<Int>):{ line:String, start:Int, finish:Int }
+	{
+		var input = sys.io.File.getBytes(p.src);
+		var pos = 0, lmin = 0;
+		while (pos < p.min) {
+			if (input.get(pos) == "\n".code)
+				lmin = pos + 1;
+			pos++;
+		}
+		var pos = p.max, lmax = input.length;
+		while (pos < input.length && lmax == input.length) {
+			if (input.get(pos) == "\n".code) {
+				if (pos > 0 && input.get(pos - 1) == "\r".code)
+					lmax = pos - 1;
+				else
+					lmax = pos;
+			}
+			pos++;
+		}
+		var elipsis = "";
+		if (lineLength != null && lmax - lmin > lineLength && p.max - p.min < lmax - lmin) {
+			elipsis = "...";
+			var minLength = p.max - p.min + 2*elipsis.length + 1;  // 1 for rounding
+			if (lineLength < minLength)
+				lineLength = minLength;
+			var excess = lmax - lmin - lineLength;
+			var rem = Math.ceil(excess/2);
+			lmin += rem - elipsis.length;
+			lmax -= rem + elipsis.length;
+			show(lineLength, excess, rem, lmin, lmax);
+		}
+		return {
+			line : elipsis + input.sub(lmin, lmax - lmin).toString() + elipsis,
+			start : p.min - lmin + elipsis.length,
+			finish : p.max - lmin + elipsis.length
+		}
 	}
 }
 
