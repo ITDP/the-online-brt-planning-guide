@@ -213,7 +213,7 @@ class Test_02_Lexer {
 		Assert.raises(defs.bind(null, win1252));
 	}
 
-	public function test_999_position()
+	public function test_991_position()
 	{
 		Assert.same({ min:0, max:0 }, positions("")[0]);
 		Assert.same({ min:0, max:1 }, positions(" ")[0]);
@@ -222,7 +222,15 @@ class Test_02_Lexer {
 		Assert.same({ min:1, max:10 }, positions(" \\' foo '\\\n")[1]);
 		Assert.same({ min:0, max:9 }, positions("\\' foo '\\")[0]);
 
-		Assert.same(({ def:TEof, pos:{ min:1, max:1, src:"test" } }:Token), lex(" ")[1]);
+		Assert.same(({ def:TEof, pos:{ min:1, max:1, src:"test" }, src:"" }:Token), lex(" ")[1]);
+	}
+
+	public function test_992_source()
+	{
+		Assert.same(" \n \n ", lex("foo \n \n bar")[1].src);
+		Assert.same("\\foo", lex(" \\foo\t")[1].src);
+		Assert.same("\\' bumblebee' \\ '\\", lex("foo\\' bumblebee' \\ '\\bar")[1].src);
+		Assert.same("$$ a = b \\$ $$", lex(">$$ a = b \\$ $$@")[1].src);
 	}
 }
 

@@ -508,7 +508,7 @@ class Parser {
 
 	function metaReset(cmd:Token)
 	{
-		assert(cmd.def.match(TCommand("meta\\reset")), cmd);
+		assert(cmd.def.match(TCommand("reset")), cmd);
 		var name = arg(rawHorizontal, cmd, "counter name");
 		var val = arg(rawHorizontal, cmd, "reset value");
 		var no = ~/^[ \t\r\n]*[0-9][0-9]*[ \t\r\n]*$/.match(val.val) ? Std.parseInt(StringTools.trim(val.val)) : null;
@@ -522,15 +522,15 @@ class Parser {
 		var p = arg(rawHorizontal, cmd, "source path");
 		var path = mkPath(p.val, p.pos);
 		return switch cmd.def {
-		case TCommand("html\\apply"): mk(HtmlApply(path), cmd.pos.span(p.pos));
-		case TCommand("tex\\preamble"): mk(LaTeXPreamble(path), cmd.pos.span(p.pos));
+		case TCommand("apply"): mk(HtmlApply(path), cmd.pos.span(p.pos));
+		case TCommand("preamble"): mk(LaTeXPreamble(path), cmd.pos.span(p.pos));
 		case _: unexpected(cmd);
 		}
 	}
 
 	function texExport(cmd:Token)
 	{
-		assert(cmd.def.match(TCommand("tex\\export")), cmd);
+		assert(cmd.def.match(TCommand("export")), cmd);
 		var s = arg(rawHorizontal, cmd, "source path");
 		var d = arg(rawHorizontal, cmd, "destination path");
 		var src = mkPath(s.val, s.pos);
@@ -542,13 +542,16 @@ class Parser {
 	{
 		discardNoise();
 		var exec = pop();
-		var pos = meta.pos.span(exec.pos);
+		exec.pos = meta.pos.span(exec.pos);
 		return switch [meta.def, exec.def] {
-		case [TCommand("meta"), TCommand("reset")]: metaReset({ def:TCommand("meta\\reset"), pos:pos });
-		case [TCommand("html"), TCommand("apply")]: targetInclude({ def:TCommand("html\\apply"), pos:pos });
-		case [TCommand("tex"), TCommand("preamble")]: targetInclude({ def:TCommand("tex\\preamble"), pos:pos });
-		case [TCommand("tex"), TCommand("export")]: texExport({ def:TCommand("tex\\export"), pos:pos });
-		case _: unexpectedCmd(exec);
+		case [TCommand("meta"), TCommand("reset")]: 
+			metaReset(exec);
+		case [TCommand("html"), TCommand("apply")], [TCommand("tex"), TCommand("preamble")]:
+			targetInclude(exec);
+		case [TCommand("tex"), TCommand("export")]:
+			texExport(exec);
+		case _:
+			unexpectedCmd(exec);
 		}
 	}
 

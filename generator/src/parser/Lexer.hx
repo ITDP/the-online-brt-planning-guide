@@ -12,9 +12,12 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 
 	static function mk(lex:hxparse.Lexer, tokDef:TokenDef, ?pos:Position):Token
 	{
+		if (pos == null)
+			pos = mkPos(lex.curPos());
 		return {
 			def : tokDef,
-			pos : pos != null ? pos : mkPos(lex.curPos())
+			pos : pos,
+			src : lex.input.readString(pos.min, pos.max - pos.min)
 		}
 	}
 
