@@ -1,9 +1,8 @@
-
-
 \section{ Optimizing Vehicle Size and Fleet Size}
 
-> The approach to service planning laid out in this guide generally assumes that the system operators can and will adjust the number of vehicles they operate per route, and the size of the vehicles used on each route, to best serve the demand on each route.
-@ This section covers some basic formulas needed to calculate the vehicle fleet and optimal vehicle size. These are two critical considerations when making service planning decisions, so they are covered first. The two decisions have to be made at the same time, since the larger the vehicle, the smaller the fleet. The process of optimizing vehicle size and fleet size is an iterative one.
+The approach to service planning laid out in this guide generally assumes that the system operators can and will adjust the number of vehicles they operate per route, and the size of the vehicles used on each route, to best serve the demand on each route.
+
+This section covers some basic formulas needed to calculate the vehicle fleet and optimal vehicle size. These are two critical considerations when making service planning decisions, so they are covered first. The two decisions have to be made at the same time, since the larger the vehicle, the smaller the fleet. The process of optimizing vehicle size and fleet size is an iterative one.
 
 Selecting an appropriate vehicle size requires balancing the operational cost savings of larger vehicles 
 with the social costs of customers having to wait longer for the next vehicle. There are returns to scale 
@@ -32,8 +31,8 @@ to those listed in Table 6.6.
 \begintable{Range of BRT Vehicle Options}
 \header
 \col Type
-\col Vehicle Length; (meters); 
-\col Capacity; (customers); 
+\col Vehicle Length (meters) 
+\col Capacity (customers) 
 \row
 \col Minibus
 \col 9
@@ -63,15 +62,14 @@ Note that the relationship between the vehicle length and the vehicle capacity i
 (in meters) minus three (meters for the driver/engine/stairs, etc.) times 10 (or 10 customers per meter 
 of operable bus length), or: 
 
-Eq. 6.10\' TODO Math: 
+Eq. 6.10:
 
-VSize=VLength –3*10 '\
+$$ \text{V}_\text{Size} = (V_\text{Length} – 3) * 10 $$
 
 Where:
 
-VSize = Vehicle capacity in passengers (also written “pax”);
-
-VLength = Vehicle length in meters.
+\item $$ \text{V}_\text{Size}$$: Vehicle capacity in passengers (also written “pax”);
+\item $$ \text{V}_\text{Length}$$: Vehicle length in meters.
 
 At the early stages of planning BRT services, one generally looks at the highest demand routes currently 
 using the planned BRT corridor, and measures the maximum load on the critical link, i.e., the highest 
@@ -80,42 +78,39 @@ demand segment during the peak period.
 The vehicle capacity (VSize) should be roughly equal to the maximum hourly load per route on the critical 
 link (MaxLoad) divided by the frequency (Freq), or: 
 
-Eq. 6.11a\' TODO Math: 
+Eq. 6.11a: 
 
-VSize= MaxLoadFreq*LoadFactor '\
+$$ \text{V}_\text{Size} = { \text{MaxLoad} \over \text{Freq} * \text{LoadFactor}} $$ 
 
 Where:
 
-VSize = Vehicle capacity;
-
-MaxLoad = Maximum hourly load on the critical link;
-
-Freq = Frequency;
-
-LoadFactor = Design load factor (usually 0.85).
+\item $$ \text{V}_\text{Size}$$: Vehicle capacity;
+\item $$ \text{MaxLoad}$$: Maximum hourly load on the critical link;
+\item $$ \text{Freq}$$: Frequency;
+\item $$ \text{LoadFactor}$$: Design load factor (usually 0.85).
 
 This becomes clear by seeing the impact that vehicle size has on frequency:
 
-Eq. 6.11b\' TODO Math: 
+Eq. 6.11b: 
 
-Freq= MaxLoadVSize*LoadFactor '\
+$$ \text{Freq} = { \text{MaxLoad} \over \text{V}_\text{Size} * \text{LoadFactor}} $$ 
 
 Or a third format as follows:
 
-Eq. 6.11c\' TODO Math: 
+Eq. 6.11c: 
 
-Freq*VSize*LoadFactor=MaxLoad '\
+$$ \text{Freq} *  \text{V}_\text{Size} * \text{LoadFactor} = \text{MaxLoad} $$ 
 
-As an example:
+As examples of capacity:
 
-To serve 4,500 passengers (per hour per direction) on the critical link:
+\item[To serve 4,500 passengers (per hour per direction) on the critical link, a corridor may have:
 \item 50 buses (per hour) capable of carrying 90 passengers each; or
 \item 30 buses (per hour) capable of carrying 150 passengers each; or
-\item 18 buses (per hour) capable of carrying 250 passengers each.
+\item 18 buses (per hour) capable of carrying 250 passengers each.]
 
-To serve 900 passengers (per hour): 
+\item[To serve 900 passengers (per hour), a corridor may have: 
 \item 10 buses (per hour) serving 90 passengers each;
-\item 6 buses (per hour) serving 150 passengers each.
+\item 6 buses (per hour) serving 150 passengers each.]
 
 \subsection{ Vehicle Sizing, Initial Iteration }
 
@@ -136,30 +131,43 @@ on the route, and divide by twenty-two vehicles per hour (an optimal frequency).
 Vehicle size can be determined by taking a given maximum load and dividing it by an ideal frequency 
 of twenty-two vehicles per hour (Eq. 6.11a applied to the route):
 
-Eq. 6.11d\' TODO Math: 
+Eq. 6.11d: 
 
-VSizeroute= MaxLoadrouteFreqroute*LoadFactor '\
+$$ \text{VSize}_\text{route} = { \text{MaxLoad}_\text{route}\over \text{Freq}_\text{route}* \text{LoadFactor}_\text{route}} $$ 
+
 
 Where:
 
-VSizeroute = Vehicle serving the route capacity;
+\item $$ \text{VSize}_\text{route} $$: Vehicle serving the route capacity;
+\item $$ \text{MaxLoad}_\text{route} $$: Route demand on the critical link;
+\item $$ \text{Freq} \text{route} $$: Frequency of the route (ideal frequency suggested of 22 vehicles per hour);
+\item $$ \text{LoadFactor} $$: Design load factor (usually 0.85).
 
-MaxLoadroute = Route demand on the critical link;
-
-Freqroute = Frequency of the route (ideal frequency suggested of 22 vehicles per hour);
-
-LoadFactor = Design load factor (usually 0.85).
-
-Table 6.7 Bus Size by Varying MaxLoad per Route Using the Ideal Frequency of Twenty-Two Vehicles per 
-Hour
-
-\figure{assets/image28.emf}{Using that formula as a preliminary first pass, Table 6.7 shows that, with 
+Using that formula as a preliminary first pass, Table 6.7 shows that, with 
 a maximum load greater than 3,500 existing customers per route, and a maximum 10-year estimated future 
 load of 7,000, a frequency of 22 vehicles per hour, and a load factor of 0.85, the route should be separated 
 into separate routes. If the maximum load on the critical link of a BRT route is currently between 1,500 
 and 3,000, bi-articulated buses can be used, but splitting the route should also be considered, as bi-articulated 
 buses are expensive to purchase and maintain. For current loads between 1,000 and 1,500, articulated 
-buses should be considered. Most BRT systems have more than one route per BRT corridor.}{FIXME!}
+buses should be considered. Most BRT systems have more than one route per BRT corridor.
+
+\begintable{Bus Size by Varying MaxLoad per Route Using the Ideal Frequency of Twenty-Two Vehicles per Hour: First Iteration for Bus Sizing}
+\header
+\col Existing Max Load
+\col Future Max Load 
+\col Optimal Size
+\col Proposal
+\row
+\col 3500
+\col 7000
+\col 374
+\col Split the route
+\row
+\col 3500
+\col 7000
+\col 374
+\col Split the route
+\endtable
 
 This very initial estimate takes into consideration the need to minimize irregularity, but it does 
 not consider the more critical element in bus size optimization, namely the relative costs of waiting 
