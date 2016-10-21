@@ -3,6 +3,7 @@ package parser;
 import parser.Token;
 
 enum ParserErrorValue {
+	InvalidUtf8;
 	UnexpectedToken(def:TokenDef, ?desc:String);
 	MissingArgument(?parent:TokenDef, ?desc:String);
 	UnclosedToken(def:TokenDef);
@@ -26,6 +27,8 @@ class ParserError extends GenericError {
 	override function get_text() 
 	{
 		switch err {
+		case InvalidUtf8:
+			return "Text in unsupported encoding or invalid UTF-8";
 		case UnexpectedToken(def, desc):
 			var msg = switch def {
 			case TWordSpace(s):
