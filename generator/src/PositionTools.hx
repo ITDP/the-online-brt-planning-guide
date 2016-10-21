@@ -1,3 +1,6 @@
+import haxe.Utf8;
+import haxe.io.Bytes;
+
 import Assertion.*;
 
 class PositionTools {
@@ -42,7 +45,7 @@ class PositionTools {
 
 		var str = input.getString(posLineMin, pos.min - posLineMin);
 		str = StringTools.replace(str,"\r","");
-		var charMin = haxe.Utf8.length(str);
+		var charMin = Utf8.length(str);
 
 		while (cur < pos.max) {
 			if (input.get(cur) == "\n".code) {
@@ -54,7 +57,7 @@ class PositionTools {
 
 		var str = input.getString(posLineMax, pos.max - posLineMax);
 		str = StringTools.replace(str,"\r","");
-		var charMax = haxe.Utf8.length(str);
+		var charMax = Utf8.length(str);
 
 		return {
 			src:pos.src,
@@ -83,7 +86,7 @@ class PositionTools {
 			return '${p.src}, line=${lpos.lines.min+1}, column=${lpos.codes.min+1}';
 	}
 
-	public static function getBytesAt(p:Position):haxe.io.Bytes
+	public static function getBytesAt(p:Position):Bytes
 		return sys.io.File.getBytes(p.src).sub(p.min, p.max - p.min);
 
 	public static function getTextAt(p:Position):String
@@ -91,6 +94,7 @@ class PositionTools {
 
 	public static function highlight(p:Position, ?lineLength:Null<Int>):{ line:String, start:Int, finish:Int }
 	{
+		// find the line where the highlight is
 		var input = sys.io.File.getBytes(p.src);
 		var pos = 0, lmin = 0;
 		while (pos < p.min) {
@@ -108,21 +112,56 @@ class PositionTools {
 			}
 			pos++;
 		}
-		var elipsis = "";
-		if (lineLength != null && lmax - lmin > lineLength && p.max - p.min < lmax - lmin) {
-			elipsis = "...";
-			var minLength = p.max - p.min + 2*elipsis.length + 1;  // 1 for rounding
-			if (lineLength < minLength)
-				lineLength = minLength;
-			var excess = lmax - lmin - lineLength;
-			var rem = Math.ceil(excess/2);
-			lmin += rem - elipsis.length;
-			lmax -= rem + elipsis.length;
+
+		// get the line and check that it is utf-8 encoded
+		var line = input.sub(lmin, lmax - lmin).toString();
+		if (!Utf8.validate(line)) {
+			return {
+				line : "[invalid UTF-8]",
+				start : 0,
+				finish : 0
+			}
 		}
+
+		function chars(b:Bytes) {
+			var buf = [];
+			Utf8.iter(b.toString(), function (c) buf.push(c));
+			return buf;
+		}
+		var before = chars(input.sub(lmin, p.min - lmin));
+		var hl = chars(input.sub(p.min, p.max - p.min));
+		var after = chars(input.sub(p.max, lmax - p.max));
+
+		var b = 0, h = hl.length, a = 0;
+		if (lineLength != null && before.length + hl.length + after.length > lineLength) {
+			if (h >= lineLength) {
+				h = lineLength;
+			} else {
+				while (b + h + a < lineLength) {
+					if (a < after.length)
+						a++;
+					if (b < before.length && b + h + a < lineLength)
+						b++;
+				}
+			}
+		}
+		
+		function text(c:Array<Int>) {
+			if (c.length == 0)
+				return "";
+			var buf = new Utf8(c.length);
+			for (i in c)
+				buf.addChar(i);
+			return buf.toString();
+		}
+		var before = text(before.slice(-b));
+		var hl = text(hl.slice(0, h));
+		var after = text(after.slice(0, a));
+
 		return {
-			line : elipsis + input.sub(lmin, lmax - lmin).toString() + elipsis,
-			start : p.min - lmin + elipsis.length,
-			finish : p.max - lmin + elipsis.length
+			line : before + hl + after,
+			start : before.length,
+			finish : before.length + hl.length
 		}
 	}
 }
