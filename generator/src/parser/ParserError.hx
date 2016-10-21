@@ -32,9 +32,9 @@ class ParserError extends GenericError {
 		case UnexpectedToken(def, desc):
 			var msg = switch def {
 			case TWordSpace(s):
-				'Unexpected interword space (hex: ${hex(s)})';
+				'Unexpected interword space (0x${hex(s)})';
 			case TBreakSpace(s):
-				'Unexpected vertical space (hex: ${hex(s)})';
+				'Unexpected vertical space (0x${hex(s)})';
 			case TEof:
 				"Unexpected end of file";
 			case other:
@@ -65,8 +65,8 @@ class ParserError extends GenericError {
 			return msg.toString();
 		case UnclosedToken(def):
 			return switch def {
-			case TBrOpen: "Unclosed braces `{`";
-			case TBrkOpen: "Unclosed brackets `{`";
+			case TBrOpen: "Unclosed braces '{'";
+			case TBrkOpen: "Unclosed brackets '{'";
 			case TCode(_): "Unclosed code excerpt";
 			case other: "Unclosed token " + other;
 			}
@@ -80,7 +80,7 @@ class ParserError extends GenericError {
 		case UnknownCommand(name, suggestion):
 			var msg = 'Unknown command \\$name';
 			if (suggestion != null)
-				msg += '; did you perhaps mean `\\$suggestion`?  (sorry if the suggestion makes no sense)';
+				msg += '; did you perhaps mean \'\\$suggestion\'?  (sorry if the suggestion makes no sense)';
 			return msg;
 		}
 	}
