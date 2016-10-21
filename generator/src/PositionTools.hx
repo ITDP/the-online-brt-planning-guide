@@ -118,7 +118,6 @@ class PositionTools {
 			var rem = Math.ceil(excess/2);
 			lmin += rem - elipsis.length;
 			lmax -= rem + elipsis.length;
-			show(lineLength, excess, rem, lmin, lmax);
 		}
 		return {
 			line : elipsis + input.sub(lmin, lmax - lmin).toString() + elipsis,
