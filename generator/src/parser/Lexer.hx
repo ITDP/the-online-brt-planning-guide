@@ -159,7 +159,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 
 		"\\\\\\\\" => mk(lexer, TWord("\\")),
 
-		"(\\\\[a-z][a-z0-9]*)" => mk(lexer, TCommand(lexer.current.substr(1))),
+		"(\\\\[a-zA-Z][a-zA-Z0-9]*)" => mk(lexer, TCommand(lexer.current.substr(1))),
 
 		"{" => mk(lexer, TBrOpen),
 		"}" => mk(lexer, TBrClose),
