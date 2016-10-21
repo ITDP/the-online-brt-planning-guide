@@ -215,21 +215,10 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"([^ \t\r\n*{}\\[\\]\\\\#>@\\*:$\\-`'\\xE2\\xEF]|(\\xE2[^\\x80])|(\\xE2\\x80[^\\x90-\\x95])|(\\xEF[^\\xBB])|(\\xEF\\xBB[^\\xBF]))+" => mk(lexer, TWord(lexer.current))
 	];
 
-	var bytes:haxe.io.Bytes;  // TODO change to a public source abstraction that already has a safe `recover` method
-
-	public function recover(pos, len)
+	public function new(bytes:haxe.io.Bytes, sourceName)
 	{
-		if (len == 0) return "";
-		assert(pos >= 0 && len > 0 && pos + len <= bytes.length, pos, len, bytes.length, "out of bounds");
-		return bytes.sub(pos, len).toString();
-	}
-
-	@:access(byte.ByteData)
-	public function new(bytes, sourceName)
-	{
-		this.bytes = bytes;
 		if (!haxe.Utf8.validate(bytes.toString())) throw 'Invalid UTF-8 content: $sourceName';
-		super(new byte.ByteData(bytes), sourceName);
+		super(byte.ByteData.ofBytes(bytes), sourceName);
 	}
 }
 

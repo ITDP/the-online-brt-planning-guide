@@ -233,12 +233,9 @@ class Parser {
 				break;
 			case { def:TComment(_) }:  // not sure about this
 				pop();
-			case { def:TWord(w) }:
+			case { src:src, pos:pos }:
 				pop();
-				buf.add(w);
-			case { def:def, pos:pos }:
-				pop();
-				buf.add(lexer.recover(pos.min, pos.max - pos.min));
+				buf.add(src);
 			}
 		}
 		return buf.toString();
