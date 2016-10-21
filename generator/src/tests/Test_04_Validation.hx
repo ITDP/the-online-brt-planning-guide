@@ -2,6 +2,7 @@ package tests;
 
 import haxe.PosInfos;
 import transform.ValidationError;
+import transform.Validator;
 import utest.Assert;
 
 import Assertion.*;
@@ -28,19 +29,19 @@ class Test_04_Validation {
 		});
 	}
 
-	function fails(str, fatal, ?cl:Class<ValidationError>, ?pattern, ?timeout:Null<Int>, ?assertPos:PosInfos)
+	function fails(str, fatal, ?val:ValidationErrorValue, ?pattern, ?timeout:Null<Int>, ?pos:PosInfos)
 	{
 		var done = Assert.createAsync(timeout);
 		validate(str, function (errors) {
-			Assert.notNull(errors, assertPos);
+			Assert.notNull(errors, pos);
 			if (errors != null) {
 				assert(errors.length == 1);
 				var err = errors[0];
-				Assert.equals(err.fatal, fatal, assertPos);
-				if (cl != null)
-					Assert.equals(Type.getClassName(cl), Type.getClassName(Type.getClass(err)));
+				Assert.equals(err.fatal, fatal, pos);
+				if (val != null)
+					Assert.same(val, err.err, pos);
 				if (pattern != null)
-					Assert.match(pattern, err.toString(), assertPos);
+					Assert.match(pattern, err.toString(), pos);
 			}
 			done();
 		});
@@ -87,8 +88,8 @@ class Test_04_Validation {
 		passes("$$a_{ij}$$", timeout);
 
 #if nodejs
-		fails("$$a\\neb$$", true, BadMath, timeout);
-		fails("$$a_{ij$$", true, BadMath, timeout);
+		fails("$$a\\neb$$", true, BadMath("a\\neb"), timeout);
+		fails("$$a_{ij$$", true, BadMath("a_{ij"), timeout);
 #elseif js
 #error "no JS platforms expected other than Node.js"
 #end
@@ -115,41 +116,45 @@ class Test_04_Validation {
 		passes('\\begintable{foo}\\useimage{$jpg}\\endtable');
 		passes('\\begintable{foo}\\useimage{$png}\\endtable');
 
-		fails('\\tex\\export{$file.noexists}{nothing}', true, FileNotFound, ~/file not found/i);
-		fails('\\tex\\export{$dir.noexists}{nothing}', true, FileNotFound);
-		fails('\\tex\\preamble{$dir}', true, FileIsDirectory, ~/expected file, not directory/i);
-		fails('\\html\\apply{$png}', true, WrongFileType, ~/file does not match expected types/i);
-		fails('\\figure{$css}{foo}{bar}', true, WrongFileType);
-		fails('\\begintable{foo}\\useimage{$tex}\\endtable', true, WrongFileType);
+		fails('\\tex\\export{$file.noexists}{nothing}', true, FileNotFound('$file.noexists'), ~/file not found or not accessible/i);
+		fails('\\tex\\export{$dir.noexists}{nothing}', true, FileNotFound('$dir.noexists'));
+		fails('\\tex\\preamble{$dir}', true, FileIsDirectory(dir), ~/expected file, not directory/i);
+		fails('\\html\\apply{$png}', true, WrongFileType([Css], png), ~/file does not match expected types.+expected.+css/i);
+		fails('\\figure{$css}{foo}{bar}', true, WrongFileType([Jpeg, Png], css));
+		fails('\\begintable{foo}\\useimage{$tex}\\endtable', true, WrongFileType([Jpeg, Png], tex));
 
-		fails('\\tex\\export{$jpg}{/home}', true, AbsolutePath, ~/path cannot be absolute/i);
-		fails('\\tex\\export{$png}{..}', true, EscapingPath, ~/path cannot escape/);
-		fails('\\tex\\export{$tex}{b/../..}', true, EscapingPath, ~/path cannot escape/);
+		fails('\\tex\\export{$jpg}{/home}', true, AbsolutePath("/home"), ~/path cannot be absolute/i);
+		fails('\\tex\\export{$png}{..}', true, EscapingPath("the destination directory", ".."), ~/path cannot escape the destination directory/i);
+		fails('\\tex\\export{$tex}{b/../..}', true, EscapingPath("the destination directory", ".."));  // FIXME show original path
 	}
 
 	public function test_004_empty_arguments()
 	{
 		var png = saveContent("testpng.png", "todo");
 
-		fails("\\volume{}", true, BlankValue, ~/name cannot be blank/i);
-		fails("\\chapter{}", true, BlankValue);
-		fails("\\section{}", true, BlankValue);
-		fails("# ", true, BlankValue);
-		fails("\\subsection{}", true, BlankValue);
-		fails("## ", true, BlankValue);
-		fails("\\subsubsection{}", true, BlankValue);
-		fails("### ", true, BlankValue);
-		fails("\\beginbox{}\\endbox", true, BlankValue);
-		fails("\\begintable{}\\header\\col a\\col b\\row\\col 1\\col b\\endtable", true, BlankValue, ~/caption cannot be blank/i);
-		fails('\\begintable{}\\useimage{$png}\\endtable', true, BlankValue, ~/caption cannot be blank/i);
-		fails('\\figure{$png}{}{copyright}', true, BlankValue, ~/caption cannot be blank/i);
-		fails('\\figure{$png}{caption}{}', true, BlankValue, ~/copyright cannot be blank/i);
-		fails("\\quotation{a}{}", true, BlankValue, ~/author cannot be blank/i);
-		fails("\\quotation{}{b}", true, BlankValue, ~/text cannot be blank/i);
-		fails(">a@\n\nb", true, BlankValue, ~/author cannot be blank/i);
-		fails(">@a\n\nb", true, BlankValue, ~/text cannot be blank/i);
+		// empty arguments
+		fails("\\volume{}", true, BlankValue("volume", "name"));
+		fails("\\chapter{}", true, BlankValue("chapter", "name"));
+		fails("\\section{}", true, BlankValue("section", "name"));
+		fails("# ", true, BlankValue("section", "name"));
+		fails("\\subsection{}", true, BlankValue("sub-section", "name"));
+		fails("## ", true, BlankValue("sub-section", "name"));
+		fails("\\subsubsection{}", true, BlankValue("sub-sub-section", "name"));
+		fails("### ", true, BlankValue("sub-sub-section", "name"));
+		fails("\\beginbox{}\\endbox", true, BlankValue("box", "name"));
+		fails("\\begintable{}\\header\\col a\\col b\\row\\col 1\\col b\\endtable", true, BlankValue("table", "caption"));
+		fails('\\begintable{}\\useimage{$png}\\endtable', true, BlankValue("table", "caption"));
+		fails('\\figure{$png}{}{copyright}', true, BlankValue("figure", "caption"));
+		fails('\\figure{$png}{caption}{}', true, BlankValue("figure", "copyright"));
+		fails("\\quotation{a}{}", true, BlankValue("quotation", "author"));
+		fails("\\quotation{}{b}", true, BlankValue("quotation", "text"));
+		fails(">a@\n\nb", true, BlankValue("quotation", "author"));
+		fails(">@a\n\nb", true, BlankValue("quotation", "text"));
 
 		// TODO test empty path errors
+
+		// error text
+		fails("\\subsubsection{}", true, BlankValue("sub-sub-section", "name"), ~/sub-sub-section name cannot be blank/i);
 	}
 
 	public function new() {}
