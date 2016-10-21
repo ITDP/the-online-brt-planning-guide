@@ -24,7 +24,7 @@ class ParserError extends GenericError {
 	function hex(s:String)
 		return haxe.io.Bytes.ofString(s).toHex();
 
-	override function get_text() 
+	override public function toString()
 	{
 		switch err {
 		case InvalidUtf8:

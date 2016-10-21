@@ -5,7 +5,7 @@ import transform.NewDocument;
 class ValidationError extends GenericError {
 	public var fatal(default,null):Bool;
 
-	override function get_text()
+	override public function toString()
 		return "Unknown validation error";
 
 	public function new(fatal, pos)
@@ -19,7 +19,7 @@ class BadMath extends ValidationError {
 	public var math(default,null):String;
 	public var details(default,null):Dynamic;
 
-	override function get_text()
+	override public function toString()
 		return 'Bad math: $$$$$math$$$$';
 
 	public function new(math, details, pos)
@@ -41,14 +41,14 @@ private class PathError extends ValidationError {
 }
 
 class AbsolutePath extends PathError {
-	override function get_text()
+	override public function toString()
 		return "path cannot be absolute";
 }
 
 class EscapingPath extends PathError {
 	public var dir(default,null):String;
 
-	override function get_text()
+	override public function toString()
 		return 'path cannot escape $dir';
 
 	public function new(dir, path, pos)
@@ -59,19 +59,19 @@ class EscapingPath extends PathError {
 }
 
 class FileNotFound extends PathError {
-	override function get_text()
+	override public function toString()
 		return "File not found or not accessible (tip: paths are relative and case sensitive)";
 }
 
 class FileIsDirectory extends PathError {
-	override function get_text()
+	override public function toString()
 		return "Expected file, not directory";
 }
 
 class WrongFileType extends PathError {
 	public var expected(default,null):Array<transform.Validator.FileType>;
 
-	override function get_text()
+	override public function toString()
 		return 'File does not match expected types ($expected)';
 
 	public function new(expected, path, pos)
@@ -111,7 +111,7 @@ class BlankValue extends ValueError {
 		}
 	}
 
-	override function get_text()
+	override public function toString()
 		return '${elemDesc(parent)} $name cannot be blank';
 
 	public function new(parent, name, pos)

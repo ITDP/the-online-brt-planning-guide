@@ -40,7 +40,7 @@ class Test_04_Validation {
 				if (cl != null)
 					Assert.equals(Type.getClassName(cl), Type.getClassName(Type.getClass(err)));
 				if (pattern != null)
-					Assert.match(pattern, err.text, assertPos);
+					Assert.match(pattern, err.toString(), assertPos);
 			}
 			done();
 		});

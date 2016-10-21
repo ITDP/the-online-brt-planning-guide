@@ -47,7 +47,7 @@ class Main {
 					for (err in errors) {
 						if (err.fatal)
 							abort = true;
-						println('ERROR: ${err.text}');
+						println('ERROR: $err');
 						println('  at ${err.pos.toString()}');
 					}
 					if (abort) {
@@ -101,7 +101,7 @@ class Main {
 		} catch (e:parser.ParserError) {
 			if (Context.debug) print("Parser ");
 			var hl = e.pos.highlight(80);
-			println('ERROR: ${e.text}');
+			println('ERROR: $e');
 			println('  at ${e.pos.toString()}:');
 			println("    " + ${hl.line});
 			println("    " + "".rpad(" ", hl.start) + "".rpad("^", hl.finish - hl.start));

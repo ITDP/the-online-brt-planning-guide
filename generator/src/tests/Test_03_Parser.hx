@@ -28,7 +28,7 @@ class Test_03_Parser {
 				if (val != null)
 					Assert.same(val, err.err);
 				if (etext != null)
-					Assert.match(etext, err.text, p);
+					Assert.match(etext, err.toString(), p);
 				if (epos != null)
 					Assert.same(epos, err.pos, p);
 			}
