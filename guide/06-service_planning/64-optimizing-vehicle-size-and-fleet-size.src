@@ -420,7 +420,8 @@ PHtoCC = Nonnegative correction factor whose calibration based on survey data is
 
 Table 6.9 Examples of Optimum Vehicle Size Derived from the Sample Data
 
-\figure{assets/image31.emf}{On this very wide range of maximum hourly loads and cycle times, optimum 
+\'
+\figure{assets/image31.mf}{On this very wide range of maximum hourly loads and cycle times, optimum 
 size assuming load factor equal to 1.0, varies from a car to a bi-articulated vehicle. If the optimal 
 vehicle size (VSizeoptimum) is four, in most cases the demand is too low to justify the procurement costs 
 of special new BRT vehicles, and such small vehicles do not come in BRT-compatible forms, so are likely 
@@ -432,6 +433,7 @@ rounding up to the nearest vehicle suitable for the BRT services and design load
 Table 6.10 Examples for Determining Optimum Vehicle Size
 
 \figure{assets/image32.emf}{6.4.5 Vehicle Fleet Optimization}{FIXME!}
+'\
 
 One of the key purposes of developing a service plan is to know how many vehicles will need to be purchased. 
 The factors involved in determining the operational size of the vehicle fleet include:
@@ -827,12 +829,11 @@ The calculation of the PHtoCC should be done per corridor and
 should be made separately for weekdays, 
 Saturdays, and Sundays.  
 
+\' \figure{assets/image330.wmf}{The 
 
-
-\figure{assets/image330.wmf}{The 
 graph shows 15-minute loads (blue) versus overall accumulated loads 
 (red). Peak 15-minute period occurs 
-where blue curve hits its max, or 7:00–7:15 a.m. Image}{ Arthur Szász.}
+where blue curve hits its max, or 7:00–7:15 a.m. Image}{ Arthur Szász.} '\
 
 
 
@@ -846,7 +847,7 @@ a BRT corridor during the morning peak. It was derived from Table 6.13.
 Table 6.13 Peak Period Critical 
 Link Demand Profile
 
-\figure{assets/image340.emf}{FIXME!}{FIXME!}
+\' \figure{assets/image340.emf}{FIXME!}{FIXME!} '\
 
 
 \endbox

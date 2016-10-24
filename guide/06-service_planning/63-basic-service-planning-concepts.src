@@ -619,7 +619,7 @@ Based on the concept definitions, the below equations are always true (mathemati
 
 Eq. 6.1: 
 
-$$ \text{Freq} = {1 \over \text{hdwy}}  \Leftrightarrow  \text{hdwy} = {1 \over \text{Freq}}  $$
+i $$ \text{Freq} = {1 \over \text{hdwy}}  \Leftrightarrow  \text{hdwy} = {1 \over \text{Freq}}  $$
 
 Where:
 \item $$\text{Freq}$$: Service frequency; that is number of times a specific service is offered during a given time 
@@ -786,7 +786,7 @@ Where:
 \item $$\text{Irr}$$: Irregularity index, the measure of the variance between the actual headways and the scheduled 
 headways;
 \item $$\text{Variance_of_the_headway}$$: Amount that the headways are spread out;
-\item $$\text{Scheduled_headway}$$:  Average waiting time between vehicles.
+\item $$\text{Scheduled}_text{headway}$$:  Average waiting time between vehicles.
 
 Variance of the headway is statistically defined as the expected value of the squared deviation from 
 the mean headway. When calculating it from a sample it would be equal to the sum of the square of the 

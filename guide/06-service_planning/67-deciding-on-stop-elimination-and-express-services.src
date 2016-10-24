@@ -737,10 +737,10 @@ the benefit to indicate total net benefits (last column).
 
 Table 6.38 Benefits Net of Costs for Varying Numbers of Eliminated Stops
 
-\figure{assets/image91.emf}{These net benefits are then calculated for all situations proposed, following 
+\' \figure{assets/image91.emf}{These net benefits are then calculated for all situations proposed, following 
 the method of the original scenario used in this example. The result turns out to favor the initially 
 tested situation: skipping seven stations. The net benefit of skipping seven stations—US$1,741—exceeds 
-the net benefit of every other scenario.}{FIXME!}
+the net benefit of every other scenario.}{FIXME!} '\
 
 The following table shows the degree of sensitivity of the total benefit to total demand. In Table 
 6.39, the same attributes are assigned, except the demand is cut by 40 percent across the board. In that 
@@ -753,7 +753,7 @@ levels.
 
 Table 6.39 Net Benefits of Costs with Varying Numbers of Eliminated Stops under Lower Demand Scenario
 
- \figure{assets/image92.emf}{Demand Patterns Typical of Trunk-and-Feeder Systems}{FIXME!}
+\'  \figure{assets/image92.emf}{Demand Patterns Typical of Trunk-and-Feeder Systems}{FIXME!} '\
 
 In some systems, such as a trunk-and-feeder system, it is likely that demand will be concentrated at 
 the beginning and/or end of the BRT trunk corridor—for instance, at the transfer station on one end and 

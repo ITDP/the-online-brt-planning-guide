@@ -725,8 +725,8 @@ Our example considers eight routes as defined in Table 6.27 where the trunk part
 
 Table 6.27 Example of Routes to Be Considered for Trunk-and-Feeder Service
 
-\figure{assets/image61.emf}{Other variables that determine the optimal bus size and waiting costs are 
-equal for all routes in the two alternatives (direct service and trunk-and-feeder service):}{FIXME!}
+\' \figure{assets/image61.emf}{Other variables that determine the optimal bus size and waiting costs are 
+equal for all routes in the two alternatives (direct service and trunk-and-feeder service):}{FIXME!} '\
 \item BusFixedCost = US$30/per bus-hour;
 \item Renovation factor = 1.5;
 \item (Frequency) Irregularity = 0.3;
@@ -789,10 +789,10 @@ in Table 6.28.
 
 Table 6.28 Route Selection to Shift from Direct to Trunk-and-Feeder Service
 
-\figure{assets/image62.emf}{On the table, one can now compare scenarios. The first column “F” is a 
+\' \figure{assets/image62.emf}{On the table, one can now compare scenarios. The first column “F” is a 
 scenario where only the former direct service Route “F” has been converted to a trunk route and a feeder 
 route. Then it is assumed that the remainder of the service is direct. The cost of servicing the remainder 
-of the demand in the corridor with direct services is calculated thus:}{FIXME!}
+of the demand in the corridor with direct services is calculated thus:}{FIXME!} '\
 
 Total cost of waiting and fixed operating costs on the remaining direct service routes equals total 
 cost of all direct service routes less the route converted to trunk-and-feeder, or: \' TODO Math: 
