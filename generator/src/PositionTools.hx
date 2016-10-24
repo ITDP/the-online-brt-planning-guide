@@ -104,6 +104,12 @@ class PositionTools {
 	public static function getTextAt(p:Position):String
 		return getBytesAt(p).toString();
 
+	/**
+	Compute a source highlight.
+
+	Fetches the corresponding line and computes the start and finish
+	highlight byte-positions within that line.  UTF-8 aware.
+	**/
 	public static function highlight(p:Position, ?lineLength:Null<Int>):Highlight
 	{
 		// find the line where the highlight is
@@ -159,7 +165,7 @@ class PositionTools {
 				}
 			}
 		}
-		
+
 		function text(c:Array<Int>) {
 			if (c.length == 0)
 				return "";
@@ -179,9 +185,16 @@ class PositionTools {
 		}
 	}
 
+	/**
+	Render a source highlight.
+
+	Different rendering modes are supported:
+	 - using ANSI escapes: the [1;32mquick[0m brown fox
+	 - ASCII underscores: the quick brown fox
+	                          ^^^^^
+	**/
 	public static function renderHighlight(hl:Highlight, ?mode:HighlightRenderMode):String
 	{
-		// TODO support other modes than ^^^ underlines, such as bold/colored with ANSI escape codes
 		if (mode == null)
 			mode = AsciiUnderscore("^");
 		switch mode {

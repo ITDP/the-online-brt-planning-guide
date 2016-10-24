@@ -102,7 +102,7 @@ class Test_01_Tools {
 		sys.io.File.saveContent(b, "01\n34\n67");
 		Assert.same({ src:b, lines:{ min:0, max:3 }, codes:{ min:1, max:2 } }, { src:b, min:1, max:8 }.toLinePosition());
 		Assert.same({ src:b, lines:{ min:1, max:3 }, codes:{ min:0, max:2 } }, { src:b, min:3, max:8 }.toLinePosition());
-		
+
 		for (f in [a,b])
 			sys.FileSystem.deleteFile(f);
 	}
