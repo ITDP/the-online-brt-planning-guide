@@ -57,13 +57,15 @@ enum TokenDef {
 #if !cpp
 typedef Token = {
 	def : TokenDef,
-	pos : Position
+	pos : Position,
+	src : String
 }
 #else
 @:structInit
 class Token {
 	public var def:TokenDef;
 	public var pos:Position;
+	public var src:String;
 }
 #end
 

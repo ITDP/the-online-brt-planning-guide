@@ -7,6 +7,7 @@ import Assertion.*;
 import Sys.*;
 using Literals;
 using PositionTools;
+using StringTools;
 
 class Main {
 	public static var version(default,null) = {
@@ -46,8 +47,11 @@ class Main {
 					for (err in errors) {
 						if (err.fatal)
 							abort = true;
-						println('ERROR: ${err.text}');
-						printPos(err.pos);
+						var hl = err.pos.highlight(80).renderHighlight(AsciiUnderscore("^")).split("\n");
+						println('ERROR: $err');
+						println('  at ${err.pos.toString()}:');
+						println('    ${hl[0]}');
+						println('    ${hl[1]}');
 					}
 					if (abort) {
 						println("Validation has failed, aborting");
@@ -65,9 +69,6 @@ class Main {
 				tgen.writeDocument(doc);
 			});
 	}
-
-	static function printPos(p:Position)
-		println('  at ${p.toString()}');
 
 	static function main()
 	{
@@ -97,13 +98,16 @@ class Main {
 		} catch (e:hxparse.UnexpectedChar) {
 			if (Context.debug) print("Lexer ");
 			println('ERROR: Unexpected character `${e.char}`');
-			printPos(e.pos.toPosition());
+			println('  at ${e.pos.toPosition().toString()}');
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
 			exit(2);
 		} catch (e:parser.ParserError) {
 			if (Context.debug) print("Parser ");
-			println('ERROR: ${e.text}');
-			printPos(e.pos);
+			var hl = e.pos.highlight(80).renderHighlight(AsciiUnderscore("^")).split("\n");
+			println('ERROR: $e');
+			println('  at ${e.pos.toString()}:');
+			println('    ${hl[0]}');
+			println('    ${hl[1]}');
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
 			exit(3);
 		} catch (e:Dynamic) {

@@ -45,7 +45,7 @@ class Validator {
 			mml:true
 		}, function (res) {
 			if (res.errors != null)
-				errors.push(new BadMath(tex, res.errors, pos));
+				errors.push(new ValidationError(pos, BadMath(tex)));
 			wait--;
 			tick();
 		});
@@ -62,7 +62,7 @@ class Validator {
 	{
 		var exists = FileSystem.exists(src);
 		if (!exists) {
-			errors.push(new FileNotFound(src, pos));
+			errors.push(new ValidationError(pos, FileNotFound(src)));
 			return;
 		}
 		var isDirectory = FileSystem.isDirectory(src);
@@ -80,9 +80,9 @@ class Validator {
 			}
 		}
 		if (isDirectory)
-			errors.push(new FileIsDirectory(src, pos));
+			errors.push(new ValidationError(pos, FileIsDirectory(src)));
 		else
-			errors.push(new WrongFileType(types, src, pos));
+			errors.push(new ValidationError(pos, WrongFileType(types, src)));
 	}
 
 	/*
@@ -105,10 +105,33 @@ class Validator {
 		}
 	}
 
+	function elemDesc(d:DElem)
+	{
+		return switch d.def {
+		case DVolume(_): "volume";
+		case DChapter(_): "chapter";
+		case DSection(_): "section";
+		case DSubSection(_): "sub-section";
+		case DSubSubSection(_): "sub-sub-section";
+		case DBox(_): "box";
+		case DList(_): "list";
+		case DTable(_), DImgTable(_): "table";
+		case DFigure(_): "figure";
+		case DQuotation(_): "quotation";
+		case DParagraph(_): "paragraph";
+		case DCodeBlock(_): "code block";
+		case DEmpty: "[nothing]";
+		case DElemList(_): "[list of elements]";
+		case DLaTeXPreamble(_): "LaTeX preamble configuration";
+		case DLaTeXExport(_): "LaTeX export call";
+		case DHtmlApply(_): "CSS inclusion";
+		}
+	}
+	
 	function notHEmpty(h:HElem, parent:DElem, name:String)
 	{
 		if (h.def.match(HEmpty)) {
-			errors.push(new BlankValue(parent, name, h.pos));
+			errors.push(new ValidationError(h.pos, BlankValue(elemDesc(parent), name)));
 			return false;
 		}
 		return true;
@@ -161,9 +184,9 @@ class Validator {
 			validateSrcPath(d.pos, src, [Directory, File]);
 			assert(dest == Path.normalize(dest));
 			if (Path.isAbsolute(dest))
-				errors.push(new AbsolutePath(dest, d.pos));
+				errors.push(new ValidationError(d.pos, AbsolutePath(dest)));
 			if (dest.startsWith(".."))
-				errors.push(new EscapingPath("the destination directory", dest, d.pos));
+				errors.push(new ValidationError(d.pos, EscapingPath("the destination directory", dest)));
 		case DHtmlApply(path):
 			validateSrcPath(d.pos, path, [Css]);
 		case DCodeBlock(_), DEmpty:
