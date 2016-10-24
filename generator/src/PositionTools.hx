@@ -2,6 +2,18 @@ import haxe.Utf8;
 import haxe.io.Bytes;
 
 import Assertion.*;
+using StringTools;
+
+typedef Highlight = {
+	line : String,
+	start : Int,
+	finish : Int
+}
+
+enum HighlightRenderMode {
+	AsciiUnderscore(?char:String);
+	AnsiEscapes(?start:String, ?finish:String);
+}
 
 class PositionTools {
 	public static function span(left:Position, right:Position)
@@ -92,7 +104,7 @@ class PositionTools {
 	public static function getTextAt(p:Position):String
 		return getBytesAt(p).toString();
 
-	public static function highlight(p:Position, ?lineLength:Null<Int>):{ line:String, start:Int, finish:Int }
+	public static function highlight(p:Position, ?lineLength:Null<Int>):Highlight
 	{
 		// find the line where the highlight is
 		var input = sys.io.File.getBytes(p.src);
@@ -132,8 +144,10 @@ class PositionTools {
 		var hl = chars(input.sub(p.min, p.max - p.min));
 		var after = chars(input.sub(p.max, lmax - p.max));
 
-		var b = 0, h = hl.length, a = 0;
-		if (lineLength != null && before.length + hl.length + after.length > lineLength) {
+		var b = before.length, h = hl.length, a = after.length;
+		if (lineLength != null && b + h + a > lineLength) {
+			b = 0;
+			a = 0;
 			if (h >= lineLength) {
 				h = lineLength;
 			} else {
@@ -163,6 +177,26 @@ class PositionTools {
 			start : before.length,
 			finish : before.length + hl.length
 		}
+	}
+
+	public static function renderHighlight(hl:Highlight, ?mode:HighlightRenderMode):String
+	{
+		// TODO support other modes than ^^^ underlines, such as bold/colored with ANSI escape codes
+		if (mode == null)
+			mode = AsciiUnderscore("^");
+		switch mode {
+		case AsciiUnderscore(char):
+			if (char == null)
+				char = "^";
+			return hl.line + "\n" + "".rpad(" ", hl.start) + "".rpad(char, hl.finish - hl.start);
+		case AnsiEscapes(start, finish):
+			if (start == null)
+				start = "[1;32m";
+			if (finish == null)
+				finish = "[0m";
+			return hl.line.substr(0, hl.start) + start + hl.line.substr(hl.start, hl.finish - hl.start) + finish + hl.line.substr(hl.finish);
+		}
+
 	}
 }
 

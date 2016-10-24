@@ -47,8 +47,11 @@ class Main {
 					for (err in errors) {
 						if (err.fatal)
 							abort = true;
+						var hl = err.pos.highlight(80).renderHighlight(AsciiUnderscore("^")).split("\n");
 						println('ERROR: $err');
-						println('  at ${err.pos.toString()}');
+						println('  at ${err.pos.toString()}:');
+						println('    ${hl[0]}');
+						println('    ${hl[1]}');
 					}
 					if (abort) {
 						println("Validation has failed, aborting");
@@ -100,11 +103,11 @@ class Main {
 			exit(2);
 		} catch (e:parser.ParserError) {
 			if (Context.debug) print("Parser ");
-			var hl = e.pos.highlight(80);
+			var hl = e.pos.highlight(80).renderHighlight(AsciiUnderscore("^")).split("\n");
 			println('ERROR: $e');
 			println('  at ${e.pos.toString()}:');
-			println("    " + ${hl.line});
-			println("    " + "".rpad(" ", hl.start) + "".rpad("^", hl.finish - hl.start));
+			println('    ${hl[0]}');
+			println('    ${hl[1]}');
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
 			exit(3);
 		} catch (e:Dynamic) {
