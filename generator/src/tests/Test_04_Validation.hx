@@ -29,19 +29,19 @@ class Test_04_Validation {
 		});
 	}
 
-	function fails(str, fatal, ?val:ValidationErrorValue, ?pattern, ?timeout:Null<Int>, ?pos:PosInfos)
+	function fails(source:String, fatal:Bool, ?expected:ValidationErrorValue, ?textPattern:EReg, ?timeout:Null<Int>, ?p:PosInfos)
 	{
 		var done = Assert.createAsync(timeout);
-		validate(str, function (errors) {
-			Assert.notNull(errors, pos);
+		validate(source, function (errors) {
+			Assert.notNull(errors, p);
 			if (errors != null) {
 				assert(errors.length == 1);
 				var err = errors[0];
-				Assert.equals(err.fatal, fatal, pos);
-				if (val != null)
-					Assert.same(val, err.err, pos);
-				if (pattern != null)
-					Assert.match(pattern, err.toString(), pos);
+				Assert.equals(err.fatal, fatal, p);
+				if (expected != null)
+					Assert.same(expected, err.err, p);
+				if (textPattern != null)
+					Assert.match(textPattern, err.toString(), p);
 			}
 			done();
 		});
