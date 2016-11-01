@@ -67,10 +67,16 @@ Phasellus sed lacus ac erat luctus pretium a at massa. Ut quis massa nec dui rut
 \meta\reset{chapter}{22}  \' skip to chapter 23 '\
 \include{roadway-design/roadway-design.src}
 
+\include{24-intersections_and_signal_control/intersections-and-signal-control.src}
+
+
 \meta\reset{chapter}{25} \' skip to chapter 26 '\
 \include{26-depots\depots.src}
 
 \include{27-control_center\control-center.src}
+
+
+
 
 \volume{Integration}
 
