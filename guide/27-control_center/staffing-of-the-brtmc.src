@@ -1,0 +1,89 @@
+
+
+\section{Staffing of the BRTMC}
+
+> Nothing will work unless you do.
+@ Maya Angelou, author and poet, 1928–2014
+
+A possible organizational structure for a small-to-medium-sized BRTMC that should be able to cater 
+to a BRT system with up to approximately 300 vehicles could be as illustrated in Table 27.3. The example 
+assumes a BRT system that is operational to the public from 06:00 to 21:00 daily (i.e. sixteen hours 
+per day) and a BRTMC that covers the full operating hours of the BRT system.
+
+To comply with local labor laws, specifically where shift work is concerned (e.g., maximum hours an 
+employee may work per month, etc.), it might be required to have staff for three shifts—that is, one 
+team will be off while two other teams each work an eight-hour shift to cover a sixteen-hour workday. 
+It is further important to note that for critical shift functions where a full-time human presence is 
+required, at least two staff would be required per shift to perform these functions, as time should be 
+allowed for a shift worker to take comfort breaks and to eat. 
+\begintable{BRTMC Organizational Structure}
+\header
+\col Group
+\col Staff
+\row
+\col \highlight{IS&T Contract}  \highlight{\[Headcount = 9\]} 
+\col This group is responsible for operating and maintaining the BRT system’s IS&T infrastructure-related equipment and communications infrastructure. It is suggested that this function could be outsourced to an ICT company. However, it is envisaged that the contractor would be required to have approximated the following staff based at the BRTMC:  \item 1 x Site-coordinator/supervisor;\item 8 x Technicians. This group should not be required to perform shift work. However, they should be on standby after hours.
+\row
+\col \highlight{Operations Control } \highlight{\[Headcount = 16\]}
+\col Operations Control Management: \item 1 x Manager—manage the operations control group, plus manage the vehicle operator and the BRT IS&T contractor to key performance indicators to ensure compliance with required service-level agreements (SLAs). Driver and Vehicle Scheduling: \item 1 per vehicle operator contract during BRT operating hours (typically 2 x 8-hour shifts per day). Monitoring and Schedule Adherence: \item 1 x Supervisor (typically 2 x 8-hour shifts per day);\item 4 x Operators (typically 2 x 8-hour shifts per day).
+\row
+\col \highlight{Automatic Fare Collection}  \highlight{\[Headcount = 18\] }
+\col AFC Management:  \item 1 x Manager—manage the AFC group to ensure AFC system availability and accurate fare collection, as well as stock and cash management. AFC System Monitoring and Resolving AFC Problems:  \item 1 x Supervisor (typically 2 x 8-hour shifts per day);\item 2 x Operators (typically 2 x 8-hour shifts per day). Auditing and Fare Reconciliation:  \item 1 x Supervisor;\item 1 x Finance Officer. Cash and Stock Management:  To manage the cash for kiosks, automated vending machines, and on board cash boxes if applicable, plus to manage fare media and consumables, the following staff would be required:  \item 1 x Supervisor;\item 1 x Finance officer. 
+\row
+\col \highlight{Safety and Security}  \highlight{\[Headcount = 10\]} 
+\col \item 1 x Manager;\item 1 x Supervisor (typically 2 x 8-hour shifts per day);\item 3 x Surveillance operators (typically 2 x 8-hour shifts per day);\item 1 x Policeman as police liaison officer (typically 2 x 8-hour shifts per day);\item 1 x Traffic cop as traffic services liaison officer (typically 2 x 8-hour shifts per day). 
+\row
+\col \highlight{Call Center}  \highlight{\[Headcount = 37\]} 
+\col Call Center Management:  \item 1 x Manager—manage the overall activities and staff of the call center. BRT Internally Focus Call Center:  This center should serve BRT staff members who call in to obtain information or assistance and also log issues reported. It would typically require the following staff:  \item 1 x Supervisor (typically 2 x 8-hour shifts per day);\item 2 x Call center agents (typically 2 x 8-hour shifts per day). BRT Externally Focused Call Center:  This center should serve as the interface with the public, the regional TMC, if applicable, and other government departments. It is proposed that the center’s public interaction function should be handled by the transport information center (TIC) normally housed within a regional TMC. If this is not possible, the following is suggested as an initial requirement:  \item 1 x Supervisor (typically 2 x 8-hour shifts per day);\item 4 x Call center agents (typically 2 x 8-hour shifts per day);\item 1 x Web administrator (typically 2 x 8-hour shifts per day). 
+\row
+\col \highlight{Facility Management}  \highlight{\[Headcount = 4 staff, plus 20 staff from companies} \highlight{performing work that is} \highlight{outsourced. Thus: } \highlight{Total Headcount = 24\]} \highlight{ }  
+\col To manage the overall facility, including the building management system (BMS) and outsourced security, housekeeping, and catering services, the following staff is recommended:  \item 1 x Facility Manager;\item 1 x Electrician;\item 1 x Administrative Officer. The following should be added for the mentioned outsourced services whose personnel will also be on site:  \item 8 x Security guards (2 at the main entrance, 2 at reception, and 4 for perimeter and premises protection, as well as designated staff entrances);\item 8 x Cleaners to perform housekeeping duties;\item 4 x Personnel from a catering service provider. 
+\endtable
+
+The suggested total BRTMC staff headcount for operating this small-to-medium-size BRT system thus works 
+out to ninety-two, plus twenty for outsourced security, housekeeping, and catering services. It does 
+not, however, imply that office and seating capacity for one hundred and twelve staff would be needed, 
+as seventy-two of the ninety-two aforementioned members are shift workers of whom only a third will be 
+on duty at any given time. Therefore, it is recommended that sufficient capacity be allowed to accommodate 
+at least forty-four BRTMC personnel plus the twenty outsourced service providers at any given time (i.e. 
+a total of sixty-four personnel). It would, however, be advisable to bear any planned future BRT growth 
+in mind and to provide for it from the outset. To prevent a disruptive move to larger facilities at a 
+later stage, it is recommended that implementation agencies should work through a requirements list, 
+use a checklist, and adapt the implementation according to the specific needs. 
+
+Functions that are not listed above are Fleet Management and Maintenance Controlling. However, it is 
+reasoned that it would be better to accommodate these roles at the vehicle operator’s depot and that 
+one person should be sufficient to perform both of these functions.
+
+Further, the contracting model chosen for the BRT system has a direct impact on the personnel requirement. 
+In the above suggested organizational structure, only one vehicle operating contract and one outsourced 
+BRT IS&T contract were assumed. 
+
+Table 27.4 provides an indication of other personnel involved with the BRT system that do not need 
+to be accommodated in the BRTMC itself.
+\begintable{Other Personnel Involved with the BRTMC.}
+\header
+\col Group
+\col Roles and Accommodation
+\row
+\col \highlight{Financial Services }
+\col Manage assets, budget, treasury, and accounts.  Accommodation: These staff may be accommodated in a regional head office environment and do not necessarily need accommodation in the BRTMC.  
+\row
+\col \highlight{Vehicle Contract}
+\col Manage and operate vehicles.  Accommodation: Accommodated in the vehicle depot(s).  
+\row
+\col \highlight{Station Service Contract}
+\col Keep the station in good condition.  Accommodation: Own premises.  
+\row
+\col \highlight{Emergency Management Services}
+\col Manage incidents and disasters.  Accommodation: Own premises.  
+\row
+\col \highlight{Public Transport Regulator}  
+\col Regulate with respect to public transport and the BRT system.  Accommodation: Own premises.  
+\row
+\col \highlight{Local Roads and Transport and Civil Works Departments}
+\col Maintain public roads and station works.  Accommodation: Own premises.  
+\row
+\col \highlight{Law Enforcement Agencies}
+\col Police and control traffic.  Accommodation: Own premises.  
+\endtable
