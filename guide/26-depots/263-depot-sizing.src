@@ -1,0 +1,19 @@
+
+
+\section{ Depot Sizing}
+
+The size of the terminals and depots depends greatly on the amount of vehicle parking needed, and the number of vehicles likely to need repairs. The configuration of the parking area can be a trade-off between parking efficiency and ease of entry. Some configurations may require some vehicles to be backed out, which can be difficult with articulated and bi-articulated vehicles. Further, a densely packed parking area may be relatively space efficient, but it can also lead to occasional damage to vehicles bumping into one another.
+
+
+
+\begintable[medium]{Examples of Possible Vehicle Parking Configurations}
+\' \useimage{assets/Table1.svg} '\ \' DOES NOT SUPPORT SVG '\
+\useimage{assets/Table1.png}
+\endtable
+
+
+Source: Angel Molinero and Luis Ignacio Sánchez Arellano. Transporte Público: Planeación, Diseño, Operación 
+y Administración.
+
+Local land prices will likely determine the flexibility available with the depot design. High land 
+prices and a restricted depot area will necessitate some creativity in the layout of the area.

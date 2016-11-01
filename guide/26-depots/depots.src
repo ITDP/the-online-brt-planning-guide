@@ -1,0 +1,28 @@
+\chapter{Depots}
+
+
+
+>Maintenance is terribly important.
+@Manolo Blahnik, fashion designer, 1942–
+
+
+*Overview*
+
+
+Depot areas serve an array of purposes, including bus-parking areas, refueling facilities, vehicle 
+washing and cleaning, maintenance and repair areas, administrative offices for operators, and employee 
+facilities. 
+
+
+The objective of this chapter is to describe how to design the most efficient depot for the particular 
+operational requirements of a BRT system. The chapter deals with where to locate a depot within the BRT 
+corridor or system, how many depots are required, and their size and layout. Various design considerations 
+are discussed and, finally, the need for intermediate parking facilities within the system is discussed.
+\include{261-depot-location-considerations.src}
+\include{262-number-of-depot-facilities-and-ownership.src}
+\include{263-depot-sizing.src}
+\include{264-design-layout.src}
+\include{265-design-considerations.src}
+\include{2652-pavement-design.src}
+\include{266-intermediate-parking-facilities.src}
+\include{267-cost.src}
