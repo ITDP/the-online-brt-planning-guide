@@ -1,11 +1,28 @@
 package parser;
 
+import haxe.ds.Option;
 import parser.Token;
 
 typedef Elem<T> = { def : T, pos : Position };
 typedef VElem = Elem<VDef>;
 typedef HElem = Elem<HDef>;
 
+/*
+A path element.
+
+Stores the path as it was on the source file and allows lazy checking and resolution of it.
+*/
+@:forward
+abstract PElem(Elem<String>) from Elem<String> {
+	public function check():Option<Dynamic>
+		return None;
+	public function get():String
+		return this.def;
+}
+
+/*
+A horizontal element.
+*/
 enum HDef {
 	Wordspace;
 	Superscript(el:HElem);
@@ -29,6 +46,9 @@ enum BlobSize {
 	FullWidth;
 }
 
+/*
+A vertical element.
+*/
 enum VDef {
 	MetaReset(name:String, val:Int);
 	HtmlApply(path:String);
