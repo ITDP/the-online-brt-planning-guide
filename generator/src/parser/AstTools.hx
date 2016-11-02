@@ -54,6 +54,15 @@ class AstTools {
 	static function transform(expr:Expr, src:String, id:String, pp:{ min:Int, max:Int }, ?wrap:{ before:Int, after:Int }) {
 		// trace('${expr.toString()}: $pp');
 		return switch expr.expr {
+		case EMeta({ name:"elem"|":elem", params:[] }, sub):
+			var min = pp.min;
+			if (wrap != null) {
+				min -= wrap.before;
+				pp.max += wrap.after;
+			}
+			pp.min = pp.max;
+			var edef = transform(sub, src, id, pp);
+			macro { def:$edef, pos:{ src:$v{src}, min:$v{min}, max:$v{pp.max} } };
 		case EMeta({ name:name, params:[v] }, sub):
 			var passWrap = null;  // not really sure when to pass (see test 01:002)
 			switch lastPart(name, ":") {
