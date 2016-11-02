@@ -519,7 +519,7 @@ class Parser {
 		var p = arg(rawHorizontal, cmd, "source path");
 		var path = mkPath(p.val, p.pos);
 		return switch cmd.def {
-		case TCommand("apply"): mk(HtmlApply(path), cmd.pos.span(p.pos));
+		case TCommand("apply"): mk(HtmlApply(mk(p.val, p.pos)), cmd.pos.span(p.pos));
 		case TCommand("preamble"): mk(LaTeXPreamble(path), cmd.pos.span(p.pos));
 		case _: unexpected(cmd);
 		}

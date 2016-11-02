@@ -188,7 +188,7 @@ class Validator {
 			if (dest.startsWith(".."))
 				errors.push(new ValidationError(d.pos, EscapingPath("the destination directory", dest)));
 		case DHtmlApply(path):
-			validateSrcPath(d.pos, path, [Css]);
+			validateSrcPath(path.pos, path.get(), [Css]);  // FIXME still doesn't check for absolute or escaping paths
 		case DCodeBlock(_), DEmpty:
 			// nothing to do
 		}

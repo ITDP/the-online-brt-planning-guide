@@ -171,7 +171,7 @@ class Generator {
 	{
 		switch v.def {
 		case DHtmlApply(path):
-			stylesheets.push(saveAsset(path));
+			stylesheets.push(saveAsset(path.get()));
 			return "";
 		case DLaTeXPreamble(_), DLaTeXExport(_):
 			return "";

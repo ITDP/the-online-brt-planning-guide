@@ -1,5 +1,6 @@
 package parser;
 
+import Assertion.*;
 import haxe.ds.Option;
 import parser.Token;
 
@@ -14,10 +15,14 @@ Stores the path as it was on the source file and allows lazy checking and resolu
 */
 @:forward
 abstract PElem(Elem<String>) from Elem<String> {
-	public function check():Option<Dynamic>
-		return None;
 	public function get():String
-		return this.def;
+	{
+		assert(this.def != null);
+		assert(this.def != "");
+		assert(!haxe.io.Path.isAbsolute(this.def));
+		var path = haxe.io.Path.join([haxe.io.Path.directory(this.pos.src), this.def]);
+		return haxe.io.Path.normalize(path);
+	}
 }
 
 /*
@@ -51,7 +56,7 @@ A vertical element.
 */
 enum VDef {
 	MetaReset(name:String, val:Int);
-	HtmlApply(path:String);
+	HtmlApply(path:PElem);
 	LaTeXPreamble(path:String);
 	LaTeXExport(src:String, dest:String);
 
