@@ -1,0 +1,204 @@
+
+
+\section{ Station Access}
+
+> Be an opener of doors.
+@ Ralph Waldo Emerson, essayist and poet, 1803-1882
+
+\' TODO: add ref '\Chapter 29: Pedestrian Integration covers pedestrian access to stations and terminals. This chapter 
+highlights specific accessibility issues. 
+
+The image below summarizes some of the main features detailed in this and the following section.
+
+\number Universal accessibility symbol; 
+\number Traffic lights with acoustic signals; 
+\number Access ramps; 
+\number Well-marked pedestrian crossings;
+\number Curb ramps with color and texture differentiation;
+\number Accessible pedestrian walkways;
+\number Wide fare gates. 
+
+\figure[medium]{assets/image9.jpeg}{Pedestrian-access features are depicted in this diagram of approaches to 
+a typical BRT station on Avenue Simón Bolívar in Pereira, Colombia.}{ Pereira Megabús.}
+
+\subsection{ Walkways}
+
+Walkways refer to any facility used by pedestrians, including sidewalks, pavements, shared streets, 
+footpaths, and paths. As a general rule, accessible and well-lit walkways should exist along the main 
+approaches to all BRT stations. They should extend for at least 400 meters in all directions. Ideally, 
+they should exist along the entire length of any BRT trunk line. The following are critical accessibility 
+elements and dimensions for walkways:
+
+\item Straight and unobstructed;
+\item Smooth, even, well-paved, nonskid surfaces; 
+\item Contrasting color for street furniture and other obstacles; 
+\item Minimum passing width for a wheelchair at an obstruction—0.9 meters;
+\item Minimum overhead clearance (at signs)—2.0 meters;
+\item Maximum cross-slope (for drainage)—2 percent;
+\item No gratings or other items that would catch the small front wheels of wheelchairs; 
+\item Maximum opening or gap in a grating—13 millimeters.
+
+\figure{assets/image10.jpeg}{Constructing a BRT system provides the opportunity to address accessibility 
+issues on routes to stations (Boston).}{ Michael King.}
+
+\subsection{ Tactile Guideways}
+
+Tactile guideways are characterized by a series of raised parallel bars pointing in the direction of 
+travel. The bars are typically molded into a 300-millimeter-square tile, installed one or two tiles wide. 
+They benefit blind persons and those with reduced vision and help others to find their way: 
+
+\item Across large unmarked areas;
+\item Along complex paths to a specific destination (information booth, BRT station);
+\item On walkways without a well-defined boundary with the road.
+
+Guideways should be used in a consistent manner within a country and should be in a color contrasting 
+with their surroundings. Research has shown that grooved concrete is not detectable underfoot. Therefore, 
+texture differences should be detectable under foot and by a long cane.
+
+In BRT environments, a tactile guideway is useful to mark a travel path from a sidewalk to a pedestrian 
+crossing to a BRT station. It can continue on the other side of the crossing, turning up the ramp into 
+the station and proceeding to the ticket vending and information booth. The guideway can then proceed 
+down the center line of the station, with guideways branching off at right angles to station doors. 
+
+\figure{assets/image11.jpeg}{Tactile guideway.} { Lloyd Wright.}
+
+\figure{assets/image12.jpeg}{Tactile guideway leading to a BRT station in Ahmedabad, India.}{ 
+Michael King.}
+
+\subsection{ Tactile Warnings}
+
+Tactile warnings, also called attention patterns and detectable warning strips, are characterized by 
+a series of raised truncated domes, typically molded into a 300-millimeter-square tile. They mark *edge* 
+or *stop* locations, such as platform edges or curb ramps. They are typically two tiles wide to assure 
+that pedestrians do not step over them. They are of a contrasting color with the surrounding surface. 
+In some countries, tactile warnings are placed immediately adjacent to the edge or curb, while in other 
+countries they are placed 600 to 1,000 millimeters away. Tiles are recommended as they can be detected 
+by canes as well as underfoot. Maintenance is key so that broken tiles do not become trip hazards (Bentzen 
+and Barlow 2011).
+
+\figure{assets/image13.jpeg}{Warning strips mark platform edges of BRT and rail stations.}{ Tom 
+Rickert/AEI.}
+
+\figure[medium]{assets/image14.jpeg}{Good practice at street crossings.}{ TRL, sponsored by the United 
+Kingdom’s Department for International Development.}
+
+\subsection{ Curb Ramps}
+
+Curb ramps (also known as pedestrian ramps, wheelchair ramps, and curb cuts) are ramps that allow a 
+person in a wheelchair to roll up or down at a curb, instead of stepping. They benefit people with walkers, 
+strollers, bicycles, carts, and anyone else who has trouble with steps. The slope of a curb ramp is critical, 
+lest a person in a wheelchair fall backward. Also critical is placing a curb ramp at the opposite side 
+of the street. 
+
+General curb ramp requirements, based on TRL guidelines:
+
+\item Placement: within crosswalk markings;
+\item Orientation: perpendicular to curb (creates a flush public transportation);
+\item Width: ideally equal to crosswalk width, minimum 1.2 meters;
+\item Slope: maximum 1:12 (8 percent);
+\item Side flange slope: 1:10 (9 percent);
+\item Level landing and turning area: 1.5-meter square at top and bottom of ramp;
+\item Tactile warning strip at base of the ramp.
+
+Curb ramps should be required in all new construction, and there should be a program to retrofit existing 
+streets. As a priority, curb ramps should be installed on routes between BRT stations and important trip 
+generators. 
+
+\figure[medium]{assets/image15.png}{A curb ramp the full width of the crosswalk in Shenzhen, China.}{ 
+Michael King.}
+
+\figure{assets/image16.jpeg}{Curb ramps are required on both sides of the street, and at any median 
+in between. The median opposite the curb ramp shown here in Mexico City lacks a curb ramp.}{ Michael 
+King.}
+
+\subsection{ Raised Crossings}
+
+An alternative to curb ramps is a raised crosswalk (raised crossing, raised intersection, continuous 
+sidewalk). Here the street is raised to sidewalk level, and pedestrians cross without having to step 
+down to street level. It is recommended for all streets with speeds of 50 kilometers per hour or less 
+and may be used elsewhere.
+
+\figure{assets/image17.jpeg}{Raised crosswalk at bus stop in Mérida, Mexico.}{ Michael King.}
+
+\subsection{ Traffic Signals}
+
+Where traffic signals are employed, they must be timed so that slower pedestrians have sufficient time 
+to cross the street (0.75 meters per second). Countdown, tactile, and audible indicators are preferred.
+
+\figure{assets/image18.jpeg}{Audible signal at a crossing leading to a BRT station in León, Mexico. 
+}{ Michael King.}
+
+\figure{assets/image19.png}{A vibro-tactile pushbutton for requesting a crossing phase.}{ Janet 
+Barlow.}
+
+\figure{assets/image20.png}{A “walking man” countdown signal in Mexico City. The green man speeds up 
+as the clock ticks to zero.}{ Michael King.}
+
+\subsection{ Pedestrian Bridges and Tunnels}
+
+As discussed in \'TODO: add ref '\Chapter 29: Pedestrian Access, at-grade crossings are preferred to access BRT stations. 
+Should a pedestrian bridge or tunnel be considered, a tunnel with ramps is preferred. The second choice 
+would be a bridge with ramps. Elevators are a last choice for reasons other than accessibility. 
+
+Tunnels are preferred because they require less vertical clearance (than a bridge over a roadway), 
+thus the ramp slope and/or distance is less. While bridges with ramps may be technically “accessible” 
+to a wheelchair user, the sheer length of ramps to pedestrian bridges is so daunting that most wheelchair 
+users are unlikely to use the ramp without the help of a friend to push the chair. Customers with less 
+visible disabilities, such as arthritis or a heart condition, may also find long ramps difficult to access. 
+Elevator procurement is costly, and elevator maintenance can become an issue for the operator. For this 
+reason, Bogotá’s TransMilenio will avoid elevators in the future.
+
+\figure{assets/image21.jpeg}{Signalized crossing leading directly to a BRT station in Guangzhou, China. 
+}{ Michael King.}
+
+\figure{assets/image22.jpeg}{A well-lit pedestrian tunnel in Cali, Colombia, El MIO.}{ Tom Rickert/AEI.}
+
+\figure{assets/image23.jpeg}{Pedestrian bridge with a smooth, gradual slope in Utrecht, Netherlands. 
+}{ Michael King.}
+
+\subsection{ “Special” Crossings }
+
+Persons with disabilities should cross the street and access BRT stations along with everyone else. 
+“Special” crossing and access points are to be discouraged. This practice relies on the presence of security 
+or traffic personnel, which may or may not be available, and it has been viewed as preventing access 
+by persons with mobility impairments in Latin American and Asian countries. 
+
+\figure{assets/image24.jpeg}{The man on crutches is able to cross due to the help of security personnel. 
+This approach requires a long-term commitment that is not likely to endure for the life of the system. 
+}{ Gerhard Menckhoff.}
+
+\figure{assets/image25.jpeg}{A “special” crosswalk and gate for people with disabilities in Guangzhou, 
+China. There are many who would benefit from elevators and shallow ramps who instead are deterred by 
+the approach.}{ Michael King.}
+
+\subsection{ Ramps to BRT Stations}
+
+Ramps are the preferred method of access to BRT stations, as opposed to elevators or stairs. Station 
+assistants may be assigned to assist wheelchair users and others who need help up the ramp. 
+
+General ramp criteria (TRL 2004, pp. 145–146):
+
+\item Width: equal to station width;
+\item Slope—1:20 (5 percent), maximum 1:12 (8 percent);
+\item Run (length)—maximum 9 meters with no resting area;
+\item Rise (height)—maximum 0.75 meters with no resting area;
+\item Level resting area dimensions—equal to width of ramp by 1.5 meters;
+\item Handrails on both sides;
+\item Level landing and turning area—1.5 meters square at top and bottom of ramp.
+
+The norms in some countries specify a level resting area after a maximum run of 6 meters (e.g., Argentina’s 
+Ley Nacional 24314), others specify 9 meters, and others specify other lengths. Section 4.8 of the United 
+States’ ADA Accessibility Guidelines (ADAAG) states, “The shortest possible grade for a ramp shall be 
+used. The maximum angle for a ramp in new construction should be 1:12. The maximum rise should be 30 
+inches (760 mm)” before a horizontal resting area.
+
+\figure[medium]{assets/image26.png}{Ramp to BRT station, equal to the width of the station.}{ TransMilenio.}
+
+\figure[medium]{assets/image27.jpeg}{BRT station access is the full width of this station in Guadalajara, Mexico. 
+}{ Michael King.}
+
+\figure[medium]{assets/image28.jpeg}{A pedestrian ramp leading to a BRT station in Bogotá. }{ Michael 
+King.}
+
+\figure[medium]{assets/image29.jpeg}{A ramp from a BRT station to a pedestrian tunnel in Cali, Colombia.}{ 
+Tom Rickert/AEI.}
