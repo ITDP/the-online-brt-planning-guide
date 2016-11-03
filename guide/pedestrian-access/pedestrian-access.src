@@ -91,7 +91,7 @@ Road users are constantly making decisions, and if other street users—walkers,
 “Directness” involves a pedestrian path that minimizes the distance travelled to access the public transport station. Normally, locating stations near popular trip origins and destinations like shopping malls, large office complexes, or popular intersections will minimize pedestrian walking times. Small block sizes (e.g., one-half hectare) can ensure that direct walking routes are available from any location to the BRT station.
 
 \figure{assets/guangzhou-pedestrian-access-lane.jpg}{Pedestrian-access lanes that increase the permeability of city blocks can reduce walking times, and thereby improve access to public transport as is the case here in Guangzhou, China.}{Karl Fjellstrom, Far East BRT}
-\figure{assets/.jpg}{Pedestrian alleyway in Nantes, France}{Karl Fjellstrom, Far East BRT}
+\figure{assets/nantes-pedestrian-alley.jpg}{Pedestrian alleyway in Nantes, France}{Karl Fjellstrom, Far East BRT}
 
 The level of directness is also influenced by pedestrian crossings and other design details at the micro level. For example, crossing facilities placed near pedestrian desire lines contribute to the directness of walking routes. Desire lines are the paths worn in unpaved areas, medians, and elsewhere that indicate where people travel. It is advisable to observe existing pedestrian behavior and then plan infrastructure interventions to ensure that these trips are made safely, rather than designing pedestrian facilities that attempt to force pedestrians to behave in ways that are highly inconvenient. Providing direct connections increases the likelihood that pedestrian behavior will be organized and predictable.
 
@@ -210,7 +210,7 @@ Where slip lanes must be maintained, building a pedestrian island and tightening
 Where separate pedestrian signals are available, a novel technique to reduce pedestrian exposure at intersections is the “leading pedestrian interval.” Under such an arrangement, a pedestrian-only phase begins a few seconds before the vehicle phase. This permits a pedestrian to get halfway across the street and establish their presence in the crosswalk before vehicles start turning, thus increasing the chance that drivers will yield as required.
 
 \figure{assets/new-york-city-leading-pedestrian-interval-pedestrian-phase.jpg}{Pedestrian phase of a leading pedestrian interval in New York City. Pedestrians are permitted to begin crossing the intersection before vehicles get a green light.}{Michael King}
-\figure{assets/new-york-city-leading-pedestrian-interval-vehicle-phase.jpg.jpg}{Vehicle phase of a leading pedestrian interval in New York City in which vehicles are given a green light only after pedestrians are allowed to begin crossing}{Michael King}
+\figure{assets/new-york-city-leading-pedestrian-interval-vehicle-phase.jpg}{Vehicle phase of a leading pedestrian interval in New York City in which vehicles are given a green light only after pedestrians are allowed to begin crossing}{Michael King}
 
 \subsection{Shared Space}
 Small local streets where vehicle speeds are low may not require separate pedestrian footpaths. Where a BRT system goes through a city center or on smaller access roads, there may be opportunities to implement “shared space,” in which all physical differentiation between vehicle and pedestrian space is removed.
@@ -267,7 +267,7 @@ When the BRT station is at or near an intersection, pedestrians can cross with t
 BRT stations are often placed away from intersections to increase queuing space for public transport and private vehicles at intersections. When the BRT station is mid-block, a few additional design considerations apply. The crossing should include elements that signal to the driver that he or she is approaching a pedestrian crossing, such as signs, lighting, vertical markers, and overhead indicators. As described in the previous section, an elevated crosswalk or a speed bump placed before the crosswalk helps force motorists to slow down. Pedestrian-refuge islands between lanes and narrower lane widths also reduce pedestrian-exposure time. Using different surface colors and textures will draw further attention of motorists. Lighting at the crosswalk at night is important.
 
 \figure{assets/berlin-pedestrian-crosswalk-vertical-element.jpg}{Example in Berlin of a pedestrian crosswalk with vertical elements indicating to drivers the location of the crosswalk.}{Michael King}
-\figure{assets/toronto-pedestrian-crosswalk-vertical-element.jpg.jpg}{Example in Toronto of a pedestrian crosswalk with vertical elements indicating to drivers the location of the crosswalk.}{Michael King}
+\figure{assets/toronto-pedestrian-crosswalk-vertical-element.jpg}{Example in Toronto of a pedestrian crosswalk with vertical elements indicating to drivers the location of the crosswalk.}{Michael King}
 
 Several different types of signaling options may be employed at mid-block crossings. If pedestrians only have to cross two lanes, and where speeds and vehicle volumes are not that high, signals may not be necessary at all. As traffic speeds, volumes, and lanes increase, the need for standard red-yellow-green signals mid-block also tends to increase.
 
