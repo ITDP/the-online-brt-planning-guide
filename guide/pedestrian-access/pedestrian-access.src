@@ -99,8 +99,8 @@ The level of directness is also influenced by pedestrian crossings and other des
 The “legibility” of an area refers to the ease in understanding the street environment. The selective use of signage and maps contributes to a system’s legibility. Likewise, design options such as infrastructure coloring determine how quickly customers understand system information. Good legibility can play a role in directing customers to a BRT system. Local-route signs along the pedestrian path both help customers find the BRT station and help pedestrians emerging from the station reach their destinations.
 
 
-\figure{assets/san-francisco-pedestrian-wayfinding.jpg}{Pedestrian wayfinding in San Francisco separates attractions from transportation destinations through simple color-coding.}{Nelson\Nygaard}
-\figure{assets/arlington-pedestrian-wayfinding.jpg}{Arlington, Virginia, USA, incorporates simple directions with a map oriented toward the pedestrian’s location.}{Nelson\Nygaard}
+\figure{assets/san-francisco-pedestrian-wayfinding.jpg}{Pedestrian wayfinding in San Francisco separates attractions from transportation destinations through simple color-coding.}{Nelson\\Nygaard}
+\figure{assets/arlington-pedestrian-wayfinding.jpg}{Arlington, Virginia, USA, incorporates simple directions with a map oriented toward the pedestrian’s location.}{Nelson\\Nygaard}
 
 \subsection{Comfort}
 The steepness of inclines, presence of weather protection, condition of the walking surface, and protection from noise and air pollution all affect the level of comfort enjoyed by pedestrians. In cities with extreme heat, shade can reduce temperatures by five to eight degrees Celsius, and thus make reaching a BRT station more comfortable. Additionally, the aesthetic value of the walking environment will play a role in the potential customer’s disposition toward the walk. If the walk is pleasant and intriguing, then more customers will be attracted to the BRT system. System developers should assess the quality of pedestrian corridors connecting the BRT stations with major origins and destinations.
@@ -123,12 +123,23 @@ For a potential BRT customer, the quality of the pedestrian infrastructure betwe
 
 A few meters of quality infrastructure around the public transport station do little to attract customers from their homes and offices. High-quality pedestrian walkways should extend from BRT stations well into surrounding neighborhoods. Most pedestrians approach BRT stations from within a radius of approximately 1 kilometer. Surveys from TransJakarta indicated that 58 percent of customers walked fewer than 500 meters to the station, and an additional 31 percent came from locations within 500 meters to 1 kilometer (see Table 29.1). Therefore, pedestrian facilities should be upgraded at least within a 1-kilometer radius around each station. In order to do this, it may be necessary to evaluate how to integrate BRT implementation plans with the city’s overall urban development plans. (BRT designs normally do not include areas larger than those directly near the station.)
 
-Table 29.1 Walking distance at 1.5 meter per second
-Time	Distance
-5 minutes	450 meters
-10 minutes	900 meters
-15 minutes	1.35 kilometers
-20 minutes	1.8 kilometers
+\begintable[large]{Walking distance at 1.5 meter per second}
+\header
+\col Time
+\col Distance
+\row
+\col 5 minutes
+\col 450 meters
+\row
+\col 10 minutes
+\col 900 meters
+\row
+\col 15 minutes
+\col 1.35 kilometers
+\row
+\col 20 minutes
+\col 1.8 kilometers
+\endtable
 
 
 Pedestrian facilities can take different forms, depending on the size of the street, the traffic volume, the character of street usage, and adjacent land uses.
@@ -262,7 +273,7 @@ Several different types of signaling options may be employed at mid-block crossi
 
 \figure{assets/diagram-signal-timing.jpg}{Signals can be timed to correspond to the red-and-green time at the nearest intersection to reduce the delay for mixed traffic.}{ITDP}
 
-\figure{assets/graphic-recommendations-pedestrian-crossings.jpg}{Recommendations for installing pedestrian crossings at mid-block locations based on vehicle speed, vehicle volume, and street type. On a two-lane street with low volumes and speeds, a marked crosswalk will suffice. As speeds, volumes, and/or widths increase, additional measures and/or signals are needed.}{Nelson\Nygaard}
+\figure{assets/graphic-recommendations-pedestrian-crossings.jpg}{Recommendations for installing pedestrian crossings at mid-block locations based on vehicle speed, vehicle volume, and street type. On a two-lane street with low volumes and speeds, a marked crosswalk will suffice. As speeds, volumes, and/or widths increase, additional measures and/or signals are needed.}{Nelson\\Nygaard}
 
 It is generally possible to signalize the crossing for the mixed-traffic lanes while allowing bus vehicles to continue without a light. Pedestrians then cross the busway whenever a gap appears. At higher vehicle volumes, the public transport vehicles should also be controlled by a traffic signal. Especially in BRT systems with very high demand (i.e., over 10,000 customers per hour per direction), an additional pedestrian-refuge island should be provided between the BRT lanes and the general traffic. This island can be dimensioned to a convenient size for the projected customer demand.
 
@@ -334,41 +345,68 @@ The last indicator is an overall measure of the success of the surveyed facility
 
 The evaluation of the pedestrian environment should be standardized to allow performance measures to be tracked. The United Kingdom’s Transport Research Library developed a standardized review process called the Pedestrian Environment Review System (PERS) that includes the criteria seen in Table 29.2. Tied to software that maps the indicators, it is possible to evaluate walking environments near station areas.
 
-Table 29.2 Pedestrian Environment Review System (PERS) criteria
-Pedestrian Route Review	Pedestrian Link Review	Pedestrian Crossing Review
-Directness
-Permeability
-Road safety
-Personal security
-Legibility
-Rest points
-Quality of environment
-Contributing link reviews
-Contributing crossing reviews	Effective width
-Dropped curbs
-Gradient
-Obstructions
-Permeability
-Legibility
-Lighting
-Tactile information
-Color contrast
-Personal security
-Surface quality
-User conflict
-Quality of environment
-Maintenance	Crossing provision
-Deviation from desire line
-Performance
-Capacity
-Delay
-Legibility
-Legibility for the sensory impaired
-Dropped curbs
-Gradient
-Obstructions
-Surface quality
-Maintenance
+\begintable[large]{Pedestrian Environment Review System (PERS) criteria}
+\header
+\col Pedestrian Route Review
+\col Pedestrian Link Review
+\col Pedestrian Crossing Review
+\row
+\col Directness
+\col Effective width
+\col Crossing provision
+\row
+\col Permeability
+\col Dropped curbs
+\col Deviation from desire line
+\row
+\col Road safety
+\col Gradient
+\col Performance
+\row
+\col Personal security
+\col Obstructions
+\col Capacity
+\row
+\col Legibility
+\col Permeability
+\col Delay
+\row
+\col Rest points
+\col Legibility
+\col Legibility
+\row
+\col Quality of environment
+\col Lighting
+\col Legibility for the sensory impaired
+\row
+\col Contributing link reviews
+\col Tactile information
+\col Dropped curbs
+\row
+\col Contributing crossing re-views
+\col Color contrast
+\col Gradient
+\row
+\col
+\col Personal security
+\col Obstructions
+\row
+\col
+\col Surface quality
+\col Surface quality
+\row
+\col
+\col User conflict
+\col Maintenance
+\row
+\col
+\col Quality of environment
+\col
+\row
+\col
+\col Maintenance
+\col
+\endtable
 
 Source: Reproduced from Reid, Stuart (2003), “Pedestrian Environments: A Systematic Review Process.”
 
@@ -428,17 +466,111 @@ External	Internal	Quality of Life Years	Medical	US$0	US$2,999	US$58,584	US$418,8
 			Travel Delay	US$1,012	US$97	US$1,184	US$11,526	US$11,526
 			Market Cost	US$3,190	US$13,308	US$234,482	US$1,381,163	US$1,231,282
 
+\begintable[large]{Crash Costs}
+\header
+\col CRASH COSTS
+\col Property Damage Only
+\col Minor Injury
+\col Serious Injury
+\col Critical Injury
+\col Fatal Injury
+\row
+\col Medical
+\col US$0
+\col US$2,999
+\col US$58,584
+\col US$418,896
+\col US$27,840
+\row
+\col Emergency Services
+\col US$39
+\col US$122
+\col US$464
+\col US$1,074
+\col US$1,050
+\row
+\col Legal Costs
+\col US$0
+\col US$189
+\col US$19,918
+\col US$100,619
+\col US$128,694
+\row
+\col Property Damage
+\col US$1,870
+\col US$4,843
+\col US$8,567
+\col US$11,902
+\col US$12,944
+\row
+\col Market Productivity
+\col US$0
+\col US$2,204
+\col US$90,032
+\col US$552,768
+\col US$750,151
+\row
+\col Household Productivity
+\col US$59
+\col US$721
+\col US$26,555
+\col US$188,128
+\col US$241,342
+\row
+\col Insurance Administration
+\col US$146
+\col US$934
+\col US$23,805
+\col US$85,928
+\col US$46,771
+\row
+\col Workplace
+\col US$64
+\col US$318
+\col US$5,375
+\col US$10,321
+\col US$10,965
+\row
+\col Travel Delay
+\col US$1,012
+\col US$97
+\col US$1,184
+\col US$11,526
+\col US$11,526
+\row
+\col Market Cost
+\col US$3,190
+\col US$13,308
+\col US$234,482
+\col US$1,381,163
+\col US$1,231,282
+\endtable
+
+
 Source: L. Blinco, A. Seay, E. Zaloshnja, T. Miller, E. Romano, S. Luchter, R. Spicer. May 2002. The Economic Impact of Motor Vehicle Crashes 2000 (costs in US dollars). National Highway Traffic Safety Administration.
 
 Table 29.3 lists weight factors that can be used to determine the relative safety of a location or area. This list includes direct costs (property damage, emergency medical services, medical treatment, lost productivity, insurance payouts) and indirect costs (insurance premiums, automobile safety features). These multipliers can be applied to existing crash data to show the approximate annual cost of the existing roadway configuration. This list can also be used to estimate potential cost savings of a proposal relative to the cost of construction.
 
-Table 29.4. Factors to determine the relative safety of a location
-Factor	Severity
-1,300	Fatality
-90	Incapacitating injury
-18	Evident injury
-10	Possible injury
-1	Property damage only
+\begintable[large]{Factors to Determine the Relative Safety of a Location}
+\header
+\col Factor
+\col Severity
+\row
+\col 1,300
+\col Fatality
+\row
+\col 90
+\col Incapacitating injury
+\row
+\col 18
+\col Evident injury
+\row
+\col 10
+\col Possible injury
+\row
+\col 1
+\col Property damage only
+\endtable
 
 Source: Homburger, W.S., Hall, J.W., Loutzenheiser, R.C. and Reilly, W.R., 1996. Fundamentals of Traffic Engineering. University of California, Berkeley.
 
