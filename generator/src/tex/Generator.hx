@@ -185,7 +185,7 @@ class Generator {
 			idc.table = v.id.sure();
 			var id = idc.join(true, ":", chapter, table);
 			return LargeTable.gen(v, id, this, at, idc);
-		case DImgTable(no, size, caption, path):
+		case DImgTable(no, size, caption, _.get() => path):
 			idc.table = v.id.sure();
 			var id = idc.join(true, ":", chapter, table);
 			path = saveAsset(at, path);

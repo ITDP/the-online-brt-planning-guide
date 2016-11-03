@@ -607,7 +607,7 @@ class Test_03_Parser {
 			parse("\\begintable{a}\\header\\col x\\col y\\row\\col list\\col \\item 1\\item 2\\endtable"));
 
 		Assert.same(
-			expand(@wrap(12,9)ImgTable(TextWidth,@len(1)Word("a"),@skip(1)@len(16)"x.svg")),
+			expand(@wrap(12,10)ImgTable(TextWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
 			parse("\\begintable{a}\\useimage{x.svg}\\endtable"));
 
 		fails("\\endtable", UnexpectedCommand("endtable"));

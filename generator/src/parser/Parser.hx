@@ -381,7 +381,8 @@ class Parser {
 			var end = pop();  // should have already discarted any vnoise before
 			if (end.def.match(TEof)) unclosed(begin);
 			if (!end.def.match(TCommand("endtable"))) unexpected(end);
-			return mk(ImgTable(size, caption.val, mkPath(path.val, path.pos)), begin.pos.span(end.pos));
+			// MAYBE abstract offset(1,-1)
+			return mk(ImgTable(size, caption.val, mk(path.val, path.pos.offset(1,-1))), begin.pos.span(end.pos));
 		} else if (peek().def.match(TCommand("header"))) {
 			var header = tableRow(pop());
 			while (true) {
@@ -519,7 +520,7 @@ class Parser {
 		var p = arg(rawHorizontal, cmd, "source path");
 		var path = mkPath(p.val, p.pos);
 		return switch cmd.def {
-		case TCommand("apply"): mk(HtmlApply(mk(p.val, p.pos)), cmd.pos.span(p.pos));
+		case TCommand("apply"): mk(HtmlApply(mk(p.val, p.pos.offset(1,-1))), cmd.pos.span(p.pos));  // MAYBE abstract offset(1,-1)
 		case TCommand("preamble"): mk(LaTeXPreamble(path), cmd.pos.span(p.pos));
 		case _: unexpected(cmd);
 		}

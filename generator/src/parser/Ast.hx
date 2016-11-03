@@ -67,7 +67,7 @@ enum VDef {
 	SubSubSection(name:HElem);
 	Figure(size:BlobSize, path:String, caption:HElem, copyright:HElem);
 	Table(size:BlobSize, caption:HElem, header:TableRow, rows:Array<TableRow>);  // copyright/source?
-	ImgTable(size:BlobSize, caption:HElem, path:String);  // copyright/source?
+	ImgTable(size:BlobSize, caption:HElem, path:PElem);  // copyright/source?
 	Quotation(text:HElem, by:HElem);
 	List(numered:Bool, items:Array<VElem>);
 	Box(name:HElem, contents:VElem);

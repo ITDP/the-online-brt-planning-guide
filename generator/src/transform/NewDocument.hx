@@ -24,7 +24,7 @@ enum DDef {
 	DBox(no:Int, name:HElem, children:DElem);
 	DFigure(no:Int, size:BlobSize, path:String, caption:HElem, copyright:HElem);
 	DTable(no:Int, size:BlobSize, caption:HElem, header:Array<DElem>, rows:Array<Array<DElem>>);
-	DImgTable(no:Int, size:BlobSize, caption:HElem, path:String);
+	DImgTable(no:Int, size:BlobSize, caption:HElem, path:PElem);
 	DList(numbered:Bool, li:Array<DElem>);
 	DCodeBlock(cte:String);
 	DQuotation(text:HElem, by:HElem);

@@ -170,7 +170,7 @@ class Validator {
 		case DImgTable(_, _, caption, path):
 			if (notHEmpty(caption, d, "caption"))
 				hiter(caption);
-			validateSrcPath(d.pos, path, [Jpeg, Png]);
+			validateSrcPath(d.pos, path.get(), [Jpeg, Png]); // FIXME absolute/escaping?
 		case DQuotation(text, by):
 			if (notHEmpty(text, d, "text"))
 				hiter(text);
@@ -188,7 +188,7 @@ class Validator {
 			if (dest.startsWith(".."))
 				errors.push(new ValidationError(d.pos, EscapingPath("the destination directory", dest)));
 		case DHtmlApply(path):
-			validateSrcPath(path.pos, path.get(), [Css]);  // FIXME still doesn't check for absolute or escaping paths
+			validateSrcPath(path.pos, path.get(), [Css]);  // FIXME absolute/escaping?
 		case DCodeBlock(_), DEmpty:
 			// nothing to do
 		}
