@@ -14,4 +14,9 @@
 <li><a href="(:bcs.section.url:)"><strong>(:bcs.section.name:)</strong></a></li>
 (:end:)
 </ul>
+<noscript>
+<div style="background-color: #F33; color: #FFF; text-align: center; padding: 4px; font-family: sans-serif; font-size: 12px;">
+    JavaScript is not enabled!
+</div>
+</noscript>
 </header>
