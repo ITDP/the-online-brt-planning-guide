@@ -42,7 +42,11 @@ class ValidationError extends GenericError {
 		case FileIsDirectory(path):
 			return 'Expected file, not directory';
 		case WrongFileType(expected, path):
-			return 'File does not match expected types (expected: ${expected.join(",")})';
+			var valid = expected.map(function (i) {
+				var exts = i.validExtensions();
+				return exts.length > 0 ? '$i [.${exts.join(",.")}]' : i;
+			});
+			return 'File does not match expected types (expected: ${valid.join(", ")})';
 		case BlankValue(parent, name):
 			return '${capitalize(parent)} $name cannot be blank';
 		}

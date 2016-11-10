@@ -18,6 +18,17 @@ using StringTools;
 	public var Css = "Cascading style sheet (CSS) file";
 	public var Tex = "TeX source file";
 	public var Manu = "Manuscript Markup Language";  // TODO use the 'manu' name
+
+	public function validExtensions()
+		return switch this {
+		case Jpeg: ["jpeg", "jpg"];
+		case Png: ["png"];
+		case Js: ["js"];
+		case Css: ["css"];
+		case Tex: ["tex"];
+		case Manu: ["manu", "src", "txt"];
+		case Directory|File|_: [];
+		}
 }
 
 class Validator {
@@ -74,15 +85,15 @@ class Validator {
 		var isDirectory = FileSystem.isDirectory(computed);
 		var ext = Path.extension(computed);
 		for (t in types) {
-			switch [isDirectory, t, ext.toLowerCase()] {
+			switch [isDirectory, t, Lambda.has(t.validExtensions(), ext.toLowerCase())] {
 			case [true, Directory, _]:
 			case [false, File, _]:
-			case [false, Jpeg, "jpeg"|"jpg"]:
-			case [false, Png, "png"]:
-			case [false, Js, "js"]:
-			case [false, Css, "css"]:
-			case [false, Tex, "tex"]:
-			case [false, Manu, "manu"|"src"|"txt"]:  // TODO disallow deprecated .src and .txt
+			case [false, Jpeg, true]:
+			case [false, Png, true]:
+			case [false, Js, true]:
+			case [false, Css, true]:
+			case [false, Tex, true]:
+			case [false, Manu, true]:
 			case _:
 				// keep going; skip the following `return null`
 				continue;
