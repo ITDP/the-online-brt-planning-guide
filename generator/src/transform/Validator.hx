@@ -17,6 +17,7 @@ using StringTools;
 	public var Js = "Javascript source file";
 	public var Css = "Cascading style sheet (CSS) file";
 	public var Tex = "TeX source file";
+	public var Manu = "Manuscript Markup Language";  // TODO use the 'manu' name
 }
 
 class Validator {
@@ -64,7 +65,7 @@ class Validator {
 	}
 #end
 
-	static function validateSrcPath(path:PElem, types:Array<FileType>)
+	public static function validateSrcPath(path:PElem, types:Array<FileType>)
 	{
 		var computed = path.toInputPath();
 		var exists = FileSystem.exists(computed);
@@ -81,6 +82,7 @@ class Validator {
 			case [false, Js, "js"]:
 			case [false, Css, "css"]:
 			case [false, Tex, "tex"]:
+			case [false, Manu, "manu"|"src"|"txt"]:  // TODO disallow deprecated .src and .txt
 			case _:
 				// keep going; skip the following `return null`
 				continue;

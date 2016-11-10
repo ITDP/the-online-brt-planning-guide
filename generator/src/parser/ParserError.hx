@@ -1,6 +1,7 @@
 package parser;
 
 import parser.Token;
+import transform.ValidationError;
 
 enum ParserErrorValue {
 	InvalidUtf8;
@@ -10,6 +11,7 @@ enum ParserErrorValue {
 	BadValue(?details:String);
 	UnexpectedCommand(name:String);
 	UnknownCommand(name:String, ?suggestion:String);
+	Invalid(verror:ValidationErrorValue);
 }
 
 class ParserError extends GenericError {
@@ -82,6 +84,9 @@ class ParserError extends GenericError {
 			if (suggestion != null)
 				msg += '; did you perhaps mean \'\\$suggestion\'?  (sorry if the suggestion makes no sense)';
 			return msg;
+		case Invalid(verror):
+			var err = new ValidationError(pos, verror);
+			return err.toString();
 		}
 	}
 }

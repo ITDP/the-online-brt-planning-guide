@@ -582,11 +582,11 @@ class Test_03_Parser {
 
 	public function test_021_include()
 	{
-		sys.io.File.saveContent(".testfile", "c");
-		Assert.same(expand(@src(".testfile")Paragraph(@len(1)Word("c"))), parse("\\include{.testfile}"));
-		fails("\\include{.nonexistant}", BadValue("not found"));
+		sys.io.File.saveContent(".testfile.manu", "c");
+		Assert.same(expand(@src(".testfile.manu")Paragraph(@len(1)Word("c"))), parse("\\include{.testfile.manu}"));
+		// fails("\\include{.nonexistant}", Invalid(FileNotExists(".noexistant")));
 		// TODO test "not a file" error
-		sys.FileSystem.deleteFile(".testfile");
+		sys.FileSystem.deleteFile(".testfile.manu");
 	}
 
 	// TODO

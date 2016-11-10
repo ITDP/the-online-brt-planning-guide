@@ -6,6 +6,8 @@ import parser.Ast;
 import parser.ParserError;
 import parser.Token;
 import sys.FileSystem;
+import transform.ValidationError;
+import transform.Validator;
 
 import Assertion.*;
 import parser.AstTools.*;
@@ -52,6 +54,9 @@ class Parser {
 
 	inline function badArg(pos:Position, ?desc:String):Dynamic
 		throw new ParserError(pos.offset(1, -1), BadValue(desc));
+
+	inline function invalid(pos:Position, verror:ValidationErrorValue):Dynamic
+		throw new ParserError(pos, Invalid(verror));
 
 	inline function unexpectedCmd(cmd:Token):Dynamic
 	{
@@ -490,10 +495,11 @@ class Parser {
 	{
 		assert(cmd.def.match(TCommand("include")), cmd);
 		var p = arg(rawHorizontal, cmd);
-		var path = mkPath(p.val, p.pos);
-		if (!FileSystem.exists(path)) return badValue(p.pos, "File not found or not accessible");
-		if (FileSystem.isDirectory(path)) return badValue(p.pos, "Expected file, but is directory");
-		return parse(path, p.pos, cache);
+		var path:PElem = mk(p.val, p.pos);
+		var pcheck = Validator.validateSrcPath(path, [Manu]);
+		if (pcheck != null)
+			return invalid(p.pos, pcheck.err);
+		return parse(path.toInputPath(), p.pos, cache);
 	}
 
 	function paragraph(stop:Stop)
