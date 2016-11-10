@@ -37,12 +37,13 @@ class Main {
 		if (FileSystem.isDirectory(ipath)) throw 'Not a file: $ipath';
 
 		println("=> Parsing");
-		var ast = parser.Parser.parse(ipath);
+		var ast = Context.time("parsing", parser.Parser.parse.bind(ipath));
 
 		println("=> Structuring");
-		var doc = transform.NewTransform.transform(ast);
+		var doc = Context.time("structuring", transform.NewTransform.transform.bind(ast));
 
 		println("=> Validating");
+		var tval = Sys.time();
 		transform.Validator.validate(doc,
 			function (errors) {
 				if (errors != null) {
@@ -62,18 +63,35 @@ class Main {
 					}
 				}
 
+				var tgen = Sys.time();
+				Context.manualTime("validation", tgen - tval);
+
+				println("=> Generating the document");
+
 				if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
 				if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
 
-				println("=> Generating the document");
 				println(" --> HTML generation");
-				var hgen = new html.Generator(Path.join([opath, "html"]), true);
-				hgen.writeDocument(doc);
+				Context.time("html generation", function () {
+					var hgen = new html.Generator(Path.join([opath, "html"]), true);
+					hgen.writeDocument(doc);
+				});
 
 				println(" --> PDF preparation (TeX generation)");
-				var tgen = new tex.Generator(Path.join([opath, "pdf"]));
-				tgen.writeDocument(doc);
+				Context.time("tex generation", function () {
+					var tgen = new tex.Generator(Path.join([opath, "pdf"]));
+					tgen.writeDocument(doc);
+				});
+
+				printTimers();
 			});
+	}
+
+	public static function printTimers()
+	{
+		println("=> Timing measurement results");
+		for (k in Context.timerOrder)
+			println(' --> $k: ${Math.round(Context.timer[k]*1e3)} ms');
 	}
 
 	static function main()
@@ -109,6 +127,7 @@ class Main {
 			println('ERROR: Unexpected character `${e.char}`');
 			println('  at ${e.pos.toPosition().toString()}');
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
+			printTimers();
 			exit(2);
 		} catch (e:parser.ParserError) {
 			if (Context.debug) print("Parser ");
@@ -118,11 +137,13 @@ class Main {
 			println('    ${hl[0]}');
 			println('    ${hl[1]}');
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
+			printTimers();
 			exit(3);
 		} catch (e:Dynamic) {
 			if (Context.debug) print("Untyped ");
 			println('ERROR: $e');
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
+			printTimers();
 			exit(9);
 		}
 	}

@@ -1,6 +1,8 @@
 class Context {
 	public static var debug = false;
 	public static var draft = false;
+	public static var timer = new Map<String,Float>();
+	public static var timerOrder = [];
 
 	public static function prepareSourceMaps()
 	{
@@ -15,6 +17,28 @@ class Context {
 #else
 		// NOOP
 #end
+	}
+
+	public static function time<R>(key:String, work:Void->R)
+	{
+		var start = Sys.time();
+		var res = work();
+		var finish = Sys.time();
+		if (!timer.exists(key)) {
+			timer[key] = 0.;
+			timerOrder.push(key);
+		}
+		timer[key] += finish - start;
+		return res;
+	}
+
+	public static function manualTime(key:String, seconds:Float)
+	{
+		if (!timer.exists(key)) {
+			timer[key] = 0.;
+			timerOrder.push(key);
+		}
+		timer[key] += seconds;
 	}
 }
 

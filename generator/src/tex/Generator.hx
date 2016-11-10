@@ -36,7 +36,7 @@ class Generator {
 
 	static inline var ASSET_SUBDIR = "assets";
 
-	public function saveAsset(at:String, src:String):String
+	function _saveAsset(at:String, src:String):String
 	{
 		var ldir = Path.join([at, ASSET_SUBDIR]);
 		var dir = Path.join([destDir, ldir]);
@@ -61,6 +61,9 @@ class Generator {
 		weakAssert(~/[a-z\/-]+/.match(lpath), lpath, "weird chars are dangerous in TeX paths");
 		return lpath;
 	}
+
+	public function saveAsset(at, src)
+		return Context.time("tex generation (saveAsset)", _saveAsset.bind(at, src));
 
 	public function gent(text:String)
 	{
