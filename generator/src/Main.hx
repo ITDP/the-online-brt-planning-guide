@@ -36,10 +36,13 @@ class Main {
 		if (!FileSystem.exists(ipath)) throw 'File does not exist: $ipath';
 		if (FileSystem.isDirectory(ipath)) throw 'Not a file: $ipath';
 
+		println("=> Parsing");
 		var ast = parser.Parser.parse(ipath);
 
+		println("=> Structuring");
 		var doc = transform.NewTransform.transform(ast);
 
+		println("=> Validating");
 		transform.Validator.validate(doc,
 			function (errors) {
 				if (errors != null) {
@@ -62,9 +65,12 @@ class Main {
 				if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
 				if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
 
+				println("=> Generating the document");
+				println(" --> HTML generation");
 				var hgen = new html.Generator(Path.join([opath, "html"]), true);
 				hgen.writeDocument(doc);
 
+				println(" --> PDF preparation (TeX generation)");
 				var tgen = new tex.Generator(Path.join([opath, "pdf"]));
 				tgen.writeDocument(doc);
 			});
@@ -76,6 +82,9 @@ class Main {
 		Context.debug = Sys.getEnv("DEBUG") == "1";
 		Context.draft = Sys.getEnv("DRAFT") == "1";
 		Context.prepareSourceMaps();
+		Assertion.enableShow = Context.debug;
+		Assertion.enableWeakAssert = Context.debug;
+		Assertion.enableAssert = true;
 
 		try {
 			var args = Sys.args();

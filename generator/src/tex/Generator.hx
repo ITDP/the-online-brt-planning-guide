@@ -123,7 +123,7 @@ class Generator {
 			return "";
 		case DLaTeXExport(src, dest):
 			assert(FileSystem.isDirectory(destDir));
-			FsUtil.copy(src, Path.join([destDir, dest]));
+			FsUtil.copy(src, Path.join([destDir, dest]), Context.debug);
 			return "";
 		case DVolume(no, name, children):
 			idc.volume = v.id.sure();
