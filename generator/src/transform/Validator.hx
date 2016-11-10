@@ -214,7 +214,7 @@ class Validator {
 	public static function validate(doc, cback)
 	{
 		var d = new Validator(cback);
-		d.diter(doc);
+		Context.time("validation (sync)", d.diter.bind(doc));
 		d.final = true;
 		d.complete();
 	}

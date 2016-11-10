@@ -111,7 +111,7 @@ class Generator {
 		}
 	}
 
-	function saveAsset(src:String, ?content:Bytes)
+	function _saveAsset(src:String, ?content:Bytes)
 	{
 		if (assetCache.exists(src))
 			return assetCache[src];
@@ -133,6 +133,9 @@ class Generator {
 		assetCache[src] = dst;
 		return dst;
 	}
+
+	function saveAsset(src, ?content)
+		return Context.time("html generation (saveAsset)", _saveAsset.bind(src, content));
 
 	@:template function renderHead(title:String, base:String);
 	@:template function renderBreadcrumbs(bcs:Breadcrumbs);  // FIXME

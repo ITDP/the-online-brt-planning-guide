@@ -36,10 +36,14 @@ class Main {
 		if (!FileSystem.exists(ipath)) throw 'File does not exist: $ipath';
 		if (FileSystem.isDirectory(ipath)) throw 'Not a file: $ipath';
 
-		var ast = parser.Parser.parse(ipath);
+		println("=> Parsing");
+		var ast = Context.time("parsing", parser.Parser.parse.bind(ipath));
 
-		var doc = transform.NewTransform.transform(ast);
+		println("=> Structuring");
+		var doc = Context.time("structuring", transform.NewTransform.transform.bind(ast));
 
+		println("=> Validating");
+		var tval = Sys.time();
 		transform.Validator.validate(doc,
 			function (errors) {
 				if (errors != null) {
@@ -59,15 +63,35 @@ class Main {
 					}
 				}
 
+				var tgen = Sys.time();
+				Context.manualTime("validation", tgen - tval);
+
+				println("=> Generating the document");
+
 				if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
 				if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
 
-				var hgen = new html.Generator(Path.join([opath, "html"]), true);
-				hgen.writeDocument(doc);
+				println(" --> HTML generation");
+				Context.time("html generation", function () {
+					var hgen = new html.Generator(Path.join([opath, "html"]), true);
+					hgen.writeDocument(doc);
+				});
 
-				var tgen = new tex.Generator(Path.join([opath, "pdf"]));
-				tgen.writeDocument(doc);
+				println(" --> PDF preparation (TeX generation)");
+				Context.time("tex generation", function () {
+					var tgen = new tex.Generator(Path.join([opath, "pdf"]));
+					tgen.writeDocument(doc);
+				});
+
+				printTimers();
 			});
+	}
+
+	public static function printTimers()
+	{
+		println("=> Timing measurement results");
+		for (k in Context.timerOrder)
+			println(' --> $k: ${Math.round(Context.timer[k]*1e3)} ms');
 	}
 
 	static function main()
@@ -76,6 +100,9 @@ class Main {
 		Context.debug = Sys.getEnv("DEBUG") == "1";
 		Context.draft = Sys.getEnv("DRAFT") == "1";
 		Context.prepareSourceMaps();
+		Assertion.enableShow = Context.debug;
+		Assertion.enableWeakAssert = Context.debug;
+		Assertion.enableAssert = true;
 
 		try {
 			var args = Sys.args();
@@ -100,6 +127,7 @@ class Main {
 			println('ERROR: Unexpected character `${e.char}`');
 			println('  at ${e.pos.toPosition().toString()}');
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
+			printTimers();
 			exit(2);
 		} catch (e:parser.ParserError) {
 			if (Context.debug) print("Parser ");
@@ -109,11 +137,13 @@ class Main {
 			println('    ${hl[0]}');
 			println('    ${hl[1]}');
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
+			printTimers();
 			exit(3);
 		} catch (e:Dynamic) {
 			if (Context.debug) print("Untyped ");
 			println('ERROR: $e');
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
+			printTimers();
 			exit(9);
 		}
 	}

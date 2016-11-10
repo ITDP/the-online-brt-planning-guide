@@ -4,6 +4,10 @@ class RunAll {
 	public static function runAll()
 	{
 		Context.debug = true;
+		Context.draft = false;
+		Assertion.enableShow = true;
+		Assertion.enableWeakAssert = true;
+		Assertion.enableAssert = true;
 
 		var r = new utest.Runner();
 		r.addCase(new Test_01_Tools());
