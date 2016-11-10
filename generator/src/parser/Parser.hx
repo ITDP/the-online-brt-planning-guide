@@ -274,7 +274,7 @@ class Parser {
 		var path = arg(rawHorizontal, cmd, "path");
 		var caption = arg(hlist, cmd, "caption");
 		var copyright = arg(hlist, cmd, "copyright");
-		return mk(Figure(size, mkPath(path.val, path.pos), caption.val, copyright.val), cmd.pos.span(copyright.pos));
+		return mk(Figure(size, mk(path.val, path.pos.offset(1,-1)), caption.val, copyright.val), cmd.pos.span(copyright.pos));
 	}
 
 	/*
@@ -314,7 +314,7 @@ class Parser {
 				if (path != null) unexpected(peek(), "path already given");
 				var p = arg(rawHorizontal, tag[1], "path");
 				lastPos = p.pos;
-				path = mkPath(p.val, p.pos);
+				path = mk(p.val, p.pos.offset(1,-1));
 			case TAt:
 				if (copyright != null) unexpected(peek(), "copyright already given");
 				pop();

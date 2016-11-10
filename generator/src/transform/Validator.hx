@@ -161,7 +161,7 @@ class Validator {
 				for (c in columns)
 					diter(c);
 			}
-		case DFigure(_, _, path, caption, copyright):
+		case DFigure(_, _, _.get() => path, caption, copyright):
 			validateSrcPath(d.pos, path, [Jpeg, Png]);
 			if (notHEmpty(caption, d, "caption"))
 				hiter(caption);

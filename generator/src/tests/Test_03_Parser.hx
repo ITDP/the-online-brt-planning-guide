@@ -321,11 +321,11 @@ class Test_03_Parser {
 	public function test_012_figures()
 	{
 		Assert.same(
-			expand(@wrap(8,1)Figure(MarginWidth, "fig.png",@skip(2+7)@len(7)Word("caption"),@skip(2)@len(9)Word("copyright"))),  // FIXME no pos for path, @skip
+			expand(@wrap(8,1)Figure(MarginWidth,@elem@len(7)"fig.png",@skip(2)@len(7)Word("caption"),@skip(2)@len(9)Word("copyright"))),  // FIXME no pos for path, @skip
 			parse("\\figure{fig.png}{caption}{copyright}"));
 
 		Assert.same(
-			expand(@wrap(5,0)Figure(MarginWidth, "fig.png",@skip(2+7)@len(7)Word("caption"),@skip(1)@len(9)Word("copyright"))),  // FIXME no pos for path, @skip
+			expand(@wrap(6,0)Figure(MarginWidth,@elem@len(7)"fig.png",@skip(1)@len(7)Word("caption"),@skip(1)@len(9)Word("copyright"))),  // FIXME no pos for path, @skip
 			parse("#FIG#{fig.png}caption@copyright"));
 		// TODO other/weird orderings of #FIG# details
 	}

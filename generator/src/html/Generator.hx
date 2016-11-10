@@ -275,7 +275,7 @@ class Generator {
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim() + "\n";
-		case DFigure(no, size, path, caption, cright):
+		case DFigure(no, size, _.get() => path, caption, cright):
 			idc.figure = v.id.sure();
 			noc.figure = no;
 			var no = noc.join(false, ".", chapter, figure);
