@@ -631,9 +631,11 @@ class Parser {
 	public static function parse(path:String, ?parent:Position, ?cache:FileCache):File
 	{
 		var lex = new Lexer(sys.io.File.getBytes(path), path);
-		var location = haxe.io.Path.normalize(path);  // FIXME missing other checks from mkPath
-		if (!FileSystem.exists(location)) return throw new ParserError(parent, BadValue("File not found or not accessible"));
-		if (FileSystem.isDirectory(location)) return throw new ParserError(parent, BadValue("Expected file, but is directory"));
+		var location = haxe.io.Path.normalize(path);
+		// only assert for now... `\include` performs proper validation, and the entry point is checked on Main.generate
+		// TODO revise this
+		assert(FileSystem.exists(location));
+		assert(!FileSystem.isDirectory(location));
 		var parser = new Parser(location, lex, parent, cache);
 		return parser.file();
 	}
