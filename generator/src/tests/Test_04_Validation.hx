@@ -116,6 +116,12 @@ class Test_04_Validation {
 		passes('\\begintable{foo}\\useimage{$jpg}\\endtable');
 		passes('\\begintable{foo}\\useimage{$png}\\endtable');
 
+		fails('\\tex\\export{/home}{nothing}', true, AbsolutePath("/home"), ~/path cannot be absolute/i);
+		fails('\\tex\\export{C:\\Windows}{nothing}', true, AbsolutePath("C:\\Windows"), ~/path cannot be absolute/i);
+		fails('\\tex\\export{C:/Windows}{nothing}', true, AbsolutePath("C:/Windows"), ~/path cannot be absolute/i);
+		fails('\\tex\\export{..}{nothing}', true, EscapingInputPath(".."), ~/input path cannot escape the repository root directory/i);
+		fails('\\tex\\export{b/../..}{nothing}', true, EscapingInputPath("b/../.."));
+
 		fails('\\tex\\export{$file.noexists}{nothing}', true, FileNotFound('$file.noexists'), ~/file not found or not accessible/i);
 		fails('\\tex\\export{$dir.noexists}{nothing}', true, FileNotFound('$dir.noexists'));
 		fails('\\tex\\preamble{$dir}', true, FileIsDirectory(dir), ~/expected file, not directory/i);
@@ -124,8 +130,10 @@ class Test_04_Validation {
 		fails('\\begintable{foo}\\useimage{$tex}\\endtable', true, WrongFileType([Jpeg, Png], tex));
 
 		fails('\\tex\\export{$jpg}{/home}', true, AbsolutePath("/home"), ~/path cannot be absolute/i);
-		fails('\\tex\\export{$png}{..}', true, EscapingPath("the destination directory", ".."), ~/path cannot escape the destination directory/i);
-		fails('\\tex\\export{$tex}{b/../..}', true, EscapingPath("the destination directory", ".."));  // FIXME show original path
+		fails('\\tex\\export{$jpg}{C:\\Windows}', true, AbsolutePath("C:\\Windows"), ~/path cannot be absolute/i);
+		fails('\\tex\\export{$jpg}{C:/Windows}', true, AbsolutePath("C:/Windows"), ~/path cannot be absolute/i);
+		fails('\\tex\\export{$png}{..}', true, EscapingOutputPath(".."), ~/output path cannot escape the destination directory/i);
+		fails('\\tex\\export{$tex}{b/../..}', true, EscapingOutputPath("b/../.."));
 	}
 
 	public function test_004_empty_arguments()

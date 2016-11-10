@@ -70,7 +70,7 @@ class Validator {
 		if (Path.isAbsolute(original))
 			return new ValidationError(path.pos, AbsolutePath(original));
 		if (Path.normalize(original).startsWith(".."))
-			return new ValidationError(path.pos, EscapingPath("repository root", original));
+			return new ValidationError(path.pos, EscapingInputPath(original));  // FIXME this makes no sense
 
 		var computed = path.toInputPath();
 		var exists = FileSystem.exists(computed);
@@ -194,13 +194,13 @@ class Validator {
 			hiter(text);
 		case DLaTeXPreamble(path):
 			push(validateSrcPath(path, [Tex]));
-		case DLaTeXExport(src, _.toOutputPath("") => dest):  // use empty base to get a clean hypothetical output path
+		case DLaTeXExport(src, _.internal() => dest):
 			push(validateSrcPath(src, [Directory, File]));
 			if (Path.isAbsolute(dest))
 				errors.push(new ValidationError(d.pos, AbsolutePath(dest)));
-			assert(dest == Path.normalize(dest));
-			if (dest.startsWith(".."))
-				errors.push(new ValidationError(d.pos, EscapingPath("the destination directory", dest)));
+			var ndest = Path.normalize(dest);
+			if (ndest.startsWith(".."))
+				errors.push(new ValidationError(d.pos, EscapingOutputPath(dest)));
 		case DHtmlApply(path):
 			push(validateSrcPath(path, [Css]));
 		case DCodeBlock(_), DEmpty:
