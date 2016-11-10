@@ -25,6 +25,12 @@ class Validator {
 	var final = false;
 	var cback:Null<Array<ValidationError>>->Void;
 
+	function push(e:Null<ValidationError>)
+	{
+		if (e == null) return;
+		errors.push(e);
+	}
+
 	function tick()
 	{
 		if (final && wait == 0)
@@ -58,31 +64,39 @@ class Validator {
 	}
 #end
 
-	function validateSrcPath(pos, src, types:Array<FileType>)
+	static function validateSrcPath(path:PElem, types:Array<FileType>)
 	{
-		var exists = FileSystem.exists(src);
-		if (!exists) {
-			errors.push(new ValidationError(pos, FileNotFound(src)));
-			return;
-		}
-		var isDirectory = FileSystem.isDirectory(src);
-		var ext = Path.extension(src);
+		var original = path.internal();
+		if (Path.isAbsolute(original))
+			return new ValidationError(path.pos, AbsolutePath(original));
+		if (Path.normalize(original).startsWith(".."))
+			return new ValidationError(path.pos, EscapingPath("repository root", original));
+
+		var computed = path.toInputPath();
+		var exists = FileSystem.exists(computed);
+		if (!exists)
+			return new ValidationError(path.pos, FileNotFound(computed));
+		var isDirectory = FileSystem.isDirectory(computed);
+		var ext = Path.extension(computed);
 		for (t in types) {
 			switch [isDirectory, t, ext.toLowerCase()] {
-			case [true, Directory, _]: return;
-			case [false, File, _]: return;
-			case [false, Jpeg, "jpeg"|"jpg"]: return;
-			case [false, Png, "png"]: return;
-			case [false, Js, "js"]: return;
-			case [false, Css, "css"]: return;
-			case [false, Tex, "tex"]: return;
-			case _: // keep going
+			case [true, Directory, _]:
+			case [false, File, _]:
+			case [false, Jpeg, "jpeg"|"jpg"]:
+			case [false, Png, "png"]:
+			case [false, Js, "js"]:
+			case [false, Css, "css"]:
+			case [false, Tex, "tex"]:
+			case _:
+				// keep going; skip the following `return null`
+				continue;
 			}
+			return null;
 		}
 		if (isDirectory)
-			errors.push(new ValidationError(pos, FileIsDirectory(src)));
+			return new ValidationError(path.pos, FileIsDirectory(computed));
 		else
-			errors.push(new ValidationError(pos, WrongFileType(types, src)));
+			return new ValidationError(path.pos, WrongFileType(types, computed));
 	}
 
 	/*
@@ -161,8 +175,8 @@ class Validator {
 				for (c in columns)
 					diter(c);
 			}
-		case DFigure(_, _, _.get() => path, caption, copyright):
-			validateSrcPath(d.pos, path, [Jpeg, Png]);
+		case DFigure(_, _, path, caption, copyright):
+			push(validateSrcPath(path, [Jpeg, Png]));
 			if (notHEmpty(caption, d, "caption"))
 				hiter(caption);
 			if (notHEmpty(copyright, d, "copyright"))
@@ -170,7 +184,7 @@ class Validator {
 		case DImgTable(_, _, caption, path):
 			if (notHEmpty(caption, d, "caption"))
 				hiter(caption);
-			validateSrcPath(d.pos, path.get(), [Jpeg, Png]); // FIXME absolute/escaping?
+			push(validateSrcPath(path, [Jpeg, Png]));
 		case DQuotation(text, by):
 			if (notHEmpty(text, d, "text"))
 				hiter(text);
@@ -179,16 +193,16 @@ class Validator {
 		case DParagraph(text):
 			hiter(text);
 		case DLaTeXPreamble(path):
-			validateSrcPath(d.pos, path.get(), [Tex]);
-		case DLaTeXExport(_.get() => src, _.get("") => dest):
-			validateSrcPath(d.pos, src, [Directory, File]);
+			push(validateSrcPath(path, [Tex]));
+		case DLaTeXExport(src, _.toOutputPath("") => dest):  // use empty base to get a clean hypothetical output path
+			push(validateSrcPath(src, [Directory, File]));
 			if (Path.isAbsolute(dest))
 				errors.push(new ValidationError(d.pos, AbsolutePath(dest)));
 			assert(dest == Path.normalize(dest));
 			if (dest.startsWith(".."))
 				errors.push(new ValidationError(d.pos, EscapingPath("the destination directory", dest)));
 		case DHtmlApply(path):
-			validateSrcPath(path.pos, path.get(), [Css]);  // FIXME absolute/escaping?
+			push(validateSrcPath(path, [Css]));
 		case DCodeBlock(_), DEmpty:
 			// nothing to do
 		}

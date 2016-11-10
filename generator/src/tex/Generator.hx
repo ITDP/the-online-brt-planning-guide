@@ -117,14 +117,14 @@ class Generator {
 		switch v.def {
 		case DHtmlApply(_):
 			return "";
-		case DLaTeXPreamble(_.get() => path):
+		case DLaTeXPreamble(_.toInputPath() => path):
 			// TODO validate path (or has Transform done so?)
 			preamble.add('% included from `$path`\n');
 			preamble.add(genp(v.pos));
 			preamble.add(File.getContent(path).trim());
 			preamble.add("\n\n");
 			return "";
-		case DLaTeXExport(_.get() => src, _.get(destDir) => dest):
+		case DLaTeXExport(_.toInputPath() => src, _.toOutputPath(destDir) => dest):
 			assert(FileSystem.isDirectory(destDir));
 			FsUtil.copy(src, dest, Context.debug);
 			return "";
@@ -165,7 +165,7 @@ class Generator {
 			idc.box = v.id.sure();
 			var id = idc.join(true, ":", chapter, box);
 			return '\\beginbox{$no}{${genh(name)}}\n\\label{$id}\n${genv(children, at, idc)}\\endbox\n${genp(v.pos)}\n';
-		case DFigure(no, size, _.get() => path, caption, cright):
+		case DFigure(no, size, _.toInputPath() => path, caption, cright):
 			idc.figure = v.id.sure();
 			var id = idc.join(true, ":", chapter, figure);
 			path = saveAsset(at, path);
@@ -185,7 +185,7 @@ class Generator {
 			idc.table = v.id.sure();
 			var id = idc.join(true, ":", chapter, table);
 			return LargeTable.gen(v, id, this, at, idc);
-		case DImgTable(no, size, caption, _.get() => path):
+		case DImgTable(no, size, caption, _.toInputPath() => path):
 			idc.table = v.id.sure();
 			var id = idc.join(true, ":", chapter, table);
 			path = saveAsset(at, path);

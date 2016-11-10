@@ -2,6 +2,7 @@ package parser;
 
 import Assertion.*;
 import haxe.ds.Option;
+import haxe.io.Path;
 import parser.Token;
 
 typedef Elem<T> = { def : T, pos : Position };
@@ -15,13 +16,36 @@ Stores the path as it was on the source file and allows lazy checking and resolu
 */
 @:forward(pos)
 abstract PElem(Elem<String>) from Elem<String> {
-	public function get(?base:Null<String>):String
+	/*
+	Computes a path to read from.
+
+	Considers the raw value as a relative path using as basis the directory
+	inside which the source file with that value lived.
+	*/
+	public function toInputPath():String
 	{
-		if (base == null)
-			base = this.pos.src;
-		var path = haxe.io.Path.join([haxe.io.Path.directory(base), this.def]);
-		return haxe.io.Path.normalize(path);
+		assert(this.def != null && this.def != "", this.def);
+		var path = Path.join([Path.directory(this.pos.src), this.def]);
+		return Path.normalize(path);
 	}
+
+	/*
+	Computes a path to read from.
+
+	Takes an optional base directory (default: `./`).
+	*/
+	public function toOutputPath(?base="./"):String
+	{
+		assert(this.def != null && this.def != "", this.def);
+		var path = Path.join([base, this.def]);
+		return Path.normalize(path);
+	}
+
+	/*
+	Expose the raw value (explicitly).
+	*/
+	public function internal():String
+		return this.def;
 }
 
 /*

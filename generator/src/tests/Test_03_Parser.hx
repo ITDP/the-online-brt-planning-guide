@@ -577,7 +577,7 @@ class Test_03_Parser {
 		// \tex\export
 		Assert.same(expand(@wrap(12,1)LaTeXExport(@elem@len(1)"a",@skip(2)@elem@len(1)"b")), parse("\\tex\\export{a}{b}"));
 		Assert.same(expand(@wrap(12,1)LaTeXExport(@elem@len(1)"a",@skip(2)@elem@len(11)"c/d/../../b")), parse("\\tex\\export{a}{c/d/../../b}"));
-		Assert.equals("b", ( expand(@elem"c/d/../../b"):PElem ).get(""));
+		Assert.equals("b", ( expand(@elem"c/d/../../b"):PElem ).toOutputPath(""));
 	}
 
 	public function test_021_include()
