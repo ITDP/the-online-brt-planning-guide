@@ -2,6 +2,7 @@ package parser;  // TODO move out of the package
 
 import haxe.ds.GenericStack.GenericCell;
 import haxe.ds.Option;
+import haxe.io.Path;
 import parser.Ast;
 import parser.ParserError;
 import parser.Token;
@@ -20,8 +21,7 @@ typedef Stop = {
 	?beforeAny:Array<TokenDef>  // could possibly replace before
 }
 
-typedef Path = String;
-typedef FileCache = Map<Path,{ parent:Position, ast:Option<File> }>;
+typedef FileCache = Map<String,{ parent:Position, ast:Option<File> }>;
 
 class Parser {
 	public static var defaultFigureSize = MarginWidth;
@@ -35,7 +35,7 @@ class Parser {
 	static var horizontalCommands = ["sup", "sub", "emph", "highlight"];
 
 	var parent:Position;
-	var location:Path;
+	var location:String;
 	var lexer:Lexer;
 	var cache:FileCache;
 	var next:GenericCell<Token>;
@@ -486,9 +486,9 @@ class Parser {
 				return rel;
 			badArg(pos, "path cannot be empty");
 		}
-		if (haxe.io.Path.isAbsolute(rel)) badArg(pos, "path cannot be absolute");
-		var path = haxe.io.Path.join([haxe.io.Path.directory(pos.src), rel]);
-		return haxe.io.Path.normalize(path);
+		if (Path.isAbsolute(rel)) badArg(pos, "path cannot be absolute");
+		var path = Path.join([Path.directory(pos.src), rel]);
+		return Path.normalize(path);
 	}
 
 	function include(cmd:Token)
@@ -601,8 +601,6 @@ class Parser {
 
 	public function file():File
 	{
-		assert(!haxe.io.Path.isAbsolute(location), location);
-		assert(location == haxe.io.Path.normalize(location), location);
 		switch cache[location] {
 		case null:
 			var entry = cache[location] = { parent:parent, ast:None };
@@ -620,8 +618,7 @@ class Parser {
 	{
 		this.location = location;
 		this.lexer = lexer;
-		assert(!haxe.io.Path.isAbsolute(location), location);
-		assert(location == haxe.io.Path.normalize(location), location);
+		assert(location == Path.normalize(location), location);
 		if (parent == null) parent = { min:0, max:0, src:location };
 		this.parent = parent;
 		if (cache == null) cache = new FileCache();
@@ -630,13 +627,14 @@ class Parser {
 
 	public static function parse(path:String, ?parent:Position, ?cache:FileCache):File
 	{
+		// only assert; `\include` performs proper validation, and the
+		// entry point is checked on Main.generate
+		var p:PElem = mk(path, { src:"./", min:0, max:0 });
+		var pcheck = Validator.validateSrcPath(p, [Manu]);
+		assert(pcheck == null, pcheck);
+
 		var lex = new Lexer(sys.io.File.getBytes(path), path);
-		var location = haxe.io.Path.normalize(path);
-		// only assert for now... `\include` performs proper validation, and the entry point is checked on Main.generate
-		// TODO revise this
-		assert(FileSystem.exists(location));
-		assert(!FileSystem.isDirectory(location));
-		var parser = new Parser(location, lex, parent, cache);
+		var parser = new Parser(path, lex, parent, cache);
 		return parser.file();
 	}
 }

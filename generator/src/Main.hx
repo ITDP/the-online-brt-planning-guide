@@ -33,11 +33,14 @@ class Main {
 	static function generate(ipath, opath)
 	{
 		if (Context.debug) println('The current working dir is: `${Sys.getCwd()}`');
-		if (!FileSystem.exists(ipath)) throw 'File does not exist: $ipath';
-		if (FileSystem.isDirectory(ipath)) throw 'Not a file: $ipath';
+
+		var p:parser.Ast.PElem = { def:ipath, pos:{ src:"./", min:0, max:0 } };
+		var pcheck = transform.Validator.validateSrcPath(p, [transform.Validator.FileType.Manu]);
+		if (pcheck != null)
+			throw pcheck.toString();
 
 		println("=> Parsing");
-		var ast = Context.time("parsing", parser.Parser.parse.bind(ipath));
+		var ast = Context.time("parsing", parser.Parser.parse.bind(p.toInputPath()));
 
 		println("=> Structuring");
 		var doc = Context.time("structuring", transform.NewTransform.transform.bind(ast));
