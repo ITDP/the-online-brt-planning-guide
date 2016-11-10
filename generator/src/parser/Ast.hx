@@ -13,14 +13,13 @@ A path element.
 
 Stores the path as it was on the source file and allows lazy checking and resolution of it.
 */
-@:forward
+@:forward(pos)
 abstract PElem(Elem<String>) from Elem<String> {
-	public function get():String
+	public function get(?base:Null<String>):String
 	{
-		assert(this.def != null);
-		assert(this.def != "");
-		assert(!haxe.io.Path.isAbsolute(this.def));
-		var path = haxe.io.Path.join([haxe.io.Path.directory(this.pos.src), this.def]);
+		if (base == null)
+			base = this.pos.src;
+		var path = haxe.io.Path.join([haxe.io.Path.directory(base), this.def]);
 		return haxe.io.Path.normalize(path);
 	}
 }
@@ -57,8 +56,8 @@ A vertical element.
 enum VDef {
 	MetaReset(name:String, val:Int);
 	HtmlApply(path:PElem);
-	LaTeXPreamble(path:String);
-	LaTeXExport(src:String, dest:String);
+	LaTeXPreamble(path:PElem);
+	LaTeXExport(src:PElem, dest:PElem);
 
 	Volume(name:HElem);
 	Chapter(name:HElem);

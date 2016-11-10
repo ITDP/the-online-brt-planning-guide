@@ -381,7 +381,6 @@ class Parser {
 			var end = pop();  // should have already discarted any vnoise before
 			if (end.def.match(TEof)) unclosed(begin);
 			if (!end.def.match(TCommand("endtable"))) unexpected(end);
-			// MAYBE abstract offset(1,-1)
 			return mk(ImgTable(size, caption.val, mk(path.val, path.pos.offset(1,-1))), begin.pos.span(end.pos));
 		} else if (peek().def.match(TCommand("header"))) {
 			var header = tableRow(pop());
@@ -518,9 +517,9 @@ class Parser {
 	function targetInclude(cmd:Token)
 	{
 		var p = arg(rawHorizontal, cmd, "source path");
-		var path = mkPath(p.val, p.pos);
+		var path = mk(p.val, p.pos.offset(1, -1));
 		return switch cmd.def {
-		case TCommand("apply"): mk(HtmlApply(mk(p.val, p.pos.offset(1,-1))), cmd.pos.span(p.pos));  // MAYBE abstract offset(1,-1)
+		case TCommand("apply"): mk(HtmlApply(path), cmd.pos.span(p.pos));
 		case TCommand("preamble"): mk(LaTeXPreamble(path), cmd.pos.span(p.pos));
 		case _: unexpected(cmd);
 		}
@@ -531,9 +530,7 @@ class Parser {
 		assert(cmd.def.match(TCommand("export")), cmd);
 		var s = arg(rawHorizontal, cmd, "source path");
 		var d = arg(rawHorizontal, cmd, "destination path");
-		var src = mkPath(s.val, s.pos);
-		var dest = haxe.io.Path.normalize(d.val);
-		return mk(LaTeXExport(src, dest), cmd.pos.span(d.pos));
+		return mk(LaTeXExport(mk(s.val, s.pos.offset(1,-1)), mk(d.val, d.pos.offset(1,-1))), cmd.pos.span(d.pos));
 	}
 
 	function meta(meta:Token)

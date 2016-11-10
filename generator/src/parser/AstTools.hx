@@ -60,8 +60,8 @@ class AstTools {
 				min -= wrap.before;
 				pp.max += wrap.after;
 			}
-			pp.min = pp.max;
 			var edef = transform(sub, src, id, pp);
+			pp.min = pp.max;
 			macro { def:$edef, pos:{ src:$v{src}, min:$v{min}, max:$v{pp.max} } };
 		case EMeta({ name:name, params:[v] }, sub):
 			var passWrap = null;  // not really sure when to pass (see test 01:002)

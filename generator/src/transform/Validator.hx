@@ -179,12 +179,12 @@ class Validator {
 		case DParagraph(text):
 			hiter(text);
 		case DLaTeXPreamble(path):
-			validateSrcPath(d.pos, path, [Tex]);
-		case DLaTeXExport(src, dest):
+			validateSrcPath(d.pos, path.get(), [Tex]);
+		case DLaTeXExport(_.get() => src, _.get("") => dest):
 			validateSrcPath(d.pos, src, [Directory, File]);
-			assert(dest == Path.normalize(dest));
 			if (Path.isAbsolute(dest))
 				errors.push(new ValidationError(d.pos, AbsolutePath(dest)));
+			assert(dest == Path.normalize(dest));
 			if (dest.startsWith(".."))
 				errors.push(new ValidationError(d.pos, EscapingPath("the destination directory", dest)));
 		case DHtmlApply(path):

@@ -117,16 +117,16 @@ class Generator {
 		switch v.def {
 		case DHtmlApply(_):
 			return "";
-		case DLaTeXPreamble(path):
+		case DLaTeXPreamble(_.get() => path):
 			// TODO validate path (or has Transform done so?)
 			preamble.add('% included from `$path`\n');
 			preamble.add(genp(v.pos));
 			preamble.add(File.getContent(path).trim());
 			preamble.add("\n\n");
 			return "";
-		case DLaTeXExport(src, dest):
+		case DLaTeXExport(_.get() => src, _.get(destDir) => dest):
 			assert(FileSystem.isDirectory(destDir));
-			FsUtil.copy(src, Path.join([destDir, dest]), Context.debug);
+			FsUtil.copy(src, dest, Context.debug);
 			return "";
 		case DVolume(no, name, children):
 			idc.volume = v.id.sure();

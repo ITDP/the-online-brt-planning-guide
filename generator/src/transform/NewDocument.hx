@@ -13,8 +13,8 @@ A document level definition.
 */
 enum DDef {
 	DHtmlApply(path:PElem);
-	DLaTeXPreamble(path:String);
-	DLaTeXExport(src:String, dest:String);
+	DLaTeXPreamble(path:PElem);
+	DLaTeXExport(src:PElem, dest:PElem);
 
 	DVolume(no:Int, name:HElem, children:DElem);
 	DChapter(no:Int, name:HElem, children:DElem);

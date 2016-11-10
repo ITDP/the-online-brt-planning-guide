@@ -575,8 +575,9 @@ class Test_03_Parser {
 		// TODO \tex\preamble
 
 		// \tex\export
-		Assert.same(expand(@len(17)LaTeXExport("a","b")), parse("\\tex\\export{a}{b}"));
-		Assert.same(expand(@len(27)LaTeXExport("a","b")), parse("\\tex\\export{a}{c/d/../../b}"));
+		Assert.same(expand(@wrap(12,1)LaTeXExport(@elem@len(1)"a",@skip(2)@elem@len(1)"b")), parse("\\tex\\export{a}{b}"));
+		Assert.same(expand(@wrap(12,1)LaTeXExport(@elem@len(1)"a",@skip(2)@elem@len(11)"c/d/../../b")), parse("\\tex\\export{a}{c/d/../../b}"));
+		Assert.equals("b", ( expand(@elem"c/d/../../b"):PElem ).get(""));
 	}
 
 	public function test_021_include()
