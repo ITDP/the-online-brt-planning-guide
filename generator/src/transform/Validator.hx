@@ -66,12 +66,6 @@ class Validator {
 
 	static function validateSrcPath(path:PElem, types:Array<FileType>)
 	{
-		var original = path.internal();
-		if (Path.isAbsolute(original))
-			return new ValidationError(path.pos, AbsolutePath(original));
-		if (Path.normalize(original).startsWith(".."))
-			return new ValidationError(path.pos, EscapingInputPath(original));  // FIXME this makes no sense
-
 		var computed = path.toInputPath();
 		var exists = FileSystem.exists(computed);
 		if (!exists)
@@ -197,7 +191,7 @@ class Validator {
 		case DLaTeXExport(src, _.internal() => dest):
 			push(validateSrcPath(src, [Directory, File]));
 			if (Path.isAbsolute(dest))
-				errors.push(new ValidationError(d.pos, AbsolutePath(dest)));
+				errors.push(new ValidationError(d.pos, AbsoluteOutputPath(dest)));
 			var ndest = Path.normalize(dest);
 			if (ndest.startsWith(".."))
 				errors.push(new ValidationError(d.pos, EscapingOutputPath(dest)));

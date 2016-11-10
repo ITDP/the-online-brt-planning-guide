@@ -4,8 +4,7 @@ import transform.NewDocument;
 
 enum ValidationErrorValue {
 	BadMath(math:String);
-	AbsolutePath(path:String);  // best to pass the original path
-	EscapingInputPath(path:String);  // best to pass the original path
+	AbsoluteOutputPath(path:String);  // best to pass the original path
 	EscapingOutputPath(path:String);  // best to pass the original path
 	FileNotFound(path:String);  // best to pass the computed path
 	FileIsDirectory(path:String);  // best to pass the computed path
@@ -34,10 +33,8 @@ class ValidationError extends GenericError {
 		switch err {
 		case BadMath(math):
 			return 'Bad math: $$$$$math$$$$';
-		case AbsolutePath(path):
-			return 'Path cannot be absolute';
-		case EscapingInputPath(path):
-			return 'Input path cannot escape the repository root directory';
+		case AbsoluteOutputPath(path):
+			return 'Output path cannot be absolute';
 		case EscapingOutputPath(path):
 			return 'Output path cannot escape the destination directory';
 		case FileNotFound(path):
