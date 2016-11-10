@@ -123,9 +123,11 @@ class Test_04_Validation {
 		fails('\\figure{$css}{foo}{bar}', true, WrongFileType([Jpeg, Png], css));
 		fails('\\begintable{foo}\\useimage{$tex}\\endtable', true, WrongFileType([Jpeg, Png], tex));
 
-		fails('\\tex\\export{$jpg}{/home}', true, AbsolutePath("/home"), ~/path cannot be absolute/i);
-		fails('\\tex\\export{$png}{..}', true, EscapingPath("the destination directory", ".."), ~/path cannot escape the destination directory/i);
-		fails('\\tex\\export{$tex}{b/../..}', true, EscapingPath("the destination directory", ".."));  // FIXME show original path
+		fails('\\tex\\export{$jpg}{/home}', true, AbsoluteOutputPath("/home"), ~/path cannot be absolute/i);
+		fails('\\tex\\export{$jpg}{C:\\Windows}', true, AbsoluteOutputPath("C:\\Windows"), ~/path cannot be absolute/i);
+		fails('\\tex\\export{$jpg}{C:/Windows}', true, AbsoluteOutputPath("C:/Windows"), ~/path cannot be absolute/i);
+		fails('\\tex\\export{$png}{..}', true, EscapingOutputPath(".."), ~/output path cannot escape the destination directory/i);
+		fails('\\tex\\export{$tex}{b/../..}', true, EscapingOutputPath("b/../.."));
 	}
 
 	public function test_004_empty_arguments()

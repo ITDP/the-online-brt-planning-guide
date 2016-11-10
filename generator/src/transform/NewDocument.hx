@@ -4,6 +4,7 @@ import parser.Ast;
 
 // expose the reused definitions from parser.Ast so that downstream users don't
 // need to import both types
+typedef PElem = parser.PElem;
 typedef HElem = parser.HElem;
 typedef BlobSize = parser.BlobSize;
 
@@ -11,9 +12,9 @@ typedef BlobSize = parser.BlobSize;
 A document level definition.
 */
 enum DDef {
-	DHtmlApply(path:String);
-	DLaTeXPreamble(path:String);
-	DLaTeXExport(src:String, dest:String);
+	DHtmlApply(path:PElem);
+	DLaTeXPreamble(path:PElem);
+	DLaTeXExport(src:PElem, dest:PElem);
 
 	DVolume(no:Int, name:HElem, children:DElem);
 	DChapter(no:Int, name:HElem, children:DElem);
@@ -21,9 +22,9 @@ enum DDef {
 	DSubSection(no:Int, name:HElem, children:DElem);
 	DSubSubSection(no:Int, name:HElem, children:DElem);
 	DBox(no:Int, name:HElem, children:DElem);
-	DFigure(no:Int, size:BlobSize, path:String, caption:HElem, copyright:HElem);
+	DFigure(no:Int, size:BlobSize, path:PElem, caption:HElem, copyright:HElem);
 	DTable(no:Int, size:BlobSize, caption:HElem, header:Array<DElem>, rows:Array<Array<DElem>>);
-	DImgTable(no:Int, size:BlobSize, caption:HElem, path:String);
+	DImgTable(no:Int, size:BlobSize, caption:HElem, path:PElem);
 	DList(numbered:Bool, li:Array<DElem>);
 	DCodeBlock(cte:String);
 	DQuotation(text:HElem, by:HElem);

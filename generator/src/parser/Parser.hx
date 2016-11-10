@@ -2,10 +2,13 @@ package parser;  // TODO move out of the package
 
 import haxe.ds.GenericStack.GenericCell;
 import haxe.ds.Option;
+import haxe.io.Path;
 import parser.Ast;
 import parser.ParserError;
 import parser.Token;
 import sys.FileSystem;
+import transform.ValidationError;
+import transform.Validator;
 
 import Assertion.*;
 import parser.AstTools.*;
@@ -18,8 +21,7 @@ typedef Stop = {
 	?beforeAny:Array<TokenDef>  // could possibly replace before
 }
 
-typedef Path = String;
-typedef FileCache = Map<Path,{ parent:Position, ast:Option<File> }>;
+typedef FileCache = Map<String,{ parent:Position, ast:Option<File> }>;
 
 class Parser {
 	public static var defaultFigureSize = MarginWidth;
@@ -33,7 +35,7 @@ class Parser {
 	static var horizontalCommands = ["sup", "sub", "emph", "highlight"];
 
 	var parent:Position;
-	var location:Path;
+	var location:String;
 	var lexer:Lexer;
 	var cache:FileCache;
 	var next:GenericCell<Token>;
@@ -52,6 +54,9 @@ class Parser {
 
 	inline function badArg(pos:Position, ?desc:String):Dynamic
 		throw new ParserError(pos.offset(1, -1), BadValue(desc));
+
+	inline function invalid(pos:Position, verror:ValidationErrorValue):Dynamic
+		throw new ParserError(pos, Invalid(verror));
 
 	inline function unexpectedCmd(cmd:Token):Dynamic
 	{
@@ -274,7 +279,7 @@ class Parser {
 		var path = arg(rawHorizontal, cmd, "path");
 		var caption = arg(hlist, cmd, "caption");
 		var copyright = arg(hlist, cmd, "copyright");
-		return mk(Figure(size, mkPath(path.val, path.pos), caption.val, copyright.val), cmd.pos.span(copyright.pos));
+		return mk(Figure(size, mk(path.val, path.pos.offset(1,-1)), caption.val, copyright.val), cmd.pos.span(copyright.pos));
 	}
 
 	/*
@@ -314,7 +319,7 @@ class Parser {
 				if (path != null) unexpected(peek(), "path already given");
 				var p = arg(rawHorizontal, tag[1], "path");
 				lastPos = p.pos;
-				path = mkPath(p.val, p.pos);
+				path = mk(p.val, p.pos.offset(1,-1));
 			case TAt:
 				if (copyright != null) unexpected(peek(), "copyright already given");
 				pop();
@@ -381,7 +386,7 @@ class Parser {
 			var end = pop();  // should have already discarted any vnoise before
 			if (end.def.match(TEof)) unclosed(begin);
 			if (!end.def.match(TCommand("endtable"))) unexpected(end);
-			return mk(ImgTable(size, caption.val, mkPath(path.val, path.pos)), begin.pos.span(end.pos));
+			return mk(ImgTable(size, caption.val, mk(path.val, path.pos.offset(1,-1))), begin.pos.span(end.pos));
 		} else if (peek().def.match(TCommand("header"))) {
 			var header = tableRow(pop());
 			while (true) {
@@ -481,19 +486,20 @@ class Parser {
 				return rel;
 			badArg(pos, "path cannot be empty");
 		}
-		if (haxe.io.Path.isAbsolute(rel)) badArg(pos, "path cannot be absolute");
-		var path = haxe.io.Path.join([haxe.io.Path.directory(pos.src), rel]);
-		return haxe.io.Path.normalize(path);
+		if (Path.isAbsolute(rel)) badArg(pos, "path cannot be absolute");
+		var path = Path.join([Path.directory(pos.src), rel]);
+		return Path.normalize(path);
 	}
 
 	function include(cmd:Token)
 	{
 		assert(cmd.def.match(TCommand("include")), cmd);
 		var p = arg(rawHorizontal, cmd);
-		var path = mkPath(p.val, p.pos);
-		if (!FileSystem.exists(path)) return badValue(p.pos, "File not found or not accessible");
-		if (FileSystem.isDirectory(path)) return badValue(p.pos, "Expected file, but is directory");
-		return parse(path, p.pos, cache);
+		var path:PElem = mk(p.val, p.pos);
+		var pcheck = Validator.validateSrcPath(path, [Manu]);
+		if (pcheck != null)
+			return invalid(p.pos, pcheck.err);
+		return parse(path.toInputPath(), p.pos, cache);
 	}
 
 	function paragraph(stop:Stop)
@@ -517,7 +523,7 @@ class Parser {
 	function targetInclude(cmd:Token)
 	{
 		var p = arg(rawHorizontal, cmd, "source path");
-		var path = mkPath(p.val, p.pos);
+		var path = mk(p.val, p.pos.offset(1, -1));
 		return switch cmd.def {
 		case TCommand("apply"): mk(HtmlApply(path), cmd.pos.span(p.pos));
 		case TCommand("preamble"): mk(LaTeXPreamble(path), cmd.pos.span(p.pos));
@@ -530,9 +536,7 @@ class Parser {
 		assert(cmd.def.match(TCommand("export")), cmd);
 		var s = arg(rawHorizontal, cmd, "source path");
 		var d = arg(rawHorizontal, cmd, "destination path");
-		var src = mkPath(s.val, s.pos);
-		var dest = haxe.io.Path.normalize(d.val);
-		return mk(LaTeXExport(src, dest), cmd.pos.span(d.pos));
+		return mk(LaTeXExport(mk(s.val, s.pos.offset(1,-1)), mk(d.val, d.pos.offset(1,-1))), cmd.pos.span(d.pos));
 	}
 
 	function meta(meta:Token)
@@ -597,8 +601,6 @@ class Parser {
 
 	public function file():File
 	{
-		assert(!haxe.io.Path.isAbsolute(location), location);
-		assert(location == haxe.io.Path.normalize(location), location);
 		switch cache[location] {
 		case null:
 			var entry = cache[location] = { parent:parent, ast:None };
@@ -616,8 +618,7 @@ class Parser {
 	{
 		this.location = location;
 		this.lexer = lexer;
-		assert(!haxe.io.Path.isAbsolute(location), location);
-		assert(location == haxe.io.Path.normalize(location), location);
+		assert(location == Path.normalize(location), location);
 		if (parent == null) parent = { min:0, max:0, src:location };
 		this.parent = parent;
 		if (cache == null) cache = new FileCache();
@@ -626,11 +627,14 @@ class Parser {
 
 	public static function parse(path:String, ?parent:Position, ?cache:FileCache):File
 	{
+		// only assert; `\include` performs proper validation, and the
+		// entry point is checked on Main.generate
+		var p:PElem = mk(path, { src:"./", min:0, max:0 });
+		var pcheck = Validator.validateSrcPath(p, [Manu]);
+		assert(pcheck == null, pcheck);
+
 		var lex = new Lexer(sys.io.File.getBytes(path), path);
-		var location = haxe.io.Path.normalize(path);  // FIXME missing other checks from mkPath
-		if (!FileSystem.exists(location)) return throw new ParserError(parent, BadValue("File not found or not accessible"));
-		if (FileSystem.isDirectory(location)) return throw new ParserError(parent, BadValue("Expected file, but is directory"));
-		var parser = new Parser(location, lex, parent, cache);
+		var parser = new Parser(path, lex, parent, cache);
 		return parser.file();
 	}
 }

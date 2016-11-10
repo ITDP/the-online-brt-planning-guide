@@ -17,6 +17,18 @@ using StringTools;
 	public var Js = "Javascript source file";
 	public var Css = "Cascading style sheet (CSS) file";
 	public var Tex = "TeX source file";
+	public var Manu = "Manuscript Markup Language";  // TODO use the 'manu' name
+
+	public function validExtensions()
+		return switch this {
+		case Jpeg: ["jpeg", "jpg"];
+		case Png: ["png"];
+		case Js: ["js"];
+		case Css: ["css"];
+		case Tex: ["tex"];
+		case Manu: ["manu", "src", "txt"];
+		case Directory|File|_: [];
+		}
 }
 
 class Validator {
@@ -24,6 +36,12 @@ class Validator {
 	var wait = 0;
 	var final = false;
 	var cback:Null<Array<ValidationError>>->Void;
+
+	function push(e:Null<ValidationError>)
+	{
+		if (e == null) return;
+		errors.push(e);
+	}
 
 	function tick()
 	{
@@ -58,31 +76,34 @@ class Validator {
 	}
 #end
 
-	function validateSrcPath(pos, src, types:Array<FileType>)
+	public static function validateSrcPath(path:PElem, types:Array<FileType>)
 	{
-		var exists = FileSystem.exists(src);
-		if (!exists) {
-			errors.push(new ValidationError(pos, FileNotFound(src)));
-			return;
-		}
-		var isDirectory = FileSystem.isDirectory(src);
-		var ext = Path.extension(src);
+		var computed = path.toInputPath();
+		var exists = FileSystem.exists(computed);
+		if (!exists)
+			return new ValidationError(path.pos, FileNotFound(computed));
+		var isDirectory = FileSystem.isDirectory(computed);
+		var ext = Path.extension(computed);
 		for (t in types) {
-			switch [isDirectory, t, ext.toLowerCase()] {
-			case [true, Directory, _]: return;
-			case [false, File, _]: return;
-			case [false, Jpeg, "jpeg"|"jpg"]: return;
-			case [false, Png, "png"]: return;
-			case [false, Js, "js"]: return;
-			case [false, Css, "css"]: return;
-			case [false, Tex, "tex"]: return;
-			case _: // keep going
+			switch [isDirectory, t, Lambda.has(t.validExtensions(), ext.toLowerCase())] {
+			case [true, Directory, _]:
+			case [false, File, _]:
+			case [false, Jpeg, true]:
+			case [false, Png, true]:
+			case [false, Js, true]:
+			case [false, Css, true]:
+			case [false, Tex, true]:
+			case [false, Manu, true]:
+			case _:
+				// keep going; skip the following `return null`
+				continue;
 			}
+			return null;
 		}
 		if (isDirectory)
-			errors.push(new ValidationError(pos, FileIsDirectory(src)));
+			return new ValidationError(path.pos, FileIsDirectory(computed));
 		else
-			errors.push(new ValidationError(pos, WrongFileType(types, src)));
+			return new ValidationError(path.pos, WrongFileType(types, computed));
 	}
 
 	/*
@@ -162,7 +183,7 @@ class Validator {
 					diter(c);
 			}
 		case DFigure(_, _, path, caption, copyright):
-			validateSrcPath(d.pos, path, [Jpeg, Png]);
+			push(validateSrcPath(path, [Jpeg, Png]));
 			if (notHEmpty(caption, d, "caption"))
 				hiter(caption);
 			if (notHEmpty(copyright, d, "copyright"))
@@ -170,7 +191,7 @@ class Validator {
 		case DImgTable(_, _, caption, path):
 			if (notHEmpty(caption, d, "caption"))
 				hiter(caption);
-			validateSrcPath(d.pos, path, [Jpeg, Png]);
+			push(validateSrcPath(path, [Jpeg, Png]));
 		case DQuotation(text, by):
 			if (notHEmpty(text, d, "text"))
 				hiter(text);
@@ -179,16 +200,16 @@ class Validator {
 		case DParagraph(text):
 			hiter(text);
 		case DLaTeXPreamble(path):
-			validateSrcPath(d.pos, path, [Tex]);
-		case DLaTeXExport(src, dest):
-			validateSrcPath(d.pos, src, [Directory, File]);
-			assert(dest == Path.normalize(dest));
+			push(validateSrcPath(path, [Tex]));
+		case DLaTeXExport(src, _.internal() => dest):
+			push(validateSrcPath(src, [Directory, File]));
 			if (Path.isAbsolute(dest))
-				errors.push(new ValidationError(d.pos, AbsolutePath(dest)));
-			if (dest.startsWith(".."))
-				errors.push(new ValidationError(d.pos, EscapingPath("the destination directory", dest)));
+				errors.push(new ValidationError(d.pos, AbsoluteOutputPath(dest)));
+			var ndest = Path.normalize(dest);
+			if (ndest.startsWith(".."))
+				errors.push(new ValidationError(d.pos, EscapingOutputPath(dest)));
 		case DHtmlApply(path):
-			validateSrcPath(d.pos, path, [Css]);
+			push(validateSrcPath(path, [Css]));
 		case DCodeBlock(_), DEmpty:
 			// nothing to do
 		}

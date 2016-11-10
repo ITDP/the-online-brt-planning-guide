@@ -140,5 +140,12 @@ class Test_01_Tools {
 
 		sys.FileSystem.deleteFile(a);
 	}
+
+	public function test_005_expand_other_elems()
+	{
+		Assert.same(
+			{ def:"foo.css", pos:{ min:0, max:7, src:"a" } },
+			expand(@src("a")@elem@len(7)"foo.css"));
+	}
 }
 

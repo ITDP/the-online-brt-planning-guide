@@ -321,11 +321,11 @@ class Test_03_Parser {
 	public function test_012_figures()
 	{
 		Assert.same(
-			expand(@wrap(8,1)Figure(MarginWidth, "fig.png",@skip(2+7)@len(7)Word("caption"),@skip(2)@len(9)Word("copyright"))),  // FIXME no pos for path, @skip
+			expand(@wrap(8,1)Figure(MarginWidth,@elem@len(7)"fig.png",@skip(2)@len(7)Word("caption"),@skip(2)@len(9)Word("copyright"))),  // FIXME no pos for path, @skip
 			parse("\\figure{fig.png}{caption}{copyright}"));
 
 		Assert.same(
-			expand(@wrap(5,0)Figure(MarginWidth, "fig.png",@skip(2+7)@len(7)Word("caption"),@skip(1)@len(9)Word("copyright"))),  // FIXME no pos for path, @skip
+			expand(@wrap(6,0)Figure(MarginWidth,@elem@len(7)"fig.png",@skip(1)@len(7)Word("caption"),@skip(1)@len(9)Word("copyright"))),  // FIXME no pos for path, @skip
 			parse("#FIG#{fig.png}caption@copyright"));
 		// TODO other/weird orderings of #FIG# details
 	}
@@ -575,17 +575,18 @@ class Test_03_Parser {
 		// TODO \tex\preamble
 
 		// \tex\export
-		Assert.same(expand(@len(17)LaTeXExport("a","b")), parse("\\tex\\export{a}{b}"));
-		Assert.same(expand(@len(27)LaTeXExport("a","b")), parse("\\tex\\export{a}{c/d/../../b}"));
+		Assert.same(expand(@wrap(12,1)LaTeXExport(@elem@len(1)"a",@skip(2)@elem@len(1)"b")), parse("\\tex\\export{a}{b}"));
+		Assert.same(expand(@wrap(12,1)LaTeXExport(@elem@len(1)"a",@skip(2)@elem@len(11)"c/d/../../b")), parse("\\tex\\export{a}{c/d/../../b}"));
+		Assert.equals("b", ( expand(@elem"c/d/../../b"):PElem ).toOutputPath(""));
 	}
 
 	public function test_021_include()
 	{
-		sys.io.File.saveContent(".testfile", "c");
-		Assert.same(expand(@src(".testfile")Paragraph(@len(1)Word("c"))), parse("\\include{.testfile}"));
-		fails("\\include{.nonexistant}", BadValue("not found"));
+		sys.io.File.saveContent(".testfile.manu", "c");
+		Assert.same(expand(@src(".testfile.manu")Paragraph(@len(1)Word("c"))), parse("\\include{.testfile.manu}"));
+		// fails("\\include{.nonexistant}", Invalid(FileNotExists(".noexistant")));
 		// TODO test "not a file" error
-		sys.FileSystem.deleteFile(".testfile");
+		sys.FileSystem.deleteFile(".testfile.manu");
 	}
 
 	// TODO
@@ -607,7 +608,7 @@ class Test_03_Parser {
 			parse("\\begintable{a}\\header\\col x\\col y\\row\\col list\\col \\item 1\\item 2\\endtable"));
 
 		Assert.same(
-			expand(@wrap(12,9)ImgTable(TextWidth,@len(1)Word("a"),@skip(1)@len(16)"x.svg")),
+			expand(@wrap(12,10)ImgTable(TextWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
 			parse("\\begintable{a}\\useimage{x.svg}\\endtable"));
 
 		fails("\\endtable", UnexpectedCommand("endtable"));
