@@ -98,6 +98,14 @@ header ul li ul {
 	padding: 0;
 	font-size: 12px;
 }
+header noscript .js-required-banner {
+	background-color: #F33;
+	color: #FFF;
+	text-align: center;
+	padding: 4px;
+	font-family: sans-serif;
+	font-size: 12px;
+}
 .item {
 	display: none;
 	position: fixed;
