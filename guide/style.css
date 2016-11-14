@@ -402,31 +402,20 @@ pre {
 
 /* overlay */
 
-label {
-	cursor:pointer;
-}
 .overlay {
 	position: fixed;
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
-	background-color: rgba(255,255,255,.75);
-	visibility: hidden;
-	text-align:center;
 	z-index: 999;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	top: 0;
+	left: 0;
+	background: rgba(255,255,255,0.75);
 }
 .overlay img {
-	margin-top: 96px;
-	height: 80%;
-	width: auto;
-	display: inline;
-}
-.overlay-trigger:checked + .overlay {
-	visibility: visible;
-}
-.overlay-trigger {
-	display: none;
+	max-width: 1216px;
+	max-height: 80%
+	 margin-top: 40px;
 }
 
 /* scrollbar */
@@ -490,7 +479,7 @@ label {
 	blockquote.lg {
 		width: 100%;
 	}
-	
+
 	/* header */
 	header {
 		border-bottom: 0px;
@@ -508,7 +497,7 @@ label {
 		width: 100%;
 		text-align: right;
 	}
-	
+
 	/* nav */
 
 	nav {
@@ -528,7 +517,7 @@ label {
 		display: none;
 	}
 
-	
+
 	/* boxes */
 
 	.box {
@@ -552,17 +541,17 @@ label {
 	.box .sm {
 		margin-left: 32px;
 	}
-	
+
 	/* target */
 	.target {
 		display: block;
 	}
-	
+
 	/* tables */
 	table {
 		font-size: 10px;
 	}
-	
+
 	/* menu */
 	#menu {
 		display: block;
