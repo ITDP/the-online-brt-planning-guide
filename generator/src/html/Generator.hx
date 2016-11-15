@@ -34,7 +34,8 @@ class Generator {
 	static var assetCache = new Map<String,String>();
 	static inline var ASSET_SUBDIR = "assets";
 	@:template static var FILE_BANNER;
-
+	@:template static var navEnd;
+	
 	var destDir:String;
 	var godOn:Bool;
 	var bufs:Map<String,StringBuf>;
@@ -150,7 +151,7 @@ class Generator {
 		buf.add("<html>\n");
 		buf.add(renderHead(title, base));
 		buf.add(renderBreadcrumbs(bcs));  // FIXME
-		buf.add('<body>\n<div class="container">\n<div class="col-text">\n');
+		buf.add('<body>\n<div class="container"><nav id="loading" style="color: #999; font-size: 12px;">Loading navbar</nav>\n<div class="col-text">\n');
 		return buf;
 	}
 
@@ -427,7 +428,7 @@ class Generator {
 		s.serialize(srcMap);
 
 		var glId = Sys.getEnv("GL_ANALYTICS_UA_ID");
-		var navBundle = "__navBundle__ = " + haxe.Json.stringify(nav.toString()) + ";\n" + haxe.Resource.getString("nav.js");
+		var navBundle = "__navBundle__ = " + haxe.Json.stringify(nav.toString()) + ";\n" + haxe.Resource.getString("nav.js") + "\n" + navEnd;
 		var navScript = saveAsset("nav.js", Bytes.ofString(navBundle));
 		var srcMapPath = saveAsset("src.haxedata", Bytes.ofString(s.toString()));
 		for (p in bufs.keys()) {
