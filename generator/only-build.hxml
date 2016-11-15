@@ -19,8 +19,8 @@
 --each
 
 # The html nav scrip
--main html.script.Nav
--js bin/bundle/nav.js
+-main html.script.Main
+-js bin/bundle/html.js
 
 --next
 
@@ -29,6 +29,6 @@
 -main Main
 -js bin/obrt.js
 -lib hxnodejs
--resource bin/bundle/nav.js@nav.js
+-resource bin/bundle/html.js@html.js
 -debug
 

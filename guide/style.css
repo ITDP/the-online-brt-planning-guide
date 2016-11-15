@@ -6,6 +6,9 @@ html {
 	display: inline-block;
 	width: .75em;
 }
+.disabled {
+	display: none;
+}
 
 /* headings */
 
@@ -195,7 +198,7 @@ nav {
 /* nav ul { */
 /* 	display: block; */
 /* } */
-nav ul, nav li {
+nav ul, nav li, #toc-loading {
 	padding: 0;
 	margin: 0;
 	list-style: none;
@@ -458,7 +461,7 @@ label {
 }
 
 /* menu */
-#menu {
+#toc-menu {
 	display: none;
 }
 
@@ -564,7 +567,7 @@ label {
 	}
 	
 	/* menu */
-	#menu {
+	#toc-menu, #toc-loading {
 		display: block;
 		text-align: center;
 		font-family: 'PT Sans', sans-serif;
@@ -574,4 +577,8 @@ label {
 		color: #666;
 		line-height: 24px;
 	}
+	#toc-menu.disabled {
+		display: none;
+	}
 }
+

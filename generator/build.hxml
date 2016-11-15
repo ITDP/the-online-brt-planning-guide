@@ -1,8 +1,6 @@
+# build
 only-build.hxml
 
---next
-
-# The macro interpreter unit tests
--main tests.RunAll
---interp
+# ... and run the unit tests
+-cmd node bin/obrt.js unit-tests
 
