@@ -125,7 +125,11 @@ class Generator {
 		var ext = Path.extension(src).toLowerCase();
 		weakAssert(ext != "", src, "web server might expect an extension for automatic content-type headers");
 		var data = content != null ? content : File.getBytes(src);
+#if nodejs
+		var hash = js.node.Crypto.createHash("sha1").update(js.node.buffer.Buffer.hxFromBytes(data)).digest("hex");
+#else
 		var hash = haxe.crypto.Sha1.make(data).toHex();
+#end
 
 		var name = ext != "" ? hash + "." + ext : hash;
 		var dst = Path.join([dir, name]);
