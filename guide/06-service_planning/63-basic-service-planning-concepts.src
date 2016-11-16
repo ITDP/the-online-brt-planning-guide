@@ -356,11 +356,25 @@ departure for Route “A,” the 6:15 a.m. departure, and so on. The total board
 calculated for each departing vehicle on Route A, and the total travel time for each Route A departure. 
 
 \begintable{Route A: Boarding, Alighting, and Loads}
-     \useimage{assets/image21.jpeg}
+\' useimage{assets/image21.jpeg} '\
+\header \col \col 6:00 a.m. Departure\col \col \col \col 6:15 a.m. Departure\col \col \col \col 6:30 a.m. Departure\col \col \col \col 6:45 a.m. Departure\col \col \col 
+\row \col \col Boarding\col Alighting\col Load\col Time\col Boarding\col Alighting\col Load\col Time\col Boarding\col Alighting\col Load\col Time\col Boarding\col Alighting\col Load\col Time
+\row \col Station\col \col \col \col 6:00\col \col \col \col 6:15\col \col \col \col 6:30\col \col \col \col 6:45
+\row \col 1st\col 1\col 0\col 1\col 6:10\col 1\col 0\col 1\col 6:25\col 1\col 0\col 1\col 6:40\col 2\col 0\col 2\col 6:55
+\row \col 10th\col 1\col 0\col 2\col 6:20\col 1\col 0\col 3\col 6:36\col 2\col 1\col 2\col 6:51\col 2\col 1\col 3\col 7:05
+\row \col 20th\col 2\col 1\col 3\col 6:30\col 3\col 1\col 5\col 6:47\col 3\col 2\col 3\col 7:02\col 3\col 2\col 4\col 7:15
+\row \col 30th\col 2\col 2\col 3\col 6:40\col 3\col 2\col 6\col 6:57\col 4\col 2\col 5\col 7:13\col 4\col 2\col 6\col 7:25
+\row \col 40th\col 3\col 3\col 3\col 6:50\col 4\col 3\col 7\col 7:08\col 4\col 3\col 6\col 7:24\col 5\col 4\col 7\col 7:35
+\row \col 50th\col 3\col 3\col 3\col 7:01\col 4\col 4\col 7\col 7:19\col 5\col 5\col 6\col 7:35\col 5\col 5\col 7\col 7:45
+\row \col 60th\col 3\col 3\col 3\col 7:11\col 3\col 4\col 6\col 7:30\col 3\col 4\col 5\col 7:46\col 4\col 5\col 6\col 7:55
+\row \col 70th\col 2\col 2\col 3\col 7:21\col 2\col 3\col 5\col 7:40\col 2\col 4\col 3\col 7:57\col 2\col 4\col 4\col 8:05
+\row \col 80th\col 1\col 2\col 2\col 7:31\col 1\col 3\col 3\col 7:51\col 2\col 3\col 2\col 8:08\col 2\col 3\col 3\col 8:15
+\row \col 90th\col 0\col 1\col 1\col 7:41\col 0\col 2\col 1\col 8:02\col 1\col 2\col 1\col 8:19\col 1\col 2\col 2\col 8:25
+\row \col 100th\col 0\col 1\col 0\col 7:52\col 0\col 1\col 0\col 8:13\col 0\col 1\col 0\col 8:30\col 0\col 2\col 0\col 8:35
+\row \col Total\col 18\col 18\col \col 1:52\col 23\col 23\col \col 1:58\col 27\col 27\col \col 2:00\col 30\col 30\col \col 1:50
 \endtable
 
-
-The salient information per route (total boardings and total trip time
+The salient information per route (total boardings and total trip time)
 for all peak period departures can then be created as shown in next table
 
 \begintable{Example of Average Peak Hour Riders and Times}
@@ -511,8 +525,8 @@ if nothing else is said, the load of a segment refers to the peak hour load.
 \endtable
 '\
 
-\begintable{Table 6.5 Potential BRT Corridor}
-\header \col \col 6:00 a.m. Departure\col \col \col 6:15 a.m. Departure\col \col \col 6:30 a.m. Departure\col \col 
+\begintable{Table 6.5 Load Example at a Corridor}
+\header \col \col Route A Northbound peakhour\col \col \col Route B Northbound peakhour\col \col \col Combined Northbound peakhour\col \col 
 \row \col Station\col Boarding\col Alighting\col Load\col Boarding\col Alighting\col Load\col Boarding\col Alighting\col Load
 \row \col Main St\col 5\col 0\col 5\col 3\col 0\col 3\col 8\col 0\col 8
 \row \col 1st\col 5\col 0\col 10\col 3\col 0\col 6\col 8\col 0\col 16
@@ -542,7 +556,7 @@ a segment normally has two directions, it is common for the unit PPHPD to be use
 of loads. It is an abbreviation for “passengers per hour per direction” and it means “passengers per 
 hour in one direction.” PPHPD (or even *pphpd*) is used here with this intended meaning.
 
-\figure{assets/image24.png}{Output of a boarding and alighting survey for bus route 248R in Guangzhou, 
+\figure[medium]{assets/image24.png}{Output of a boarding and alighting survey for bus route 248R in Guangzhou, 
 China, during the peak hour. The "Critical Link" is between Stop 13 and Stop 16. Graph}{ ITDP.}
 
 Figure 6.20 illustrates the same idea graphically. The link between Stop 13 and Stop 16 carries the 
@@ -619,7 +633,7 @@ Based on the concept definitions, the below equations are always true (mathemati
 
 Eq. 6.1: 
 
-i $$ \text{Freq} = {1 \over \text{hdwy}}  \Leftrightarrow  \text{hdwy} = {1 \over \text{Freq}}  $$
+$$ \text{Freq} = {1 \over \text{hdwy}}  \Leftrightarrow  \text{hdwy} = {1 \over \text{Freq}}  $$
 
 Where:
 \item $$\text{Freq}$$: Service frequency; that is number of times a specific service is offered during a given time 
@@ -915,6 +929,7 @@ Customers do not like to wait for a vehicle. If the demand of a given route prop
 is known (initially it can be approximated by using the demand on a similar existing route), the total 
 waiting cost caused by a route is the sum of the cost of waiting time imposed on all its customers (assuming 
 for now that this is captive demand), then multiplied by their value of waiting time: 
+
 
 Eq. 6.8a: 
 

@@ -152,21 +152,21 @@ buses are expensive to purchase and maintain. For current loads between 1,000 an
 buses should be considered. Most BRT systems have more than one route per BRT corridor.
 
 \begintable{Bus Size by Varying MaxLoad per Route Using the Ideal Frequency of Twenty-Two Vehicles per Hour: First Iteration for Bus Sizing}
-\header
-\col Existing Max Load
-\col Future Max Load 
-\col Optimal Size
-\col Proposal
-\row
-\col 3500
-\col 7000
-\col 374
-\col Split the route
-\row
-\col 3500
-\col 7000
-\col 374
-\col Split the route
+\header \col Existing Max Load\col Future Max Load\col Optimal Size\col Proposal
+\row \col 3500\col 7000\col 374\col Split the route
+\row \col 3250\col 6500\col 348\col Split the route
+\row \col 3000\col 6000\col 321\col Split the route
+\row \col 2750\col 5500\col 294\col Split the route
+\row \col 2500\col 5000\col 267\col Split the route
+\row \col 2250\col 4500\col 241\col Split the route
+\row \col 2000\col 4000\col 214\col Bi-articulated or split route
+\row \col 1750\col 3500\col 187\col Bi-articulated or split route
+\row \col 1500\col 3000\col 160\col Bi-articulated or split route
+\row \col 1250\col 2500\col 134\col Articulated
+\row \col 1000\col 2000\col 107\col Articulated
+\row \col 750\col 1500\col 80\col 12 meter bus
+\row \col 500\col 1000\col 53\col 9 meter bus
+\row \col 250\col 500\col 27\col 9 meter bus
 \endtable
 
 This very initial estimate takes into consideration the need to minimize irregularity, but it does 
@@ -194,39 +194,33 @@ the sum of costs is minimized. Image}{ Elebeta.}
 Put another way, vehicle capacity should be set where the cost of waiting faced by the users of that 
 route (WaitCost) added to the fixed operating costs (FixedCost) of the route are minimized.
 
-The total wait cost for a route (WaitCostroute) can be written as a function of bus capacity (VSize), 
-by replacing Equation 6.11a:\' TODO Math: 
+The total wait cost for a route ($$\text{WaitCost}_\text{route}$$) can be written as a function of bus capacity (VSize), 
+by replacing Equation 6.11a: 
 
-Freq= MaxLoadVSize*LoadFactor  '\\' TODO Math: 
+$$ \text{V}_\text{Size} = { \text{MaxLoad} \over \text{Freq} * \text{LoadFactor}} $$ 
 
- with Eq. 6.2 '\\' TODO Math: 
+with Eq. 6.2 
 
-WaitCostroute=MaxLoadroute*Renroute*Costwait*0.5*1+IrrrouteFreqroute '\
+$$ \text{Freq} = {\text{MaxLoad} \over {V_\text{Size} * \text{LoadFactor}}} $$
 
-Resulting in Eq. 6.12\' TODO Math: 
+Resulting in Eq. 6.12: 
 
-=Renroute*Costwait* 0.5*1+Irrroute*LoadFactor* VSize '\
+$$ \text{WaitCost}_\text{route} = { {\text{MaxLoad}_\text{route} *\text{Ren}_\text{route} *\text{Cost}_\text{wait} *  0.5 * ( 1+ Irr_\text{route} ) } \over ( { \text{MaxLoad}_\text{route} \over {\text{LoadFactor}*\text{VSize}} } ) } $$
+
+$$ \text{WaitCost}_\text{route} =  \text{Ren}_\text{route} * \text{Cost}_\text{wait} * 0.5 * (1+ Irr_\text{route}) *\text{LoadFactor} * \text{VSize} $$
 
 Where:
 
-WaitCostRoute = Total waiting time cost generated to the route users (in $);
-
-MaxLoadroute = Route demand on the critical link;
-
-Renroute = Renovation factor of the route;
-
-Costwait = Average user waiting cost ($/time);
-
-Irrroute = Irregularity index of the route; measure of the variance between the actual headways and 
+\item $$\text{WaitCostRoute}$$: Total waiting time cost generated to the route users (in $);
+\item $$\text{MaxLoadroute}$$: Route demand on the critical link;
+\item $$\text{Renroute}$$: Renovation factor of the route;
+\item $$ \text{Costwait}$$ Average user waiting cost ($/time);
+\item $$ \text{Irr}\text{route}$$: Irregularity index of the route; measure of the variance between the actual headways and 
 the scheduled headways (usually near 0.3, see Section 6.3.9);
-
-Freqroute = Route frequency;
-
-VSize = Vehicle capacity;
-
-Freq = Frequency;
-
-LoadFactor = Design load factor (usually 0.85).
+\item $$\text{Freq}_\text{route}$$: Frequency of the route;
+\item $$ \text{V}_\text{Size}$$: Vehicle capacity;
+\item $$ \text{MaxLoad}$$: Maximum hourly load on the critical link;
+\item $$ \text{LoadFactor}$$: Design load factor (usually 0.85).
 
 This shows that the cost to the customer rises as frequency falls. Hence, from the customer’s perspective, 
 the larger the vehicle, the more time he or she has to spend waiting for it. On a high-demand corridor, 
@@ -236,48 +230,41 @@ the wait.
 Assuming the other values are known (and they are estimated once a service plan is proposed), this 
 can be expressed as:
 
-Eq. 6.13\' TODO Math: 
+Eq. 6.13
 
-WaitCostroute=A* VSize '\
+$$ \text{WaitCost}_\text{route} = A * VSize $$
 
 Where:
+\item $$\text{WaitCostRoute}$$: Total waiting time cost to the route users (in $);
+\item $$\text{V}_\text{Size}$$: Vehicle capacity;
+\item $$A$$: Known constant value  
 
-WaitCostRoute = Total waiting time cost generated to the route users (in $);
-
-VSize = Vehicle capacity;
-
-A = Known constant value: \' TODO Math: 
-
-A=Renroute*Costwait* 0.5*1+Irrroute*LoadFactor '\
+  $$ A =\text{Ren}_\text{route} * \text{Cost}_\text{wait} * 0.5 * (1+ Irr_\text{route}) *\text{LoadFactor} $$
 
 At the same time, fixed operating costs do not vary with vehicle size: the cost of the driver; the 
 cost of the bus company’s overhead, the minimum cost of fueling any vehicle, and maintaining any vehicle 
 no matter its size. 
 
 So the total fixed costs of a route operation are only a function of the route fleet (as proposed in 
-Equation 6.9: \' TODO Math: 
+Equation 6.9:  
 
-RouteFixedCost=BusFixedCost*Fleetroute '\
+$$\text{RouteFixedCost} = \text{BusFixedCost} * \text{Fleet}_\text{route} $$
 
 The route fleet (the number of vehicles needed to serve a route) is, in turn, dependent on the vehicle 
 capacity (VSize) according to the following:
 
-Eq. 6.14\' TODO Math: 
+Eq. 6.14: 
 
-Fleetroute= MaxLoadperCyclerouteVSize*LoadFactor '\
+$$ \text{Fleet}_\text{route} = {\text{MaxLoadperCycle}_\text{route} \over {\text{VSize} * \text{LoadFactor}}} $$
 
 Where:
 
-Fleetroute = Number of vehicles needed to serve the route;
-
-VSizeroute = Vehicle serving the route capacity;
-
-MaxLoadperCycleroute = Maximum demand across the critical segment of the route that will accumulate 
+\item $$ \text{Fleet}_\text{route}$$: Number of vehicles needed to serve the route;
+\item $$ \text{VSize}_\text{route}$$: Vehicle serving the route capacity;
+\item $$ \text{MaxLoadperCycle}\text{route}$$: Maximum demand across the critical segment of the route that will accumulate 
 for the duration of one cycle during the busiest moment of the typical day (see Subsection 6.3.13);
-
-Freqroute = Frequency of the route (ideal frequency suggested of 22 vehicles per hour);
-
-LoadFactor = Design load factor (usually 0.85).
+\item $$ \text{Freq}_\text{route}$$: Frequency of the route (ideal frequency suggested of 22 vehicles per hour);
+\item $$ \text{LoadFactor}$$: Design load factor (usually 0.85).
 
 In one extreme, if the route operated with a vehicle as large as the demand willing to cross the critical 
 segment of the route that would be waiting for the duration of one cycle, only one vehicle would be needed.
@@ -285,26 +272,24 @@ segment of the route that would be waiting for the duration of one cycle, only o
 As the vehicle operating on the route is smaller, the necessary fleet to carry all these customers 
 will be larger, and so the fixed costs will be higher.
 
-If we apply Equation 6.14 in Equation 6.11a we have:\' TODO Math: 
+If we apply Equation 6.14 in Equation 6.11a we have:
 
-FixedCostroute=BusFixedCost*MaxLoadperCyclerouteVSize*LoadFactor '\
+$$ \text{FixedCost}_\text{route} = {\text{BusFixedCost} * \text{MaxLoadperCycle}_\text{route} \over { \text{VSize}*\text{LoadFactor}}} $$
 
 Assuming the other values are known (and they are estimated once a service plan is proposed), this 
 can be expressed as:
 
-Eq. 6.15\' TODO Math: 
+Eq. 6.15: 
 
-FixedCostroute=BVSize '\
+$$ \text{FixedCost}_\text{route} = {B \over \text{VSize} } $$
 
 Where:
+\item $$ \text{FixedCost}_\text{route}i $$: Total fixed operating cost for the route (in $/hour);
+\item $$ \text{VSize}_\text{route} $$:  Vehicle serving the route capacity;
+\item $$ B $$: Known constant value:
 
-FixedCostRoute = Total fixed operating cost for the route (in $/hour);
+$$ B = {\text{BusFixedCost}*\text{MaxLoadperCycle}_\text{route} \over \text{LoadFactor}} $$ 
 
-VSizeroute = Vehicle serving the route capacity;
-
-B = Known constant value:\' TODO Math: 
-
-B= BusFixedCost*MaxLoadperCyclerouteLoadFactor '\
 
 The graph in Figure 6.24 simply shows that the total social cost of waiting (the blue line) rises in 
 direct linear proportion to the vehicle capacity, while the total fixed operational cost falls with vehicle 
@@ -312,47 +297,43 @@ capacity. The minimum total cost will be where Cw total (1 hour) = Cf total (1 h
 
 The vehicle size that minimizes the cost of waiting imposed on the users (WaitCost) added to the fixed 
 operating costs (FixedCost) to a given planned route is a vehicle size where FixedCost and WaitCost are 
-equal.\' TODO Math: 
+equal.
 
-dWaitCostroute+  FixedCostrouted(VSize) =d(A* VSize+ BVSize) d(VSize)=  A-BVSize2=0  '\\' TODO Math: 
+$$ {{d(\text{WaitCost}_\text{route} + \text{FixedCost}_\text{route})} \over {d(\text{VSize})}} = { {d( A * \text{VSize} + {B \over \text{VSize}} )} \over {d(VSize)} } =  A - {{B} \over {\text{VSize}^2}} =0 $$ 
 
-A-BVSize2=0⇔A=BVSize2⟺ VSize2=BA⟺VSize=BA '\
+$$  A - { {B} \over {\text{VSize}^2} } = 0  \Leftrightarrow  A =  {B \over { {\text VSize}^2}}  \Leftrightarrow  \text{VSize}^2 = {B \over A} \Leftrightarrow \text{VSize} = \sqrt{B \over A} $$
 
-The vehicle capacity (VSize) that provides minimal added cost will result in:\' TODO Math: 
+The vehicle capacity (VSize) that provides minimal added cost will result in: 
 
-WaitCostroute=A* VSize=A* BA = A2*BA  =A*B '\\' TODO Math: 
+$$ \text{WaitCost}_\text{route} = A*\text{VSize} = A * \sqrt{B \over A} = \sqrt{{A^2 *B} \over{A}}  = \sqrt{A * B} $$ 
 
-FixedCostroute=BVSize= BBA=B2BA= A*B '\
+$$ \text{FixedCost}_\text{route} = {B \over \text{VSize}} = {B \over \sqrt{B \over A}} = {B \over \sqrt{B \over A}} ({\sqrt{B \over A} \over \sqrt{B \over A}})= \sqrt{B^2 \over {B \over A}} =  \sqrt{A * B} $$ 
 
 The optimal size is one where the waiting costs imposed on the last set of users from reducing the 
 frequency is precisely equal to the benefits to the vehicle operator in terms of reduced operating costs 
 of using a slightly larger vehicle. Any movement away from this point, and the total cost of customers 
 waiting, plus operating costs, will be higher.
 
-Therefore, optimal vehicle capacity (VSizeoptimum) is:\' TODO Math: 
+Therefore, optimal vehicle capacity ($$ \text{VSize}_\text{optimum}$$) is:
 
-VSizeoptimum=BA=BusFixedCost*MaxLoadperCyclerouteLoadFactorRenroute*Costwait* 0.5*1+Irrroute*LoadFactor '\
+$$ \text{VSize}_\text{optimum} = \sqrt{B \over A} = \sqrt{ {\text{BusFixedCost}*\text{MaxLoadperCycle}_\text{route} \over \text{LoadFactor}} \over {\text{Ren}_\text{route}*\text{Costi}_\text{wait}} * 0.5 * ( 1 + Irr_\text{route} * \text{LoadFactor}}  $$
 
-Eq. 6.16a\' TODO Math: 
+Eq. 6.16a:
 
-VSizeoptimum*LoadFactor=BusFixedCost*MaxLoadperCyclerouteRenroute*Costwait* 0.5*1+Irrroute '\
+$$ \text{VSize}_\text{optimum}*\text{LoadFactor} = \sqrt{\text{BusFixedCost}*\text{MaxLoadperCycle}_\text{route} \over {\text{Ren}_\text{route}*\text{Costwait} * 0.5 (1+Irr_\text{route}} } $$
+
 
 Where:
 
-VSizeoptimum = Optimal size of vehicle to serve the route capacity;
-
-BusFixedCost = Total fixed operating cost for the route (in $/hour) (=WaitCostRoute);MaxLoadperCycleroute 
-= Maximum demand across the critical segment of the route that will accumulate for the duration of one 
+\item $$ \text{VSize}_\text{optimum} $$: Optimal size of vehicle to serve the route capacity;
+\item $$ \text{BusFixedCost}$$: Total fixed operating cost for the route (in $/hour);
+\item $$ \text{MaxLoadperCyclei}_\text{route}$$: Maximum demand across the critical segment of the route that will accumulate for the duration of one 
 cycle during the busiest moment of the typical day (see Subsection 6.3.13);
-
-LoadFactor = Design load factor (usually 0.85);
-
-Renroute = Renovation factor of the route;
-
-Costwait = Average user waiting cost ($/time);
-
-Irrroute = Irregularity index of the route—measure of the variance between the actual headways and 
-the scheduled headways (usually near 0.3, see Section 6.3.9).
+\item $$  \text{LoadFactor} $$: Design load factor (usually 0.85);
+\item $$\text{Renroute}$$: Renovation factor of the route;
+\item $$ \text{Costwait}$$ Average user waiting cost ($/time);
+\item $$ \text{Irr}\text{route}$$: Irregularity index of the route; measure of the variance between the actual headways and 
+the scheduled headways (usually near 0.3, see Section 6.3.9);
 
 \subsection{ Vehicle Size Optimization Formula Applied}
 
@@ -362,23 +343,28 @@ Below is some reasonable sample data, and because these tend to be consistent ci
 into constants, except for the renovation rate, which needs to be calculated per corridor and is not 
 consistent citywide.
 
-Table 6.8 Sample Data Used for Examples
+\begintable{Sample Data Used for Examples}
+\header \col Variable\col Symbol\col Value\col Unit
+\row \col Fixed operating cost per bus\col BusFixedCost\col 30\col $/bus/hour
+\row \col Waiting cost per passenger\col Cost_Wait\col 12\col $12/passenger/hour
+\row \col Renovation factor on the corridor\col Ren_route\col 1.5\col 
+\row \col Irregularity Index on the corridor\col Irr_route\col 0.3\col 
+\endtable
 
-\figure{assets/image30.jpeg}{For this purpose, we can write Equation 6.16 as follows:}{FIXME!}
+For this purpose, we can write Equation 6.16 as follows:
 
-Eq. 6.16b\' TODO Math: 
+Eq. 6.16b: 
 
-VSizeoptimum*LoadFactor=BusFixedCost*MaxLoadperCyclerouteRencorridor*Costwait* 0.5*1+Irrcity '\\' TODO Math: 
+$$ \text{VSize}_\text{optimum} * \text{LoadFactor}= \sqrt{\text{BusFixedCost} *\text{MaxLoadperCycle}_\text{route} \over \text{Ren}_\text{corridor} *\text{Costwait} * 0.5* (1+Irr_\text{city})} $$ 
 
-VSizeoptimum*LoadFactor=KA*MaxLoadperCycleroute '\\' TODO Math: 
+\text{VSize}_\text{optimum} * \text{LoadFactor}= \sqrt{ KA *\text{MaxLoadperCycle}
 
-Where: KA=BusFixedCostRencorridor*Costwait* 0.5*1+Irrroute '\
+Where: 
+\item $$KA={\text{BusFixedCost} \over \text{Ren}_\text{corridor} *\text{Costwait} * 0.5* (1+Irr_\text{route})}
 
-Using the data from the table and applying it to Equation 6.16, then:\' TODO Math: 
+Using the data from the table and applying it to Equation 6.16, then:
 
-KA=301.5*12*1+0.3*0.5 '\\' TODO Math: 
-
-2.56 '\
+$$ KA={30 \over 1.5*12*1+0.3*0.5 } = 2.56 $$ 
 
 In other words, so long as the basic information about fixed costs, the renovation rate, the irregularity 
 rate, the cost of waiting, and so forth are all calculated for the corridor, the difference in the vehicle 
@@ -386,11 +372,9 @@ size for each route will be a function of the difference in the maximum load ove
 time under each scenario, or put another way, the number of customer places (Pl) that the vehicles need 
 to serve. 
 
-In applying this to Equation 6.16, then:\' TODO Math: 
+In applying this to Equation 6.16, then:
 
-VSizeoptimum*LoadFactor=MaxLoadperCycleroute*2.56 '\
-
-/
+\text{VSizei}_\text{optimum} = \text{LoadFactor}=\text{MaxLoadperCycle}_\text{route} * 2.56 $$
 
 In this way, the optimum vehicle capacity is simply a function of the demand over the course of the 
 route’s cycle time that needs to be served under each scenario, times a constant, this of course must 
@@ -419,7 +403,21 @@ TC = Cycle Time in hours;
 PHtoCC = Nonnegative correction factor whose calibration based on survey data is discussed in Box 6.1.
 
 Table 6.9 Examples of Optimum Vehicle Size Derived from the Sample Data
-
+\begintable{'Name Here'}
+\header \col MaxLoad\col TC\col PHtoCC\col MaxLoadperCycle\col Size*LoadFactor
+\row \col pass/h\col hours\col \col passengers\col passengers
+\row \col  20 \col 0.25\col 0.1\col  5 \col 4
+\row \col  200 \col 0.25\col 0.1\col  49 \col 11
+\row \col  2,000 \col 0.25\col 0.1\col  488 \col 35
+\row \col  20 \col 1\col 0.1\col  18 \col 7
+\row \col  200 \col 1\col 0.1\col  180 \col 21
+\row \col  2,000 \col 1\col 0.1\col  1,800 \col 68
+\row \col  8,000 \col 1\col 0.1\col  7,200 \col 136
+\row \col  20 \col 4\col 0.1\col  48 \col 11
+\row \col  200 \col 4\col 0.1\col  480 \col 35
+\row \col  2,000 \col 4\col 0.1\col  4,800 \col 111
+\row \col  8,000 \col 4\col 0.1\col  19,200 \col 222
+\endtable
 \'
 \figure{assets/image31.mf}{On this very wide range of maximum hourly loads and cycle times, optimum 
 size assuming load factor equal to 1.0, varies from a car to a bi-articulated vehicle. If the optimal 
