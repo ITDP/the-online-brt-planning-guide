@@ -17,17 +17,17 @@
 
 			"cd $ROBRT_REPOSITORY_DIR/generator",
 			"time haxe -D travis build.hxml",
-			"time nodejs bin/obrt.js unit-tests",
+			"time nodejs bin/manu.js unit-tests",
 
 			"cd $ROBRT_REPOSITORY_DIR",
 			"cp LICENSE.md $ROBRT_OUTPUT_DIR/",
 			"mkdir -p $ROBRT_OUTPUT_DIR/bin",
-			"cp generator/bin/obrt.js $ROBRT_OUTPUT_DIR/bin/",
+			"cp generator/bin/manu.js $ROBRT_OUTPUT_DIR/bin/",
 			"cp -r generator/docs/design/web/mockup $ROBRT_OUTPUT_DIR/web-mockup",
 
 			"export GL_ANALYTICS_UA_ID=UA-77667300-3",
 			"export DEBUG=1",
-			"command time -v nodejs generator/bin/obrt.js generate guide/the-guide.src .generated-js",
+			"command time -v nodejs generator/bin/manu.js generate guide/the-guide.src .generated-js",
 			"unset DEBUG",
 
 			"ls -l .generated-js/pdf/fonts",

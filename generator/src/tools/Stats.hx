@@ -12,8 +12,8 @@ using PositionTools;
 class Stats {
 	static var USAGE = "
 		Usage:
-		  obrt stats tokens <input file> [...]
-		  obrt stats --help".doctrim();
+		  manu stats tokens <input file> [...]
+		  manu stats --help".doctrim();
 
 	static function tokenStats(paths:Array<String>)
 	{

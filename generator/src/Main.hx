@@ -18,17 +18,17 @@ class Main {
 		platform : Sys.systemName()
 	}
 
-	static inline var BANNER = "The Online BRT Planning Guide Tool";
+	static inline var BANNER = "manu – manuscript markup language processor";
 	static var USAGE = "
 		Usage:
-		  obrt generate <input file> <output dir>
-		  obrt statistics ... (run `obrt statistics --help` for more)
-		  obrt unit-tests
-		  obrt --version
-		  obrt --help".doctrim();
+		  manu generate <input file> <output dir>
+		  manu statistics ... (run `manu statistics --help` for more)
+		  manu unit-tests
+		  manu --version
+		  manu --help".doctrim();
 	static var BUILD_INFO = '
-		OBRT tool for ${version.platform}/${version.runtime}
-		Built from commit ${version.commit} with Haxe ${version.haxe}'.doctrim();
+		manu for ${version.platform}/${version.runtime}
+		built from commit ${version.commit} with Haxe ${version.haxe}'.doctrim();
 
 	static function generate(ipath, opath)
 	{

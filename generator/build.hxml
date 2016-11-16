@@ -27,7 +27,7 @@
 # The main tool, to run on Node
 # use --debug for source-map generation
 -main Main
--js bin/obrt.js
+-js bin/manu.js
 -lib hxnodejs
 -resource bin/bundle/html.js@html.js
 -debug
