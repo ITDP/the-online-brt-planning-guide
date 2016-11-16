@@ -16,7 +16,7 @@
 			"time npm install",
 
 			"cd $ROBRT_REPOSITORY_DIR/generator",
-			"time haxe -D travis only-build.hxml",
+			"time haxe -D travis build.hxml",
 			"time nodejs bin/obrt.js unit-tests",
 
 			"cd $ROBRT_REPOSITORY_DIR",

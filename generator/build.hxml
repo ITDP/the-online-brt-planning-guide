@@ -1,6 +1,34 @@
-# build
-only-build.hxml
+# --times
+# -D macro-times
+# -D dump=pretty
 
-# ... and run the unit tests
--cmd node bin/obrt.js unit-tests
+-lib utest
+-lib hxparse
+-lib assertion
+-lib literals
+-lib sys-utils
+-lib version
+-lib tink_template
+-lib utest
+-D tink_template_pos=off
+-D tink_template_filter_classes
+-cp include
+-cp extern
+-cp src
+
+--each
+
+# The html nav scrip
+-main html.script.Main
+-js bin/bundle/html.js
+
+--next
+
+# The main tool, to run on Node
+# use --debug for source-map generation
+-main Main
+-js bin/obrt.js
+-lib hxnodejs
+-resource bin/bundle/html.js@html.js
+-debug
 
