@@ -7,17 +7,15 @@
 	},
 	"build" : {
 		"cmds" : [
-			"echo starting build at $(date)",
 			"nodejs --version",
-			"alias time='command time -p'",
 
 			"cd $ROBRT_REPOSITORY_DIR",
-			"time git lfs pull",
-			"time npm install",
+			"git lfs pull",
+			"npm install",
 
 			"cd $ROBRT_REPOSITORY_DIR/generator",
-			"time haxe -D travis build.hxml",
-			"time nodejs bin/manu.js unit-tests",
+			"haxe -D travis build.hxml",
+			"nodejs bin/manu.js unit-tests",
 
 			"cd $ROBRT_REPOSITORY_DIR",
 			"cp LICENSE.md $ROBRT_OUTPUT_DIR/",
@@ -27,7 +25,7 @@
 
 			"export GL_ANALYTICS_UA_ID=UA-77667300-3",
 			"export DEBUG=1",
-			"command time -v nodejs generator/bin/manu.js generate guide/the-guide.src .generated-js",
+			"nodejs generator/bin/manu.js generate guide/the-guide.src .generated-js",
 			"unset DEBUG",
 
 			"ls -l .generated-js/pdf/fonts",
@@ -38,12 +36,10 @@
 			"cd .generated-js/pdf/",
 			"mkdir -p $ROBRT_OUTPUT_DIR/pdf $ROBRT_OUTPUT_DIR/guide/pdf",
 
-			"time latexmk -lualatex -pdflatex='lualatex -interaction=nonstopmode' book.tex",
+			"latexmk -lualatex -pdflatex='lualatex -interaction=nonstopmode' book.tex",
 			"cp book.pdf $ROBRT_OUTPUT_DIR/guide/pdf/the-brt-planning-guide.pdf",
 			"cp book.log $ROBRT_OUTPUT_DIR/pdf/guide_lualatex.log",
-			"latexmk -C book.tex",
-
-			"echo finishing build at $(date)"
+			"latexmk -C book.tex"
 		]
 	}
 }
