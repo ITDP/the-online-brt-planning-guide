@@ -1,4 +1,4 @@
-import Ansi;
+import ANSI;
 import haxe.CallStack;
 import haxe.io.Path;
 import parser.Token;
@@ -40,13 +40,13 @@ class Main {
 		if (pcheck != null)
 			throw pcheck.toString();
 
-		println(Ansi.set(Green) + "=> Parsing" + Ansi.set(Off));
+		println(ANSI.set(Green) + "=> Parsing" + ANSI.set(Off));
 		var ast = Context.time("parsing", parser.Parser.parse.bind(p.toInputPath()));
 
-		println(Ansi.set(Green) + "=> Structuring" + Ansi.set(Off));
+		println(ANSI.set(Green) + "=> Structuring" + ANSI.set(Off));
 		var doc = Context.time("structuring", transform.NewTransform.transform.bind(ast));
 
-		println(Ansi.set(Green) + "=> Validating" + Ansi.set(Off));
+		println(ANSI.set(Green) + "=> Validating" + ANSI.set(Off));
 		var tval = Sys.time();
 		transform.Validator.validate(doc,
 			function (errors) {
@@ -56,7 +56,7 @@ class Main {
 						if (err.fatal)
 							abort = true;
 						var hl = err.pos.highlight(80).renderHighlight(AsciiUnderscore("^")).split("\n");
-						println('${Ansi.setm([Bold,Red])}ERROR: $err${Ansi.set(Off)}');
+						println('${ANSI.set([Bold,Red])}ERROR: $err${ANSI.set(Off)}');
 						println('  at ${err.pos.toString()}:');
 						println('    ${hl[0]}');
 						println('    ${hl[1]}');
@@ -70,18 +70,18 @@ class Main {
 				var tgen = Sys.time();
 				Context.manualTime("validation", tgen - tval);
 
-				println(Ansi.set(Green) + "=> Generating the document" + Ansi.set(Off));
+				println(ANSI.set(Green) + "=> Generating the document" + ANSI.set(Off));
 
 				if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
 				if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
 
-				println(Ansi.set(Green) + " --> HTML generation" + Ansi.set(Off));
+				println(ANSI.set(Green) + " --> HTML generation" + ANSI.set(Off));
 				Context.time("html generation", function () {
 					var hgen = new html.Generator(Path.join([opath, "html"]), true);
 					hgen.writeDocument(doc);
 				});
 
-				println(Ansi.set(Green) + " --> PDF preparation (TeX generation)" + Ansi.set(Off));
+				println(ANSI.set(Green) + " --> PDF preparation (TeX generation)" + ANSI.set(Off));
 				Context.time("tex generation", function () {
 					var tgen = new tex.Generator(Path.join([opath, "pdf"]));
 					tgen.writeDocument(doc);
@@ -100,14 +100,14 @@ class Main {
 
 	static function main()
 	{
-		print(Ansi.setm([Bold]) + BANNER + "\n\n" + Ansi.set(Off));
+		print(ANSI.set(Bold) + BANNER + "\n\n" + ANSI.set(Off));
 		Context.debug = Sys.getEnv("DEBUG") == "1";
 		Context.draft = Sys.getEnv("DRAFT") == "1";
 		Context.prepareSourceMaps();
 		Assertion.enableShow = Context.debug;
 		Assertion.enableWeakAssert = Context.debug;
 		Assertion.enableAssert = true;
-		if (Context.debug) println('Ansi escape codes are ${Ansi.available ? "enabled" : "disabled"}');
+		if (Context.debug) println('ANSI escape codes are ${ANSI.available ? "enabled" : "disabled"}');
 
 		try {
 			var args = Sys.args();
@@ -128,20 +128,20 @@ class Main {
 				exit(1);
 			}
 		} catch (e:hxparse.UnexpectedChar) {
-			print(Ansi.setm([Bold,Red]));
+			print(ANSI.set(Bold,Red));
 			if (Context.debug) print("Lexer ");
 			println('ERROR: Unexpected character `${e.char}`');
-			print(Ansi.set(Off));
+			print(ANSI.set(Off));
 			println('  at ${e.pos.toPosition().toString()}');
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
 			printTimers();
 			exit(2);
 		} catch (e:parser.ParserError) {
-			print(Ansi.setm([Bold,Red]));
+			print(ANSI.set(Bold,Red));
 			if (Context.debug) print("Parser ");
 			var hl = e.pos.highlight(80).renderHighlight(AsciiUnderscore("^")).split("\n");
 			println('ERROR: $e');
-			print(Ansi.set(Off));
+			print(ANSI.set(Off));
 			println('  at ${e.pos.toString()}:');
 			println('    ${hl[0]}');
 			println('    ${hl[1]}');
@@ -149,10 +149,10 @@ class Main {
 			printTimers();
 			exit(3);
 		} catch (e:Dynamic) {
-			print(Ansi.setm([Bold,Red]));
+			print(ANSI.set(Bold,Red));
 			if (Context.debug) print("Untyped ");
 			println('ERROR: $e');
-			print(Ansi.set(Off));
+			print(ANSI.set(Off));
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
 			printTimers();
 			exit(9);
