@@ -1,3 +1,4 @@
+import Ansi;
 import haxe.CallStack;
 import haxe.io.Path;
 import parser.Token;
@@ -39,13 +40,13 @@ class Main {
 		if (pcheck != null)
 			throw pcheck.toString();
 
-		println("=> Parsing");
+		println(Ansi.set(Green) + "=> Parsing" + Ansi.set(Off));
 		var ast = Context.time("parsing", parser.Parser.parse.bind(p.toInputPath()));
 
-		println("=> Structuring");
+		println(Ansi.set(Green) + "=> Structuring" + Ansi.set(Off));
 		var doc = Context.time("structuring", transform.NewTransform.transform.bind(ast));
 
-		println("=> Validating");
+		println(Ansi.set(Green) + "=> Validating" + Ansi.set(Off));
 		var tval = Sys.time();
 		transform.Validator.validate(doc,
 			function (errors) {
@@ -55,7 +56,7 @@ class Main {
 						if (err.fatal)
 							abort = true;
 						var hl = err.pos.highlight(80).renderHighlight(AsciiUnderscore("^")).split("\n");
-						println('ERROR: $err');
+						println('${Ansi.setm([Bold,Red])}ERROR: $err${Ansi.set(Off)}');
 						println('  at ${err.pos.toString()}:');
 						println('    ${hl[0]}');
 						println('    ${hl[1]}');
@@ -69,18 +70,18 @@ class Main {
 				var tgen = Sys.time();
 				Context.manualTime("validation", tgen - tval);
 
-				println("=> Generating the document");
+				println(Ansi.set(Green) + "=> Generating the document" + Ansi.set(Off));
 
 				if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
 				if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
 
-				println(" --> HTML generation");
+				println(Ansi.set(Green) + " --> HTML generation" + Ansi.set(Off));
 				Context.time("html generation", function () {
 					var hgen = new html.Generator(Path.join([opath, "html"]), true);
 					hgen.writeDocument(doc);
 				});
 
-				println(" --> PDF preparation (TeX generation)");
+				println(Ansi.set(Green) + " --> PDF preparation (TeX generation)" + Ansi.set(Off));
 				Context.time("tex generation", function () {
 					var tgen = new tex.Generator(Path.join([opath, "pdf"]));
 					tgen.writeDocument(doc);
@@ -92,20 +93,21 @@ class Main {
 
 	public static function printTimers()
 	{
-		println("=> Timing measurement results");
+		println("\nTiming measurement results:");
 		for (k in Context.timerOrder)
-			println(' --> $k: ${Math.round(Context.timer[k]*1e3)} ms');
+			println('  $k: ${Math.round(Context.timer[k]*1e3)} ms');
 	}
 
 	static function main()
 	{
-		print(BANNER + "\n\n");
+		print(Ansi.setm([Bold]) + BANNER + "\n\n" + Ansi.set(Off));
 		Context.debug = Sys.getEnv("DEBUG") == "1";
 		Context.draft = Sys.getEnv("DRAFT") == "1";
 		Context.prepareSourceMaps();
 		Assertion.enableShow = Context.debug;
 		Assertion.enableWeakAssert = Context.debug;
 		Assertion.enableAssert = true;
+		if (Context.debug) println('Ansi escape codes are ${Ansi.available ? "enabled" : "disabled"}');
 
 		try {
 			var args = Sys.args();
@@ -126,16 +128,20 @@ class Main {
 				exit(1);
 			}
 		} catch (e:hxparse.UnexpectedChar) {
+			print(Ansi.setm([Bold,Red]));
 			if (Context.debug) print("Lexer ");
 			println('ERROR: Unexpected character `${e.char}`');
+			print(Ansi.set(Off));
 			println('  at ${e.pos.toPosition().toString()}');
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
 			printTimers();
 			exit(2);
 		} catch (e:parser.ParserError) {
+			print(Ansi.setm([Bold,Red]));
 			if (Context.debug) print("Parser ");
 			var hl = e.pos.highlight(80).renderHighlight(AsciiUnderscore("^")).split("\n");
 			println('ERROR: $e');
+			print(Ansi.set(Off));
 			println('  at ${e.pos.toString()}:');
 			println('    ${hl[0]}');
 			println('    ${hl[1]}');
@@ -143,8 +149,10 @@ class Main {
 			printTimers();
 			exit(3);
 		} catch (e:Dynamic) {
+			print(Ansi.setm([Bold,Red]));
 			if (Context.debug) print("Untyped ");
 			println('ERROR: $e');
+			print(Ansi.set(Off));
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
 			printTimers();
 			exit(9);
