@@ -393,6 +393,7 @@ class Generator {
 
 	@:template function renderToc(vno:Null<Int>, lno:String, name:Html, url:String);
 
+	// save data as jsonp
 	function saveData(global:String, data:Dynamic)
 	{
 		var path = 'data_$global.js';
