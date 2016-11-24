@@ -32,10 +32,6 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 
 	static var comment = @:rule [
 		"'\\\\" => TComment(buf.toString()),
-		"['\\\\]" => {
-			buf.add(lexer.current);
-			lexer.token(comment);
-		},
 		"([^']|('[^'\\\\]))+" => {  // optimized for stack size from [^`\\\\]+ (or simply [^`]+)
 			buf.add(lexer.current);
 			lexer.token(comment);
