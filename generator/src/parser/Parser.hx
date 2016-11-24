@@ -238,7 +238,7 @@ class Parser {
 				break;
 			case { def:TComment(_) }:  // not sure about this
 				pop();
-			case { src:src, pos:pos }:
+			case { src:src, pos:pos }:  // TODO handle escaped chars (this handles converted chars)
 				pop();
 				buf.add(src);
 			}
