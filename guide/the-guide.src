@@ -50,6 +50,9 @@ Phasellus sed lacus ac erat luctus pretium a at massa. Ut quis massa nec dui rut
 
 \include{volume-5-landing-page.txt}
 
+\meta\reset{chapter}{17} \' skip to chapter 18 '\
+\include{18-fare_systems/fare-systems.src}
+
 \volume{Infrastructure}
 
 \include{volume-6-landing-page.txt}
@@ -59,10 +62,10 @@ Phasellus sed lacus ac erat luctus pretium a at massa. Ut quis massa nec dui rut
 
 \include{volume-7-landing-page.txt}
 
-\' \meta\reset{volume}{7} skip to volume 8 '\
 \volume{Meta}
 
 There should be some introductory text here on this volume.
+
 
 \meta\reset{chapter}{33}  \' contributing should be the last volume and chapters '\
 \include{34-manual-for-collaboration/00-manual-for-collaboration.src}
