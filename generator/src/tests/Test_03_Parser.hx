@@ -698,5 +698,25 @@ class Test_03_Parser {
 		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(2)"}")), parse("\\html\\apply{\\}}"));
 		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(3)"--")), parse("\\html\\apply{-\\-}"));
 	}
+
+	public function test_028_blob_sizes()
+	{
+		Assert.same(
+			expand(@wrap(12+7,10)ImgTable(MarginWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
+			parse("\\begintable[small]{a}\\useimage{x.svg}\\endtable"));
+		Assert.same(
+			expand(@wrap(12+8,10)ImgTable(TextWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
+			parse("\\begintable[medium]{a}\\useimage{x.svg}\\endtable"));
+		Assert.same(
+			expand(@wrap(12+7,10)ImgTable(FullWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
+			parse("\\begintable[large]{a}\\useimage{x.svg}\\endtable"));
+
+		Assert.same(
+			expand(@wrap(12+9,10)ImgTable(MarginWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
+			parse("\\begintable[ small ]{a}\\useimage{x.svg}\\endtable"));
+		Assert.same(
+			expand(@wrap(12+9,10)ImgTable(MarginWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
+			parse("\\begintable[\nsmall\n]{a}\\useimage{x.svg}\\endtable"));
+	}
 }
 
