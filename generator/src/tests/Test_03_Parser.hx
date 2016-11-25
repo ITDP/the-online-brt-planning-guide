@@ -533,9 +533,11 @@ class Test_03_Parser {
 		//
 		//                 volume}{0}
 		// and this isn't something we want to encorage.
-		// Since we still don't use them in places were break spaces
-		// would be necessary, let's forbidd them for now.
-		fails("\\meta\\reset{\n\nvolume}{0}");
+		// However, we need to allow this for proper path parsing;
+		// otherwise, it would be necesarry to allow newline escaping,
+		// and that could cause tons of problems elsewhere.
+		Assert.same(expand(@len(24)MetaReset("volume",0)), parse("\\meta\\reset{\n\nvolume}{0}"));
+		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(6)"a \n\n b")), parse("\\html\\apply{a \n\n b}"));
 	}
 
 	public function test_017_boxes()

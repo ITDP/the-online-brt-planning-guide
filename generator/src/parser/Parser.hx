@@ -515,10 +515,11 @@ class Parser {
 		assert(cmd.def.match(TCommand("reset")), cmd);
 		var name = arg(rawHorizontal, cmd, "counter name");
 		var val = arg(rawHorizontal, cmd, "reset value");
-		var no = ~/^[ \t\r\n]*[0-9][0-9]*[ \t\r\n]*$/.match(val.val) ? Std.parseInt(StringTools.trim(val.val)) : null;
-		if (!Lambda.has(["volume","chapter"], name.val)) badArg(name.pos, "counter name should be `volume` or `chapter`");
+		var reg = name.val.trim();
+		var no = ~/^[ \t\r\n]*[0-9][0-9]*[ \t\r\n]*$/.match(val.val) ? Std.parseInt(val.val.trim()) : null;
+		if (!Lambda.has(["volume","chapter"], reg)) badArg(name.pos, "counter name should be `volume` or `chapter`");
 		if (no == null || no < 0) badArg(val.pos, "reset value must be strictly greater or equal to zero");
-		return mk(MetaReset(name.val, no), cmd.pos.span(val.pos));
+		return mk(MetaReset(reg, no), cmd.pos.span(val.pos));
 	}
 
 	function targetInclude(cmd:Token)
