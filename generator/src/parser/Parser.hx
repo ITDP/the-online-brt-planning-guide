@@ -223,8 +223,6 @@ class Parser {
 		return mkList(horizontal, stop);
 
 	// FIXME document slash behavior
-	// FIXME document automagically converted chars (TeX ligatures)
-	// FIXME document chars that need to be escaped (including the ones used in the above TeX ligatures)
 	function rawHorizontal(stop:Stop):String
 	{
 		var buf = new StringBuf();
@@ -234,11 +232,14 @@ class Parser {
 				break;
 			case { def:tdef } if (stop.beforeAny != null && Lambda.exists(stop.beforeAny,Type.enumEq.bind(tdef))):
 				break;
-			case { def:TBreakSpace(_) } | { def:TEof }:
+			case { def:TEof }:
 				break;
-			case { def:TComment(_) }:  // not sure about this
+			case { def:TComment(_) }:
 				pop();
-			case { src:src, pos:pos }:  // TODO handle escaped chars (this handles converted chars)
+			case { def:TWord(w) }:
+				pop();
+				buf.add(w);
+			case { src:src, pos:pos }:
 				pop();
 				buf.add(src);
 			}

@@ -139,7 +139,7 @@ class Test_03_Parser {
 		Assert.same(
 			expand(Paragraph(HElemList([@wrap(1,1)Emphasis(HElemList([@len(1)Word("a"),@len(1)Wordspace])),@wrap(1,1)Emphasis(@len(1)Word("b")),@wrap(1,1)Emphasis(HElemList([@len(1)Wordspace,@len(1)Word("c")]))]))),
 			parse("*a **b** c*"));
-
+  // {\}}
 		fails("\\emph", MissingArgument(TCommand("emph")), mkPos(5, 5));
 		fails("\\emph a", MissingArgument(TCommand("emph")), mkPos(6,7));
 		fails("\\emph{a}{}", UnexpectedToken(TBrOpen), mkPos(8,9));
@@ -681,6 +681,20 @@ class Test_03_Parser {
 		fails("\\sub", MissingArgument(TCommand("sub")), mkPos(4, 4));
 		fails("\\sub a", MissingArgument(TCommand("sub")), mkPos(5, 6));
 		fails("\\sub{a}{}", UnexpectedToken(TBrOpen), mkPos(7, 8));
+	}
+
+	public function test_027_paths()
+	{
+		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(1)"a")), parse("\\html\\apply{a}"));
+
+		// whitespace in paths is maintained
+		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(3)" a ")), parse("\\html\\apply{ a }"));
+		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(6)"a \n\n b")), parse("\\html\\apply{a \n\n b}"));
+
+		// escapes and tex ligatures work the same (use the former to disable the latter)
+		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(2)"\\")), parse("\\html\\apply{\\\\}"));
+		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(2)"}")), parse("\\html\\apply{\\}}"));
+		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(3)"--")), parse("\\html\\apply{-\\-}"));
 	}
 }
 
