@@ -35,7 +35,7 @@ cash collection, and the bank issues a daily deposit report to the BRT agency.
 \figure{assets/image5.png}{Handheld Ticket Machine.}{ITDP}
 \figure{assets/image6.jpeg}{Handheld smartcard reader.}{ITDP}
 \figure{assets/image7.jpeg}{Onboard smartcard reader.}{ITDP}
-\figure{assets/image8.jpeg}{Off-board smartcard reader}{ITDP}
+
 
 \begintable{AFC Devices Required in Different Parts of the System}
 \header
@@ -51,7 +51,7 @@ cash collection, and the bank issues a daily deposit report to the BRT agency.
 \col Onboard
 \col Issue paper tickets
 \row
-\col 
+\col Fig 19.5 \'TODO: Ref. to image5 '\
 \col Off board
 \col For use in emergency situations, like power failure at stations
 \row
@@ -71,4 +71,6 @@ cash collection, and the bank issues a daily deposit report to the BRT agency.
 \col Off-board
 \col 
 \endtable
+
+\figure[medium]{assets/image8.jpeg}{Off-board smartcard reader}{ITDP}
 
