@@ -357,10 +357,10 @@ Eq. 6.16b:
 
 $$ \text{VSize}_\text{optimum} * \text{LoadFactor}= \sqrt{\text{BusFixedCost} *\text{MaxLoadperCycle}_\text{route} \over \text{Ren}_\text{corridor} *\text{Costwait} * 0.5* (1+Irr_\text{city})} $$ 
 
-\text{VSize}_\text{optimum} * \text{LoadFactor}= \sqrt{ KA *\text{MaxLoadperCycle}
+$$ \text{VSize}_\text{optimum} * \text{LoadFactor}= \sqrt{ KA *\text{MaxLoadperCycle} } $$
 
 Where: 
-\item $$KA={\text{BusFixedCost} \over \text{Ren}_\text{corridor} *\text{Costwait} * 0.5* (1+Irr_\text{route})}
+\item $$KA={\text{BusFixedCost} \over \text{Ren}_\text{corridor} *\text{Costwait} * 0.5* (1+Irr_\text{route})} $$
 
 Using the data from the table and applying it to Equation 6.16, then:
 
@@ -374,7 +374,7 @@ to serve.
 
 In applying this to Equation 6.16, then:
 
-\text{VSizei}_\text{optimum} = \text{LoadFactor}=\text{MaxLoadperCycle}_\text{route} * 2.56 $$
+$$ \text{VSizei}_\text{optimum} = \text{LoadFactor}=\text{MaxLoadperCycle}_\text{route} * 2.56 $$
 
 In this way, the optimum vehicle capacity is simply a function of the demand over the course of the 
 route’s cycle time that needs to be served under each scenario, times a constant, this of course must 
@@ -403,8 +403,8 @@ TC = Cycle Time in hours;
 PHtoCC = Nonnegative correction factor whose calibration based on survey data is discussed in Box 6.1.
 
 Table 6.9 Examples of Optimum Vehicle Size Derived from the Sample Data
-\begintable{'Name Here'}
-\header \col MaxLoad\col TC\col PHtoCC\col MaxLoadperCycle\col Size*LoadFactor
+\begintable{Examples of Optimum Vehicle Size Derived from the Sample Data }
+\header \col MaxLoad\col TC\col PHtoCC\col MaxLoadperCycle\col Size\*LoadFactor
 \row \col pass/h\col hours\col \col passengers\col passengers
 \row \col  20 \col 0.25\col 0.1\col  5 \col 4
 \row \col  200 \col 0.25\col 0.1\col  49 \col 11

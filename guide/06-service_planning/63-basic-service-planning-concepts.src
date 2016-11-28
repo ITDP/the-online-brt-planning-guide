@@ -785,7 +785,7 @@ Where:
 \item $$D_\text{route}$$: Route demand (in passengers);
 \item $$\text{MaxLoad}_\text{route}$$: Route demand on the critical link.
 
-\subsection{ Irregularity Index ($$Irr$$)}
+    \subsection{ Irregularity Index (Irr)}
 
 The irregularity index is a number that expresses the reliability of actual headways against scheduled 
 headways. An irregularity index of one means that the vehicles are arriving at completely random times, 
@@ -794,12 +794,12 @@ It is measured as:
 
 Eq. 6.4: 
 
-$$ \text{Irr} = {\text{Variance_of_the_headway} \over {\text{Scheduled}_\text{headway}} ^2 } $$ 
+$$ \text{Irr} = {\text{Variance of the headway} \over {\text{Scheduled headway}} ^2 } $$ 
 
 Where:
 \item $$\text{Irr}$$: Irregularity index, the measure of the variance between the actual headways and the scheduled 
 headways;
-\item $$\text{Variance_of_the_headway}$$: Amount that the headways are spread out;
+\item $$\text{Variance of the headway}$$: Amount that the headways are spread out;
 \item $$\text{Scheduled}_text{headway}$$:  Average waiting time between vehicles.
 
 Variance of the headway is statistically defined as the expected value of the squared deviation from 
