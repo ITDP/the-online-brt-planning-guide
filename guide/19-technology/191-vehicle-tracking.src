@@ -1,0 +1,72 @@
+
+
+\section{ Vehicle Tracking}
+
+> Don’t worry, sweetie, don’t worry. Nobody in New York notices a bus until it’s about to hit them!
+@ Samantha, "Sex and the City", 1998
+
+IT systems can aid in the management of bus operations from a central control center (CCC). Known as 
+automatic vehicle monitoring (AVM) systems, such systems preserve reliability by helping the BRT system 
+maintain planned headways. They also allow the CCC to respond to unexpected levels of demand, disruptions, 
+and emergencies such as bus breakdowns, riots, or traffic jams. The CCC can respond with corrective measures 
+such as vehicle substitution, added vehicles on the line, or driver replacement. The CCC also uses the 
+data produced by the AVM to record all arrival and departure times at stops, time points for calculating 
+the service performance index, and restructure service plans (see Section 19.6 Management Information 
+Systems).
+
+An AVM system consists of a number of key components: 
+
+A CCC, from which the operations are managed. CCC computers run AVM software, which facilitates a wide 
+range of service management processes;
+
+A global positioning system (GPS)–equipped device on each bus that records the distance and time logs 
+and maintains the record of driver duty and attendance schedules. This information is transmitted to 
+the CCC in real time;
+
+A communications system between the vehicle and the CCC that can prompt the driver with service information, 
+and facilitates driver communication with the CCC. 
+
+\figure[medium]{assets/image1.jpeg}{The automatic vehicle location system.}{Prodigy Electronics.} 
+
+\figure{assets/image2.jpeg}{TransMilenio control center for BRT operations management in Bogotá.}{ ITDP}
+
+The functional requirements of an AVM system depend on the organization modalities and operation procedures 
+adopted by the agency implementing the BRT. Two important planning issues should be considered when organizing 
+the CCC: 
+
+Degree of centralization: some transport operators establish a single, centralized control center from 
+which all of the operations are managed. Other transport operators decentralize operations management. 
+In this case, the AVM system allows client access from any workstation connected via the web and makes 
+control and monitoring functionalities available at different locations;
+
+Degree of hierarchy: for either centralized or decentralized systems, AVMs can be configured for a 
+single implementing agency or multiple agencies. In the latter case, appropriate access/read/write rights 
+must be defined in order to guarantee the confidentiality of data. Recorded data transmitted from vehicles 
+and gathered by the CCC are stored in the same database, but one agency can monitor and manage the information 
+only from its own system.
+\begintable[large]{Descriptions of AVM Devices}
+\header
+\col Component
+\col Description
+\row
+\col Mounting
+\col Built into the dashboard or over the bus dashboard near the driver seat
+\row
+\col GPS unit
+\col To assure accurate geographic location, track the distance logs and calculate trip kilometers, bus journey speeds, etc.
+\row
+\col Wireless Communication Module (WCM)
+\col Based on high-speed data transmission protocols like GSM/CDMA/WCDMA, interface to transmit location information wirelessly to CCC and receive alerts and on-the-air updates. In addition, the WCM should have integrated two-way communication facility between driver and CCC through speakers and microphones
+\row
+\col Driver Interface Unit (DIU)
+\col This module has alphanumeric keypads, an LCD screen to display text messages relayed from CCC, and basic information stored within BCU, such as route details, duty log information, etc. LED indicators for alerts and system status updates. Drivers should be able to send and receive predefined text messages and read them on the screen. DIU allows the driver to log on his duty information, such as driver badge number, change route details, trip start time, and schedules information
+\row
+\col Bus Control Unit (BCU)
+\col BCU is essentially an integrated unit composed of modules like WCM, GPS, and DIU. It may be like an onboard computer CPU with partial integration, with few logical units, and interface with other external components such as the GPS module, etc. To log location data, store other data like the bus-route database, send Passenger Information System (PIS) information received from CCC to on-bus displays and speakers. This controller shall be the interface between all on-bus devices. It shall transmit location information through a secure wired connection to on-bus PIS to make audiovisual announcements
+\row
+\col Integration
+\col BCU unit should be able to allow Automatic Fare Collection (AFC) devices, such as handheld ticketing machines with card validators, to use the BCU’s wireless communication module as a data path to transmit AFC data to CCC. The BCU should have flexibility to incorporate a short-range wireless and wired interface to allow it to act as a data path between on-bus AFC devices and the CCC
+\row
+\col Primary Output
+\col BCU should be able to help the CCC generate the following primary output reports: vehicle start-stop, driver begin-end shifts, daytime operations summary and fleet status, detailed activity, bus speeds, alerts, unit on/off reports.
+\endtable
