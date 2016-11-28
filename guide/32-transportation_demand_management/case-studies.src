@@ -1,5 +1,3 @@
-
-
 \section{Case Studies}
 
 > Yesterday I parked my car in a tow-away zone... when I came back the entire area was missing.
@@ -44,6 +42,12 @@ point that average traffic speeds were similar to speeds of the horse carts util
 the nineteenth century. In response, London’s Mayor Ken Livingstone decided to implement a congestion 
 charging scheme in the center core of the city.
 
+\figure{assets/image12.jpeg}{Motorists have a range of options for paying the London congestion charge, 
+including local shops.}{Lloyd Wright.}
+
+\figure{assets/image13.jpeg}{Camera technology is utilized in London to enforce the congestion charge. 
+}{Lloyd Wright.}
+
 As of 2012, a US$16 fee is imposed upon vehicles each time they enter the central zone from 7:00AM 
 to 6:00PM, Monday through Friday. Motorists can pay through a variety of mechanisms including the internet, 
 telephone, mobile text messages, self-service machines, post, and retail outlets (Figure 32.12). Those 
@@ -52,12 +56,6 @@ Motorists have until midnight on the day of entry to pay the charge. Payments ca
 day, although the price increases to US$19. Subsequently, a US$190 fine is applied to motorists who fail 
 to pay by midnight of the following charging day. If paid within fourteen days, the penalty is reduced 
 to US$95. If no payment is made after twenty-eight days, the fine increases.
-
-\figure{assets/image12.jpeg}{Motorists have a range of options for paying the London congestion charge, 
-including local shops.}{Lloyd Wright.}
-
-\figure{assets/image13.jpeg}{Camera technology is utilized in London to enforce the congestion charge. 
-}{Lloyd Wright.}
 
 The London system differs from the Singapore system in several ways. First, the London system does 
 not require an in-vehicle electronic unit, and requires no system of cash cards. It is an enforcement-only 
@@ -115,13 +113,13 @@ charge. Stockholm borrowed concepts from its two predecessors while also invokin
 technological innovations. The Stockholm charge was implemented after a seven-month trial period, with 
 a majority of support from a public vote on whether to keep it.
 
+\figure{assets/image14.jpeg}{The Stockholm charge zone and the nineteen points of entry.}
+{City of Stockholm.}
+
 Stockholm’s charge zone includes the entire central area of the city, with a total of nineteen different 
 gantry points permitting entry into the zone (Figure 32.14). Like Singapore, Stockholm has a fortuitous 
 location, with bodies of water restricting the number of actual access points to the city center. Such 
 naturally restricted entry eases the technical tasks of controlling a large number of entry points.
-
-\figure[medium]{assets/image14.jpeg}{The Stockholm charge zone and the nineteen points of entry.}
-{City of Stockholm.}
 
 The amount of the Stockholm charge depends on both the number of times a vehicle enters the central 
 zone as well as the time of day (Table 32.2). For vehicles entering and exiting the charge zone multiple 
@@ -236,21 +234,6 @@ public transport before it was implemented.
 
 \subsection{Roadway Restrictions in Seoul}
 
-Perhaps one of the most spectacular examples of this concept in practice is the Cheonggyecheon corridor 
-project in Seoul. The Cheonggyecheon stream was historically a defining part of Seoul’s environment, 
-and in fact was the reason why Seoul was selected as the capital of the Joseon Dynasty in 1394. In the 
-face of modernization, the waterway was covered in 1961 to provide better access for private vehicles. 
-By 1968, an elevated expressway provided another layer of concrete—erasing the memory of the waterway. 
-
-
-Upon his election in 2002, Seoul Mayor Myung Bak Lee decided it was time to bring back the Cheonggyecheon 
-stream. The Cheonggyecheon project has meant the restoration of 5.8 kilometers of waterway and historical 
-pedestrian bridges, the creation of extensive green space, and the promotion of public art installations 
-(Figures 32.15 and 32.16). Based upon a study by the Seoul Development Institute (2003), now known as 
-the Seoul Institute, the Cheonggyecheon restoration project was predicted to produce economic benefits 
-of between US$8 billion to US$23 billion, and create 113,000 new jobs. More than forty million visitors 
-experienced the Cheonggyecheon stream during the first year after restoration. 
-
 \figure{assets/image3.jpeg}{and Before image of the Cheonggyecheon corridor project in Seoul. Despite 
 tearing down one of the principal expressways to the city, the resulting congestion impacts were minimal, 
 especially since the new BRT corridors helped gain ridership from former car users.}{Seoul 
@@ -261,9 +244,26 @@ Despite tearing down one of the principal expressways to the city, the resulting
 minimal, especially since the new BRT corridors helped gain ridership from former car users.}{ 
 Seoul Institute.}
 
+Perhaps one of the most spectacular examples of this concept in practice is the Cheonggyecheon corridor 
+project in Seoul. The Cheonggyecheon stream was historically a defining part of Seoul’s environment, 
+and in fact was the reason why Seoul was selected as the capital of the Joseon Dynasty in 1394. In the 
+face of modernization, the waterway was covered in 1961 to provide better access for private vehicles. 
+By 1968, an elevated expressway provided another layer of concrete—erasing the memory of the waterway. 
+
+Upon his election in 2002, Seoul Mayor Myung Bak Lee decided it was time to bring back the Cheonggyecheon 
+stream. The Cheonggyecheon project has meant the restoration of 5.8 kilometers of waterway and historical 
+pedestrian bridges, the creation of extensive green space, and the promotion of public art installations 
+(Figures 32.15 and 32.16). Based upon a study by the Seoul Development Institute (2003), now known as 
+the Seoul Institute, the Cheonggyecheon restoration project was predicted to produce economic benefits 
+of between US$8 billion to US$23 billion, and create 113,000 new jobs. More than forty million visitors 
+experienced the Cheonggyecheon stream during the first year after restoration. 
+
 Further, despite the elevated expressway being the principal access way for cars into the city center, 
 there were no significant congestion impacts. In part, the new Seoul BRT system helped defray some of 
 the traffic impacts (Figure 32.17).
+
+\figure[medium]{assets/image15.jpeg}{The new Seoul BRT system has helped make it possible to reduce road space 
+dedicated exclusively to cars.}{City of Seoul.}
 
 Softer “pull” tactics on this front include the weekly no driving day program in Seoul. People can 
 get free parking, reduced-cost car washing, and reduced taxes and congestion charges if they use alternative 
@@ -271,9 +271,6 @@ transport at least one day every week. Participants receive a sticker for the re
 which is monitored using RFID technology to assess compliance. According to the city, the program has 
 reduced traffic volumes by 3.7 percent since 2003, with a CO2 reduction of 10 percent and fuel savings 
 amounting to USD$50 million.
-
-\figure[medium]{assets/image15.jpeg}{The new Seoul BRT system has helped make it possible to reduce road space 
-dedicated exclusively to cars.}{City of Seoul.}
 
 \subsection{Travel Blending in Santiago, Chile}
 

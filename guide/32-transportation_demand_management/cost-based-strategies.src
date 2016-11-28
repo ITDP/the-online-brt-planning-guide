@@ -2,7 +2,7 @@
 
 \section{Cost-Based Strategies}
 
-> What if we fail to stop the erosion of cities by automobiles? . . . In that case, we Americans will hardly need to ponder a mystery that has troubled men for millennia: What is the purpose of life? For us, the answer will be clear, established and for all practical purposes indisputable: The purpose of life is to produce and consume automobiles.
+> What if we fail to stop the erosion of cities by automobiles? ... In that case, we Americans will hardly need to ponder a mystery that has troubled men for millennia: What is the purpose of life? For us, the answer will be clear, established and for all practical purposes indisputable: The purpose of life is to produce and consume automobiles.
 @ Jane Jacobs, writer and activist, 1916–2006
 
 One of the most significant barriers to TDM success is the trip-level cost disparity between personal 
@@ -21,6 +21,13 @@ most common among these are roadway pricing, parking fees, and public transport 
 
 \subsection{Roadway Pricing}
 
+\figure{assets/image1.jpeg}{London’s Congestion Charge zone has improved traffic 
+congestion by dissuading driving into the city center during peak periods while also generating revenue 
+for better bus service.}{ITDP.}
+
+\figure{assets/image2.jpeg}{Singapore’s Electronic Road Pricing (ERP) system 
+has been effective in curbing vehicle use, especially during peak periods.}{Manfred Breithaupt.}
+
 Many economists agree that traffic congestion is the result of a failure to properly charge for the 
 value of road access and see congestion-based roadway pricing as the optimal solution. Compared to traditional 
 road pricing, which assesses a fixed toll on each driver at all times, congestion-based pricing focuses 
@@ -36,13 +43,6 @@ revenue to expand mobility choices. London, Singapore, Stockholm, and Tehran hav
 schemes in conjunction with new public transport investments. The results have shown a marked reduction 
 in congestion as well as the generation of revenue for supporting sustainable transport options. 
 
-\figure{assets/image1.jpeg}{SEQ Figure \* ARABIC 1 London’s Congestion Charge zone has improved traffic 
-congestion by dissuading driving into the city center during peak periods while also generating revenue 
-for better bus service.}{ ITDP.}
-
-\figure{assets/image2.jpeg}{SEQ Figure \* ARABIC 2 Singapore’s Electronic Road Pricing (ERP) system 
-has been effective in curbing vehicle use, especially during peak periods.}{Manfred Breithaupt.}
-
 \subsection{Parking Fees}
 
 Since all vehicle trips begin and end with parking, assessing parking fees may present a TDM alternative 
@@ -54,7 +54,7 @@ may be one reason that cities try roadway pricing before comprehensive parking r
 The causes and conditions of parking subsidies, however, should be examined as part of any serious TDM 
 effort.
 
-*Public Parking*
+\subsubsection{Public Parking}
 
 Cities often deeply discount the parking that they control. While this is usually limited to on-street 
 parking, many have gone so far as to build extremely expensive off-street parking that, upon completion, 
@@ -87,20 +87,18 @@ are sufficient to pay for them, is a necessary first step in reversing this well
 that has, nonetheless, proved disastrous to public transport ridership and service quality in so many 
 cities. 
 
-*Private Parking*
+\subsubsection{Private Parking}
 
 Private developers have no interest in constructing unprofitable parking. As such, they are rarely 
 the cause of either underpriced or oversupplied parking, especially where land values and/or construction 
 costs are especially high. Rather, the biggest generators of such conditions, in most places, are regulatory 
 controls that mandate excessive levels of off-street parking in conjunction with new land-use development. 
 
-
 The primary logic behind these mandates is that if developers are required to provide excessive amounts 
 of parking for their projects, they will not be able to charge much for spaces, and, therefore, their 
 tenants will not be tempted to park on the street. Particularly in cities where on-street parking is 
 free or cheap, this tends to translate into a lot of extra parking and severely depressed parking rates. 
 Meanwhile, the developer is left to find some way to extract value from dozens of unwanted parking spaces. 
-
 
 In these circumstances, the unwanted spaces are typically given away as free customer parking, or offered 
 as housing or office space amenities. Because parking rates do not contribute to offsetting the cost 
