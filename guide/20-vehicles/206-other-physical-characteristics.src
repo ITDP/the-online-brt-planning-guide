@@ -1,0 +1,315 @@
+
+
+\section{ Other Physical Characteristics}
+
+> Whatever good things we build end up building us.
+@ Jim Rohn, businessman, 1930–2009
+
+Besides the vehicle length and propulsion system type, there are a range of other characteristics that 
+will define the vehicle. The specifications set forth during the operational design will determine many 
+other additional factors regarding the technical specification required for the vehicle, including the 
+following: 
+\item Body type (segregated from chassis, unified);
+\item Number of doorways and size of doorways;
+\item Type of system for opening and closing the doorways;
+\item Doorway location;
+\item Transmission type (automatic, manual, retarder);
+\item Type of propulsion system;
+\item Engine location (front, center, rear);
+\item Engine power rating;
+\item Acceleration capacity;
+\item Braking technology;
+\item Braking capacity;
+\item Suspension type (springs, hydraulic);
+\item Road turning radius (internal and external);
+\item Axle-load capacity.
+
+If decisions on these parameters are made without reference to the operational design, serious design 
+mistakes can occur. For example, in Jakarta, Indonesia, a vehicle with plenty of capacity was procured, 
+but the vehicle had only one door. This single-door decision seriously delayed customer boarding and 
+alighting speed, and the entire capacity of the corridor was severely compromised. Similarly, vehicles 
+with axle loads above the weight-bearing capacity of the road surface treatment on the corridor led to 
+rapid deterioration of the roadbed. 
+\begintable[large]{Specifications from the Mexico City Manual on Safety, Accessibility, Comfort, and Manufacturing of Buses.}
+\useimage{./assets/table.png}
+\endtable
+
+\* Recommended for medium and steep routes because of the engine type and location.
+
+\*\* Recommended for flat routes because of its engine type and location.
+
+In most countries, there are regulations and conditions that public transportation vehicles must meet 
+pertaining to bus import, assembly, and manufacturing. Identifying all conditions and restrictions thus 
+becomes necessary, along with any required certification and standardization processes. Norms, standards, 
+and regulations that cover the following fields are present in most countries: 
+\item Environmental performance;
+\item Security standards;
+\item Physical conditions;
+\item Country of origin;
+\item Local manufacturing ratios;
+\item Import procedures and requirements;
+\item Tariffs and other import duties; 
+\item Handicap accessibility.
+
+In the absence of laws and regulations governing these issues, setting the vehicle technical specification 
+should take these issues into consideration in any case, following international norms.  
+
+As a reference, Table 20.8 is a summary of the vehicle specifications put forward by the public company 
+overseeing Phase I of the Bogotá TransMilenio system in 2000. The actual specifications for any given 
+city will vary depending on local preferences and circumstances.
+\begintable{Bogotá Vehicle Specifications (Trunk Vehicles)}
+\header
+\col Vehicle attribute
+\col Specification
+\row
+\col *Load weights*
+\col 
+\row
+\col GAWR front axle load
+\col 7,500 kg
+\row
+\col GAWR middle axle load
+\col 20,500 kg
+\row
+\col GAWR rear axle load
+\col 20,500 kg
+\row
+\col GVWR total weight
+\col 30,000 kg
+\row
+\col *External dimensions*
+\col 
+\row
+\col Maximum width
+\col 2.60 meters
+\row
+\col Maximum height
+\col 4.10 meters
+\row
+\col Overall minimum length
+\col 17.50 meters
+\row
+\col Overall maximum length
+\col 18.50 meters
+\row
+\col Maximum front overhang
+\col 3000 mm
+\row
+\col Maximum rear overhang
+\col 3500 mm
+\row
+\col *Floor height from ground*
+\col 
+\row
+\col Minimum height
+\col 870 mm
+\row
+\col Maximum height
+\col 930 mm
+\row
+\col *Turning radius*
+\col 
+\row
+\col Minimum between sidewalks
+\col 7,400 mm
+\row
+\col Maximum between sidewalks
+\col 20,100 mm
+\row
+\col Minimum between walls
+\col 7,400 mm
+\row
+\col Maximum between walls
+\col 13,400 mm
+\row
+\col *Chassis and body*
+\col 
+\row
+\col Body type
+\col Integral body or self-supporting body
+\row
+\col Modification
+\col Every modification of the chassis must be formally approved by the manufacturer
+\row
+\col Certification of static load proof
+\col Can be obtained by physical proof or computational model; Minimum certified roof resistance in 5 minutes: 50% of GMV; Maximum deformation in every point: 70 mm; 
+\row
+\col *Customer space*
+\col 
+\row
+\col Total customer capacity
+\col 160 customers
+\row
+\col Seating capacity
+\col 48 customers
+\row
+\col Color of seats
+\col Red
+\row
+\col Number of preferential seats
+\col 6
+\row
+\col Color of preferential seats
+\col Blue
+\row
+\col Standing customer area
+\col 16 m2
+\row
+\col Standing design capacity
+\col 7 customers per square meter
+\row
+\col Wheelchair capacity
+\col 1 space for wheelchair (90 centimeters x 140 centimeters); Located in the first body of the bus in front of the second door
+\row
+\col Layout of seats
+\col 2-2, 2-1, 1-1, 1-0; Perimeter or front-to-front
+\row
+\col *Internal dimensions*
+\col 
+\row
+\col Free internal height
+\col 2100 mm minimum
+\row
+\col Superior visibility height
+\col 1850 mm minimum
+\row
+\col Inferior visibility height
+\col 600 mm minimum; 850 mm maximum
+\row
+\col Corridor width
+\col 600 mm minimum
+\row
+\col *Seating characteristics*
+\col 
+\row
+\col Characteristics
+\col Individual seats; Closed in back; Direct anchorage to the vehicle floor; Without upholstery or cushioned; Without sharp edges or rivets; 
+\row
+\col Materials
+\col Plastic; Washable; Self-extinguishing and flame retardant; No release of toxic gases during combustion; 
+\row
+\col *Seat dimensions*
+\col 
+\row
+\col Distance between seats
+\col 700 mm
+\row
+\col Distance between seats front to front
+\col 1300 mm
+\row
+\col Seat depth
+\col 350 mm minimum; 430 mm maximum
+\row
+\col Seat height (measured from floor)
+\col 350 mm minimum; 450 mm maximum
+\row
+\col Back height
+\col 500 mm minimum; 600 mm maximum
+\row
+\col Seat width
+\col 400 mm
+\row
+\col *Handles and handrails*
+\col 
+\row
+\col Characteristics
+\col Surfaces without sharp edges; End finished in a curve; Continuous; Non-slip surface; 
+\row
+\col Dimensions
+\col Diameter: Between 30 and 45 mm; Horizontal handrail height: 1750 mm minimum and 1800 mm maximum; Distance between vertical balusters: 1500 mm or every two seats; 
+\row
+\col *Windows*
+\col 
+\row
+\col Front window type
+\col Laminated
+\row
+\col Type, all other windows
+\col Tempered
+\row
+\col Color of window
+\col Green
+\row
+\col Transparency level
+\col 70%
+\row
+\col Advertising
+\col Windows without advertisement
+\row
+\col Inferior module
+\col Fixed to the body with adhesive
+\row
+\col Superior module height
+\col Minimum: 30% of total height of the window; Maximum: 50% of total height of the window; 
+\row
+\col *Doorways*
+\col 
+\row
+\col Number of customer doorways
+\col 4
+\row
+\col Position
+\col Left side of vehicle
+\row
+\col Minimum free width
+\col 1100 mm
+\row
+\col Free height
+\col 1900 mm
+\row
+\col Door opening time
+\col 2 seconds
+\row
+\col Emergency doors
+\col Type: single door; Number of emergency doorways: 2; Minimum free width: 650 mm; Free height: 1800 mm; With stairs covered and with a pneumatic opening system; 
+\row
+\col *Control and instrumentation*
+\col 
+\row
+\col Logic unit
+\col Communication display in view of driver; GPS and communications antennas; Tachnograph (with register and storage of instant velocity, distance traveled, times of operation and non-operation over 24-hour period); 
+\row
+\col Control center communications
+\col Voice communication equipment
+\row
+\col Instrumentation
+\col Odometer with pulse output connected to the logic unit
+\row
+\col 
+\col Complete instrumentation with alarms for low pressure of the air brake system and motor oil system
+\row
+\col *Ventilation*
+\col 
+\row
+\col Air renewal requirement
+\col Minimum 20 times per hour
+\row
+\col *Noise*
+\col 
+\row
+\col Maximum internal sound level
+\col 90 dB(A)
+\row
+\col *Destination signs*
+\col 
+\row
+\col Number and size of signs
+\col 1 in front: 1950 mm x 300 mm; 2 on left side: 450 mm x 250 mm; 
+\row
+\col Visibility
+\col Visible from a distance of 100 meters
+\row
+\col *Technical standards*
+\col 
+\row
+\col Vehicle
+\col NTC 4901-1 Mass Transport Passenger Vehicles
+\row
+\col Test methods
+\col NTC 4901-2 Mass Transport Passenger Vehicles
+\row
+\col Local standards
+\col ICONTEC (Colombian Technical and Standardization Institute)
+\endtable
+
+Source: TransMilenio SA
