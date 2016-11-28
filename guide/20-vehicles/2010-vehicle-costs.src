@@ -122,7 +122,7 @@ For imported vehicles, there will be the following additional cost consideration
 \item Local customizing costs;
 \item Domestic transportation costs from ports to cities.
 
-Table 20.9 breaks down how different elements that go into choosing the best type of vehicle for a 
+Table 20.10 breaks down how different elements that go into choosing the best type of vehicle for a 
 public-transport system affect the overall vehicle price. 
 \begintable{Cost of each vehicle element as a percentage of impact to total vehicle cost}
 \header
@@ -169,7 +169,7 @@ public-transport system affect the overall vehicle price.
 \col 11.5
 \endtable
 
-Table 20.10 provides a summary of vehicle-cost estimation based on technology types and location of 
+Table 20.11 provides a summary of vehicle-cost estimation based on technology types and location of 
 manufacturer. However, these costs could be significantly underestimated, particularly in the case of 
 Africa, which has limited proximate vehicle-manufacturing capability, high financing costs, and high 
 duties and value-added taxes. 
