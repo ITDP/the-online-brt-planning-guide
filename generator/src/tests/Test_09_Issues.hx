@@ -48,6 +48,23 @@ class Test_09_Issues {
 		Assert.equals("\\}\\}", g.gent("}}"));
 	}
 
+	public function test_possible_issue_with_unexpected_hashes()
+	{
+		Assert.raises(parse.bind("a#b"));
+		Assert.raises(parse.bind("a # b"));
+	}
+
+	public function test_issue_43()
+	{
+		Assert.raises(parse.bind("a@b"));
+	}
+
+	public function test_issue_44()
+	{
+		parse("\\item [a\n\nb]");
+		Assert.pass();
+	}
+
 	public function new() {}
 }
 

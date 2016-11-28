@@ -7,26 +7,26 @@
 	},
 	"build" : {
 		"cmds" : [
-			"export GL_ANALYTICS_UA_ID=UA-77667300-3",
+			"nodejs --version",
 
 			"cd $ROBRT_REPOSITORY_DIR",
 			"git lfs pull",
-			"npm install source-map-support",
+			"npm install",
 
 			"cd $ROBRT_REPOSITORY_DIR/generator",
 			"haxe -D travis build.hxml",
-			"nodejs bin/obrt.js unit-tests",
+			"nodejs bin/manu.js unit-tests",
 
 			"cd $ROBRT_REPOSITORY_DIR",
 			"cp LICENSE.md $ROBRT_OUTPUT_DIR/",
 			"mkdir -p $ROBRT_OUTPUT_DIR/bin",
-			"cp generator/bin/obrt.js $ROBRT_OUTPUT_DIR/bin/",
+			"cp generator/bin/manu.js $ROBRT_OUTPUT_DIR/bin/",
 			"cp -r generator/docs/design/web/mockup $ROBRT_OUTPUT_DIR/web-mockup",
 
+			"export GL_ANALYTICS_UA_ID=UA-77667300-3",
 			"export DEBUG=1",
-			"nodejs --version",
-
-			"command time -v nodejs generator/bin/obrt.js generate guide/the-guide.src .generated-js",
+			"nodejs generator/bin/manu.js generate guide/the-guide.src .generated-js",
+			"unset DEBUG",
 
 			"ls -l .generated-js/pdf/fonts",
 

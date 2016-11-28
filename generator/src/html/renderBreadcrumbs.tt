@@ -14,4 +14,9 @@
 <li><a href="(:bcs.section.url:)"><strong>(:bcs.section.name:)</strong></a></li>
 (:end:)
 </ul>
+<noscript>
+<div class="js-required-banner">
+    JavaScript required, but not enabled.  Please check your browser settings.
+</div>
+</noscript>
 </header>

@@ -1,10 +1,10 @@
 package parser;
 
-import parser.Error;
+import parser.ParserError;
 import parser.Token;
 
 import Assertion.*;
-import parser.TokenTools.toPosition in mkPos;
+import PositionTools.toPosition in mkPos;
 using StringTools;
 
 class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
@@ -12,9 +12,12 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 
 	static function mk(lex:hxparse.Lexer, tokDef:TokenDef, ?pos:Position):Token
 	{
+		if (pos == null)
+			pos = mkPos(lex.curPos());
 		return {
 			def : tokDef,
-			pos : pos != null ? pos : mkPos(lex.curPos())
+			pos : pos,
+			src : lex.input.readString(pos.min, pos.max - pos.min)
 		}
 	}
 
@@ -29,10 +32,6 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 
 	static var comment = @:rule [
 		"'\\\\" => TComment(buf.toString()),
-		"['\\\\]" => {
-			buf.add(lexer.current);
-			lexer.token(comment);
-		},
 		"([^']|('[^'\\\\]))+" => {  // optimized for stack size from [^`\\\\]+ (or simply [^`]+)
 			buf.add(lexer.current);
 			lexer.token(comment);
@@ -81,7 +80,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 	{
 		var token = mk(lexer, partialDef, mkPos(partialPos));
 		var lexer = Std.instance(lexer, Lexer);
-		throw new UnclosedToken(lexer, token);
+		throw new ParserError(token.pos, UnclosedToken(token.def));
 	}
 
 	public static var tokens = @:rule [
@@ -159,7 +158,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 
 		"\\\\\\\\" => mk(lexer, TWord("\\")),
 
-		"(\\\\[a-z][a-z0-9]*)" => mk(lexer, TCommand(lexer.current.substr(1))),
+		"(\\\\[a-zA-Z][a-zA-Z0-9]*)" => mk(lexer, TCommand(lexer.current.substr(1))),
 
 		"{" => mk(lexer, TBrOpen),
 		"}" => mk(lexer, TBrClose),
@@ -191,32 +190,31 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"‐" => mk(lexer, TWord("-")),  // u2010 -> u002d
 		"‑" => mk(lexer, TWord("-")),  // u2011 -> u002d
 
-		"\\\\([{}\\[\\]\\*:@#>`\\-]|‒|―|‐|‑)" => mk(lexer, TWord(lexer.current.substr(1))),
+		"\\\\([{}\\[\\]\\*:@#>`\\-\\$]|‒|―|‐|‑)" => mk(lexer, TWord(lexer.current.substr(1))),
 		// more (special) escpaes
 		"\\\\^" => mk(lexer, TWord("'")),  // a way to specically type an ascii apostrophe
 		// not really an escape, but a special case no less
 		"$" => mk(lexer, TWord(lexer.current)),
 
-		// note: 0xE2 is used to exclude en- and em- dashes from being matched;
-		// other utf-8 chars begginning with 0xE2 are restored by the two inclusive patterns
-		// that follow inital exclusion one
-		"([^ \t\r\n*{}\\[\\]\\\\#>@\\*:$\\-`'\\xe2]|(\\xE2[^\\x80])|(\\xE2\\x80[^\\x90-\\x95]))+" => mk(lexer, TWord(lexer.current))
+		// utf-8 BOM: if mid file, silently ignore it; this seems ok,
+		// since in unicode this can either mean a BOM or a zero width
+		// no-break space
+		"\\xEF\\xBB\\xBF" => lexer.token(tokens),
+
+		// note 1:
+		// > 0xE2 is used to exclude en- and em- dashes from being
+		// > matched; other utf-8 chars beginning with 0xE2 are
+		// > restored later
+		// note 2:
+		// > 0xEF is used to exclude the BOM; other utf-8 chars
+		// > beginning with 0xEF are restored later
+		"([^ \t\r\n*{}\\[\\]\\\\#>@\\*:$\\-`'\\xE2\\xEF]|(\\xE2[^\\x80])|(\\xE2\\x80[^\\x90-\\x95])|(\\xEF[^\\xBB])|(\\xEF\\xBB[^\\xBF]))+" => mk(lexer, TWord(lexer.current))
 	];
 
-	var bytes:haxe.io.Bytes;  // TODO change to a public source abstraction that already has a safe `recover` method
-
-	public function recover(pos, len)
+	public function new(bytes:haxe.io.Bytes, sourceName)
 	{
-		if (len == 0) return "";
-		assert(pos >= 0 && len > 0 && pos + len <= bytes.length, pos, len, bytes.length, "out of bounds");
-		return bytes.sub(pos, len).toString();
-	}
-
-	@:access(byte.ByteData)
-	public function new(bytes, sourceName)
-	{
-		this.bytes = bytes;
-		super(new byte.ByteData(bytes), sourceName);
+		if (!haxe.Utf8.validate(bytes.toString())) throw new ParserError({ src:sourceName, min:0, max:bytes.length }, InvalidUtf8);
+		super(byte.ByteData.ofBytes(bytes), sourceName);
 	}
 }
 

@@ -1,11 +1,14 @@
+import Ansi;
 import haxe.CallStack;
 import haxe.io.Path;
 import parser.Token;
 import sys.FileSystem;
 
+import Assertion.*;
 import Sys.*;
 using Literals;
-using parser.TokenTools;
+using PositionTools;
+using StringTools;
 
 class Main {
 	public static var version(default,null) = {
@@ -16,56 +19,97 @@ class Main {
 		platform : Sys.systemName()
 	}
 
-	static inline var BANNER = "The Online BRT Planning Guide Tool";
+	static inline var BANNER = "manu – manuscript markup language processor";
 	static var USAGE = "
 		Usage:
-		  obrt generate <input file> <output dir>
-		  obrt statistics ... (run `obrt statistics --help` for more)
-		  obrt unit-tests
-		  obrt --version
-		  obrt --help".doctrim();
+		  manu generate <input file> <output dir>
+		  manu statistics ... (run `manu statistics --help` for more)
+		  manu unit-tests
+		  manu --version
+		  manu --help".doctrim();
 	static var BUILD_INFO = '
-		OBRT tool for ${version.platform}/${version.runtime}
-		Built from commit ${version.commit} with Haxe ${version.haxe}'.doctrim();
+		manu for ${version.platform}/${version.runtime}
+		built from commit ${version.commit} with Haxe ${version.haxe}'.doctrim();
 
 	static function generate(ipath, opath)
 	{
 		if (Context.debug) println('The current working dir is: `${Sys.getCwd()}`');
-		if (!FileSystem.exists(ipath)) throw 'File does not exist: $ipath';
-		if (FileSystem.isDirectory(ipath)) throw 'Not a file: $ipath';
 
-		var ast = parser.Parser.parse(ipath);
+		var p:parser.Ast.PElem = { def:ipath, pos:{ src:"./", min:0, max:0 } };
+		var pcheck = transform.Validator.validateSrcPath(p, [transform.Validator.FileType.Manu]);
+		if (pcheck != null)
+			throw pcheck.toString();
 
-		var doc = transform.NewTransform.transform(ast);
+		println(Ansi.set(Green) + "=> Parsing" + Ansi.set(Off));
+		var ast = Context.time("parsing", parser.Parser.parse.bind(p.toInputPath()));
 
-		if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
-		if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
+		println(Ansi.set(Green) + "=> Structuring" + Ansi.set(Off));
+		var doc = Context.time("structuring", transform.NewTransform.transform.bind(ast));
 
-		var hgen = new html.Generator(Path.join([opath, "html"]), true);
-		hgen.writeDocument(doc);
+		println(Ansi.set(Green) + "=> Validating" + Ansi.set(Off));
+		var tval = Sys.time();
+		transform.Validator.validate(doc,
+			function (errors) {
+				if (errors != null) {
+					var abort = false;
+					for (err in errors) {
+						if (err.fatal)
+							abort = true;
+						var hl = err.pos.highlight(80).renderHighlight(Context.hlmode).split("\n");
+						println('${Ansi.setm([Bold,Red])}ERROR: $err${Ansi.set(Off)}');
+						println('  at ${err.pos.toString()}:');
+						println("    " + hl.join("\n    "));
+					}
+					if (abort) {
+						println("Validation has failed, aborting");
+						exit(4);
+					}
+				}
 
-		var tgen = new tex.Generator(Path.join([opath, "pdf"]));
-		tgen.writeDocument(doc);
+				var tgen = Sys.time();
+				Context.manualTime("validation", tgen - tval);
+
+				println(Ansi.set(Green) + "=> Generating the document" + Ansi.set(Off));
+
+				if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
+				if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
+
+				println(Ansi.set(Green) + " --> HTML generation" + Ansi.set(Off));
+				Context.time("html generation", function () {
+					var hgen = new html.Generator(Path.join([opath, "html"]), true);
+					hgen.writeDocument(doc);
+				});
+
+				println(Ansi.set(Green) + " --> PDF preparation (TeX generation)" + Ansi.set(Off));
+				Context.time("tex generation", function () {
+					var tgen = new tex.Generator(Path.join([opath, "pdf"]));
+					tgen.writeDocument(doc);
+				});
+
+				printTimers();
+			});
 	}
 
-	static function printPos(p:Position)
+	public static function printTimers()
 	{
-		var lpos = p.toLinePosition();
-		print('  at ${p.src}, ');
-		if (lpos.lines.min != lpos.lines.max - 1)
-			println('from (line=${lpos.lines.min+1}, column=${lpos.codes.min+1}) to (line=${lpos.lines.max}, column=${lpos.codes.max})');
-		else if (lpos.codes.min < lpos.codes.max - 1)
-			println('line=${lpos.lines.min+1}, columns=(${lpos.codes.min+1} to ${lpos.codes.max})');
-		else
-			println('line=${lpos.lines.min+1}, column=${lpos.codes.min+1}');
+		println("\nTiming measurement results:");
+		for (k in Context.timerOrder)
+			println('  $k: ${Math.round(Context.timer[k]*1e3)} ms');
 	}
 
 	static function main()
 	{
-		print(BANNER + "\n\n");
+		print(Ansi.setm([Bold]) + BANNER + "\n\n" + Ansi.set(Off));
+		if (Context.debug) println('Ansi escape codes are ${Ansi.available ? "enabled" : "disabled"}');
+
 		Context.debug = Sys.getEnv("DEBUG") == "1";
 		Context.draft = Sys.getEnv("DRAFT") == "1";
+		if (Ansi.available)
+			Context.hlmode = AnsiEscapes(Ansi.setm([Bold,Red]), Ansi.set(Off));
 		Context.prepareSourceMaps();
+		Assertion.enableShow = Context.debug;
+		Assertion.enableWeakAssert = Context.debug;
+		Assertion.enableAssert = true;
 
 		try {
 			var args = Sys.args();
@@ -86,21 +130,32 @@ class Main {
 				exit(1);
 			}
 		} catch (e:hxparse.UnexpectedChar) {
+			print(Ansi.setm([Bold,Red]));
 			if (Context.debug) print("Lexer ");
 			println('ERROR: Unexpected character `${e.char}`');
-			printPos(e.pos.toPosition());
+			print(Ansi.set(Off));
+			println('  at ${e.pos.toPosition().toString()}');
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
+			printTimers();
 			exit(2);
-		} catch (e:parser.Error.GenericError) {
+		} catch (e:parser.ParserError) {
+			print(Ansi.setm([Bold,Red]));
 			if (Context.debug) print("Parser ");
-			println('ERROR: ${e.text}');
-			printPos(e.pos);
+			var hl = e.pos.highlight(80).renderHighlight(Context.hlmode).split("\n");
+			println('ERROR: $e');
+			print(Ansi.set(Off));
+			println('  at ${e.pos.toString()}:');
+			println("    " + hl.join("\n    "));
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
+			printTimers();
 			exit(3);
 		} catch (e:Dynamic) {
+			print(Ansi.setm([Bold,Red]));
 			if (Context.debug) print("Untyped ");
 			println('ERROR: $e');
+			print(Ansi.set(Off));
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
+			printTimers();
 			exit(9);
 		}
 	}

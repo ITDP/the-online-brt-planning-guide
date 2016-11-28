@@ -2,6 +2,7 @@ package html;
 
 import haxe.io.Bytes;
 import haxe.io.Path;
+import html.script.Const;
 import sys.FileSystem;
 import sys.io.File;
 import tink.template.Html;
@@ -14,7 +15,7 @@ import generator.tex.*;
 
 using Literals;
 using StringTools;
-using parser.TokenTools;
+using PositionTools;
 using transform.DocumentTools;
 
 typedef BreadcrumbItem = {
@@ -34,14 +35,14 @@ class Generator {
 	static var assetCache = new Map<String,String>();
 	static inline var ASSET_SUBDIR = "assets";
 	@:template static var FILE_BANNER;
-
+	
 	var destDir:String;
 	var godOn:Bool;
 	var bufs:Map<String,StringBuf>;
 	var stylesheets:Array<String>;
 	var srcCache:Map<String,Int>;
 	var lastSrcId:Int;
-	var nav:StringBuf;
+	var toc:StringBuf;
 
 	function gent(text:String)
 		return text.htmlEscape();
@@ -111,7 +112,7 @@ class Generator {
 		}
 	}
 
-	function saveAsset(src:String, ?content:Bytes)
+	function _saveAsset(src:String, ?content:Bytes)
 	{
 		if (assetCache.exists(src))
 			return assetCache[src];
@@ -122,17 +123,24 @@ class Generator {
 			FileSystem.createDirectory(ldir);
 
 		var ext = Path.extension(src).toLowerCase();
-		assert(ext != "", src);
+		weakAssert(ext != "", src, "web server might expect an extension for automatic content-type headers");
 		var data = content != null ? content : File.getBytes(src);
+#if nodejs
+		var hash = js.node.Crypto.createHash("sha1").update(js.node.buffer.Buffer.hxFromBytes(data)).digest("hex");
+#else
 		var hash = haxe.crypto.Sha1.make(data).toHex();
+#end
 
-		var name = hash + "." + ext;
+		var name = ext != "" ? hash + "." + ext : hash;
 		var dst = Path.join([dir, name]);
 		var lpath = Path.join([ldir, name]);
 		File.saveBytes(lpath, data);
 		assetCache[src] = dst;
 		return dst;
 	}
+
+	function saveAsset(src, ?content)
+		return Context.time("html generation (saveAsset)", _saveAsset.bind(src, content));
 
 	@:template function renderHead(title:String, base:String);
 	@:template function renderBreadcrumbs(bcs:Breadcrumbs);  // FIXME
@@ -147,7 +155,7 @@ class Generator {
 		buf.add("<html>\n");
 		buf.add(renderHead(title, base));
 		buf.add(renderBreadcrumbs(bcs));  // FIXME
-		buf.add('<body>\n<div class="container">\n<div class="col-text">\n');
+		buf.add('<body>\n<div class="container"><nav><span id="toc-loading">Loading the table of contents...</span><a id="toc-menu" class="disabled" href="">Table of Contents</a></nav>\n<div class="col-text">\n');
 		return buf;
 	}
 
@@ -167,7 +175,7 @@ class Generator {
 	function genv(v:DElem, idc:IdCtx, noc:NoCtx, bcs:Breadcrumbs)
 	{
 		switch v.def {
-		case DHtmlApply(path):
+		case DHtmlApply(_.toInputPath() => path):
 			stylesheets.push(saveAsset(path));
 			return "";
 		case DLaTeXPreamble(_), DLaTeXExport(_):
@@ -179,14 +187,14 @@ class Generator {
 			bcs.volume = { no:no, name:new Html(genh(name)), url:path };  // FIXME raw html
 			var title = 'Volume $no: ${genn(name)}';
 			var buf = bufs[path] = openBuffer(title, "..", bcs);
-			nav.add('<li class="volume">\n${renderNav(no, Std.string(no), new Html(genh(name)), path)}\n<ul>\n');
+			toc.add('<li class="volume">\n${renderToc(no, Std.string(no), new Html(genh(name)), path)}\n<ul>\n');
 			buf.add('
 				<section>
 				<h1 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h1>
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim());
-			nav.add("</ul>\n</li>\n");
+			toc.add("</ul>\n</li>\n");
 			bcs.volume = null;  // FIXME hack
 			return "";
 		case DChapter(no, name, children):
@@ -196,14 +204,14 @@ class Generator {
 			bcs.chapter = { no:no, name:new Html(genh(name)), url:path };  // FIXME raw html
 			var title = 'Chapter $no: ${genn(name)}';
 			var buf = bufs[path] = openBuffer(title, "..", bcs);
-			nav.add('<li class="chapter">${renderNav(null, Std.string(noc.chapter), new Html(genh(name)), path)}<ul>\n');
+			toc.add('<li class="chapter">${renderToc(null, Std.string(noc.chapter), new Html(genh(name)), path)}<ul>\n');
 			buf.add('
 				<section>
 				<h2 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h2>
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim());
-			nav.add("</ul>\n</li>\n");
+			toc.add("</ul>\n</li>\n");
 			buf.add("\n");
 			bcs.chapter = null;  // FIXME hack
 			return "";
@@ -215,14 +223,14 @@ class Generator {
 			bcs.section = { no:no, name:new Html(genh(name)), url:path };  // FIXME raw html
 			var title = '$lno ${genn(name)}';  // TODO chapter name
 			var buf = bufs[path] = openBuffer(title, "..", bcs);
-			nav.add('<li class="section">${renderNav(null, lno, new Html(genh(name)), path)}<ul>\n');
+			toc.add('<li class="section">${renderToc(null, lno, new Html(genh(name)), path)}<ul>\n');
 			buf.add('
 				<section>
 				<h3 id="heading" class="volume${noc.volume}">$lno$QUAD${genh(name)}</h3>
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim());
-			nav.add("</ul>\n</li>\n");
+			toc.add("</ul>\n</li>\n");
 			buf.add("\n");
 			bcs.section = null;  // FIXME hack
 			return "";
@@ -231,14 +239,14 @@ class Generator {
 			noc.subSection = no;
 			var lno = noc.join(false, ".", chapter, section, subSection);
 			var id = idc.join(true, ".", subSection);
-			nav.add('<li>${renderNav(null, lno, new Html(genh(name)), bcs.section.url+"#"+id)}<ul>\n');
+			toc.add('<li>${renderToc(null, lno, new Html(genh(name)), bcs.section.url+"#"+id)}<ul>\n');
 			var html = '
 				<section>
 				<h4 id="$id" class="volume${noc.volume}">$lno$QUAD${genh(name)}</h4>
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim() + "\n";
-			nav.add("</ul>\n</li>\n");
+			toc.add("</ul>\n</li>\n");
 			return html;
 		case DSubSubSection(no, name, children):
 			idc.subSubSection = v.id.sure();
@@ -251,7 +259,7 @@ class Generator {
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim() + "\n";
-			nav.add('<li>${renderNav(null, lno, new Html(genh(name)), bcs.section.url+"#"+id)}</li>');
+			toc.add('<li>${renderToc(null, lno, new Html(genh(name)), bcs.section.url+"#"+id)}</li>');
 			return html;
 		case DBox(no, name, children):
 			idc.box = v.id.sure();
@@ -272,7 +280,7 @@ class Generator {
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim() + "\n";
-		case DFigure(no, size, path, caption, cright):
+		case DFigure(no, size, _.toInputPath() => path, caption, cright):
 			idc.figure = v.id.sure();
 			noc.figure = no;
 			var no = noc.join(false, ".", chapter, figure);
@@ -330,7 +338,7 @@ class Generator {
 				writeRow(r, false);
 			buf.add("</table>\n</section>\n");
 			return buf.toString();
-		case DImgTable(no, size, caption, path):
+		case DImgTable(no, size, caption, _.toInputPath() => path):
 			idc.table = v.id.sure();
 			noc.table = no;
 			var no = noc.join(false, ".", chapter, table);
@@ -383,26 +391,34 @@ class Generator {
 		}
 	}
 
-	@:template function renderNav(vno:Int, lno:String, name:Html, url:String);
+	@:template function renderToc(vno:Null<Int>, lno:String, name:Html, url:String);
+
+	// save data as jsonp
+	function saveData(global:String, data:Dynamic)
+	{
+		var path = 'data_$global.js';
+		var contents = 'var $global = ${haxe.Json.stringify(data)};';
+		return saveAsset(path, Bytes.ofString(contents));
+	}
 
 	public function writeDocument(doc:NewDocument)
 	{
+		// FIXME get the document name elsewhere
+
 		bufs = new Map();
 		stylesheets = [];  // FIXME unique stylesheet collection
 		srcCache = new Map();  // TODO abstract
 		lastSrcId = 0;
-		nav = new StringBuf();
-		nav.add('<nav><a id="menu" href="">MENU</a><ul>');
-		nav.add('<li class="volume">${renderNav(null, null, "BRT Planning Guide", "index.html")}</li>');
+		toc = new StringBuf();
+		toc.add('<ul><li class="volume">${renderToc(null, null, "BRT Planning Guide", "index.html")}</li>');
 
-		// FIXME get the document name elsewhere
 		var contents = genv(doc, new IdCtx(), new NoCtx(), {});  // TODO here for a hack
 		var root = bufs["index.html"] = openBuffer("The Online BRT Planning Guide", ".", {});
 		root.add('<section>\n<h1 id="heading" class="brtcolor">${gent("The Online BRT Planning Guide")}</h1>\n');
 		root.add(contents);
 		root.add('</section>\n');
 		// TODO tt, commit in downloads, chapter download
-		nav.add('
+		toc.add('
 			<li class="keep">
 			<a href="#nav-options">More options</a>
 			<ul class="target" id="nav-options">
@@ -412,7 +428,7 @@ class Generator {
 			</ul>
 			</li>
 		'.doctrim());
-		nav.add("\n</ul></nav>");
+		toc.add("\n</ul>");
 
 		var srcMap = [
 			for (p in srcCache.keys())
@@ -424,17 +440,18 @@ class Generator {
 		s.serialize(srcMap);
 
 		var glId = Sys.getEnv("GL_ANALYTICS_UA_ID");
-		var navBundle = "__navBundle__ = " + haxe.Json.stringify(nav.toString()) + ";\n" + haxe.Resource.getString("nav.js");
-		var navScript = saveAsset("nav.js", Bytes.ofString(navBundle));
+
+		var toc = saveData(TocData, toc.toString());
+		var script = saveAsset("manu.js", haxe.Resource.getBytes("html.js"));
 		var srcMapPath = saveAsset("src.haxedata", Bytes.ofString(s.toString()));
+
 		for (p in bufs.keys()) {
 			var b = bufs[p];
 			if (p.endsWith(".html")) {
 				b.add("</div>\n");
-				// TODO noscript nav
-				// b.add(nav.toString()); // temp
 				b.add("</div>\n");
-				b.add('<script src="$navScript"></script>');
+				b.add('<script src="$toc"></script>');
+				b.add('<script src="$script"></script>');
 				b.add('<div class="data-src-map" data-href="$srcMapPath"></div>\n');
 				if (glId != null) {
 					b.add('

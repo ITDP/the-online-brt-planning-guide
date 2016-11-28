@@ -2,24 +2,26 @@ package parser;  // TODO move out of the package
 
 import haxe.ds.GenericStack.GenericCell;
 import haxe.ds.Option;
+import haxe.io.Path;
 import parser.Ast;
-import parser.Error;
+import parser.ParserError;
 import parser.Token;
 import sys.FileSystem;
+import transform.ValidationError;
+import transform.Validator;
 
 import Assertion.*;
 import parser.AstTools.*;
 
 using StringTools;
-using parser.TokenTools;
+using PositionTools;
 
 typedef Stop = {
 	?before:TokenDef,
 	?beforeAny:Array<TokenDef>  // could possibly replace before
 }
 
-typedef Path = String;
-typedef FileCache = Map<Path,File>;
+typedef FileCache = Map<String,{ parent:Position, ast:Option<File> }>;
 
 class Parser {
 	public static var defaultFigureSize = MarginWidth;
@@ -32,25 +34,29 @@ class Parser {
 		"meta", "reset", "tex", "preamble", "export", "html", "apply"];
 	static var horizontalCommands = ["sup", "sub", "emph", "highlight"];
 
-	var location:Path;
+	var parent:Position;
+	var location:String;
 	var lexer:Lexer;
 	var cache:FileCache;
 	var next:GenericCell<Token>;
 
-	inline function unexpected(t:Token, ?desc):Dynamic
-		throw new UnexpectedToken(lexer, t, desc);
+	inline function unexpected(tok:Token, ?desc):Dynamic
+		throw new ParserError(tok.pos, UnexpectedToken(tok.def, desc));
 
-	inline function unclosed(t:Token):Dynamic
-		throw new UnclosedToken(lexer, t);
+	inline function unclosed(tok:Token):Dynamic
+		throw new ParserError(tok.pos, UnclosedToken(tok.def));
 
-	inline function missingArg(p:Position, ?toToken:Token, ?desc:String):Dynamic
-		throw new MissingArgument(lexer, p, toToken, desc);
+	inline function missingArg(pos:Position, ?parent:Token, ?desc:String):Dynamic
+		throw new ParserError(pos, MissingArgument(parent.def, desc));
 
 	inline function badValue(pos:Position, ?desc:String):Dynamic
-		throw new BadValue(lexer, pos, desc);
+		throw new ParserError(pos, BadValue(desc));
 
 	inline function badArg(pos:Position, ?desc:String):Dynamic
-		throw new BadValue(lexer, pos.offset(1, -1), desc);
+		throw new ParserError(pos.offset(1, -1), BadValue(desc));
+
+	inline function invalid(pos:Position, verror:ValidationErrorValue):Dynamic
+		throw new ParserError(pos, Invalid(verror));
 
 	inline function unexpectedCmd(cmd:Token):Dynamic
 	{
@@ -62,12 +68,12 @@ class Parser {
 
 		var name = switch cmd.def {
 		case TCommand(n): n;
-		case _: throw new UnexpectedToken(lexer, cmd);
+		case _: unexpected(cmd);
 		}
 		name = name.toLowerCase();
 		var cmds = verticalCommands.concat(horizontalCommands);
 		if (Lambda.has(cmds, name))
-			throw new UnexpectedCommand(lexer, cmd.pos);
+			throw unexpected(cmd);
 		var dist = cmds.map(function (x) return x.split(""))
 			.map(NeedlemanWunsch.globalAlignment.bind(name.split(""), _, df, sf));
 		var best = 0;
@@ -76,7 +82,7 @@ class Parser {
 				best = i;
 		}
 		// trace(untyped [cmds[best], dist[best]]);
-		throw new UnknownCommand(lexer, cmd.pos, cmds[best]);
+		throw new ParserError(cmd.pos, UnknownCommand(name, cmds[best]));
 	}
 
 	function peek(offset=0):Token
@@ -115,10 +121,10 @@ class Parser {
 	}
 
 	function discardNoise(permanent=true):Int
-		return discard(function (x) return x.def.match(TWordSpace(_)|TComment(_)));
+		return discard(function (x) return x.def.match(TWordSpace(_)|TComment(_)), permanent);
 
 	function discardVerticalNoise(permanent=true):Int
-		return discard(function (x) return x.def.match(TWordSpace(_)|TComment(_)|TBreakSpace(_)));
+		return discard(function (x) return x.def.match(TWordSpace(_)|TComment(_)|TBreakSpace(_)), permanent);
 
 	function arg<T>(internal:Stop->T, ?toToken:Token, ?desc:String):{ val:T, pos:Position }
 	{
@@ -140,7 +146,7 @@ class Parser {
 		if (!peek(i).def.match(TBrkOpen))
 			return null;
 
-		while (--i > 0) pop();
+		while (i-- > 0) pop();
 		var open = pop();
 		if (!open.def.match(TBrkOpen)) missingArg(open.pos, toToken, desc);
 
@@ -217,8 +223,6 @@ class Parser {
 		return mkList(horizontal, stop);
 
 	// FIXME document slash behavior
-	// FIXME document automagically converted chars (TeX ligatures)
-	// FIXME document chars that need to be escaped (including the ones used in the above TeX ligatures)
 	function rawHorizontal(stop:Stop):String
 	{
 		var buf = new StringBuf();
@@ -228,16 +232,16 @@ class Parser {
 				break;
 			case { def:tdef } if (stop.beforeAny != null && Lambda.exists(stop.beforeAny,Type.enumEq.bind(tdef))):
 				break;
-			case { def:TBreakSpace(_) } | { def:TEof }:
+			case { def:TEof }:
 				break;
-			case { def:TComment(_) }:  // not sure about this
+			case { def:TComment(_) }:
 				pop();
 			case { def:TWord(w) }:
 				pop();
 				buf.add(w);
-			case { def:def, pos:pos }:
+			case { src:src, pos:pos }:
 				pop();
-				buf.add(lexer.recover(pos.min, pos.max - pos.min));
+				buf.add(src);
 			}
 		}
 		return buf.toString();
@@ -246,7 +250,6 @@ class Parser {
 	function hierarchy(cmd:Token)
 	{
 		var name = arg(hlist, cmd, "name");
-		if (name.val.def.match(HEmpty)) badArg(name.pos, "name cannot be empty");
 		return switch cmd.def {
 		case TCommand("volume"): mk(Volume(name.val), cmd.pos.span(name.pos));
 		case TCommand("chapter"): mk(Chapter(name.val), cmd.pos.span(name.pos));
@@ -261,7 +264,6 @@ class Parser {
 	{
 		discardNoise();
 		var name = hlist(stop);
-		assert(!name.def.match(HEmpty), "obvisouly empty header");  // FIXME proper error? if so, needs to be tested
 
 		return switch hashes.def {
 		case THashes(1): mk(Section(name), hashes.pos.span(name.pos));
@@ -278,9 +280,7 @@ class Parser {
 		var path = arg(rawHorizontal, cmd, "path");
 		var caption = arg(hlist, cmd, "caption");
 		var copyright = arg(hlist, cmd, "copyright");
-		if (caption.val.def.match(HEmpty)) badArg(caption.pos, "caption cannot be empty");  // TODO test
-		if (copyright.val.def.match(HEmpty)) badArg(copyright.pos, "copyright cannot be empty");  // TODO test
-		return mk(Figure(size, mkPath(path.val, path.pos), caption.val, copyright.val), cmd.pos.span(copyright.pos));
+		return mk(Figure(size, mk(path.val, path.pos.offset(1,-1)), caption.val, copyright.val), cmd.pos.span(copyright.pos));
 	}
 
 	/*
@@ -320,7 +320,7 @@ class Parser {
 				if (path != null) unexpected(peek(), "path already given");
 				var p = arg(rawHorizontal, tag[1], "path");
 				lastPos = p.pos;
-				path = mkPath(p.val, p.pos);
+				path = mk(p.val, p.pos.offset(1,-1));
 			case TAt:
 				if (copyright != null) unexpected(peek(), "copyright already given");
 				pop();
@@ -335,7 +335,7 @@ class Parser {
 		assert(lastPos != null);
 		if (captionParts.length == 0) badValue(lastPos, "caption cannot be empty");
 		if (path == null) missingArg(lastPos, tag[1], "path");
-		if (copyright == null || copyright.def.match(HEmpty)) missingArg(lastPos, tag[1], "copyright");  // TODO test
+		if (copyright == null) missingArg(lastPos, tag[1], "copyright");  // TODO test
 		var caption = if (captionParts.length == 1)
 				captionParts[0]
 			else
@@ -379,7 +379,6 @@ class Parser {
 		assert(begin.def.match(TCommand("begintable")), begin);
 		var size = blobSize(optArg(rawHorizontal, begin, "size"), defaultTableSize);
 		var caption = arg(hlist, begin, "caption");
-		if (caption.val.def.match(HEmpty)) badArg(caption.pos, "caption cannot be empty");  // TODO test
 		var rows = [];
 		discardVerticalNoise();
 		if (peek().def.match(TCommand("useimage"))) {
@@ -388,7 +387,7 @@ class Parser {
 			var end = pop();  // should have already discarted any vnoise before
 			if (end.def.match(TEof)) unclosed(begin);
 			if (!end.def.match(TCommand("endtable"))) unexpected(end);
-			return mk(ImgTable(size, caption.val, mkPath(path.val, path.pos)), begin.pos.span(end.pos));
+			return mk(ImgTable(size, caption.val, mk(path.val, path.pos.offset(1,-1))), begin.pos.span(end.pos));
 		} else if (peek().def.match(TCommand("header"))) {
 			var header = tableRow(pop());
 			while (true) {
@@ -412,8 +411,6 @@ class Parser {
 		assert(cmd.def.match(TCommand("quotation")), cmd);
 		var text = arg(hlist, cmd, "text");
 		var author = arg(hlist, cmd, "author");
-		if (text.val.def.match(HEmpty)) badArg(text.pos, "text cannot be empty");
-		if (author.val.def.match(HEmpty)) badArg(author.pos, "author cannot be empty");
 		return mk(Quotation(text.val, author.val), cmd.pos.span(author.pos));
 	}
 
@@ -426,8 +423,6 @@ class Parser {
 		if (!at.def.match(TAt)) missingArg(at.pos, greaterThan, "author (prefixed with @)");
 		discardNoise();
 		var author = hlist(stop);
-		if (text.def.match(HEmpty)) badValue(greaterThan.pos.span(at.pos).offset(1, -1), "text cannot be empty");
-		if (author.def.match(HEmpty)) badValue(at.pos.offset(1,0), "author cannot be empty");
 		return mk(Quotation(text, author), greaterThan.pos.span(author.pos));
 	}
 
@@ -459,8 +454,10 @@ class Parser {
 	{
 		assert(mark.def.match(TCommand("item" | "number")), mark);
 		var li = [];
-		while (Type.enumEq(peek().def, mark.def))
+		while (peek().def.equals(mark.def)) {
 			li.push(listItem(pop(), stop));
+			discardNoise();
+		}
 		assert(li.length > 0, li);  // we're sure that li.length > 0 since we started with \item
 		var def = switch mark.def {
 		case TCommand("item"): List(false, li);
@@ -474,7 +471,6 @@ class Parser {
 	{
 		assert(begin.def.match(TCommand("beginbox")), begin);
 		var name = arg(hlist, begin, "name");
-		if (name.val.def.match(HEmpty)) badArg(name.pos, "name cannot be empty");
 		var li = vlist({ beforeAny:[TCommand("endbox")] });
 		discardVerticalNoise();
 		var end = pop();
@@ -491,20 +487,20 @@ class Parser {
 				return rel;
 			badArg(pos, "path cannot be empty");
 		}
-		if (haxe.io.Path.isAbsolute(rel)) badArg(pos, "path cannot be absolute");
-		var path = haxe.io.Path.join([haxe.io.Path.directory(pos.src), rel]);
-		return haxe.io.Path.normalize(path);
+		if (Path.isAbsolute(rel)) badArg(pos, "path cannot be absolute");
+		var path = Path.join([Path.directory(pos.src), rel]);
+		return Path.normalize(path);
 	}
 
 	function include(cmd:Token)
 	{
 		assert(cmd.def.match(TCommand("include")), cmd);
 		var p = arg(rawHorizontal, cmd);
-		var path = mkPath(p.val, p.pos);
-		// TODO use the cache and/or a stack to improve performance and prevent infinite recursion
-		if (!FileSystem.exists(path)) return badArg(p.pos, "File not found or not accessible");
-		if (FileSystem.isDirectory(path)) return badArg(p.pos, "Expected file, but is directory");
-		return parse(path, cache);
+		var path:PElem = mk(p.val, p.pos);
+		var pcheck = Validator.validateSrcPath(path, [Manu]);
+		if (pcheck != null)
+			return invalid(p.pos, pcheck.err);
+		return parse(path.toInputPath(), p.pos, cache);
 	}
 
 	function paragraph(stop:Stop)
@@ -516,49 +512,49 @@ class Parser {
 
 	function metaReset(cmd:Token)
 	{
-		assert(cmd.def.match(TCommand("meta\\reset")), cmd);
+		assert(cmd.def.match(TCommand("reset")), cmd);
 		var name = arg(rawHorizontal, cmd, "counter name");
 		var val = arg(rawHorizontal, cmd, "reset value");
-		var no = ~/^[ \t\r\n]*[0-9][0-9]*[ \t\r\n]*$/.match(val.val) ? Std.parseInt(StringTools.trim(val.val)) : null;
-		if (!Lambda.has(["volume","chapter"], name.val)) badArg(name.pos, "counter name should be `volume` or `chapter`");
+		var reg = name.val.trim();
+		var no = ~/^[ \t\r\n]*[0-9][0-9]*[ \t\r\n]*$/.match(val.val) ? Std.parseInt(val.val.trim()) : null;
+		if (!Lambda.has(["volume","chapter"], reg)) badArg(name.pos, "counter name should be `volume` or `chapter`");
 		if (no == null || no < 0) badArg(val.pos, "reset value must be strictly greater or equal to zero");
-		return mk(MetaReset(name.val, no), cmd.pos.span(val.pos));
+		return mk(MetaReset(reg, no), cmd.pos.span(val.pos));
 	}
 
 	function targetInclude(cmd:Token)
 	{
 		var p = arg(rawHorizontal, cmd, "source path");
-		var path = mkPath(p.val, p.pos);
+		var path = mk(p.val, p.pos.offset(1, -1));
 		return switch cmd.def {
-		case TCommand("html\\apply"): mk(HtmlApply(path), cmd.pos.span(p.pos));
-		case TCommand("tex\\preamble"): mk(LaTeXPreamble(path), cmd.pos.span(p.pos));
+		case TCommand("apply"): mk(HtmlApply(path), cmd.pos.span(p.pos));
+		case TCommand("preamble"): mk(LaTeXPreamble(path), cmd.pos.span(p.pos));
 		case _: unexpected(cmd);
 		}
 	}
 
 	function texExport(cmd:Token)
 	{
-		assert(cmd.def.match(TCommand("tex\\export")), cmd);
+		assert(cmd.def.match(TCommand("export")), cmd);
 		var s = arg(rawHorizontal, cmd, "source path");
 		var d = arg(rawHorizontal, cmd, "destination path");
-		var src = mkPath(s.val, s.pos);
-		var dest = haxe.io.Path.normalize(d.val);
-		if (haxe.io.Path.isAbsolute(dest)) badArg(d.pos, "destination path cannot be absolute");
-		if (dest.startsWith("..")) badArg(d.pos, "destination path cannot escape the destination directory");
-		return mk(LaTeXExport(src, dest), cmd.pos.span(d.pos));
+		return mk(LaTeXExport(mk(s.val, s.pos.offset(1,-1)), mk(d.val, d.pos.offset(1,-1))), cmd.pos.span(d.pos));
 	}
 
 	function meta(meta:Token)
 	{
 		discardNoise();
 		var exec = pop();
-		var pos = meta.pos.span(exec.pos);
+		exec.pos = meta.pos.span(exec.pos);
 		return switch [meta.def, exec.def] {
-		case [TCommand("meta"), TCommand("reset")]: metaReset({ def:TCommand("meta\\reset"), pos:pos });
-		case [TCommand("html"), TCommand("apply")]: targetInclude({ def:TCommand("html\\apply"), pos:pos });
-		case [TCommand("tex"), TCommand("preamble")]: targetInclude({ def:TCommand("tex\\preamble"), pos:pos });
-		case [TCommand("tex"), TCommand("export")]: texExport({ def:TCommand("tex\\export"), pos:pos });
-		case _: unexpectedCmd(exec);
+		case [TCommand("meta"), TCommand("reset")]: 
+			metaReset(exec);
+		case [TCommand("html"), TCommand("apply")], [TCommand("tex"), TCommand("preamble")]:
+			targetInclude(exec);
+		case [TCommand("tex"), TCommand("export")]:
+			texExport(exec);
+		case _:
+			unexpectedCmd(exec);
 		}
 	}
 
@@ -606,20 +602,41 @@ class Parser {
 		return mkList(vertical, stop);
 
 	public function file():File
-		return vlist({});  // TODO update the cache
+	{
+		switch cache[location] {
+		case null:
+			var entry = cache[location] = { parent:parent, ast:None };
+			var ast = vlist({});
+			entry.ast = Some(ast);
+			return ast;
+		case { parent:original, ast:None }:
+			return throw 'Cyclic path: $location already accessed from ${original.toString()}\n  at ${parent.toString()}';
+		case { ast:Some(ast) }:
+			return ast;
+		}
+	}
 
-	public function new(location:String, lexer:Lexer, ?cache:FileCache)
+	public function new(location:String, lexer:Lexer, ?parent:Position, ?cache:FileCache)
 	{
 		this.location = location;
 		this.lexer = lexer;
+		assert(location == Path.normalize(location), location);
+		if (parent == null) parent = { min:0, max:0, src:location };
+		this.parent = parent;
 		if (cache == null) cache = new FileCache();
 		this.cache = cache;
 	}
 
-	public static function parse(path:String, ?cache:FileCache):File
+	public static function parse(path:String, ?parent:Position, ?cache:FileCache):File
 	{
+		// only assert; `\include` performs proper validation, and the
+		// entry point is checked on Main.generate
+		var p:PElem = mk(path, { src:"./", min:0, max:0 });
+		var pcheck = Validator.validateSrcPath(p, [Manu]);
+		assert(pcheck == null, pcheck);
+
 		var lex = new Lexer(sys.io.File.getBytes(path), path);
-		var parser = new Parser(path, lex, cache);
+		var parser = new Parser(path, lex, parent, cache);
 		return parser.file();
 	}
 }

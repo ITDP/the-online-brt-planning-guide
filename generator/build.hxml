@@ -1,8 +1,34 @@
-only-build.hxml
+# --times
+# -D macro-times
+# -D dump=pretty
+
+-lib utest
+-lib hxparse
+-lib assertion
+-lib literals
+-lib sys-utils
+-lib version
+-lib tink_template
+-lib utest
+-D tink_template_pos=off
+-D tink_template_filter_classes
+-cp include
+-cp extern
+-cp src
+
+--each
+
+# The html nav scrip
+-main html.script.Main
+-js bin/bundle/html.js
 
 --next
 
-# The macro interpreter unit tests
--main tests.RunAll
---interp
+# The main tool, to run on Node
+# use --debug for source-map generation
+-main Main
+-js bin/manu.js
+-lib hxnodejs
+-resource bin/bundle/html.js@html.js
+-debug
 

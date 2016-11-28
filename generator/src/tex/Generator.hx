@@ -12,7 +12,7 @@ import Assertion.*;
 
 using Literals;
 using StringTools;
-using parser.TokenTools;
+using PositionTools;
 
 class Generator {
 	static var FILE_BANNER = '
@@ -33,6 +33,41 @@ class Generator {
 	var bufs:Map<String,StringBuf>;
 
 	static var texEscapes = ~/([{}\$&#\^_%~])/g;  // FIXME complete with LaTeX/Math
+
+	static inline var ASSET_SUBDIR = "assets";
+
+	function _saveAsset(at:String, src:String):String
+	{
+		var ldir = Path.join([at, ASSET_SUBDIR]);
+		var dir = Path.join([destDir, ldir]);
+		if (!FileSystem.exists(dir))
+			FileSystem.createDirectory(dir);
+
+		var ext = Path.extension(src).toLowerCase();
+		var data = File.getBytes(src);
+#if nodejs
+		var hash = js.node.Crypto.createHash("sha1").update(js.node.buffer.Buffer.hxFromBytes(data)).digest("hex");
+#else
+		var hash = haxe.crypto.Sha1.make(data).toHex();
+#end
+
+		// TODO question: is the extension even neccessary?
+		var name = ext != "" ? hash + "." + ext : hash;
+		var dst = Path.join([dir, name]);
+		File.saveBytes(dst, data);
+
+		var lpath = Path.join([ldir, name]);
+		if (~/windows/i.match(Sys.systemName()))
+			lpath = lpath.replace("\\", "/");
+		assert(lpath.indexOf(" ") < 0, lpath, "spaces are toxic in TeX paths");
+		assert(lpath.indexOf(".") == lpath.lastIndexOf("."), lpath, "unprotected dots are toxic in TeX paths");
+		weakAssert(!Path.isAbsolute(lpath), "absolute paths might be toxic in TeX paths");
+		weakAssert(~/[a-z\/-]+/.match(lpath), lpath, "weird chars are dangerous in TeX paths");
+		return lpath;
+	}
+
+	public function saveAsset(at, src)
+		return Context.time("tex generation (saveAsset)", _saveAsset.bind(at, src));
 
 	public function gent(text:String)
 	{
@@ -86,16 +121,16 @@ class Generator {
 		switch v.def {
 		case DHtmlApply(_):
 			return "";
-		case DLaTeXPreamble(path):
+		case DLaTeXPreamble(_.toInputPath() => path):
 			// TODO validate path (or has Transform done so?)
 			preamble.add('% included from `$path`\n');
 			preamble.add(genp(v.pos));
 			preamble.add(File.getContent(path).trim());
 			preamble.add("\n\n");
 			return "";
-		case DLaTeXExport(src, dest):
+		case DLaTeXExport(_.toInputPath() => src, _.toOutputPath(destDir) => dest):
 			assert(FileSystem.isDirectory(destDir));
-			FsUtil.copy(src, Path.join([destDir, dest]));
+			FsUtil.copy(src, dest, Context.debug);
 			return "";
 		case DVolume(no, name, children):
 			idc.volume = v.id.sure();
@@ -134,13 +169,12 @@ class Generator {
 			idc.box = v.id.sure();
 			var id = idc.join(true, ":", chapter, box);
 			return '\\beginbox{$no}{${genh(name)}}\n\\label{$id}\n${genv(children, at, idc)}\\endbox\n${genp(v.pos)}\n';
-		case DFigure(no, size, path, caption, cright):
+		case DFigure(no, size, _.toInputPath() => path, caption, cright):
 			idc.figure = v.id.sure();
 			var id = idc.join(true, ":", chapter, figure);
-			path = sys.FileSystem.absolutePath(path);  // FIXME maybe move to transform
+			path = saveAsset(at, path);
 			// TODO handle size
 			// TODO enable on XeLaTeX too
-			// FIXME escape path
 			// FIXME label
 			return '
 			\\ifxetex
@@ -155,13 +189,12 @@ class Generator {
 			idc.table = v.id.sure();
 			var id = idc.join(true, ":", chapter, table);
 			return LargeTable.gen(v, id, this, at, idc);
-		case DImgTable(no, size, caption, path):
+		case DImgTable(no, size, caption, _.toInputPath() => path):
 			idc.table = v.id.sure();
 			var id = idc.join(true, ":", chapter, table);
-			path = sys.FileSystem.absolutePath(path);  // FIXME maybe move to transform
+			path = saveAsset(at, path);
 			// TODO handle size
 			// TODO enable on XeLaTeX too
-			// FIXME escape path
 			// FIXME label
 			return '
 			\\ifxetex

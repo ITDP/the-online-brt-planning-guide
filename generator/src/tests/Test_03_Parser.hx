@@ -2,7 +2,7 @@ package tests;
 
 import parser.Ast;
 import parser.AstTools.*;
-import parser.Error;
+import parser.ParserError;
 import parser.Token;
 import utest.Assert;
 
@@ -18,15 +18,17 @@ class Test_03_Parser {
 		return p.file();
 	}
 
-	function parsingError(text:String, ?etype:Class<GenericError>, ?etext:EReg, ?epos:Position, ?p:haxe.PosInfos)
+	function fails(text:String, ?expected:ParserErrorValue, ?textPattern:EReg, ?epos:Position, ?p:haxe.PosInfos)
 	{
-		Assert.raises(parse.bind(text), etype, p);
-		if (etext != null || epos != null) {
+		Assert.raises(parse.bind(text), ParserError, p);
+		if (textPattern != null || epos != null) {
 			try {
 				parse(text);
-			} catch (err:GenericError) {
-				if (etext != null)
-					Assert.match(etext, err.text, p);
+			} catch (err:ParserError) {
+				if (expected != null)
+					Assert.same(expected, err.err);
+				if (textPattern != null)
+					Assert.match(textPattern, err.toString(), p);
 				if (epos != null)
 					Assert.same(epos, err.pos, p);
 			}
@@ -137,10 +139,10 @@ class Test_03_Parser {
 		Assert.same(
 			expand(Paragraph(HElemList([@wrap(1,1)Emphasis(HElemList([@len(1)Word("a"),@len(1)Wordspace])),@wrap(1,1)Emphasis(@len(1)Word("b")),@wrap(1,1)Emphasis(HElemList([@len(1)Wordspace,@len(1)Word("c")]))]))),
 			parse("*a **b** c*"));
-
-		parsingError("\\emph", MissingArgument, ~/argument.+\\emph/i, mkPos(5, 5));
-		parsingError("\\emph a", MissingArgument, ~/argument.+\\emph/i, mkPos(6,7));
-		parsingError("\\emph{a}{}", UnexpectedToken, ~/{/, mkPos(8,9));
+  // {\}}
+		fails("\\emph", MissingArgument(TCommand("emph")), mkPos(5, 5));
+		fails("\\emph a", MissingArgument(TCommand("emph")), mkPos(6,7));
+		fails("\\emph{a}{}", UnexpectedToken(TBrOpen), mkPos(8,9));
 	}
 
 	public function test_004_highlight()
@@ -155,9 +157,9 @@ class Test_03_Parser {
 			expand(Paragraph(@wrap(11,1)Highlight(HElemList([@len(1)Word("a"),@len(1)Wordspace,@wrap(11,1)Highlight(@len(1)Word("b"))])))),
 			parse("\\highlight{a \\highlight{b}}"));
 
-		parsingError("\\highlight", MissingArgument, ~/argument.+\\highligh/i, mkPos(10, 10));
-		parsingError("\\highlight a", MissingArgument, ~/argument.+\\highlight/i, mkPos(11, 12));
-		parsingError("\\highlight{a}{}", UnexpectedToken, ~/{/, mkPos(13, 14));
+		fails("\\highlight", MissingArgument(TCommand("highlight")), mkPos(10, 10));
+		fails("\\highlight a", MissingArgument(TCommand("highlight")), mkPos(11, 12));
+		fails("\\highlight{a}{}", UnexpectedToken(TBrOpen), mkPos(13, 14));
 	}
 
 	/*
@@ -170,25 +172,23 @@ class Test_03_Parser {
 	public function test_005_bad_command_name()
 	{
 		// typos
-		parsingError("\\emp", UnknownCommand, ~/\\emp.+\\emph/, mkPos(0,4));
-		parsingError("\\highligth", UnknownCommand, ~/\\highligth.+\\highlight/);
-		parsingError("\\volme", UnknownCommand, ~/\\volme.+\\volume/);
-		parsingError("\\chpter", UnknownCommand, ~/\\chpter.+\\chapter/);
-		parsingError("\\subection", UnknownCommand, ~/\\subection.+\\subsection/);
-		parsingError("\\subsubection", UnknownCommand, ~/\\subsubection.+\\subsubsection/);
-		parsingError("\\metaa\\reset", UnknownCommand, ~/\\metaa.+\\meta/);
-		parsingError("\\meta\\rest", UnknownCommand, ~/\\rest.+\\reset/);
-		parsingError("\\hml\\apply", UnknownCommand, ~/\\hml.+\\html/);
-		parsingError("\\html\\appply", UnknownCommand, ~/\\appply.+\\apply/);
-		parsingError("\\text\\preamble", UnknownCommand, ~/\\text.+\\tex/);
-		parsingError("\\tex\\preambl", UnknownCommand, ~/\\preambl.+\\preamble/);
+		fails("\\emp", UnknownCommand("emp", "emph"), mkPos(0,4));
+		fails("\\highligth", UnknownCommand("highligth", "highlight"));
+		fails("\\volme", UnknownCommand("volme", "volume"));
+		fails("\\chpter", UnknownCommand("chpter", "chapter"));
+		fails("\\subection", UnknownCommand("subection", "subsection"));
+		fails("\\subsubection", UnknownCommand("subsubection", "subsubsection"));
+		fails("\\metaa\\reset", UnknownCommand("metaa", "meta"));
+		fails("\\meta\\rest", UnknownCommand("rest", "reset"));
+		fails("\\hml\\apply", UnknownCommand("hml", "html"));
+		fails("\\html\\appply", UnknownCommand("appply", "apply"));
+		fails("\\text\\preamble", UnknownCommand("text", "tex"));
+		fails("\\tex\\preambl", UnknownCommand("preambl", "preamble"));
 
 		// non existant aliases
-		parsingError("\\emphasis", UnknownCommand, ~/\\emphasis.+\\emph/);
-		parsingError("\\display", UnknownCommand);
-		// parsingError("\\display", UnknownCommand, ~/\\display.+\\highlight/);  // FIXME
-		parsingError("\\quote", UnknownCommand);
-		// parsingError("\\quote", UnknownCommand, ~/\\quote.+\\quotation/);  // FIXME
+		fails("\\emphasis", UnknownCommand("emphasis", "emph"));
+		fails("\\display", UnknownCommand("display", "highlight"));
+		fails("\\quote", UnknownCommand("quote", "quotation"));
 
 		// TOOD figures, tables, lists, boxes
 	}
@@ -256,22 +256,16 @@ class Test_03_Parser {
 			expand(VElemList([Paragraph(@len(1)Word("a")),@skip(2)@wrap(15,1)SubSubSection(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))])),
 			parse("a\n\n\\subsubsection{b}\n\nc"));
 
-		parsingError("\\volume", MissingArgument, ~/name.+\\volume/i, mkPos(7, 7));
-		parsingError("\\volume a", MissingArgument, ~/name.+\\volume/i, mkPos(8, 9));
-		parsingError("\\volume{a}{}", UnexpectedToken, ~/{/, mkPos(10, 11));
-		parsingError("\\section{\\volume{a}}", UnexpectedToken, ~/\\volume/, mkPos(9, 16));
-		parsingError("\\section{a\\volume{b}}", UnexpectedToken, ~/\\volume/, mkPos(10, 17));
-
-		parsingError("\\volume{}", BadValue, ~/name cannot be empty/i, mkPos(8, 8));
-		parsingError("\\chapter{}", BadValue, ~/name cannot be empty/i, mkPos(9, 9));
-		parsingError("\\section{}", BadValue, ~/name cannot be empty/i, mkPos(9, 9));
-		parsingError("\\subsection{}", BadValue, ~/name cannot be empty/i, mkPos(12, 12));
-		parsingError("\\subsubsection{}", BadValue, ~/name cannot be empty/i, mkPos(15, 15));
+		fails("\\volume", MissingArgument(TCommand("volume"), "name"), mkPos(7, 7));
+		fails("\\volume a", MissingArgument(TCommand("volume"), "name"), mkPos(8, 9));
+		fails("\\volume{a}{}", UnexpectedToken(TBrOpen), mkPos(10, 11));
+		fails("\\section{\\volume{a}}", UnexpectedToken(TCommand("volume")), mkPos(9, 16));
+		fails("\\section{a\\volume{b}}", UnexpectedToken(TCommand("volume")), mkPos(10, 17));
 	}
 
 	public function test_009_argument_parsing_errors()
 	{
-		parsingError("\\section{", UnclosedToken, ~/{/, mkPos(8,9));
+		fails("\\section{", UnclosedToken(TBrOpen), mkPos(8,9));
 	}
 
 	public function test_010_md_headings()
@@ -297,7 +291,7 @@ class Test_03_Parser {
 			expand(VElemList([Paragraph(@len(1)Word("a")),@skip(2)@wrap(4,0)SubSubSection(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))])),
 			parse("a\n\n### b\n\nc"));
 
-		parsingError("####a b", UnexpectedToken, ~/####/, mkPos(0, 4));
+		fails("####a b", UnexpectedToken(THashes(4), "only sections (#), subsections (##) and subsubsections (###) allowed"), mkPos(0, 4));
 	}
 
 	public function test_011_quotations()
@@ -316,27 +310,22 @@ class Test_03_Parser {
 			expand(@wrap(2,0)Quotation(HElemList([@len(1)Word("a"),@len(1)Wordspace]),@skip(1)@len(1)Word("b"))),
 			parse("> a\n@b"));
 
-		parsingError("\\quotation", MissingArgument, ~/text.+\\quotation/i, mkPos(10, 10));
-		parsingError("\\quotation a", MissingArgument, ~/text.+\\quotation/i, mkPos(11, 12));
-		parsingError("\\quotation{a}", MissingArgument, ~/author.+\\quotation/i, mkPos(13, 13));
-		parsingError("\\quotation{a} b", MissingArgument, ~/author.+\\quotation/i, mkPos(14, 15));
-		parsingError("\\quotation{a}{b}{}", UnexpectedToken, ~/{/, mkPos(16, 17));
-		parsingError(">a\n\nb", MissingArgument, ~/author.+quotation/);
-
-		parsingError("\\quotation{a}{}", BadValue, ~/author cannot be empty/i, mkPos(14,14));
-		parsingError("\\quotation{}{b}", BadValue, ~/text cannot be empty/i, mkPos(11, 11));
-		parsingError(">a@\n\nb", BadValue, ~/author cannot be empty/i, mkPos(3, 3));
-		parsingError(">@a\n\nb", BadValue, ~/text cannot be empty/i, mkPos(1, 1));
+		fails("\\quotation", MissingArgument(TCommand("quotation"), "text"), mkPos(10, 10));
+		fails("\\quotation a", MissingArgument(TCommand("quotation"), "text"), mkPos(11, 12));
+		fails("\\quotation{a}", MissingArgument(TCommand("quotation"), "author"), mkPos(13, 13));
+		fails("\\quotation{a} b", MissingArgument(TCommand("quotation"), "author"), mkPos(14, 15));
+		fails("\\quotation{a}{b}{}", UnexpectedToken(TBrOpen), mkPos(16, 17));
+		fails(">a\n\nb", MissingArgument(TGreater, "author"));
 	}
 
 	public function test_012_figures()
 	{
 		Assert.same(
-			expand(@wrap(8,1)Figure(MarginWidth, "fig.png",@skip(2+7)@len(7)Word("caption"),@skip(2)@len(9)Word("copyright"))),  // FIXME no pos for path, @skip
+			expand(@wrap(8,1)Figure(MarginWidth,@elem@len(7)"fig.png",@skip(2)@len(7)Word("caption"),@skip(2)@len(9)Word("copyright"))),  // FIXME no pos for path, @skip
 			parse("\\figure{fig.png}{caption}{copyright}"));
 
 		Assert.same(
-			expand(@wrap(5,0)Figure(MarginWidth, "fig.png",@skip(2+7)@len(7)Word("caption"),@skip(1)@len(9)Word("copyright"))),  // FIXME no pos for path, @skip
+			expand(@wrap(6,0)Figure(MarginWidth,@elem@len(7)"fig.png",@skip(1)@len(7)Word("caption"),@skip(1)@len(9)Word("copyright"))),  // FIXME no pos for path, @skip
 			parse("#FIG#{fig.png}caption@copyright"));
 		// TODO other/weird orderings of #FIG# details
 	}
@@ -474,11 +463,25 @@ class Test_03_Parser {
 		Assert.same(
 			expand(Paragraph(@wrap(6,1)Emphasis(@skip(7)@len(1)Word("a")))),
 			parse("\\emph\\'foo'\\{a}"));
+		Assert.same(
+			expand(List(false,[@wrap(6,1)Paragraph(@skip(1)@len(1)Word("a"))])),
+			parse("\\item [a]"));
+		Assert.same(
+			expand(List(false,[@wrap(6,1)Paragraph(@skip(1)@len(1)Word("a"))])),
+			parse("\\item\n[a]"));
+		Assert.same(
+			expand(List(false,[@wrap(6,1)Paragraph(@skip(7)@len(1)Word("a"))])),
+			parse("\\item\\'foo'\\[a]"));
 
 		// after argument opening braces
 		Assert.same(
 			expand(Paragraph(@wrap(6,1)Emphasis(@skip(7)@len(1)Word("a")))),
 			parse("\\emph{\\'foo'\\a}"));
+
+		// in between list items
+		Assert.same(
+			expand(List(false,[@wrap(6,1)Paragraph(@len(1)Word("a")),@skip(7)@wrap(6,1)Paragraph(@len(1)Word("b"))])),
+			parse("\\item[a]\\'foo'\\\\item[b]"));
 	}
 
 	public function test_015_meta_reset()
@@ -497,28 +500,30 @@ class Test_03_Parser {
 			expand(@len(27)MetaReset("volume", 2)),
 			parse("\\meta\\'a'\\\\reset{volume}{2}"));
 
-		parsingError("\\meta\\reset{section}{1}", BadValue);
-		parsingError("\\meta\\reset{subsection}{1}", BadValue);
-		parsingError("\\meta\\reset{subsubsection}{1}", BadValue);
+		var badCounter = "counter name should be 'volume' or 'chapter'";
+		var badValue = "reset value must be sctrictly greater or equal to zero";
+		fails("\\meta\\reset{section}{1}", BadValue(badCounter));
+		fails("\\meta\\reset{subsection}{1}", BadValue(badCounter));
+		fails("\\meta\\reset{subsubsection}{1}", BadValue(badCounter));
 
-		parsingError("\\meta\\reset{volume}{a}", BadValue);
-		parsingError("\\meta\\reset{volume}{-1}", BadValue);
-		parsingError("\\meta\\reset{volume}{1a}", BadValue);  // FIXME
+		fails("\\meta\\reset{volume}{a}", BadValue(badValue));
+		fails("\\meta\\reset{volume}{-1}", BadValue(badValue));
+		fails("\\meta\\reset{volume}{1a}", BadValue(badValue));  // FIXME
 
-		parsingError("\\meta\\reset{}{1}", BadValue);
-		parsingError("\\meta\\reset{volume}{}", BadValue);
+		fails("\\meta\\reset{}{1}", BadValue(badCounter));
+		fails("\\meta\\reset{volume}{}", BadValue(badCounter));
 
-		parsingError("\\meta\\reset", MissingArgument, ~/name/);
-		parsingError("\\meta\\reset{volume}", MissingArgument, ~/value/);
+		fails("\\meta\\reset", MissingArgument(TCommand("reset"), "counter name"));
+		fails("\\meta\\reset{volume}", MissingArgument(TCommand("reset"), "reset value"));
 
-		parsingError("\\meta");  // FIXME specific error
-		parsingError("\\meta\n\n\\reset{volume}{2}");  // FIXME specific error
+		fails("\\meta");  // FIXME specific error
+		fails("\\meta\n\n\\reset{volume}{2}");  // FIXME specific error
 	}
 
 	public function test_016_break_spaces_in_arguments()
 	{
-		// Section name must be a hlist, hence to break spaces can happen
-		parsingError("\\section{\n\nname}");
+		// Section name must be a hlist, hence no break spaces can happen
+		fails("\\section{\n\nname}");
 
 		// It's hard to decide whether raw arguments should accept
 		// break spaces or not: on one hand, this is closer to what
@@ -528,9 +533,11 @@ class Test_03_Parser {
 		//
 		//                 volume}{0}
 		// and this isn't something we want to encorage.
-		// Since we still don't use them in places were break spaces
-		// would be necessary, let's forbidd them for now.
-		parsingError("\\meta\\reset{\n\nvolume}{0}");
+		// However, we need to allow this for proper path parsing;
+		// otherwise, it would be necesarry to allow newline escaping,
+		// and that could cause tons of problems elsewhere.
+		Assert.same(expand(@len(24)MetaReset("volume",0)), parse("\\meta\\reset{\n\nvolume}{0}"));
+		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(6)"a \n\n b")), parse("\\html\\apply{a \n\n b}"));
 	}
 
 	public function test_017_boxes()
@@ -545,21 +552,19 @@ class Test_03_Parser {
 			expand(@wrap(10,7)Box(@len(1)Word("a"),@skip(1)VElemList([Paragraph(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))]))),
 			parse("\\beginbox{a}b\n\nc\\endbox"));
 
-		parsingError("\\endbox", UnexpectedCommand, ~/\\endbox/);
+		fails("\\endbox", UnexpectedCommand("endbox"));
 
-		parsingError("\\beginbox", MissingArgument, ~/name.+\\beginbox/i, mkPos(9, 9));
-		parsingError("\\beginbox a", MissingArgument, ~/name.+\\beginbox/i, mkPos(10, 11));
-		parsingError("\\beginbox{a}{}", UnexpectedToken, ~/{/, mkPos(12, 13));
-
-		parsingError("\\beginbox{}", BadValue, ~/name cannot be empty/i, mkPos(10, 10));
+		fails("\\beginbox", MissingArgument(TCommand("beginbox"), "name"), mkPos(9, 9));
+		fails("\\beginbox a", MissingArgument(TCommand("beginbox"), "name"), mkPos(10, 11));
+		fails("\\beginbox{a}{}", UnexpectedToken(TBrOpen), mkPos(12, 13));
 	}
 
 	// FIXME
 	// public function test_018_controled_nesting_of_vertical_elements()
 	// {
-	// 	parsingError("\\item[\\section{foo}]");
-	// 	parsingError("\\beginbox\\section{foo}\\endbox");
-	// 	parsingError("\\item[\\beginbox\\endbox]");
+	// 	fails("\\item[\\section{foo}]");
+	// 	fails("\\beginbox\\section{foo}\\endbox");
+	// 	fails("\\item[\\beginbox\\endbox]");
 	// }
 
 	// TODO
@@ -572,20 +577,18 @@ class Test_03_Parser {
 		// TODO \tex\preamble
 
 		// \tex\export
-		Assert.same(expand(@len(17)LaTeXExport("a","b")), parse("\\tex\\export{a}{b}"));
-		Assert.same(expand(@len(27)LaTeXExport("a","b")), parse("\\tex\\export{a}{c/d/../../b}"));
-		parsingError("\\tex\\export{a}{/home}", BadValue, ~/absolute/);
-		parsingError("\\tex\\export{a}{..}", BadValue, ~/escape/);
-		parsingError("\\tex\\export{a}{b/../..}", BadValue, ~/escape/);
+		Assert.same(expand(@wrap(12,1)LaTeXExport(@elem@len(1)"a",@skip(2)@elem@len(1)"b")), parse("\\tex\\export{a}{b}"));
+		Assert.same(expand(@wrap(12,1)LaTeXExport(@elem@len(1)"a",@skip(2)@elem@len(11)"c/d/../../b")), parse("\\tex\\export{a}{c/d/../../b}"));
+		Assert.equals("b", ( expand(@elem"c/d/../../b"):PElem ).toOutputPath(""));
 	}
 
 	public function test_021_include()
 	{
-		sys.io.File.saveContent(".testfile", "c");
-		Assert.same(expand(@src(".testfile")Paragraph(@len(1)Word("c"))), parse("\\include{.testfile}"));
-		parsingError("\\include{.nonexistant}", BadValue, ~/not found/);
+		sys.io.File.saveContent(".testfile.manu", "c");
+		Assert.same(expand(@src(".testfile.manu")Paragraph(@len(1)Word("c"))), parse("\\include{.testfile.manu}"));
+		// fails("\\include{.nonexistant}", Invalid(FileNotExists(".noexistant")));
 		// TODO test "not a file" error
-		sys.FileSystem.deleteFile(".testfile");
+		sys.FileSystem.deleteFile(".testfile.manu");
 	}
 
 	// TODO
@@ -607,10 +610,10 @@ class Test_03_Parser {
 			parse("\\begintable{a}\\header\\col x\\col y\\row\\col list\\col \\item 1\\item 2\\endtable"));
 
 		Assert.same(
-			expand(@wrap(12,9)ImgTable(TextWidth,@len(1)Word("a"),@skip(1)@len(16)"x.svg")),
+			expand(@wrap(12,10)ImgTable(TextWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
 			parse("\\begintable{a}\\useimage{x.svg}\\endtable"));
 
-		parsingError("\\endtable", UnexpectedCommand, ~/\\endtable/);
+		fails("\\endtable", UnexpectedCommand("endtable"));
 	}
 
 	public function test_023_escapes()
@@ -673,13 +676,47 @@ class Test_03_Parser {
 			expand(Paragraph(HElemList([@len(1)Word("a"),@wrap(5,1)Subscript(HElemList([@len(1)Word("b"),@wrap(5,1)Superscript(@len(1)Word("c"))]))]))),
 			parse("a\\sub{b\\sup{c}}"));
 
-		parsingError("\\sup", MissingArgument, ~/argument.+\\sup/i, mkPos(4, 4));
-		parsingError("\\sup a", MissingArgument, ~/argument.+\\sup/i, mkPos(5, 6));
-		parsingError("\\sup{a}{}", UnexpectedToken, ~/{/, mkPos(7, 8));
+		fails("\\sup", MissingArgument(TCommand("sup")), mkPos(4, 4));
+		fails("\\sup a", MissingArgument(TCommand("sup")), mkPos(5, 6));
+		fails("\\sup{a}{}", UnexpectedToken(TBrOpen), mkPos(7, 8));
 
-		parsingError("\\sub", MissingArgument, ~/argument.+\\sub/i, mkPos(4, 4));
-		parsingError("\\sub a", MissingArgument, ~/argument.+\\sub/i, mkPos(5, 6));
-		parsingError("\\sub{a}{}", UnexpectedToken, ~/{/, mkPos(7, 8));
+		fails("\\sub", MissingArgument(TCommand("sub")), mkPos(4, 4));
+		fails("\\sub a", MissingArgument(TCommand("sub")), mkPos(5, 6));
+		fails("\\sub{a}{}", UnexpectedToken(TBrOpen), mkPos(7, 8));
+	}
+
+	public function test_027_paths()
+	{
+		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(1)"a")), parse("\\html\\apply{a}"));
+
+		// whitespace in paths is maintained
+		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(3)" a ")), parse("\\html\\apply{ a }"));
+		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(6)"a \n\n b")), parse("\\html\\apply{a \n\n b}"));
+
+		// escapes and tex ligatures work the same (use the former to disable the latter)
+		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(2)"\\")), parse("\\html\\apply{\\\\}"));
+		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(2)"}")), parse("\\html\\apply{\\}}"));
+		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(3)"--")), parse("\\html\\apply{-\\-}"));
+	}
+
+	public function test_028_blob_sizes()
+	{
+		Assert.same(
+			expand(@wrap(12+7,10)ImgTable(MarginWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
+			parse("\\begintable[small]{a}\\useimage{x.svg}\\endtable"));
+		Assert.same(
+			expand(@wrap(12+8,10)ImgTable(TextWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
+			parse("\\begintable[medium]{a}\\useimage{x.svg}\\endtable"));
+		Assert.same(
+			expand(@wrap(12+7,10)ImgTable(FullWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
+			parse("\\begintable[large]{a}\\useimage{x.svg}\\endtable"));
+
+		Assert.same(
+			expand(@wrap(12+9,10)ImgTable(MarginWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
+			parse("\\begintable[ small ]{a}\\useimage{x.svg}\\endtable"));
+		Assert.same(
+			expand(@wrap(12+9,10)ImgTable(MarginWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
+			parse("\\begintable[\nsmall\n]{a}\\useimage{x.svg}\\endtable"));
 	}
 }
 

@@ -6,7 +6,7 @@ import transform.Context;
 import Assertion.*;
 
 using Literals;
-using parser.TokenTools;
+using PositionTools;
 
 class LargeTable {
 	// internal commands; for now, no real expectation of tunning them at runtime

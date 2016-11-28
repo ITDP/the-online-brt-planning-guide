@@ -1,11 +1,56 @@
 package parser;
 
+import Assertion.*;
+import haxe.ds.Option;
+import haxe.io.Path;
 import parser.Token;
 
 typedef Elem<T> = { def : T, pos : Position };
 typedef VElem = Elem<VDef>;
 typedef HElem = Elem<HDef>;
 
+/*
+A path element.
+
+Stores the path as it was on the source file and allows lazy checking and resolution of it.
+*/
+@:forward(pos)
+abstract PElem(Elem<String>) from Elem<String> {
+	/*
+	Computes a path to read from.
+
+	Considers the raw value as a relative path using as basis the directory
+	inside which the source file with that value lived.
+	*/
+	public function toInputPath():String
+	{
+		assert(this.def != null && this.def != "", this.def);
+		var path = Path.join([Path.directory(this.pos.src), this.def]);
+		return Path.normalize(path);
+	}
+
+	/*
+	Computes a path to read from.
+
+	Takes an optional base directory (default: `./`).
+	*/
+	public function toOutputPath(?base="./"):String
+	{
+		assert(this.def != null && this.def != "", this.def);
+		var path = Path.join([base, this.def]);
+		return Path.normalize(path);
+	}
+
+	/*
+	Expose the raw value (explicitly).
+	*/
+	public function internal():String
+		return this.def;
+}
+
+/*
+A horizontal element.
+*/
 enum HDef {
 	Wordspace;
 	Superscript(el:HElem);
@@ -29,20 +74,23 @@ enum BlobSize {
 	FullWidth;
 }
 
+/*
+A vertical element.
+*/
 enum VDef {
 	MetaReset(name:String, val:Int);
-	HtmlApply(path:String);
-	LaTeXPreamble(path:String);
-	LaTeXExport(src:String, dest:String);
+	HtmlApply(path:PElem);
+	LaTeXPreamble(path:PElem);
+	LaTeXExport(src:PElem, dest:PElem);
 
 	Volume(name:HElem);
 	Chapter(name:HElem);
 	Section(name:HElem);
 	SubSection(name:HElem);
 	SubSubSection(name:HElem);
-	Figure(size:BlobSize, path:String, caption:HElem, copyright:HElem);
+	Figure(size:BlobSize, path:PElem, caption:HElem, copyright:HElem);
 	Table(size:BlobSize, caption:HElem, header:TableRow, rows:Array<TableRow>);  // copyright/source?
-	ImgTable(size:BlobSize, caption:HElem, path:String);  // copyright/source?
+	ImgTable(size:BlobSize, caption:HElem, path:PElem);  // copyright/source?
 	Quotation(text:HElem, by:HElem);
 	List(numered:Bool, items:Array<VElem>);
 	Box(name:HElem, contents:VElem);
