@@ -24,7 +24,7 @@ efforts and previous bus-improvement measures;
 \item Survey work by consultants, which may incorporate all of the above estimation techniques;
 \item Comparisons of cost projections against actual costs of other projects. 
 
-\figure{assets/image12.jpeg}{A simplified budget for Yichang, China’s BRT demonstrates a sample cost 
+\figure[medium]{assets/image12.jpeg}{A simplified budget for Yichang, China’s BRT demonstrates a sample cost 
 breakdown. A complete budget can be found in Appendix B.}{ ITDP.}
 
 \subsection{ BRT Cost Calculator}
@@ -121,14 +121,14 @@ or alternative designs.
 Value engineering can also take place during the preliminary and detailed design stages. Here the value 
 engineering process takes the assessment deeper to interrogate whether there are more cost-effective 
 materials or elements that can be used to minimize overall cost, with minimal reduction in quality (Figure 
-21.12). Life-cycle costing of materials form a major part of value engineering.
+21.13). Life-cycle costing of materials form a major part of value engineering.
 
 Once a portion of infrastructure is constructed, a value engineering exercise could be undertaken to 
 input lessons learned from the construction phase into how costs could be reduced in future phases of 
 the BRT project. These could include construction methods, proven new technologies, the use of smaller 
 BRT vehicles to minimize pavement loadings, etc. 
 
-\figure{assets/image13.jpeg}{Standard- and value-design engineering process flow diagrams.}{ 
+\figure[medium]{assets/image13.jpeg}{Standard- and value-design engineering process flow diagrams.}{ 
 HHO Africa.} 
 
 \subsection{ Capital Cost and Operating Cost Options}
@@ -142,7 +142,7 @@ and thus the assignment of these costs can depend on local circumstances (see al
 Plan).
 
 There are circumstances when some elements of the BRT system may be strategically moved between capital 
-and operational cost categories (Figure 21.14 \'TODO: Add reference '\). Some systems have room for higher fare levels and may 
+and operational cost categories (Figure 21.13 \'TODO: Add reference '\). Some systems have room for higher fare levels and may 
 prefer to reduce their capital borrowing for the initial system infrastructure. In such instances, putting 
 some elements of equipment into the operating cost category can make sense. For example, Bogotá required 
 the private firm with the fare collection concession to include the electronic turnstiles and smart cards 
