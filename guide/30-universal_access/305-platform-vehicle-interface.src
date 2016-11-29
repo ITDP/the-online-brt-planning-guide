@@ -22,7 +22,7 @@ of mechanisms that can be applied are evaluated and explained. Those mechanisms 
 
 \figure{assets/image46.jpeg}{Front tire of the vehicle}{Cleveland RTA}
 
-\figure{assets/image47.jpeg}{guide wheel in greater detail}{Cleveland RTA}
+\figure[medium]{assets/image47.jpeg}{guide wheel in greater detail}{Cleveland RTA}
 
 \item Optical Guidance and Magnet Alignment;
 \item Automatic Enforcement;
