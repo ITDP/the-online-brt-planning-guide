@@ -69,6 +69,9 @@ Phasellus sed lacus ac erat luctus pretium a at massa. Ut quis massa nec dui rut
 
 \include{volume-7-landing-page.txt}
 
+\meta\reset{chapter}{30} \' Skip to chapter 31 '\
+\include{31-bicycle_predicab_integration/bicycle-and-predicab-integration.src}
+
 \' \meta\reset{volume}{7} skip to volume 8 '\
 
 \volume{Meta}
