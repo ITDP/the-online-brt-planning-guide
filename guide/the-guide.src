@@ -55,6 +55,9 @@ Phasellus sed lacus ac erat luctus pretium a at massa. Ut quis massa nec dui rut
 
 \volume{Infrastructure}
 \include{volume-6-landing-page.txt}
+\meta\reset{chapter}{20}  \' skip to chapter 21 '\
+\include{21-infrastructure_management_costing/infrastructure-management-and-costing.src}
+
 \meta\reset{chapter}{22}  \' skip to chapter 23 '\
 \include{roadway-design/roadway-design.src}
 \volume{Integration}
