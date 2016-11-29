@@ -1,0 +1,212 @@
+
+
+\section{Supply-Based Strategies}
+
+> As it turns out, we humans love moving around. And if you expand people’s ability to travel, they will do it more, living farther away from where they work and therefore being forced to drive into town. Making driving easier also means that people take more trips in the car than they otherwise would.
+@ Adam Mann, writer and reporter
+
+The cost-based strategies outlined above make use of intrinsic market mechanisms to affect travel mode 
+choice. By increasing the cost of less efficient modes, these strategies can reduce SOV-travel demand 
+and increase demand for more efficient modes, in the same way the demand/supply equilibrium is achieved 
+for any good of limited supply. An alternative to this approach that makes use of similar market logic 
+is to directly reduce the capacity of roadway and parking infrastructure. 
+
+\subsection{Roadway Reductions}
+
+\figure{assets/image3.jpeg}{Before image of the Cheonggyecheon corridor project in Seoul, South Korea. 
+Despite tearing down one of the principal expressways to the city, the resulting congestion impacts were 
+minimal, especially since the new BRT corridors helped gain ridership from former car users.}{Seoul 
+Institute.} 
+
+\figure{assets/image4.jpeg}{After image of the Cheonggyecheon corridor project in Seoul, South Korea. 
+Despite tearing down one of the principal expressways to the city, the resulting congestion impacts were 
+minimal, especially since the new BRT corridors helped gain ridership from former car users.}{Seoul 
+Institute.}
+
+Priority public transport infrastructure on roadways serves an important purpose beyond providing a 
+high-quality service to public transport customers. The simultaneous reduction in road space for cars 
+creates a powerful incentive for motorists to shift to public transport use. While some may see the use 
+of road space by public transport systems as a sacrifice, this consumption of car space may be one of 
+the greatest overall benefits of a BRT service. 
+
+Similar benefits can be secured for bicycle transport, improving both the level of service and utilization 
+of in-road bike facilities by claiming more space for them within existing roadway networks. This can 
+help ensure that city and regional networks are highly connective, consistent, and accommodating of cyclists 
+with a wide range of abilities, experience, and confidence. Beyond improving the quality and utilization 
+of alternate modes, however, roadway-capacity reductions can generate general traffic-reduction benefits.
+
+Induced traffic is a well-documented phenomenon in which additional road construction results in more 
+traffic and, eventually, more overall congestion. While additional road construction leads to a temporary 
+reduction in congestion conditions, those improved conditions eventually attract additional traffic, 
+especially when there is latent demand for, and few non-traffic barriers to, private vehicle usage. This 
+pattern essentially means that a city cannot build its way out of gridlock. 
+
+History suggests that the process works in reverse as well. Experience from bridge, street, and highway 
+closings around the world indicates that a reduction in road capacity tends to reduce overall traffic 
+levels. This disappearance of traffic, known as “traffic degeneration” or “traffic evaporation,” gives 
+one of the strongest indications to the viability of developing BRT infrastructure. Particularly relevant 
+for cities struggling with air quality and other emissions issues, this also points to the fact that 
+a reduction in private auto lanes can have an overall beneficial impact on the city’s urban environment.
+
+\subsection{Roadway Restrictions}
+
+Roadway access can also be reduced through temporal measures that restrict access to key roadways at 
+specific times and/or on specific days, either arbitrarily or based on vehicle occupancy. 
+
+\subsubsection{HOV/HOT Lanes}
+
+The most common of these restrictions is the high-occupancy vehicle lane (HOV), common on freeway systems 
+across the world. These lanes are reserved for vehicles carrying a stated minimum number of travelers, 
+in an attempt to encourage higher vehicle-occupancy patterns during rush hour periods. An increasingly 
+common variation of this traditional TDM practice, known as a high-occupancy/toll lane (HOT), allows 
+access to SOVs whose drivers pay a toll to avoid the more congested mixed-traffic lanes. Similarly, reducing 
+bridge and other tolls for high-occupancy vehicles has been successful in promoting carsharing in places 
+like San Francisco.
+
+\subsubsection{License Plate–Based Restrictions}
+
+Deteriorating bus speeds, severe traffic congestion, and air contamination in some developing cities 
+have prompted officials to establish roadway restrictions based on license plate numbers. The last digit 
+in a vehicle’s license plate number determines the days during which the vehicle is permitted to operate 
+in a particular zone of the city. The success of license plate restriction programs has been mixed. 
+
+In cities such as Mexico City and São Paulo, the programs had initial success that faded over time, 
+and the crudeness of the approach had some unintended consequences. Many residents in these cities avoided 
+the restrictions by simply purchasing a second vehicle with a license plate that ends with a different 
+number. Thus, by possessing two vehicles with different numbers, the person is still able to travel each 
+day by private vehicle. Further, since the second car was typically a lower-quality used vehicle, the 
+end result meant that even more emissions were created.
+
+Bogotá has developed a license plate restriction program that has succeeded in removing 40 percent 
+of the city’s private vehicles from the streets each workday during peak periods. The Bogotá approach 
+has succeeded by carefully designing a system to discourage the purchase of second (or third) vehicles. 
+First, Bogotá has chosen to prohibit four license plate numbers each day. Table 14.3 lists the license 
+plate numbers that are restricted by the day of the week. 
+
+\begintable{License-plate restrictions in Bogotá}
+\header
+\col Day of week
+\col License plates ending with these numbers are restricted from use
+\row
+\col Monday
+\col 1, 2, 3, 4
+\row
+\col Tuesday
+\col 5, 6, 7, 8
+\row
+\col Wednesday
+\col 9, 0, 1, 2
+\row
+\col Thursday
+\col 3, 4, 5, 6
+\row
+\col Friday
+\col 7, 8, 9, 0
+\endtable
+
+\figure{assets/image5.jpeg}{A well-designed license plate scheme can easily avoid the problem of second-car 
+purchases.}{ Fundación Ciudad Humana.}
+
+The restriction of four license plate numbers each day means that a driver would have to purchase three 
+vehicles to cover every day of the week. Bogotá’s vehicle prohibition only applies during peak hours. 
+Thus, vehicles with prohibited numbers may still travel at nonpeak hours. The net effect is to encourage 
+a shift either to using public transport or a private vehicle at a nonpeak time. 
+
+This flexibility in conjunction with the restriction applying to four plate numbers has meant that 
+Bogotá has not experienced a problem with persons purchasing multiple vehicles to overcome the restriction. 
+The measure has contributed to an estimated 10 percent of former car users shifting to public transport 
+for their daily commute. 
+
+\subsection{Parking Reductions}
+
+\subsubsection{Public Parking}
+
+\figure{assets/image6.jpg}{Parklet in what was formerly a parking lane in São Paulo. Photo}{ ITDP.}
+
+\figure{assets/image7.jpeg}{Bogotá has eliminated much of its previous on-street parking in order to 
+deter private vehicle use. The former parking spaces are being converted into more attractive public 
+space.}{Lloyd Wright.}
+
+\figure{assets/image8.jpeg}{Illegal parking on sidewalks discourages walking and sends a message that 
+private vehicles are more important than people. Dhaka, India.}{ ITDP.}
+
+Removing on-street parking is almost always necessary to implement effective BRT lines. Beyond what 
+is necessitated by the operating needs of the BRT service, however, removing parking can further support 
+general public transport use by reducing the overall parking supply along public transport corridors. 
+When not serving as BRT lanes, these spaces can be replaced with a mixed-traffic lane, a bicycle lane, 
+a footpath, a parklet, or streetscaping (landscaping, lighting, seating, way-finding/signage, etc.). 
+
+Bogotá provides an example of aggressive on-street parking reductions in support of BRT. The government 
+removed approximately one-third of all parking spaces in the city’s central areas, prior to the start 
+of its TransMilenio system. The end result was the termination of free city parking and the reclamation 
+of public space along public transport corridors. In many instances, the previous parking spaces have 
+been converted to attractive new pedestrian environments (Figures 32.6 and 32.7). 
+
+Where parking restrictions are poorly enforced, formally provided spaces may represent only a portion 
+of the overall on-street parking supply (Figure 32.8). In such places, the use of physical structures 
+like very high curbs and bollards may be necessary to keep motorists off the footpaths. In general, though, 
+use of trees or other streetscape elements offer a more aesthetically pleasing form of protective barrier. 
+
+Some countries use bicycle parking as a bollard, which provides a useful additional TDM amenity (Figure 
+32.9).
+
+\figure[medium]{assets/image9.jpeg}{Bicycle-parking facilities can double as bollards and useful infrastructure 
+for cyclists. Copenhagen, Denmark.}{ ITDP.}
+
+\subsubsection{Private Parking}
+
+In most cities, the majority of off-street parking is privately controlled, and therefore outside the 
+direct control of municipal governments. There are several ways, nonetheless, for governments to influence 
+general off-street parking supplies within their city centers and public transport corridors. While each 
+option is indirect, their overall impact on parking supplies can be even more substantial than removing 
+on-street parking. 
+
+\subsubsection{Development Regulations}
+
+A prerequisite for reducing off-street parking supplies is to stop requiring developers to provide 
+it in conjunction with land-use projects. In many cases, cities require more parking than developers 
+would choose to provide on their own. As a rule, developers will include as many parking spaces as possible, 
+up to the point where the added value of the next space falls below its construction cost. Requiring 
+developers to provide parking beyond this point depresses area parking prices through supply saturation. 
+
+Conversely, where city planners have legitimate concerns that strong market demand may lead developers 
+to provide more parking than is desired, cities should consider establishing parking maximums. These 
+regulations operate on the same premise as minimum requirements—establishing acceptable levels of off-street 
+parking linked to the scale and nature of each development. As opposed to minimums, however, maximums 
+focus on mitigating problems associated with parking provided above, rather than below, these levels.
+
+Another option for using development regulations to reduce off-street supplies is to include parking 
+areas in the calculation of maximum development densities. To the substantial cost of constructing parking 
+spaces, such a regulation would add the cost of losing a square meter of residential or commercial space 
+for every square meter of parking provided. 
+
+In 2014, São Paulo adopted into law a master plan that addresses parking with density and transit. 
+The plan is now mandatory as a law sanctioned by Mayor Fernando Haddad after being approved by the City 
+of São Paulo House of Representatives. It eliminated parking minimums citywide and set limits on how 
+much parking can exist around transit corridors, paving the way for a new legacy in one of the world’s 
+largest and most congested cities. 
+
+Maximum parking ceilings have been instituted around the public transport corridors. Developers building 
+above this ceiling must pay an impact fee and the parking provision comes out of the allowable building 
+space rather than functioning as an accessory to the main use.
+
+\subsubsection{Taxes and Levies}
+
+Governments can also reduce privately controlled off-street supplies by increasing the cost of maintaining 
+each space. Taxing parking revenue is a common practice that can effectively reduce commercial-parking 
+profitability, and thus commercial-parking supplies, in economically vibrant city centers and public-transport 
+corridors. In areas where most off-street parking is subsidized or provided at cost, however, taxes may 
+have limited impact on supplies.
+
+A parking levy, by contrast, can increase the cost of all parking, regardless of demand. A levy works 
+by assessing an annual fee on all nonresidential parking spaces. Property owners are thus presented with 
+a recurring incentive to convert underutilized or unprofitable spaces to other uses. Cities that have 
+implemented this strategy include Sydney and Perth, in Australia, and Nottingham, England, which has 
+pegged all levy revenue to funding the expansion of its tram network.
+
+\figure[medium]{assets/image10.jpeg}{With a parking space levy, shops have an inherent incentive to only provide 
+the number of parking spaces that are truly required. Ahmedabad, India.}{ ITDP.}
+
+\figure[medium]{assets/image11.jpeg}{A parking levy can also lead to the redevelopment of surface and setback 
+parking such as the one pictured in Ulaanbataar, Mongolia, to activate sidewalk frontages improving public 
+transport access.}{ ITDP.}
