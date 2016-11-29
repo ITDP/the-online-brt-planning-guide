@@ -47,16 +47,11 @@ Phasellus sed lacus ac erat luctus pretium a at massa. Ut quis massa nec dui rut
 \include{volume-4-landing-page.txt}
 
 \volume{Technology}
-
-
-\volume{Technology}
 \include{volume-5-landing-page.txt}
-
 
 \meta\reset{chapter}{18} \'Reset Chapter to 19 '\
 \include{19-technology\technology.src}
 
-\meta\reset{chapter}{19} \' skip to chapter 20 '\
 \include{20-vehicles/vehicles.src}
 
 
