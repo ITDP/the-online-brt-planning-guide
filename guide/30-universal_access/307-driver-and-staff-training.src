@@ -1,5 +1,3 @@
-
-
 \section{ Driver and Staff Training}
 
 > The one thing that unites all human beings, regardless of age, gender, religion, economic status, or ethnic background, is that, deep down inside, we all believe that we are above-average drivers.
@@ -29,13 +27,13 @@ to ensure continued accessibility. There should be a system for anonymous custom
 
 \figure[medium]{assets/image68.jpeg}{The feedback instructions on the TransMilenio website.}{ TransMilenio}
 
-*Vehicle Docking at Stations*
-
-Trunk-line drivers require special training to dock their vehicles within a prescribed distance from 
-the station platform. Periodic retraining is beneficial. 
+\subsubsection{Vehicle Docking at Stations}
 
 \figure{assets/image69.jpeg}{Training poster highlighting the importance of docking close to the platform.}
 {World Bank.}
+
+Trunk-line drivers require special training to dock their vehicles within a prescribed distance from 
+the station platform. Periodic retraining is beneficial. 
 
 \subsection{ Non-Trunk-Line Driver Training}
 
@@ -50,10 +48,13 @@ customers;
 \item Calling out key stops (and requested stops) to assist blind persons and other customers not familiar 
 with the system. Stops should be announced in time for customers to prepare to alight.
 
-\figure{assets/image70.jpeg}{Delhi Public Transport Corporation poster in Hindi and English alerts 
+\figure[medium]{assets/image70.jpeg}{Delhi Public Transport Corporation poster in Hindi and English alerts 
 vehicle drivers to call out stations.}{ Svayam, New Delhi, and the World Bank.}
 
 \subsection{ Staff Training}
+
+\figure{assets/image71.jpeg}{Public transport agencies around the world include disability awareness 
+in their training modules.}{ San Francisco Municipal Transportation Agency.}
 
 Station attendants, fare personnel, and security personnel have special responsibilities in a BRT system 
 and should be cross-trained concerning their treatment of customers with disabilities. Orientation to 
@@ -67,9 +68,6 @@ Station personnel should be trained to:
 \item Ask if help is needed before offering assistance;
 \item Be alert for wheelchair users and older persons who may have difficulty crossing the station-to-vehicle 
 gap. 
-
-\figure[medium]{assets/image71.jpeg}{Public transport agencies around the world include disability awareness 
-in their training modules.}{ San Francisco Municipal Transportation Agency.}
 
 Just as it is beneficial to employ staff with a wide range of language skills, having personnel who 
 know sign language in terminals and at major transfer points would be a boon to those deaf customers 

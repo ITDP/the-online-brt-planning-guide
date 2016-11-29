@@ -1,5 +1,3 @@
-
-
 \section{ Introduction}
 
 > Some do not walk at all; others walk in the highways; a few walk across lots.
@@ -18,7 +16,7 @@ the infrastructure surrounding the station, although this is covered in more det
 Integration. This chapter also describes driver and staff training, as well as customer communication. 
 Finally, there is a BRT accessibility checklist and references.
 
-\subsection{ Who Benefits from Universal Access?}
+\subsection{Who Benefits from Universal Access?}
 
 Most customers benefit from inclusive features on and around BRT systems. For example, everyone benefits 
 from good sidewalks leading to BRT stations, a narrow platform-to-vehicle gap, nonskid floors, plentiful 
@@ -47,7 +45,10 @@ The number of people who benefit from universal design is growing. According to 
 existing BRT systems must incorporate an average of over 40 percent more older persons into their service 
 areas during the next twenty years.
 
-*Not Just Wheelchairs*
+\subsubsection{Not Just Wheelchairs}
+
+\figure{assets/image1.jpeg}{Accessibility measures help families with strollers.}{ Carlosfelipe 
+Pardo.}
 
 Because wheelchair users are especially identifiable, they have become surrogates for other categories 
 of beneficiaries of universal design. This contributes to the general practice of saying a vehicle “is 
@@ -56,10 +57,7 @@ on the vehicle. Yet, for every wheelchair user, there are up to four persons usi
 other mobility aids, and the percentage of persons with disabilities with sensory and cognitive disabilities 
 is greater than the percentage with mobility impairments.
 
-\figure{assets/image1.jpeg}{Accessibility measures help families with strollers.}{ Carlosfelipe 
-Pardo.}
-
-\figure{assets/image2.jpeg}{Travelling with a stroller presents some of the same accessibility issues 
+\figure[medium]{assets/image2.jpeg}{Travelling with a stroller presents some of the same accessibility issues 
 as for those in wheelchairs.}{ Carlosfelipe Pardo.}
 
 \subsection{ Where are the Special Needs Customers?}
@@ -76,7 +74,7 @@ Transportation Agency.}
 \figure[medium]{assets/image4.jpeg}{Locates hotels (dots) and restaurants (heat map). These maps show that people in 
 wheelchairs have similar travel patterns to the general public.}{Hipmunk, Inc.}
 
-\subsection{ Can Public Transport Accommodate the Disabled?}
+\subsection{Can Public Transport Accommodate the Disabled?}
 
 Public transport systems, including BRT, can and do play a role in accommodating the disabled. 
 
@@ -84,14 +82,13 @@ Public transport systems, including BRT, can and do play a role in accommodating
 of all trips). Of this number, about 1,000 individual wheelchair users ride the system daily, implying 
 in excess of 500,000 one-way trips per year, forming part of 8 million annual trips by all registered 
 disabled persons and their attendants. This number does not include unregistered users.
-
 \item San Francisco, California, provides 180,000 to 200,000 trips by wheelchair users per year system-wide, 
 or approximately 200 trips per year per vehicle in peak hour service.
 
 Crafting a BRT system accessible to all, from those with hidden disabilities to those in wheelchairs, 
 benefits everyone and remains the goal of a just and equitable society.
 
-\subsection{ Islands of Accessibility}
+\subsection{Islands of Accessibility}
 
 A full-featured BRT corridor may begin its life as an island of accessibility in a sea of inaccessibility. 
 Streets with no sidewalks, sidewalks with no ramps, sidewalks in disrepair, noncontiguous sidewalks, 
