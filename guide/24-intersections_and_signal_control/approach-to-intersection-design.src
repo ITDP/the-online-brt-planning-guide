@@ -1,0 +1,312 @@
+
+
+\section{Approach to Intersection Design}
+
+> Idiopathic, from the Latin meaning we’re idiots cause we can’t figure out what’s causing it.
+@ Gregory House, MD (as played by actor Hugh Laurie), “Role Model,” House, 2005
+
+BRT systems are generally built on corridors where mixed-traffic congestion is already a problem, or 
+where congestion is likely to occur in the near future; otherwise there would be no benefit in building 
+a segregated busway. The worse the congestion appears, the greater the benefit of the exclusive busway 
+(Figure 24.11). If a BRT system makes public transport services better but mixed traffic worse, it will 
+be less politically successful than if it makes public transport better and also improves mixed-traffic 
+flow. BRT system planners therefore generally try to minimize adverse impacts on mixed traffic.
+
+\figure{assets/image11.jpeg}{The introduction of BRT and better design changes poorly controlled and 
+congested intersections, often leading to efficiency improvements for both public transport vehicles 
+and mixed traffic.}{ Lloyd Wright.}
+
+Intersections are critical to stations, as they represent an important point along any BRT corridor. 
+A poorly designed intersection or a poorly timed signal phase can substantially reduce system capacity 
+and speed, especially by hindering access to stations. Finding solutions to optimize intersection performance 
+can do much to improve system efficiency. Generally, the three main objectives of intersection design 
+along a BRT corridor are:
+
+\number To provide safe and convenient crossings for pedestrians;
+\number To minimize delay for BRT vehicles;
+\number To minimize delay for mixed traffic.
+
+Travel times for walking trips are improved by following these objectives, but it should be noted that 
+pedestrians’ safety and accessibility have the highest priority. Some methods take into account pedestrian 
+times in order to analyze alternatives, and the approach discussed here does not equalize pedestrians 
+by inputting delays into the process. Current procedures mostly try to fit demand needs into the available 
+space so that pedestrians can make all crossings safely; bus lane queues are not so long that they block 
+stations; and desired car movements are still possible, all without worsening congestion. Keep in mind 
+that if public and private transport users' times were equalized, every street with one vehicle carrying 
+fifty passengers every two minutes would have an exclusive bus lane.
+
+\figure{assets/image12.jpeg}{Intersection design affects the BRT system’s efficiency, pedestrian safety, 
+and the access and flows of mixed-traffic vehicles.}{ Lloyd Wright.}
+
+It is generally not advisable to use a standard intersection configuration throughout a BRT corridor. 
+Rather, it is best to design the intersection for the specific conditions at the given location. The 
+impact of a planned BRT system on overall intersection performance is often a significant consideration 
+when deciding on a service plan for the BRT system, the location of the stations, and the design of the 
+stations.
+
+BRT system planners have used the following tools to rationalize intersections: 
+\item Simplify the BRT system’s routing structure to optimize turning movements into the corridor;
+\item Optimize the number of intersections along the corridor;
+\item Restrict as many mixed-traffic turning movements on the BRT corridors as possible;
+\item Optimize the location of the station relative to adjacent intersections;
+\item Optimize the signal phasing and consider signal priority for public transport vehicles.
+
+\figure[medium]{assets/image13.jpeg}{A typical major intersection on a BRT corridor in Guangzhou, China. Note 
+that the station of the BRT corridor is located away from the intersection with Chibei Avenue, and in 
+order to turn across traffic, the two-phase intersection requires a U-turn in the perpendicular road. 
+Before the BRT, this four-phase intersection was a major traffic-congestion point. Image}{ Karl Fjellstrom, 
+ITDP.}
+
+\figure[medium]{assets/image14.jpeg}{The same intersection as depicted in Figure 24.13 on a BRT corridor in 
+Guangzhou, China. The station is located away from the intersection of the BRT corridor and Chibei Avenue. 
+In order to turn across traffic, the two-phase intersection requires a U-turn in the perpendicular road. 
+Before the BRT, this four-phase intersection was a major traffic-congestion point.}{ITDP and GMEDRI.}
+
+Every decision and solution proposed during the intersection design process should be technically supported 
+by the elaboration of a comprehensive traffic study, where directional flow counts for cars and pedestrians 
+are categorized and carried out at every active intersection (signalized or not) along the corridor being 
+designed. This is necessary to diagnose the current performance of each intersection and forecast a future 
+scenario incorporating the operational changes a BRT corridor might bring. 
+
+\subsection{Corridor Audits}
+
+As a first step to intersection design, BRT system planners should carefully review the existing mixed-traffic 
+bottlenecks in the corridor. A small number of bottlenecks are often responsible for the vast majority 
+of mixed-traffic delay. These bottlenecks are usually due to one or more of the following conditions: 
+
+\item Narrow bridges and tunnels;
+\item Traffic convergence points;
+\item Poorly regulated/enforced parking;
+\item Suboptimal timing at traffic signals;
+\item Improperly designed and channeled intersections;
+\item Badly placed bus stops or unregulated stopping of public transport vehicles.
+
+Quite often a new BRT system can lead to a reduction of the number of lanes available to mixed traffic. 
+While ideally the removal of a large number of buses from the mixed-traffic lanes will avoid worsening 
+congestion in the mixed-traffic lanes, this is not always possible, and the mixed-traffic saturation 
+level may increase.
+
+Figure 24.15 illustrates the vehicular demand saturation level along a planned BRT corridor and what 
+could be expected if one lane is removed. 
+
+\figure[medium]{assets/image15.png}{Current demand saturation level for mixed traffic can be expected to off-set 
+the transference of one lane to the planned BRT system.}{ ITDP.}
+
+The most serious bottlenecks—points A, B, and E—are signalized intersections. Point C might be a bridge 
+or tunnel where, for example, lanes are reduced from three to two, increasing saturation by 50 percent. 
+Point D might be a popular destination such as a shopping mall where an extra volume of vehicles enters 
+the road, increasing saturation. It might also be a popular bus interchange, a street market, or an area 
+with regulated on-street parking. 
+
+If no measures are taken to mitigate the lane removal due to the BRT implementation, then congestion 
+restricted to point B will occur at A, B, C, and E. These points now require more careful attention.
+
+\subsection{Solution Approach}
+
+Once the basic routing structure of the new BRT system has been determined, system designers should 
+have a reasonable idea about likely vehicle frequencies within the system. 
+
+Considering the placement of the BRT corridor and its requirements, the non-intersection bottlenecks 
+should be addressed first. These problem points can generally be resolved through a combination of tightening 
+parking regulation and enforcement, strengthening vendor regulation and enforcement, narrowing medians, 
+improving parallel roads, or widening roads if all else fails. 
+
+The second analysis should determine if the busway will congest given the current intersection signal 
+phasing and lane allocation along the BRT corridor. Each intersection in the corridor should be analyzed. 
+An example of the intersection delay impacts calculation is given in the next section. Intersections 
+that do not match the BRT requirements should be redesigned.
+
+Once the implementation of the new BRT system requires changing the intersection design anyway, the 
+opportunity should be taken to improve the overall efficiency of the intersection. Packaging these intersection 
+improvements with the introduction of the new BRT system will help improve public acceptance of the new 
+BRT system. The less efficient the intersection was before the BRT system, the greater the potential 
+there will be to design the new system in a way that improves conditions for both public transport passengers 
+and mixed traffic. 
+
+\subsection{Signal Delay on BRT}
+
+Table 24.2 shows an example of the variation in the average traffic signal delay for each BRT vehicle 
+crossing an intersection as a function of the red and green signal duration within a defined cycle time.
+
+Signal delay is given by Equation 24.15 and fixed parameters for the example are:
+\item Cycle time: Tcycle = 80 seconds;
+\item BRT vehicle frequency across the intersection: DemandFlow = 200 articulated-bus/hour;
+\item BRT lanes: NLanes = 1 lane;
+\item Discharge flow rate: saturationflowperlane = 720 articulated-bus/hour/lane.
+\begintable{- Signal delay as function of red light}
+\header
+\col Red light time (seconds)
+\col Green light time (seconds)
+\col Average signal delay (TF) (seconds)
+\col Random queuing delay (TQs) (seconds)
+\col Total signal delay (TS) (seconds)
+\col Demand to signal capacity level (XSignal)
+\row
+\col 0
+\col 80
+\col 0.00
+\col 0.00
+\col 0.00
+\col 0.28
+\row
+\col 10
+\col 70
+\col 0.87
+\col 0.00
+\col 0.87
+\col 0.32
+\row
+\col 20
+\col 60
+\col 3.46
+\col 0.00
+\col 3.46
+\col 0.37
+\row
+\col 30
+\col 50
+\col 7.79
+\col 0.00
+\col 7.79
+\col 0.44
+\row
+\col 36
+\col 54
+\col 11.22
+\col 0.18
+\col 11.40
+\col 0.51
+\row
+\col 40
+\col 40
+\col 13.85
+\col 2.25
+\col 16.10
+\col 0.56
+\row
+\col 42
+\col 38
+\col 15.27
+\col 3.68
+\col 18.94
+\col 0.58
+\row
+\col 43
+\col 37
+\col 16.00
+\col 4.53
+\col 20.53
+\col 0.60
+\row
+\col 44
+\col 36
+\col 16.75
+\col 5.52
+\col 22.27
+\col 0.62
+\row
+\col 45
+\col 35
+\col 17.52
+\col 6.65
+\col 24.18
+\col 0.63
+\row
+\col 46
+\col 34
+\col 18.31
+\col 7.98
+\col 26.29
+\col 0.65
+\row
+\col 47
+\col 33
+\col 19.12
+\col 9.56
+\col 28.67
+\col 0.67
+\row
+\col 48
+\col 32
+\col 19.94
+\col 11.45
+\col 31.39
+\col 0.69
+\row
+\col 49
+\col 31
+\col 20.78
+\col 13.78
+\col 34.56
+\col 0.72
+\row
+\col 50
+\col 30
+\col 21.63
+\col 16.71
+\col 38.35
+\col 0.74
+\row
+\col 51
+\col 29
+\col 22.51
+\col 20.51
+\col 43.02
+\col 0.77
+\row
+\col 52
+\col 28
+\col 23.40
+\col 25.62
+\col 49.02
+\col 0.79
+\row
+\col 53
+\col 27
+\col 24.31
+\col 32.86
+\col 57.17
+\col 0.82
+\row
+\col 54
+\col 26
+\col 25.23
+\col 43.94
+\col 69.18
+\col 0.85
+\row
+\col 55
+\col 25
+\col 26.18
+\col 63.00
+\col 89.18
+\col 0.89
+\row
+\col 56
+\col 24
+\col 27.14
+\col 103.50
+\col 130.64
+\col 0.93
+\row
+\col 57
+\col 23
+\col 28.12
+\col 248.14
+\col 276.26
+\col 0.97
+\endtable
+
+Thus, if there are 200 articulated buses per hour in a single lane, and there is an 80-second traffic 
+signal cycle with a red phase of 35 seconds, then there is no difference between total signal delay and 
+average signal delay. In this case there is no additional delay resulting from the randomness of vehicle 
+queues at the stoplight.  However, if there is more than 35 seconds of red time, the random queuing of 
+buses at the traffic light begins to add additional delay.
+
+In summary, intersection delay is largely a function of red time as a share of total signal time. If 
+demand-to-signal capacity level is greater than 0.65, random delay becomes significant, and the project 
+design should be changed to give a higher proportion of green time, and/or a second BRT lane on the approach 
+to the intersection should be considered (Figure 24.16).
+
+\figure[medium]{assets/image16.jpeg}{Single to double lanes just before the intersection in Bogotá to ensure 
+proper capacity.}{ Oscar Edmundo Diaz, GSD+.}

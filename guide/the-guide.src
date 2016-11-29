@@ -57,6 +57,9 @@ Phasellus sed lacus ac erat luctus pretium a at massa. Ut quis massa nec dui rut
 \include{volume-6-landing-page.txt}
 \meta\reset{chapter}{22}  \' skip to chapter 23 '\
 \include{roadway-design/roadway-design.src}
+
+\include{24-intersections_and_signal_control/intersections-and-signal-control.src}
+
 \volume{Integration}
 
 \include{volume-7-landing-page.txt}
