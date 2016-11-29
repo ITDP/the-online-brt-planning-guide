@@ -42,13 +42,9 @@ the bus and collect fares.
 In general, a fare collection system must include:
 
 
-The payment media and devices for validation of payment media;
-
-
-Access control mechanisms;
-
-
-A central system for information processing and report generation with communication links between 
+\item The payment media and devices for validation of payment media;
+\item Access control mechanisms;
+\item A central system for information processing and report generation with communication links between 
 system components;
 
 

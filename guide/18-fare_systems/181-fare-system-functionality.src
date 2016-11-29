@@ -14,12 +14,11 @@ counters.
 Any fare collection system must incorporate a mechanism to ensure payment by users. There are two primary 
 means of ensuring compliance:
 
-Barrier control: Users need to pass through some kind of physical barrier to access the system. Typically 
+\item Barrier control: Users need to pass through some kind of physical barrier to access the system. Typically 
 this implies turnstiles on vehicles or at stations, sliding doors, or other such mechanisms. The users 
 present a payment medium (e.g., a smart card or magnetic-strip card) for the barrier to open, and a payment 
 is deducted from the medium; 
-
-Proof-of-payment: There are no physical barriers to enter the system. Users either enter freely (an 
+\item Proof-of-payment: There are no physical barriers to enter the system. Users either enter freely (an 
 “open system”) or show proof of payment upon entry and/or exit. In such systems, public transport staff 
 conduct occasional checks to control fare evasion. For those caught without a valid fare during the random 
 inspection process, a penalty is applied. Proof-of-payment systems entail pre-board fare collection, 
@@ -82,6 +81,7 @@ entering the vehicle and when existing as well. Delays can occur simply if a per
 and must search through their belongings to find the fare card. Onboard payment and verification psychologically 
 also creates a lower-market image for the service. Off-board payment and verification gives the sense 
 of a more metro-like system.
+
 \begintable{Observed Boarding and Alighting Times for Different Vehicle Configurations. Table courtesy of ITDP.}
 \header
 \col Configuration characteristcs
@@ -148,7 +148,13 @@ of a more metro-like system.
 \col 0.5\sup{1}
 \endtable
 
-Where: (1) Colombia/Mexico; (2) China; (3) Brazil; (NA) not available.
+Where: 
+
+\number Colombia/Mexico; 
+\number China; 
+\number Brazil; 
+
+NA not available.
 
 Off-board payment collection is not necessarily the only way to reduce boarding and alighting times, 
 but there are institutional reasons why this approach is generally more successful in the developing-country 

@@ -65,30 +65,39 @@ system to local conditions and requirements (e.g., reduced fares for certain pop
 zone- and time-based rather than flat fares, level of integration with the feeders). It is unlikely that 
 a system could be adapted, developed, deployed, and tested in fewer than six months. Hence, fare collection 
 often becomes the critical step in system implementation;
+
 \item Open and competitive bidding is preferred to direct contracting, even if it takes more time and 
 introduces relatively high transaction costs. In an open bidding process, competition forces prices down 
 (for the benefit of the customers) while keeping the quality and service standards at a high level;
+
 \item Selection criteria for a contractor should include experience implementing and operating fare 
 collection systems. It is important that experience is verified and that the contractor (in case of consortiums) 
 has an important share of the responsibility of ensuring contract compliance;
+
 \item Integration of installation and operation is recommended, as the operator is part of the decisions 
 on system design and equipment and software acquisition. If contracts are separated, it is likely that 
 the operator may claim that problems are the result of design and installation, not their own inability 
 to perform according to the standards set forth;
+
 \item Performance-based contracts are preferred over standard procurement contracts. The concept behind 
 this is that the BRT system is acquiring a service, rather than the hardware and software of the fare 
 collection system. What is important is the throughput and reliability of the solution provided. Which 
 solution is finally provided is the operator’s decision;
+
 \item It is necessary to test each component and its integration, hopefully well in advance of commissioning 
 the system;
+
 \item Supervision of fare collection is as important, if not more so, than bus operations. This should 
 be taken into account when organizing the agency in charge of planning, developing, and supervising BRT 
 system operations;
+
 \item Having one agency running the entire system is better than trying to coordinate efforts by several 
 agencies;
+
 \item Provide for contracting arrangements that promote system growth (additional sales). It is advised 
 that remuneration for the fare collection provision and operation grows with passenger ridership. Current 
 formulas in Bogotá’s contracts do not promote increased sales, at least from the perspective of the operator;
+
 \item Charging the reusable fare cards (e.g., contactless cards) through, for instance, a returnable 
 deposit can be better than providing them for free. Users may take responsibility for the cards and this 
 reduces damages and required stock. However, charging for cards adds considerable administrative complexity 
