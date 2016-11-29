@@ -1,5 +1,3 @@
-
-
 \section{ BRT Lanes at Roundabouts}
 
 > So many roads. So many detours. So many choices. So many mistakes.
@@ -18,7 +16,7 @@ distinct possibilities for accommodating BRT systems through a roundabout:
 \number Exclusive busway through the middle of the roundabout; 
 \number Grade separation.
 
-*Mixed-Traffic Operations:*
+\subsection{Mixed-Traffic Operations:}
 
 If mixed traffic and BRT system volumes are not particularly heavy and/or if the roundabout has no 
 traffic lights, then simply allowing the BRT vehicles to enter mixed traffic may be an effective and 
@@ -26,14 +24,16 @@ simple solution. In such cases, the BRT vehicle will leave the dedicated busway 
 which may be either controlled through a traffic signal (eventually a new traffic signal and/or activated 
 by the vehicle approach) or left to operate on a yield priority basis.
 
-*Mixed-Traffic Operation with Signalized Waiting Area:*
+\subsection{Mixed-Traffic Operation with Signalized Waiting Area:}
 
 In this situation, a standard intersection is converted to a roundabout with signalized control as 
 described in the end of Section 24.6.4. When a standard intersection has reached its saturation point, 
 then BRT-only waiting areas should be created and private vehicles must be accommodated in a variety 
 of turning options already discussed.
 
-*Exclusive Lane along the Inside of a Roundabout:*
+\subsection{Exclusive Lane along the Inside of a Roundabout:}
+
+\figure{assets/image66.png}{TransJakarta’s first corridor passes along the inside of several roundabouts.}{Google Earth.}
 
 In cases where BRT and mixed-traffic volumes dictate that some priority must be retained for the BRT 
 vehicles, then making the inside lanes of the roundabout exclusive to BRT can be an effective option 
@@ -43,9 +43,7 @@ the principal busway, the BRT vehicle must cross mixed-traffic lanes. As with th
 the BRT vehicles can either maneuver across mixed traffic to exit the roundabout or another set of traffic 
 signals can be used to facilitate the operation.
 
-\figure{assets/image66.png}{TransJakarta’s first corridor passes along the inside of several roundabouts.}{Google Earth.}
-
-*Exclusive Busway through the Middle of a Roundabout:*
+\subsection{Exclusive Busway through the Middle of a Roundabout:}
 
 Depending on the physical contents of the roundabout, a dedicated lane could be constructed through 
 the center of the roundabout. In this case, the busway is built straight through the roundabout, while 
@@ -56,12 +54,12 @@ when the center area of the roundabout does not host a fountain, sculpture, or o
 of urban infrastructure. The construction of the BRT system should not involve the loss of any items 
 of cultural identity. In this design, a traffic signal controls movement through the roundabout.
 
-\figure{assets/image67.jpeg}{Quito’s Ecovía line cuts directly through a roundabout.}{ Lloyd 
+\figure[medium]{assets/image67.jpeg}{Quito’s Ecovía line cuts directly through a roundabout.}{ Lloyd 
 Wright.}
 
 \figure[medium]{assets/image68.jpeg}{In Cali, the busway also passes through the center of the roundabout area.}{ Metrocali.}
 
-*Grade separation*
+\subsection{Grade separation}
 
 This alternative is discussed at the Section 24.10, after other aspects of grade-separated solutions 
 are presented.

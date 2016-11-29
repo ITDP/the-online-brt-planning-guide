@@ -7,6 +7,17 @@
 
 \subsection{ About Intersections}
 
+\figure{assets/image1.png}{The conflict between vehicles in a Y junction indicates that this is an 
+intersection.}{ Elebeta.}
+
+\figure{assets/image2.png}{A channeled Y junction without conflicts does not have the basic element 
+that defines an intersection.}{ Elebeta.}
+
+\figure{assets/image3.png}{Separated-grade solutions can eliminate intersections.}{ Elebeta.} 
+
+\figure{assets/image4.png}{Depending on space restrictions, separated-grade solutions may not eliminate 
+intersections.}{ Elebeta.} 
+
 The intersection is the area where two or more roads meet each other. The use of the word in Traffic 
 Engineering technical language implies “roads for vehicles” and “at the same level,” but very often the 
 expressions “at-grade intersections” or “single-grade intersections” are used to demonstrate the same 
@@ -20,12 +31,6 @@ and can refer to a unidirectional T-shaped or Y-shaped confluence area. The conf
 clear as there is not enough space to accommodate the two incoming flows as they move into the exiting 
 stream in a congested situation (Figure 24.1). Conversely, a channeled Y-shaped junction may not be an 
 intersection (Figure 24.2).
-
-\figure{assets/image1.png}{The conflict between vehicles in a Y junction indicates that this is an 
-intersection.}{ Elebeta.}
-
-\figure{assets/image2.png}{A channeled Y junction without conflicts does not have the basic element 
-that defines an intersection.}{ Elebeta.}
 
 Because the majority of cases where two or more roads meet include many possible turning movements 
 (not all conflicting), intersections can be seen as linking several other adjacent intersections as well—that 
@@ -62,13 +67,7 @@ play, until finally grade separation of the conflicting flows becomes necessary.
 In theory, a separated-grade traffic solution eliminates intersections (Figure 24.3), but in practice, 
 due to space restrictions, intersections can also remain (Figure 24.4).
 
-\figure{assets/image3.png}{Separated-grade solutions can eliminate intersections.}{ Elebeta.} 
-
-
-\figure{assets/image4.png}{Depending on space restrictions, separated-grade solutions may not eliminate 
-intersections.}{ Elebeta.} 
-
-\subsection{ General Concepts}
+\subsection{General Concepts}
 
 The concepts we present here are mostly about understanding the equations related to delay and queue 
 sizes in signalized intersections, but note that these sections are not meant to be a comprehensive reference 
@@ -82,7 +81,7 @@ observe the time to walk or ride a few blocks; meanwhile, we better perceive spe
 hour (kph) or alternatively in miles per hour (mph). It is useful to remember that 1 hour is the same 
 as 3,600 seconds and 1 mile is approximately 1.6 kilometers and 1 kilometer is approximately 0.6 miles.
 
-*Cross-Traffic Turn and Curbside Turn*
+\subsubsection{Cross-Traffic Turn and Curbside Turn}
 
 For this chapter we have excluded the expressions “right turn” and “left turn” because they have different 
 meanings in differently oriented systems. We have chosen to adopt “cross-traffic turn” and “curbside 
@@ -115,7 +114,7 @@ in China, the United States, Brazil, and most of Europe.}{ Elebeta.}
 a U-turn without space (red car), and a U-turn with space (pink car) for left-hand-oriented driving in 
 India, Indonesia, South Africa, Tanzania, Australia, and the United Kingdom.}{ Elebeta.}
 
-*Speed*
+\subsubsection{Speed}
 
 For the application of the concepts outlined in this chapter, speed is defined as the average traffic 
 speed of all vehicles in a segment, for which we use the letter *V *that is derived from the word velocity. 
@@ -138,13 +137,13 @@ V\sub{segment} = Velocity of the segment;
 
 D\sub{segment} = Segment distance;Timesegment = Travel time it takes to make it through the segment.
 
-\highlight{Delay}
+\subsubsection{Delay}
 
 Delay is the additional travel time, if not explicit, that is added onto the base reference of travel 
 time, which is an ideal situation without any conflicts where the passenger, pedestrian, or driver is 
 the only user of the road (no other drivers, pedestrians, users, or traffic lights).
 
-*Passenger Car Unit (pcu)*
+\subsubsection{Passenger Car Unit (pcu)}
 
 A passenger car unit, or pcu, is a reference used to standardize different vehicle types by a common 
 denominator. The conversion factor from a certain type of vehicle to a passenger car unit depends on 
@@ -157,7 +156,7 @@ In general, a motorcycle, for instance, tends to have an equivalent of less than
 mini-bus is equivalent to more than one vehicle; the larger and heavier the vehicle, the higher the number 
 of vehicles to which it is equivalent.
 
-\highlight{Flow}
+\subsubsection{Flow}
 
 Traffic engineering borrows concepts from fluid mechanics and uses “flow rate” as a measure of traffic 
 intensity. From that definition, the word *rate* is commonly dropped and “flow” alone is treated as the 
@@ -185,7 +184,7 @@ Number\sub{vehicles} = Number of vehicles;Time = Length of time the flow of vehi
 
 Flow can also be expressed for pedestrians, bicycles, or even passengers (per hour).
 
-\highlight{Capacity and Saturation}
+\subsubsection{Capacity and Saturation}
 
 The capacity (flow rate) of a segment is given by the lower capacity of a section within it, and the 
 term *bottleneck* for the lower-capacity section expresses this concept quite well.
@@ -260,7 +259,7 @@ CapFlow\sub{away-from-intersection} = Maximum flow of a section away from an int
 = Maximum flow a given lane can handle;
 NLanes = Number of lanes.
 
-\highlight{Continuity}
+\subsubsection{Continuity}
 
 Although no direct formula application about continuity is used in this chapter, one basic property 
 of an intersection is that all the flow into the intersection has to exit the intersection.
@@ -281,7 +280,7 @@ traffic lights prevent vehicles approaching the intersection from reducing their
 time each vehicle spends in the intersection itself (which, by definition, is an area). Traffic signals 
 increase the throughput while keeping intersections safe.
 
-\highlight{Phase}
+\subsubsection{Phase}
 
 One set of movements that is allowed to occur at the same time is called a signal phase. It should 
 be noted that some movements are allowed during several phases; in many countries, allowing curbside 
@@ -289,7 +288,7 @@ turns at all times is the standard. Some may use expressions like “allowing a 
 beginning of phase two” when technically it should be “adding a short phase before phase two where a 
 particular turn will be allowed.” 
 
-\highlight{Effective Green Time (Tgreen)}
+\subsubsection{Effective Green Time (Tgreen)}
 
 The phase duration (or length) refers to its “effective green time,” which is the time vehicles are 
 considered effectively moving, which may start a little after the green light is given and end in the 
@@ -297,19 +296,19 @@ middle of yellow lights (where such are used), or in the first moments of red (c
 this chapter, where queueing and intersection capacity are evaluated, green time means “effective green 
 time.”
 
-\highlight{Cycle Time (Tcycle)}
+\subsubsection{Cycle Time (Tcycle)}
 
 Excluding situations where special phases are activated by detectors, the traffic signals in an intersection 
 repeat the order of the phases successively in cycles. The cycle time can be measured as the time between 
 when the green light is given until the next time it is given again (after it has changed to red once). 
 In this chapter, “cycle time” alone refers to a traffic light cycle time (route cycle times are not discussed).
 
-\highlight{Red Time (Tred)}
+\subsubsection{Red Time (Tred)}
 
 For the interest of intersection capacity and queueing evaluation, red time means cycle time minus 
 (effective) green time.
 
-\highlight{Lost Time}
+\subsubsection{Lost Time}
 
 Lost time is the period between the end of the effective green of a phase and the start of the next. 
 Lost time depends on the signal programming for yellow times and overlapping red (clearance red). It 
@@ -325,7 +324,7 @@ lost time *each cycle* is sixteen seconds.
 until the queue dissolves or the effective green time turns off. And for each approach during red time, 
 there is queue formation, and lost time happens when neither approach has flow.}{ Elebeta.}
 
-\highlight{Traffic Light Plans}
+\subsubsection{Traffic Light Plans}
 
 In the same way for intersections in general, the higher the number of turning movements there are 
 in an intersection with traffic lights, the more difficult it is to serve them all. Some movements can 
@@ -370,7 +369,7 @@ the peak, we use and measure the busiest hour of the day for the given flow (as 
 data with smaller intervals than one hour, so a given measure of the busiest hour might have happened 
 from 7:15 a.m. to 8:15 a.m., for example).
 
-\highlight{Traffic Signal Coordination}
+\subsubsection{Traffic Signal Coordination}
 
 Coordination is the synchronization of several traffic lights along a path to produce a “green wave” 
 for that route, eliminating waiting while still keeping the required/projected capacity for all flows. 
@@ -383,14 +382,16 @@ one short, one long, one short, and so on).
 \figure[medium]{assets/image8.png}{Traffic light coordination can provide green waves to several routes by 
 synchronizing the opening of green phases with the flow speed. Image}{ Elebeta.} 
 
-\highlight{Detection or Actuation}
+\subsubsection{Detection or Actuation}
 
 Actuation is the form in which the user informs his or her presence to a traffic signal controller, 
 for example:
+
 \item A pedestrian pressing a button to request a crossing (Figure 24.9);
 \item A vehicle passing over a magnetic induction loop buried in the traffic lane (Figure 24.10).
 
 Actuation can be used in many ways, isolated or in conjunction with traffic control signs:
+
 \item Add a required phase for pedestrians or cross-traffic turns (semi-actuated control);
 \item Determine the length of every phase (full-actuated control);
 \item Activate a preestablished plan that will eventually be coordinated (actuated pre-time control);
@@ -408,7 +409,7 @@ by pressing a button, as in this crossing in São Paulo.}{ Jonas Malaco.}
 \figure{assets/image10.jpeg}{To feed São Paulo's central traffic control, vehicles’ metallic surfaces 
 are detected when approaching an intersection.}{ Arthur Szász.}
 
-\subsection{Intersection Capacity}
+\subsubsection{Intersection Capacity}
 
 Considering the definition of an intersection as the area where vehicles come into conflict, the capacity 
 of the intersection should be measured as the total number of (equivalent) vehicles that cross it, tallying 
@@ -420,7 +421,7 @@ signalized intersections, assuming that the corridor where the BRT is placed has
 non-signalized intersections that do not cause other meaningful interference to mixed traffic or to BRT, 
 which is not included in the basic saturation flow measures.
 
-\highlight{Relative Green (K\sub{green})}
+\subsubsection{Relative Green (K\sub{green})}
 
 The proportion of time allowed by a green light for a flow to cross an intersection *(Kgreen)* is given 
 by the equation below.
@@ -441,7 +442,7 @@ The previous and following equations apply to fixed cycles, but to measure the r
 coordinated traffic light with irregular times, one should consider the total green time along a repetition 
 cycle (short, long).
 
-\highlight{Relative Red (K\sub{red})}
+\subsubsection{Relative Red (K\sub{red})}
 
 The proportion of time that traffic is held by a red light in a given approach *(Kred)* is given by 
 the equation below.
@@ -480,7 +481,7 @@ K\sub{red} = Relative red, or the proportion of time that traffic is held by a r
 
 K\sub{green} = Relative green, or the proportion of time given by a green light for a flow to cross an intersection.
 
-\highlight{Capacity at a Signalized Intersection Approach}
+\subsubsection{Capacity at a Signalized Intersection Approach}
 
 The capacity at a signalized intersection approach is simply the saturation flow of the approach multiplied 
 by the proportion of time it is in operation. Unless stated otherwise, intersection capacity refers to 
@@ -510,7 +511,7 @@ CapFlow\sub{intersection} = Capacity at a signalized intersection approach;
 
 saturationflowperlane = Maximum flow a given lane can handle;NLanes = Number of lanes.
 
-\highlight{Demand Saturation Level (X)}
+\subsubsection{Demand Saturation Level (X)}
 
 Demand saturation level is a dimensionless form of expressing demand by comparing it to the maximum 
 that the infrastructure under analysis can serve. Applied to a road section, it is given by demand flow 
@@ -533,7 +534,7 @@ SaturationFlow = Maximum flow the section can handle under prevailing use;
 Demand saturation level is sometimes referred to as “saturation level” or just “saturation,” which 
 can create confusion with “saturation flow.” Also, we use “demand level” and “X” in this chapter.
 
-\highlight{Demand to Signal Capacity Level (XSignal)}
+\subsubsection{Demand to Signal Capacity Level (XSignal)}
 
 This is a variant form of expressing demand saturation level at the traffic light, and instead of comparing 
 it to the maximum possible throughput, this compares it with the possible throughput under current programming. 

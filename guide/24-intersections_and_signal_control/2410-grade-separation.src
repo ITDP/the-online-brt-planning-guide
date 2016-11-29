@@ -1,6 +1,4 @@
-
-
-\section{ Grade Separation}
+\section{Grade Separation}
 
 > Conflict can and should be handled constructively; when it is, relationships benefit. Conflict avoidance is not the hallmark of a good relationship. On the contrary, it is a symptom of serious problems and of poor communication.
 @ Harriet B. Braiker, psychologist, expert on stress management, 1948-
@@ -11,7 +9,7 @@ on local circumstances. In many instances, the time savings to BRT customers and
 will fully justify the added infrastructure costs, but limited capital resources will typically constrain 
 infrastructure expenditures. 
 
-\subsection{ Criteria for Grade Separation}
+\subsection{Criteria for Grade Separation}
 
 In all of our BRT studies to date we have never really had to resort to a single flyover, meaning that 
 there were always solutions to guarantee BRT operations that would reduce overall current travel times 
@@ -46,7 +44,7 @@ a busway in an underpass will be similar to that of a flyover unless there are a
 such as the presence of services (utilities), high water tables, or hard rock conditions that may result 
 in underpasses not being technically or economically feasible.
 
-\subsection{ Station Location with Grade-Separated Solutions}
+\subsection{Station Location with Grade-Separated Solutions}
 
 If the grade-separated solution design maintains BRT lanes through intersections, the same concerns 
 discussed without grade separation about queue blocking the stations apply. When a BRT lane is grade 
@@ -63,7 +61,7 @@ from the grade separation can essentially be lost due to the longer walk.
 
 \figure[medium]{assets/image74.jpeg}{In the case of Quito’s Central Norte line, the presence of a BRT underpass 
 has meant that the closest station to a key destination, the Plaza of Américas commercial center, is 
-several hundred meters away.}{ Lloyd Wright.} 
+several hundred meters away.}{Lloyd Wright.} 
 
 As an alternative to obtain intersection efficiency (with time savings that serve all customers through 
 the section) at the cost of a convenient station location (that serves local-specific customers), it 
@@ -79,13 +77,13 @@ the case of Ottawa, the tunnel station nicely protects customers from the harsh 
 also has achieved great success with its Villa Flora station, which goes beneath a heavily trafficked 
 roundabout on Maldonado Avenue (Figure 24.77). 
 
-\figure{assets/image75.jpeg}{Placing stations just before a BRT tunnel, as in Brisbane, helps customers 
-comfortably access local destinations. Image}{ Queensland Transport.}
+\figure[medium]{assets/image75.jpeg}{Placing stations just before a BRT tunnel, as in Brisbane, helps customers 
+comfortably access local destinations. Image}{Queensland Transport.}
 
-\figure{assets/image76.jpeg}{A station placed inside a tunnel in Ottawa provides easy access and weather 
-protection.}{ Lloyd Wright.} 
+\figure[medium]{assets/image76.jpeg}{A station placed inside a tunnel in Ottawa provides easy access and weather 
+protection.}{Lloyd Wright.} 
 
-\figure{assets/image77.jpeg}{BRT Quito's Villa Flora roundabout traffic with underpasses.
+\figure[medium]{assets/image77.jpeg}{BRT Quito's Villa Flora roundabout traffic with underpasses.
 }{Google Earth.} 
 
 Effective pedestrian access as well as visually neutral solutions can be designed. For TransMilenio 
@@ -95,19 +93,19 @@ small pedestrian plaza where fares are collected. This solution allowed for the 
 this station, which will make future transfer points on the projected Avenida Boyacá closer to each other. 
 Ultimately, the implementation of solutions of this sort will depend on budgetary constraints.
 
-\figure{assets/image78.png}{TransMilenio's Boyacá Station is on the flyover on Suba Corridor, allowing 
-access from Avenida Boyacá below.}{ Google Street View.} 
+\figure[medium]{assets/image78.png}{TransMilenio's Boyacá Station is on the flyover on Suba Corridor, allowing 
+access from Avenida Boyacá below.}{Google Street View.} 
 
 \figure[medium]{assets/image79.png}{Seen from the flyover on Suba Corridor, TransMilenio's Boyacá Station seems 
-a regular large station with underground access.}{ Google Street View.} 
+a regular large station with underground access.}{Google Street View.} 
 
 \figure[medium]{assets/image80.png}{TransMilenio's Boyacá Station on the flyover is an example of adapting 
 BRT to existing grade separation.}{Google Street View.} 
 
-\figure{assets/image81.png}{TransMilenio's Boyacá Station entrance below flyover is through a small 
+\figure[medium]{assets/image81.png}{TransMilenio's Boyacá Station entrance below flyover is through a small 
 pedestrian plaza along Avenida Boyacá.}{Google Street View.} 
 
-\subsection{ Restricting Turning Movements Together with Grade Separation}
+\subsection{Restricting Turning Movements Together with Grade Separation}
 
 As said in the introduction to this section, unless all vehicle intersections are eliminated from the 
 BRT lane by the separated-grade solution, the first option is to consider grade-separation infrastructure 
@@ -131,27 +129,26 @@ The last possibility is that the flyover is designated for mixed traffic alone a
 street level. As the others do not create intersection with BRT, this fourth possibility is only of interest 
 for the remainder of this subsection (though all four must be considered when evaluating benefits).
 
+\figure{assets/image82.png}{Schematic of Delhi roadway in which BRT vehicles must cross mixed traffic 
+that is attempting to access a flyover. Image}{Elebeta.}
+
 If a single flyover in the median is built, the BRT vehicles in the median will have to cross the mixed 
 traffic going onto the flyover. This scenario creates either the need for a new signalized intersection 
 prior to the flyover, or a merging lane where the BRT buses and mixed traffic can cross, introducing 
 possible delay and confusion for both the BRT system and the mixed traffic. Figure 24.82 shows the conflict.
 
-\figure{assets/image82.png}{Schematic of Delhi roadway in which BRT vehicles must cross mixed traffic 
-that is attempting to access a flyover. Image}{ Elebeta.}
-
 \figure[medium]{assets/image83.png}{In Senen Street, TransJakarta interlaces with mixed traffic to avoid the 
 flyover and reach the station near the intersection. The restart of the bus lane is on the ground level, 
 close to the flyover. The flyover has two lanes and only two more are available to reach the intersection 
 below it. The covered pedestrian flyover seen at the left is a link between the inside area of stations 
-in BRT Corridor 2 and Corridor 6 as the user cannot leave the system's “paid areas.”}{ Google Maps.} 
+in BRT Corridor 2 and Corridor 6 as the user cannot leave the system's “paid areas.”}{Google Maps.} 
 
+\figure{assets/image84.png}{Alternative design for a flyover that allows BRT vehicles to proceed without 
+conflicts to the area below the flyover.}{Elebeta.}
 
 If two separate access lanes are constructed for the flyover, one for each traffic direction, it is 
 possible to leave a space between them for the BRT system to continue along the surface as in Figure 
 24.84.
-
-\figure{assets/image84.png}{Alternative design for a flyover that allows BRT vehicles to proceed without 
-conflicts to the area below the flyover.}{ Elebeta.}
 
 In this configuration, the BRT will intersect the crossing street under the flyover, so we must consider 
 the alternatives of Section 24.5 with the introduction of the flyover to reduce the number of phases. 
@@ -414,16 +411,16 @@ in order to make turning detours on the flyover possible.
 \col 992
 \endtable
 
+\figure{assets/image85.jpeg}{While vehicles in mixed traffic can bypass a congested intersection in 
+Bangkok, public transport vehicles are often consigned to serving stations near the intersection. This 
+can result in slow average speeds for public transport.}{Lloyd Wright.} 
+
 Option A1 is fairly common with conventional bus services (as in Bangkok, Figure 24.85) and BRT (as 
 in Jakarta, Figure 24.86). Mixed-traffic vehicles have access to the flyover and thus are given a substantial 
 priority at the intersection. By contrast, public transport vehicles servicing the intersection area 
 are often mired in heavy congestion. There is limited benefit of using a flyover or underpass if a four-phase 
 signal timing is maintained. In our established scenario, the overall increase in the whole intersection 
 capacity is quite small, with the capacity only rising from 395 pcu/lane/hour to 439 pcu/lane/hour.
-
-\figure{assets/image85.jpeg}{While vehicles in mixed traffic can bypass a congested intersection in 
-Bangkok, public transport vehicles are often consigned to serving stations near the intersection. This 
-can result in slow average speeds for public transport.}{ Lloyd Wright.} 
 
 \figure[medium]{assets/image86.png}{This five-leg intersection under the Senen Street flyover in Jakarta has 
 several forbidden turns; the intersection of two BRT corridors and a four phase-signal causes delays 
@@ -482,13 +479,13 @@ be respectively 54 and 76 seconds in a cycle of 90 seconds).
 As mentioned before, an intersection cannot be analyzed in isolation. Optimum results are usually obtained 
 when vehicle movements are analyzed along the corridor and the entire extended area surrounding the intersection.
 
-\figure[medium]{assets/image87.png}{Curbside detour for perpendicular flows under the flyover.}{ Elebeta.}
+\figure[medium]{assets/image87.png}{Curbside detour for perpendicular flows under the flyover.}{Elebeta.}
 
-\figure[medium]{assets/image88.png}{Curbside detour for perpendicular flows above the flyover.}{ Elebeta.}
+\figure[medium]{assets/image88.png}{Curbside detour for perpendicular flows above the flyover.}{Elebeta.}
 
-\figure[medium]{assets/image89.png}{Clovelike intersection.}{ Elebeta.}
+\figure[medium]{assets/image89.png}{Clovelike intersection.}{Elebeta.}
 
-\subsection{ BRT Turning with Grade-Separated Solutions}
+\subsection{BRT Turning with Grade-Separated Solutions}
 
 Separated-grade infrastructure can also be used to provide the dedicated turns for the BRT. For heavy 
 traffic corridors where free-flow turning is required to avoid breaking down the system, the time savings 
@@ -501,7 +498,7 @@ completed in 2015 to guarantee that the interchange in Norte-Quito-Sur and Calle
 24.92 and 24.93).
 
 \figure[medium]{assets/image90.jpeg}{An exclusive roundabout facilitates exclusive turning movements for BRT 
-vehicles between two corridors: the NQS corridor and Calle 80 corridor.}{ Eduardo Plata and Por 
+vehicles between two corridors: the NQS corridor and Calle 80 corridor.}{Eduardo Plata and Por 
 el País que Queremos (PPQ).} 
 
 \figure[medium]{assets/image91.jpeg}{At the major intersection of TransMilenio’s Calle 80 corridor and NQS 
@@ -509,13 +506,13 @@ corridor is a set of underpasses and an overpass link to the exclusive BRT round
 Earth.} 
 
 \figure[medium]{assets/image92.jpeg}{Exclusive BRT third-floor roundabout is an unprecedented work of art to 
-guarantee free-flow movements for TransMilenio operation.}{ Instituto de Desarollo Urbano de Bogotá.} 
+guarantee free-flow movements for TransMilenio operation.}{Instituto de Desarollo Urbano de Bogotá.} 
 
 
 \figure[medium]{assets/image93.jpeg}{This TransMilenio interchange was carefully planned from an operational 
-and aesthetic point of view.}{ Instituto de Desarollo Urbano de Bogotá.} 
+and aesthetic point of view.}{Instituto de Desarollo Urbano de Bogotá.} 
 
-\subsection{ BRT through Roundabouts with Grade-Separated Solutions}
+\subsection{BRT through Roundabouts with Grade-Separated Solutions}
 
 Constructing a busway underpass that goes below the roundabout and avoids all conflicts with mixed 
 traffic—and thus promotes time savings for both BRT and mixed traffic—is also a possibility, as the examples 

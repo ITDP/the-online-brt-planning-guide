@@ -1,9 +1,13 @@
-
-
 \section{ Allowing BRT Turns}
 
 > An Englishman, even if he is alone, forms an orderly queue of one.
 @ George Mikes, writer, 1912-1987
+
+\figure{assets/image51.jpeg}{A tunnel is used to connect two intersecting corridors in Bogotá. Even 
+if the connection is good, walking times could be reduced if routes shifted from one corridor to another.}{ Lloyd Wright.}
+
+\figure{assets/image52.jpeg}{Separated-grade walking connections provide safety but also are limited 
+in convenience. Walking transfers can cause physical hardship.}{ Lloyd Wright.}
 
 While service plan simplification and organization may, to an extent, minimize turning movements for 
 BRT vehicles in the busway, by concentrating service access to the corridor in a few intersections, turning 
@@ -26,12 +30,6 @@ tunnels can add much to the overall infrastructure costs of the system. This is 
 of rail systems. In the Bogotá situation, customer convenience has been significantly increased by allowing 
 turn movements and direct transfers between the Caracas and Jimenez corridors. 
 
-\figure{assets/image51.jpeg}{A tunnel is used to connect two intersecting corridors in Bogotá. Even 
-if the connection is good, walking times could be reduced if routes shifted from one corridor to another.}{ Lloyd Wright.}
-
-\figure{assets/image52.jpeg}{Separated-grade walking connections provide safety but also are limited 
-in convenience. Walking transfers can cause physical hardship.}{ Lloyd Wright.}
-
 There are several solutions to allow BRT vehicle turning that avoid consuming much of an intersection’s 
 capacity—mostly needed for cars in the intersection—and the appropriate solutions will depend on the 
 available budget and right-of-way, the number of vehicles in the BRT system and their turning volumes, 
@@ -47,13 +45,13 @@ turning movements:
 
 \subsection{ Dedicated Turning Lanes and Additional Signal Phases for BRT Vehicles}
 
+\figure{assets/image53.jpeg}{The green phase for a BRT vehicle entering the Val de Marne busway in 
+Paris.}{National Bus Rapid Transit Institute (NBRTI).}
+
 A dedicated turning lane for BRT vehicles has the advantage of keeping the BRT vehicles in a controlled 
 space at all times (see Figure 24.53). This arrangement may require an additional signal phase if there 
 was no previous cross-traffic-turn phase. Otherwise, the dedicated turn would take place at the same 
 time that the mixed traffic is allowed to turn left.
-
-\figure{assets/image53.jpeg}{The green phase for a BRT vehicle entering the Val de Marne busway in 
-Paris.}{National Bus Rapid Transit Institute (NBRTI).}
 
 Possibly the greatest challenge to this configuration is finding the physical space to place the additional 
 turning lane. The roadway would likely have to accommodate at least five lanes (Figure 24.54). If two 
@@ -100,14 +98,14 @@ lanes. Thus, a cross-traffic-turning BRT vehicle will leave the busway and direc
 lane for cars. A curbside-turning BRT vehicle must leave the median-side busway and merge to the curbside 
 of the street to reenter the median-side busway on the new corridor.
 
+\figure{assets/image57.jpeg}{In Kunming, turning BRT vehicles leave the busway and enter a mixed-traffic 
+lane to finalize the turning movement.}{ ITDP.}
+
 This technique is the most common solution that has been used in many of the “open” BRT systems, such 
 as in Kunming, China, and is being planned on several “direct services” BRT systems (Figure 24.57). If 
 there is no physical separation of the busway, the merge with the mixed traffic can happen anywhere in 
 the proceeding block. If there is physical separation, it must occur at the previous intersection, or 
 a slip lane must be provided. 
-
-\figure{assets/image57.jpeg}{In Kunming, turning BRT vehicles leave the busway and enter a mixed-traffic 
-lane to finalize the turning movement.}{ ITDP.}
 
 From a signal phase standpoint, this option is the easiest to implement, as it does not require changing 
 the signal phase, and does not require any major new infrastructure. However, this option does present 
@@ -123,7 +121,14 @@ Any time BRT vehicles must leave an exclusive busway operation and enter mixed-t
 loses a certain amount of psychological status with the customer. Mixed-traffic operation makes the system 
 much more akin to a conventional bus system rather than a highly efficient public transport system. 
 
-*Queue-Jump Signalization for BRT Vehicles (Pre-Signals)*
+\subsubsection{Queue-Jump Signalization for BRT Vehicles (Pre-Signals)}
+
+\figure[medium]{assets/image58.jpeg}{While mixed-traffic vehicles are held for an extra ten seconds at the 
+first traffic-signal stop, BRT vehicles are given a queue-jumping head start. Technically this counts 
+as eight phases.}{TCRP}
+
+\figure[medium]{assets/image59.jpeg}{Pre-signals for buses, holding normal vehicles in Cape Town, South Africa, 
+work like a queue jump to a straight movement in a mixed-traffic section.}{ Bruce Sutherland.}
 
 A signal system can be utilized to give BRT vehicles a head start on turning movements prior to private-vehicle 
 turning movements. In this case, a dual traffic signal is utilized for each direction of travel. One 
@@ -137,14 +142,7 @@ phase will be blocked by cross-traffic-turning cars and block eventual vehicles 
 shows an example of pre-signal without BRT turning; it is used as a way to allow mixed traffic turn cross-traffic 
 when the roadway width is constrained.
 
-\figure[medium]{assets/image58.jpeg}{While mixed-traffic vehicles are held for an extra ten seconds at the 
-first traffic-signal stop, BRT vehicles are given a queue-jumping head start. Technically this counts 
-as eight phases.}{TCRP}
-
-\figure{assets/image59.jpeg}{Pre-signals for buses, holding normal vehicles in Cape Town, South Africa, 
-work like a queue jump to a straight movement in a mixed-traffic section.}{ Bruce Sutherland.}
-
-\subsection{ BRT Turning Movements Prior to the Intersection}
+\subsection{BRT Turning Movements Prior to the Intersection}
 
 To avoid having a special BRT turning phase in a main intersection, an alternative is to create a special 
 bus-only turn (this is as good for left turns as for right) phase at an intersection before a major intersection 
@@ -163,10 +161,13 @@ If two crossing corridors happen to be two broad highways, enough right-of-way m
 convert a standard four-phase intersection into a two-phase signalized roundabout. This is a clever alternative 
 that should be remembered, as in many developing-nation cities, such right-of-way is available but underutilized. 
 
-
 The exclusive BRT busway terminates approximately 50 meters prior to the intersection with the BRT 
 vehicles entering mixed traffic at that point. This approach essentially turns the junction into a grid 
 of one-way streets. It requires a fairly large amount of right-of-way at the junction. 
+
+\figure[medium]{assets/image61.png}{In this scenario, the intersection is converted to a roundabout with vehicle 
+queuing areas at points “A,” “B,” “C,” and “D.” The BRT vehicles enter mixed traffic just before the 
+intersection and move through the intersection with a two-phase signal.}{ITDP}
 
 Figure 24.61 indicates how the junction between two major boulevards can be turned into a two-phase 
 traffic circle by creating a kind of mini-grid of one-way streets. At low traffic volumes, the BRT buses 
@@ -174,9 +175,8 @@ enter mixed traffic prior to the intersection. A series of queuing areas (marked
 “D” in the figure) help stage vehicle flows through the roundabout. These areas are referred to as “waiting 
 boxes.”
 
-\figure{assets/image61.png}{In this scenario, the intersection is converted to a roundabout with vehicle 
-queuing areas at points “A,” “B,” “C,” and “D.” The BRT vehicles enter mixed traffic just before the 
-intersection and move through the intersection with a two-phase signal.}{ITDP}
+\figure[medium]{assets/image62.png}{Vehicle movements for signal phase 1 in a cross converted into a roundabout. 
+Image}{ ITDP.}
 
 Figure 24.62 outlines the vehicle movements for the first signal phase for this roundabout conversion. 
 This example is given from the perspective of a British-style road configuration. All eastbound BRT vehicles 
@@ -185,14 +185,11 @@ in area “C” at a traffic light. All east- and westbound traffic can proceed 
 left-hand turns can proceed. All westbound traffic would pass through the intersection and queue in area 
 “B.”
 
+\figure[medium]{assets/image63.png}{Vehicle movements for signal phase 2 in a cross converted into roundabout. 
+Image}{ ITDP.}
+
 In the second signal phase, all northbound and southbound traffic can proceed straight, all left-hand 
 turns can proceed, and all right turning traffic would queue in areas “A” and “D” (Figure 24.63). 
-
-\figure{assets/image62.png}{Vehicle movements for signal phase 1 in a cross converted into a roundabout. 
-Image}{ ITDP.}
-
-\figure{assets/image63.png}{Vehicle movements for signal phase 2 in a cross converted into roundabout. 
-Image}{ ITDP.}
 
 This solution will work up to the point where the amount of space in areas “A,” “B,” “C,” and “D” is 
 sufficient to accommodate all the turning traffic. The required and available space are discussed in 
@@ -206,6 +203,7 @@ Other alternatives of busways through roundabouts are discussed in the next sect
 \beginbox{Required and available space for queueing boxes:}
 
 For the purpose of evaluating queueing space, we consider that:
+
 \item The amount of road space that a passenger car practically uses is 15 square meters; this includes 
 some distance kept between vehicles to separate them from each other when queueing at the traffic light 
 (Areapcu = 15 m2);

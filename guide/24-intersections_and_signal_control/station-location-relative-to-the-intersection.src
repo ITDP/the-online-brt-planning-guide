@@ -28,7 +28,7 @@ in the other;
 \item Far from the intersection (or mid-block);
 \item Under or over the intersection.
 
-*At Intersections*
+\subsubsection{At Intersections}
 
 The normal justification for putting the bus stop at the intersection is that it reduces walking times 
 for customers with destinations or transferring on the crossing street. Unless the red time is really 
@@ -52,7 +52,7 @@ if the BRT lane is near the median.
 \figure[medium]{assets/image20.jpeg}{Buses waiting for a traffic light after boarding and alighting is completed 
 in São Paulo; today this station is moved back.}{Arthur Szász.}
 
-*Away from the Intersection*
+\subsubsection{Away from the Intersection}
 
 Stations should in general be around a hundred meters from intersections. As highlighted above and 
 as discussed in the remainder of this section, there should be some space between the intersection and 
@@ -84,12 +84,15 @@ at Traffic Light).
 given additional right-of-way and several access points. At the intersections, right-of-way for vehicles 
 in mixed traffic is maximized.}{ ITDP.}
 
-*Above or Below the Intersection*
+\subsubsection{Above or Below the Intersection}
 
 This alternative is discussed in Section 24.10: Grade Separation, where other aspects of grade-separated 
 solutions are presented.
 
 \subsection{Minimizing the Number of Mixed-Traffic Lanes Away from the Intersection}
+
+\figure{assets/image23.jpeg}{A mid-block station location in Seoul allows greater right-of-way width 
+for the station area.}{City of Seoul.}
 
 Usually the mixed-traffic bottleneck is the intersection, where capacity is 50 to 30 percent (proportional 
 to the green fraction of each approach) of mid-block capacity. So if BRT stations are far from intersections, 
@@ -104,11 +107,8 @@ station, the extra width required will be around 12 meters. If the station is lo
 these 12 meters will be difficult to supply while also providing 6-meter turn lanes for mixed traffic. 
 Separating these functions will allow the same right-of-way to be used for the bus station at mid-block, 
 and for left and right turn signals at the intersection. Figure 24.22 shows an application of this concept 
-within a proposal for the Delhi BRT system. 
-
-\figure{assets/image23.jpeg}{A mid-block station location in Seoul allows greater right-of-way width 
-for the station area.}{City of Seoul.}
-
+within a proposal for the Delhi BRT system.
+ 
 Capacity in a given control section (CapFlow) is expressed in the equation below. 
 
 Eq. 24.18\' TODO Math: 
@@ -297,7 +297,7 @@ disruptions throughout the public transport system. Traffic spillbacks are commo
 intersections blocking perpendicular movements along the BRT corridor, so it may be proper to analyze 
 the tolerance; space needed is proportional to red time. 
 
-\subsection{ Optimizing Walking Distances}
+\subsection{Optimizing Walking Distances}
 
 As mentioned in the introduction to this section, the willingness to place a station close to the intersection 
 under the excuse of reducing walking times is rarely based on data. In the rare case of low-density areas 
@@ -325,7 +325,8 @@ a range of two hundred meters has no noticeable effect. But It should be remembe
 number of stations within a given corridor extension has a significant impact on overall travel time*; 
 that impact is determined by the average distance between the stations as discussed in Chapter 7: Capacity 
 and Speed and requires a much less detailed survey and analysis.
-\item 24.4.6 Correction Factor for Station Saturation at Traffic Light
+
+*Correction Factor for Station Saturation at Traffic Light*
 
 Chapter 7: Capacity and Speed discusses at length the *level of saturation of the station, or the proportion 
 of time that BRT vehicles are blocking the station*. In particular, mid-block stations are likely to 
@@ -339,6 +340,7 @@ the station is occupied only 40 percent of the time.
 
 A correction factor that estimates what would be the new level of saturation of the station if the 
 traffic light is positioned right in front of it (X\sub{is0}) can be expressed in function of:
+
 \item Signal cycle time (T\sub{cycle});
 \item Signal red time for the BRT approach (T\sub{red});
 \item Average stop time per bus in the station composed by dwell, boarding, and alighting times (T\sub{station}).
@@ -356,7 +358,7 @@ Eq. 24.21\' TODO Math:
 
 Xis0 = Xstation *Tcycle Tcycle- Tred+ 0.5*TB  '\
 
-*Where:*
+Where:
 
 X\sub{is0} = Correction factor that estimates what would be the new level of saturation of the station if 
 the traffic light is positioned right in front of it;
@@ -375,7 +377,7 @@ Eq. 24.22\' TODO Math:
 
 Xis0 = Xstation *Tcycle Tcycle-Tred 22*Tstation '\
 
-*Where:*
+Where:
 
 X\sub{is0} = Correction factor that estimates what would be the new level of saturation of the station if 
 the traffic light is positioned right in front of it;
@@ -384,9 +386,9 @@ T\sub{cycle} = Signal cycle time;
 T\sub{red} = Signal red time for the BRT approach;
 T\sub{station} = Average stop time per bus in the station composed by dwell, boarding, and alighting times.
 
-*Examples*
+Examples
 
-\number \highlight{Calculating station to intersection interference with a long red phase}\' TODO Math: 
+\highlight{1. Calculating station to intersection interference with a long red phase}\' TODO Math: 
 
 Xis0 = Xstation *Tcycle Tcycle- Tred+ 0.5*TB '\
 \item X\sub{station} = 0.35;
@@ -396,13 +398,12 @@ Xis0 = Xstation *Tcycle Tcycle- Tred+ 0.5*TB '\
 
 X\sub{is0} = 0.35 * 700 seconds / (700 seconds – 500 seconds + 0.5 * 10 seconds) = 1.195
 
-
 In this hypothetical example the station would operate on just the 200 seconds of green, but not on 
 the 500 seconds of red, because just some seconds after the red phase begins the bus will finish boarding, 
 but it will obstruct access to the bus stop during the entire 500 seconds of red. Thus, at a value of 
 1.195 the high saturation leads to considerable congestion of the busway.
 
-\number \highlight{Calculating station to intersection interference with a short red phase}\' TODO Math: 
+\highlight{2. Calculating station to intersection interference with a short red phase}\' TODO Math: 
 
 Xis0 = Xstation *Tcycle Tcycle-Tred 22*Tstation '\
 \item Xstation = 0.35;
@@ -411,7 +412,6 @@ Xis0 = Xstation *Tcycle Tcycle-Tred 22*Tstation '\
 \item Tstation = 40 seconds of vehicle stopping time.\' TODO Math: 
 
 Xis0 = 0.35 * 30 / (30 - 152 / (2 * 40)) = 0.386 '\
-
 
 In this case, because the red phase is quite short, there is fairly minimal risk that the traffic signal 
 will disrupt the functioning of the bus stop, so saturation increases only marginally, from 0.35 to 0.386. 
