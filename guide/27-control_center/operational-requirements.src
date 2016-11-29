@@ -42,15 +42,11 @@ that empower the staff to perform their jobs are therefore vital to the success 
 
 The BRTMC workflow specification should detail the collective flow of actions over four main functions. 
 
-
 The four main functions of the BRTMC are:
 
 \item Collect data/info;
-
 \item Configure the data/info;
-
 \item Share data/info with all the relevant stakeholders;
-
 \item Monitor performance, safety, and security.
 
 Operational procedures are required to explain how events would trigger specific actions by certain 
@@ -84,8 +80,9 @@ The general Standard Operating Procedures (SOPs) that should be developed includ
 Three operational scenarios of how the BRT system should work once operational are sketched below to 
 provide a better understanding of the role that the BRTMC plays in the operations of the BRT system. 
 
+\subsubsection{Customer Scenario}
 
-*Customer Scenario*
+\figure{assets/image12.jpeg}{A customer uses the fare system at a BRT station in Bangkok, Thailand.}{ITDP.}
 
 Sipho needs to use the BRT system, because he has a meeting in town A’s central business district (CBD) 
 at 09:00. Sipho logs on to the Internet and views the BRT website, which is administered by the BRTMC’s 
@@ -97,14 +94,12 @@ his BRT smart card does not have enough money in order for him to make a trip. A
 reloads his smart card with enough credit to travel the rest of the week. At the gate, Sipho touches 
 his card and gains access to the station.
 
-\figure{assets/image12.jpeg}{A customer uses the fare system at a BRT station in Bangkok, Thailand.}{ ITDP.}
+\figure{assets/image13.jpeg}{A message board shows departure times of vehicles in Chengdu, China.}{
+ITDP.}
 
 Sipho looks at the time and sees that the Verbal Message Sign (VMS), which is also administered from 
 the BRTMC, indicates that the next express vehicle traveling to town A’s CBD will arrive in five minutes. 
 Sipho decides to buy a newspaper at the newsstand while waiting for the vehicle. 
-
-\figure{assets/image13.jpeg}{A message board shows departure times of vehicles in Chengdu, China.}{ 
-ITDP.}
 
 The Automatic Voice Annunciator (AVA), again administered from the BRTMC, announces that the vehicle 
 has arrived. Sipho boards and finds a comfortable seat. The VMS on the vehicle and the AVA announcing 
@@ -112,17 +107,19 @@ each station provide Sipho with the comfort to read his newspaper. The vehicle p
 to clear slow-moving traffic at the intersection. The VMS display and the AVA annunciator warn Sipho 
 that his station is up next. Sipho gathers all his belongings and disembarks the vehicle at the station. 
 
-
-\figure[medium]{assets/image14.jpeg}{Customers leave a BRT station in Bogotá, Colombia.}{ Karl Fjellstrom, 
+\figure[medium]{assets/image14.jpeg}{Customers leave a BRT station in Bogotá, Colombia.}{Karl Fjellstrom, 
 Far East BRT.}
 
 Sipho exits the station again through the gate and walks the two blocks to where his meeting is scheduled. 
 Sipho arrives at his meeting on time, relaxed, and without the morning stress of traffic. Figure 27.15 
 illustrates the movement of the customer scenario as sketched above.
 
-\figure[medium]{assets/image15.jpeg}{Customer scenario.}{ TECHSO.}
+\figure[medium]{assets/image15.jpeg}{Customer scenario.}{TECHSO.}
 
-*Maintenance Scenario*
+\subsubsection{Maintenance Scenario}
+
+\figure{assets/image16.jpeg}{Station officer at the card readers in a Bogotá, Colombia, BRT station. 
+}{Karl Fjellstrom, Far East BRT.}
 
 Vuzi is the station officer at one of the trunk stations. One of Vuzi’s duties is to check all equipment 
 at the station before operations start and determine if anything is broken and needs to be repaired.
@@ -145,17 +142,14 @@ The respective maintenance personnel arrive at the station where Vuzi shows them
 fix the problems and report to Vuzi who goes to inspect the card reader and automatic doors and finds 
 them fixed. 
 
-\figure{assets/image16.jpeg}{Station officer at the card readers in a Bogotá, Colombia, BRT station. 
-}{ Karl Fjellstrom, Far East BRT.}
-
 The maintenance staff and Vuzi report back to Gareth at the BRTMC that all faulty equipment has been 
 fixed, and Gareth completes the logged call with a short report.
 
 Figure 27.17 illustrates the maintenance scenario as described above.
 
-\figure[medium]{assets/image17.jpeg}{Maintenance process.}{ TECHSO.}
+\figure[medium]{assets/image17.jpeg}{Maintenance process.}{TECHSO.}
 
-\highlight{Emergency Scenario}
+\subsubsection{Emergency Scenario}
 
 Dillon and Cynthia are operators working for the Safety and Security group in the BRTMC’s control room. 
 Both of them have been on duty for only two hours, and they are comfortably watching the monitors. 
@@ -179,4 +173,4 @@ normally.
 
 Figure 27.18 illustrates the emergency scenario as described above.
 
-\figure[medium]{assets/image18.jpeg}{Emergency process.}{ TECHSO.}
+\figure[medium]{assets/image18.jpeg}{Emergency process.}{TECHSO.}
