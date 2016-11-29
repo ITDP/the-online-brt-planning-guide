@@ -1,9 +1,11 @@
-
-
 \section{Approach to Intersection Design}
 
 > Idiopathic, from the Latin meaning we’re idiots cause we can’t figure out what’s causing it.
 @ Gregory House, MD (as played by actor Hugh Laurie), “Role Model,” House, 2005
+
+\figure{assets/image11.jpeg}{The introduction of BRT and better design changes poorly controlled and 
+congested intersections, often leading to efficiency improvements for both public transport vehicles 
+and mixed traffic.}{ Lloyd Wright.}
 
 BRT systems are generally built on corridors where mixed-traffic congestion is already a problem, or 
 where congestion is likely to occur in the near future; otherwise there would be no benefit in building 
@@ -11,10 +13,6 @@ a segregated busway. The worse the congestion appears, the greater the benefit o
 (Figure 24.11). If a BRT system makes public transport services better but mixed traffic worse, it will 
 be less politically successful than if it makes public transport better and also improves mixed-traffic 
 flow. BRT system planners therefore generally try to minimize adverse impacts on mixed traffic.
-
-\figure{assets/image11.jpeg}{The introduction of BRT and better design changes poorly controlled and 
-congested intersections, often leading to efficiency improvements for both public transport vehicles 
-and mixed traffic.}{ Lloyd Wright.}
 
 Intersections are critical to stations, as they represent an important point along any BRT corridor. 
 A poorly designed intersection or a poorly timed signal phase can substantially reduce system capacity 
@@ -26,6 +24,9 @@ along a BRT corridor are:
 \number To minimize delay for BRT vehicles;
 \number To minimize delay for mixed traffic.
 
+\figure{assets/image12.jpeg}{Intersection design affects the BRT system’s efficiency, pedestrian safety, 
+and the access and flows of mixed-traffic vehicles.}{ Lloyd Wright.}
+
 Travel times for walking trips are improved by following these objectives, but it should be noted that 
 pedestrians’ safety and accessibility have the highest priority. Some methods take into account pedestrian 
 times in order to analyze alternatives, and the approach discussed here does not equalize pedestrians 
@@ -35,9 +36,6 @@ stations; and desired car movements are still possible, all without worsening co
 that if public and private transport users' times were equalized, every street with one vehicle carrying 
 fifty passengers every two minutes would have an exclusive bus lane.
 
-\figure{assets/image12.jpeg}{Intersection design affects the BRT system’s efficiency, pedestrian safety, 
-and the access and flows of mixed-traffic vehicles.}{ Lloyd Wright.}
-
 It is generally not advisable to use a standard intersection configuration throughout a BRT corridor. 
 Rather, it is best to design the intersection for the specific conditions at the given location. The 
 impact of a planned BRT system on overall intersection performance is often a significant consideration 
@@ -45,6 +43,7 @@ when deciding on a service plan for the BRT system, the location of the stations
 stations.
 
 BRT system planners have used the following tools to rationalize intersections: 
+
 \item Simplify the BRT system’s routing structure to optimize turning movements into the corridor;
 \item Optimize the number of intersections along the corridor;
 \item Restrict as many mixed-traffic turning movements on the BRT corridors as possible;

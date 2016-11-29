@@ -1,9 +1,13 @@
-
-
 \section{ Restricting General Traffic Turning Movements}
 
 > No matter how many times you save the world, it always manages to get back in jeopardy again. Sometimes I just want it to stay saved! You know, for a little bit? I feel like the maid; I just cleaned up this mess! Can we keep it clean for . . . for ten minutes!
 @ Mr. Incredible (Craig T. Nelson), The Incredibles, 2004
+
+\figure{assets/image28.png}{Exchanging width between entrance and exit sections where turning volumes 
+are high enough to allow the change to improve capacity meaningfully.}{ Elebeta.}
+
+\figure{assets/image29.jpeg}{Cape Town, South Africa’s standard four-phase intersection with a cross-traffic-turn 
+waiting area using the narrowed width of the opposite way.}{ Bruce Sutherland.}
 
 The overall capacity of the intersection is given by the sum of the capacity of each approaching lane. 
 By its turn, the capacity of each approaching lane is given by the sum of saturation flow of the lane 
@@ -35,12 +39,6 @@ section of the opposite way to be broader (Figures 24.28 and 24.29); the extra w
 mixed traffic, enhancing mixed-traffic capacity, or to allow BRT turning movements where required (see 
 Section 24.6: Allowing BRT Turns).
 
-\figure{assets/image28.png}{Exchanging width between entrance and exit sections where turning volumes 
-are high enough to allow the change to improve capacity meaningfully.}{ Elebeta.}
-
-\figure{assets/image29.jpeg}{Cape Town, South Africa’s standard four-phase intersection with a cross-traffic-turn 
-waiting area using the narrowed width of the opposite way.}{ Bruce Sutherland.}
-
 \beginbox{Narrowing lanes}
 
 Narrowing lanes is a recognized traffic calming measure and a possible way to increase the intersection 
@@ -63,6 +61,11 @@ capacity, as in this intersection in Montgomery County, Maryland, USA.}{Google E
 
 \subsection{ Eliminating Intersections}
 
+\figure{assets/image31.jpeg}{Prior to Quito’s Ecovía line, mixed-traffic vehicles were allowed to cross 
+through this intersection as well as negotiate cross-traffic and curbside turns. To give priority to 
+public transport, crossing straight and cross-traffic turn movements have been blocked.}{ Lloyd 
+Wright.}
+
 The extreme case of reducing phases would only allow for one phase, which would be equivalent to eliminating 
 the intersection itself, clearly increasing capacity. 
 
@@ -70,11 +73,6 @@ Thus eliminating intersections along the busway seems at first a good idea. For 
 this can be done by simply forbidding cross traffic, while still allowing flow from the transversal street 
 to join the mixed traffic in the corridor at the curbside as in Figure 24.31, providing access to the 
 corridor.
-
-\figure{assets/image31.jpeg}{Prior to Quito’s Ecovía line, mixed-traffic vehicles were allowed to cross 
-through this intersection as well as negotiate cross-traffic and curbside turns. To give priority to 
-public transport, crossing straight and cross-traffic turn movements have been blocked.}{ Lloyd 
-Wright.}
 
 The flaw in adopting such an extreme solution is that eliminating phases is based on diverting traffic 
 demand in favor of the exclusive movements, so its movement can be done with other flows. Eliminating 
@@ -173,7 +171,7 @@ stop flowing after 30 seconds in intersection 2.
 In this subsection we name traffic diversion models and traffic sign phase schemes as we describe them 
 in order to refer to them in the following text and in the next subsection.
 
-*Typical 4-Phase-Intersection*
+\subsubsection{Typical 4-Phase-Intersection}
 
 In a typical intersection that allows all movements (Figure 24.34), four phases are required; usually 
 each origin has its phase (“standard-four-phase”) but an alternative scheme with one phase for each direction 
@@ -194,7 +192,7 @@ phase per origin in the other direction (“mixed-four-phase”).
 
 \figure[medium]{assets/image34.jpeg}{Possible movements and signal phases at a typical four-leg intersection.}{ ITDP.}
 
-*Movements Conflicting with BRT*
+\subsubsection{Movements Conflicting with BRT}
 
 When the BRT has to cross a typical four-stage intersection, the main concern is to increase the green 
 time for the corridor direction. Eliminating phases are likely to be very effective in doing so, but 
@@ -220,7 +218,10 @@ turn from the same direction needs to have its own phase.}{ Elebeta.}
 \figure[medium]{assets/image36.jpeg}{Along Quito’s Central Norte corridor, vehicles in mixed traffic are given 
 a phase to perform left turns. Image}{ Lloyd Wright.}
 
-*Diverting Curbside Turns*
+\subsubsection{Diverting Curbside Turns}
+
+\figure{assets/image37.jpeg}{Curbside-turn detour can leave width in the main intersection available 
+to crossing flows.}{ Elebeta.}
 
 Diverting curbside turns does not remove a phase, but it can free space for queueing and increase capacity 
 for the remaining movements.
@@ -234,17 +235,14 @@ curbside-turn flow is to the total flow, even if four phases are in use. From a 
 is no interest in diverting the parallel curbside flow at the intersection, as it is not a conflicting 
 movement.
 
- \figure{assets/image37.jpeg}{Curbside-turn detour can leave width in the main intersection available 
-to crossing flows.}{ Elebeta.}
-
-*Diverting Cross-Traffic Turns*
+\subsubsection{Diverting Cross-Traffic Turns}
 
 There are several ways of eliminating cross-traffic turns in the main intersection by detouring the 
 flow. These can be applied both to the flows parallel to the corridor and to the flows crossing the corridor 
 (and turning parallel to it). Without cross-traffic turns, the intersection can have only two phases, 
 but applying a detour to only one direction (both ways) means eliminating one phase already.
 
-*Curbside-Turn, Cross-Traffic Turn, and Cross-Traffic Turn (“curb-first”)*
+\subsubsection{Curbside-Turn, Cross-Traffic Turn, and Cross-Traffic Turn (“curb-first”)}
 
 This detour follows a curbside detour proposed through auxiliary streets, with a curbside turn at the 
 parallel street before the intersection, followed by two successive cross-traffic-side turns (Figure 
@@ -256,7 +254,7 @@ of proportional green time in BRT's direction.
 \figure[medium]{assets/image38.png}{By detouring a cross-traffic turn to a curbside parallel street before 
 reaching the intersection, a phase is eliminated in the main intersection.}{ Elebeta.}
 
-*Loop*
+\subsubsection{Loop}
 
 For the loop, the flow looking to perform a cross-traffic turn has to instead cross straight through 
 the intersection and perform three curbside turns and then cross straight through the intersection again 
@@ -270,7 +268,7 @@ crossing-BRT phase.
 to eliminating cross-traffic turns; despite crossing the intersection twice, it does not create much 
 conflict with existing flows.}{ Elebeta.}
 
-*Previous Cross Turn (“previous cross”)*
+\subsubsection{Previous Cross Turn (“previous cross”)}
 
 Before reaching the main intersection, the diverted flow is allowed to cross-traffic turn in a location 
 where there is no perpendicular crossing traffic (i.e., where previously no crossing intersection existed), 
@@ -281,6 +279,10 @@ flow in the direction of another intersection in the crossing road, downstream t
 where it will join the flow by means of another cross-traffic flow in a two-stage traffic light (where 
 previously no crossing existed or now has to be forbidden) also synchronized with the main intersection 
 (Figure 24.40).
+
+\figure[medium]{assets/image40.png}{It is possible to provide a two-phase coordination for detouring cross-side 
+turns to leave the road upstream and return downstream of the main intersection; additional synchronized 
+traffic lights are required.}{ Elebeta.}
 
 The “previous cross” detour is the best alternative for the parallel flow to the BRT corridor that 
 wants to turn across traffic on the main intersection because it definitely moves the conflict away from 
@@ -294,14 +296,10 @@ then serious conflict would rise, so the perpendicular flow shall be redirected 
 The previous cross alternative is similar in concept to the “displaced left-turn” intersection in the 
 United States (Figure 24.41), which can be applied where width is available.
 
-\figure[medium]{assets/image40.png}{It is possible to provide a two-phase coordination for detouring cross-side 
-turns to leave the road upstream and return downstream of the main intersection; additional synchronized 
-traffic lights are required.}{ Elebeta.}
-
 \figure[medium]{assets/image41.png}{In the United States, the concept of previous turn is applied in a less 
 dense urban context by the name of “displaced left turn” intersection.}{ Elebeta.}
 
-*Curbside Turn and U-Turn (“curb-u”)*
+\subsubsection{Curbside Turn and U-Turn (“curb-u”)}
 
 A cross-traffic-flow detour is made by first making a curbside turn at the crossing road, followed 
 by a U-turn in the crossing road at a suitable location approximately one hundred meters from the major 
@@ -318,7 +316,7 @@ synchronized with the main intersection.
 way of the desired direction is another way to perform a cross-traffic turn without need of an exclusive 
 phase. This alternative requires a queueing area and uses two approaches to the intersection as well.}{ Elebeta.}
 
-*U-Turn and Curbside Turn (“U-curb”)*
+\subsubsection{U-Turn and Curbside Turn (“U-curb”)}
 
 Another alternative is possible by means of making a U-turn at a median break downstream of the crossing 
 road, followed by a right turn at the crossing road (Figure 24.43).
@@ -343,7 +341,7 @@ a major traffic black spot—a location where traffic accidents often occurred�
 for all modes, with a two-phase signal combined with U-turns and pedestrian crossings.}{ Karl Fjellstrom, 
 ITDP.}
 
-*Diverting Straight Flow: Parallel Street*
+\subsubsection{Diverting Straight Flow: Parallel Street}
 
 The use of the immediate parallel street in one way as an auxiliary street is an effective alternative 
 for mixed traffic. Even a narrow two-way street transformed into a one-way street with parking prohibition 
@@ -355,7 +353,7 @@ it is common that the “auxiliary” streets end up having higher throughput th
 \figure[medium]{assets/image47.png}{Auxiliary street (left) has higher mixed-traffic capacity than the main 
 corridor (right) in São Paulo.}{Google Maps.}
 
-*Moving Across or Making a U-turn Away from the Intersection*
+\subsubsection{Moving Across or Making a U-turn Away from the Intersection}
 
 If the station location is seen as imperative, the intersection could be closed in order to avoid problems 
 with the BRT system operation. Mixed traffic can be detoured around it. The examples for curbside and 
@@ -439,12 +437,13 @@ We maintain the same assumptions to draw the chart regarding clearance times (4 
 and pedestrian phases (14 seconds per phase when phase required, and we assume it is not required in 
 two-phase intersections).
 
-*Typical Four-Phase Intersection*
+\subsubsection{Typical Four-Phase Intersection}
 
 For comparing the four-phase intersection, we will fix cycle times at 120 seconds (2 minutes) and evaluate 
 the effect of green time for the straight flow in one of the directions considering detouring curbside 
 turns for each direction (two ways), and we will divide the overall capacity of the intersection by the 
 number of lanes approaching it (NLanes in our example is 12 and results are in table 24.3).
+
 \begintable{Four-Phase Capacity Examples}
 \header
 \col Cycle Time (seconds)
@@ -532,7 +531,7 @@ the pedestrian-only phase. As a general rule, symmetrical phases are more effici
 Mixed-phase results are not shown, but they are in between, closer to standard phases as they require 
 pedestrian phases, too.
 
-*Reducing Number of Phases Effects*
+\subsubsection{Reducing Number of Phases Effects}
 
 The previous discussion about four-phase intersections lay the groundwork for not considering the “mixed-four-phase” 
 alternative in the following examples. This is also a reason why there is no need to present a previous 
@@ -544,6 +543,7 @@ To compare the effects of alternative schemes for phase reduction, we will consi
 time without a pedestrian-only phase but with an additional BRT lane in one direction on the median side 
 (also as shown on most figures in this section). The resulting green time for the BRT for each alternative 
 is presented beside the intersection capacity of mixed traffic in Table 24.4, where:
+
 \item \highlight{Average lane capacity:} the average of the mixed-traffic lanes capacity that would 
 be measured at the stop lines approaching the main intersection;
 \item \highlight{Overall intersection capacity per lane:} in certain configurations, some vehicles pass 

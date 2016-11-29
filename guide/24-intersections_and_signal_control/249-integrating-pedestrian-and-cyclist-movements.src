@@ -1,5 +1,3 @@
-
-
 \section{ Integrating Pedestrian and Cyclist Movements}
 
 > The way I see it, I can either cross the street, or I can keep waiting for another few years of green lights to go by.
@@ -12,13 +10,13 @@ customers to the BRT station. This section examines design options that not only
 vehicle movements at intersections but also options that successfully accommodate pedestrian and cyclist 
 movements.
 
+\figure{assets/image69.png}{In a standard two-phase traffic signal, pedestrians are potentially at 
+risk during both phases.}{ ITDP.}
+
 A standard two-phase traffic signal configuration does not offer any exclusive movements for pedestrians 
 (Figure 24.69). The pedestrian is blocked by crossing or turning traffic in either phase. In such circumstances, 
 the pedestrian must seek a discernible break in the traffic and make a quick crossing. Such conditions 
 may put pedestrians at considerable risk.
-
-\figure{assets/image69.png}{In a standard two-phase traffic signal, pedestrians are potentially at 
-risk during both phases.}{ ITDP.}
 
 The lack of safe pedestrian options can also be the case for three- and four-phase intersections, depending 
 on the configuration. If intersections are designed to slow turning vehicles and if turning vehicle volumes 
