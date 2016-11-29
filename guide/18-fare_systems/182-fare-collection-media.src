@@ -3,7 +3,7 @@
 \section{ Fare Collection Media}
 
 > The real problem is not whether machines think but whether men do.
-@ —B. F. Skinner, psychologist, 1904–90
+@ B. F. Skinner, psychologist, 1904–90
 
 The following payment mediums are in common use in BRT systems around the world: 
 \item Coins;
@@ -16,17 +16,12 @@ No one solution is inherently correct. The choice of fare collection system ofte
 among costs, simplicity, cultural conditions, and service features. The selection of an appropriate fare 
 collection medium is generally guided by the following goals:
 
-Minimize the time a passenger spends in purchasing tickets and entering the public transport system;
-
-Make the overall fare collection process simple and easy to understand;
-
-Minimize human interference in order to reduce the possibility of revenue leakage and fraud;
-
-Minimize the cost of fare collection;
-
-Generate financial and travel data for use in system monitoring;
-
-Respond dynamically to changes in fare policies and service plans.
+\item Minimize the time a passenger spends in purchasing tickets and entering the public transport system;
+\item Make the overall fare collection process simple and easy to understand;
+\item Minimize human interference in order to reduce the possibility of revenue leakage and fraud;
+\item Minimize the cost of fare collection;
+\item Generate financial and travel data for use in system monitoring;
+\item Respond dynamically to changes in fare policies and service plans.
 
 Two decades ago, printed paper tickets were the only economically and technologically viable fare collection 
 system in public transport systems around the world. But with the advent of electronic fare collection 
@@ -35,7 +30,7 @@ cards as the preferred payment medium. This technology has become popular becaus
 both in terms of upfront investment and in recurring maintenance costs, while providing numerous operational 
 features. 
 
-\subsection{ Coin/Token Systems}
+\subsection{Coin/Token Systems}
 
 Mechanical coin and token-based systems are among the simplest technologies available to handle fare 
 collection and fare verification. These systems can be quite robust and economical to operate. New York 
@@ -100,28 +95,26 @@ of a conductor helps ensure that all passengers are carrying valid tickets.
 Paper tickets suffer from several drawbacks that limit their effectiveness in high demand rapid transit 
 systems:
 
-For proof-of-payment systems without conductors, periodic checks are required on a frequent basis to 
+\item For proof-of-payment systems without conductors, periodic checks are required on a frequent basis to 
 ensure that passengers buy tickets. Such checks are difficult during peak periods when fare collection 
 is highest;
-
-In the case of tickets issued on board by a conductor, the process of issuing tickets is onerous and 
+\item In the case of tickets issued on board by a conductor, the process of issuing tickets is onerous and 
 inconvenient for passengers, especially on crowded buses;
-
-The likelihood of revenue leakage is high if the public transport agency does not record passenger 
+\item The likelihood of revenue leakage is high if the public transport agency does not record passenger 
 and revenue data on a regular basis. There are numerous possibilities for fraud, such as the printing 
 of fake tickets or the failure to issue official tickets to all passengers;
-
-The agency must digitize any manual records generated at points of sale and from conductors into electronic 
+\item The agency must digitize any manual records generated at points of sale and from conductors into electronic 
 records in order to carry out any kind of statistical analysis;
-
-The system will have no record about who travelled with that ticket when the trip ends;
-
-Battery-operated paper ticketing machines require charging every day.
+\item The system will have no record about who travelled with that ticket when the trip ends;
+\item Battery-operated paper ticketing machines require charging every day.
 
 As a result of these drawbacks, paper tickets are rarely used on modern BRT systems. Agencies have 
 turned to more robust fare collection media such as RFID smart cards (see below). 
 
 \subsection{ Magnetic-Strip Cards}
+
+\figure{assets/image3.jpeg}{All-purpose bus fare collection machine in Nagoya, Japan.}{Karl 
+Fjellstrom.}
 
 Magnetic-strip cards were the first widely adopted form of automated fare collection to be used on 
 many public transport systems around the world. Magnetic fare cards use the same technology found in 
@@ -137,8 +130,6 @@ process the card increases the boarding delay. In addition, magnetic-strip cards
 coated paper, and can be damaged relatively easily. Some system providers utilizing magnetic-strip cards 
 also elect to permit discounted fares for individuals purchasing multiple trips.
 
-\figure{assets/image3.jpeg}{All-purpose bus fare collection machine in Nagoya, Japan. Image}{ Karl 
-Fjellstrom.}
 
 \subsection{ RFID-Based Smart Cards}
 
@@ -211,6 +202,9 @@ Unlike magnetic-strip cards, though, smart cards have a long life and can be reu
 the range of five to ten years. As smart cards become more common, the cost of the cards will undoubtedly 
 continue to fall.
 
+\figure{assets/image4.jpeg}{A fare collection machine in Chengdu, China, that accepts tokens and smart 
+cards.}{ Xianyuan Zhu.}
+
 From a financial point of view, although smart cards have a relatively high initial cost (one to three 
 US dollars per card), the cost per transaction is significantly less than that of magnetic-strip cards. 
 Some system designers estimate that maintenance costs for contactless smart card equipment are between 
@@ -221,9 +215,6 @@ the implementation. In the case of TransJakarta, the BRT system operated for mor
 the smart card system could actually function. Implementing a smart card system is an order of magnitude 
 more difficult than many other payment mediums. Smart-card systems are not yet in the category of a “plug-and-play” 
 technology, as much software programming and specialized skills must accompany the implementation.
-
-\figure{assets/image4.jpeg}{A fare collection machine in Chengdu, China, that accepts tokens and smart 
-cards. Image}{ Xianyuan Zhu.}
 
 \subsection{ Advanced Technologies}
 

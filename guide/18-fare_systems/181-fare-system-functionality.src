@@ -1,9 +1,9 @@
 
 
-\section{ Fare System Functionality}
+\section{Fare System Functionality}
 
 > Customers require the effective integration of technologies to simplify their workflow and boost efficiency.
-@ Anne M. Mulcahy, businesswoman, 1952–
+@ Anne M. Mulcahy, businesswoman, 1952--
 
 Rapid transit systems are designed to cater to large passenger volumes. Managing peak-hour volumes 
 has been a challenge for public transport agencies around the world. While paper tickets were historically 
@@ -14,12 +14,11 @@ counters.
 Any fare collection system must incorporate a mechanism to ensure payment by users. There are two primary 
 means of ensuring compliance:
 
-Barrier control: Users need to pass through some kind of physical barrier to access the system. Typically 
+\item Barrier control: Users need to pass through some kind of physical barrier to access the system. Typically 
 this implies turnstiles on vehicles or at stations, sliding doors, or other such mechanisms. The users 
 present a payment medium (e.g., a smart card or magnetic-strip card) for the barrier to open, and a payment 
 is deducted from the medium; 
-
-Proof-of-payment: There are no physical barriers to enter the system. Users either enter freely (an 
+\item Proof-of-payment: There are no physical barriers to enter the system. Users either enter freely (an 
 “open system”) or show proof of payment upon entry and/or exit. In such systems, public transport staff 
 conduct occasional checks to control fare evasion. For those caught without a valid fare during the random 
 inspection process, a penalty is applied. Proof-of-payment systems entail pre-board fare collection, 
@@ -82,14 +81,15 @@ entering the vehicle and when existing as well. Delays can occur simply if a per
 and must search through their belongings to find the fare card. Onboard payment and verification psychologically 
 also creates a lower-market image for the service. Off-board payment and verification gives the sense 
 of a more metro-like system.
+
 \begintable{Observed Boarding and Alighting Times for Different Vehicle Configurations. Table courtesy of ITDP.}
 \header
-\col \highlight{Configuration characteristics}
+\col Configuration characteristcs
+\col 
 \col
 \col
-\col
-\col \highlight{Boarding and alighting times}
-\col
+\col Boarding and alighting times
+\col 
 \row
 \col Fare collection method
 \col Doorway width (meters)
@@ -102,22 +102,22 @@ of a more metro-like system.
 \col 0.6
 \col Stairway
 \col High
-\col 3.01
+\col 3.0\sup{1}
 \col NA
 \row
 \col Onboard, contactless smart card (no turnstile)
 \col 0.6
 \col Stairway
 \col High
-\col 2.02
+\col 2.0\sup{2}
 \col NA
 \row
 \col Off-board
 \col 0.6
 \col Stairway
 \col High
-\col 23
-\col 1.53
+\col 2\sup{3}
+\col 1.5\sup{3}
 \row
 \col Off-board
 \col 0.6
@@ -144,17 +144,17 @@ of a more metro-like system.
 \col 1.1
 \col Level
 \col High
-\col 0.751
-\col 0.51
+\col 0.75\sup{1}
+\col 0.5\sup{1}
 \endtable
 
-1. Colombia; Mexico
+Where: 
 
-2. China
+\number Colombia/Mexico; 
+\number China; 
+\number Brazil; 
 
-3. Brazil
-
-NA—Not available
+NA not available.
 
 Off-board payment collection is not necessarily the only way to reduce boarding and alighting times, 
 but there are institutional reasons why this approach is generally more successful in the developing-country 
@@ -207,14 +207,14 @@ transport agency estimates that an off-board fare system is cost justified when 
 2,500 passengers per hour per direction. The development of a cost-benefit analysis may help determine 
 this capacity point, provided the costing data is available. 
 
-\figure{assets/image1.jpeg}{Off-board fare collection system in Beijing. Image}{ Karl Fjellstrom.}
+\figure[medium]{assets/image1.jpeg}{Off-board fare collection system in Beijing.}{ Karl Fjellstrom.}
 
 BRT systems with off-board fare collection may use manned points of sale, automatic ticket vending 
 machines, or a combination of both. Paper tickets can be issued during initial stages from ticket counters 
 at stations, but the system should move toward paperless operations by introducing and promoting the 
 use of cashless travel by means of automatic access control barriers. 
 
-\subsection{ Fare Collection on Feeders}
+\subsection{Fare Collection on Feeders}
 
 Depending on the system typology, feeder services can have onboard fare collection with conductors 
 or proof-of-payment with electronic or paper tickets. Many BRT systems integrate fares between trunk 
@@ -224,14 +224,14 @@ to travel in the trunk bus. Transfer discounts are facilitated through the use o
 systems in both trunk and feeder systems. For example, there can be a common smart card that can be used 
 in the BRT as well as feeder services. 
 
-\figure{assets/image2.jpeg}{Onboard fare collection on a feeder bus in Yancheng, China, allows customers 
-to connect to the BRT using a smart card payment system. Image}{ Liu Henian.}
+\figure[medium]{assets/image2.jpeg}{Onboard fare collection on a feeder bus in Yancheng, China, allows customers 
+to connect to the BRT using a smart card payment system.}{ Liu Henian.}
 
 The operating costs of fare collection in feeder services are generally higher than on-station, since 
 additional personnel and communication costs are incurred. Revenue from trunk fares helps cover not only 
 the increased cost of collection but potentially the cost of the feeder services themselves.
 
-\subsection{ Fare Collection on Direct Services}
+\subsection{Fare Collection on Direct Services}
 
 Some BRT systems have special services and routes that connect trunk corridors with high-demand areas 
 located a short distance from the segregated corridors. While these systems may employ off-board fare 
@@ -240,7 +240,7 @@ to employ electronic fare cards. Passengers tap onboard smart card readers when 
 while fare collection is still accomplished off-board at the trunk stations. Monitoring by the driver 
 or some other proof-of-payment mechanism is necessary to ensure fare payment on the service extensions.
 
-\subsection{ Integration with Other Public Transport Services}
+\subsection{Integration with Other Public Transport Services}
 
 Integration of BRT fares with that of other forms of public transport has many advantages for passengers, 
 reducing the need for cash payments and the inconvenience of learning multiple fare structures for different 
