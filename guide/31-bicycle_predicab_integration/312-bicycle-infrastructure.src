@@ -1,9 +1,13 @@
-
-
 \section{ Bicycle Infrastructure}
 
 > The bicycle is the most civilized conveyance known to man. Other forms of transport grow daily more nightmarish. Only the bicycle remains pure in heart.
 @ Iris Murdoch, author and philosopher, 1919–1999
+
+\figure{assets/image9.jpeg}{A bike lane integrated with a BRT corridor in Eindhoven helps maximize 
+the mobility options for residents.}{ Advanced Public Transport Systems.}
+
+\figure{assets/image10.jpeg}{Parallel bicycle path along the Orange Line BRT (Los Angeles).}{ 
+Xiaomei Duan, Far East BRT.}
 
 This section focuses on the design and operation of bicycle facilities—bike lanes, greenways, or low-speed 
 streets—along BRT corridors and the infrastructure required for a successful bicycle network, namely 
@@ -17,13 +21,10 @@ He or she might choose to bypass a local or crowded station in favor of an expre
 in Los Angeles; Eindhoven, Netherlands; Cape Town, South Africa; Delhi, India; and Guangzhou, China, 
 all have parallel bicycle facilities. 
 
-\figure{assets/image9.jpeg}{A bike lane integrated with a BRT corridor in Eindhoven helps maximize 
-the mobility options for residents.}{ Advanced Public Transport Systems.}
+\subsection{Bicycle Infrastructure Planning}
 
-\figure{assets/image10.jpeg}{Parallel bicycle path along the Orange Line BRT (Los Angeles).}{ 
-Xiaomei Duan, Far East BRT.}
-
-\subsection{ Bicycle Infrastructure Planning}
+\figure{assets/image11.jpeg}{Cyclists are often quite exposed to delays, safety risks, and high levels 
+of contamination when confined to using the curb lane.}{Lloyd Wright.}
 
 Collecting information about existing cycling activity and cyclist behavior is a useful first step 
 before designing cycling facilities. Methodologies for doing this are roughly equivalent to methodologies 
@@ -45,10 +46,7 @@ bicycle and motorized vehicle traffic operation;
 facilities encourage higher ridership, especially among women, older adults, families, and youth. Relocating 
 buses into the central median resolves one of the most pressing conflicts faced daily by cyclists. 
 
-\figure{assets/image11.jpeg}{Cyclists are often quite exposed to delays, safety risks, and high levels 
-of contamination when confined to using the curb lane.}{Lloyd Wright.}
-
-\subsection{ Bicycle Infrastructure Financing}
+\subsection{Bicycle Infrastructure Financing}
 
 Ideally, bicycle infrastructure, including parking, is seen as an integral part of an intermodal public 
 transport system. Bicycles can substitute, augment, and expand the public transport network at little 
@@ -61,7 +59,7 @@ bicycle parking:
 \item Cross-subsidies from auto-parking fees, congestion charging, and fuel taxes; 
 \item Conversion of underutilized auto parking (ten bike parking spaces equal one auto parking space).
 
-\subsection{ Design of Bicycle Facilities on BRT Corridors}
+\subsection{Design of Bicycle Facilities on BRT Corridors}
 
 BRT corridors tend to be located on reasonably wide primary or secondary urban arterials. In developing 
 countries, which frequently lack a strong secondary road network, these arterials often serve a great 
@@ -88,22 +86,20 @@ various options.
 \figure[medium]{assets/image12.jpeg}{Cross-sectional views of various options for locating bicycle facilities 
 along BRT corridors. }{Better Streets, Better Cities, ITDP and EPC.}
 
-\figure [large]{assets/image13.png}{Plan view of four options for locating bicycle facilities in the service road of a multi-way boulevard (from left): bike lane only at intersections; bike lane on right side; bike lane on left side against median; and two-way bike lane on left side against median.}{ Nelson\\Nygaard.}
-
+\figure[medium]{assets/image13.png}{Plan view of four options for locating bicycle facilities in the service road of a multi-way boulevard (from left): bike lane only at intersections; bike lane on right side; bike lane on left side against median; and two-way bike lane on left side against median.}{ Nelson\\Nygaard.}
 
 \figure[medium]{assets/image17.jpeg}{The bike lane along the Hangzhou, China, BRT system is sited between the 
 BRT lane and the sidewalk.}{Karl Fjellstrom.}
 
-\figure{assets/image18.jpeg}{Bicycling in the “shared street” section of the BRT corridor in Bogotá. 
+\figure[medium]{assets/image18.jpeg}{Bicycling in the “shared street” section of the BRT corridor in Bogotá. 
 No bike facilities are necessary.}{Michael King.}
 
-*Bike Lane in the Central Median*
+\subsubsection{Bike Lane in the Central Median}
 
 Another configuration is to give cyclists the same advantages that buses enjoy from central-lane operation: 
 priority at intersections. Here, the bike lane is integrated along with the BRT in the central median. 
 Accommodations must be made at the stations (to allow customers to access the stations), at U-turns, 
 and at intersections. Signal priority is generally given to cyclists so that they can turn ahead of motorists. 
-
 
 This configuration removes many of the turning conflicts between bicycles going straight, and turning 
 and stopping vehicles. It significantly reduces the risk of encroachments into the bike lane by street 
@@ -113,12 +109,12 @@ and use the service lane or sidewalk for the remaining distance.
 
 \figure[medium]{assets/image19.png}{Option to place bike lane in the median alongside BRT lanes.}{ Nelson\\Nygaard.}
 
-\figure{assets/image20.jpeg}{Bike lane in the center of a boulevard in Bogotá.}{ Michael King.}
+\figure[medium]{assets/image20.jpeg}{Bike lane in the center of a boulevard in Bogotá.}{ Michael King.}
 
-\figure{assets/image21.jpeg}{Bike lane in the center of a boulevard in New York City.}{ Michael 
+\figure[medium]{assets/image21.jpeg}{Bike lane in the center of a boulevard in New York City.}{ Michael 
 King.}
 
-*Bicycle Facilities at Intersections*
+\subsubsection{Bicycle Facilities at Intersections}
 
 Wherever the bicycle facility is placed, its treatment at intersections is crucial. The basic principles 
 to consider include:
@@ -131,17 +127,7 @@ good visibility;
 \item Give preference to cyclists over motorized traffic via signals and advance stop lines;
 \item Provide road space for queued cyclists.
 
-\figure[medium]{assets/image22.jpeg}{A design for cycle lanes and BRT at an intersection in Tianjin, China. 
-Note the green bike lanes extend through the intersection, and that the side medians end, allowing for 
-a center median.}{ ITDP.}
-
-\figure[medium]{assets/image23.jpeg}{A fence between a bike lane and roadway in Changzhou, China, ensures that 
-drivers turn more slowly.}{ Michael King.}
-
-\figure{assets/image24.jpeg}{A bike lane painted through an intersection in Vancouver, Canada.}{ 
-Michael King.}
-
-\figure[medium]{assets/image25.jpeg}{A “mixing” zone at an intersection. Typically the cyclist swings to the 
+\figure{assets/image25.jpeg}{A “mixing” zone at an intersection. Typically the cyclist swings to the 
 left of the right-turning driver.}{ NACTO.}
 
 \figure{assets/image26.jpeg}{A bike lane in Berlin curves to the edge of the roadway so that drivers 
@@ -152,7 +138,21 @@ signal for autos turns green. }{ Michael King.}
 
 \figure{assets/image28.jpeg}{A left turn lane for bicycles in Changzhou, China.}{ Michael King.}
 
-\subsection{ BRT Corridors without Bicycle Facilities}
+\figure[medium]{assets/image22.jpeg}{A design for cycle lanes and BRT at an intersection in Tianjin, China. 
+Note the green bike lanes extend through the intersection, and that the side medians end, allowing for 
+a center median.}{ ITDP.}
+
+\figure[medium]{assets/image23.jpeg}{A fence between a bike lane and roadway in Changzhou, China, ensures that 
+drivers turn more slowly.}{ Michael King.}
+
+\figure[medium]{assets/image24.jpeg}{A bike lane painted through an intersection in Vancouver, Canada.}{ 
+Michael King.}
+
+\subsection{BRT Corridors without Bicycle Facilities}
+
+\figure{assets/image29.jpeg}{A cyclist using a BRT corridor in Quito.}{ Lloyd Wright.}
+
+\figure{assets/image30.jpeg}{A cyclist using the BRT corridor in Curitiba.}{ Michael King.}
 
 If no cycling facilities are provided, the likelihood of bicyclists using the busway as a bikeway is 
 fairly high. Cyclists take advantage of the limited cross-traffic, favorable signal progression, and 
@@ -163,10 +163,6 @@ strategies for enforcing lane violations, without discouraging cycling. Informat
 information campaigns, and using mascots or other humorous tactics are all positive means of enforcement 
 and education.
 
-\figure{assets/image29.jpeg}{A cyclist using a BRT corridor in Quito.}{ Lloyd Wright.}
-
-\figure[medium]{assets/image30.jpeg}{A cyclist using the BRT corridor in Curitiba.}{ Michael King.}
-
 \subsection{ Types of Bicycle Parking}
 
 Bicycle parking ranges from a simple rack to a bike station, where you can park your bike, have it 
@@ -174,7 +170,13 @@ repaired, and take a shower. The best type of bicycle parking is indoors, in a s
 like cars, bikes are often parked on the street, as close to the BRT station as possible. Parking types 
 are defined and compared below. 
 
-*Bike Racks*
+\subsubsection{Bike Racks}
+
+\figure{assets/image31.jpeg}{A bike rack doubles as art installation in New York City.}{ Michael 
+King.}
+
+\figure{assets/image32.jpeg}{A U-shaped bike rack is a low-cost and relatively secure option.}{ 
+Lloyd Wright.}
 
 Bike racks are the most abundant type of parking facility and generally the least expensive to install. 
 Spatially, they are the most efficient and can accommodate the greatest number of bicycles. There are 
@@ -188,16 +190,10 @@ should be firmly secured or permanently installed;
 to lock it or risk having it stolen;
 \item Have no moving parts. These break and require maintenance.
 
-\figure{assets/image31.jpeg}{A bike rack doubles as art installation in New York City.}{ Michael 
-King.}
-
-\figure{assets/image32.jpeg}{A U-shaped bike rack is a low-cost and relatively secure option.}{ 
-Lloyd Wright.}
-
-\figure{assets/image33.jpeg}{The Lima, Peru BRT system Metropolitano uses a simple parking system at 
+\figure[medium]{assets/image33.jpeg}{The Lima, Peru BRT system Metropolitano uses a simple parking system at 
 terminal stations, with no fee for users. }{ Carlos Pardo.}
 
-*Bicycle Lockers*
+\subsubsection{Bicycle Lockers}
 
 Bicycle lockers provide a higher level of security than racks and protect bikes from weather. Users 
 can also sometimes store clothing, helmets, and other bicycle accessories in lockers. Access to lockers 
@@ -212,7 +208,18 @@ lockers with openings, which can also facilitate periodic cleaning.
 \figure[medium]{assets/image34.jpeg}{The Orange Line BRT in Los Angeles includes both bicycle lockers and standard 
 bicycle racks for overflow and for those unwilling to pay.}{ Nelson\\Nygaard.}
 
-*Shelters and Garages*
+\subsubsection{Shelters and Garages}
+
+\figure{assets/image35.jpeg}{A “Bicycle Secure Parking Area” directly adjacent to a terminal station 
+in Portland, Oregon, USA.}{ Nelson\\Nygaard.}
+
+\figure{assets/image36.jpeg}{Upright bicycle parking at TransMilenio stations in Bogotá saves space, 
+but can be difficult for some to use.}{ Carlos Pardo.}
+
+\figure{assets/image37.jpeg}{Guarded bicycle parking in Portal Américas, TransMilenio, Bogotá.}{ 
+Carlosfelipe Pardo.}
+
+\figure[medium]{assets/image38.jpeg}{Secure bike parking at a BRT terminal in Bogotá}{ Nelson\\Nygaard.}
 
 Shelters generally consist of rows of bicycle racks protected underneath a structure that is either 
 fully or partially enclosed. Shelters and garages require more space than racks or lockers and have higher 
@@ -221,24 +228,12 @@ number of cyclists are utilizing the station, it may be economically viable to o
 area with a permanent attendant. This also allows for a valet system in which the bicycle can only be 
 taken by providing the appropriate “claim ticket.”
 
-\figure[medium]{assets/image35.jpeg}{A “Bicycle Secure Parking Area” directly adjacent to a terminal station 
-in Portland, Oregon, USA.}{ Nelson\\Nygaard.}
-
-\figure{assets/image36.jpeg}{Upright bicycle parking at TransMilenio stations in Bogotá saves space, 
-but can be difficult for some to use.}{ Carlos Pardo.}
-
- \figure{assets/image37.jpeg}{Guarded bicycle parking in Portal Américas, TransMilenio, Bogotá.}{ 
-Carlosfelipe Pardo.}
-
-\figure{assets/image38.jpeg}{Secure bike parking at a BRT terminal in Bogotá}{ Nelson\\Nygaard.}
-
-*Bicycle Stations*
+\subsubsection{Bicycle Stations}
 
 A bicycle station is a combination of a bicycle repair shop, paid parking, and dressing facilities. 
 There are a number of configurations, including being paired with gyms, bicycle rental, and retail opportunities. 
 
-
-\figure[medium]{assets/image39.jpeg}{Bike station in Long Beach, California, USA.}{Brad Davis, 
+\figure{assets/image39.jpeg}{Bike station in Long Beach, California, USA.}{Brad Davis, 
 Flickr Creative Commons.}
 
 \figure[medium]{assets/image40.jpeg}{Bike station in Long Beach, California, USA.}{Brad Davis, 
@@ -267,7 +262,7 @@ Flickr Creative Commons.}
 \col \item Requires business acumen
 \endtable
 
-\subsection{ Bicycle Parking at BRT Stations}
+\subsection{Bicycle Parking at BRT Stations}
 
 The challenge with bicycle parking facilities for BRT systems usually relates to the space available. 
 For BRT stations located in the median of the roadway, space may be available in front of or behind the 
@@ -277,7 +272,10 @@ BRT systems typically have sufficient space to provide a higher-quality parking 
 all cases, the security of the bicycle becomes an overriding consideration in order to encourage confident 
 use. 
 
-*Case Study: Bogotá, Colombia*
+\subsubsection{Case Study: Bogotá, Colombia}
+
+\figure{assets/image41.jpeg}{Commuter entrance to an 800-bike-capacity parking facility in the Avenida 
+Americas Terminal, Bogotá.}{ Carlos Pardo.}
 
 When the Bogotá BRT system was originally planned, the bicycle network was seen as a separate system 
 from the BRT. By the time the Avenida Americas terminal was built, cycling integration was clearly on 
@@ -287,28 +285,25 @@ has been attributed to the addition of this facility. To date, no bicycle has be
 in bicycle connections to BRT has also reduced the need for feeder vehicles to the terminal. Following 
 this success, bicycle parking was implemented in most terminal stations. 
 
-\figure{assets/image41.jpeg}{Commuter entrance to an 800-bike-capacity parking facility in the Avenida 
-Americas Terminal, Bogotá.}{ Carlos Pardo.}
-
 \figure[medium]{assets/image42.jpeg}{Map of bicycle parking stations in Nantes, France. }{ ITDP.}
 
-*Case Study: Guangzhou, China*
+\subsubsection{Case Study: Guangzhou, China}
+
+\figure{assets/image43.jpeg}{Guangzhou’s study of bicycle parking demand. }{ ITDP China.}
 
 The system in Guangzhou, China, has bicycle-parking stations at every BRT station, and the facilities 
 include double-decker bicycle-parking infrastructure. After a rigorous study of current and future bicycle 
 parking demand, the system planners built 5,500 covered bicycle parking spaces (3,500 covered and double-decker, 
 2,000 single with roof). This is the largest bicycle-parking integration in a BRT system in the world.
 
-\figure{assets/image43.jpeg}{Guangzhou’s study of bicycle parking demand. }{ ITDP China.}
+\subsubsection{Bicycle Parking away from the BRT Station}
 
-*Bicycle Parking away from the BRT Station*
+\figure{assets/image44.jpeg}{Bike parking along a BRT and bike-lane corridor in Guangzhou, China.}{ 
+Michael King.}
 
 Besides being provided at stations, bicycle parking can be required in building, zoning, and development 
 codes. This will increase the overall supply of parking, which is important because parking should be 
 at one’s origin and destination, not just at the BRT station. 
-
-\figure{assets/image44.jpeg}{Bike parking along a BRT and bike-lane corridor in Guangzhou, China.}{ 
-Michael King.}
 
 \subsection{ Operations and Management of Bicycle Parking}
 
@@ -323,21 +318,24 @@ public transport service (bike is much cheaper). Introducing an external party t
 costs (personnel, marketing, fare collection), and tends to bias the decision-making process. At the 
 end of the day the consumer is key, and whether he or she rides a bike or the bus is immaterial.
 
-*Bicycle Parking Fees*
+\subsubsection{Bicycle Parking Fees}
 
 Where the BRT system wants to encourage cycling, bike parking should be free. If there is a need to 
 charge additional fees, these should be included in the cost of the fare. For example, one could offer 
 a combined monthly BRT and parking pass. 
 
-*Bicycle Parking Publicity*
-
-It is important to inform the riding public where bike parking and BRT access are. This information 
-should be on maps, apps, and signs. 
+\subsubsection{Bicycle Parking Publicity}
 
 \figure{assets/image45.jpeg}{Visible bicycle parking can do much to promote the use of bicycles.}{ 
 TransMilenio S.A.}
 
-*Bicycle Parking Security*
+It is important to inform the riding public where bike parking and BRT access are. This information 
+should be on maps, apps, and signs. 
+
+\subsubsection{Bicycle Parking Security}
+
+\figure{assets/image46.jpeg}{Bicycle parking within the TransMilenio BRT station in Bogotá.}{ 
+Carlos Pardo.}
 
 Since bicycles are typically parked for six to eight hours, or longer, every day, in the same place 
 at BRT stations, concerns about theft and vandalism are particularly strong. The tenets of Crime Prevention 
@@ -360,5 +358,3 @@ security as part of the service. The latter is preferable, since additional fees
 given a choice, fewer people will use this option if there is an additional cost involved. Some prefer 
 to travel their whole route by bicycle rather than pay a fare and parking costs.
 
-\figure[medium]{assets/image46.jpeg}{Bicycle parking within the TransMilenio BRT station in Bogotá.}{ 
-Carlos Pardo.}

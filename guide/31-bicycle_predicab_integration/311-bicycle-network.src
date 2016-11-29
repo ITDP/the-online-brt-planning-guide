@@ -82,7 +82,7 @@ as possible can increase public transport ridership, while increasing access for
 \col 
 \endtable
 
-*Integrating Bicycles into the Trip Chain*
+\subsubsection{Integrating Bicycles into the Trip Chain}
 
 The following lists precise points in the trip chain that benefit most from bicycle integration:
 \item To/from the public transport station: Bicycles should be available to serve people whose point 
@@ -110,7 +110,7 @@ relies mostly on bus-based systems;
 \item Bikes on rail systems: Provision of space and permission to enter rail vehicles in specific times 
 and locations, for large cities with rail-based systems.
 
-*Minimizing Delay and Transfers*
+\subsubsection{Minimizing Delay and Transfers}
 
 When deciding whether and how to make a trip, people make a number of calculations based on time, ease, 
 price, and familiarity. Delays and transfers increase trip time. Predicting and calculating these points 
@@ -123,7 +123,7 @@ might be equal to the same journey involving transfers, especially for short tri
 \figure[medium]{assets/image1.jpeg}{Comparison of various trip chains involving the bicycle, public transport, 
 and walking.}{TransLink}
 
-*The Bicycle’s Part in Modal Integration*
+\subsubsection{The Bicycle’s Part in Modal Integration}
 
 The success of any public transport system depends on modal integration. A driving network extends 
 from one’s origin (garage) to one’s destination (parking) with an entire complement of integrated roadways: 
@@ -132,7 +132,12 @@ origin to destination. The bicycle can be an integral part in this network as it
 the public transport network; the ability to use a bicycle can be the deciding factor in whether one 
 takes public transport or chooses to drive alone.
 
-\subsection{ Catchment Area}
+\subsection{Catchment Area}
+
+\figure{assets/image2.jpeg}{Cycling catchment area compared to walking catchment area.}{TransLink}
+
+\figure{assets/image3.jpeg}{Bicycle (larger circle) and pedestrian (smaller circle) catchment areas 
+overlaid on stations along the Insurgentes BRT line in Mexico City.}{ Google Earth.}
 
 Cycling exponentially increases the catchment area of a BRT station. As shown in Figure 31.4, one can 
 walk about 800 meters in 10 minutes, assuming a 4.8-kph pace. Ten minutes is generally used as the amount 
@@ -142,17 +147,12 @@ is known as a “no sweat” pace—a speed that will allow you to arrive dry. W
 just over three times that of walking, the catchment area is twenty-five times greater. Figure 31.2 applies 
 these catchment areas to the Insurgentes BRT line in Mexico City. 
 
-\figure{assets/image2.jpeg}{Cycling catchment area compared to walking catchment area.}{TransLink}
-
-\figure[medium]{assets/image3.jpeg}{Bicycle (larger circle) and pedestrian (smaller circle) catchment areas 
-overlaid on stations along the Insurgentes BRT line in Mexico City.}{ Google Earth.}
-
 The bicycle-catchment area expands the longer patrons are willing to ride to the BRT station. This 
 is important in lower-density areas, or in areas constrained by geography. A catchment area based on 
 a 60-minute ride is 15 kilometers in radius. This could cover a large part of an urban area. Thirty minutes 
 (7.5-kilometer radius) is the general limit for a normal catchment area.
 
-*Integrating Bicycles with BRT*
+\subsubsection{Integrating Bicycles with BRT}
 
 The benefits of integrating bicycles into the BRT system include:
 \item Door-to-door service, competitive with private vehicles;
@@ -168,7 +168,7 @@ Key initiatives to improve cycling-BRT integration include:
 \item Bike rentals or public bicycle services;
 \item Pedicabs (bicycle taxis).
 
-\subsection{ Using Bikes to Augment BRT}
+\subsection{Using Bikes to Augment BRT}
 
 Typically, bicycles have been used to expand the reach of BRT; however, bicycles can also be used to 
 augment service. For example, if BRT station spacing is based on a cycling catchment area (2.5 kilometers) 
@@ -189,10 +189,15 @@ pressure on overloaded segments and add customers on underused stretches.
 
 \subsection{ Complementary BRT and Bicycle Networks}
 
+\figure{assets/image4.jpeg}{A protected bike lane—which provides physical separation from the roadway—along 
+the BRT in Delhi, India, located between the roadway and trees.}{Michael King.}
+
+\figure{assets/image5.jpeg}{A bike lane along the BRT in Guangzhou, China, located between the roadway 
+and trees.}{Michael King.}
+
 Traditionally, public transport and bicycle networks have been developed and operated separately. In 
 many cases, they were seen as competitors; public transport operators feared that cycling would steal 
 patrons, and vice versa. This is parallel to the animosity between public transport and driving systems. 
-
 
 Some of the more recently successful BRT systems have taken a different approach. They see cycling 
 as complementary and have sought to develop complementary systems. The basic idea is: It is not possible 
@@ -208,13 +213,7 @@ will “collect” cyclists and deposit them at the BRT stations;
 \item Locate BRT stations along existing high-usage bicycle routes, such as greenways. This will allow 
 cyclists to ride to the stations, or ride to a different BRT line;
 \item Upgrade the cycling infrastructure within 2.5 kilometers of BRT stations (discussed in Section 
-31.3.1 of this chapter). 
-
-\figure{assets/image4.jpeg}{A protected bike lane—which provides physical separation from the roadway—along 
-the BRT in Delhi, India, located between the roadway and trees.}{Michael King.}
-
-\figure{assets/image5.jpeg}{A bike lane along the BRT in Guangzhou, China, located between the roadway 
-and trees.}{Michael King.}
+31.3.1 of this chapter).
 
 \figure[medium]{assets/image6.jpeg}{A design for a bicycle network in tandem with a BRT network in Harbin, 
 China. Bicycle routes are denoted by dotted blue lines.}{ Nelson\\Nygaard.}
