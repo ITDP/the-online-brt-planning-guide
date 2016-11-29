@@ -7,6 +7,8 @@
 
 \subsection{Purpose}
 
+\figure{assets/image4.jpeg}{BRTMC’s closed circuit television surveillance system in Zhengzhou, China.}{ ITDP.}
+
 A BRT system typically uses global positioning systems, communication systems, CCTV (closed circuit 
 television) surveillance systems, and other technologies that enable customers to obtain information 
 about when a vehicle will arrive to know where a vehicle is along its route. The BRTMC is the point from 
@@ -17,8 +19,6 @@ response, and to provide real-time information to commuters about BRT-related ev
 of the regional TMC, the BRTMC can also serve as the information hub for the public, police, traffic 
 services, and roadside emergency personnel, while integrating the actions of various services to minimize 
 response time.
-
-\figure{assets/image4.jpeg}{BRTMC’s closed circuit television surveillance system in Zhengzhou, China.}{ ITDP.}
 
 \subsection{Functions}
 
@@ -31,7 +31,7 @@ thereafter.
 
 \figure[medium]{assets/image5.jpeg}{Typical functional elements of a BRTMC. Diagram}{ ITDP.}
 
-*Automated Fare Collection (AFC)*
+\subsubsection{Automated Fare Collection (AFC)}
 
 The AFC function in the BRTMC has two prime focus areas, namely:
 \number Ensuring accurate fare collection;
@@ -56,27 +56,23 @@ Other AFC-related functions are:
 \item Stock management (fare media and consumables);
 \item Cash management (for kiosks, automated vending machines, and onboard cash boxes if applicable).
 
-*Advanced Public Transport Management (APTM)*
+\subsubsection{Advanced Public Transport Management (APTM)}
 
 The following functions should be performed in either the BRTMC or the depot(s):
 
 \item Driver and Vehicle Scheduling (also known as “runcutting”). These persons can be accommodated 
 at either the BRTMC or the depot(s); 
-
 \item Fleet Management and Maintenance Controller. It is recommended to localize this to the vehicle 
 operator’s depot(s); 
-
 \item Schedule Adherence. This function consists of monitoring the progress of the vehicles on the routes 
 and taking corrective action when a vehicle deviates from the schedule. This function should be accommodated 
 in the BRTMC;
-
 \item Performance Management. This function typically falls within the administrative environment of 
 the BRTMC and is implemented for the vehicle operating contract(s). It entails the monitoring of the 
 processes of the operating contract(s), particularly for such processes that are reflected in Key Performance 
 Indicators, to ensure that the required service levels are met and if not, to take the steps necessary 
 to ensure that the service levels are adhered to. A Performance Manager, accommodated within the BRTMC, 
 should be appointed for this task;
-
 \item APTM Systems Maintenance Manager. This function is responsible for ensuring that the required 
 APTM systems’ availability is maintained. It would be advisable to appoint an APTMS Maintenance Manager 
 to identify malfunctions as soon as possible and, in the case of a malfunction, be held responsible for 
@@ -88,81 +84,66 @@ on the size of the BRT system.
 
 \figure[medium]{assets/image6.jpeg}{BRTMC staff members in Rio de Janeiro, Brazil.}{ ITDP.}
 
-*Traveler Information*
+\subsubsection{Traveler Information}
 
 This function is responsible for the following information systems that are controlled from a 
 BRTMC:
 
 \item Pre-trip information systems, for example, providing schedule and route information;
-
 \item Personal information systems, for example, providing information via an SMS service, public Call Center, 
 and website;
-
 \item In-vehicle information systems, for example, audio announcements via the Automatic Voice Annunciators 
 (AVAs);
-
 \item In-station information systems, for example, BRT schedules, route information, and Variable Message 
 Signs (VMSs).
 
-*Transport Demand Management (TDM)*
+\subsubsection{Transport Demand Management (TDM)}
 
 TDM entails BRT service coordination and transport planning, and it is recommended that is also 
 be housed in the BRTMC. This function typically also acts as an interface to the regional TMC, where 
 applicable, on issues such as traffic signal optimization and traffic control.
 
-*Transport Safety and Security*
+\subsubsection{Transport Safety and Security}
 
 Safety and security are crucial to the success of any BRT system. As such this function should 
 focus on:
 
 \item Surveillance to ensure station, on board, and route safety and security;
-
 \item Vehicle safety systems;
-
 \item Incident/disaster management;
-
 \item Information and Communication Technology (ICT) systems’ security;
-
 \item Law enforcement.
 
 It is recommended that this function be accommodated in the BRTMC.
 
-*Fleet Management*
+\subsubsection{Fleet Management}
 
 The fleet management function is responsible for:
 
 \item Maintenance of management systems;
-
 \item \item Transportation operations systems;
-
 \item Utilization management systems;
-
 \item Fleet telemetry systems;
-
 \item Vehicle guidance.
 
 It is suggested that this function could be housed in either the BRTMC or the vehicle operator’s 
 depot(s), or both.
 
-*Integration and Communication*
+\subsubsection{Integration and Communication}
 
 Due to the diverse complex systems and different entities required to enable an effective and 
 efficient BRT system, integration and communication play a cardinal role in its success. This function 
 facilitates:
 
 \item Station integration and communications;
-
 \item Vehicle integration and communications;
-
 \item Roadside integration and communications;
-
 \item Back-office integration and communications;
-
 \item Regional TMC integration and communication where applicable.
 
 It is recommended to accommodate this function in the BRTMC.
 
-*Call Center*
+\subsubsection{Call Center}
 
 There are two main components in the call center function, namely:
 

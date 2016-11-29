@@ -1,6 +1,6 @@
 
 
-\section{ Floor Space Requirements}
+\section{Floor Space Requirements}
 
 > Are you really sure that a floor can't also be a ceiling?
 @ M.C. Escher, graphic artist, 1898–1972
@@ -10,7 +10,7 @@ following areas: control room; open-plan environments; offices; meeting rooms; r
 and a cafeteria; ablution facilities, storage space; server and telecommunications room, staging area, 
 vault space, UPS and generator rooms, and walkway space.
 
-\subsection{ Control Room}
+\subsection{Control Room}
 
 This area should accommodate the following groups:
 \item Operations control operators and supervisor;
@@ -36,13 +36,13 @@ vehicles, these staff members would be provided with a visual understanding and 
 operations. A video wall would also help in circumstances where multiple staff members need to resolve 
 a complex issue together.
 
-\figure[medium]{assets/image8.png}{A large-screen display and vehicle tracking board can help staff and supervisors 
+\figure{assets/image8.png}{A large-screen display and vehicle tracking board can help staff and supervisors 
 quickly assess the situation.}{Los Angeles County Metropolitan Transportation Authority.}
 
-\figure{assets/image9.png}{Multiple small-screen displays of each critical juncture in the system give 
-the control team a visual understanding of the system’s operation.}{ Queensland Transport.}
+\figure[medium]{assets/image9.png}{Multiple small-screen displays of each critical juncture in the system give 
+the control team a visual understanding of the system’s operation.}{Queensland Transport.}
 
-\subsection{ Open-Plan Environments}
+\subsection{Open-Plan Environments}
 
 Open-plan work spaces, separate from one another, are recommended for the following areas: 
 \number AFC Operators and Supervisor;
@@ -50,11 +50,11 @@ Open-plan work spaces, separate from one another, are recommended for the follow
 \number BRT IS&T Contactor;
 \number Facility Management.
 
-\subsection{ Offices}
+\subsection{Offices}
 
 A separate office for each manager is recommended.
 
-\subsection{ Meeting Rooms}
+\subsection{Meeting Rooms}
 
 There should be at least two meeting rooms that can accommodate approximately ten people and one that 
 can accommodate twenty people. Furthermore, to assist with public relations as well as interactions with 
@@ -66,7 +66,7 @@ to plan and direct emergency operations and recovery. Additionally, this can be 
 media interaction can be conducted to assist in keeping the public informed about the state of affairs 
 with respect to the emergency situation.
 
-\subsection{ Rest and Recreation Areas and a Cafeteria}
+\subsection{Rest and Recreation Areas and a Cafeteria}
 
 Control room operators can become fatigued by long hours of looking at monitors and tracking vehicles. 
 Holding focused concentration for long periods of time can be mentally exhausting. Typically, operators 
@@ -74,15 +74,15 @@ should have frequently scheduled breaks in order to maintain their alertness. It
 that there should be a relaxation area or break area that allows operators to refresh themselves. Furthermore, 
 it is recommended that space be allowed for a cafeteria environment.
 
-\subsection{ Ablution Facilities}
+\subsection{Ablution Facilities}
 
 It is recommended to not only provide toilets but also shower facilities.
 
-\subsection{ Storage Space}
+\subsection{Storage Space}
 
 It is recommended to provide a secure room for the storing of equipment and materials.
 
-\subsection{ Server and Telecommunications Room}
+\subsection{Server and Telecommunications Room}
 
 It is suggested that two environments should be provided for, separate from one another, to accommodate 
 the following:
@@ -93,22 +93,22 @@ devices, etc.;
 It is further recommended that these two server rooms should comply with international standards such 
 as the TIA 942 Data Center Standard.
 
-\subsection{ Staging Area}
+\subsection{Staging Area}
 
 An environment should be provided where computer and telecommunications equipment can be configured 
 and set up before they are placed into production.
 
-\subsection{ Vault Space}
+\subsection{Vault Space}
 
 It is recommended to make allowance for vault space where high-value items and computer/data backup 
 media can be stored.
 
-\subsection{ UPS and Generator Rooms}
+\subsection{UPS and Generator Rooms}
 
 Separate areas for housing the Uninterruptable Power Supply (UPS) and generator equipment, respectively, 
 are recommended.
 
-\subsection{ Other Utility Rooms}
+\subsection{Other Utility Rooms}
 
 It is proposed that separate areas for the following might also be required:
 \number Municipal power connection to the building’s high-voltage plant;
@@ -116,49 +116,6 @@ It is proposed that separate areas for the following might also be required:
 \number Fire suppression room to house gas bottles (e.g., FM 200 gas cylinders) and related equipment;
 \number Air-conditioning plant.
 
-\subsection{ Walkway Space}
+\subsection{Walkway Space}
 
 Walkway space should constitute approximately 25 percent of utilized space.
-
-\subsection{ Layout and Site Planning}
-
-> A goal without a plan is just a wish.
-@ Antoine de Saint-Exupéry, writer and pilot, 1900–1944
-
-The premises should have easy and unrestricted access twenty-four hours a day. Selection of the site 
-is of critical importance and should take the following into consideration.
-
-\subsection{ Site Selection}
-
-The following items should be considered when choosing a site for the BRTMC.
-\item The role of the precinct where the BRTMC will be located;
-\item [Terrain:
-\item When flat, avoid excavation to prevent potential problems with a high water table and/or unstable 
-bedrock;
-\item If located on a slope, maximize the terrain’s potential when designing the building.]
-\item It should to be close to freeways and transport facilities, for example, a BRT station.
-
-\subsection{ Parking}
-
-Parking requirements should be determined based on location relative to a BRT station and on parking 
-spaces already available in the surrounding area. Secure bike parking should be provided.
-
-\subsection{ Boundary Walls and Fencing}
-
-Depending on the site configuration, it is recommended that there should be three sides with 2.1-meter 
-high brick walls with security measures/obstacles on top—for example, electrical fencing—with the street 
-facade and parking preferably not fenced off with a brick wall to increase visibility for the public 
-as well as ideally “undercover” controlled access with a guard building. The street boundary should be 
-made from standard transparent fencing.
-
-\subsection{ Ergonomics}
-
-Ergonomics plays a very important role in the layout and design of the BRTMC. The job of the operator 
-can at times be highly demanding. The consequences resulting from inappropriate operator actions, such 
-as acts of omission, incorrect timing, or following incorrect sequences, could potentially have a grave 
-impact on the BRT system. Therefore, international standards, like the ISO 11064-1 Standard for the Ergonomic 
-Design of Control Centers, should be considered to assist in eliminating or minimizing the potential 
-for human errors.
-
-\figure[medium]{assets/image10.jpeg}{BRT Control Center in Bogotá, Colombia. Workstations should provide a 
-comfortable environment within easy reach of all telecommunications equipment Image}{ ITDP.}
