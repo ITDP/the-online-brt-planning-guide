@@ -1,0 +1,239 @@
+
+
+\section{ Fare Collection Media}
+
+> The real problem is not whether machines think but whether men do.
+@ —B. F. Skinner, psychologist, 1904–90
+
+The following payment mediums are in common use in BRT systems around the world: 
+\item Coins;
+\item Tokens;
+\item Paper tickets;
+\item Magnetic-strip cards; 
+\item Smart cards.
+
+No one solution is inherently correct. The choice of fare collection system often involves a trade-offs 
+among costs, simplicity, cultural conditions, and service features. The selection of an appropriate fare 
+collection medium is generally guided by the following goals:
+
+Minimize the time a passenger spends in purchasing tickets and entering the public transport system;
+
+Make the overall fare collection process simple and easy to understand;
+
+Minimize human interference in order to reduce the possibility of revenue leakage and fraud;
+
+Minimize the cost of fare collection;
+
+Generate financial and travel data for use in system monitoring;
+
+Respond dynamically to changes in fare policies and service plans.
+
+Two decades ago, printed paper tickets were the only economically and technologically viable fare collection 
+system in public transport systems around the world. But with the advent of electronic fare collection 
+systems, the scenario has changed. Across the globe, most BRT systems have adopted contactless smart 
+cards as the preferred payment medium. This technology has become popular because it is relatively inexpensive 
+both in terms of upfront investment and in recurring maintenance costs, while providing numerous operational 
+features. 
+
+\subsection{ Coin/Token Systems}
+
+Mechanical coin and token-based systems are among the simplest technologies available to handle fare 
+collection and fare verification. These systems can be quite robust and economical to operate. New York 
+City’s public transport system worked on a token-based system for more than a hundred years.
+
+The number of sales personnel can be reduced and ticketing machines are not necessary with coin-based 
+systems because the customer does not need to go through the cumbersome process of programming the electronic 
+card. Instead, the currency acts directly as the fare payment and verification mechanism. There is no 
+need to issue any paper tickets to customers. Also, there is typically no queue at the exit side of the 
+trip, either. Thus, while other systems may involve at least three separate customer queues (purchase 
+fare, verify fare at entrance, and verify fare at exit), coin-based systems require the customer to only 
+enter one queue (verify fare at entrance). However, once a ticket is purchased, contactless cards tend 
+to have higher throughput at the turnstile; coin-based systems will likely move only eight to twelve 
+passengers per minute, versus fifteen to twenty passengers per minute with contactless cards.
+
+In Quito, Ecuador, a simple coin-based system has worked successfully for both the city’s Trolebús 
+and Ecovía lines. The system thus avoids the need to purchase any payment medium whatsoever. In Quito, 
+an attendant window does exist, but it is only to give change to those who require it. Upon exiting a 
+system, passengers simply file through one-way exit doors without the need for further fare verification. 
+Quito’s system also allows the flexibility to utilize discount fare cards as well; these fare cards are 
+based on magnetic-strip technology. However, the entire turnstile device can fit into a limited space, 
+and thus permits two turnstiles within a relatively narrow station.
+
+Naturally, coin-based systems depend on the availability of coins in the local currency. Further, the 
+coins must be available in a combination that matches the desired fare level. If coins are not part of 
+the local currency, then tokens are an option. However, the inclusion of tokens in the fare collection 
+system defeats many of the benefits of coins. While still providing a relatively simple fare system, 
+tokens require all customers to purchase from a machine or sales point. This activity increases the amount 
+of customer queuing required to use the system. Another alternative is to utilize fare collection turnstiles 
+that handle paper currency. However, this technology is not nearly as robust as coin readers. The extra 
+moments required for authenticating the currency note will slow down the entry process and thus reduce 
+system capacity. This problem is exacerbated by the poor quality of older currency notes.
+
+But there are some limitations to this simple system. Coin-based systems are only usable with flat-fare 
+structures, and cannot offer multi-trip discounts, time of day discounts, or free transfers to other 
+modes without physical integration facilities. Of course, there are many conditions where a flat fare 
+is desirable, as discussed in Chapter 15: Fare Policy and Structure. Also, by combining a coin-based 
+system with another technology (such as magnetic-strip cards or smart cards), then multiple-trip fares 
+are also possible.
+
+Coin and token systems are subject to the illegal use of slugs and counterfeit coins. The handling 
+and administrative requirements related to coin collection and transaction accounting are also more labor 
+intensive.
+
+\subsection{ Printed Paper Tickets }
+
+Printed paper tickets were previously a prime method of fare collection in public transport systems. 
+Under most paper-based systems, preprinted tickets are issued to passengers against a cash payment of 
+the fare. In many European public transport systems, paper tickets are sold off-board at vending booths, 
+machines, kiosks, and other shops. The tickets are validated at the time of boarding by inserting the 
+paper ticket into a stamping machine. This machine marks the time and sometimes the location of the validation. 
+The validation process employed is important when paper systems have time limits on usage. Verification 
+of paper tickets can take place manually upon entrance into the system, or may only be verified occasionally 
+through random inspections. 
+
+In many public transport systems in Asia and Africa, a conductor inside the vehicle issues tickets. 
+Often in such systems, the conductor manually issues and punches the tickets. Alternately, the tickets 
+may be printed using a handheld ticketing machine; the conductor enters the codes of origin and destination 
+on the numeric keypad of the machine and the ticket is printed using thermal paper. The continuous presence 
+of a conductor helps ensure that all passengers are carrying valid tickets. 
+
+Paper tickets suffer from several drawbacks that limit their effectiveness in high demand rapid transit 
+systems:
+
+For proof-of-payment systems without conductors, periodic checks are required on a frequent basis to 
+ensure that passengers buy tickets. Such checks are difficult during peak periods when fare collection 
+is highest;
+
+In the case of tickets issued on board by a conductor, the process of issuing tickets is onerous and 
+inconvenient for passengers, especially on crowded buses;
+
+The likelihood of revenue leakage is high if the public transport agency does not record passenger 
+and revenue data on a regular basis. There are numerous possibilities for fraud, such as the printing 
+of fake tickets or the failure to issue official tickets to all passengers;
+
+The agency must digitize any manual records generated at points of sale and from conductors into electronic 
+records in order to carry out any kind of statistical analysis;
+
+The system will have no record about who travelled with that ticket when the trip ends;
+
+Battery-operated paper ticketing machines require charging every day.
+
+As a result of these drawbacks, paper tickets are rarely used on modern BRT systems. Agencies have 
+turned to more robust fare collection media such as RFID smart cards (see below). 
+
+\subsection{ Magnetic-Strip Cards}
+
+Magnetic-strip cards were the first widely adopted form of automated fare collection to be used on 
+many public transport systems around the world. Magnetic fare cards use the same technology found in 
+consumer credit cards. Magnetic-strip cards can implement complex algorithms—including multiple trips 
+and varying fare rates for different types of trips—and store data securely. They allow both read and 
+write operations, and data from the verification turnstile can provide system operators with information 
+on customer movements. In this way, they represent a major advance over paper-based systems. Magnetic-strip 
+technology also has the advantage of the low cost of the fare cards themselves, about US$0.02–0.05 per 
+card. However, the magnetic-strip technology requires the card to come into extremely close contact with 
+the card reader. Most systems require the user to feed the card into a slot. The card is then ejected 
+for the user to retrieve. When the user removes the card, the turnstile opens. The extra time taken to 
+process the card increases the boarding delay. In addition, magnetic-strip cards are generally made of 
+coated paper, and can be damaged relatively easily. Some system providers utilizing magnetic-strip cards 
+also elect to permit discounted fares for individuals purchasing multiple trips.
+
+\figure{assets/image3.jpeg}{All-purpose bus fare collection machine in Nagoya, Japan. Image}{ Karl 
+Fjellstrom.}
+
+\subsection{ RFID-Based Smart Cards}
+
+Smart cards are based on a microprocessor that can read and process a variety of information regarding 
+cash inputs, travel, and system usage with the highest possible security level. Smart cards are capable 
+of supporting complex fare policies and can facilitate integration among multiple public transport modes. 
+Smart cards rely on radio frequency identification (RFID) that activates a turnstile when held in proximity 
+to the reader, an act that generally requires less physical precision than swiping or inserting a magnetic-strip 
+card. Smart cards permit a wide range of information to be collected on customer movements, which ultimately 
+can assist in system development and revenue distribution. BRT systems in Bogotá, Colombia; Goiânia, 
+Brazil; and Guayaquil, Ecuador, have successfully employed smart card technologies.
+
+Contactless smart cards have embedded dynamic logic that enables the implementation of complex fare 
+rules, including transfer discounts during specific time windows, discounted off-peak fares, and distance-based 
+fares. Other payment media lack the dynamic logic necessary to carry out such operations. Smart cards 
+also have a longer life cycle and are less likely to experience a loss of data when compared to magnetic-strip 
+cards. Smart-card-based systems can also incorporate solutions for single-journey tickets such as RFID 
+tokens. A passenger taps a token when entering the system and deposits it in a turnstile when leaving 
+the system. 
+
+The main drawbacks of smart card technology are the relative cost of the card and its complexity. The 
+system requires fare vending personnel and/or card vending machines. The system also typically requires 
+verification machines at system exits if distance-based fares are utilized. In each instance, the risk 
+of long customer queues, especially during peak periods, is increased at the point of sale but reduced 
+at the turnstile. In addition to the costs of the vending and verification machines, each smart card 
+is a relatively costly expense. Current prices are in the range of one to three US dollars per card. 
+The card cost depends on the card complexity.
+
+Virtually all smart cards conform to the ISO 7816 size standard. The card material can vary with options 
+such as PVC, PET, and even paper. Different manufacturers have developed their proprietary protocols 
+and operating systems that define the security and compatibility between cards and reading devices. The 
+most common standard is defined in the ISO 14443 A/B standard, which details the card characteristics.
+
+The microchip on a smart card can either be “memory only” or “memory with microprocessing” capabilities. 
+Cards with a memory chip can only store data, and have pre-defined dedicated processing capabilities. 
+The addition of microprocessing allows the smart card to actually execute applications as well. For example, 
+a microprocessor chip can allow the stored value of the smart card to be used for purchases outside the 
+public transport system. 
+
+In Hong Kong, the Octopus card permits users to make purchases at shops as well as pay for public transport. 
+The Octopus card allows up to HK$1,000 (US$125) of stored value to be placed on the card. While this 
+feature can be quite convenient, smart cards with microprocessing capabilities tend to be more expensive 
+than other types of cards. However, for systems such as Hong Kong, the flexibility and utility of the 
+cards make them a worthwhile investment. There are currently an estimated 26 million Octopus cards in 
+circulation in Hong Kong. Approximately 13 million transactions take place in Hong Kong each day using 
+the Octopus card.
+
+Once a card brand such as the Octopus is established, its ability to penetrate into a wide variety 
+of related markets is significant. Octopus started with a core network of transport services in 1997, 
+and soon expanded into almost all forms of transport payment services.
+
+Likewise, the Octopus card is finding utility in several applications outside the transport sector. 
+Some of these outside payment applications include supermarkets, convenience stores, fast food franchises, 
+vending machines, photocopiers, cinemas, and sports venues. The flexibility of such cards means that 
+the system’s marketplace and potential for profit can extend well beyond the transport sector. Such market 
+diversity can help strengthen overall company performance.
+
+The Seoul, South Korea, T-money system is in many ways quite similar in performance to the Octopus 
+card. T-money can be used both on the city’s metro system as well as other transport services such as 
+the BRT system. Likewise, T-money is crossing over into many non-transport applications, such as retail 
+purchases. The fare card systems in Hong Kong and Seoul are also showing much creativity in the form 
+of the cards themselves. Both cities allow customers to accessorize with fare chips that are inserted 
+in a range of products such as watches and key chains. Also, in the future it is likely that customers 
+will be able to swipe their mobile telephones in order to make payments.
+
+Typically smart cards for transport applications have from one to four kilobytes of memory. A four-kilobyte 
+card will be able to support multiple applications, including e-money transactions.
+
+Unlike magnetic-strip cards, though, smart cards have a long life and can be reused for periods in 
+the range of five to ten years. As smart cards become more common, the cost of the cards will undoubtedly 
+continue to fall.
+
+From a financial point of view, although smart cards have a relatively high initial cost (one to three 
+US dollars per card), the cost per transaction is significantly less than that of magnetic-strip cards. 
+Some system designers estimate that maintenance costs for contactless smart card equipment are between 
+7 to 10 percent of the initial investment, compared with 15 to 20 percent for magnetic-strip systems.
+
+Besides the cost of the cards, the chief disadvantage of smart cards is the relative complexity of 
+the implementation. In the case of TransJakarta, the BRT system operated for more than one year before 
+the smart card system could actually function. Implementing a smart card system is an order of magnitude 
+more difficult than many other payment mediums. Smart-card systems are not yet in the category of a “plug-and-play” 
+technology, as much software programming and specialized skills must accompany the implementation.
+
+\figure{assets/image4.jpeg}{A fare collection machine in Chengdu, China, that accepts tokens and smart 
+cards. Image}{ Xianyuan Zhu.}
+
+\subsection{ Advanced Technologies}
+
+Several emerging technologies offer the promise of simplifying fare collection in the future. One such 
+technology is near field communication (NFC), a short-range wireless technology used in mobile phones. 
+This technology, covered under the ISO 14433 standard, allows a smartphone to function similarly to an 
+RFID smart card in conjunction with contactless readers at station turnstiles. It offers great flexibility, 
+since the money pocket can be added to in several ways, including SMS or internet. An example of an NFC 
+solution is the Google Wallet, an application that can store credit and debit account information securely 
+on a phone, and then use the NFC capability to pay at enabled payment readers. At present, the biggest 
+obstacle to more widespread use of NFC is the limited availability of NFC-ready phones, especially in 
+developing countries. However, with increasing market penetration of smartphones, this technology may 
+become viable for transport applications in the near future.

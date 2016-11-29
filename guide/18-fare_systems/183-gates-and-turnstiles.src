@@ -1,0 +1,279 @@
+
+
+\section{ Gates and Turnstiles}
+
+> The world is all gates, all opportunities, strings of tension waiting to be struck.
+@ —Ralph Waldo Emerson, poet, 1803-82
+
+Off-board fare collection systems generally employ physical barriers to prevent passengers from entering 
+the system without paying. Most early entry control systems made use of rotating turnstiles. Later developments 
+have resulted in improved and more efficient access control mechanisms with retractable wing gates. Gate 
+arms that pivot horizontally are inexpensive but are generally avoided because they allow entry of more 
+than one person before the arms close.
+
+The turnstile, or tripod gate, is probably the most common access control mechanism used in BRT systems 
+across the world. Once the fare reader authorizes a passage, the tripod is released from a fixed position 
+to rotate a third of a revolution and ensure passage for one person. The TransMilenio BRT system in Bogotá, 
+the Trolebús and Ecovía lines in Quito, Ecuador, and many other systems in South America make use of 
+tripod gates. Tripod gates are not universally accessible to persons with disabilities and users with 
+strollers and suitcases. Alternative access may be provided through manual gates operated by a station 
+attendant. Despite these accessibility challenges, tripod gates are common because of their low maintenance 
+and operating costs.
+
+Retractable wing gates have become standard on many large rapid transit systems such as the London 
+Underground, Hong Kong Metro, and Washington, DC Metro. They also have started to appear in BRT systems, 
+including the Janmarg system in Ahmedabad, India, and the Beijing BRT. The wings are manufactured from 
+durable plastics, glass, or stainless steel. They automatically fold back once the fare reader completes 
+a successful fee transaction. Wing barriers provide a professional appearance while simultaneously preventing 
+fare evasion. They also have advanced detection systems that prevent the flaps from closing while a person 
+or other object—such as a suitcase or stroller—is still passing through. The barriers can also stay open 
+if a second legal passage is detected. The clear opening between the wings can be designed to meet customers’ 
+requirements, including wider gates that permit the passage of wheelchairs. 
+
+One consideration in the design of retractable-flap systems is the height of the gate. Most systems 
+utilize waist-high gates, but higher gates are used where there is little oversight and/or a high incidence 
+of fare evasion. The higher the gate, the heavier it becomes, ultimately placing more restrictions on 
+the type of mechanism, flap material, and the speed of opening and closing. Some systems use gates with 
+both heights, with waist-high systems at entrances where there are fare agents and full-height systems 
+where there is less oversight. For example, Quito employs a half-body height turnstile at the entrances 
+that also include the presence of a fare agent.
+
+\figure{assets/image5.jpeg}{The BRT system in Chengdu, China, utilizes wing gates to control access 
+to the system. Image}{ Karl Fjellstrom.}
+
+The typical dimensions and capacities of the different gates are summarized in Table 18.2 (turnstile 
+dimensions are also often customized). The space limitations for BRT stations constructed in road medians 
+pose a challenge in terms of providing sufficient capacity for peak demand at fare gates. Many systems 
+stagger gates or employ bidirectional gates that can be used in any direction, allowing the system to 
+set the orientation of the gates to match the direction of peak passenger flows. 
+
+\figure{assets/image6.jpeg}{Urumqi, China, streamlines customer flow by offsetting the gates and making 
+them unidirectional. Image}{ Karl Fjellstrom.}
+\begintable{Table  SEQ Table \* ARABIC 18.2 Turnstile Widths}
+\header
+\col Category
+\col Type
+\col Height (mm)
+\col Opening Width (mm)
+\col Installation Width (mm)
+\col Capacity
+\row
+\col Waist Height
+\col Retractable
+\col 960–1095
+\col 500–990
+\col 820–1580
+\col 60 persons/min
+\row
+\col 
+\col Angle Wing
+\col 1060–1200
+\col 650–700
+\col 760–1250
+\col 60 persons/min
+\row
+\col 
+\col Rotating Arm (Tripod)
+\col 950–1090
+\col 430–520
+\col 750–820
+\col 25–40 persons/min
+\row
+\col 
+\col Swinging Arm
+\col 965–1100
+\col 600–1200
+\col 720–1400
+\col 30 persons/min
+\row
+\col Full Height
+\col Angle Wing
+\col 1200–1829
+\col 500–950
+\col 760–1690
+\col 30–60 persons/min
+\row
+\col 
+\col Rotating Tripod
+\col 2200
+\col 600–700
+\col 1450
+\col 20 persons/min
+\endtable
+
+A few BRT systems with onboard fare collection employ onboard physical barriers. Passengers board the 
+bus into a holding area and must tap in to pass by a turnstile. Some other systems, such as the Rea Vaya 
+BRT in Johannesburg, South Africa, also employ fare gates on feeder buses to facilitate the use of an 
+integrated, distance-based fare on the entire BRT network. Rea Vaya feeder buses have tripod gates at 
+the exit doors of buses. The passenger must tap to exit the bus, allowing the system to calculate the 
+distance traveled and the appropriate fare.
+\begintable{Different Fare Collections Systems in Place in BRT Systems around the World.}
+\header
+\col City
+\col BRT Standard Level
+\col Name of System
+\col Type of Collection
+\col Barrier Control
+\col Fare Collection Media
+\col Fare Type
+\row
+\col US
+\col 
+\col 
+\col 
+\col 
+\col 
+\col 
+\row
+\col Cleveland, Ohio
+\col Silver
+\col RTA Healthline
+\col Off board
+\col Machine for validation before boarding
+\col Magnetic card
+\col Flat rate
+\row
+\col Los Angeles
+\col Bronze
+\col LA Metro Orange Line
+\col Off board
+\col TAP card must be tapped before boarding at validating stations
+\col Smart card
+\col Flat rate
+\row
+\col Eugene, Oregon
+\col Bronze
+\col Emerald Express (EmX)
+\col Off board
+\col Off-board fare machines
+\col Proof-of-payment, random inspection
+\col Flat rate
+\row
+\col South America
+\col 
+\col 
+\col 
+\col 
+\col 
+\col 
+\row
+\col Lima, Peru
+\col Gold
+\col El Metrobolitano
+\col Off board
+\col Electronic readers/turnstiles
+\col Electronic pre-paid card
+\col Flat rate
+\row
+\col Buenos Aires, Argentina
+\col Bronze
+\col Metrobus
+\col Onboard
+\col -
+\col Coins/ SUBE smart card
+\col Zonal rate
+\row
+\col Curitiba, Brazil
+\col Gold
+\col Green Line
+\col Off board
+\col Pre-pay station, turnstiles
+\col Smart card
+\col Flat rate
+\row
+\col Rio de Janeiro, Brazil
+\col Gold
+\col Transoeste
+\col Off board
+\col Pre-pay station, turnstiles
+\col Electronic prepaid card
+\col Flat rate
+\row
+\col Barranquilla, Colombia
+\col Silver
+\col Transmetro
+\col Off board
+\col Electronic readers/turnstiles
+\col Electronic prepaid card
+\col Flat rate
+\row
+\col Cali, Colombia
+\col Silver
+\col MIO (Masivo Integrado de Occidente)
+\col Off board
+\col Contact-free magnetic ticketing
+\col Smart card
+\col Flat rate
+\row
+\col Perreira, Colombia
+\col Silver
+\col Megabus
+\col Off board
+\col Contact-free magnetic ticketing, turnstiles
+\col Smart card
+\col Flat rate
+\row
+\col Medellín, Colombia
+\col Gold
+\col Metroplus
+\col Off board
+\col Contact-free magnetic ticketing
+\col Smart card
+\col Flat rate
+\row
+\col Asia
+\col 
+\col 
+\col 
+\col 
+\col 
+\col 
+\row
+\col Guangzhou, China
+\col Gold
+\col Guangzhou BRT
+\col Off board
+\col Fare verification, turnstiles
+\col Smart card
+\col Flat rate
+\row
+\col Jakarta, Indonesia
+\col Bronze
+\col TransJakarta
+\col Off board
+\col Fare verification, turnstiles
+\col Tickets, prepaid card
+\col Flat rate
+\row
+\col Ahmedabad, India
+\col Silver
+\col Janmarg
+\col Off board
+\col Fare verification, wing gates, turnstiles
+\col Smart card, tokens
+\col Zonal rate
+\row
+\col Africa
+\col 
+\col 
+\col 
+\col 
+\col 
+\col 
+\row
+\col Johannesburg, South Africa
+\col Silver
+\col Rea Vaya
+\col Off board
+\col Fare verification, wing gates, TAP card entering and exiting stations
+\col Smart card
+\col Zonal rate
+\row
+\col Cape Town, South Africa
+\col Bronze
+\col MyCity
+\col Off board
+\col Fare verification, wing gates, TAP card entering and exiting stations
+\col Smart card
+\col Zonal rate
+\endtable

@@ -1,0 +1,20 @@
+
+
+\section{ Back-End Components}
+
+> The way to build a complex system that works is to build it from very simple systems that work.
+@ —Kevin Kelly, publisher, 1952–
+
+Fare collection systems require a robust back-end to process fare payments, store fare data, and generate 
+reports for system managers. Most systems incorporate a computer at each fare collection location (i.e., 
+each station or bus). The computer compiles data from turnstiles or onboard ticket machines and sends 
+this information via a secure data channel to a control center on a real-time basis. Control center staff 
+can monitor system status, respond to defective or malfunctioning machines, and generate reports. All 
+systems should have backup power to ensure that the system can continue to operate in the event of electricity 
+outages. In addition, the stations and control center should have backup capabilities.
+
+During the implementation of the information system, the BRT agency should ensure that the fare collection 
+service provider provides complete details on the data protocols used to transfer fare collection data. 
+These details are required in the event that a future fare collection contract is given to a different 
+provider. The BRT agency should develop an in-house team of experts who conduct regular monitoring of 
+the fare collection system. 

@@ -1,0 +1,66 @@
+
+
+\section{ Costs}
+
+> The price is what you pay; the value is what you receive.
+@ —Anonymous
+
+Calculation of various costs involved in planning, implementing, and maintaining intelligent transport 
+systems is a critical component for the transit agency. The BRT agency should estimate the probable capital 
+and operating costs of the fare collection system during the planning stage, before the tendering process 
+begins. Capital costs depend on the fare collection technology and the system scope—the number of buses, 
+stations, depots, and terminals and expected passenger volumes. Keeping the system operational requires 
+regular upgrades of software systems to update security and communication protocols. In addition, regular 
+maintenance is required to ensure the proper functioning of fare gates and other hardware components.
+
+Fare collection for BRT systems typically accounts for 7–12 percent of total operating costs, but has 
+varied from 5 to 15 percent. In Bogotá’s TransMilenio, the fare collection operator receives between 
+7.56–9.1 percent of system revenue.
+
+\highlight{Table 18.4 Fare and ITS costs (Phase I Project of 50 kilometers)}
+\begintable{(empty)}
+\header
+\col Fare Collection
+\col Card validators; Ticket printers; POS (point of sales) machines; Computers; Access control barriers; Station servers; UPS; Communication network; Smart cards; 
+\row
+\col Control Center
+\col Servers; UPS backup; Communications network; Bulk Initialization Machine (BIM); Printers; Computers; Biometric readers; Screens; 
+\row
+\col Software
+\col Automatic vehicle location, fare collection, financial management, PIS, depot management, vehicle scheduling and dispatching, asset management and inventory, POS, BIM, card validators, web portal, servers, dashboard module, antivirus and cybersecurity, accounting, data transfer, data backup, report generation
+\endtable
+\begintable{Operating cost components}
+\header
+\col Manpower
+\col Perks, benefits, salaries, fines
+\row
+\col Transportation costs
+\col Fuel, vehicles used by staff
+\row
+\col Software
+\col Upgrade and calibration, license and renewal fees, copyrights
+\row
+\col Hardware
+\col Regular equipment check, software calibration, life cycle analysis
+\row
+\col Electricity
+\col Power consumed by all hardware at stations, terminals, depots, interchange stations, transfer stations, central control center and administrative office
+\row
+\col Communication costs
+\col Telephone, mobile phones, and internet usage charges
+\row
+\col Administrative costs
+\col Stationery, printing, auditors' fees, consultancy fees, advertisement and marketing, insurance, accident claims, legal matters, and other administrative work costs
+\row
+\col Infrastructure costs
+\col Maintenance, repairs, and rehabilitation works
+\row
+\col Security
+\col Stations, corridors, control center
+\row
+\col Housekeeping
+\col Cleaning of infrastructure (stations, terminals, depots)
+\row
+\col Landscaping
+\col Costs toward maintenance and planting of landscaping along corridor
+\endtable
