@@ -374,7 +374,7 @@ to serve.
 
 In applying this to Equation 6.16, then:
 
-$$ \text{VSizei}_\text{optimum} = \text{LoadFactor}=\text{MaxLoadperCycle}_\text{route} * 2.56 $$
+$$ \text{VSize}_\text{optimum} = \text{LoadFactor}=\text{MaxLoadperCycle}_\text{route} * 2.56 $$
 
 In this way, the optimum vehicle capacity is simply a function of the demand over the course of the 
 route’s cycle time that needs to be served under each scenario, times a constant, this of course must 
@@ -385,24 +385,19 @@ For expediency in the examples below in Table 6.9, approximate values for MaxLoa
 rather than determining the actual value across multiple cycle times. A peak hour correction factor (PHtoCC) 
 of 0.1 is also assumed, which is relatively typical. Other values are given in Table 6.9.
 
-Using Equation 6.11 and the values in Table 6.9, optimal vehicle size (Cb optimum) can be solved for, 
+Using Equation 6.11 and the values in Table 6.9, optimal vehicle size ($$Cb_\text{optimum}$$) can be solved for, 
 as shown in the last column of Table 6.9. 
 
-Eq. 6.17\' TODO Math: 
+Eq. 6.17
 
-MaxLoadperCycle=MaxLoad*TC *[   1 -  PHtoCC*TC-1   ] '\
+$$ \text{MaxLoadperCycle} = \text{MaxLoad} * TC * [ 1 - \text{PHtoCC} * (\text{TC} -1) ] $$
 
 Where:
+\item $$ \text{MaxLoadperCycle}$$: Maximum demand load per cycle time;
+\item $$ \text{MaxLoad}$$: Maximum hourly load on the critical link;
+\item $$ \text{TC}$$: Cycle time in hours.
+\item $$ \text{PHtoCC}$$: Nonnegative correction factor, the calibration of which is based on survey data, is discussed in Box 6.2.
 
-MaxLoadperCycle = Maximum demand load per cycle time;
-
-MaxLoad = Maximum hourly load on the critical link;
-
-TC = Cycle Time in hours;
-
-PHtoCC = Nonnegative correction factor whose calibration based on survey data is discussed in Box 6.1.
-
-Table 6.9 Examples of Optimum Vehicle Size Derived from the Sample Data
 \begintable{Examples of Optimum Vehicle Size Derived from the Sample Data }
 \header \col MaxLoad\col TC\col PHtoCC\col MaxLoadperCycle\col Size\*LoadFactor
 \row \col pass/h\col hours\col \col passengers\col passengers
@@ -418,20 +413,33 @@ Table 6.9 Examples of Optimum Vehicle Size Derived from the Sample Data
 \row \col  2,000 \col 4\col 0.1\col  4,800 \col 111
 \row \col  8,000 \col 4\col 0.1\col  19,200 \col 222
 \endtable
-\'
-\figure{assets/image31.mf}{On this very wide range of maximum hourly loads and cycle times, optimum 
+
+On this very wide range of maximum hourly loads and cycle times, optimum 
 size assuming load factor equal to 1.0, varies from a car to a bi-articulated vehicle. If the optimal 
-vehicle size (VSizeoptimum) is four, in most cases the demand is too low to justify the procurement costs 
+vehicle size ($$\text{VSize}_\text{optimum}$$) is four, in most cases the demand is too low to justify the procurement costs 
 of special new BRT vehicles, and such small vehicles do not come in BRT-compatible forms, so are likely 
 to congest the BRT corridor. Hence, this route would simply be excluded from the proposed BRT services, 
 or turned into a feeder route for the BRT corridor. As BRT vehicle options are not actually infinite, 
 once the optimal vehicle capacity is identified using the formula, VSizeoptimum will need to be set by 
-rounding up to the nearest vehicle suitable for the BRT services and design load factor.}{FIXME!}
+rounding up to the nearest vehicle suitable for the BRT services and design load factor.
 
-Table 6.10 Examples for Determining Optimum Vehicle Size
+\begintable{Examples for Determining Optimum Vehicle Size}
+\header \col MaxLoad\col TC\col PHtoCC\col MaxLoadperCycle\col Size\*LoadFactor
+\row \col pass/h\col hours\col \col passengers\col passengers
+\row \col  20 \col 0.25\col 0.1\col  5 \col Cut route
+\row \col  200 \col 0.25\col 0.1\col  49 \col Cut route
+\row \col  2,000 \col 0.25\col 0.1\col  488 \col 60
+\row \col  20 \col 1\col 0.1\col  18 \col Cut route
+\row \col  200 \col 1\col 0.1\col  180 \col 60
+\row \col  2,000 \col 1\col 0.1\col  1,800 \col 90
+\row \col  8,000 \col 1\col 0.1\col  7,200 \col 150
+\row \col  20 \col 4\col 0.1\col  48 \col Cut route
+\row \col  200 \col 4\col 0.1\col  480 \col 60
+\row \col  2,000 \col 4\col 0.1\col  4,800 \col 150
+\row \col  8,000 \col 4\col 0.1\col  19,200 \col 220
+\endtable
 
-\figure{assets/image32.emf}{6.4.5 Vehicle Fleet Optimization}{FIXME!}
-'\
+\subsection{Vehicle Fleet Optimization}
 
 One of the key purposes of developing a service plan is to know how many vehicles will need to be purchased. 
 The factors involved in determining the operational size of the vehicle fleet include:
@@ -446,43 +454,38 @@ A reserve fleet needs to be added to the total fleet size, as vehicles will need
 preventatively or because they have broken down. As a rule, a reserve fleet is about 10 percent of the 
 actual fleet needed to provide the service, although it can be lower than that.  
 
-Vehicle Fleet Calculation with Uniform Demand
+\subsubsection{Vehicle Fleet Calculation with Uniform Demand}
 
 As a first estimate of the fleet needed to provide a new BRT service, the maximum load on the critical 
 link of the existing bus routes currently using the BRT corridor during the peak hour should be calculated. 
 The existing bus route lengths and cycle times also need to be calculated. This can usually be done at 
 low cost with a GPS. From this information it is possible to estimate the current needed fleet.   
 
-Eq. 6.18\' TODO Math: 
+Eq. 6.18
 
-Fleetroute= MaxLoadperCyclerouteVSize*LoadFactor '\\' TODO Math: 
 
-Fleetroute= MaxLoadrouteVSize*LoadFactor '\
+$$ \text{Fleet}_\text{route} = {\text{MaxLoad}_\text{route} \over \text{VSize} * \text{LoadFactor}} $$ 
 
 Where:
 
-Fleetroute = Number of buses needed to serve the route;
-
-VSizeroute = Vehicle serving the route capacity;
-
-MaxLoadroute = Maximum demand across the critical segment of the route that will accumulate for the 
+\item $$ \text{Fleet}_\text{route}$$: Number of buses needed to serve the route;
+\item $$ \text{VSize}_\text{route}$$: Vehicle serving the route capacity;
+\item $$ \text{MaxLoad}_\text{route}$$:Maximum demand across the critical segment of the route that will accumulate for the 
 duration of one hour, here is assumed constant;
-
-Freqroute = Frequency of the route;
-
-LoadFactor = Design load factor (usually 0.85).
+\item $$ \text{Freq}_\text{route}$$:Frequency of the route;
+\item $$  \text{LoadFactor} $$: Design load factor (usually 0.85);
 
 To provide an example, assume the following: 
 
-MaxLoadroute = 224;
+\item $$ \text{MaxLoad}_\text{route} = 224 $$;
 
-TC = 2 hours;
+\item $$ TC= 2 \text{hours} $$
 
-VSize = 72;
+\item $$ \text{VSize} = 72 $$;
 
-Load Factor = 0.85;\' TODO Math: 
+\item $$\text{Load Factor} = 0.85 $$;
 
-Fleet=224*272*0.85=7.32 '\
+$$ Fleet = {224 * 2 \over 72 * 0.85}   = 7.32 $$
 
 If the formula produces a fraction, round up to the next integer, since vehicles have to be procured 
 in units of one. So, in this scenario, the result is eight vehicles.
@@ -507,15 +510,15 @@ hour to take the second hour of customers. Therefore, the same fleet can serve t
 link each hour (and in this scenario, the demand is the same each hour). Thus, cutting the cycle time 
 to one cuts the needed fleet in half:
 
-MaxLoadroute = 224
+\item $$ \text{MaxLoad}_\text{route} = 224 $$;
 
-TC = 1 hour
+\item $$ TC= 1 \text{hour} $$
 
-VSize = 72 
+\item $$ \text{VSize} = 72 $$;
 
-Load Factor = 0.85\' TODO Math: 
+\item $$\text{Load Factor} = 0.85 $$;
 
-Fleet=224*172*0.85=3.66 '\
+$$ Fleet = {224 * 1 \over 72 * 0.85}   = 3.66  $$ 
 
 As the fleet has to be rounded up to the nearest integer, it would be four vehicles. 
 
@@ -526,22 +529,22 @@ The size of the vehicle (VSize) is also important. Bigger vehicles can move the 
 with a smaller fleet. In the example above with a cycle time of two hours, if an articulated vehicle 
 is used that can hold 180 customers, only three vehicles are needed:
 
-MaxLoadroute = 224
+\item $$ \text{MaxLoad}_\text{route} = 224 $$;
 
-TC = 2 hours
+\item $$ TC= 2 \text{hours} $$
 
-VSize = 180 
+\item $$ \text{VSize} = 180 $$;
 
-Load Factor = 0.85\' TODO Math: 
+\item $$\text{Load Factor} = 0.85 $$;
 
-Fleet=224*2180*0.85=2.923 '\
+$$ Fleet = {224 * 2 \over 180 * 0.85}   = 2.923 $$ 
 
 By increasing the vehicle size, the required fleet size decreases. This means fewer vehicles are required, 
 but the result is that the frequency is lower, and customers will wait longer. Similarly, by decreasing 
 the vehicle size, a larger fleet is needed, but frequency increases, and customers will not have to wait 
 as long.
 
-\subsection{Fleet Calculation with Peaked Demand}
+\subsubsection{Fleet Calculation with Peaked Demand}
 
 The above formula is good for rough calculations of fleet needs, but it is not sufficient to calculate 
 the actual needed fleet in most real-world conditions where demand varies throughout the peak hours. 
@@ -574,22 +577,17 @@ Only so many vehicles are needed as would satisfy the customers that will accumu
 vehicle can complete its cycle and pick up a second round of customers. The original formula, Equation 
 6.5, can therefore be replaced with the following:
 
-Eq. 6.19\' TODO Math: 
+Eq. 6.19: 
 
-Fleetroute= MaxLoadperCyclerouteVSizeroute*LoadFactor '\
+$$ \text{Fleet}_\text{route} = {\text{MaxLoadperCycle}_\text{route} \over \text{VSize}*\text{LoadFactor}} $$
 
 Where:
-
-Fleetroute = Number of vehicles needed to serve the route;
-
-VSizeroute = Vehicle serving the route capacity;
-
-MaxLoadperCycleroute = Maximum demand across the critical segment of the route that will accumulate 
+\item $$ \text{Fleet}_\text{route}$$: Number of buses needed to serve the route;
+\item $$ \text{VSize}_\text{route}$$: Vehicle serving the route capacity;
+\item $$ \text{MaxLoadperCycle}_\text{route}$$: Maximum demand across the critical segment of the route that will accumulate 
 for the duration of one cycle during the busiest moment of the typical day (see Subsection 6.3.13);
-
-Freqroute = Frequency of the route (ideal frequency suggested of 22 vehicles per hour);
-
-LoadFactor = Design load factor (usually 0.85).
+\item $$ \text{Freq}_\text{route}$$:Frequency of the route(ideal frequency suggested of 22 vehicles per hour);
+\item $$  \text{LoadFactor} $$: Design load factor (usually 0.85);
 
 This then requires the development of a methodology for calculating the maximum load over the course 
 of a specific cycle time.
@@ -597,9 +595,9 @@ of a specific cycle time.
 At this point in the service planning effort, the service planner will have collected ridership data 
 in fixed increments of time, such as fifteen-minute intervals, and determined the critical link. With 
 that data, in order to calculate the fleet requirements, two questions must be answered:
-\item Given an expected cycle time (TC) period for a BRT route, what “TC period” of the day experiences 
+\number Given an expected cycle time (TC) period for a BRT route, what “TC period” of the day experiences 
 the highest demand?
-\item How does one calculate fleet numbers based on the peak TC period?
+\number How does one calculate fleet numbers based on the peak TC period?
 
 In order to answer the first question, the example in Table 6.11 is a sample of fifteen-minute increment 
 ridership data. In this example, the cycle time (TC) is one hour, so one should look for the peak hour.
@@ -645,10 +643,10 @@ ridership data. In this example, the cycle time (TC) is one hour, so one should 
 \col 6:45–7:45
 \col 250
 \row
-\col 7:45–8:00
-\col 66
-\col 7:00–8:00
-\col 265
+\col * 7:45–8:00 *
+\col * 66 *
+\col * 7:00–8:00 *
+\col * 265 *
 \row
 \col 8:00–8:15
 \col 53
@@ -748,10 +746,10 @@ If the cycle time TC were two hours, the table would look different:
 \col 6:30–8:30
 \col 445
 \row
-\col 8:30–8:45
-\col 34
-\col 6:45–8:45
-\col 448
+\col * 8:30–8:45 *
+\col * 34 *
+\col * 6:45–8:45 *
+\col * 448 *
 \row
 \col 8:45–9:00
 \col 32
@@ -772,46 +770,36 @@ If, on the other hand, the cycle time were fifteen minutes, the peak would be 7:
 
 Now to address Question 2—how to calculate fleet numbers based on the peak TC period. There are two 
 ways to obtain the fleet numbers. The simplest way is to determine the peak load over the course of the 
-cycle time (Lpeak \[TC\]), as shown above, and simply divide by vehicle capacity. That is:
+cycle time ($$ L_\text{peak}[TC]$$), as shown above, and simply divide by vehicle capacity. That is:
 
-Eq. 6.20\' TODO Math: 
+Eq. 6.20: 
 
-Fleetroute= MaxLoadperCyclerouteVSize*LoadFactor '\
+$$ \text{Fleet}_\text{route} = {\text{MaxLoadperCycle}_\text{route} \over \text{VSize}*\text{LoadFactor}} $$
 
 Where:
-
-Fleetroute = Number of vehicles needed to serve the route;
-
-VSizeroute = Vehicle serving the route capacity;
-
-MaxLoadperCycleroute = Maximum demand across the critical segment of the route that will accumulate 
+\item $$ \text{Fleet}_\text{route}$$: Number of buses needed to serve the route;
+\item $$ \text{VSize}_\text{route}$$: Vehicle serving the route capacity;
+\item $$ \text{MaxLoadperCycle}_\text{route}$$: Maximum demand across the critical segment of the route that will accumulate 
 for the duration of one cycle during the busiest moment of the typical day (see Subsection 6.3.13);
+\item $$ \text{Freq}_\text{route}$$:Frequency of the route(ideal frequency suggested of 22 vehicles per hour);
+\item $$  \text{LoadFactor} $$: Design load factor (usually 0.85);
 
-Freqroute = Frequency of the route (ideal frequency suggested of 22 vehicles per hour);
+So, for a TC of one hour, using the observed $$\text{MaxLoadperCycle}$$ of 265, it is calculated that: 
 
-LoadFactor = Design load factor (usually 0.85).
-
-So, for a TC of one hour, using the observed MaxLoadperCycle of 265, it is calculated that: \' TODO Math: 
-
-FleetTC=1 hour=26572*0.85=4.33 '\
+$$ \text{Fleet}(TC=1 \text{hour}) = { 265 \over 72 * 0.85} = 4.33 $$
 
 Thus, the fleet needed for that peak cycle time is five. 
 
-So, for a TC of two hours, using the actual MaxLoadperCycle of two hours based on the data:\' TODO Math: 
+So, for a TC of two hours, using the actual $$\text{MaxLoadperCycle}$$ of two hours based on the data: 
 
-FleetTC=2 hours=44872*0.85=7.32 '\
+$$ \text{Fleet}(TC=2 \text{hours}) = { 448 \over 72 * 0.85} = 7.32 $$ 
 
 This equates to a fleet of eight vehicles. A cycle time that is twice as long as another does not necessarily 
 result in doubling the fleet. In this case, the cycle time increased from one to two hours, but the needed 
 fleet went from five to eight, instead of to ten. 
 
-\beginbox {FIXME!}
-
-\highlight{Box 6.1 How to determine correction factor from hour to cycle time (PHtoCC) based 
-on load 
-observations}
-
-
+\beginbox {How to determine correction factor from hour to cycle time (PHtoCC) based 
+on load observations}
 
 When one is analyzing many existing or potential routes with different cycle 
 times, it is cumbersome 
@@ -827,38 +815,39 @@ The calculation of the PHtoCC should be done per corridor and
 should be made separately for weekdays, 
 Saturdays, and Sundays.  
 
-\' \figure{assets/image330.wmf}{The 
+To calculate the peak hour 
+to cycle correction factor, we present an example of a typical demand profile 
+for the critical link on 
+a BRT corridor during the morning peak derived from  on Table 6.13.
 
+\begintable{Peak Period Critical Link Demand Profile}
+\header \col Time\col 15 Minute Loads\col Cumulative
+\row \col 6:00 a.m.\col 15\col 15
+\row \col 6:15 a.m.\col 21\col 36
+\row \col 6:30 a.m.\col 31\col 67
+\row \col 6:45 a.m.\col 51\col 118
+\row \col 7:00 a.m.\col 63\col 181
+\row \col 7:15 a.m.\col 69\col 250
+\row \col 7:30 a.m.\col 67\col 317
+\row \col 7:45 a.m.\col 66\col 383
+\row \col 8:00 a.m.\col 53\col 436
+\row \col 8:15 a.m.\col 45\col 481
+\row \col 8:30 a.m.\col 34\col 515
+\row \col 8:45 a.m.\col 32\col 547
+\row \col 9:00 a.m.\col 21\col 568
+\row \col 9:00 a.m.\col 21\col 589
+\row \col 9:15 a.m.\col 19\col 608
+\row \col 9:30 a.m.\col 35\col 643
+\row \col 9:45 a.m.\col 24\col 667
+\row \col 10:00 a.m.\col 29\col 696
+\row \col 10:15 a.m.\col 25\col 721
+\row \col 10:30 a.m.\col 25\col 746
+\endtable
+
+\figure[medium]{assets/image330.jpg}{The 
 graph shows 15-minute loads (blue) versus overall accumulated loads 
 (red). Peak 15-minute period occurs 
-where blue curve hits its max, or 7:00–7:15 a.m. Image}{ Arthur Szász.} '\
-
-
-
-To calculate the peak hour 
-to cycle correction factor, above is an example of a typical demand profile 
-for the critical link on 
-a BRT corridor during the morning peak. It was derived from Table 6.13.
-
-
-
-Table 6.13 Peak Period Critical 
-Link Demand Profile
-
-\' \figure{assets/image340.emf}{FIXME!}{FIXME!} '\
-
-
-\endbox
-
-
-
-\beginbox{FIXME!}
-
-\highlight{Box 6.1 How to determine correction factor from hour to cycle time (PHtoCC) based 
-on load 
-observations (continued)}
-
-
+where blue curve hits its max, or 7:00–7:15 a.m.}{ Arthur Szász.} 
 
 The blue line in Figure 6.25 is the number of customers every 15 
 minutes at the critical link, or the 
@@ -883,8 +872,6 @@ or the number of customers that would be riding on vehicles past the critical li
 time 
 were only 15 minutes, would be 69.   
 
-
-
 All of the possible time periods that are equivalent to the 
 cycle time (TC) need to be tested to see 
 which time period results in the maximum accumulated customers. 
@@ -904,23 +891,35 @@ demand adjacent to the 6:30 demand, and so on.
  
 
 
-
-Table 6.14 Peak Period Loads by Cycle Time
-
-\figure{assets/image350.jpeg}{FIXME!}{FIXME!}
-
-
-\endbox
-
-
-
-\beginbox{FixMe!}
-
-\highlight{Box 6.1 How to determine correction factor from hour to cycle time (PHtoCC) based 
-on load 
-observations (continued)}
-
-
+\begintable{Peak Period Loads by Cycle Time}
+\header \col Time\col 5 minute loads\col Accumulated Passengers\col Time\col 15 minute loads\col 15 min\col 15 min\col 15 min\col 15 min\col 15 min\col 15 min\col 15 min\col 15 min\col 15 min
+\row \col 6:00\col 6\col 6\col 6:00\col 15\col 21\col 31\col 51\col 63\col 69\col 67\col 66\col 53\col 45
+\row \col 6:05\col 5\col 11\col 6:15\col 21\col 31\col 51\col 63\col 69\col 67\col 66\col 53\col 45\col 34
+\row \col 6:10\col 4\col 15\col 6:30\col 31\col 51\col 63\col 69\col 67\col 66\col 53\col 45\col 34\col 32
+\row \col 6:15\col 8\col 23\col 6:45\col 51\col 63\col 69\col 67\col 66\col 53\col 45\col 34\col 32\col 21
+\row \col 6:20\col 3\col 26\col 7:00\col 63\col 69\col 67\col 66\col 53\col 45\col 34\col 32\col 21\col 21
+\row \col 6:25\col 10\col 36\col 7:15\col 69\col 67\col 66\col 53\col 45\col 34\col 32\col 21\col 21\col 19
+\row \col 6:30\col 7\col 43\col 7:30\col 67\col 66\col 53\col 45\col 34\col 32\col 21\col 21\col 19\col 35
+\row \col 6:35\col 12\col 55\col 7:45\col 66\col 53\col 45\col 34\col 32\col 21\col 21\col 19\col 35\col 24
+\row \col 6:40\col 12\col 67\col 8:00\col 53\col 45\col 34\col 32\col 21\col 21\col 19\col 35\col 24\col 29
+\row \col 6:45\col 15\col 82\col 8:15\col 45\col 34\col 32\col 21\col 21\col 19\col 35\col 24\col 29\col 25
+\row \col 6:50\col 20\col 102\col 8:30\col 34\col 32\col 21\col 21\col 19\col 35\col 24\col 29\col 25\col 25
+\row \col 6:55\col 16\col 118\col 8:45\col 32\col 21\col 21\col 19\col 35\col 24\col 29\col 25\col 25\col 25
+\row \col 7:00\col 18\col 136\col 9:00\col 21\col 21\col 19\col 35\col 24\col 29\col 25\col 25\col 25\col 25
+\row \col 7:05\col 22\col 158\col 9:00\col 21\col 19\col 35\col 24\col 29\col 25\col 25\col 25\col 25\col 25
+\row \col 7:10\col 23\col 181\col 9:15\col 19\col 35\col 24\col 29\col 25\col 25\col 25\col 25\col 25\col 25
+\row \col 7:15\col 17\col 198\col 9:30\col 35\col 24\col 29\col 25\col 25\col 25\col 25\col 25\col 25\col 25
+\row \col 7:20\col 25\col 223\col 9:45\col 24\col 29\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25
+\row \col 7:25\col 27\col 250\col 10:00\col 29\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25
+\row \col 7:30\col 23\col 273\col 10:15\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25
+\row \col 7:35\col 24\col 297\col 10:30\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25
+\row \col 7:40\col 20\col 317\col 10:45\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25
+\row \col 7:45\col 26\col 343\col 11:00\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25
+\row \col 7:50\col 19\col 362\col 11:15\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25
+\row \col 7:55\col 21\col 383\col 11:30\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25
+\row \col 8:00\col 17\col 400\col 11:45\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25
+\row \col 8:05\col 16\col 416\col 12:00\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25\col 25
+\endtable
 
 In Table 6.15, the 15-minute column is the same as the column above. 
 The 30-minute column simply adds 
@@ -932,20 +931,33 @@ simple way, a chart can be generated for the loads that would accumulate
 for each cycle time.  
 
 
+Table 6.15 
+\begintable{Accumulated Passengers for Different Cycle Times }
+\header \col Time\col 15 min\col 30 min\col 45 min\col 60 min\col 75 min\col 90 min\col 105 min\col 120 min\col 135 min\col 150 min\col 165 min\col 180 min
+\row \col 6:00\col 15\col 36\col 67\col 118\col 181\col 250\col 317\col 383\col 436\col 481\col 515\col 547
+\row \col 6:15\col 21\col 52\col 103\col 166\col 235\col 302\col 368\col 421\col 466\col 500\col 532\col 553
+\row \col 6:30\col 31\col 82\col 145\col 214\col 281\col 347\col 400\col 445\col 479\col 511\col 532\col 553
+\row \col 6:45\col 51\col 114\col 183\col 250\col 316\col 369\col 414\col 448\col 480\col 501\col 522\col 541
+\row \col 7:00\col 63\col 132\col 199\col 265\col 318\col 363\col 397\col 429\col 450\col 471\col 490\col 525
+\row \col 7:15\col 69\col 136\col 202\col 255\col 300\col 334\col 366\col 387\col 408\col 427\col 462\col 486
+\row \col 7:30\col 67\col 133\col 186\col 231\col 265\col 297\col 318\col 339\col 358\col 393\col 417\col 446
+\row \col 7:45\col 66\col 119\col 164\col 198\col 230\col 251\col 272\col 291\col 326\col 350\col 379\col 404
+\row \col 8:00\col 53\col 98\col 132\col 164\col 185\col 206\col 225\col 260\col 284\col 313\col 338\col 363
+\row \col 8:15\col 45\col 79\col 111\col 132\col 153\col 172\col 207\col 231\col 260\col 285\col 310\col 335
+\row \col 8:30\col 34\col 66\col 87\col 108\col 127\col 162\col 186\col 215\col 240\col 265\col 290\col 315
+\row \col 8:45\col 32\col 53\col 74\col 93\col 128\col 152\col 181\col 206\col 231\col 256\col 281\col 306
+\row \col 9:00\col 21\col 42\col 61\col 96\col 120\col 149\col 174\col 199\col 224\col 249\col 274\col 299
+\row \col 9:00\col 21\col 40\col 75\col 99\col 128\col 153\col 178\col 203\col 228\col 253\col 278\col 303
+\row \col 9:15\col 19\col 54\col 78\col 107\col 132\col 157\col 182\col 207\col 232\col 257\col 282\col 307
+\row \col 9:30\col 35\col 59\col 88\col 113\col 138\col 163\col 188\col 213\col 238\col 263\col 288\col 313
+\row \col 9:45\col 24\col 53\col 78\col 103\col 128\col 153\col 178\col 203\col 228\col 253\col 278\col 303
+\row \col 10:00\col 29\col 54\col 79\col 104\col 129\col 154\col 179\col 204\col 229\col 254\col 279\col 304
+\endtable
 
-Table 6.15 Accumulated Passengers for Different Cycle Times
 
-\figure{assets/image360.jpeg}{FIXME!}{FIXME!}
-
-
-
-
-
-\figure{assets/image370.png}{Accumulated 
+\figure[medium]{assets/image370.png}{Accumulated 
 demands for varying cycle times, using the same data as in 
-Tables 6.13–6.15 above. Image}{ Arthur Szász.}
-
-
+Tables 6.13 – 6.15.}{Arthur Szász.}
 
 The 
 maximum point on each curve shows the maximum accumulated customers, which is needed to derive 
@@ -953,17 +965,6 @@ the necessary
 fleet. Table 6.15 shows that the longer the cycle time, the more demand will accumulate 
 before the same 
 vehicle can get back to the beginning of the route to pick up more customers.
-\endbox
-
-
-
-\beginbox{FIXME!}
-
-\highlight{Box 6.1 How to determine correction factor from hour to cycle time (PHtoCC) based 
-on load 
-observations (continued)}
-
-
 
 For the first example (the top brown-red line), different accumulated 
 demands are graphed for different 
@@ -984,8 +985,6 @@ when 448 passengers accumulate over two hours.
 Thus, for a two-hour cycle time, we can say that 448 
 is the MaxLoadperCycle = 448.
 
-
-
 In each scenario, the load that needs to be accommodated with a fleet 
 is the maximum load for each 
 cycle time, or MaxLoadperCycle. In Table 6.15, the maximums are shown at 
@@ -995,7 +994,6 @@ depending on the cycle time.
 If the accumulated customers (load) per cycle time are divided by the cycle 
 time, this gives the hourly 
 load (MaxLoad \[one hour\]) for a specific cycle time. 
-
 
 \begintable{Calculation 
 of How the Maximum Load Varies with Cycle Time}
@@ -1077,8 +1075,6 @@ MaxLoadperCycle
 \col 0.7
 \endtable
 
-
-
 If the maximum load for 
 each cycle time is then further divided by the maximum load for a one-hour 
 cycle time (265), then this 
@@ -1092,35 +1088,17 @@ PHtoCC can be derived that can then be applied in the future to calculate the
 fleet needs for many routes 
 of different cycle times. 
 
-
-\endbox
-
-
-
-\beginbox{FIXME!}
-
-\highlight{Box 6.1 How to determine correction factor from hour to cycle time (PHtoCC) based 
-on load 
-observations (continued)}
-
-
-
-\figure{assets/image380.png}{Accumulated maximum load (ML) for 
+\figure[medium]{assets/image380.png}{Accumulated maximum load (ML) for 
 various cycle times as a proportion 
 of the accumulated max load for a one-hour cycle time. The slope, 
 as shown by the formula and the straight 
 black line, represents the PHtoCC. Image}{ Arthur Szász.}
 
 
-
-
-
 In 
 Figure 6.27, rounding a bit, the PHtoCC = 0.11. MS-Excel will generate this number if instructed 
 to 
 provide the formula for a trend line when generating a graph. 
-
-
 
 Once the PHtoCC is known, the following 
 formula may be used to determine MaxLoadperCycle for varying 
@@ -1131,11 +1109,51 @@ it describes a set of relationships that are linear in most real-world
 applications but that do not 
 hold at the extremities, resulting in the previously presented.
 
+Eq. 6.21a
+$$ \text{MaxLoadperCycle} = \text{MaxLoad} * TC * [ 1 - \text{PHtoCC} * (\text{TC} -1) ] $$
+
+ Where:
+\item[$$\text{PHtoCC}$$: Nonnegative correction factor, the calibration of which is based on survey data, is discussed in Box 6.2. The usual value is near 0.1;
+\item If $$\text{TC}$$  is larger than one hour: correction $$ 1 - \text{PHtoCC} * (\text{TC} -1) $$ will result smaller than one;
+\item If $$\text{TC}$$ is smaller than one hour: correction $$ 1 - \text{PHtoCC} * (\text{TC} -1) $$ will result larger than one;
+\item If $$\text{TC}$$ is equal one hour: correction $$  1 - \text{PHtoCC} * (\text{TC} -1) $$ will result in one;
+\item If $$\text{PHtoCC}$$ is equal zero, there will be no correction.]
+
+And therefore the fleet needed for any route with any cycle time can be calculated as follows, by expanding Equation 6.14 with Equation 6.6b.
+
+Eq. 6.21b
+
+$$ \text{Fleet}_\text{route} = {\text{MaxLoadperCycle}_\text{route} \over {\text{VSize} * \text{LoadFactor}}} $$
+
+$$ \text{Fleet}_\text{route} = {\\text{MaxLoad} * TC * [ 1 - \text{PHtoCC} * (\text{TC} -1) ] \over {\text{VSize} * \text{LoadFactor}}} $$
+
+Where:
+\item $$ \text{Fleet}_\text{route}$$: Number of buses needed to serve the route;
+\item $$ \text{MaxLoad}$$: Maximum hourly load;  
+\item $$ \text{VSize}_\text{route}$$: Vehicle serving the route capacity;
+\item $$ \text{Freq}_\text{route}$$:Frequency of the route(ideal frequency suggested of 22 vehicles per hour);
+\item $$  \text{LoadFactor} $$: Design load factor (usually 0.85);
+
+This approximation expands the peak one-hour load based on the degree to which the one-hour load is peaked within the full cycle time.
+
+So, for a TC of two hours using the example from above, the maximum load is:
+
+$$ MaxLoadperCycle=265*2*1-0.11*2-1=471.7$$
+
+Hence, for a TC of two hours, the fleet needed is:
+
+$$ 265*2*1-0.11*2-160 = 7.50 $$
+
+$$ Fleet2hours=265*2*1-0.11*2-172*0.85=7.71 $$
+
+The resulting 7.71 is a close approximation to the 7.32 used in the other formula, and again, one should round up to eight vehicles.
+(The discrepancy is because both formulas are simplifications to avoid the use of derivatives, to make the math easier in a way that is sufficient for most real-world uses.) 
+
+In most real-world cases, the peak hour to cycle correction factor (PHtoCC) is around 0.1.
+For a rough approximation, in a relatively normal peaked corridor, one can make a 
+back-of-the-envelope adjustment by just using a generic peak factor such as 0.1, 
+but it is better to calculate the actual peak factor. 
+While this impact of the peak factor on the needed fleet is significant when calculating the fleet for any vehicle route, it makes a very big difference when a multitude of direct-service routes are severed into a trunk route and multiple feeder routes.
 
 \endbox
 
-\' TODO Math: 
-
-Box 6.1 How to determine correction factor from hour to cycle time (PHtoCC) based on load observations (continued)Eq. 6.21aMaxLoadperCycle=MaxLoad*TC *( 1 -  PHtoCC*TC-1 )Where:MaxLoadperCycle = Maximum demand load per cycle time;MaxLoad = Maximum hourly load on the critical link;TC = Cycle Time in hours;PHtoCC = Nonnegative correction factor;If TC is larger than one hour: correction 1-PHtoCC*(TC-1) will result smaller than one;If TC is smaller than one hour: correction 1-PHtoCC*(TC-1) will result larger than one;If TC is equal one hour: correction 1-PHtoCC*(TC-1) will result in one;If PHtoCC is equal zero, there will be no correction.And therefore the fleet needed for any route with any cycle time can be calculated as follows, by expanding Equation 6.14 with Equation 6.6b.Eq. 6.21bFleetroute= MaxLoadperCyclerouteVSize*LoadFactorFleetroute= MaxLoad*TC *[   1 -  PHtoCC*TC-1   ]VSize*LoadFactorWhere:Fleetroute = Number of vehicles needed to serve the route;MaxLoad = Maximum hourly load on the critical link;VSizeroute = Vehicle serving the route capacity;Freqroute = Frequency of the route (ideal frequency suggested of 22 vehicles per hour)LoadFactor = Design load factor (usually 0.85).Box 6.1 How to determine correction factor from hour to cycle time (PHtoCC) based on load observations (continued)Eq. 6.21aMaxLoadperCycle=MaxLoad*TC *( 1 -  PHtoCC*TC-1 )Where:MaxLoadperCycle = Maximum demand load per cycle time;MaxLoad = Maximum hourly load on the critical link;TC = Cycle Time in hours;PHtoCC = Nonnegative correction factor;If TC is larger than one hour: correction 1-PHtoCC*(TC-1) will result smaller than one;If TC is smaller than one hour: correction 1-PHtoCC*(TC-1) will result larger than one;If TC is equal one hour: correction 1-PHtoCC*(TC-1) will result in one;If PHtoCC is equal zero, there will be no correction.And therefore the fleet needed for any route with any cycle time can be calculated as follows, by expanding Equation 6.14 with Equation 6.6b.Eq. 6.21bFleetroute= MaxLoadperCyclerouteVSize*LoadFactorFleetroute= MaxLoad*TC *[   1 -  PHtoCC*TC-1   ]VSize*LoadFactorWhere:Fleetroute = Number of vehicles needed to serve the route;MaxLoad = Maximum hourly load on the critical link;VSizeroute = Vehicle serving the route capacity;Freqroute = Frequency of the route (ideal frequency suggested of 22 vehicles per hour)LoadFactor = Design load factor (usually 0.85). '\\' TODO Math: 
-
-Box 6.1 How to determine correction factor from hour to cycle time (PHtoCC) based on load observations (continued)This approximation expands the peak one-hour load based on the degree to which the one-hour load is peaked within the full cycle time.So, for a TC of two hours using the example from above, the maximum load is:MaxLoadperCycle=265*2*1-0.11*2-1=471.7Hence, for a TC of two hours, the fleet needed is:265*2*1-0.11*2-160 = 7.50Fleet2hours=265*2*1-0.11*2-172*0.85=7.71The resulting 7.71 is a close approximation to the 7.32 used in the other formula, and again, one should round up to eight vehicles. (The discrepancy is because both formulas are simplifications to avoid the use of derivatives, to make the math easier in a way that is sufficient for most real-world uses.) In most real-world cases, the peak hour to cycle correction factor (PHtoCC) is around 0.1. For a rough approximation, in a relatively normal peaked corridor, one can make a back-of-the-envelope adjustment by just using a generic peak factor such as 0.1, but it is better to calculate the actual peak factor. While this impact of the peak factor on the needed fleet is significant when calculating the fleet for any vehicle route, it makes a very big difference when a multitude of direct-service routes are severed into a trunk route and multiple feeder routes.Box 6.1 How to determine correction factor from hour to cycle time (PHtoCC) based on load observations (continued)This approximation expands the peak one-hour load based on the degree to which the one-hour load is peaked within the full cycle time.So, for a TC of two hours using the example from above, the maximum load is:MaxLoadperCycle=265*2*1-0.11*2-1=471.7Hence, for a TC of two hours, the fleet needed is:265*2*1-0.11*2-160 = 7.50Fleet2hours=265*2*1-0.11*2-172*0.85=7.71The resulting 7.71 is a close approximation to the 7.32 used in the other formula, and again, one should round up to eight vehicles. (The discrepancy is because both formulas are simplifications to avoid the use of derivatives, to make the math easier in a way that is sufficient for most real-world uses.) In most real-world cases, the peak hour to cycle correction factor (PHtoCC) is around 0.1. For a rough approximation, in a relatively normal peaked corridor, one can make a back-of-the-envelope adjustment by just using a generic peak factor such as 0.1, but it is better to calculate the actual peak factor. While this impact of the peak factor on the needed fleet is significant when calculating the fleet for any vehicle route, it makes a very big difference when a multitude of direct-service routes are severed into a trunk route and multiple feeder routes. '\
