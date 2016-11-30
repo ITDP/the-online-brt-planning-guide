@@ -87,7 +87,7 @@ lists a few commonly used software packages on the market today.
 \col SIAS
 \col Microsimulation package with integration capabilities
 \row
-\col VISSIM; ;
+\col VISSIM
 \col PTV
 \col Microsimulation package, good animations, good integration with VISUM
 \endtable
