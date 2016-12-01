@@ -16,6 +16,7 @@ h1, h2, h3, h4, h5, h6, h7 {
 	font-family: 'PT Sans', sans-serif;
 	font-weight: bold;
 	color: #666;
+	margin: 32px 0 16px 0;
 }
 h1 { font-size: 32px; }
 h2 { font-size: 28px; }
@@ -23,7 +24,6 @@ h3 { font-size: 24px; }
 h4 { font-size: 20px; }
 h5 { font-size: 16px; }
 h6 { font-size: 16px; }
-
 .brtcolor {
 	color: #00a95e;
 }
@@ -189,7 +189,7 @@ nav {
 	font-size: 14px;
 	float: left;
 	padding: 32px 0;
-	top: 33px;
+	top: 38px;
 	bottom: 0px;
 	width: 256px;
 	position: fixed;
@@ -264,12 +264,12 @@ nav ul hr {
 /* table */
 
 table {
-	width: 100%;
 	font-family: 'PT Sans', sans-serif;
-	font-size: 14px;
+	font-size: 12px;
 	border-spacing: 0;
 	border-collapse: collapse;
 	overflow: scroll;
+	margin: 0 auto;
 }
 th {
 	padding: 8px;
@@ -285,6 +285,7 @@ td {
 td ul {
 	padding-start: 16px;
 	-webkit-padding-start: 16px;
+	margin: 0;
 }
 
 /* equation */
@@ -299,7 +300,6 @@ td ul {
 /* quotes */
 
 blockquote {
-	text-align: justify;
 	font-family: 'PT Serif', serif;
 	margin: 0;
 	background-color: #EEE;
@@ -461,9 +461,12 @@ label {
 }
 
 /* menu */
+
 #toc-menu {
 	display: none;
 }
+
+/* responsive */
 
 @media (max-width: 1239px) {
 	body {
@@ -495,6 +498,7 @@ label {
 	}
 	
 	/* header */
+
 	header {
 		border-bottom: 0px;
 		position: relative;
@@ -531,7 +535,6 @@ label {
 		display: none;
 	}
 
-	
 	/* boxes */
 
 	.box {
@@ -557,16 +560,19 @@ label {
 	}
 	
 	/* target */
+
 	.target {
 		display: block;
 	}
 	
 	/* tables */
+
 	table {
 		font-size: 10px;
 	}
 	
 	/* menu */
+
 	#toc-menu, #toc-loading {
 		display: block;
 		text-align: center;
