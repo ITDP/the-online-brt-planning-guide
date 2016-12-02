@@ -327,7 +327,7 @@ Where:
 
 \item $$ \text{VSize}_\text{optimum} $$: Optimal size of vehicle to serve the route capacity;
 \item $$ \text{BusFixedCost}$$: Total fixed operating cost for the route (in $/hour);
-\item $$ \text{MaxLoadperCyclei}_\text{route}$$: Maximum demand across the critical segment of the route that will accumulate for the duration of one 
+\item $$ \text{MaxLoadperCycle}_\text{route}$$: Maximum demand across the critical segment of the route that will accumulate for the duration of one 
 cycle during the busiest moment of the typical day (see Subsection 6.3.13);
 \item $$  \text{LoadFactor} $$: Design load factor (usually 0.85);
 \item $$\text{Renroute}$$: Renovation factor of the route;
