@@ -765,7 +765,7 @@ function as a direct service.
 
 Figure 6.47 is a graph of the overall cost structure of each alternative:
 
- \figure{assets/image63.jpeg}{This is one possible set of cost curves that represents the total system 
+ \figure[medium]{assets/image63.jpeg}{This is one possible set of cost curves that represents the total system 
 costs as more preexisting direct service routes are converted to trunk-and-feeder routes, once all preexisting 
 direct services are ranked based on the number of potential customers the feeder route brings to the 
 trunk corridor. As more routes are converted to trunk-and-feeder, the cost of operating the trunk and 
@@ -776,31 +776,23 @@ to the trunk are converted, at which point total system costs increase.}{ Pedro 
 So as expected trunk-and-feeder system costs are growing, and normal route costs are decreasing. Figure 
 6.48 shows just the total cost:
 
-\figure{assets/image64.jpeg}{Close up of total system costs only from Figure 6.47.}{ Pedro Szász.}
+\figure[medium]{assets/image64.jpeg}{Close up of total system costs only from Figure 6.47.}{ Pedro Szász.}
 
-\beginbox{FIXME!}
+\beginbox{Exercise to demonstrate the effectiveness of a trunk-and-feeder system}
 
-\highlight{Box 6.3 Exercise to demonstrate the effectiveness of a trunk-and-feeder system}
-
-
-
-Continuing 
-with the same methodology from above, one finds that if the trunk route is very long and 
+Continuing with the same methodology from above, one finds that if the trunk route is very long and 
 carries a lot 
 of demand, the costs will continue to fall as more routes are converted to trunk-and-feeder.
 
-
-
-\figure{assets/image650.jpeg}{FixME}{FIXME!}
-
-
+\'FIXME: Figure not numbered in doc... will be  let out while Xref is not implemented: one can either join the 
+image with next, or fix all subsequente references
+\figure{assets/image650.jpeg}{With very long Trunk Route cycle times, costs continue to fall as more routes are converted to Trunk and Feder}{ITDP}
+'\
 
 \figure{assets/image660.jpeg}{Likely 
 total system cost curve if there are many feeder routes and the 
 feeders only constitute a short portion 
-of total trip time. Graph}{ Arthur Szász.}
-
-
+of total trip time. Graph}{Pedro Szász.}
 
 Conversely, if the trunk portion of the total route is 
 very short, and most of the customers are going 
@@ -809,76 +801,36 @@ to trunk-and-feeder will only increase overall
 system costs.
 
 
-\endbox
-
-
-
-\beginbox{FIXME!}
-
-\highlight{Box 6.3 Exercise to demonstrate the effectiveness of a trunk-and-feeder system} 
-\highlight{(continued)}
-
-
-
-\figure{assets/image670.jpeg}{Fixme}{FIXME!}
-
-
+\'FIXME: Figure not numbered in doc... will be  let out while Xref is not implemented: one can either join the 
+image with next, or fix all subsequente references
+\figure{assets/image670.jpeg}{With very short Trunk Route cycle times, costs continue to rise as more routes are converted to Trunk and Feder}{ITDP}
+'\
 
 \figure{assets/image680.jpeg}{Likely 
 total system cost curve if feeder route travel time is greater 
-than trunk travel time. Graph}{ Arthur 
+than trunk travel time. Graph}{ Pedro 
 Szász.}
 
-
-
-
-\endbox
-
-
-
-\beginbox{FIXME!}
-
-\highlight{Box 6.3 Exercise to demonstrate the effectiveness of a trunk-and-feeder system} 
-\highlight{(continued)}
-
-
-
-\figure{assets/image690.jpeg}{FIXME!}{FIXME!}
-
-
+\'FIXME: Figure not numbered in doc... will be  let out while Xref is not implemented: one can either join the 
+image with next, or fix all subsequente references
+\figure{assets/image690.jpeg}{With relatively short Trunk Route cycle times, costs fall after a certain critical mass of routes have been converted to trunk-and-feeder, but the cost reductions never drop bellos the costo fo teh original service}.I{TDP}
+'\
 
 \figure{assets/image700.jpeg}{Likely 
 cost curve if there are feeder routes of varying length but in 
 general the time spent on the feeder 
 route is long relative to the time spent on the trunk route. Graph}{ 
-Arthur Szász.}
+Pedro Szász.}
 
-
-
-
-\endbox
-
-
-
-\beginbox{FIXME!}
-
-\highlight{Box 6.3 Exercise to demonstrate the effectiveness of a trunk-and-feeder system} 
-\highlight{(continued)}
-
-
-
-\figure{assets/image710.jpeg}{FIXME!}{FIXME!}
-
-
+\'FIXME: Figure not numbered in doc... will be  let out while Xref is not implemented: one can either join the 
+image with next, or fix all subsequente references
+\figure{assets/image690.jpeg}{With long Trunk Route cycle times, and high demand on the two routes continuing far beyond the end of the corrdior, costs fall as all but the two highest demand and longest routes are added.}.I{TDP}
+'\
 
 \figure{assets/image720.jpeg}{Likely 
 cost curve for feeder routes of various travel times but where 
 in general feeder route travel times 
-are short relative to total travel time. Graph}{ ITDP.}
-
-
-
-
+are short relative to total travel time.}{ Pedro Szász.}
 
 This exercise, while simplified from real-world 
 conditions by a number of assumptions, demonstrates 
@@ -896,10 +848,7 @@ there are mathematical reasons
 why there is a tendency toward systems with all direct services or all 
 trunk-and-feeder services.
 
-
 \endbox
-
-
 
 \subsection{ Transfer and Terminal Delay}
 
@@ -925,7 +874,7 @@ When considering whether to implement a trunk-and-feeder service, a direct servi
 it is critical to calculate the likely delays caused by the forced transfer under the specific conditions 
 being proposed for the system.
 
-\subsubsection{Additional Passenger Delay Waiting for the Trunk Vehicle or Feeder Vehicle and Boarding and Alighting Again}
+\subsubsection{ Additional Passenger Delay Waiting for the Trunk Vehicle or Feeder Vehicle and Boarding and Alighting Again}
 
 When customers on a former direct service route now need to take a feeder vehicle and transfer at some 
 point to a trunk vehicle, and this transfer point tends to be near where the bus route is at its maximum 
@@ -938,7 +887,7 @@ boarding and alighting delay per customer who needs to transfer. This additional
 the total boarding and alighting delay at the transfer station multiplied by the total number of transferring 
 customers.
 
-\subsubsection{Extended Vehicle Running Time Due to Route Modifications Required by the Suboptimal Location of the Transfer Terminal}
+\subsubsection{ Extended Vehicle Running Time Due to Route Modifications Required by the Suboptimal Location of the Transfer Terminal}
 
 \figure{assets/image73.jpeg}{An illustration of why additional route kilometers would be added to a 
 route if it were converted to a trunk-and-feeder route and the point where the new transfer takes place 
@@ -1021,15 +970,17 @@ some preliminary guidelines for terminal design that can minimize this walking d
 Taking into account all six forms of transfer delay described in the previous four items, Table 6.29 
 provides some typical ranges for each variable.
 
-Table 6.29 Typical Ranges of Additional Terminal Delays
+\begintable{ Table 6.29 Typical Ranges of Additional Terminal Delays}
+    \useimage{assets/image77.jpeg}
+\endtable
 
-\figure{assets/image77.jpeg}{Some variables affect both the bus operating cost and the waiting time 
+Some variables affect both the bus operating cost and the waiting time 
 of customers, and other variables only affect customer waiting times. If a terminal is located directly 
 on a trunk corridor and at a natural point of divergence for the feeder routes, there could be zero delay 
 for customers and operators due to bad terminal location, but at worst both operators and customers could 
 face very significant delays. Internal and external circulation time for the bus at the terminal virtually 
 always adds some delay. Additional boarding and alighting time due to the transfer delays both customers 
-and vehicles in all cases within predictable ranges.}{FIXME!}
+and vehicles in all cases within predictable ranges.
 
 The additional walking times inside the terminal will vary depending on the quality of the terminal 
 design, and the additional waiting time due to the transfer will vary with the frequency of the trunk 
@@ -1043,7 +994,7 @@ observed willingness to pay to avoid these types of delay.
 
 As a result of this transfer penalty, an average trunk-and-feeder system starts with a disadvantage 
 of twenty-three minutes of customer travel time per route converted. These additional delays also translate 
-into increased cycle time (TC), which directly translates into increased fleet needs and increased operating 
+into increased cycle time ($$TC$$), which directly translates into increased fleet needs and increased operating 
 costs. When added to the extra fleet needed to compensate for the peak hour correction factor and extra 
 fleet required at the terminal for scheduling adjustments in real-world conditions, it is typical for 
 trunk feeder systems to require from 11 percent to 66 percent additional fleet. In most cases, these 
@@ -1114,27 +1065,24 @@ capacity markedly (the subject of the next chapter), these features have not mad
 the space consumed by waiting customers.
 
 In order to show the difference, begin by calculating the average number of passengers waiting for 
-one route (Pwait i) by:
+one route ($$Pwait_i$$) by:
 
-Eq. 6.47\' TODO Math: 
+Eq. 6.47 
 
-Pw i=Pb iFi*(1+Irri)2 '\
+$$ P_{w i}= {P_{b i} \over F_i}  * {(1+Irr_i) \over 2} $$
 
 Where:
 
-Pw i = Passengers waiting for route i at given station (passengers/hour); 
-
-Pb i = Boarding passengers in route i at given station (passengers/hour);
-
-Fi = Frequency of route “i” in vehicles/hour;
-
-Irri = Irregularity index of route i.
+\item $$ P_{w i} $$: Passengers waiting for route i at given station (passengers/hour); 
+\item $$ P_{b i} $$: Boarding passengers in route i at given station (passengers/hour);
+\item $$ F_i $$: Frequency of route “i” (vehicles/hour);
+\item $$ Irr_i $$: Irregularity index of route i.
 
 Then, the total number of passengers waiting at the station (Pwait) is given by:
 
-Eq. 6.48\' TODO Math: 
+Eq. 6.48
 
-Pw total=iPb iFi*(1+Irri)2 '\
+$$ P_{w total} = \sum_i {Pb_i \over F_i} *  {(1+Irr_i) \over 2} $$
 
 Where i is all the routes that use the station.
 
@@ -1144,13 +1092,13 @@ and then multiplied by the risk of irregular arrival of the bus.
 
 For example:
 
-Pbi = 120 passengers/hour;
+$$ P_{b i} $$: 120 passengers/hour ;
 
-Fi = 6 vehicles/hour;
+$$ F_i $$: 6 vehicles/hour;
 
-Irri = 0.3.\' TODO Math: 
+$$ Irr_i $$: 0.3 .
 
-Pw i=1206*1+0.32=13 '\
+$$ P_{w i} = { {120 \over 6}  * (1+0.3) \over 2} =13 $$
 
 It might be expected that at any given time there would be 13 passengers accumulating for boarding 
 in route i.
@@ -1158,9 +1106,9 @@ in route i.
 If there are 20 similar direct routes using the same sub-stop, there will be on average 13 passengers 
 at that bus stop for each route at any given time. 
 
-So, \' TODO Math: 
+So,: 
 
-Pw direct= Pw total=20*13=260 '\
+$$ P{w\ \text{direct}} = P{w\ \text{total}} = 20 * 13 =  260 $$
 
 There will be 260 passengers on the station platform at any given time.
 
@@ -1177,13 +1125,13 @@ are less than 2,000 per hour, one would need 260/2 = 130 square meters, or a pla
 
 If these 20 direct services routes (120 buses) were converted into just one trunk route with a frequency 
 of 60 articulated buses per hour (cutting the frequency in half by doubling the size of the buses), the 
-number of boarding passengers per hour into the one trunk route would be:\' TODO Math: 
+number of boarding passengers per hour into the one trunk route would be:
 
-Pb=120*20=2400 '\
+$$ P_{b i} =  120 * 20 = 2400 $$
 
-And the average number of waiting passengers at each trunk station will be:\' TODO Math: 
+And the average number of waiting passengers at each trunk station will be:
 
-Pw trunk=Pw total=240060*1+0.32=26 passengers '\
+$$ P{w\ \text{trunk}} = P{w\ \text{total}} = { {2400 \over 60}  * (1+0.3) \over 2} = 26 \text{passengers} $$
 
 As people can take the first bus that comes along, fewer passengers accumulate on the platform waiting 
 for their bus. In this scenario, trunk-and-feeder reduces the number of passengers waiting on each platform 
@@ -1199,7 +1147,6 @@ When designing BRT stations, calculate the expected density of waiting customers
 service plan, and ensure that the length and width is adequate to serve both vehicle movements and waiting 
 customer requirements. As the Guangzhou BRT is the highest capacity direct service BRT system in the 
 world, it is worth looking at the station-sizing ramifications of its direct service in Figure 6.57. 
-
 
 \figure{assets/image78.jpeg}{On the Guangzhou BRT, the highest capacity direct service BRT system in 
 the world, there are stations with up to four sub-stops and twelve docking bays (two to three docking 
