@@ -789,7 +789,7 @@ image with next, or fix all subsequente references
 \figure{assets/image650.jpeg}{With very long Trunk Route cycle times, costs continue to fall as more routes are converted to Trunk and Feder}{ITDP}
 '\
 
-\figure{assets/image660.jpeg}{Likely 
+\figure[medium]{assets/image660.jpeg}{Likely 
 total system cost curve if there are many feeder routes and the 
 feeders only constitute a short portion 
 of total trip time. Graph}{Pedro Szász.}
@@ -806,7 +806,7 @@ image with next, or fix all subsequente references
 \figure{assets/image670.jpeg}{With very short Trunk Route cycle times, costs continue to rise as more routes are converted to Trunk and Feder}{ITDP}
 '\
 
-\figure{assets/image680.jpeg}{Likely 
+\figure[medium]{assets/image680.jpeg}{Likely 
 total system cost curve if feeder route travel time is greater 
 than trunk travel time. Graph}{ Pedro 
 Szász.}
@@ -816,7 +816,7 @@ image with next, or fix all subsequente references
 \figure{assets/image690.jpeg}{With relatively short Trunk Route cycle times, costs fall after a certain critical mass of routes have been converted to trunk-and-feeder, but the cost reductions never drop bellos the costo fo teh original service}.I{TDP}
 '\
 
-\figure{assets/image700.jpeg}{Likely 
+\figure[medium]{assets/image700.jpeg}{Likely 
 cost curve if there are feeder routes of varying length but in 
 general the time spent on the feeder 
 route is long relative to the time spent on the trunk route. Graph}{ 
@@ -827,7 +827,7 @@ image with next, or fix all subsequente references
 \figure{assets/image690.jpeg}{With long Trunk Route cycle times, and high demand on the two routes continuing far beyond the end of the corrdior, costs fall as all but the two highest demand and longest routes are added.}.I{TDP}
 '\
 
-\figure{assets/image720.jpeg}{Likely 
+\figure[medium]{assets/image720.jpeg}{Likely 
 cost curve for feeder routes of various travel times but where 
 in general feeder route travel times 
 are short relative to total travel time.}{ Pedro Szász.}
@@ -970,7 +970,7 @@ some preliminary guidelines for terminal design that can minimize this walking d
 Taking into account all six forms of transfer delay described in the previous four items, Table 6.29 
 provides some typical ranges for each variable.
 
-\begintable{ Table 6.29 Typical Ranges of Additional Terminal Delays}
+\begintable{Typical Ranges of Additional Terminal Delays}
     \useimage{assets/image77.jpeg}
 \endtable
 
@@ -1158,7 +1158,7 @@ Far East BRT.}
 
 In Guangzhou, the design parameter was to provide for two passengers per square meter. Each docking 
 bay has 5 meters of platform width, of which 2.5 is usable for a waiting area, and each waiting area 
-per docking bay is 20 meters long. As such, each waiting area per bus is 20 m \* 2.5 m = 50 m2. With eight 
+per docking bay is 20 meters long. As such, each waiting area per bus is $$ 20 \text{m} * 2.5 \text{m} = 50 {\text{m}}^2 $$. With eight 
 docking bays, the station can support up to 100 passengers per docking bay, and 800 passengers in total.
 
 It was not easy, however, to convince the authorities to allocate 5 meters of road right-of-way to 

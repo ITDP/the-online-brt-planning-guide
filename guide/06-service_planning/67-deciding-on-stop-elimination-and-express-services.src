@@ -3,7 +3,7 @@
 \section{ Deciding on Stop Elimination and Express Services }
 
 > If you want a happy ending that depends, of course, on where you stop your story.
-@ —Orson Welles, actor, director, producer, and writer, 1915–1985
+@ Orson Welles, actor, director, producer, and writer, 1915–1985
 
 This section addresses the question of whether a new BRT service should retain the same stations as 
 preexisting services, and whether limited-stop services should be created. Creating limited-stop services 
@@ -82,29 +82,29 @@ around 450 meters. Image}{ Arthur Szász.}
 The following formulas can be used to calculate the optimal distance between stations, where the total 
 walking cost and travel cost is minimized, or where:
 
-Eq. 6.49\' TODO Math: 
+Eq. 6.49
 
-Distanceoptimum=MINCwalk+Ctravel '\
+$$ \text{Distance}_\text{optimum} = MIN({C_\text{walk} + C_\text{travel}}) $$
 
 Where:
 
-Distanceoptimum = Optimal distance between stations;
+\item $$ \text{Distance}_\text{optimum} $$: Optimal distance between stations;
+\item $$ C_\text{walk}:$$ Walking cost;
+\item $$ C_\text{travel}:$$ Travel cost.
 
-Cwalk = Walking cost;
-
-Ctravel = Travel cost.
-
-Table 6.29 provides an example comparing general travel times for varying station spacings (from 210 
+Table 6.30 provides an example comparing general travel times for varying station spacings (from 210 
 meters to 500 meters) for an average customer trip. In this example, the average customer trip on a corridor 
 is 4.35 kilometers. The trade-off between additional walking distances due to fewer stations and time 
 spent waiting at stations due to more stations is compared on a per customer basis.
 
-Table 6.30 Comparison of General Travel Times for Varying Station Spacings
+\begintable{Comparison of General Travel Times for Varying Station Spacings}
+    \useimage{assets/image81.png}
+\endtable
 
-\figure{assets/image81.png}{In Table 6.30, the average number of stations per customer trip on the 
+In Table 6.30, the average number of stations per customer trip on the 
 corridor is derived by dividing the average trip length by the average distance between stations. This 
 is then multiplied by the average fixed dwell time per station to get the average delay per customer 
-from the selected station distance.}{FIXME!}
+from the selected station distance.
 
 It is then assumed that each customer walks on average one-quarter of the distance between stations 
 at a walking speed of 1.3 meters per second. Boarding customers then have to walk to the station, and 
@@ -193,14 +193,15 @@ of limited-stop services. If it is assumed that a standard 12-meter vehicle is a
 capacity at 60 customers per vehicle, 20 vehicles per hour translates roughly into a maximum load of 
 1,200 customers per hour. Limited-stop services can therefore be considered for services that have maximum 
 load above 1,200 customers per hour, as follows:
-\item At loads of 1,200–1,800: It may make sense to introduce a service that only stops at the more 
+
+\number *At loads of 1,200–1,800:* It may make sense to introduce a service that only stops at the more 
 popular stops when most boarding and alighting demand is concentrated at only a few stops along the corridor, 
 but where the simple elimination of the stop is difficult for political reasons. 
-\item At loads greater than 1,800: If demand is relatively evenly distributed along a corridor, it is 
+\number *At loads greater than 1,800*: If demand is relatively evenly distributed along a corridor, it is 
 desirable to split this demand up into more specialized services, as it will not add much waiting time 
 (due to high frequencies related to the demand), and will increase speed for many customers, while also 
 improving comfort and regularity of service. 
-\item If trip lengths are long, or the renovation rate is low, these may indicate the need for limited-stop 
+\number If trip lengths are long, or the renovation rate is low, these may indicate the need for limited-stop 
 or express services. 
 
 Beyond these basic principles, more detailed analysis should be done to determine whether limited-stop 
@@ -209,7 +210,7 @@ to be known of the trip origins and destinations of the customers using each bus
 is done by gathering enough information to put a corridor-specific OD matrix into a simulation model, 
 and then running alternative scenarios to see how they perform. The following sections provide some basic 
 guidance as to the sorts of local and limited-stop service patterns that one might test and why. Once 
-the demand patterns of the alternative services are output from the model, the following provides some 
+he demand patterns of the alternaive services are output from the model, the following provides some 
 tools to make a determination on the best pattern using cost-benefit analysis.
 
 \subsubsection{The Costs of Implementing Limited-Stop Services}
@@ -223,39 +224,30 @@ be calculated.
 
 The cost of implementing an express route results in:
 
-Eq. 6.50\' TODO Math: 
+Eq. 6.50
 
-ExpressCost=WaitCostexpress+WaitCostlocal - WaitCostoriginalservice '\
+$$ \text{ExpressCost} = \text{WaitCost}_\text{express} + \text{WaitCost}_\text{local} - \text{WaitCost}_\text{originalservice} $$
 
 Where:
 
-ExpressCost = Additional cost of waiting during the peak hour with express service implementation;
-
-WaitCostoriginal service = Total waiting cost of the original service;
-
-WaitCostexpress = Total waiting cost of the included express service;
-
-WaitCostlocal = Total waiting cost of the new local service.
+\item $$ \text{ExpressCost} $$: Additional cost of waiting during the peak hour with express service implementation; 
+\item $$ \text{WaitCost}_\text{original service} $$:Total waiting cost of the original service;
+\item $$ \text{WaitCost}_\text{express} $$: Total waiting cost of the included express service;
+\item $$ \text{WaitCost_\text{local}} $$: Total waiting cost of the new local service.
 
 The cost of waiting for a route (original, new express, or new local) service (WaitCostrouteexpress) 
-is calculated using the previously explained formula from Section 6.4.3 Equation 6.12:  \' TODO Math: 
+is calculated using the previously explained formula from Section 6.4.3 Equation 6.12: 
 
-WaitCostroute=Renroute*Costwait* 0.5*1+Irrroute*LoadFactor* VSize '\
+$$ \text{WaitCost}_\text{route} =  \text{Ren}_\text{route} * \text{Cost}_\text{wait} * 0.5 * (1+ Irr_\text{route}) *\text{LoadFactor} * \text{VSize} $$
 
 Where:
-
-WaitCostRoute = Total waiting time cost generated to the route users (in US$/hour);
-
-Renroute = Renovation factor of the route;
-
-Costwait = Average user waiting cost (US$/time);
-
-Irrroute = Irregularity index of the route; measure of the variance between the actual headways and 
+\item $$\text{WaitCostRoute}$$: Total waiting time cost generated to the route users (in $);
+\item $$\text{Ren}_\text{route}$$: Renovation factor of the route;
+\item $$ \text{Costwait}$$: Average user waiting cost ($/time);
+\item $$ \text{Irr}\text{route}$$: Irregularity index of the route; measure of the variance between the actual headways and 
 the scheduled headways (usually near 0.3, see Section 6.3.9);
-
-VSize = Vehicle capacity;
-
-LoadFactor = Design load factor (usually 0.85).
+\item $$ \text{V}_\text{Size}$$: Vehicle capacity;
+\item $$ \text{LoadFactor}$$: Design load factor (usually 0.85).
 
 Note that frequency itself does not factor into this equation as the cost of waiting does not change 
 based on how long customers must wait. The more demand, the greater number of people waiting, but the 
@@ -267,93 +259,88 @@ If a BRT service is unlikely to have a functional operational control system, or
 cannot easily be measured, it is often sufficient to simply use a standard operational irregularity index, 
 which is usually around 0.3 based on empirical observation, or: \' TODO Math: 
 
-WaitCostroute= Renroute*Costwait* 0.5*(1+0.3)*LoadFactor* VSize '\
+$$ \text{WaitCost}_\text{route} =  \text{Ren}_\text{route} * \text{Cost}_\text{wait} * 0.5 * (1+0.3) *\text{LoadFactor} * \text{VSize} $$
 
 However, the level of irregularity usually varies with the frequency, and that will have a significant 
 impact on irregularity. In order to evaluate irregularity varying with frequency (Freqroute), the formula 
 needs to be modified to the following: 
 
-Eq. 6.51\' TODO Math: 
+Eq. 6.51
 
-WaitCostroute= Renroute*Costwait* 0.5*1+FreqrouteFreqoptimum2*LoadFactor* VSize '\
+$$ \text{WaitCost}_\text{route} =  \text{Ren}_\text{route} * \text{Cost}_\text{wait} * 0.5 * (1+ ({\text{Freq}_\text{route}  \over \text{Freq}_\text{optimum}  }) ^2) *\text{LoadFactor} * \text{VSize} $$
 
 Where:
+\item $$\text{WaitCostRoute}$$: Total waiting time cost generated to the route users (in $);
+\item $$\text{Ren}_\text{route}$$: Renovation factor of the route;
+\item $$ \text{Costwait}$$: Average user waiting cost ($/time);
+\item $$ \text{Irr}\text{route}$$: Irregularity index of the route; measure of the variance between the actual headways and 
+the scheduled headways (usually near 0.3, see Section 6.3.9);
+\item $$ \text{Freq}_{route}$$: Frequency of the route (vehicles/time)
+\item $$ \text{V}_\text{Size}$$: Vehicle capacity;
+\item $$ \text{LoadFactor}$$: Design load factor (usually 0.85);
+\item $$ \text{Freq}_{optimum}$$: Optimum frequency to avoid irregularity of boarding and alighting;
 
-WaitCostexpress = Total waiting time cost generated to the route users (in US$/hour);
+Therefore, the formula can simply be rewritten as: 
 
-Renexpress = Renovation factor of the route;
-
-Costwait = Average user waiting cost (US$/time);
-
-Freqroute = Frequency of the route (vehicles/time);
-
-VSize = Vehicle capacity;
-
-LoadFactor = Design load factor (usually 0.85);
-
-Freqoptimum = Optimum frequency to avoid irregularity of boarding and alighting.
-
-From empirical observation of many BRT routes and normal bus routes, irregularity is minimized at a 
-frequency of 22 vehicles/hour.
-
-Therefore, the formula can simply be rewritten as: \' TODO Math: 
-
-WaitCostroute= Renroute*Costwait* 0.5*1+Freqroute222*LoadFactor* VSize '\
+$ \text{WaitCost}_\text{route} =  \text{Ren}_\text{route} * \text{Cost}_\text{wait} * 0.5 * (1+ ({\text{Freq}_\text{route}  \over 22 }) ^2) *\text{LoadFactor} * \text{VSize} $$
 
 For example, if a route is split in two, one local and the other limited, and if half of the original 
-frequency is assigned to each new route, the results for each route become: \' TODO Math: 
+frequency is assigned to each new route, the results for each route become: 
 
-WaitCostexpress=WaitCostlocal= Renoriginal service*Costwait* 0.5*1+0.5*Freqoriginal service222*LoadFactor* VSize '\
+$$ \text{WaitCost}_\text{express} = \text{WaitCost}_\text{local} $$
+$$  = Re_\text{original service} *\text{Cost}_\text{wait} * 0.5 * (1+ ({\text{Freq}_\text{original service}  \over 22 }) ^2) *\text{LoadFactor} * \text{VSize} $$
 
-If we call , Eq. 6.42 can be rewritten as:\' TODO Math: 
+If we call $$ K = Ren_\text{original service}*\text{Cost}_\text{wait} * 0.5 * \text{LoadFactor} * \text{VSize} $$
+, Eq. 6.42 can be rewritten as:
 
-ExpressCost=WaitCostexpress+WaitCostlocal -WaitCostoriginalservice '\\' TODO Math: 
+$$ \text{ExpressCost} = \text{WaitCost}_\text{express} + \text{WaitCost}_\text{local} - \text{WaitCost}_\text{originalservice} $$
 
-ExpressCost=2*WaitCostlocal -WaitCostoriginalservice '\\' TODO Math: 
+$$ \text{ExpressCost} = 2 * \text{WaitCost}_\text{local} - \text{WaitCost}_\text{originalservice} $$
 
-ExpressCost= 2*K*1+0.5*Freqoriginal service222- K* 1+Freqoriginal service222 '\\' TODO Math: 
+$$ \text{ExpressCost} = 2 * K *(1+ ({0.5 * \text{Freq}_\text{original service}  \over 22 }) ^2) - K * (1+ ({0.5 * \text{Freq}_\text{original service}  \over 22 }) ^2) $$
 
-ExpressCost= K* 2+2*0.5*Freqoriginal service222- 1-Freqoriginal service222 '\\' TODO Math: 
+$$ \text{ExpressCost} =  K *(2+2*({0.5 * \text{Freq}_\text{original service}  \over 22 }) ^2 - 1 -  ({\text{Freq}_\text{original service}  \over 22 }) ^2) $$
 
-ExpressCost= K* 1+2*0.25*Freqoriginal service222-Freqoriginal service222 '\\' TODO Math: 
+$$ \text{ExpressCost} =  K *(1+2*0.25*({ \text{Freq}_\text{original service}  \over 22 }) ^2 - ({\text{Freq}_\text{original service}  \over 22 }) ^2) $$
 
-ExpressCost= K* 1+0.5*Freqoriginal service222-Freqoriginal service222 '\\' TODO Math: 
+$$ \text{ExpressCost} =  K *(1+0.5*({ \text{Freq}_\text{original service}  \over 22 }) ^2 - ({\text{Freq}_\text{original service}  \over 22 }) ^2) $$
 
-ExpressCost= K* 1-0.5Freqoriginal service222 '\
+$$ \text{ExpressCost} =  K *(1-0.5*({ \text{Freq}_\text{original service}  \over 22 }) ^2 ) ^2) $$
 
-The express cost multiplier is shown on the graph in Figure 6.60 as K in function of Freqoriginal service 
-/ 22 (22 = Freq optimum):
 
-\figure{assets/image82.jpeg}{The cost factor of splitting a route into a local route and a new limited-stop 
-route when the relation of frequency to optimal frequency (Fr/Fot) is considered: When the frequency 
-rises above 31 (31/22 = 1.4) the benefit from reduced service irregularity is greater than the time lost 
-waiting for a lower frequency service. Image}{ Arthur Szász.}
+The express cost multiplier (1-0.5*({ \text{Freq}_\text{original service}  \over 22 }) ^2 ) ^2) $$
+is shown on the graph in Figure 6.60 as is K shown in function of $$ {\text{Freq}_\text{original service} \over 22} (22 = \text{Freq}_\text{optimum}) $$:
 
-In the graph on Figure 6.60, the “1” on the x axis represents 22 buses per hour (22/22). The 1.4 represents 
-roughly 31 buses per hour (31/22 = 1.4). At greater than 31 buses per hour, the additional waiting caused 
+\figure[medium]{assets/image82.jpeg}{The cost factor of splitting a route into a local route and a new limited-stop 
+route when the relation of frequency to optimal frequency ($$Fr \over Fot$$) is considered: When the frequency 
+rises above 31 ($$ 31 \over 22 = 1.4 $$) the benefit from reduced service irregularity is greater than the time lost 
+waiting for a lower frequency service.}{ Arthur Szász.}
+
+In the graph on Figure 6.60, the “1” on the x axis represents 22 buses per hour ($$22 \over 22$$). The 1.4 represents 
+roughly 31 buses per hour ($$31 \over 22 = 1.4$$). At greater than 31 buses per hour, the additional waiting caused 
 by the reduced frequency from the splitting of the original route for the creation of a new express service 
 is outweighed by the benefit of reducing the irregularity in bus arrivals to the point where CostWait 
 always becomes a negative cost, or in other words, a benefit. Therefore, if a BRT route has more than 
 thirty-one vehicles an hour, it generally makes sense to split it into a new limited-stop service just 
 to reduce irregularity, even if boarding and alighting volumes are nearly uniform between stops.
 
-If multiple routes are created, then the total wait cost for each new route needs to be calculated:
+If multiple ($$n$$) routes are created, then the total wait cost for each new route needs to be calculated:
 
-Eq. 6.52\' TODO Math: 
+Eq. 6.52
 
-ExpressCost=WaitCostexpress(n)+ WaitCostexpress(n+1,   etc.)+WaitCostlocal - WaitCostoriginalservice '\
+$$ \text{ExpressCost}= WaitCost_\text{express(1)} + \... +  WaitCost_\text{express(n)} +  WaitCost_\text{local} - WaitCost_\text{express(originalservice)}$$
 
 Where:
 
-ExpressCost = Additional cost of implementing limited-stop services;
+$$ \text{ExpressCost} $$: Additional cost of implementing limited-stop services;
 
-WaitCostoriginal service = Total waiting cost of the original service;
+$$ WaitCost_\text{express(1)} $$: Total waiting cost of the first added express service;
 
-WaitCostexpress(n) = Total waiting cost of the first added express service;
+$$ WaitCost_\text{express(n)} $$: Total waiting cost of n-th additional added express service;
 
-WaitCostexpress(n+1, etc.) =Total waiting cost of additional added express services;
+$$ WaitCost_\text{local} $$: Total waiting cost of adding one local service;
 
-WaitCostlocal = Total waiting cost of adding one local service.
+$$ WaitCost_\text{originalservice}$$: Total waiting cost of the original service.
 
 \subsubsection{Benefits of Implementing Limited-Stop Services }
 
@@ -362,53 +349,46 @@ For the most part, the total ridership on the route will simply be divided betwe
 and the new limited-stop service, so there will be no significant impact on overall boarding (Tb) and 
 alighting (Ta) time.  
 
-*Hence, the benefit is a function of the reduction of fixed dwell time (T0) for each station removed.*
+*Hence, the benefit is a function of the reduction of fixed dwell time ($$T_0$$) for each station removed.*
 
 The value of this benefit comes from two things: 
-\item The reduction in the travel time for all the customers that are using the limited-stop route (Loadlimited-stopat 
-k) on each link where a station k is skipped. This should be multiplied by the value of customers’ time 
-(Ctravel), which is usually treated as half their cost of waiting, or Ctravel = Cw/2. In the above examples, 
+
+\item *A* The reduction in the travel time for all the customers that are using the limited-stop route ($$\text{Load_\text{limited-stop at 
+k$$) on each link where a station k is skipped. This should be multiplied by the value of customers’ time 
+($$C_travel$$), which is usually treated as half their cost of waiting, or $$ C_\text{travel} = Cw/2$$. In the above examples, 
 a constant value of waiting of US$12 per hour has been used so that in the examples in this section 
 a constant value of travel time will be $6 per hour. It is usually set at one-third of the average wage. 
 
-\item The reduction in the travel time for the BRT vehicles, which would need less time to deliver the 
+\item *B* The reduction in the travel time for the BRT vehicles, which would need less time to deliver the 
 same service. The value of the operational cost reduction per bus resulting from the faster bus speeds 
-is equal to the bus operational cost per hour (Costbus) multiplied by the number of buses that benefit 
-from the stop reduction (Flimited-stop-at-k). 
+is equal to the bus operational cost per hour ($$\text{Cost_\text{bus}$$) multiplied by the number of buses that benefit 
+from the stop reduction ($$F_\text{limited-stop-at-k}$$). 
 
 So the benefit of creating a limited-stop service is expressed as follows:
 
-Eq. 6.53\' TODO Math: 
+Eq. 6.53
 
-ExpressBenefit=T0*k=skipped stationLoadlimited-stop-at-k*Costtravel+Freqlimited-stop-at-k*Costbus '\
-
+$$ ExpressBenefit=T_0* \sum_{\text{k=skipped station} Load\text{limited-stop-at-k}*\text{Cost}_\text{travel}+\text{Freq}_\text{limited-stop-at-k}*\test{Cost}_\test{bus} $$
 Where:
 
-ExpressBenefit = Benefit of implementing limited-stop services;
-
-T0 = Fixed dwell time (or “dead time”);
-
-Loadlimited-stop-a-k = Passenger load that uses the new limited-stop route on each link where a station 
+\item $$ \text{ExpressBenefit} $$: Benefit of implementing limited-stop services;
+\item $$ T_0$$: Fixed dwell time (or “dead time”);
+\item $$ \text{Load}_\text{limited stop at k}$$: Passenger load that uses the new limited-stop route on each link where a station 
 k is skipped;
+\item $$ \text{Cost}_\text{travel}$$: Passenger value of time when travelling;
+\item $$ \text{Freq}_\text{limited-stop-at-k}$$: Number of buses that benefit from the removal of station, k; 
+\item $$ \text{Cost}_\text{bus}$$: Bus operational cost per hour (see Section 6.3.12).
 
-Costtravel = Passenger value of time when travelling;
-
-Freqlimited-stop-at-k = Number of buses that benefit from the removal of station, k; 
-
-Costbus = Bus operational cost per hour (see Section 6.3.12).
-
-An express route should be created when there is a net benefit, or when Benefitexpress is greater than 
+An express route should be created when there is a net benefit, or when $$\text{Benefit}_\text{express} is greater than 
 the total waiting cost of adding that route, as calculated in the previous subsection item.
 
-Eq. 6.54\' TODO Math: 
+Eq. 6.54 
 
-ExpressBenefit>ExpressCost '\
+$$ \text{ExpressBenefit}>\text{ExpressCost} $$
 
 Where:
-
-ExpressBenefit = Benefit of implementing limited-stop services;
-
-ExpressCost = Total waiting cost of adding route.
+\item \text{ExpressBenefit}: $$ Benefit of implementing limited-stop services;
+\item \text{ExpressCost}: $$ Total waiting cost of adding route.
 
 For more complex scenarios, the total benefits of each route added need to be weighed against the total 
 costs of each route added.  
@@ -494,31 +474,33 @@ In a real-world situation, this data should have already been collected and put 
 Most demand modeling software can estimate the OD matrix from boarding and alighting counts, but it is 
 better to have real station-to-station OD data.
 
-Table 6.32 Uniform Origin-Destination (OD) Matrix Example
+\begintable{Uniform Origin-Destination (OD) Matrix Example}
+    \useimage{assets/image83.png}
+\endtable
 
-\figure{assets/image83.png}{The OD matrix of Table 6.32 would result in the boarding and alighting 
+The OD matrix of Table 6.32 would result in the boarding and alighting 
 per station and loads after leaving the station as shown on Table 6.33 and Figure 6.61 where the dots 
 near the x axis show the number of customers boarding (blue) and alighting (red) at each station; the 
-green line indicates the load at each station.}{FIXME!}
+green line indicates the load at each station.}
 
 Note that other OD patterns could yield the boarding and alighting results observed in the table, and 
 a different OD matrix will require another optimal service pattern; that is why it is best to have the 
 real OD matrix for the whole operating time or day. 
 
-Table 6.33 Boarding, Alighting, and Loads per Station
-
-\figure{assets/image84.png}{FIXME!}{FIXME!} 
+\begintable{Boarding, Alighting, and Loads per Station}
+    \useimage{assets/image84.png}{FIXME!}{FIXME!} 
+\endtable
 
 \figure{assets/image85.jpeg}{Demand profile on a route where a uniform number of customers (fifty-eight) 
 are travelling between each possible stop. Blue dots represent the number of boardings at each stop, 
 red dots represent the alightings at each stop, and the green line represents the number of customers 
-on board buses between each stop during the peak hour. Image}{ Arthur Szász.}
+on board buses between each stop during the peak hour.}{Pedro Szász.}
 
 The maximum hourly load on the critical link is 9,048 (MaxLoad). It occurs between the twelfth and 
 thirteenth stations. As the design bus capacity (VSize \* LoadFactor) is 150, the frequency (F) should 
-be set at around 61 per hour, or:\' TODO Math: 
+be set at around 61 per hour, or
 
-F=9048150=61.32 '\
+$$ F = {9048 \over 150} = 61.32 $$
 
 The determination to be made is whether there would be benefits in splitting this demand into a limited-stop 
 service and a local service, and if so, which stations should be skipped by the limited-stop service. 
@@ -531,7 +513,7 @@ demand.
 
 \figure{assets/image86.jpeg}{Stop sequence for an express service with uniform demand profile (fifty-eight 
 customers between each stop) where both the local and the express stop at all Zone “A” stations and Zone 
-“C” stations but where the express does not stop in Zone “B” stations. Image}{ Arthur Szász.}
+“C” stations but where the express does not stop in Zone “B” stations. Image}{ Pedro Szász.}
 
 When demand is relatively uniform in a manner similar to this example, it often makes sense to have 
 a limited service run local at the beginning and at the end of its route, and run express in the middle 
@@ -545,7 +527,7 @@ total fixed dwell time saved is greater than the new waiting time imposed by the
 
 From looking at the curve, it may appear that the limited-stop service bypasses the majority of the 
 demand, but keep in mind that the curve says that the majority of the demand is actually *on the bus 
-*in the middle of the corridor and that boardings and alightings combined are uniform throughout.
+* in the middle of the corridor and that boardings and alightings combined are uniform throughout.
 
 Based on the proposed split of the service in two:
 \item Customers travelling between points within Zone A or between points within Zone C will be indifferent 
@@ -560,6 +542,11 @@ read the service maps or confused tourists might be exceptions.
 
 Those taking the limited-stop service gain significant time savings through bypassing stops in Section 
 B from their route.
+
+\begintable{Boarding, Alighting, and Loads per Station}
+    \useimage{assets/image84.png}{FIXME!}{FIXME!} 
+\endtable
+
 \begintable{Demand Division by Zone}
 \header
 \col Zone
