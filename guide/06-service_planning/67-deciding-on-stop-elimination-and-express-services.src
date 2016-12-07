@@ -257,7 +257,7 @@ the end, total demand is not related to total waiting cost.
 
 If a BRT service is unlikely to have a functional operational control system, or if a regular bus service 
 cannot easily be measured, it is often sufficient to simply use a standard operational irregularity index, 
-which is usually around 0.3 based on empirical observation, or: \' TODO Math: 
+which is usually around 0.3 based on empirical observation, or: 
 
 $$ \text{WaitCost}_\text{route} =  \text{Ren}_\text{route} * \text{Cost}_\text{wait} * 0.5 * (1+0.3) *\text{LoadFactor} * \text{VSize} $$
 

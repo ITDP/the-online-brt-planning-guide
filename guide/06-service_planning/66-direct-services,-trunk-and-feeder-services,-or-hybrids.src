@@ -1108,7 +1108,7 @@ at that bus stop for each route at any given time.
 
 So,: 
 
-$$ P{w\ \text{direct}} = P{w\ \text{total}} = 20 * 13 =  260 $$
+    $$ P_{w\ \text{direct}} = P_{w\ \text{total}} = 20 * 13 =  260 $$
 
 There will be 260 passengers on the station platform at any given time.
 
@@ -1131,7 +1131,7 @@ $$ P_{b i} =  120 * 20 = 2400 $$
 
 And the average number of waiting passengers at each trunk station will be:
 
-$$ P{w\ \text{trunk}} = P{w\ \text{total}} = { {2400 \over 60}  * (1+0.3) \over 2} = 26 \text{passengers} $$
+$$ P_{w\ \text{trunk}} = P_{w\ \text{total}} = { {2400 \over 60}  * (1+0.3) \over 2} = 26 \text{passengers} $$
 
 As people can take the first bus that comes along, fewer passengers accumulate on the platform waiting 
 for their bus. In this scenario, trunk-and-feeder reduces the number of passengers waiting on each platform 
