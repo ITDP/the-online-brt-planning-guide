@@ -226,14 +226,14 @@ The cost of implementing an express route results in:
 
 Eq. 6.50
 
-$$ \text{ExpressCost} = \text{WaitCost}_\text{express} + \text{WaitCost}_\text{local} - \text{WaitCost}_\text{originalservice} $$
+$$ \text{ExpressCost} = \text{WaitCost}_\text{express} + \text{WaitCost}_\text{local} - \text{WaitCost}_\text{original service} $$
 
 Where:
 
 \item $$ \text{ExpressCost} $$: Additional cost of waiting during the peak hour with express service implementation; 
 \item $$ \text{WaitCost}_\text{original service} $$:Total waiting cost of the original service;
 \item $$ \text{WaitCost}_\text{express} $$: Total waiting cost of the included express service;
-\item $$ \text{WaitCost_\text{local}} $$: Total waiting cost of the new local service.
+\item $$ \text{WaitCost}_\text{local} $$: Total waiting cost of the new local service.
 
 The cost of waiting for a route (original, new express, or new local) service (WaitCostrouteexpress) 
 is calculated using the previously explained formula from Section 6.4.3 Equation 6.12: 
@@ -282,7 +282,7 @@ the scheduled headways (usually near 0.3, see Section 6.3.9);
 
 Therefore, the formula can simply be rewritten as: 
 
-$ \text{WaitCost}_\text{route} =  \text{Ren}_\text{route} * \text{Cost}_\text{wait} * 0.5 * (1+ ({\text{Freq}_\text{route}  \over 22 }) ^2) *\text{LoadFactor} * \text{VSize} $$
+$$ \text{WaitCost}_\text{route} =  \text{Ren}_\text{route} * \text{Cost}_\text{wait} * 0.5 * (1+ ({\text{Freq}_\text{route}  \over 22 }) ^2) *\text{LoadFactor} * \text{VSize} $$
 
 For example, if a route is split in two, one local and the other limited, and if half of the original 
 frequency is assigned to each new route, the results for each route become: 
@@ -308,7 +308,7 @@ $$ \text{ExpressCost} =  K *(1+0.5*({ \text{Freq}_\text{original service}  \over
 $$ \text{ExpressCost} =  K *(1-0.5*({ \text{Freq}_\text{original service}  \over 22 }) ^2 ) ^2) $$
 
 
-The express cost multiplier (1-0.5*({ \text{Freq}_\text{original service}  \over 22 }) ^2 ) ^2) $$
+The express cost multiplier $$ (1-0.5*({ \text{Freq}_\text{original service}  \over 22 }) ^2 ) ^2) $$
 is shown on the graph in Figure 6.60 as is K shown in function of $$ {\text{Freq}_\text{original service} \over 22} (22 = \text{Freq}_\text{optimum}) $$:
 
 \figure[medium]{assets/image82.jpeg}{The cost factor of splitting a route into a local route and a new limited-stop 
@@ -328,7 +328,8 @@ If multiple ($$n$$) routes are created, then the total wait cost for each new ro
 
 Eq. 6.52
 
-$$ \text{ExpressCost}= WaitCost_\text{express(1)} + \... +  WaitCost_\text{express(n)} +  WaitCost_\text{local} - WaitCost_\text{express(originalservice)}$$
+$$ \text{ExpressCost} = \text{WaitCost}_\text{express(1)} + \ldots +  \text{WaitCost}_\text{express(n)} +  \text{WaitCost}_\text{local} - \text{WaitCost}_\text{original service}$$
+
 
 Where:
 
@@ -340,7 +341,7 @@ $$ WaitCost_\text{express(n)} $$: Total waiting cost of n-th additional added ex
 
 $$ WaitCost_\text{local} $$: Total waiting cost of adding one local service;
 
-$$ WaitCost_\text{originalservice}$$: Total waiting cost of the original service.
+$$ WaitCost_\text{original service}$$: Total waiting cost of the original service.
 
 \subsubsection{Benefits of Implementing Limited-Stop Services }
 
@@ -353,22 +354,22 @@ alighting (Ta) time.
 
 The value of this benefit comes from two things: 
 
-\item *A* The reduction in the travel time for all the customers that are using the limited-stop route ($$\text{Load_\text{limited-stop at 
-k$$) on each link where a station k is skipped. This should be multiplied by the value of customers’ time 
-($$C_travel$$), which is usually treated as half their cost of waiting, or $$ C_\text{travel} = Cw/2$$. In the above examples, 
+\item *A* The reduction in the travel time for all the customers that are using the limited-stop route ($$\text{Load}_\text{limited-stop at 
+k}$$) on each link where a station k is skipped. This should be multiplied by the value of customers’ time 
+($$C_\text{travel}$$), which is usually treated as half their cost of waiting, or $$ C_\text{travel} = Cw/2$$. In the above examples, 
 a constant value of waiting of US$12 per hour has been used so that in the examples in this section 
 a constant value of travel time will be $6 per hour. It is usually set at one-third of the average wage. 
 
 \item *B* The reduction in the travel time for the BRT vehicles, which would need less time to deliver the 
 same service. The value of the operational cost reduction per bus resulting from the faster bus speeds 
-is equal to the bus operational cost per hour ($$\text{Cost_\text{bus}$$) multiplied by the number of buses that benefit 
+is equal to the bus operational cost per hour ($$\text{Cost}_\text{bus}$$) multiplied by the number of buses that benefit 
 from the stop reduction ($$F_\text{limited-stop-at-k}$$). 
 
 So the benefit of creating a limited-stop service is expressed as follows:
 
 Eq. 6.53
 
-$$ ExpressBenefit=T_0* \sum_{\text{k=skipped station} Load\text{limited-stop-at-k}*\text{Cost}_\text{travel}+\text{Freq}_\text{limited-stop-at-k}*\test{Cost}_\test{bus} $$
+$$ ExpressBenefit=T_0* \sum_{k=\text{k=skipped station}} \text{Load}_\text{limited-stop-at-k}*\text{Cost}_\text{travel}+\text{Freq}_\text{limited-stop-at-k}*\text{Cost}_\text{bus} $$
 Where:
 
 \item $$ \text{ExpressBenefit} $$: Benefit of implementing limited-stop services;
@@ -379,7 +380,7 @@ k is skipped;
 \item $$ \text{Freq}_\text{limited-stop-at-k}$$: Number of buses that benefit from the removal of station, k; 
 \item $$ \text{Cost}_\text{bus}$$: Bus operational cost per hour (see Section 6.3.12).
 
-An express route should be created when there is a net benefit, or when $$\text{Benefit}_\text{express} is greater than 
+An express route should be created when there is a net benefit, or when $$\text{Benefit}_\text{express} $$ is greater than 
 the total waiting cost of adding that route, as calculated in the previous subsection item.
 
 Eq. 6.54 
@@ -387,8 +388,8 @@ Eq. 6.54
 $$ \text{ExpressBenefit}>\text{ExpressCost} $$
 
 Where:
-\item \text{ExpressBenefit}: $$ Benefit of implementing limited-stop services;
-\item \text{ExpressCost}: $$ Total waiting cost of adding route.
+\item $$ \text{ExpressBenefit}: $$ Benefit of implementing limited-stop services;
+\item $$ \text{ExpressCost}: $$ Total waiting cost of adding route.
 
 For more complex scenarios, the total benefits of each route added need to be weighed against the total 
 costs of each route added.  
@@ -481,14 +482,14 @@ better to have real station-to-station OD data.
 The OD matrix of Table 6.32 would result in the boarding and alighting 
 per station and loads after leaving the station as shown on Table 6.33 and Figure 6.61 where the dots 
 near the x axis show the number of customers boarding (blue) and alighting (red) at each station; the 
-green line indicates the load at each station.}
+green line indicates the load at each station.
 
 Note that other OD patterns could yield the boarding and alighting results observed in the table, and 
 a different OD matrix will require another optimal service pattern; that is why it is best to have the 
 real OD matrix for the whole operating time or day. 
 
-\begintable{Boarding, Alighting, and Loads per Station}
-    \useimage{assets/image84.png}{FIXME!}{FIXME!} 
+\begintable[small]{Boarding, Alighting, and Loads per Station}
+    \useimage{assets/image84.png} 
 \endtable
 
 \figure{assets/image85.jpeg}{Demand profile on a route where a uniform number of customers (fifty-eight) 
@@ -543,121 +544,105 @@ read the service maps or confused tourists might be exceptions.
 Those taking the limited-stop service gain significant time savings through bypassing stops in Section 
 B from their route.
 
-\begintable{Boarding, Alighting, and Loads per Station}
-    \useimage{assets/image84.png}{FIXME!}{FIXME!} 
+\begintable[small]{Demand Division by Zone}
+    \useimage{assets/table-6.34.jpg}
 \endtable
 
-\begintable{Demand Division by Zone}
-\header
-\col Zone
-\col A
-\col B
-\col C
-\row
-\col A
-\col SHARED
-\col LOCAL
-\col LIMITED
-\row
-\col B
-\col 
-\col LOCAL
-\col LOCAL
-\row
-\col C
-\col 
-\col 
-\col SHARED
-\endtable
+\' \begintable{Demand Division by Zone}
+\header \col Zone\col A \col B \col C \row
+\col A \col SHARED \col LOCAL \col LIMITED \row \col B \col \col LOCAL \col LOCAL \row
+\col C \col \col \col SHARED \endtable '\ 
 
 In Table 6.34, the areas highlighted in yellow are trips within Zone A and within Zone C that will 
 be split evenly between the local and express service. The area in pink will be served entirely by the 
 local service, and the area in blue will be served entirely by the express service.
 
-Table 6.35 Origin Destination Matrix for Uniform Demand on a Bus Route
-\figure{assets/image87.png}{Given 
-the demand profile presented here, the load for each service would divide as shown in Figure 6.63.}{FIXME!}
+\begintable{Origin Destination Matrix for Uniform Demand on a Bus Route}
+    \useimage{assets/image87.png}
+\endtable
+
+Given 
+the demand profile presented here, the load for each service would divide as shown in Figure 6.63.
 
 \figure{assets/image88.jpeg}{Service Load divided between the local and the limited service in a uniform 
-demand example scenario. Image}{ Arthur Szász.}
+demand example scenario. Image}{ Pedro Szász.}
 
 If this division of the demand is assigned on a station-by-station basis to each service, the boarding 
 and alighting numbers for the limited route are given in Table 6.35. The difference between the boarding 
 and alighting numbers on the limited-stop service and on the original route would be the boarding and 
 alighting remaining on the local service (not shown).
 
-Table 6.36 Example Division of Customers between Limited-Stop and Local Services
+\begintable[small]{Example Division of Customers between Limited-Stop and Local Services}
+    \useimage{assets/image89.png}
+\endtable
 
-\figure{assets/image89.png}{In this case, the benefit is quite simple to estimate, by formula (Equation 
-6.53):}{FIXME!}\' TODO Math: 
+In this case, the benefit is quite simple to estimate, by formula (Equation 
+6.53):
 
-ExpressBenefit= T0*skipped stationLoadlimited-stop-at-k*Costtravel+Freqlimited-stop-at-k*Costbus '\
+$$ ExpressBenefit=T_0* \sum_{k=\text{skiped station}} \text{Load}_\text{limited-stop-at-k}*\text{Cost}_\text{travel}+\text{Freq}_\text{limited-stop-at-k}*\text{Cost}_\text{bus} $$
 
 Sum for all stations “k” where the limited does not stop.
 
-The Loadlimited stop at k is the number of customers on board the express bus that are passing any 
+The $$ \text{Load}_\text{limited stop at k} $$ is the number of customers on board the express bus that are passing any 
 station “k” that is jumped by the limited-stop service. In this example, all trips from Zone A to Zone 
 C, which is the area shaded in blue on Table 6.35, or demand from stations (one to nine) to stations 
-(seventeen to twenty-five): \' TODO Math: 
+(seventeen to twenty-five):
 
-skipped stationLoadlimited-stop-at-k=9*9*58=4698passh '\
+$$ \sum_{k= \text{skipped station}} \text{Load}_\text{limited-stop-at-k} = 9 * 9 * 58 = 4698 \text{pass/h} $$
 
 This is because there are nine by nine zones where there are only express customers and each interzonal 
 demand is 58, so 4,698 customers. 
 
 The frequency of the limited and the local route will vary depending on the demand the limited route 
-captures. In this case, \' TODO Math: 
+captures. In this case, 
 
-Fexpress=4698150=31.32bushour '\\' TODO Math: 
+$$ F_\text{express} = {4698 \over 150} = 31.32\text{bus/hour} $$
 
-Flocal=4350150=28.68bushour '\
+$$ F_\text{local} = {4350 \over 150} = 28.68\text{bus/hour} $$
 
-Therefore\' TODO Math: 
+Therefore
 
-ExpressBenefit=303600*7*4698*6+31.32*105=1826US$hour '\
+$$ ExpressBenefit= 30 / 3600 * 7 * (4698 * 6 + 31.32 *105 ) = 1826\text{US\$/hour} $$ 
 
-Where 30/3600\*7 = 30 seconds of fixed dwell time per stop removed/3600 seconds in an hour times 7 stops 
+Where $$ 30 / 3600 * 7 = 30 $$ seconds of fixed dwell time per stop removed/3600 seconds in an hour times 7 stops 
 removed; 4,698 is the number of customers; 6 is their value of an hour; 31.32 is the frequency; and 105 
 is the operating cost per bus per hour. 
 
-Recalling that the cost of adding the limited-stop service will be as follows (Equation 6.52):\' TODO Math: 
+Recalling that the cost of adding the limited-stop service will be as follows (Equation 6.52): 
 
-ExpressCost=WaitCostexpress+WaitCostlocal - WaitCostoriginalservice '\
 
-And that (Equation 6.51): \' TODO Math: 
+$$ \text{ExpressCost} = \text{WaitCost}_\text{express(1)} + \ldots +  \text{WaitCost}_\text{express(n)} +  \text{WaitCost}_\text{local} - \text{WaitCost}_\text{original service}$$
 
-WaitCostroute= Renroute*Costwait* 0.5*1+FreqrouteFreqoptimum2*LoadFactor* VSize '\
+And that (Equation 6.51):  
+
+$$ \text{WaitCost}_\text{route} =  \text{Ren}_\text{route} * \text{Cost}_\text{wait} * 0.5 * (1+ ({\text{Freq}_\text{route}  \over \text{Freq}_\text{optimum}  }) ^2) *\text{LoadFactor} * \text{VSize} $$
 
 Given the data set for all examples:
 
-LoadFactor \* VSize = 150  
+\item $$ \text{LoadFactor} * \text{VSize} = 150 $$  
+\item $$ \text{Ren} = 1.46 $$
+\item $$ \text{Cost}_\text{wait} = 12 $$
+\item $$ \text{Freq}_\text{originalservice} = 60 $$
+\item $$ \text{Freq}_\text{local} = 28.68 $$
+\item $$ \text{Freq}_\text{express} = 31.32 $$
 
-Ren = 1.46
+$$ \text{WaitCost}_\text{original service}=0.5*1.461*150*12*(1+(0.5* 60/22)^2 = 3760 $$ 
 
-Costwait = 12
+$$ \text{WaitCost}_\text{local} = 0.5 * 1.461 * 150 *12 * 1+ (0.5*31.32/22)^2 = 1874 $$
 
-Freqoriginalservice = 60
+$$ \text{WaitCost}_\text{express} =  0.5 * 1.461 * 150 * 12 * 1 + ( 0.5*31.32/22)^2=1981 $$
 
-Freqlocal = 28.68
+$$ \text{ExpressCost} = 1981 + 1874 - 3760 =  95 \text{US\$/hour} $$
 
-Freqexpress = 31.32\' TODO Math: 
 
-WaitCostoriginal service=0.5*1.461*150*12*1+0.5*60222=3760 '\\' TODO Math: 
-
-1+0.5*31.32222=1874WaitCostlocal=0.5*1.461*150*12* '\\' TODO Math: 
-
-1+0.5*31.32222=1981WaitCostexpress=0.5*1.461*150*12* '\\' TODO Math: 
-
-ExpressCost=1981+1874-3760=95US$hour '\
-
-So, in this case, ExpressBenefit = 1826 US$/hour and C w total = 95 US$/hour. In this case, the waiting 
+So, in this case, $$ \text{ExpressBenefit} = 1826 \text{US\$/hour} $$  and $$ C_{w \text{total}} = 95 \text{US\$/hour}$$. In this case, the waiting 
 cost associated with adding another service is very low, because the original service was so frequent 
 that there was a lot of needless waiting due to the irregularity of service, and much of this delay is 
 mitigated by the reduction in frequencies. (Note that the effect of irregularity reduction is a bit exaggerated 
 here, as the portion of users that can take both services will contribute to irregularity of both services 
 in Zones A and C as if it was only one service with a frequency of sixty BRT vehicles per hour.)
 
-Therefore, as ExpressBenefit \> ExpressCost it can be said that adding a limited-stop service is a very 
+Therefore, as $$ \text{ExpressBenefit} > \text{ExpressCost} $$ it can be said that adding a limited-stop service is a very 
 good idea in this case. 
 
 The optimal number of stations to be skipped on the proposed express service is the next determination 
@@ -678,14 +663,16 @@ The following method provides a way of testing whether more or fewer stations sh
 essence, the same process run for the specific scenario (seven stations removed) needs to be tested for 
 all other reasonable alternatives.
 
-Table 6.37 Total Benefits with Varying Numbers of Stops Removed from the Example 
+\begintable{Total Benefits with Varying Numbers of Stops Removed from the Example}
+    \useimage{assets/image90.png}
+\endtable
 
-\figure{assets/image90.png}{In Table 6.37, the first three columns represent the stopping pattern of 
+In Table 6.37, the first three columns represent the stopping pattern of 
 various alternative limited services (divided into Segments A, B, and C). The first row represents a 
 scenario where the first eleven stations are both local and limited, the next three stations are local 
 only, and the last eleven stations are both local and limited. The second row represents a scenario in 
 which the first ten stations are shared, then the express service skips five stations, then the last 
-ten stations are again shared, and so on.}{FIXME!}
+ten stations are again shared, and so on.
 
 The second set of columns (four columns) shows the division of customers between the limited only, 
 the local only, and the customers shared by the two services based on the previously stated assumptions. 
@@ -722,12 +709,14 @@ These benefits then need to be compared to the net cost of replacing the origina
 new services, one local and one express, as is shown on Table 6.38. These net costs can be deducted from 
 the benefit to indicate total net benefits (last column).
 
-Table 6.38 Benefits Net of Costs for Varying Numbers of Eliminated Stops
+\begintable{Benefits Net of Costs for Varying Numbers of Eliminated Stops}
+    \useimage{assets/table-6.38.jpg}
+\endtable
 
-\' \figure{assets/image91.emf}{These net benefits are then calculated for all situations proposed, following 
+These net benefits are then calculated for all situations proposed, following 
 the method of the original scenario used in this example. The result turns out to favor the initially 
 tested situation: skipping seven stations. The net benefit of skipping seven stations—US$1,741—exceeds 
-the net benefit of every other scenario.}{FIXME!} '\
+the net benefit of every other scenario.
 
 The following table shows the degree of sensitivity of the total benefit to total demand. In Table 
 6.39, the same attributes are assigned, except the demand is cut by 40 percent across the board. In that 
@@ -738,9 +727,11 @@ service is relatively lower, skipping nine stations becomes slightly more benefi
 stations. Hence, in uniform demand, the benefits of the limited service are highly sensitive to demand 
 levels.
 
-Table 6.39 Net Benefits of Costs with Varying Numbers of Eliminated Stops under Lower Demand Scenario
+\begintable{Net Benefits of Costs with Varying Numbers of Eliminated Stops under Lower Demand Scenario}
+    \useimage{assets/table-6.38.jpg}
+\endtable
 
-\'  \figure{assets/image92.emf}{Demand Patterns Typical of Trunk-and-Feeder Systems}{FIXME!} '\
+\subsubsection{Demand Patterns Typical of Trunk-and-Feeder Systems}
 
 In some systems, such as a trunk-and-feeder system, it is likely that demand will be concentrated at 
 the beginning and/or end of the BRT trunk corridor—for instance, at the transfer station on one end and 
@@ -756,35 +747,39 @@ The boarding and alighting and OD matrix of the corridor, if all other stations 
 would look like Table 6.40 and, if only one service operated with this OD pattern, the load would look 
 like the load diagram in Figure 6.64.
 
-Table 6.40 Origin Destination Matrix for Demand Concentrated at Terminals
-
-\figure{assets/image93.png}{FIXME!}{FIXME!}
+\begintable{Origin Destination Matrix for Demand Concentrated at Terminals}
+    \useimage{assets/image93.png}
+\endtable
 
 \figure{assets/image94.jpeg}{Demand profile for a corridor where most demand is travelling between 
-the two end terminals. Image}{ Arthur Szász.}
+the two end terminals.}{ Pedro Szász.}
 
 In this case, it is worth considering adding a service that runs directly between the first station 
 (the transfer terminal) and the last terminal (downtown). If such a service were added, the ridership 
 would split between the limited and local service as per Table 6.41. 
 
-Table 6.41 Loads on the Local and Limited
+\begintable[small]{Loads on the Local and Limited}
+    \useimage{assets/image95.png}
+\endtable
 
-\figure{assets/image95.png}{On Table 6.42, the same stopping pattern is tested for their ridership 
+On Table 6.42, the same stopping pattern is tested for their ridership 
 and comparative costs and benefits, but in each one, an additional station is removed at the beginning 
 and ending of the limited-stop service; the formulas and method from the previous example are used to 
-calculate the net benefit.}{FIXME!}
+calculate the net benefit.
 
-Table 6.42 Costs and Benefits of Varying Stopping Patterns
+\begintable{Costs and Benefits of Varying Stopping Patterns}
+    \useimage{assets/image96.png}
+\endtable
 
-\figure{assets/image96.png}{In this case, a limited-stop service that stops only at the first and last 
+In this case, a limited-stop service that stops only at the first and last 
 stations brings more benefits to customers. These benefits significantly outweigh the costs. With a maximum 
 load on the critical link of the limited route at 4,327, and a related frequency of 29 trips per hour 
 (4,327/150), the maximum load remaining on the local service of 6,568 passengers per hour yields a frequency 
 of 44. This is still high enough to cause an elevated level of irregularity in the boarding and alighting 
 process, so another express route might be added. Based on the previous example, this new service would 
-skip the middle stations.}{FIXME!}
+skip the middle stations.
 
-\subsection{Demand Concentrated at a Few Stops  }
+\subsection{Demand Concentrated at a Few Stops}
 
 It is also common for demand to be concentrated at a few stops along a corridor because there are some 
 large trip generators or attractors in those locations, like hospitals, schools, high-density housing 
@@ -792,62 +787,73 @@ developments, or shopping malls. Such a corridor might result in a boarding and 
 Figure 6.65.
 
 \figure{assets/image97.png}{Demand profile for a corridor with demand heavily concentrated between 
-a few important stops. Image}{ Arthur Szász.}
+a few important stops.}{ Pedro Szász.}
 
 The trip origin and destination matrix would look something like that shown in Table 6.43, where the 
 total number of trips is similar to the previous examples.
 
-Table 6.43 Origin Destination Matrix Example for Clustered Demand on a Corridor
+\begintable{Origin Destination Matrix Example for Clustered Demand on a Corridor}
+    \useimage{assets/image98.png}
+\endtable
 
-\figure{assets/image98.png}{Two options are tested to illustrate some general principles, correspondent 
+Two options are tested to illustrate some general principles, correspondent 
 boarding, alighting, and loads are shown in Table 6.44 where the stations highlighted in red would be 
-both limited and local stops, while the stations in gray would be served only by the local service.}{FIXME!}
+both limited and local stops, while the stations in gray would be served only by the local service.
 \item One limited-stop service that stops only at the high volume stations, \#1, \#7, \#13, \#19, and \#25. 
-
 \item One limited-stop service that stops at \#1–7, then \#13, then \#19–25. 
 
-Table 6.44 Boardings, Alightings, and Load Comparison between Varying Service Patterns for Clustered 
-Demand Example
+\begintable{Boardings, Alightings, and Load Comparison between Varying Service Patterns for Clustered 
+Demand Example}
+    \useimage{assets/image99.png}
+\endtable
 
-\figure{assets/image99.png}{The loads assumes that the time savings from the number of stations skipped 
+The loads assumes that the time savings from the number of stations skipped 
 is greater than the loss of time waiting for the next express bus for all possible express bus trips, 
-so customers between the stations served by the express service (red cells) use that service.}{FIXME!}
+so customers between the stations served by the express service (red cells) use that service.
 
-Table 6.45 Loads Passing Stations and Benefits for Two Alternative Express Services under Clustered 
-Demand Example
+\begintable{Loads Passing Stations and Benefits for Two Alternative Express Services under Clustered 
+Demand Example}
+    \useimage{assets/image100.png}
+\endtable 
 
-\figure{assets/image100.png}{The loads aboard an express service passing the stations skipped for each 
+The loads aboard an express service passing the stations skipped for each 
 alternative are listed under the column “Load (k)” in Table 6.45, and the value of the time savings associated 
-with this benefit are calculated in the “Total” column.}{FIXME!}
+with this benefit are calculated in the “Total” column.
 
-Table 6.46 Frequency and Operational Vehicle Benefits for Two Alternative Express Services under Clustered 
-Demand Example 
+\begintable[small]{Frequency and Operational Vehicle Benefits for Two Alternative Express Services under Clustered 
+Demand Example}
+    \useimage{assets/image101.png}
+\endtable
 
-\figure{assets/image101.png}{In Table 6.46, the required frequency for the new express route is calculated 
+In Table 6.46, the required frequency for the new express route is calculated 
 from the maximum load on the express route divided by 150, the designed bus capacity. This is multiplied 
 by the number of stations removed in each scenario and by the operational cost savings per hour to yield 
-the total bus cost savings for each alternative.}{FIXME!}
+the total bus cost savings for each alternative.
 
 Table 6.47 shows the (waiting) costs associated with the lower frequency to be subtracted from the 
 benefits.
 
-Table 6.47 Costs of the Two Alternative Express Services under Clustered Demand Example
+\begintable[small]{Costs of the Two Alternative Express Services under Clustered Demand Example}
+    \useimage{assets/image102.png}
+\endtable
 
-\figure{assets/image102.png}{In the second option of express service, the new express service captures 
+In the second option of express service, the new express service captures 
 a lot more demand, bringing the frequency of both the express and the local service into a more optimal 
 range, significantly reducing the irregularity of service. The benefit from reduced irregularity is greater 
 than the cost in waiting caused by the reduction in frequency, so in this case the “cost” is negative, 
-or a “benefit.”}{FIXME!}
+or a “benefit.”
 
 As a result, the net benefit of the alternative with express service attending a cluster of stations 
 at the beginning and ending of the route, rather than only stopping at the high-demand stations, performs 
 much better, as shown in Table 6.48.
 
-Table 6.48 Net Benefits of the Two Alternative Express Services under Clustered Demand Example
+\begintable[small]{Net Benefits of the Two Alternative Express Services under Clustered Demand Example}
+    \useimage{assets/image103.png}
+\endtable
 
- \figure{assets/image103.png}{At these high levels of demand, additional express routes can be tried 
+At these high levels of demand, additional express routes can be tried 
 following similarly clustered patterns focusing on higher demand clusters of stations, and their relative 
-costs and benefits tested.}{FIXME!}
+costs and benefits tested.
 
 Several clusters of stopping stations should be tested, adding more types of services until the frequency 
 of each route is near the optimal range of twenty-two. The diagram in Figure 6.66 is the original service 
@@ -866,12 +872,15 @@ a monocentric CBD, or when there is a large transfer terminal.
 The demand in this case is always decreasing as in Figure 6.67, and the internal O/D matrix with total 
 similar to the previous examples is shown in Table 6.48.
 
-Table 6.49 Origin Destination Matrix Example for Declining Demand on a Bus Corridor\figure{assets/image105.png}{This 
-yields the following boarding, alighting, and load pattern on the original service. This example is taken 
-from the real case of the Santo Amaro—Nove de Julho corridor, project implemented in 1986 in São Paulo.}{FIXME!}
+\begintable{Origin Destination Matrix Example for Declining Demand on a Bus Corridor}
+    \useimage{assets/image105.png}
+\endtable
+
+This yields the following boarding, alighting, and load pattern on the original service. This example is taken 
+from the real case of the Santo Amaro—Nove de Julho corridor, project implemented in 1986 in São Paulo.
 
 \figure{assets/image106.jpeg}{Demand profile for a corridor with all trips boarding at a single terminal 
-but alighting in even numbers at station stops along the corridor. Image}{ Arthur Szász.}
+but alighting in even numbers at station stops along the corridor.}{ Pedro Szász.}
 
 In this example there are 15,000 customers boarding at the first station, a transfer terminal, and 
 just 2,395 customers boarding at the remaining 33 stations. In this situation, a service plan similar 
@@ -890,33 +899,40 @@ reach the end of the corridor, there is a significant reduction in total cycle t
 a sizable fleet reduction. Each express service is designed to meet the direct demand from the terminal 
 (or CBD) to a specific service zone.
 
-Table 6.50 Boarding, Alighting, and Load per Designed Service on Declining Demand Example Corridor 
+\begintable{Boarding, Alighting, and Load per Designed Service on Declining Demand Example Corridor}
+    \useimage{assets/image108.png}
+\endtable
 
-
-\figure{assets/image108.png}{One local service can attend to all the trips not destined for the terminal 
+One local service can attend to all the trips not destined for the terminal 
 (2,395 passengers per hour that board and alight along the corridor). This service has a maximum load 
-of around 986 passengers per hour.}{FIXME!}
+of around 986 passengers per hour.
 
 In this case, the benefits to passengers of the new services are as shown in Table 6.51 and the benefits 
 to operations of the new services are as shown in Table 6.52.
 
-Table 6.51 Benefits of New Services to Passengers
+\begintable[small]{Benefits of New Services to Passengers}
+    \useimage{assets/image109.png}
+\endtable
 
-\figure{assets/image109.png}{Table 6.52 Benefits of New Services to Operations}{FIXME!}
+\begintable{Benefits of New Services to Operations}
+    \useimage{assets/image110.png}
+\endtable
 
-\figure{assets/image110.png}{In this case, because of the early return of some of the vehicles, there 
+In this case, because of the early return of some of the vehicles, there 
 are savings in running time for vehicles, not only from the removal of stations. To include this benefit, 
-the operational time savings for not running till the end of the corridor are also calculated.}{FIXME!}
+the operational time savings for not running till the end of the corridor are also calculated.
 
 Benefits add operational savings (US$3,538) and passenger savings (US$1,500) to the total of US$5,038.
 
-Table 6.53 Costs
+\begintable[small]{Costs}
+    \useimage{assets/image111.png}
+\endtable
 
-\figure{assets/image111.png}{Following the formula for calculating the costs of implementing the new 
+Following the formula for calculating the costs of implementing the new 
 express routes (the net balance of wait cost per route), the additional cost is US$524, as summarized 
 in Table 6.53. Resulting in a net benefit of (US$5,038–US$524) US$4,515. In this example, the fact 
 that many services allowed early return led to a dramatic reduction in operating costs, as buses were 
-able to reduce their cycle times.}{FIXME!}
+able to reduce their cycle times.
 
 \subsection{Shortened Routes}
 
@@ -926,7 +942,7 @@ corridor can host several routes of varying lengths. A single corridor may be sp
 routes covering a different portion of the corridor.  
 
 \figure{assets/image112.png}{Adding a second local service that covers only the highest demand segment 
-of a corridor can reduce operating costs while limiting additional delay for customers. Image}{ Arthur 
+of a corridor can reduce operating costs while limiting additional delay for customers. Image}{ Pedro 
 Szász.}
 
 In Figure 6.69, a diagram shows the loads along an existing bus corridor. If the demand on a given 
@@ -946,45 +962,36 @@ were to operate a shortened route beginning from point R, then the number of veh
 the corridor will be reduced and the load factor per bus will increase. This fleet reduction is calculated 
 as:
 
-Eq. 6.55\' TODO Math: 
+Eq. 6.55
 
-Fleet reduction=2*|R-T|Vcorridor*A-BVSize*LoadFactor '\
+$$ \text{Fleet reduction} = {{2*|R-T| \over V_\text{corridor} } * A - B) \over \text{VSize} * \text{LoadFactor}} $$
 
 Where:
-
-T = Terminal position;
-
-R = Early return position;
-
-Vcorridor = Corridor commercial speed; 
-
-|R-T| = Distance between early return position and terminal;
-
-|R-T|/Vcorridor = Travel time between early return position and terminal;
-
-A = Maximum Demand on the Critical Link (MaxLoad);
-
-B = Load on point R.
+\item $$ T $$: Terminal position;
+\item $$ R $$: Early return position;
+\item $$ V_\text{corridor} $$: Corridor commercial speed; 
+\item $$ |R-T| $$: Distance between early return position and terminal;
+\item $$ |R-T|/V_\text{corridor} $$:  Travel time between early return position and terminal;
+\item $$ A $$: Maximum Demand on the Critical Link (MaxLoad);
+\item $$ B $$: Load on point $.
 
 Example:
 
-A = 15,000 passengers/hour;
+$$ A = 15,000 \text{passengers/hour} $$;
 
-B = 10,000 passengers/hour;
+$$ B = 10,000 \text{passengers/hour} $$;
 
-V = 25 km/hour;
+$$ V = 25 \text{km/hour} $$;
 
-T = 0;
+$$ T = 0 $$;
 
-R = 5 km;
+$$ R = 5 \text{km}$$;
 
-(R-T)/V = 12 minutes (uni-directional time) = (5/25) hours;
+$$ {(R-T)/V} = 12\text{minutes(uni-directional time)} = (5/25) \text{hours} $$;
 
- = 150 pax/bus (vehicle capacity).
+$$ \text{VSize} * \text{LoadFactor} = 150 pax/bus (vehicle capacity) $$.
 
-Fleet reduction =  \' TODO Math: 
-
-2*(|5-0|)25*15,000–10,000150=6 vehicles '\
+$$ \text{Fleet reduction}= {2* {|5-0| /over 25} * 15,000 – 10,000 \over 150 } =6 \text{vehicles} $$
 
 In this case, as might be typical of a downtown, most of the demand may be headed downtown from two 
 different directions. For instance, in Yichang, China, along the new BRT corridor, bus routes previously 
@@ -997,11 +1004,12 @@ overlapping through the highest demand section of the city, avoids the transfer 
 higher frequency of service for all customers operating in the zone where the routes from both sides 
 overlap.  
 
-\figure{assets/image113.jpeg}{Overlapping of local services in the CBD minimizes the need for transfers 
-and doubles frequency in the high demand part of the corridor, while limiting total route length to minimize 
-irregularity. Maps}{ ITDP.}  
+\figure{assets/image113.jpeg}{Yichang overlapping services can be maintained only in the CBD doubling frequency in 
+the high demand part of the corridor, while limiting total route length to minimize irregularity.}{ ITDP.}  
 
-FixMe!. Image courtesy of Copyright
+\figure{assets/image114.jpeg}{The need for transfers is also reduced when local routes are overlapping in the CBD,
+zoom of proposed design in Yichang CBD.}{ ITDP.}  
+
 
 The specific costs and benefits of these general approaches should be tested with the actual OD matrix 
 for each corridor. 
