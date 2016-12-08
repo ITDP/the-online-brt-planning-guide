@@ -1,9 +1,7 @@
-
-
-\section{Design Objectives }
+\section{Design Objectives}
 
 > An optimist will tell you the glass is half-full; the pessimist, half-empty; and the engineer will tell you the glass is twice the size it needs to be.
-@ —Anonymous
+@ Anonymous
 
 BRT projects seek to optimize one basic parameter: minimizing door-to-door travel time. Thus, to achieve 
 that goal, BRT must be designed and planned—including corridor selection, routes and service plan, and 
@@ -57,9 +55,10 @@ The specific design solutions to achieve high capacity vary widely for different
 For example, a BRT system that only needs to handle a demand of 5,000 passengers per hour per direction 
 (pphpd) will be significantly different from a system requiring over 30,000 pphpd (Figure 7.1).
 
- Fig. 7.1 and Fig. 7.2 Designing a system along corridors with demands exceeding 30,000 passengers 
-per hour per direction (left photo, Bogotá) is quite different from designing systems with less than 
-3,000 pphpd (right photo, Orlando, Florida, USA). Images courtesy of Carlos F. Pardo (left) and Lloyd 
-Wright (right).
+\figure{assets/image1.jpeg}{Designing a system along corridors with demands exceeding 30,000 passengers 
+per hour per direction, like the one in Bogotá is quite different from designing systems with less than 
+3,000 pphpd, like the one shown in figure 7.2}{Carlos F. Pardo.}
 
-Fig. FixMe. courtesy of Copyright
+\figure{assets/image2.jpeg}{System to serve less than 3,000 pphd in Orlando (Florida, USA), is quite different
+from system to serve 30.000 ppphpd as the shown in figure 7.1{Lloyd Wright.}
+
