@@ -41,9 +41,9 @@ customers on and off.
 
 \figure[medium]{assets/image5.jpeg}{Scheme of station with two substops}{ITDP}
 
-Therefore, the saturation of a docking bay (xdock) measured for a certain 
-time interval ($$ \delta t $$) would be given by the sum of dwell times of each bus docking ($$ Ti d) during that interval, 
-divided by the duration of the interval, as expressed by Equation 7.1.}{FIXME!}
+Therefore, the saturation of a docking bay ($$ x_dock $$) measured for a certain 
+time interval ($$ \delta t $$) would be given by the sum of dwell times of each bus docking ($$ Ti di $$) during that interval, 
+divided by the duration of the interval, as expressed by Equation 7.1.
 
 Eq. 7.1 Saturation of a docking bay concept:
 
@@ -99,7 +99,7 @@ $$ T_0 = 13 + L_\text{vehicle} * 0.25 $$
 Where:
 
 \item $$ T_0$$: Dead time in seconds;
-\item $$ L_\text{vehicle} = Length of the vehicle in meters.
+\item $$ L_\text{vehicle}$$: Length of the vehicle in meters.
 
 As for the variable part of dwell time (boarding and alighting time), the main factors affecting it 
 include:
@@ -159,7 +159,7 @@ $$ x_\text{dock} = {T_0 * N_\text{bus} +  [ (P_b * t_b) + (P_a *t_a) ] \over \de
 
 Where: 
 \item $$ x_\text{dock} $$: Saturation level of a docking bay for a given time interval; 
-\item $$ N_\text{bus}: Number of vehicles that use the docking bay during the interval (if the time interval is an 
+\item $$ N_\text{bus} $$: Number of vehicles that use the docking bay during the interval (if the time interval is an 
 hour it is the usual frequency of services referenced in vehicles per hour);
 \item $$ T_0 $$: Average dead time per bus; 
 \item $$ t_b $$: Average boarding time per customer;
@@ -224,7 +224,7 @@ $$ \text{QueueSize}_\text{dock} = { 0.7 * x_\text{dock}^2} \over (1-x_\text{dock
 
 Where:
 \item $$ \text{QueueSize}_\text{dock}$$: Average or expected queueing size at docking bay;
-\item $$ \text{x_\text{dock}: Saturation level of a docking bay for a given time interval.
+\item $$ \text{x_\text{dock}$$: Saturation level of a docking bay for a given time interval.
 
 The expected (average) waiting time in queue ($$T_\text{queue}$$) is given by the queue size multiplied by the 
 average headway, as expressed in Equation 7.10:
@@ -235,7 +235,7 @@ $$ T_\text{queue} = \text{QueueSize} * \text{Hdwy} $$
 
 Where:
 \item $$ T_\text{queue} $$: Time waiting in queue;QueueSize = Average or expected queueing size;
-\item $$ \text{Hdwy}: Average headway.
+\item $$ \text{Hdwy}:$$ Average headway.
 
 \figure{assets/image6.jpeg}{The Impact of saturation on vehicle velocity is bigger the closer the stations 
 are to each other as each station implies more queueing delay.}{ Elebeta.}
@@ -303,7 +303,7 @@ number of occasions that the one operation will be longer than the other is give
 
 Eq. 7.12 Expected occurrence of the shortest time overcoming the longer:
 
-$$ rf1 = {\overline{t1} \over \overline{t1} + \overline{t2}}
+$$ rf1 = {\overline{t1} \over \overline{t1} + \overline{t2}}$$
 
 Where:
 \item $$ rf1 $$: Relative frequency where event 1 is longer than event 2;
@@ -403,17 +403,15 @@ Equation 7.3 when there is no queue.
 But when the bay is congested (i.e., is a queue moving), which is the likely situation when multiple 
 docking bays are under consideration, the dead time for the whole convoy would be given by Equation 7.15.
 
-Eq. 7.15 Dead time for convoy:\' TODO Math: 
+Eq. 7.15 Dead time for convoy:
 
-T0 convoy=13+ 0.25* Lvehicle*0.25+2+ 0.17* Lvehicle*(N-1) '\
+$$ T_{0\text{convoy} = 13 + 0.25* _\text{Lvehicle} * 0.25 + (2 + 0.17 * L_\text{vehicle})* (N - 1) $$
 
 Where:
 
-T0 convoy = Dead time in seconds for the whole convoy;
-
-N = Number of vehicles in the convoy;
-
-LVehicle = Length of each convoy vehicle in meters (average vehicle length when vehicles are different).
+\item $$ T_{0 convoy}: Dead time in seconds for the whole convoy;
+\item $$ N$$: Number of vehicles in the convoy;
+\item $$ L_\text{Vehicle} $$: Length of each convoy vehicle in meters (average vehicle length when vehicles are different).
 
 *Ordered platoon (routes attributed to docks)*
 
@@ -432,56 +430,66 @@ that variability, there is an expected regularity, with the known mean and equal
 of the worst case. This is a situation similar to boarding and alighting through different doors, as 
 at certain times the boarding-alighting times of each platform may overcome the others.
 
-Assuming Ti b/a is the average boarding and alighting time calculated for the ith docking bay, if there 
+Assuming $$T_{i b/a}$$ is the average boarding and alighting time calculated for the ith docking bay, if there 
 were two docking bays, the average dwell time for the convoy would be given by Equation 7.16.
 
-Eq. 7.16 Average dwell time for two docking bays in a sub-stop:\' TODO Math: 
+Eq. 7.16 Average dwell time for two docking bays in a sub-stop:
 
-Td 2bays=T0+T1+T2-11T1+1T2= T0+T1+T2T1+T2* T2 '\
+$$ T{d 2bays} = T_0 + T_1 + T_2 -  {(1 \over {1 \over T_1 T1} + {1 \over T2}} =  T_0 + T_1 + {T_2 \over T1+T2 } *  T2 $$ 
 
 If there are three platforms, the equation (shown in 7.17) gets a bit longer.
 
-Eq. 7.17 Average dwell time for three docking bays in a sub-stop:\' TODO Math: 
-
-Td 3bays=T0+T1+T2+T3 -11T1+1T2-11T1+1T3-11T2+1T3+11T1+1T2+1T3 '\
+Eq. 7.17 Average dwell time for three docking bays in a sub-stop:
+ 
+$$ T{d 3bays} = T_0 + T_1 + T_2 +T_3 
+- {(1 \over {1 \over T_1 T1} + {1 \over T2}} 
+- {(1 \over {1 \over T_1 T1} + {1 \over T3}}  
+- {(1 \over {1 \over T_1 T2} + {1 \over T3}} 
++ {(1 \over {1 \over T_1 T1} + {1 \over T_1 T2} + {1 \over T3}} 
+ 
+T_0 + T_1 + {T_2 \over T1+T2 } *  T2 $$ 
 
 For four platforms it gets even longer and becomes too impractical and difficult to apply.
 
-Eq. 7.18 Average dwell time for four docking bays in a sub-stop:\' TODO Math: 
+Eq. 7.18 Average dwell time for four docking bays in a sub-stop:
 
-Td 4bays=T0+T1+T2+T3+T4 -11T1+1T2-11T1+1T3-11T1+1T4-11T2+1T3-11T2+1T4-11T3+1T4+11T1+1T2+1T3+11T1+1T2+1T4+11T1+1T3+1T4+11T2+1T3+1T4+11T1+1T2+1T3+1T4 '\
+$$ T{d 4bays} = T_0 + T_1 + T_2 + T_3 + T_4 
+- {(1 \over {1 \over T_1 T1} + {1 \over T2}} 
+- {(1 \over {1 \over T_1 T1} + {1 \over T3}}  
+- {(1 \over {1 \over T_1 T1} + {1 \over T4}} 
+- {(1 \over {1 \over T_1 T2} + {1 \over T3}} 
+- {(1 \over {1 \over T_1 T2} + {1 \over T4}} 
+- {(1 \over {1 \over T_1 T3} + {1 \over T4}} 
++ {(1 \over {1 \over T_1 T1} + {1 \over T_1 T2} + {1 \over T3}} 
++ {(1 \over {1 \over T_1 T1} + {1 \over T_1 T3} + {1 \over T4}} 
++ {(1 \over {1 \over T_1 T2} + {1 \over T_1 T3} + {1 \over T4}} 
+- {(1 \over {1 \over T_1 T1} + {1 \over T_1 T2} + {1 \over T_1 T3} + {1 \over T4}}$$ 
 
 Where:
 
-Td N bays = Average dwell time for a sub-stop with N docking bays (equation will have 2N terms);
-
-To = Dead time (given by Equation 7.15);
-
-Ti = Variable dwell time for ith docking bay calculated in isolation (given by Equation 7.4 or 7.13 
-minus T0 ).
+\item $$ T_{d Nbays} $$: Average dwell time for a sub-stop with N docking bays (equation will have $$2^N $$ terms);
+\item $$ T_0 $$: Dead time (given by Equation 7.15);
+\item $$ T_i $$: Variable dwell time for ith docking bay calculated in isolation (given by Equation 7.4 or 7.13 
+minus $$ T_0$$).
 
 This equation can be extended to any number of platforms and can be relatively easily implemented by 
 an algorithm, but an alternative formula (Equation 7.19) that underestimates saturation by 2 percent 
 for each additional docking bay above two can be used for practical purposes.
 
-Eq. 7.19: Practical approximation for average dwell time for N docking bays in a sub-stop:\' TODO Math: 
+Eq. 7.19: Practical approximation for average dwell time for N docking bays in a sub-stop:
 
-Td Nbays=T0+ 3N+2*i=1NTi '\
+$$T_{d Nbays}: T_0 + {3 \over N + 2}  * \sum_{i=1} ^N {T_i} $$
 
 Where:
-
-Td N bays = Average dwell time for a sub-stop with N bays (equation will have 2N terms);
-
-N = Number of vehicles in the convoy;
-
-To = Dead time (given by Equation 7.15);
-
-Ti = Variable dwell time for ith docking bay calculated in isolation (given by Equation 7.4 or 7.13 
-without considering T0 there).
+\item $$ T_{d Nbays}$$: Average dwell time for a sub-stop with N bays (equation will have 2N terms);
+\item $$ N $$: Number of vehicles in the convoy;
+\item $$ T_0 $$: Dead time (given by Equation 7.15);
+\item $$ T_i $$: Variable dwell time for ith docking bay calculated in isolation (given by Equation 7.4 or 7.13 
+without considering $$T_\text{0}$$ there).
 
 \figure{assets/image7.png}{Convoying systems order vehicles when entering the corridor, so they ride 
 as “train” and the docking position for every route at the station is fixed, preventing users from running 
-up and down the platform. Image}{ Pedro Szász.}
+up and down the platform.}{ Pedro Szász.}
 
 *Unordered vehicles *
 
