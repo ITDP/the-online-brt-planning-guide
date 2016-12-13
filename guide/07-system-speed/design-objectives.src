@@ -33,6 +33,13 @@ associated with intersections, and suggests how to improve BRT and car travel ti
 designed, however, stations may contribute to decreased speeds, as well as decreased capacity in relation 
 to a conventional system.
 
+\figure{assets/image1.jpeg}{Designing a system along corridors with demands exceeding 30,000 passengers 
+per hour per direction, like the one in Bogotá is quite different from designing systems with less than 
+3,000 pphpd, like the one shown in figure 7.2}{Carlos F. Pardo.}
+
+\figure{assets/image2.jpeg}{System to serve less than 3,000 pphd in Orlando (Florida, USA), is quite different
+from system to serve 30.000 ppphpd as the shown in figure 7.1}{Lloyd Wright.}
+
 The demand analysis process and demand forecast modelling can help quantify existing public transport 
 demand, as well as provide projections of expected demand and growth. A system’s infrastructure should 
 be designed for capacities projected at least one decade into the future. The size of the growth cushion 
@@ -41,6 +48,7 @@ urbanizing Chinese cities, growth rates of up to 25 percent are being realized i
 In such instances, a growth cushion of 50 percent or higher may be appropriate for sizing the system’s 
 capacity. In other regions that are already highly urbanized, such as Latin America, growth rates are 
 much lower. In Latin American cities, a growth cushion of 25 percent has been used.
+
 
 Designing a high-capacity and high-speed BRT system does not guarantee that door-to-door travel times 
 will be minimized. High-capacity and high-speed services can be achieved simply by eliminating all the 
@@ -53,12 +61,4 @@ of speed and capacity.
 
 The specific design solutions to achieve high capacity vary widely for different levels of demand. 
 For example, a BRT system that only needs to handle a demand of 5,000 passengers per hour per direction 
-(pphpd) will be significantly different from a system requiring over 30,000 pphpd (Figure 7.1).
-
-\figure{assets/image1.jpeg}{Designing a system along corridors with demands exceeding 30,000 passengers 
-per hour per direction, like the one in Bogotá is quite different from designing systems with less than 
-3,000 pphpd, like the one shown in figure 7.2}{Carlos F. Pardo.}
-
-\figure{assets/image2.jpeg}{System to serve less than 3,000 pphd in Orlando (Florida, USA), is quite different
-from system to serve 30.000 ppphpd as the shown in figure 7.1}{Lloyd Wright.}
-
+(pphpd) will be significantly different from a system requiring over 30,000 pphpd (Figures 7.1 and 7.2).

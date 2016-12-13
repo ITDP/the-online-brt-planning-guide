@@ -41,23 +41,25 @@ customers on and off.
 
 \figure[medium]{assets/image5.jpeg}{Scheme of station with two substops}{ITDP}
 
+\endbox
+
 Therefore, the saturation of a docking bay ($$ x_dock $$) measured for a certain 
-time interval ($$ \delta t $$) would be given by the sum of dwell times of each bus docking ($$ Ti di $$) during that interval, 
+time interval ($$ \Delta t $$) would be given by the sum of dwell times of each bus docking ($$ Ti di $$) during that interval, 
 divided by the duration of the interval, as expressed by Equation 7.1.
 
 Eq. 7.1 Saturation of a docking bay concept:
 
-$$ x_\text{dock}  = {\sum_\text{docking bus i \in \delta t} {{T}_{i d} \over \delta t} $$
+$$ x_\text{dock}  = {\sum_{\text{docking bus} i \in \Delta t} {T}_{i d} \over \Delta t} $$
 
 Where:
 
 \item $$ x_\text{dock}$$: Saturation of a docking bay;
-\item $$ {\sum_\text{docking bus i \in \delta t} {{T}_{i d} \over \delta t} $$: Sum of docking times of buses;
-\item $$ \delta t$$: Time interval. 
+\item $$ \sum_{\text{docking bus} i \in \Delta t} {T}_{i d} $$: Sum of docking times of buses;
+\item $$ \Delta t$$: Time interval. 
 
 Calling $$T_d$$ the average dwell time (which is equivalent to assuming that all buses will have the same dwell time $$T_d$$), saturation would be:
 
-$$ x_\text{dock}  = {N_{\text{buses \sum_{\text{docking bus } i \in \delta t} {{T}_{i d} \over \delta t} $$
+$$ x_\text{dock}  = {N_{\text{buses} \in \Delta t}  * {T}_{i d} \over \Delta t} $$
 
 And calculating the saturation for one hour would result in the following equation:
 
@@ -68,7 +70,7 @@ $$ x_\text{dock}  = {Freq_\text{dock} * T_d  \over 3600\text{sec}} $$
 Where:
 
 \item $$ x_\text{dock} $$: Saturation of a docking bay;
-\item $$ Freq_\text{dock} $$: Frequency of buses docking;
+\item $$ \text{Freq}_\text{dock} $$: Frequency of buses docking;
 \item $$ T_d $$: Dwell time.
 
 The dwell time consists of three separate categories: boarding time, alighting time, and dead time. 
@@ -155,7 +157,7 @@ through the same doors.
 Eq. 7.6 Calculating the saturation level of a docking bay for a given time interval, under external 
 fare collection and all door boarding:
 
-$$ x_\text{dock} = {T_0 * N_\text{bus} +  [ (P_b * t_b) + (P_a *t_a) ] \over \delta t} $$
+$$ x_\text{dock} = {T_0 * N_\text{bus} +  [ (P_b * t_b) + (P_a *t_a) ] \over \Delta t} $$
 
 Where: 
 \item $$ x_\text{dock} $$: Saturation level of a docking bay for a given time interval; 
@@ -166,7 +168,7 @@ hour it is the usual frequency of services referenced in vehicles per hour);
 \item $$ t_a $$: Average alighting time per customer;
 \item $$ P_b $$: Number of boarding customers at docking bay during interval;
 \item $$ P_a $$: Number of alighting customers at docking bay during interval;
-\item $$ \delta t $$: Time interval duration (this is usually seen as 3,600 since one hour calculation is normally done 
+\item $$ \Delta t $$: Time interval duration (this is usually seen as 3,600 since one hour calculation is normally done 
 and other times are given in seconds).
 
 The equation shows that for a given demand (number of customers) using a docking bay to board and alight, 
@@ -195,10 +197,10 @@ $$ \text{QueueSize}_\text{dock} = { 0.5 * (Irr_\text{arrival}+ Irr_\text{departu
 
 Where:
 
-$$ \text{QueueSize}_\text{dock} $$: Average or expected queueing size at docking bay;
-$$ x_\text{dock} $$: Saturation level of a docking bay for a given time interval; xdock = Saturation of a docking bay;
-$$ Irr_\text{arrival} $$: Irregularity of arrivals ($$= {\text{Variance}_\text{arrivals' intervals} \over \text{Mean}_\text{arrivals' intervals} ^2 } $$);
-$$ Irr_\text{departure} $$: Irregularity of departures ($$= {\text{Variance}_\text{departures' intervals} \over \text{Mean}_\text{departures' intervals} ^2 } $$).
+\item $$ \text{QueueSize}_\text{dock} $$: Average or expected queueing size at docking bay;
+\item $$ x_\text{dock} $$: Saturation level of a docking bay for a given time interval; xdock = Saturation of a docking bay;
+\item $$ Irr_\text{arrival} $$: Irregularity of arrivals ($$= {\text{Variance}_\text{arrivals' intervals} \over \text{Mean}_\text{arrivals' intervals} ^2 } $$);
+\item $$ Irr_\text{departure} $$: Irregularity of departures ($$= {\text{Variance}_\text{departures' intervals} \over \text{Mean}_\text{departures' intervals} ^2 } $$).
 
 The mean of the intervals for arrivals and departures is the headway, and the variance would be similar 
 to the variance for boardings and alightings if there were no traffic lights and starting schedules were 
@@ -212,19 +214,19 @@ $$ \text{QueueSize}_\text{dock} = { x_\text{dock} ^ 2 \over (1-x_\text{dock})} $
 
 Where:
 
-$$ \text{QueueSize}_\text{dock} $$: Average or expected queueing size at docking bay;
-$$ x_\text{dock} $$: Saturation level of a docking bay for a given time interval.
+\item $$ \text{QueueSize}_\text{dock} $$: Average or expected queueing size at docking bay;
+\item $$ x_\text{dock} $$: Saturation level of a docking bay for a given time interval.
 
 For the common irregularities observed in urban busways with high volumes (headways below one minute), 
 Equation 7.9, derived from observation, can be used:
 
 Eq. 7.9 Queue size for busways in typical urban conditions: 
 
-$$ \text{QueueSize}_\text{dock} = { 0.7 * x_\text{dock}^2} \over (1-x_\text{dock}) $$ 
+$$ \text{QueueSize}_\text{dock} = { { 0.7 * x_\text{dock}^2} \over (1-x_\text{dock})} $$ 
 
 Where:
 \item $$ \text{QueueSize}_\text{dock}$$: Average or expected queueing size at docking bay;
-\item $$ \text{x_\text{dock}$$: Saturation level of a docking bay for a given time interval.
+\item $$ x_\text{dock}$$: Saturation level of a docking bay for a given time interval.
 
 The expected (average) waiting time in queue ($$T_\text{queue}$$) is given by the queue size multiplied by the 
 average headway, as expressed in Equation 7.10:
@@ -234,10 +236,11 @@ Eq. 7.10 Time waiting in queue:
 $$ T_\text{queue} = \text{QueueSize} * \text{Hdwy} $$
 
 Where:
-\item $$ T_\text{queue} $$: Time waiting in queue;QueueSize = Average or expected queueing size;
+\item $$ T_\text{queue} $$: Time waiting in queue;
+\item $$ QueueSize $$: Average or expected queueing size;
 \item $$ \text{Hdwy}:$$ Average headway.
 
-\figure{assets/image6.jpeg}{The Impact of saturation on vehicle velocity is bigger the closer the stations 
+\figure[medium]{assets/image6.jpeg}{The Impact of saturation on vehicle velocity is bigger the closer the stations 
 are to each other as each station implies more queueing delay.}{ Elebeta.}
 
 A low saturation level or a high level of service means that there are no vehicles queuing at a docking 
@@ -250,7 +253,7 @@ For the previous example, the module of Alcalá station has a low saturation rat
 one should not expect to have congestion problems at the station, as the expected queue size and time 
 would be irrelevant: 
 
-$$ \text{QueueSize}_\text{dock} = { 0.7 * x_\text{dock}^2} \over (1-x_\text{dock})
+$$ \text{QueueSize}_\text{dock} = { { 0.7 * x_\text{dock}^2} \over (1-x_\text{dock})}
 = { 0.7 * 0.11^2 \over (1-0.11) } = 0.0095 $$
 
 $$  T_\text{queue} = \text{QueueSize} * \text{Hdwy} = 0.0095 \text{vehicles} * {1 \over 62 {\text{vehicles} \over \text{hour}}} = 0.00153 \text{hour}= 0.55 \text{sec} $$
@@ -262,7 +265,7 @@ within the overall design context. However, one must keep in mind that for satur
 in the planning process. That is, the cumulative time that a vehicle is stopped at a station should not 
 exceed 40 percent of the total time available in an hour.
 
-Expected station saturation effects on commercial speeds are shown in Figure 7.4. Bogotá’s TransMilenio 
+Expected station saturation effects on commercial speeds are shown in Figure 7.5. Bogotá’s TransMilenio 
 strives to keep the saturation value in the range of 0.35 to 0.45. The Calle 76 station of the TransMilenio 
 system illustrates the importance of accurately projecting customer movements and station saturation 
 levels. Originally, this critical station was planned for a saturation level of 0.40, but during actual 
@@ -276,18 +279,18 @@ by Equation 7.11.
 
 Eq. 7.11 Simplified saturation level of a docking bay where boarding is through specific doors:
 
-$$ x_\text{dock} = {T_0 * N_\text{bus} +  Max(p_b *t_b,p_a * t_a)  \over \delta t} $$
+$$ x_\text{dock} = {T_0 * N_\text{bus} +  Max(p_b *t_b,p_a * t_a)  \over \Delta t} $$
 
-\'Where: 
+\' Where: 
 \item $$ x_\text{dock} $$: Saturation level of a docking bay for a given time interval; 
-\item $$ N_\text{bus}: Number of vehicles that use the docking bay during the interval (if the time interval is an 
+\item $$ N_\text{bus}: $$: Number of vehicles that use the docking bay during the interval (if the time interval is an 
 hour it is the usual frequency of services referenced in vehicles per hour);
 \item $$ T_0 $$: Average dead time per bus; 
 \item $$ t_b $$: Average boarding time per customer;
 \item $$ t_a $$: Average alighting time per customer;
 \item $$ P_b $$: Number of boarding customers at docking bay during interval;
 \item $$ P_a $$: Number of alighting customers at docking bay during interval;
-\item $$ \delta t $$: Time interval duration (this is usually seen as 3,600 since one hour calculation is normally done 
+\item $$ \Delta t $$: Time interval duration (this is usually seen as 3,600 since one hour calculation is normally done 
 and other times are given in seconds).
 '\
 
@@ -318,7 +321,7 @@ of $$ Ta $$, with $$T_a = t_a * p_a $$, the average dwell time would be given by
 
 Eq. 7.13 Saturation level of a docking bay where boarding is through specific doors:
 
-$$ T_d = T_0 + T_a + ({T_b \over T_a + T_b})  * T_b = T_0 + T_b + (T_a \over {T_a + T_b}) * T_a $$
+$$ T_d = T_0 + T_a + ({T_b \over T_a + T_b})  * T_b = T_0 + T_b + ({T_a \over T_a + T_b}) * T_a $$
 
 Where:
 \item $$ T_d $$: Average dwell time for all buses on a docking bay; 
@@ -331,20 +334,20 @@ Where:
 Therefore the saturation for a docking bay where boarding is made through specific doors is given by 
 Equation 7.14.
 
-Eq. 7.14 Saturation calculation when boarding is through a specific door:\' TODO Math: 
+Eq. 7.14 Saturation calculation when boarding is through a specific door:
 
-$$ x_\text{dock} = {T_0 * N_\text{bus} + P_b * t_b + ({P_a * t_a \over P_a * t_a + P_b * t_b}) * P_a * t_a \over \delta t} $$
+$$ x_\text{dock} = {T_0 * N_\text{bus} + P_b * t_b + ({P_a * t_a \over P_a * t_a + P_b * t_b}) * P_a * t_a \over \Delta t} $$
 
 Where: 
 \item $$ x_\text{dock} $$: Saturation level of a docking bay for a given time interval; 
-\item $$ N_\text{bus}: Number of vehicles that use the docking bay during the interval (if the time interval is an 
+\item $$ N_\text{bus}: $$:  Number of vehicles that use the docking bay during the interval (if the time interval is an 
 hour it is the usual frequency of services referenced in vehicles per hour);
 \item $$ T_0 $$: Average dead time per bus; 
 \item $$ t_b $$: Average boarding time per customer;
 \item $$ t_a $$: Average alighting time per customer;
 \item $$ P_b $$: Number of boarding customers at docking bay during interval (average boarding time per bus is given by $$ T_b = t_b * P_b $$);
 \item $$ P_a $$: Number of alighting customers at docking bay during interval(average alighting time per bus is given by $$ T_a = t_a * P_a $$;
-\item $$ \delta t $$: Time interval duration (this is usually seen as 3,600 since one hour calculation is normally done 
+\item $$ \Delta t $$: Time interval duration (this is usually seen as 3,600 since one hour calculation is normally done 
 and other times are given in seconds).
 
 For example, a regular bus stop in front of a children’s hospital in São Paulo, using data from between 
@@ -352,9 +355,9 @@ For example, a regular bus stop in front of a children’s hospital in São Paul
 hour each. The average number of boardings per vehicle is 4.1, for a total of 33, and the average number 
 of alightings per vehicle is 10, for a total of 80. People carrying babies count as one. The average 
 time per person for boarding is five seconds, and for alighting it is three seconds, with one wheelchair 
-alighting taking around forty-five seconds. The saturation of this stop would be calculated as:\' TODO Math: 
+alighting taking around forty-five seconds. The saturation of this stop would be calculated as:
 
-$$ x_\text{dock} = {T_0 * N_\text{bus} + P_b * t_b + ({P_a * t_a \over P_a * t_a + P_b * t_b}) * P_a * t_a \over \delta t} $$
+$$ x_\text{dock} = {T_0 * N_\text{bus} + P_b * t_b + ({P_a * t_a \over P_a * t_a + P_b * t_b}) * P_a * t_a \over \Delta t} $$
 
 
 $$ x = {16 {\text{sec} \over \text{vehicle}} * 8 \text{vehicles} +( 33 \text{pax} * 5 {\text{sec} \over \text{pax}}) +  ({80*3.0  \over 80*3.0 +33*5}) * 80 \text{pax} * 3.0 {\text{sec} \over \text{pax}} \over 3,600 \text{sec}} $$ 
@@ -369,7 +372,7 @@ With the stop being occupied only 12 percent of the time, the average expected q
 hundred arrivals the stop will be used by another bus), and the average queue delay is 5 seconds, as 
 calculated below: 
 
-$$ \text{QueueSize} = { 0.7 * x_\text{dock}^2} \over (1-x_\text{dock})
+$$ \text{QueueSize} = { 0.7 * x_\text{dock}^2 \over (1-x_\text{dock})}
 = { 0.7 * 0.12^2 \over (1-0.12) } = 0.0116 $$
 
 $$  T_\text{queue} = \text{QueueSize} * \text{Hdwy} = 0.0116 \text{vehicles} * {1 \over 8 {\text{vehicles} \over \text{hour}}} = 0.001455
@@ -405,18 +408,18 @@ docking bays are under consideration, the dead time for the whole convoy would b
 
 Eq. 7.15 Dead time for convoy:
 
-$$ T_{0\text{convoy} = 13 + 0.25* _\text{Lvehicle} * 0.25 + (2 + 0.17 * L_\text{vehicle})* (N - 1) $$
+$$ T_{0\text{convoy}} = 13 + 0.25 * L_\text{vehicle} * 0.25 + (2 + 0.17 * L_\text{vehicle}) * (N - 1) $$
 
 Where:
 
-\item $$ T_{0 convoy}: Dead time in seconds for the whole convoy;
-\item $$ N$$: Number of vehicles in the convoy;
+\item $$ T_{0 convoy}$$: Dead time in seconds for the whole convoy;
+\item $$ N $$: Number of vehicles in the convoy;
 \item $$ L_\text{Vehicle} $$: Length of each convoy vehicle in meters (average vehicle length when vehicles are different).
 
 *Ordered platoon (routes attributed to docks)*
 
 If the routes stopping at the sub-stop are different, but platoons are organized when entering the 
-busway (Figure 7.5) always in an order that customers can be positioned on the platform in front of the 
+busway (Figure 7.6) always in an order that customers can be positioned on the platform in front of the 
 right docking bay, the whole “train” would leave the station once boarding and alighting in the most 
 heavily demanded “car” was completed.
 
@@ -435,39 +438,42 @@ were two docking bays, the average dwell time for the convoy would be given by E
 
 Eq. 7.16 Average dwell time for two docking bays in a sub-stop:
 
-$$ T{d 2bays} = T_0 + T_1 + T_2 -  {(1 \over {1 \over T_1 T1} + {1 \over T2}} =  T_0 + T_1 + {T_2 \over T1+T2 } *  T2 $$ 
+$$ T_\text{d 2 bays} = T_0 + T_1 + T_2 -  {1 \over {1 \over T_1} + {1 \over T2}} =  T_0 + T_1 + {T_2 \over T1+T2 } *  T2 $$ 
 
 If there are three platforms, the equation (shown in 7.17) gets a bit longer.
 
 Eq. 7.17 Average dwell time for three docking bays in a sub-stop:
  
-$$ T{d 3bays} = T_0 + T_1 + T_2 +T_3 
-- {(1 \over {1 \over T_1 T1} + {1 \over T2}} 
-- {(1 \over {1 \over T_1 T1} + {1 \over T3}}  
-- {(1 \over {1 \over T_1 T2} + {1 \over T3}} 
-+ {(1 \over {1 \over T_1 T1} + {1 \over T_1 T2} + {1 \over T3}} 
- 
-T_0 + T_1 + {T_2 \over T1+T2 } *  T2 $$ 
+$$ T_\text{d 3 bays} = T_0 + T_1 + T_2 +T_3 $$
 
+$$ - {1 \over {1 \over T_1} + {1 \over T2}} 
+- {1 \over {1 \over T_1 } + {1 \over T3}}  
+- {1 \over {1 \over T_2 } + {1 \over T3}} $$
+
+$$ + {1 \over {1 \over T_1 } + {1 \over T_2 } + {1 \over T3}} $$
+ 
 For four platforms it gets even longer and becomes too impractical and difficult to apply.
 
 Eq. 7.18 Average dwell time for four docking bays in a sub-stop:
 
-$$ T{d 4bays} = T_0 + T_1 + T_2 + T_3 + T_4 
-- {(1 \over {1 \over T_1 T1} + {1 \over T2}} 
-- {(1 \over {1 \over T_1 T1} + {1 \over T3}}  
-- {(1 \over {1 \over T_1 T1} + {1 \over T4}} 
-- {(1 \over {1 \over T_1 T2} + {1 \over T3}} 
-- {(1 \over {1 \over T_1 T2} + {1 \over T4}} 
-- {(1 \over {1 \over T_1 T3} + {1 \over T4}} 
-+ {(1 \over {1 \over T_1 T1} + {1 \over T_1 T2} + {1 \over T3}} 
-+ {(1 \over {1 \over T_1 T1} + {1 \over T_1 T3} + {1 \over T4}} 
-+ {(1 \over {1 \over T_1 T2} + {1 \over T_1 T3} + {1 \over T4}} 
-- {(1 \over {1 \over T_1 T1} + {1 \over T_1 T2} + {1 \over T_1 T3} + {1 \over T4}}$$ 
+$$ T_\text{d 4 bays} = T_0 + T_1 + T_2 + T_3 + T_4 $$
+
+$$ - {1 \over {1 \over T_1} + {1 \over T2}} 
+- {1 \over {1 \over T_1} + {1 \over T3}}  
+- {1 \over {1 \over T_1} + {1 \over T4}} 
+- {1 \over {1 \over T_2} + {1 \over T3}} 
+- {1 \over {1 \over T_2} + {1 \over T4}} 
+- {1 \over {1 \over T_3} + {1 \over T4}} $$
+
+$$ + {1 \over {1 \over T_1} + {1 \over T_2} + {1 \over T3}} 
++ {1 \over {1 \over T_1} + {1 \over T_3} + {1 \over T4}} 
++ {1 \over {1 \over T_2} + {1 \over T_3} + {1 \over T4}} $$
+
+$$ - {1 \over {1 \over T_1} + {1 \over T_2} + {1 \over T_3} + {1 \over T4}} $$ 
 
 Where:
 
-\item $$ T_{d Nbays} $$: Average dwell time for a sub-stop with N docking bays (equation will have $$2^N $$ terms);
+\item $$ T_\text{d N bays} $$: Average dwell time for a sub-stop with N docking bays (equation will have $$2^N $$ terms);
 \item $$ T_0 $$: Dead time (given by Equation 7.15);
 \item $$ T_i $$: Variable dwell time for ith docking bay calculated in isolation (given by Equation 7.4 or 7.13 
 minus $$ T_0$$).
@@ -478,16 +484,16 @@ for each additional docking bay above two can be used for practical purposes.
 
 Eq. 7.19: Practical approximation for average dwell time for N docking bays in a sub-stop:
 
-$$T_{d Nbays}: T_0 + {3 \over N + 2}  * \sum_{i=1} ^N {T_i} $$
+$$T_\text{d N bays}: T_0 + {3 \over N + 2}  * \sum_{i=1} ^N {T_i} $$
 
 Where:
-\item $$ T_{d Nbays}$$: Average dwell time for a sub-stop with N bays (equation will have 2N terms);
+\item $$ T_\text{d N bays}$$: Average dwell time for a sub-stop with N bays (equation will have 2N terms);
 \item $$ N $$: Number of vehicles in the convoy;
 \item $$ T_0 $$: Dead time (given by Equation 7.15);
 \item $$ T_i $$: Variable dwell time for ith docking bay calculated in isolation (given by Equation 7.4 or 7.13 
 without considering $$T_\text{0}$$ there).
 
-\figure{assets/image7.png}{Convoying systems order vehicles when entering the corridor, so they ride 
+\figure[medium]{assets/image7.png}{Convoying systems order vehicles when entering the corridor, so they ride 
 as “train” and the docking position for every route at the station is fixed, preventing users from running 
 up and down the platform.}{ Pedro Szász.}
 

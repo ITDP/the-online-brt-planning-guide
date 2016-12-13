@@ -23,7 +23,7 @@ for a given use.
 open.}{ Arthur Szász.}
 
 For this edition, we changed the approach for calculating operational capacity of a corridor: *the 
-capacity of the corridor is the capacity of its bottleneck* One must evaluate the capacity 
+capacity of the corridor is the capacity of its bottleneck* One must evaluate the capacity  
 of each station and traffic lights under predicted conditions to check the corridor capacity.
 
 In order to compare situations for design, *capacity* is defined as the number of customers that *can* 
@@ -46,7 +46,7 @@ of calculating capacity here, the demand load of a station is the demand load th
 
 As mentioned before and as will be highlighted many times in the following discussions and examples, 
 high capacity is achievable at the cost of speed. Therefore, in agreement with our design objectives, 
-we define the \highlight{operational capacity} as \highlight{the capacity that does not cause queues at the stations}.
+we define the \highlight{operational capacity} as \highlight{the capacity that does not cause bus queues at the stations}.
 
 What constitutes a queue is still a bit subjective and will be discussed when queue formation is evaluated. 
 One should notice that having no queue does not necessarily imply reduced time at the station. For example, 

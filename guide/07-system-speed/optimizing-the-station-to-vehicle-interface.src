@@ -1,9 +1,7 @@
-
-
 \section{Optimizing the Station-to-Vehicle Interface}
 
 > Let every man praise the bridge that carries him over.
-@ —English proverb
+@ English proverb
 
 Besides increasing the vehicle size, frequency, and number of sub-stops, there are several elements 
 of the station-to-vehicle interface that can be improved to reduce boarding and alighting times, therefore 
@@ -13,6 +11,13 @@ reducing station saturation and increasing corridor capacity.
 interface did much to make BRT a high-capacity option. Photo}{ Volvo.}
 
 \subsection{Platform-Level Boarding}
+
+\figure{assets/image31.jpeg}{With well-designed infrastructure and adequate driver training, such as in 
+Ahmedabad, India,BRT systems can reduce the boarding gap to under 10 centimeters}{Shreya Gadepalli}
+
+\figure{assets/image32.jpeg}{Reducing the borad gap, as seen here  in Bogotá, Colombia, allows customers
+to safely board and alight faster, increasing system capacity.}{Lloyd Wright.}
+
 
 To reduce boarding and alighting times, most state-of-the-art BRT systems have introduced platform-level 
 boarding. With platform-level boarding, the docking bay platform is designed to be the same height as 
@@ -28,18 +33,12 @@ The boarding bridge consists of a flip-down ramp that is attached to the vehicle
 extends from the bus upon docking. As the doors open, the boarding bridge is released and covers the 
 gap between the vehicle and the platform (Figures 7.22 and 7.23).
 
-Fig. 7.20 and Fig. 7.21 With well-designed infrastructure and adequate driver training, such as in 
-Ahmedabad, India, pictured on the left, and in Bogotá, Colombia, pictured on the right, BRT systems can 
-reduce the boarding gap to under 10 centimeters, allowing customers to safely board and alight. Photos 
-courtesy of Shreya Gadepalli (left) and Lloyd Wright (right).
+\figure[medium]{assets/image33.jpeg}{System in Curitiba, Brazil, utilize a boarding bridge between the vehicle
+and platform to facilitate easy boarding}{Volvo}
 
-\figure{assets/image32.jpeg}{FixMe!.}{ Copyright}
-
-  Fig. 7.22 and Fig. 7.23 Systems in cities such as Curitiba, Brazil, (left photo) and Guayaquil, Ecuador 
-(right photo), utilize a boarding bridge between the vehicle and platform to facilitate easy boarding 
-and alighting. Images courtesy of Volvo (left) and Lloyd Wright (right).
-
-\figure{assets/image34.jpeg}{FixMe!}{ Copyright}
+\figure{assets/image34.jpeg}{Even bus approach to station being faster, using boarding bridges, as seen
+here in Guayaquil, Ecuador, usually increases dead time, while certainly decreases boarding time per 
+passenger.}{Lloyd Wright.}
 
 Both techniques, gap entry and boarding bridge entry, have their advantages and disadvantages. Cities 
 such as Curitiba and Quito have experienced much success with boarding bridges. A typical boarding bridge 
@@ -106,12 +105,11 @@ for boarding and alighting has been reduced further. On the Geary Boulevard corr
 USA, the boarding times are 1.2 seconds per customer. However, these times are still several times higher 
 than boarding times for systems with off-board fare collection.
 
-Fig. 7.26 and Fig. 7.27 The Seoul busway system uses smart card technology for fare collection (left 
-photo). However, the on-board nature of the fare verification means that dwell times are negatively affected. 
-A single customer searching through personal effects for his or her smart card can create a significant 
-delay (right photo). Images courtesy of Lloyd Wright.
+\figure{assets/image36.jpeg}{The Seoul busway system uses smart card technology for fare collection.}{Lloyd Wright.}
 
-FixMe! courtesy of Copyright
+\figure{assets/image37.jpeg}{However, in Seoul, the on-board nature of the fare verification means that dwell
+times are negatively affected. A single customer searching through personal effects for his or her smart card 
+can create a significant delay.}{Lloyd Wright.}
 
 In some bus systems, conductors sell tickets on board. While such an arrangement allows customers to 
 board quickly and then pay once the vehicle is moving, it may introduce other forms of delay. For example, 
@@ -129,7 +127,7 @@ need three to five seconds.
 
 \figure{assets/image39.jpeg}{In Brazil, a “reservoir” space is provided within the vehicle where customers 
 line up to verify their fare. With the use of this reservoir, the vehicle is able to proceed even before 
-all customers have verified their fare. Image}{ the Municipality of Goiânia.}
+all customers have verified their fare.}{The Municipality of Goiânia.}
 
 With on-board fare collection and verification, alighting is usually faster than boarding. Typically, 
 alighting times are approximately 70 percent of boarding times. In the case of off-board fare collection 
@@ -161,17 +159,18 @@ facilities. Fare vending machines, fare sales booths, fare verification devices,
 both investment and physical space. In a BRT system with limited physical space for stations in a center 
 median, accommodating the fare collection and verification infrastructure can be a challenge. 
 
+\figure{assets/image40.jpeg}{Cost-benefit analysis of external fare collection. Graph}{ Steer Davies 
+Greer.}
+
 There is no one precise point at which a system’s capacity will determine if on-board or off-board 
 fare collection is more cost effective. Much depends on demand figures from individual stations, physical 
 configurations of stations, and average labor costs. However, the advantage of off-board payment clearly 
 increases as the level of boardings and alightings at the station increases and is part of the BRT basics 
 of *The BRT Standard*. In Goiânia, Brazil, the local public transport agency estimates that an off-board 
 fare system is cost justified when the system capacity reaches 2,500 pphpd. The development of a cost-benefit 
-analysis may help determine this capacity point, provided the data is available. Figure 7.30 provides 
+analysis may help determine this capacity point, provided the data is available. Figure 7.29 provides 
 an example of this type of analysis.
 
-\figure{assets/image40.jpeg}{Cost-benefit analysis of external fare collection. Graph}{ Steer Davies 
-Greer.}
 
 \subsection{Doorways}
 
@@ -279,6 +278,7 @@ unacceptable levels. Table 7.14 presents potential solutions to TransJakarta’s
 toward an articulated vehicle with multiple wide doorways would add the most capacity to the existing 
 system, the analysis showed. TransJakarta has subsequently retrofitted stations and buses with additional 
 doors and purchased larger vehicles.
+
 \begintable{Scenarios for Improving TransJakarta’s Capacity}
 \header
 \col Scenario
@@ -346,7 +346,10 @@ without any intervention from the driver.
 Mechanical guideway systems, such as those utilized in Adelaide, Australia; Essen, Germany; Leeds, 
 England; and Nagoya, Japan, physically align the vehicle to the station through a fixed roller attached 
 to the vehicle. In these cities, the fixed guideway is utilized both at stations and along the busway. 
-However, a city could elect to only utilize the mechanical guidance at stations. 
+However, a city could elect to only utilize the mechanical guidance at stations.
+
+\figure{assets/image42.jpeg}{When operating properly, the optical guidance system employed in Las Vegas, 
+Nevada, USA, can align the vehicle within a few centimeters of the platform.}{ NBRTI.}
 
 Optical docking systems operate through the interaction between an on-board camera and a visual indicator 
 embedded in the busway. Software within the on-board guidance system then facilitates the automated steering 
@@ -363,8 +366,6 @@ limitations with these technologies and their software, required deceleration an
 can actually be slightly less than manual techniques. Further, the added hardware and software costs 
 of an optically automated system can push vehicle costs well over US$1 million each. 
 
-\figure{assets/image42.jpeg}{When operating properly, the optical guidance system employed in Las Vegas, 
-Nevada, USA, can align the vehicle within a few centimeters of the platform. Image}{ NBRTI.}
 
 \subsection{Station Platform}
 

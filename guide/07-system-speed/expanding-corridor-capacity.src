@@ -3,7 +3,7 @@
 \section{Expanding Corridor Capacity}
 
 > Good design begins with honesty, asks tough questions, comes from collaboration and from trusting your intuition.
-@ —Freeman Thomas, designer, 1957–
+@ Freeman Thomas, designer, 1957–
 
 Various design modifications in BRT services and infrastructure expand the capacity of a BRT system. 
 The goal of these modifications is to carry more customers—while minimizing the saturation level at stations—and 
@@ -20,9 +20,9 @@ as discussed in the sections below.
 
 The desired load factor may vary between peak and nonpeak periods. In Bogotá’s TransMilenio system, 
 typical load factors are 80 percent for peak periods and 70 percent for nonpeak periods. But as ridership 
-levels grow in Bogotá, overcrowding becomes an increasing concern (Figures 7.8 and 7.9).
+levels grow in Bogotá, overcrowding becomes an increasing concern (Figure 7.9).
 
-\figure{assets/image19.jpeg}{(empty)}{FIXME!}
+\figure{assets/image19.jpeg}{The Avendida Caracas corridor in Bogotá suffers from overcrowding at peak periods.}{Carlos Pardo.}
 
 \subsection{Using Larger Vehicles}
 
@@ -66,6 +66,9 @@ frequency, and hence longer waiting times for customers.
 \col 25–35
 \endtable
 
+\figure{assets/image21.jpeg}{The 18-meter articulated vehicle has become standard in many BRT applications. 
+    Image of Hangzhou, China, BRT vehicle}{ Kangming Xu (http://www.brtchina.org).}
+
 Increasingly, the 18-meter articulated vehicle is becoming the standard for BRT systems. The Curitiba 
 system has utilized the larger bi-articulated vehicles, as have Mexico City’s Insurgentes Avenue and 
 TransMilenio in Bogotá. There are several reasons for the current dominance of the articulated vehicles 
@@ -81,14 +84,17 @@ length of right-of-way at stations.
 There may be instances where the operational and physical characteristics of a corridor would make 
 a bi-articulated vehicle an appropriate choice. Chapter 20: Vehicles discusses vehicle technology options.
 
-\figure{assets/image21.jpeg}{The 18-meter articulated vehicle has become standard in many BRT applications. 
-Image of Hangzhou, China, BRT vehicle}{ Kangming Xu (http://www.brtchina.org).}
 
 As vehicle length increases, there can be a diminishing return in terms of delivered capacity. If sub-stop 
 capacity is reached and vehicle congestion occurs, then the additional capacity may not be fully realized. 
 Figure 7.11 gives an example of this effect for a given set of parameters.
 
-\figure{assets/image22.jpeg}{Relationship between vehicle size and capacity. Graph}{ Steer Davies Greer.}
+\figure[medium]{assets/image22.jpeg}{Relationship between vehicle size and capacity. Graph}{ Steer Davies Greer.}
+
+\figure{assets/image23.jpeg}{The perception of a relatively empty busway next to heavily congested mixed-traffic 
+lanes, as seen in this image of Quito.}{Lloyd Wright}
+\figure{assets/image24.jpeg}{Empty busways, as seen here in Hangzhou, may create political pressure to open 
+up the lane to private vehicles.}{Karl Fjellstrom}
 
 While the vehicle size may optimize costs, very low frequencies can have a perverse effect. First, 
 customer frequency translates into reliability, and this is one of the main drivers of transit use. Without 
@@ -103,19 +109,15 @@ despite the fact that each busway lane was moving three to four times the volume
 lane. Nevertheless, the perception of an empty busway next to heavily congested mixed-traffic lanes can 
 create political difficulties.
 
-Fig. 7.12 and Fig. 7.13 The perception of a relatively empty busway next to heavily congested mixed-traffic 
-lanes, as seen in these images of Quito (left photo) and Hangzhou (right photo), can create political 
-pressure to open up busways to private vehicles. Images courtesy of Lloyd Wright (left) and Karl Fjellstrom, 
-Far East BRT (right).
-
-\figure{assets/image24.jpeg}{FixMe!.}{ Copyright}
-
 \subsection{Adding Passing Lanes and Multiple Sub-Stops}
 
 Measures such as vehicle size, vehicle-station interface, and doorway widths all contribute to higher-capacity 
 and higher-speed systems. However, even together, these measures will likely only produce capacities 
 around 9,000 pphpd. Thus, while systems such as those in Curitiba and Quito are high-quality BRT systems, 
 their maximum corridor capacities are limited to this value. 
+
+\figure{assets/image25.jpeg}{The use of multiple sub-stops and passing lanes helps minimize vehicle 
+congestion in Guangzhou, China. Photo}{ ITDP.}
 
 A key innovation of Bogotá’s TransMilenio system was that more capacity and speed was obtained because 
 at each station, instead of having just one sub-stop, there were multiple sub-stops (Figure 7.14). In 
@@ -126,6 +128,9 @@ to 45,000 pphpd, and there are good indications that values as high as 50,000 pp
 now possible with BRT. Guangzhou achieves throughput of 27,400 pphpd, and new systems under construction 
 in Rio de Janeiro promise to achieve even higher throughput levels than Bogotá and Guangzhou.
 
+\figure{assets/image26.jpeg}{The use of multiple sub-stops, in this case three in each direction, has 
+been one of the principal reasons Bogotá is able to achieve very high customer capacities. Photo}{ Akiris.}
+
 At any given point on TransMilenio’s corridors a vehicle passes every twenty seconds—a headway that 
 would lead to significant saturation on a corridor without passing lanes. However, with passing lanes 
 and multiple sub-stops and docking bays, the headway at *each* docking bay tends to be around one minute. 
@@ -133,12 +138,6 @@ Guangzhou similarly achieves very high frequency, and is, with Bogotá, the high
 BRT in the world, averaging around one vehicle every eleven seconds in the peak direction and peak hour. 
 The Brisbane Busway achieves peak-hour vehicle frequencies of one vehicle every fourteen seconds in a 
 single direction.
-
-\figure{assets/image25.jpeg}{The use of multiple sub-stops and passing lanes helps minimize vehicle 
-congestion in Guangzhou, China. Photo}{ ITDP.}
-
-\figure{assets/image26.jpeg}{The use of multiple sub-stops, in this case three in each direction, has 
-been one of the principal reasons Bogotá is able to achieve very high customer capacities. Photo}{ Akiris.}
 
 The presence of multiple sub-stops serves two distinct purposes. First, the multiple sub-stops permit 
 many different types of services to operate from the same station, such as local services or limited-stop 
@@ -159,6 +158,11 @@ sub-stop is recommended whenever volumes exceed this level.
 
 *Inclusion of Limited-Stop Services*
 
+\figure{assets/image27.jpeg}{Shidajida BRT station in Guangzhou, at the midpoint underneath the access 
+bridge, has one lane carrying 27,000 people and one vehicle every 10 seconds in a single direction during 
+the peak hour. This system has the world’s highest BRT vehicle carrying frequency. Image}{ ITDP.}
+
+
 With the inclusion of overtaking lanes, to increase capacity further, limited-stop services are likely 
 to be the most relevant tool for planners. These services do not add to station saturation. In addition, 
 they have higher commercial speeds. This way, stations with the highest demands can have services go 
@@ -167,10 +171,6 @@ the demand, the easier it is to provide limited-stop services. One lane can serv
 per hour. If 50 percent of this is used, that would be equivalent to more than 50,000 pphpd. Section 
 6.7.2 discusses how to implement direct service patterns. In the case of TransMilenio, approximately 
 50 percent of vehicles serve these types of routes. 
-
-\figure{assets/image27.jpeg}{Shidajida BRT station in Guangzhou, at the midpoint underneath the access 
-bridge, has one lane carrying 27,000 people and one vehicle every 10 seconds in a single direction during 
-the peak hour. This system has the world’s highest BRT vehicle carrying frequency. Image}{ ITDP.}
 
 *Passing Lanes at Stations Only*
 
@@ -182,6 +182,9 @@ if the sub-stops for each direction are offset from each other. As discussed in 
 and Signal Control, if the BRT is in a section with intersections, narrowing mixed-traffic lanes will 
 have no impact on the segment capacity if the station is at an appropriate distance from the intersections.
 
+\figure{assets/image28.jpeg}{In order to accommodate passing lanes at stations on the proposed Dar es Salaam system, the 
+road infrastructure was widened.} {ITDP.}
+
 Other options for accommodating passing lanes in express roadways include making property purchases 
 for widening. In some BRT cities, such as Barranquilla, Colombia, plans called for the purchase of properties 
 near station areas. The road infrastructure was widened in these areas in order to accommodate the passing 
@@ -189,8 +192,6 @@ lane. This same strategy has been employed at some stations in the BRT system in
 as shown in Figure 7.17. The viability of property purchases for this purpose depends on local property 
 costs, as well as the existence of a well-designed compensation program for property owners. 
 
-Fig. 7.17 In order to accommodate passing lanes at stations on the proposed Dar es Salaam system, the 
-road infrastructure was widened. Image courtesy of ITDP.
 
 \subsection{Convoying}
 
@@ -220,11 +221,9 @@ over 20,000 pphpd through convoying techniques. Nevertheless, the penalty for ex
 this level without reducing boarding and alighting times is a reduced level of service in terms of average 
 speed.
 
-\figure{assets/image29.jpeg}{(empty)}{FIXME!}
-
-Fig. 7.18 Convoying allows the Porto Alegre system to achieve peak capacities of over 20,000 pphpd, 
+\figure{assets/image29.jpeg}{Convoying allows the Porto Alegre system to achieve peak capacities of over 20,000 pphpd, 
 but at the same time this technique can result in busway and station congestion, and therefore slow average 
-vehicle speeds. Photos courtesy of Lloyd Wright.
+vehicle speeds.}{Lloyd Wright.}
 
 Systems may operate as ordered convoys or non-ordered convoys. In an ordered convoy, the vehicles must 
 approach the station in a set order so that the vehicles stop in the designated sub-stop. Signage at 

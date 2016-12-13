@@ -1,9 +1,7 @@
-
-
 \section{Calculating Corridor Capacity}
 
 > If I have the belief that I can do it, I shall surely acquire the capacity to do it even if I may not have it at the beginning.
-@ —Mahatma Gandhi, political and spiritual leader, 1847–1948
+@ Mahatma Gandhi, political and spiritual leader, 1847–1948
 
 \subsection{Corridor Capacity at Station Calculation}
 
@@ -13,39 +11,35 @@ is given by the capacity of its busiest station section, which is basically depe
 size, load factor, and sum of service frequencies dwelling at each sub-stop with those who “jump” the 
 station (direct services). Equation 7.20 below shows this.
 
-Eq. 7.20 Corridor capacity at the station:\' TODO Math: 
+Eq. 7.20 Corridor capacity at the station:
 
-CorridorCapacityat station= VSize*LoadFactor*(Freqdirect+i=1Nsub-stopsFreq i ) '\
+$$ \text{CorridorCapacity}_\text{at station} = \text{VSize} *\text{LoadFactor}*(\text{Freq}_\text{direct} + \sum_{i=1}^{N_\text{sub-stops} \text{Freq}_i}) $$ 
 
 Where:
 
-Corridor Capacityat station = Number of people the corridor can transport through a given station section, 
+\item $$ \text{Corridor Capacity}_\text{at station} $$: Number of people the corridor can transport through a given station section, 
 in passengers per hour per direction (pphpd);
-
-VSize = Maximum vehicle capacity;
-
-LoadFactor = Average occupancy of the vehicles at the station, expressed as a proportion of the maximum 
+\item $$ \text{VSize} $$: Maximum vehicle capacity;
+\item $$ \text{LoadFactor} $$: Average occupancy of the vehicles at the station, expressed as a proportion of the maximum 
 vehicle capacity;
-
-Freqdirect = Frequency of limited-stop services that skip the station under analysis;
-
-Freq i = Vehicle frequency at sub-stop i is the number of vehicles that dwells at all docking bays 
+\item $$ \text{Freq}_\text{direct} $$: Frequency of limited-stop services that skip the station under analysis;
+\item $$ \text{Freq}_i $$ Vehicle frequency at sub-stop i is the number of vehicles that dwells at all docking bays 
 of sub-stop i during the evaluated interval (usually an hour);
-
-Nsub-stops = Number of independent sub-stops in each station.
+\item $$ N_\text{sub-stops} $$: Number of independent sub-stops in each station.
 
 For a more generic evaluation, assuming the frequency in each sub-stop is the same, the corridor capacity 
 at the station is:
 
-Eq. 7.21 Basic formula for corridor capacity at station\' TODO Math: 
+Eq. 7.21 Basic formula for corridor capacity at station
 
-CorridorCapacityat station= VSize*LoadFactor*(Freqdirect+NSubstops*Freqsub-stop) '\
+$$ \text{CorridorCapacity}_\text{at station} = \text{VSize} * \text{LoadFactor} * (\text{Freq}_\text{direct} + \text{NSubstops} *\text{Freq}_\text{sub-stop}) $$ 
 
 Table 7.2 shows sample corridor capacities for a range of common scenarios without limited-stop services. 
 By varying only the vehicle capacity and the number of sub-stops per station, it shows just how powerful 
 these two factors are in determining system capacity. It must be noted that the actual potential capacities 
 for a given city will not be influenced by other system characteristics. But it should also be noticed 
 that the table and the equation do not reveal anything about system speed.
+
 \begintable{BRT Corridor Capacity at Station Scenarios}
 \header
 \col Vehicle capacity (passengers)
@@ -164,13 +158,36 @@ capacity and adjustments have to be made. As an example, let us consider a corri
 study indicated that the boarding and alighting requirements per station in one direction at the morning 
 peak hour are as given in Table 7.3, for the first and tenth years of operation.
 
-Table 7.3 Corridor Demand Example
+\begintable{Corridor Demand Example}
+\header \col  \col MORNING PEAK HOUR - YEAR 0\col \col MORNING PEAK HOUR - YEAR 10\col 
+\row \col station \col Boarding passengers (pax/hour)\col Alighting passengers (pax/hour)\col Boarding passengers (pax/hour)\col Alighting passengers (pax/hour)
+\row \col A\col 824\col 0\col 1030\col 0
+\row \col B\col 734\col 8\col 918\col 10
+\row \col C\col 646\col 15\col 808\col 19
+\row \col D\col 554\col 43\col 693\col 54
+\row \col E\col 768\col 82\col 960\col 102
+\row \col F\col 364\col 176\col 455\col 220
+\row \col G\col 272\col 235\col 340\col 294
+\row \col H\col 180\col 424\col 225\col 530
+\row \col I\col 161\col 358\col 201\col 448
+\row \col J\col 144\col 330\col 180\col 413
+\row \col K\col 130\col 298\col 162\col 372
+\row \col L\col 118\col 260\col 147\col 325
+\row \col M\col 94\col 544\col 117\col 680
+\row \col N\col 70\col 568\col 87\col 710
+\row \col O\col 64\col 533\col 80\col 666
+\row \col P\col 48\col 499\col 60\col 624
+\row \col Q\col 43\col 199\col 54\col 249
+\row \col R\col 34\col 214\col 42\col 267
+\row \col S\col 19\col 230\col 24\col 288
+\row \col T\col 0\col 250\col 0\col 312
+\endtable   
 
-\figure{assets/image8.emf}{The load of all segments is already defined, as the load of the preceding 
-segment plus boarding of preceding station minus alighting at the preceding station.}{FIXME! Copyright}
+The load of all segments is already defined, as the load of the preceding 
+segment plus boarding of preceding station minus alighting at the preceding station.
 
-  \figure{assets/image9.jpeg}{Example corridor morning peak loads for the tenth year, boarding and 
-alighting per station. Image}{ Elebeta.}
+\figure[medium]{assets/image9.jpeg}{Example corridor morning peak loads for the tenth year, boarding and 
+alighting per station.}{ Elebeta.}
 
 For the beginning year of operations (year 0), an initial service plan proposed a closed trunk corridor 
 with twenty stations, with one service stopping at all stations. The service will be operated using a 
@@ -187,20 +204,24 @@ Table 7.4, which can be reproduced with the formulas discussed in the previous s
 shows that the proposed solution leads to a load factor of 0.86 at the critical link, as well as saturation 
 levels above the accepted limit.
 
-Table 7.4 Station Saturation at Example Corridor for First Year Initial Proposal
+\begintable[large]{Station Saturation at Example Corridor for First Year Initial Proposal}
+    \useimage{assets/table4.png}
+\endtable
 
-\figure{assets/image10.emf}{To reduce the load factor to the proposed value of 0.85, it is enough to 
+To reduce the load factor to the proposed value of 0.85, it is enough to 
 raise service frequency to 61 vehicles per hour. While only one more bus per hour, this is nearly a 2 
-percent capacity increase.}{FIXME! Copyright}
+percent capacity increase.
 
 If instead of using a 2-door vehicle, a 3-door vehicle is proposed, with a reduction of boarding or 
 alighting time from 1.0 second per customer to 0.7 seconds per customer, then saturation gets closer 
 to an acceptable level, as shown in Table 7.5.
 
-Table 7.5 Station Saturation at Example Corridor for First Year Second Proposal
+\begintable[large]{Station Saturation at Example Corridor for First Year Second Proposal}
+    \useimage{assets/table5.png}
+\endtable
 
-\figure{assets/image11.emf}{If such levels were found at the tenth year of operation, one could tolerate 
-this proposal, but as the demand will grow, this saturation is clearly not acceptable.}{FIXME!}
+If such levels were found at the tenth year of operation, one could tolerate 
+this proposal, but as the demand will grow, this saturation is clearly not acceptable.
 
 Indeed, looking at the MaxLoad for the tenth year of operation, 4,505 passengers per hour, after station 
 G (shown in Table 7.6), one can tell that 76 vehicles per hour will be required (capacity equal to 4,522 
@@ -208,24 +229,28 @@ pphpd), and with such frequencies, all stations will be at risk of experiencing 
 resulting times and speeds in Table 7.6 seem acceptable, but due to planning uncertainties, saturations 
 above the 0.4 limit expose the system to breakdown.
 
-Table 7.6 Station Saturation at Example Corridor for Tenth Year First Proposal
+\begintable[large]{Station Saturation at Example Corridor for Tenth Year First Proposal}
+    \useimage{assets/table6.png}
+\endtable
 
-\figure{assets/image12.emf}{Vehicle sizes were determined for minimizing the sum of waiting and operating 
+Vehicle sizes were determined for minimizing the sum of waiting and operating 
 costs. By increasing vehicle size to increase operational capacity, waiting times would also increase, 
 especially in the first years of operation. One of the objectives of the system is to reduce travel times 
 door-to-door, so this has to be weighed in that light. Increasing the vehicle size to a 15-meter vehicle 
 for 100 passengers, however, would allow some stations in the example to perform above operational capacity 
 (4,505 passengers per hour with 53 vehicles per hour) in the tenth year of operation, as shown in Table 
-7.7, with a more acceptable saturation level.}{FIXME!}
+7.7, with a more acceptable saturation level.
 
-Table 7.7 Station Saturation at Example Corridor for Tenth Year Increasing Vehicle Size to 100 Passengers
+\begintable[large]{Station Saturation at Example Corridor for Tenth Year Increasing Vehicle Size to 100 Passengers}
+\useimage{assets/table7.png}
+\endtable
 
-\figure{assets/image13.emf}{Using an articulated 160-passenger vehicle would bring saturation at the 
+Using an articulated 160-passenger vehicle would bring saturation at the 
 critical station to a comfortable saturation level of 0.34. If the design included a fourth door, reducing 
 boarding time to 0.5 seconds per customer, than saturation at the critical station would be 0.29. But 
 in the first year, frequency would be twenty-six vehicles per hour (over a two-minute headway) and average 
 wait time would be over one minute in the peak, and during the off-peak time this value would likely 
-double or triple.}{FIXME!}
+double or triple.
 
 Without having to add overtaking lanes at the stations (although overtaking lanes may be feasible without 
 affecting mixed traffic capacity if stations are properly located; see Chapter 24: Intersections and 
@@ -235,9 +260,11 @@ affected. What is expected is that a certain number of times (proportional to th
 7.6), boarding will occur through the second platform of the station. Total passenger queueing time is 
 significantly reduced from 136 hours to 83.
 
-Table 7.8 Station Saturation at Example Corridor for Tenth Year with Two Docking Bays per Station
+\begintable[large]{Station Saturation at Example Corridor for Tenth Year with Two Docking Bays per Station}
+    \useimage{assets/table8.png}
+\endtable
 
-\figure{assets/image14.emf}{To consider the provision of overtaking lanes, one must look at the internal 
+To consider the provision of overtaking lanes, one must look at the internal 
 origin-destination matrix of the BRT system (in Table 7.9) to identify potential route splits to create 
 limited services. Ideally, these limited routes should have a headway between 2.5 to 3 minutes in order 
 to reduce the effects of irregularity on each route. But in our example, we are initially creating only 
@@ -246,21 +273,25 @@ of queueing for a large volume of passengers per hour (1,666). The results were 
 limited route jumped stations F to M. The resulting saturation is shown in Table 7.10 assuming that all 
 passengers highlighted in yellow in the matrix will use the limited service, passengers highlighted in 
 pink will be shared by two services proportionally to the frequency, and the remaining passengers (in 
-orange) will use the local service.}{FIXME!}
+orange) will use the local service.
 
-Table 7.9 Example Corridor Internal O/D Matrix for the Tenth Year
+\begintable[medium]{Example Corridor Internal O/D Matrix for the Tenth Year}
+    \useimage{assets/table9.png}
+\endtable
 
-\figure{assets/image15.emf}{Table 7.10 Station Saturation at Example Corridor for Tenth Year with One 
-Limited-Stop Service}{FIXME!}
+\begintable[large]{Station Saturation at Example Corridor for Tenth Year with One 
+Limited-Stop Service}
+    \useimage{assets/table10.png}
+\endtable
 
-\figure{assets/image16.emf}{The additional queue waiting time in relation to the previous alternative 
+The additional queue waiting time in relation to the previous alternative 
 is forty seconds, but after the addition of the limited service, the travel time difference between local 
 and limited stop is only twenty-six seconds, which would end up making no difference for users who can 
 take the limited service to use that route. If customers could be forced to behave the way we assumed, 
 the total queueing time would be further reduced from eighty-three to fifty-five. To force this behavior, 
 one can propose, in addition to the limited service, to split the local service into two early return 
 services: the first (Local 1) would attend from station A to station L, and the second (Local 2) from 
-station E to station T.}{FIXME!}
+station E to station T.
 
 Passengers shown in the OD matrix would have the options below:
 \item Light pink: Local 1 or Limited-stop
@@ -280,13 +311,14 @@ are needed to run the local service.
 
 Besides that, as shown in Table 7.11, there is some meaningful reduction in saturation for stations 
 from A to D and M to T while the stations E to L face a small increase. Passenger time in queue is further 
-reduced to fifty hours, against eighty-three without overtaking lanes and direct service. Table 7.11 
+reduced to fifty hours, against eighty-three without overtaking lanes and direct service. Figure 7.8 
 shows the resulting loads in each service.
 
-Table 7.11 Station Saturation at Example Corridor for Tenth Year with Limited and Early Return Local 
-Services
+\begintable[large]{Station Saturation at Example Corridor for Tenth Year with Limited and Early Return Local 
+Services}
+    \useimage{assets/table11.png}
+\endtable
 
-\figure{assets/image17.emf}{FIXME!}{FIXME!}
 
-\figure{assets/image18.jpeg}{Example corridor morning peak loads for the tenth year, boarding and alighting 
+\figure[medium]{assets/image18.jpeg}{Example corridor morning peak loads for the tenth year, boarding and alighting 
 per station. Image}{ Elebeta.}
