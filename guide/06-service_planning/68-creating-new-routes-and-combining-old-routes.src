@@ -1,0 +1,161 @@
+
+
+\section{ Creating New Routes and Combining Old Routes}
+
+> The path is the goal.
+@ —Mahatma Gandhi, political and spiritual leader, 1847–1948
+
+There are two fairly typical problems of existing public transport routing that emerge for historical 
+reasons. One problem is that a traditional public transport market may have routes that run along a major 
+road and then terminate at a terminal in the middle of the city, where at some time in the past, a terminal 
+was built, or a minibus taxi rank was created. Often, however, there are many customers who are not going 
+anywhere near the downtown terminal, but to some point beyond it. As such, these traditional routes may 
+force a majority of customers to have to transfer and leave a lot of buses needlessly idling downtown. 
+In such conditions, routes that continue through the CBD for some distance should be considered. In other 
+words, this is the opposite problem of the one addressed in subsection *Shortened Routes *of Section 
+6.7.2 above where a route needlessly continued too far, and an early return would have been more efficient. 
+In this case, the route was artificially severed midway for historical reasons. In both cases, the approach 
+to a solution should be similar. 
+
+Another typical situation that emerges is that bus routes in cities are organized along a fixed grid 
+pattern. These service patterns also emerged historically for ease of customer network legibility. These 
+grid network patterns also have the advantage of allowing for a lot of directional flexibility with only 
+one transfer. This sort of service plan is common in cities in the United States, where for decades each 
+bus service will tend to ply up and down one specific street in a grid. This is a reasonable service 
+pattern if little else is known about the pattern of trip origins and destinations, or if trip patterns 
+are randomly distributed across the grid. In most cases, where there is a grid, many people are transferring 
+at least once and possibly twice to reach their destination. As there is delay involved in the transfer, 
+if a majority of people are all headed in a single direction that requires a transfer (say, toward downtown), 
+it may make more sense to offer a service that turns the corner rather than just running straight up 
+and down a single arterial and forcing a majority of customers to transfer.  
+
+When a BRT corridor is introduced into a grid, one service on a particular street is suddenly much 
+faster than services on alternative streets. If the speed improvement is significant, it may well pull 
+a lot of demand off of bus services on parallel streets, particularly for longer distance trips, capturing 
+demand that otherwise would have been distributed to several stops. In this case, offering some services 
+between popular trip origins and destinations that turn onto the BRT corridor and off the BRT corridor 
+could prove to be advantageous by avoiding the transfer penalty on as many customers as possible.
+
+An example of this can be seen from the BRT service planning for Ashland Avenue in Chicago. The bus 
+routes in Chicago mainly run north and south up the major arterials, or east and west on crosstown streets. 
+The city plans to build Gold or Silver-standard BRT infrastructure through both the Central Loop downtown 
+(Washington and Madison Streets) and along Ashland Avenue. One existing non-BRT bus route (\#20) runs 
+east-west connecting Ashland and points west to the Central Loop. Another bus route (\#9) runs north-south 
+on Ashland Avenue. The demand on Ashland from Route \#9 alone came nowhere near to saturating the planned 
+BRT corridor, so tests were run to see if there would be any benefit in pulling additional demand onto 
+Ashland.
+
+In this case, the service planning team had boarding and alighting data on all the relevant bus routes 
+that interacted with the two corridors, and transfer survey data from all the relevant transfer points. 
+The team mapped the transfer volumes to give a first indication of where customers might be transferring, 
+and did further transfer surveys in those locations. Using simple probability to predict how many customers 
+are likely to transfer from one bus route to the next, the team constructed a corridor-specific origin 
+destination (OD) matrix to test the likely demand and time savings of a few alternative additional services.
+
+They ended up testing the demand levels, and costs and benefits of several alternative routes:
+
+\figure{assets/image115.jpeg}{For the Ashland and Central Loop BRT projects in Chicago, original typical 
+grid-pattern bus services will not optimally serve the demand when converted to BRT. Image}{ Pedro Szász.}
+
+\figure{assets/image116.jpeg}{For the Ashland and Central Loop BRT projects in Chicago, BRT service 
+planning revealed that two L-shaped (top) and two S-shaped services (bottom) providing direct connections 
+between Ashland and the Central Loop could provide the optimal service improvement. Image}{ Pedro Szász.}
+
+In addition to recommending a BRT service to replace Route \#9 up and down Ashland, a southern “L” shaped 
+route was recommended connecting to the Central Loop BRT link, a northern “L” shaped route connecting 
+to the Central Loop BRT, and two “S” shaped routes, coming from the west, turning onto Ashland for a 
+stretch, and then turning again into the Central Loop, as shown above. 
+\begintable{Recommended Frequency per Route}
+\header
+\col Scenario
+\col Baseline
+\col Standard BRT Route
+\col L Shaped Routes
+\col L and S Shaped Routes
+\row
+\col Local Route
+\col 6.5
+\col 2
+\col 1
+\col 1
+\row
+\col BRT 1
+\col 0
+\col 10
+\col 4
+\col 4
+\row
+\col LN
+\col 0
+\col 0
+\col 6
+\col 5
+\row
+\col NS
+\col 0
+\col 0
+\col 5
+\col 4
+\row
+\col SN
+\col 0
+\col 0
+\col 0
+\col 4
+\row
+\col SS
+\col 0
+\col 0
+\col 0
+\col 4
+\row
+\col SE
+\col 0
+\col 0
+\col 0
+\col 0
+\endtable
+
+In this case, with the construction of the BRT corridor, the introduction of L- and S- shaped routes 
+that better corresponded to the travel patterns of most people would bring significant user benefits. 
+Total travel time would be reduced for some customers because of increased speeds along the BRT corridor. 
+Some customers would benefit because they would avoid the time previously consumed by transferring either 
+to a bus or a rail line. While the frequency per route drops, because most customers can choose either 
+the direct route or the L-shaped route, the customers who benefit from the inclusion of the new routes 
+outweigh the additional waiting times for a few customers. 
+
+\figure{assets/image117.png}{Total estimated benefits for four alternative service plans based on modeled 
+results on Chicago’s Ashland corridor: Existing services (baseline), the initial proposal for eliminated 
+stops along Ashland, a service scenario where two additional routes with direct services to the CBD have 
+been added, and a final service scenario where “S” shaped routes have been added. Image}{ Pedro Szász.}
+
+These benefits are significantly greater in high-demand scenarios, where reducing the frequency per 
+route is generally beneficial, and they are marginal in lower demand scenarios. Another service-planning 
+problem that has emerged in some of the larger BRT networks is the lack of inter-corridor routes. This 
+problem tends to manifest itself most acutely in trunk-only or trunk-and-feeder systems. Mexico City, 
+Teheran, and Jakarta all initially developed trunk-only services. These systems all had BRT corridors 
+with very simple services that operated only one local service up and down each BRT trunk corridor. This 
+resulted in crush transfer loads at critical transit points in the BRT network. The worst example of 
+this, which persists, is the overcrowding at the Harmony station in Jakarta. Similar crush loads are 
+observed at the key transfer points in Teheran. Much of this overcrowding has already been mitigated 
+in Mexico City and Jakarta by simply adding a route that travels between one corridor and the next, avoiding 
+the need for a substantial portion of the customers to transfer.
+
+ \figure{assets/image118.jpeg}{Jakarta’s BRT Harmoni (a central transfer) station during the peak hour. 
+Image}{ Karl Fjellstrom, Far East BRT.}
+
+If the original BRT system was developed with “direct” BRT services with a reasonably optimal service 
+plan, this problem would be unlikely.
+
+If the corridor selection process outlined in Chapter 5: Corridor and Network Development is followed, 
+the first BRT corridor is the corridor with the highest vehicle demand and the slowest speeds. If this 
+corridor is given services that operate on and off the BRT trunk corridor, then chances are that the 
+second corridor will simply be an infrastructure upgrade along one or more of these services that already 
+use the first BRT corridor. Even if the original BRT system is a trunk-and-feeder system, it is usually 
+no problem to introduce inter-corridor routes within the trunk system.  
+
+\figure{assets/image119.png}{BRT and the synergies of route permutations. Image}{ ITDP.}
+
+Bogotá’s TransMilenio system, despite being a trunk-and-feeder system, has an extensive variety of 
+inter-corridor routes. Customers at a single station may have as many as ten different routes from which 
+to choose, including local and limited-stop services.  
