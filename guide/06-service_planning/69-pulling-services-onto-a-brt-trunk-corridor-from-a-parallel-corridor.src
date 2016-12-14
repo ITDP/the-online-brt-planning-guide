@@ -1,0 +1,45 @@
+
+
+\section{ Pulling Services onto a BRT Trunk Corridor from a Parallel Corridor}
+
+> Eventually, all things merge into one, and a river runs through it.
+@ Norman Maclean, author, 1902–1990
+
+If the BRT trunk corridor is not saturated after adding all the existing routes onto the corridor by 
+the BRT service plan, it may be advantageous to take a bus route that currently does not use the BRT 
+corridor, and pull it onto the BRT corridor. The result will likely be a travel time savings for some 
+customers, as their trip will be sped up on the BRT portion of the route. However, it could also mean 
+a travel time loss for other customers, if the rerouting results in a longer trip for them or longer 
+walks. These costs and benefits need to be weighed in order to make the decision. 
+
+\figure{assets/image120.png}{Three options for planning routes near a BRT corridor. Image}{ ITDP.}
+
+Above are three simplified scenarios that show the basic options for handling an existing route that 
+travels *near *the BRT corridor.
+\item Option I represents the way bus routes are currently configured—the green line is the BRT corridor 
+with a BRT route on top of it, and the blue line is an existing bus route that travels near the BRT corridor 
+and ends in the same place;
+\item Option II represents a decision to “route on” the blue service to use the BRT infrastructure, 
+but retain it as a “direct service”;
+\item Option III represents a route that has been “routed on” to a BRT corridor, but split into a trunk 
+feeder service. 
+
+If there is sufficient demand to justify it, a fourth option would be to retain the current route and 
+add a new route that uses the BRT trunk corridor for part of the route. Option I is preferable when pulling 
+a bus service onto a new, faster BRT corridor introduces more delay due to the indirectness of the route 
+than it saves due to the superior BRT infrastructure. Option II is preferred when the travel-time savings 
+of pulling the route onto the BRT corridor for part of its journey saves more time and serves as many 
+customers as the current route operating in mixed traffic conditions. Option II introduces some indirectness 
+of route but avoids any transfer penalty. Option III would be preferred mainly when there are significant 
+time savings benefits to rerouting onto the BRT trunk corridor, yet the addition of a fully direct service 
+in the optimal vehicle size for that service would saturate the BRT corridor, slowing down the speeds 
+for the busway. The indirectness of route and transfer penalty would need to be compensated by both the 
+higher speeds of using the BRT trunk corridor and the higher frequencies in the new feeder route.
+
+In some cases, it is best to create a hybrid of Options I and II, where the blue route is routed onto 
+the BRT corridor, while the original blue route service is retained. Frequency would need to be split 
+between the two, and this would allow customers who benefit more from one or the other scenario to have 
+the option of which route to take. Many of the issues described in the limited-services section apply 
+here since you are again splitting frequencies. However, this might also be a more politically feasible 
+solution—even when there are greater benefits to routing a service onto the BRT corridor—because it can 
+often be politically challenging to eliminate a route altogether.
