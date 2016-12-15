@@ -93,7 +93,7 @@ enum VDef {
 	LaTeXPreamble(path:PElem);
 	LaTeXExport(src:PElem, dest:PElem);
 
-	Id(val:Elem<String>, of:VElem);
+	Id(val:Elem<String>);
 	Volume(name:HElem);
 	Chapter(name:HElem);
 	Section(name:HElem);
