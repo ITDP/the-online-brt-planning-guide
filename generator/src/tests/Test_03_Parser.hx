@@ -21,12 +21,12 @@ class Test_03_Parser {
 	function fails(text:String, ?expected:ParserErrorValue, ?textPattern:EReg, ?epos:Position, ?p:haxe.PosInfos)
 	{
 		Assert.raises(parse.bind(text), ParserError, p);
-		if (textPattern != null || epos != null) {
+		if (expected != null || textPattern != null || epos != null) {
 			try {
 				parse(text);
 			} catch (err:ParserError) {
 				if (expected != null)
-					Assert.same(expected, err.err);
+					Assert.same(expected, err.err, p);
 				if (textPattern != null)
 					Assert.match(textPattern, err.toString(), p);
 				if (epos != null)
@@ -501,7 +501,7 @@ class Test_03_Parser {
 			parse("\\meta\\'a'\\\\reset{volume}{2}"));
 
 		var badCounter = "counter name should be 'volume' or 'chapter'";
-		var badValue = "reset value must be sctrictly greater or equal to zero";
+		var badValue = "reset value must be strictly greater or equal to zero";
 		fails("\\meta\\reset{section}{1}", BadValue(badCounter));
 		fails("\\meta\\reset{subsection}{1}", BadValue(badCounter));
 		fails("\\meta\\reset{subsubsection}{1}", BadValue(badCounter));
@@ -511,7 +511,7 @@ class Test_03_Parser {
 		fails("\\meta\\reset{volume}{1a}", BadValue(badValue));  // FIXME
 
 		fails("\\meta\\reset{}{1}", BadValue(badCounter));
-		fails("\\meta\\reset{volume}{}", BadValue(badCounter));
+		fails("\\meta\\reset{volume}{}", BadValue(badValue));
 
 		fails("\\meta\\reset", MissingArgument(TCommand("reset"), "counter name"));
 		fails("\\meta\\reset{volume}", MissingArgument(TCommand("reset"), "reset value"));
