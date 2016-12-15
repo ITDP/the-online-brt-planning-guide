@@ -33,7 +33,7 @@ class Parser {
 		"figure", "quotation", "id", "item", "number", "beginbox", "endbox", "include",
 		"begintable", "header", "row", "col", "endtable",
 		"meta", "reset", "tex", "preamble", "export", "html", "apply"];
-	static var horizontalCommands = ["sup", "sub", "emph", "highlight"];
+	static var horizontalCommands = ["sup", "sub", "emph", "highlight", "ref", "rangeref"];
 	static var hardSuggestions = [  // some things can't be infered automatically
 		"quote" => "quotation",
 		"display" => "highlight"
@@ -206,6 +206,8 @@ class Parser {
 				mk(Emphasis(content.val), cmd.pos.span(content.pos));
 			case "highlight":
 				mk(Highlight(content.val), cmd.pos.span(content.pos));
+			// case "ref":
+			// case "rangeref":
 			case _:
 				unexpected(cmd);
 			}
@@ -259,12 +261,7 @@ class Parser {
 	{
 		var val = arg(rawHorizontal, cmd, "value");
 		var of = vertical(stop).extractOr(unexpected(peek()));
-		switch of.def {
-		case Volume(_), Chapter(_), Section(_), SubSection(_), SubSubSection(_):  // OK
-		case Figure(_), Table(_), ImgTable(_), Box(_):  // OK
-		case other: throw other;
-		}
-		return mk(Id(val.val, of), cmd.pos.span(of.pos));
+		return mk(Id(mk(val.val, val.pos.offset(1,-1)), of), cmd.pos.span(of.pos));
 	}
 
 	function hierarchy(cmd:Token)

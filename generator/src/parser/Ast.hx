@@ -48,6 +48,14 @@ abstract PElem(Elem<String>) from Elem<String> {
 		return this.def;
 }
 
+// enum RefType {
+// 	AutoRef;
+// 	NumRef;
+// 	NameRef;
+// }
+
+// abstract RefId(Elem<{...
+
 /*
 A horizontal element.
 */
@@ -60,6 +68,8 @@ enum HDef {
 	Word(w:String);
 	InlineCode(c:String);
 	Math(tex:String);
+	// Ref(type:Elem<RefType>, id:RefId);
+	// RangeRef(type:Elem<RefType>, id1:RefId, id2:RefId);
 
 	HElemList(elem:Array<HElem>);
 	HEmpty;
@@ -83,7 +93,7 @@ enum VDef {
 	LaTeXPreamble(path:PElem);
 	LaTeXExport(src:PElem, dest:PElem);
 
-	Id(val:String, of:VElem);
+	Id(val:Elem<String>, of:VElem);
 	Volume(name:HElem);
 	Chapter(name:HElem);
 	Section(name:HElem);

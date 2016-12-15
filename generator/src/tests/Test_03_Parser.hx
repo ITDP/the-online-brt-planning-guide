@@ -723,16 +723,16 @@ class Test_03_Parser {
 	{
 		// expected: common examples
 		Assert.same(
-			expand(@wrap(4,0)Id("a",@skip(2)@wrap(9,1)Chapter(@len(1)Word("A")))),
+			expand(@wrap(4,0)Id(@elem@len(1)"a",@skip(1)@wrap(9,1)Chapter(@len(1)Word("A")))),
 			parse("\\id{a}\\chapter{A}")
 		);
 		// expected: other cases
 		Assert.same(
-			expand(@wrap(4,0)Id("a",@skip(4)@wrap(9,1)Chapter(@len(1)Word("A")))),
+			expand(@wrap(4,0)Id(@elem@len(1)"a",@skip(3)@wrap(9,1)Chapter(@len(1)Word("A")))),
 			parse("\\id{a}\n\n\\chapter{A}")
 		);
 		Assert.same(
-			expand(@wrap(4,0)Id("a",@skip(3)@wrap(1,0)Section(@len(1)Word("A")))),
+			expand(@wrap(4,0)Id(@elem@len(1)"a",@skip(2)@wrap(1,0)Section(@len(1)Word("A")))),
 			parse("\\id{a}\n#A")
 		);
 
