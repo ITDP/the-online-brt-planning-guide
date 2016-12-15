@@ -30,7 +30,7 @@ class Parser {
 	// command name fixing suggestions
 	static var verticalCommands = [
 		"volume", "chapter", "section", "subsection", "subsubsection",
-		"figure", "quotation", "item", "number", "beginbox", "endbox", "include",
+		"figure", "quotation", "id", "item", "number", "beginbox", "endbox", "include",
 		"begintable", "header", "row", "col", "endtable",
 		"meta", "reset", "tex", "preamble", "export", "html", "apply"];
 	static var horizontalCommands = ["sup", "sub", "emph", "highlight"];
@@ -253,6 +253,18 @@ class Parser {
 			}
 		}
 		return buf.toString();
+	}
+
+	function id(cmd:Token, stop:Stop)
+	{
+		var val = arg(rawHorizontal, cmd, "value");
+		var of = vertical(stop).extractOr(unexpected(peek()));
+		switch of.def {
+		case Volume(_), Chapter(_), Section(_), SubSection(_), SubSubSection(_):  // OK
+		case Figure(_), Table(_), ImgTable(_), Box(_):  // OK
+		case other: throw other;
+		}
+		return mk(Id(val.val, of), cmd.pos.span(of.pos));
 	}
 
 	function hierarchy(cmd:Token)
@@ -578,6 +590,7 @@ class Parser {
 			null;
 		case TCommand(cmdName):
 			switch cmdName {
+			case "id": id(pop(), stop);
 			case "volume", "chapter", "section", "subsection", "subsubsection": hierarchy(pop());
 			case "figure": figure(pop());
 			case "begintable": table(pop());

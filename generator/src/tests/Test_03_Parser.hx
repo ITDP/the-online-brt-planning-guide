@@ -718,5 +718,46 @@ class Test_03_Parser {
 			expand(@wrap(12+9,10)ImgTable(MarginWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
 			parse("\\begintable[\nsmall\n]{a}\\useimage{x.svg}\\endtable"));
 	}
+
+	public function test_029_ids()
+	{
+		// expected: common examples
+		Assert.same(
+			expand(@wrap(4,0)Id("a",@skip(2)@wrap(9,1)Chapter(@len(1)Word("A")))),
+			parse("\\id{a}\\chapter{A}")
+		);
+		// expected: other cases
+		Assert.same(
+			expand(@wrap(4,0)Id("a",@skip(4)@wrap(9,1)Chapter(@len(1)Word("A")))),
+			parse("\\id{a}\n\n\\chapter{A}")
+		);
+		Assert.same(
+			expand(@wrap(4,0)Id("a",@skip(3)@wrap(1,0)Section(@len(1)Word("A")))),
+			parse("\\id{a}\n#A")
+		);
+
+		// fail: bad id values
+		// transform!!!
+		// fails("\\id{.}\\chapter{A}");
+		// fails("\\id{ç}\\chapter{A}");
+		// fails("\\id{ﺰ}\\chapter{A}");
+		// fail: unsupported id target
+		// transform!!!
+		// fails("foo\\id{a}bar");
+		// fails("\\id{a}foo");
+
+		// fail: nothing (suitable) to apply to
+		fails("\\id{a}");
+
+		// fail: missing or extra argument
+		fails("\\id");
+		fails("\\id a");
+		fails("\\id{a}{}");
+	}
+
+	public function test_030_cross_references()
+	{
+		Assert.fail("TODO");
+	}
 }
 
