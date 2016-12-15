@@ -31,7 +31,8 @@ Phasellus sed lacus ac erat luctus pretium a at massa. Ut quis massa nec dui rut
 
 \include{04-demand-analysis/00-demand-analysis.src}
 \include{05-network_development/00-corridor-and-network-development.src}
-\meta\reset{chapter}{7}  \' skip to chapter 8 '\
+\include{06-service_planning/service-planning.src}
+\include{07-system-speed/system-speed-and-capacity.src}
 \include{08-traffic-impact-assessment/00-traffic-impact-assessment.src}
 
 \volume{Communications and Marketing}
