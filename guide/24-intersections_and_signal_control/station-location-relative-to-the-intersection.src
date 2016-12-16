@@ -1,5 +1,3 @@
-
-
 \section{Station Location Relative to the Intersection}
 
 > The engineer’s first problem in any design situation is to discover what the problem really is.
@@ -18,15 +16,15 @@ will be to evaluate alternatives and find an optimal solution under the existing
 \subsection{Station Location Possibilities}
 
 The following station locations are possible: 
-\item At the intersection:
+\item [At the intersection:
 \item For side-aligned stations, the station can be either nearside or far side—that is, before or after 
 the intersection in each direction;
 \item For median stations, if not split, the station will be nearside in one direction and far side 
-in the other;
-\item Away from the intersection;
+in the other;]
+\item [Away from the intersection;
 \item Near the intersection;
-\item Far from the intersection (or mid-block);
-\item Under or over the intersection.
+\item Far from the intersection (or mid-block);]
+\item [Under or over the intersection.]
 
 \subsubsection{At Intersections}
 
@@ -49,7 +47,7 @@ In the rare case that the station must be located at the intersection, there is 
 that locating the station before the intersection is preferable, particularly in split platform configurations 
 if the BRT lane is near the median.
 
-\figure[medium]{assets/image20.jpeg}{Buses waiting for a traffic light after boarding and alighting is completed 
+\figure[large]{assets/image20.jpeg}{Buses waiting for a traffic light after boarding and alighting is completed 
 in São Paulo; today this station is moved back.}{Arthur Szász.}
 
 \subsubsection{Away from the Intersection}
@@ -111,50 +109,43 @@ within a proposal for the Delhi BRT system.
  
 Capacity in a given control section (CapFlow) is expressed in the equation below. 
 
-Eq. 24.18\' TODO Math: 
+Eq. 24.18
 
-CapFlowintersection= saturationflowperlane * Nlanes * Kgreen '\
+$$ \text{CapFlow}_\text{intersection} = \text{saturationflowperlane} * \text{Nlanes} * K_\text{green} $$ 
 
 Where:
-
-CapFlow\sub{intersection} = Capacity of the evaluated section of control, usually in pcu/hour;
-
-saturationflowperlane = Saturation flow of one lane (in “ideal conditions,” around 1,800 in urban areas 
+\item $$ \text{CapFlow}_\text{intersection} $$: Capacity of the evaluated section of control, usually in pcu/hour;
+\item $$ \text{saturationflowperlane} $$: Saturation flow of one lane (in “ideal conditions,” around 1,800 in urban areas 
 pcu/hour);
+\item $$ N_\text{lanes} $$: Total number of available lanes;
+\item $$ K_\text{green} $$: Relative (effective) green time, which is given by Equation 24.5: 
 
-N\sub{lanes} = Total number of available lanes;
-
-K\sub{green} = Relative (effective) green time, which is given by Equation 24.5: \' TODO Math: 
-
-K\sub{green}=TgreenTcycle   '\
+$$ K_\text{green} = { T_\text{green} \over _\text{Tcycle} }$$   
 
 Where:
-
-K\sub{green} = Relative green, or the proportion of time given by a green light for a flow to cross an intersection;
-
-T\sub{green} = Time given by a green light for a flow to cross an intersection;
-
-T\sub{cycle} = Time given by the signal cycle.
+\item $$ K_\text{green} $$: Relative green, or the proportion of time given by a green light for a flow to cross an intersection;
+\item $$ T_\text{green} $$: Time given by a green light for a flow to cross an intersection;
+\item $$ T_\text{cycle} $$: Time given by the signal cycle.
 
 One can evaluate the possibility of narrowing the mixed-traffic road away from the intersection without 
 affecting the capacity of the segment by assuring that capacity away from the intersection (where relative 
-green time can be considered 1 or 100 percent) is greater than capacity in the intersection. \' TODO Math: 
+green time can be considered 1 or 100 percent) is greater than capacity in the intersection. 
 
-FlowCapaway ≥ FlowCapintersection '\\' TODO Math: 
+$$ \text{FlowCap}_\text{away} \geq \text{FlowCap}_\text{intersection} $$
 
-saturationflowperlane * NLanesaway * Kgreenaway ≥ saturationflowperlane * NLanesintersection * Kgreenintersection '\\' TODO Math: 
+$$ \text{saturationflowperlane} * \text{NLanes}_\text{away} * K_\text{green away} \geq \text{saturationflowperlane} * \text{NLanes}_\text{intersection} * K_\text{green intersection} $$ 
 
-NLanesaway * Kgreenaway ≥ NLanesintersection * Kgreenintersection '\\' TODO Math: 
+$$ \text{NLanes}_\text{away} * K_\text{green away} \geq \text{NLanes}_\text{intersection} * K_\text{green intersection} $$ 
 
-NLanesaway≥  NLanesintersection *KgreenintersectionKgreenaway '\
+$$ \text{NLanesaway } \geq \text{NLanes_\text{intersection} * {K_\text{green intersection} \over K_\text{green away} $$
 
 Examples:
-\item If near-intersection mixed traffic has 3 lanes (NLanesaway = 3), and relative green time is 60 
-percent (), then far from intersection (Nlanesaway) can be 2 lanes without affecting the segment performance: 
-NLanesaway \>=  3 \* 0.6 = 1.8;
-\item If near-intersection mixed traffic has 2 lanes (NLanesaway=2), and relative green time is 50 percent 
-( = 0.5), then far from intersection (Nlanesaway) can be only one lane without affecting the segment 
-performance: ;
+\item If near-intersection mixed traffic has 3 lanes ($$\text{NLanes_\text{away} = 3$$), and relative green time is 60 
+percent ($$ T_\text{green} \over T_\text{cycle} = 0.6 $$), then far from
+intersection ($$\text{Nlanes}_\text{away}$$) can be 2 lanes without affecting the segment 
+performance:$$ \text{NLanes}_\text{away} \geq  3 * 0.6 = 1.8 $$ ;
+\item If near-intersection mixed traffic has 2 lanes ($$\text{NLanes_\text{away} = 2$$), and relative green time is 50 percent 
+($$ T_\text{green} \over T_\text{cycle} = 0.5 $$), then far from intersection ($$\text{Nlanes}_\text{away}$$) can be only one lane without affecting the segment performance: $$ \text{NLanes}_\text{away} \geq  2 * 0.5 = 1.0 $$ ;
 \item If we are planning a mid-block station with signalized pedestrian crossing for the first example, 
 we would have to keep relative green for traffic mid-block above 90 percent.
 
@@ -174,22 +165,22 @@ space for queueing vehicles times the number of vehicles that will cross the ret
 Considering a saturation flow per lane (saturationflowperlane) of 1,800 pcu/hour is equivalent to one 
 vehicle every two seconds (passing across the intersection in one lane) and the distance between (the 
 front of) two vehicles (lengthpcu) is 5 meters, this implies that for each second of the green phase 
-the queue will be 2.5 meters short.\' TODO Math: 
+the queue will be 2.5 meters short.
 
-Queue discharge rate =flowsaturationlengthpcu '\
+$$\text{Queue discharge rate} = {\text{flow}_\text{saturation} \over \text{length}_\text{pcu}} $$ 
 
 Another way to think about this is that the “speed of the shock wave” starting at the retention line 
 after the traffic signal opens is 2.5 meters per second. That is, the second car behind (5 meters behind) 
 will start to move 2 seconds after the first, the third car behind (10 meters from the retention line) 
-will move after 4 seconds and so on.\' TODO Math: 
+will move after 4 seconds and so on.
 
-Velocitydischarge-shock-wave = flowsaturationlengthpcu '\
+$$\text{Velocity}_\text{discharge shockwave} = {\text{flow}_\text{saturation} \over \text{length}_\text{pcu}} $$ 
 
 Therefore the distance between station and intersection (Diststation-intersection) has to be equal 
 to or greater than the distance that the shock wave can move during the duration of the green phase (Tgreen). 
-Representing the speed of shock wave by Velshock-wave, this can be expressed as:\' TODO Math: 
+Representing the speed of shock wave by Velshock-wave, this can be expressed as:
 
-Dist\sub{station-intersection} ≥ V\sub{shock-wave}*T\sub{green} '\
+$$ \text{Dist}_\text{station intersection} \geq V_\text{shock wave} *T_\text{green}$$ 
 
 Using meters and seconds for the measures we have:
 

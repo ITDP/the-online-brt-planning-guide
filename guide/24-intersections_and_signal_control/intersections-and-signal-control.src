@@ -14,9 +14,9 @@ pedestrians, and other vehicles is to restrict general-traffic turning movements
 *BRT* *Standard* awards up to 7 points for good handling of BRT movements through intersections, with 
 the most points given to systems that prohibit all turns across the busway. 
 
-\begintable{(empty)}
+\begintable{BRT Standard:Intersection Treatments}
 \header
-\col \highlight{ITDP BRT Standard: Intersection Treatments}
+\col \highlight{Treatment}
 \col \highlight{POINTS}
 \row
 \col Turns prohibited across the busway
