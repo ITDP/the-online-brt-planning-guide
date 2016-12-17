@@ -77,10 +77,10 @@ the case of Ottawa, the tunnel station nicely protects customers from the harsh 
 also has achieved great success with its Villa Flora station, which goes beneath a heavily trafficked 
 roundabout on Maldonado Avenue (Figure 24.77). 
 
-\figure[medium]{assets/image75.jpeg}{Placing stations just before a BRT tunnel, as in Brisbane, helps customers 
+\figure{assets/image75.jpeg}{Placing stations just before a BRT tunnel, as in Brisbane, helps customers 
 comfortably access local destinations. Image}{Queensland Transport.}
 
-\figure[medium]{assets/image76.jpeg}{A station placed inside a tunnel in Ottawa provides easy access and weather 
+\figure{assets/image76.jpeg}{A station placed inside a tunnel in Ottawa provides easy access and weather 
 protection.}{Lloyd Wright.} 
 
 \figure[medium]{assets/image77.jpeg}{BRT Quito's Villa Flora roundabout traffic with underpasses.
@@ -93,8 +93,11 @@ small pedestrian plaza where fares are collected. This solution allowed for the 
 this station, which will make future transfer points on the projected Avenida Boyacá closer to each other. 
 Ultimately, the implementation of solutions of this sort will depend on budgetary constraints.
 
-\figure[medium]{assets/image78.png}{TransMilenio's Boyacá Station is on the flyover on Suba Corridor, allowing 
+\figure{assets/image78.png}{TransMilenio's Boyacá Station is on the flyover on Suba Corridor, allowing 
 access from Avenida Boyacá below.}{Google Street View.} 
+
+\figure{assets/image81.png}{TransMilenio's Boyacá Station entrance below flyover is through a small 
+pedestrian plaza along Avenida Boyacá.}{Google Street View.} 
 
 \figure[medium]{assets/image79.png}{Seen from the flyover on Suba Corridor, TransMilenio's Boyacá Station seems 
 a regular large station with underground access.}{Google Street View.} 
@@ -102,8 +105,6 @@ a regular large station with underground access.}{Google Street View.}
 \figure[medium]{assets/image80.png}{TransMilenio's Boyacá Station on the flyover is an example of adapting 
 BRT to existing grade separation.}{Google Street View.} 
 
-\figure[medium]{assets/image81.png}{TransMilenio's Boyacá Station entrance below flyover is through a small 
-pedestrian plaza along Avenida Boyacá.}{Google Street View.} 
 
 \subsection{Restricting Turning Movements Together with Grade Separation}
 
@@ -446,11 +447,15 @@ for a low frequency BRT, but it will almost certainly not allow a station to be 
 two intersections (the main and the auxiliary), since the resulting saturation for the conjunct station 
 plus intersection will be much higher than that of a station alone.
 
+\figure[medium]{assets/image87.png}{Curbside detour for perpendicular flows under the flyover.}{Elebeta.}
+
 Applying the same scheme, but using the flyover (Option I2, Figure 24.88), moves all the conflicts 
 to the secondary intersection, which ends up being the capacity limiting element for the conjunct. As 
 there are only two lanes in the flyover to handle the straight flow plus the cross-traffic flow from 
 both directions (i.e., double flow in two-thirds of lanes), its result is worse than some alternatives 
 without a flyover.
+
+\figure[medium]{assets/image88.png}{Curbside detour for perpendicular flows above the flyover.}{Elebeta.}
 
 For the clovelike alternatives (Options K, K1, K2), adding the flyover and maintaining the loops on 
 the ground (Option K1) raises overall capacity for the system by 15 percent (comparing with option K). 
@@ -459,6 +464,8 @@ a “real-clove interchange” and, except for the BRT, there would be no inters
 is required now). Therefore, the BRT phase would be the minimal 10 seconds and an equivalent average 
 capacity of lanes would be 1,520 pcu/hour. Nevertheless, as all vehicles willing to do cross-traffic 
 turns at the intersection use it twice, this is equivalent to “only” 1,216 pcu/hour.
+
+\figure[medium]{assets/image89.png}{Clovelike intersection.}{Elebeta.}
 
 The fact that this situation is equivalent to a BRT cross only, the cycle time can be reduced to BRT 
 maximum red time requirements. If this requirement is 50 seconds, then the intersection cycle can be 
@@ -479,11 +486,6 @@ be respectively 54 and 76 seconds in a cycle of 90 seconds).
 As mentioned before, an intersection cannot be analyzed in isolation. Optimum results are usually obtained 
 when vehicle movements are analyzed along the corridor and the entire extended area surrounding the intersection.
 
-\figure[medium]{assets/image87.png}{Curbside detour for perpendicular flows under the flyover.}{Elebeta.}
-
-\figure[medium]{assets/image88.png}{Curbside detour for perpendicular flows above the flyover.}{Elebeta.}
-
-\figure[medium]{assets/image89.png}{Clovelike intersection.}{Elebeta.}
 
 \subsection{BRT Turning with Grade-Separated Solutions}
 
@@ -497,20 +499,20 @@ BRT roundabout (Figures 24.90 and 24.91), as well as provide an exceptional BRT-
 completed in 2015 to guarantee that the interchange in Norte-Quito-Sur and Calle 6 has no delays (Figures 
 24.92 and 24.93).
 
-\figure[medium]{assets/image90.jpeg}{An exclusive roundabout facilitates exclusive turning movements for BRT 
-vehicles between two corridors: the NQS corridor and Calle 80 corridor.}{Eduardo Plata and Por 
-el País que Queremos (PPQ).} 
-
-\figure[medium]{assets/image91.jpeg}{At the major intersection of TransMilenio’s Calle 80 corridor and NQS 
+\figure{assets/image91.jpeg}{At the major intersection of TransMilenio’s Calle 80 corridor and NQS 
 corridor is a set of underpasses and an overpass link to the exclusive BRT roundabout.}{Google 
 Earth.} 
+
+\figure[medium]{assets/image90.jpeg}{An exclusive roundabout facilitates exclusive turning movements for BRT 
+vehicles between two corridors: the NQS corridor and Calle 80 corridor.}{Eduardo Plata and Por 
+el País que Queremos (PPQ).}
+
+\figure{assets/image93.jpeg}{This TransMilenio interchange was carefully planned from an operational 
+and aesthetic point of view.}{Instituto de Desarollo Urbano de Bogotá.} 
 
 \figure[medium]{assets/image92.jpeg}{Exclusive BRT third-floor roundabout is an unprecedented work of art to 
 guarantee free-flow movements for TransMilenio operation.}{Instituto de Desarollo Urbano de Bogotá.} 
 
-
-\figure[medium]{assets/image93.jpeg}{This TransMilenio interchange was carefully planned from an operational 
-and aesthetic point of view.}{Instituto de Desarollo Urbano de Bogotá.} 
 
 \subsection{BRT through Roundabouts with Grade-Separated Solutions}
 

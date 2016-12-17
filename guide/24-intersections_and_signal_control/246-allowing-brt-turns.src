@@ -61,7 +61,7 @@ lanes of road space would be required.
 \figure[medium]{assets/image54.png}{Configuration for a system with a fully dedicated BRT turning lane.}{ 
 ITDP.}
 
-\figure[medium]{assets/image55.png}{In order to permit the BRT turning movements suggested in Figure 24.54, 
+\figure{assets/image55.png}{In order to permit the BRT turning movements suggested in Figure 24.54, 
 a three-phase traffic signal would be required.}{ ITDP.}
 
 The configuration suggested in Figure 24.54 would require a three-phase traffic signal, as indicated 
@@ -127,7 +127,7 @@ much more akin to a conventional bus system rather than a highly efficient publi
 first traffic-signal stop, BRT vehicles are given a queue-jumping head start. Technically this counts 
 as eight phases.}{TCRP}
 
-\figure[medium]{assets/image59.jpeg}{Pre-signals for buses, holding normal vehicles in Cape Town, South Africa, 
+\figure{assets/image59.jpeg}{Pre-signals for buses, holding normal vehicles in Cape Town, South Africa, 
 work like a queue jump to a straight movement in a mixed-traffic section.}{ Bruce Sutherland.}
 
 A signal system can be utilized to give BRT vehicles a head start on turning movements prior to private-vehicle 
@@ -157,17 +157,21 @@ The BRT vehicle temporarily operates on the secondary road network.}{ ITDP.}
 
 \subsection{ Convert Cross into a Roundabout}
 
+\figure{assets/image61.png}{In this scenario, the intersection is converted to a roundabout with vehicle 
+queuing areas at points “A,” “B,” “C,” and “D.” The BRT vehicles enter mixed traffic just before the 
+intersection and move through the intersection with a two-phase signal.}{ITDP}
+
 If two crossing corridors happen to be two broad highways, enough right-of-way may be available to 
 convert a standard four-phase intersection into a two-phase signalized roundabout. This is a clever alternative 
 that should be remembered, as in many developing-nation cities, such right-of-way is available but underutilized. 
+
+\figure{assets/image62.png}{Vehicle movements for signal phase 1 in a cross converted into a roundabout.}{ ITDP.}
 
 The exclusive BRT busway terminates approximately 50 meters prior to the intersection with the BRT 
 vehicles entering mixed traffic at that point. This approach essentially turns the junction into a grid 
 of one-way streets. It requires a fairly large amount of right-of-way at the junction. 
 
-\figure[medium]{assets/image61.png}{In this scenario, the intersection is converted to a roundabout with vehicle 
-queuing areas at points “A,” “B,” “C,” and “D.” The BRT vehicles enter mixed traffic just before the 
-intersection and move through the intersection with a two-phase signal.}{ITDP}
+\figure{assets/image63.png}{Vehicle movements for signal phase 2 in a cross converted into roundabout.}{ ITDP.}
 
 Figure 24.61 indicates how the junction between two major boulevards can be turned into a two-phase 
 traffic circle by creating a kind of mini-grid of one-way streets. At low traffic volumes, the BRT buses 
@@ -175,8 +179,6 @@ enter mixed traffic prior to the intersection. A series of queuing areas (marked
 “D” in the figure) help stage vehicle flows through the roundabout. These areas are referred to as “waiting 
 boxes.”
 
-\figure[medium]{assets/image62.png}{Vehicle movements for signal phase 1 in a cross converted into a roundabout. 
-Image}{ ITDP.}
 
 Figure 24.62 outlines the vehicle movements for the first signal phase for this roundabout conversion. 
 This example is given from the perspective of a British-style road configuration. All eastbound BRT vehicles 
@@ -185,8 +187,6 @@ in area “C” at a traffic light. All east- and westbound traffic can proceed 
 left-hand turns can proceed. All westbound traffic would pass through the intersection and queue in area 
 “B.”
 
-\figure[medium]{assets/image63.png}{Vehicle movements for signal phase 2 in a cross converted into roundabout. 
-Image}{ ITDP.}
 
 In the second signal phase, all northbound and southbound traffic can proceed straight, all left-hand 
 turns can proceed, and all right turning traffic would queue in areas “A” and “D” (Figure 24.63). 
@@ -206,7 +206,7 @@ For the purpose of evaluating queueing space, we consider that:
 
 \item The amount of road space that a passenger car practically uses is 15 square meters; this includes 
 some distance kept between vehicles to separate them from each other when queueing at the traffic light 
-(Areapcu = 15 m2);
+($$ \text{Area}_\text{pcu} = 15 m^2$$);
 \item The amount of road space needed for a 12 meter-bus to queue is 30 square meters, therefore its 
 equivalence factor is 2.0, i.e., one 12 meter-bus uses twice the space a pcu;
 \item An articulated BRT vehicle has an equivalent factor of 3.5 pcu;
@@ -214,32 +214,26 @@ equivalence factor is 2.0, i.e., one 12 meter-bus uses twice the space a pcu;
 The available area capacity and the required area (or demanded area) to transform a cross into a roundabout 
 are:
 
-Eq. 24.24\' TODO Math: 
+Eq. 24.24
 
-AvailableCapacityqueue-box=Areawait-boxAreapcu '\
-
-Where:
-
-AvailableCapacity\sub{queue-box} = Number of cars that fit in wait box (in pcu);
-
-Area\sub{wait-box} = Amount of space in the wait box (either A, B, C or D in Figure 24.61);
-
-Area\sub{pcu} = Amount of road space a passenger-car uses = 15 m2 (it should be expressed in the same unit 
-of areawait-box).
-
-Eq. 24.25\' TODO Math: 
-
-RequiredCapacitywait-box=Flowleft-turn*Timecycle '\
+$$ \text{Available Capacity}_\text{queue box} = {\text{Area}_\text{wait-box} \over \text{Area}_\text{pcu} } $$ 
 
 Where:
+\item $$ \text{AvailableCapacity}_\text{queue box} $$: Number of cars that fit in wait box (in pcu);
+\item $$ \text{Area}_\text{wait box}$$: Amount of space in the wait box (either "A", "B", "C" or "D" in Figure 24.61);
+\item $$ \text{Area}_\text{pcu} $$: Amount of road space a passenger-car uses 15 m\sup{2} (it should be expressed in the same unit 
+of $$ \text{Area}_\text{wait box} $$).
 
-RequiredCapacity\sub{wait-box} = Number of cars that need to fit in wait box (in the same unit the numerator 
+Eq. 24.25
+
+$$ \text{RequiredCapacity}_\text{wait box} = \text{Flow}_\text{left turn} * \text{Time}_\text{cycle} $$ 
+
+Where:
+\item $$ \text{RequiredCapacity}_\text{wait-box} $$: Number of cars that need to fit in wait box (in the same unit the numerator 
 of the measure described below, normally pcu);
-
-Flow\sub{left-turn} = Number of vehicles that turn left during the peak (normally expressed in pcu/hour, 
+\item $$ \text{Flow}_\text{left turn} $$: Number of vehicles that turn left during the peak (normally expressed in pcu/hour, 
 see basic concepts of this chapter);
-
-Time\sub{cycle} = Time duration of a complete traffic light cycle during the peak (normally expressed in 
+\item $$ \text{Time}_\text{cycle} $$: Time duration of a complete traffic light cycle during the peak (normally expressed in 
 seconds, so here the same unit of the flow above needs to be converted, dividing the value by 3,600).
 
 In order for the configuration to function, the available space capacity must be equal or greater than 
@@ -253,11 +247,11 @@ proposed roundabout queuing space:
 \item Cycle time = 90 sec.
 
 \highlight{Required capacity = 0.15 \* 90 = 13.5 pcu}
-\item Unitary pcu space = 3 m \* 5 m = 15 m2;
+\item Unitary pcu space = 3 m \* 5 m = 15 m\sup{2};
 \item Length = 30 m;
 \item Width = 12 m.
 
-\highlight{Available capacity = (30 m \* 12 m) / (15 m2/pcu) = 24 pcu}
+\highlight{Available capacity = (30 m \* 12 m) / (15 m\sup{2}/pcu) = 24 pcu}
 
 In this case, the available capacity is greater than the required capacity (24 pcu ≥ 13.5 pcu), so 
 the proposed roundabout conversion could function.

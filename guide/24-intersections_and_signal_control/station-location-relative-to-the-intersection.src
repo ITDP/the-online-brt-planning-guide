@@ -137,14 +137,14 @@ $$ \text{saturationflowperlane} * \text{NLanes}_\text{away} * K_\text{green away
 
 $$ \text{NLanes}_\text{away} * K_\text{green away} \geq \text{NLanes}_\text{intersection} * K_\text{green intersection} $$ 
 
-$$ \text{NLanesaway } \geq \text{NLanes_\text{intersection} * {K_\text{green intersection} \over K_\text{green away} $$
+$$ \text{NLanesaway} \geq \text{NLanes}_\text{intersection} * {K_\text{green intersection} \over K_\text{green away}} $$
 
 Examples:
-\item If near-intersection mixed traffic has 3 lanes ($$\text{NLanes_\text{away} = 3$$), and relative green time is 60 
+\item If near-intersection mixed traffic has 3 lanes ($$\text{NLanes}_\text{away} = 3$$), and relative green time is 60 
 percent ($$ T_\text{green} \over T_\text{cycle} = 0.6 $$), then far from
 intersection ($$\text{Nlanes}_\text{away}$$) can be 2 lanes without affecting the segment 
 performance:$$ \text{NLanes}_\text{away} \geq  3 * 0.6 = 1.8 $$ ;
-\item If near-intersection mixed traffic has 2 lanes ($$\text{NLanes_\text{away} = 2$$), and relative green time is 50 percent 
+\item If near-intersection mixed traffic has 2 lanes ($$\text{NLanes}_\text{away} = 2$$), and relative green time is 50 percent 
 ($$ T_\text{green} \over T_\text{cycle} = 0.5 $$), then far from intersection ($$\text{Nlanes}_\text{away}$$) can be only one lane without affecting the segment performance: $$ \text{NLanes}_\text{away} \geq  2 * 0.5 = 1.0 $$ ;
 \item If we are planning a mid-block station with signalized pedestrian crossing for the first example, 
 we would have to keep relative green for traffic mid-block above 90 percent.
@@ -184,25 +184,24 @@ $$ \text{Dist}_\text{station intersection} \geq V_\text{shock wave} *T_\text{gre
 
 Using meters and seconds for the measures we have:
 
-Eq. 24.19\' TODO Math: 
+Eq. 24.19
 
-Dist\sub{station-intersection} in meters≥ 2.5 * T\sub{green} [in seconds] '\
+$$ \text{Dist}_\text{station intersection} [\text{in meters}] \geq 2.5 * T_\text{green} [\text{in seconds}] $$
 
 Where:
-
-Dist\sub{station-intersection} = Distance between station and intersection;
-
-T\sub{green} = Time given by a green light for a flow to cross an intersection.
+\item $$ \text{Dist}_\text{station-intersection} $$:Distance between station and intersection;
+\item $$ T_\text{green} $$: Time given by a green light for a flow to cross an intersection.
 
 Examples:
 \item If green time is 40 seconds, the station must be at least 100 meters from the intersection, equal 
-the length of queue discharged during the green time: \' TODO Math: 
+the length of queue discharged during the green time: 
 
-Diststation-intersection in meters≥ 2.5*40=100 '\
+$$ \text{Dist}_\text{station-intersection} [\text{in meters}] \geq 2.5 * 40 = 100 $$ 
+
 \item If green time is 90 seconds, the station must be at least 225 meters from the intersection, equal 
-the length of queue discharged during the green time: \' TODO Math: 
+the length of queue discharged during the green time: 
 
-Diststation-intersection in meters≥ 2.5*90=225 '\
+$$ \text{Dist}_\text{station-intersection} [\text{in meters}] \geq 2.5 * 90 = 225 $$ 
 
 \figure[medium]{assets/image24.jpeg}{Diagram of the distance between the station and the signalized intersection 
 (Diststation-intersection shown as Dbs).}{ ITDP.}
@@ -235,35 +234,29 @@ there is a risk that vehicles create a backup into the intersection and block tr
 The buffer size (Dist\sub{station-intersection}) should be the space required 
 by queuing BRT vehicles.
 
-Dist\sub{station-intersection} ≥ N\sub{vehicle} \* Length\sub{vehicle}
+$$ \text{Dist}_\text{station intersection} \geq N_\text{vehicle} * \text{Length}_\text{vehicle} $$
 
 Where:
-
-Length\sub{vehicle} = Average length of lane space consumed by the queuing BRT vehicles; adding two values:
+\item [$$ \text{Length}_\text{vehicle} $$: Average length of lane space consumed by the queuing BRT vehicles; adding two values:
 \item Length of the BRT vehicle;
-\item Length of space between BRT vehicles when stopped (usually assumed to be 1 meter).
-
-N\sub{vehicle} = Likely number of vehicles to queue during the red phase (Tred) of traffic signal, discussed 
+\item Length of space between BRT vehicles when stopped (usually assumed to be 1 meter).]
+\item $$ N_\text{vehicle} $$: Likely number of vehicles to queue during the red phase ($$T_\text{red}$$) of traffic signal, discussed 
 below.
 
-Assuming BRT vehicle frequencies (Freqbus) are 50 percent below the BRT lane saturation flow (SaturationFlowbus)—that 
-is, practically always, as this represents 360 articulated buses per hour that would carry more than 
-40,000 customers per hour per direction—Nbus, which is equivalent to the height of the upper graphic 
+Assuming BRT vehicle frequencies ($$ \text{Freq}_\text{bus}$$) are 50 percent below the BRT lane saturation flow ($$\text{SaturationFlow}_\text{bus}$$) -- that 
+happens practically always, as this represents 360 articulated buses per hour that would carry more than 
+40,000 customers per hour per direction -- $$ N_\text{bus} $$, which is equivalent to the height of the upper graphic 
 in Figure 24.7, can be determined by:
 
-Eq. 24.20\' TODO Math: 
+Eq. 24.20
 
-Nbus=Tred*Freqvehicle(1-FreqvehicleSaturationFlowvehicle) '\
+$$ N_\text{vehicle} = {T_\text{red} * \text{Freq}_\text{vehicle} \over ({1 - \text{Freq}_\text{vehicle} \over  \text{SaturationFlow}_\text{vehicle} })} $$
 
 Where:
-
-N\sub{vehicle} = Number of vehicles;
-
-T\sub{red} = Time given by a red light holding traffic from crossing an intersection;
-
-Freq\sub{vehicle} = BRT vehicle frequency;
-
-SaturationFlow\sub{vehicle} = Maximum flow BRT lane can handle;
+\item $$ N_\text{vehicle} $$: Number of vehicles;
+\item $$ T_\text{red} $$: Time given by a red light holding traffic from crossing an intersection;
+\item $$ \text{Freq}_\text{vehicle} $$: BRT vehicle frequency;
+\item $$ \text{SaturationFlow}_\text{vehicle} $$: Maximum flow BRT lane can handle;
 
 *Example utilizing typical data of an average city in India:*
 
@@ -271,15 +264,18 @@ SaturationFlow\sub{vehicle} = Maximum flow BRT lane can handle;
 \item Freq\sub{vehicle} = 200 articulated-buses / hour (equivalent to 1 vehicle each 18 seconds);
 \item SaturationFlow\sub{vehicle} = 720 articulated buses / hour (one lane, equivalent to 1 vehicle each 5 
 seconds);
-\item Length\sub{vehicle} = 19.5 meters (18.5 meters  + 1 meter).\' TODO Math: 
+\item Length\sub{vehicle} = 19.5 meters (18.5 meters  + 1 meter).
 
-Nvehicle=503600*2001–200720=3.8 vehicles '\
+$$ N_\text{vehicle} = {{50 \over 3600} *200 \over 1 – (200 / 720)}  = 3.8 \text{vehicles} $$
 
-Because one cannot actually operate 3.8 buses, Nvehicle must be rounded to the nearest integer, so 
+Because one cannot actually have 3.8 buses queueing, $$_\text{Nvehicle}$$ must be rounded to the nearest integer, so 
 it is equal to 4.
-\item Dist\sub{station-intersection} \>= N\sub{vehicle} \* Length\sub{vehicle};
-\item Dist\sub{station-intersection} \>= 4 \* 19.5;
-\item Dist\sub{station-intersection} \>= 78 meters.
+
+$$ \text{Dist}_\text{station-intersection} \geq N_\text{vehicle} * \text{Length}_\text{vehicle} $$
+
+$$ \text{Dist}_\text{station-intersection} \geq 4 * 19.5 $$
+
+$$ \text{Dist}_\text{station-intersection} \geq 78 $$
 
 Thus, the minimum recommended distance between the BRT station and the intersection would be 78 meters.
 
@@ -332,9 +328,9 @@ the station is occupied only 40 percent of the time.
 A correction factor that estimates what would be the new level of saturation of the station if the 
 traffic light is positioned right in front of it (X\sub{is0}) can be expressed in function of:
 
-\item Signal cycle time (T\sub{cycle});
-\item Signal red time for the BRT approach (T\sub{red});
-\item Average stop time per bus in the station composed by dwell, boarding, and alighting times (T\sub{station}).
+\item Signal cycle time ($$T_\text{cycle}$$);
+\item Signal red time for the BRT approach ($$T_\text{red}$$);
+\item Average stop time per bus in the station composed by dwell, boarding, and alighting times ($$T_\text{station}$$).
 
 *Correction for a Long Red Phase (T\sub{station} < T\sub{red})*
 
@@ -345,17 +341,16 @@ Interference is only of limited concern if the red phase is very short.
 In this case, to calculate the saturation of the station when faced with interference from the traffic 
 signal, the following formula can be used:  
 
-Eq. 24.21\' TODO Math: 
+Eq. 24.21
 
-Xis0 = Xstation *Tcycle Tcycle- Tred+ 0.5*TB  '\
+$$ X_{is0} ={ X_\text{station} * T_\text{cycle} \over  T_\text{cycle}- T_\text{red} + 0.5*TB } $$
 
 Where:
-
-X\sub{is0} = Correction factor that estimates what would be the new level of saturation of the station if 
+\item $$ X_\text{is0} $$:Correction factor that estimates what would be the new level of saturation of the station if 
 the traffic light is positioned right in front of it;
-X\sub{station} = Station’s normal saturation level;
-T\sub{cycle } = Time given by the signal cycle;Tred = Time given by a red light holding traffic from crossing an intersection;
-TB = Bus stopping time.
+\item $$ X_\text{station} $$: Station’s normal saturation level;
+\item $$ T_\text{cycle} $$: Time given by the signal cycle;Tred = Time given by a red light holding traffic from crossing an intersection;
+\item $$ TB $$: Bus stopping time.
 
 *Correction with a Short Red Phase (T\sub{station} ≥ T\sub{red})*
 
@@ -364,45 +359,44 @@ signal changes to red just as boarding and alighting has been completed, it will
 the light is green again. Thus, there is less concern about interference between the station and the 
 intersection. 
 
-Eq. 24.22\' TODO Math: 
+Eq. 24.22
 
-Xis0 = Xstation *Tcycle Tcycle-Tred 22*Tstation '\
+$$ X_{is0} = {X_\text{station} *T_\text{cycle} \over T_\text{cycle}-{T_\text{red}^2 \over 2 * T_\text{station}} }$$ 
 
 Where:
-
-X\sub{is0} = Correction factor that estimates what would be the new level of saturation of the station if 
+\item $$ X_{is0} $$: Correction factor that estimates what would be the new level of saturation of the station if 
 the traffic light is positioned right in front of it;
-X\sub{station} = Station’s normal saturation level;
-T\sub{cycle} = Signal cycle time;
-T\sub{red} = Signal red time for the BRT approach;
-T\sub{station} = Average stop time per bus in the station composed by dwell, boarding, and alighting times.
+\item $$ X_\text{station} $$: Station’s normal saturation level;
+\item $$ T_\text{cycle} $$: Signal cycle time;
+\item $$ T_\text{red} $$: Signal red time for the BRT approach;
+\item $$ T_\text{station} $$: Average stop time per bus in the station composed by dwell, boarding, and alighting times.
 
 Examples
 
-\highlight{1. Calculating station to intersection interference with a long red phase}\' TODO Math: 
+\highlight{1. Calculating station to intersection interference with a long red phase}
 
-Xis0 = Xstation *Tcycle Tcycle- Tred+ 0.5*TB '\
+$$ X_{is0} ={ X_\text{station} * T_\text{cycle} \over  T_\text{cycle}- T_\text{red} + 0.5*TB } $$
 \item X\sub{station} = 0.35;
 \item T\sub{cycle} = 700 seconds;
 \item T\sub{red} = 500 seconds;
 \item T\sub{station} = 10 seconds.
 
-X\sub{is0} = 0.35 * 700 seconds / (700 seconds – 500 seconds + 0.5 * 10 seconds) = 1.195
+$$ X_{is0} ={ 0.35 * 700 \over  700 \text{seconds} - 500 \text{seconds}  + 0.5* 10 \text{seconds} } = 1.195 $$
 
 In this hypothetical example the station would operate on just the 200 seconds of green, but not on 
 the 500 seconds of red, because just some seconds after the red phase begins the bus will finish boarding, 
 but it will obstruct access to the bus stop during the entire 500 seconds of red. Thus, at a value of 
 1.195 the high saturation leads to considerable congestion of the busway.
 
-\highlight{2. Calculating station to intersection interference with a short red phase}\' TODO Math: 
+\highlight{2. Calculating station to intersection interference with a short red phase}
 
-Xis0 = Xstation *Tcycle Tcycle-Tred 22*Tstation '\
-\item Xstation = 0.35;
-\item Tcycle = 30 seconds full signal phase;
-\item Tred = 15 seconds of red phase;
-\item Tstation = 40 seconds of vehicle stopping time.\' TODO Math: 
+$$ X_{is0} = {X_\text{station} *T_\text{cycle} \over T_\text{cycle}-{T_\text{red}^2 \over 2 * T_\text{station}} }$$ 
+\item $$X_\text{station} = 0.35$$;
+\item $$T_\text{cycle} = 30 \text{seconds full signal phase}$$;
+\item $$_\text{Tred} = 15 \text{seconds of red phase}$$;
+\item $$ _\text{Tstation} = 40 \text{seconds of vehicle stopping time}$$. 
 
-Xis0 = 0.35 * 30 / (30 - 152 / (2 * 40)) = 0.386 '\
+$$ X_{is0} = {0.35 * 30  \over 30 - {15^2 \over 2 * 40} } = 0.386 $$ 
 
 In this case, because the red phase is quite short, there is fairly minimal risk that the traffic signal 
 will disrupt the functioning of the bus stop, so saturation increases only marginally, from 0.35 to 0.386. 

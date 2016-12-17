@@ -1,5 +1,3 @@
-
-
 \section{ Merging with Mixed Traffic in Narrow Sections}
 
 > Well, you would have to say what is the criteria to determine the success of any merger? It would have to be that the companies are stronger financially, that they took market share, and they are on a very steady footing in terms of their performance.
@@ -24,22 +22,19 @@ exclusivity of the busway prior to reaching the bottleneck.}{ITDP}
 
 If the critical link is an approach to a signalized intersection (Figure 24.65), then BRT should be 
 given signal priority (active priority if BRT has lower frequency, passive priority in all other cycles), 
-and the head start in the green phase (Theadstart) should be given by:
+and the head start in the green phase ($$ _\text{Theadstart}$$) should be given by:
 
-Eq. 24.26\' TODO Math: 
+Eq. 24.26 
 
-Theadstart=Diststop-to-narrow-sectionStartSpeedBRT '\
+$$ T_\text{headstart} = {\text{Dist}_\text{stop to narrow section} \over \text{StartSpeed}_\text{BRT}} $$
 
 Where:
+\item $$ T_\text{headstart} $$: Time of head start in the green phase;
+\item $$ \text{Dist}_\text{stop to narrow section} $$: Distance between the stop line of the signal preceding the narrow section;
+\item $$ \text{StartSpeed}_\text{BRT} $$: An average head start speed that the BRT vehicle needs as an advantage over mixed traffic 
+to reach the section first. We suggest 3 m/s (~ 11 km/hour). Using meters and seconds the equation becomes:
 
-T\sub{headstart} = Time of head start in the green phase;
-
-Dist\sub{stop-to-narrow-section} = Distance between the stop line of the signal preceding the narrow section;
-
-StartSpeed\sub{BRT} = An average head start speed that the BRT vehicle needs as an advantage over mixed traffic 
-to reach the section first. We suggest 3 m/s (~ 11 km/hour). Using meters and seconds the equation becomes:\' TODO Math: 
-
-Theadstartseconds=Diststop-to-narrow-sectionmeters3 '\
+$$ T_\text{headstart}[seconds] = {\text{Dist}_\text{stop-to-narrow-section}[meters] \over 3  } $$ 
 
 \figure[medium]{assets/image65.png}{In the case of a severe bottleneck approach with traffic lights, signal 
 priority is to be given to BRT (passive or active).}{ITDP}

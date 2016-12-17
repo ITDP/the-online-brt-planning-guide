@@ -119,17 +119,14 @@ and the Intersection from a Mixed-Traffic Perspective vehicles queued at one int
 to the point where vehicles are unable to clear the previous intersection during a green phase. Equation 
 24.22 below defines the calculation for the distance above which this type of conflict shall not occur.
 
-Eq. 24.23\' TODO Math: 
+Eq. 24.23
 
-Di1-i2≥3*MaxTgreen-i1,Tgreen-i2 '\
+$$ D_{i1-i2} \geq 3 * Max(T_\text{green-i1},T_\text{green-i2}) $$
 
 Where:
-
-D\sub{i1-i2} = Distance in meters between intersection 1 and intersection 2;
-
-T\sub{green-i1} = Green signal time in seconds at intersection 1;
-
-T\sub{green-i2} = Green signal time in seconds at intersection 2.
+\item $$ D_\text{i1-i2} $$: Distance in meters between intersection 1 and intersection 2;
+\item $$ T_\text{green-i1} $$: Green signal time in seconds at intersection 1;
+\item $$ T_\text{green-i2} $$: Green signal time in seconds at intersection 2.
 
 A mixed-traffic lane can generally handle 1,800 vehicles per hour. This quantity translates to two 
 vehicles per second (3,600 seconds in an hour). When vehicles are stopped at a stoplight, the average 
@@ -149,11 +146,11 @@ will result in free-flow operation or in congestion:
 \item T\sub{green-i1} = 50 seconds; 
 \item T\sub{green-i2} = 30 seconds.
 
-To determine if the distance between these intersections is sufficient, Equation 24.19 can be applied:\' TODO Math: 
+To determine if the distance between these intersections is sufficient, Equation 24.19 can be applied:
 
-100≥2.5*Max50,30 '\\' TODO Math: 
+$$ 100 \geq 2.5 * Max(50,30) $$ 
 
-100≥150 ←FALSE '\
+$$ 100 \geq 150 \leftarrow \text{FALSE} $$
 
 Since 100 meters is less than the required 150 meters, there is not enough space between the intersections. 
 
@@ -194,12 +191,15 @@ phase per origin in the other direction (“mixed-four-phase”).
 
 \subsubsection{Movements Conflicting with BRT}
 
+\figure[medium]{assets/image36.jpeg}{Along Quito’s Central Norte corridor, vehicles in mixed traffic are given 
+a phase to perform left turns. Image}{ Lloyd Wright.}
+
 When the BRT has to cross a typical four-stage intersection, the main concern is to increase the green 
 time for the corridor direction. Eliminating phases are likely to be very effective in doing so, but 
 it is important to keep in mind that it is not the primary goal. Eliminating phases in a way that green 
 time is not increased for the BRT approaches will improve only mixed-traffic performance.
 
-To eliminate the phases we must focus on the *movements that conflict with the BRT* (Figure 24.35) 
+To eliminate the phases we must focus on the *movements that conflict with the BRT* (Figure 24.36) 
 and try to reroute them in such a way that they can cross the corridor in one phase and briefly—that 
 is, providing width to the crossing movement approaches. Providing width to parallel movements is important 
 to improving general traffic, which is also desirable, but not paramount.
@@ -210,18 +210,13 @@ roads, the same reasoning applies and the same alternatives for detour mixed-tra
 considered, but in a different and appropriated way.*
 
 With a median-side BRT, standard-four-phase sign can no longer be applied, as it will conflict with 
-the cross-traffic turn (Figure 24.36), so the symmetrical or the mixed-four-phase has to be used.
+the cross-traffic turn (Figure 24.35), so the symmetrical or the mixed-four-phase has to be used.
 
 \figure[medium]{assets/image35.jpeg}{With the insertion of BRT (red) in a four-stage signal, the cross-traffic 
 turn from the same direction needs to have its own phase.}{ Elebeta.}
 
-\figure[medium]{assets/image36.jpeg}{Along Quito’s Central Norte corridor, vehicles in mixed traffic are given 
-a phase to perform left turns. Image}{ Lloyd Wright.}
-
 \subsubsection{Diverting Curbside Turns}
 
-\figure{assets/image37.jpeg}{Curbside-turn detour can leave width in the main intersection available 
-to crossing flows.}{ Elebeta.}
 
 Diverting curbside turns does not remove a phase, but it can free space for queueing and increase capacity 
 for the remaining movements.
@@ -234,6 +229,9 @@ to conflict movements, reducing the crossing time (red for the corridor) in the 
 curbside-turn flow is to the total flow, even if four phases are in use. From a BRT point of view, there 
 is no interest in diverting the parallel curbside flow at the intersection, as it is not a conflicting 
 movement.
+
+\figure[medium]{assets/image37.jpeg}{Curbside-turn detour can leave width in the main intersection available 
+to crossing flows.}{ Elebeta.}
 
 \subsubsection{Diverting Cross-Traffic Turns}
 
@@ -410,7 +408,7 @@ The clearance (or lost time) for each phase is 4 seconds as well.
 \figure[medium]{assets/image50.png}{When demand requirements get too close to traffic signal capacity (overall 
 intersection capacity) required cycles get too long very quickly.}{ Elebeta.} 
 
-By observing the chart, it is clear that when the pedestrian crossing phase is present by the time 
+By observing the chart, it is clear that when the pedestrian crossing phase is present, at the moment  
 green times are required to be 75 percent, the intersection is near to collapse. This threshold is between 
 80 and 85 percent if no pedestrian phase is required.
 
