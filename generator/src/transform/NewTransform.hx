@@ -121,7 +121,11 @@ class NewTransform {
 	{
 		var li = [];
 		while (pool.length > 0) {
-			switch [parent.def, pool[0].def] {
+			var peek = switch pool[0].def {
+				case Id(_, elem): elem.def;
+				case other: other;
+				}
+			switch [parent.def, peek] {
 			case [Volume(_), Volume(_)]: break;
 			case [Chapter(_), Chapter(_)|Volume(_)]: break;
 			case [Section(_), Section(_)|Chapter(_)|Volume(_)]: break;
@@ -159,12 +163,9 @@ class NewTransform {
 			case other: throw other;
 			}
 			return mkd(DEmpty, v.pos);
-		case Id(val):
-			return mkd(DEmpty, v.pos);
-			// assert(siblings.length > 0, "must apply Id to something", "TODO typeded error");
-			// var elem = siblings.shift();
-			// assert(elem.def.match(Volume(_)|Chapter(_)|Section(_)|SubSection(_)|SubSubSection(_)|Figure(_)|Table(_)|ImgTable(_)|Box(_)), "invalid elem to apply Id to", "TODO typeded error");
-			// return vertical(elem, siblings, idc, noc, val.def);
+		case Id(val, elem):
+			assert(elem.def.match(Volume(_)|Chapter(_)|Section(_)|SubSection(_)|SubSubSection(_)|Figure(_)|Table(_)|ImgTable(_)|Box(_)), "invalid elem to apply Id to", "TODO typeded error");
+			return vertical(elem, siblings, idc, noc, val.def);
 		case Volume(horizontal(_) => name):
 			var id = idc.volume = withId != null ? withId : genId(name);
 			var no = noc.volume = noc.lastVolume + 1;

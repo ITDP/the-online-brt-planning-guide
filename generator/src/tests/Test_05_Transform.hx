@@ -355,7 +355,6 @@ class Test_05_Transform {
 				@id("a")@wrap(8,0)DVolume(1,@len(1)Word("a"),@skip(1)DElemList([DParagraph(@len(1)Word("b")),
 				@skip(8)@id("foo")@wrap(9,0)DChapter(1,@len(1)Word("c"),@skip(1)DParagraph(@len(1)Word("d")))])),
 				@skip(8)@id("bar")@wrap(8,0)DVolume(2,@len(1)Word("e"),@skip(1)DElemList([DParagraph(@len(1)Word("f")),
-				//VOL!=ChaptersowhenIchangethevolIcantchangechapter#
 				@id("g")@wrap(9,0)DChapter(2,@len(1)Word("g"),@skip(1)DParagraph(@len(1)Word("h")))]))
 			])),
 			parse("\\volume{a}b\\id{foo}\\chapter{c}d\\id{bar}\\volume{e}f\\chapter{g}h"));

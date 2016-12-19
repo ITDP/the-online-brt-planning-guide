@@ -260,7 +260,8 @@ class Parser {
 	function id(cmd:Token, stop:Stop)
 	{
 		var val = arg(rawHorizontal, cmd, "value");
-		return mk(Id(mk(val.val, val.pos.offset(1,-1))), cmd.pos.span(val.pos));
+		var elem = vertical(stop).extractOr(mk(VEmpty, cmd.pos.span(val.pos)));  // check it later
+		return mk(Id(mk(val.val, val.pos.offset(1,-1)), elem), cmd.pos.span(elem.pos));
 	}
 
 	function hierarchy(cmd:Token)
