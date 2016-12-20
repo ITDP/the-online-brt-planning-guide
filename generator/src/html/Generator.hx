@@ -288,16 +288,16 @@ class Generator {
 			if (Context.draft) {
 				return '
 					<section class="img-block ${sizeToClass(size)}">
-					<a><img src="$DRAFT_IMG_PLACEHOLDER" class="overlay-trigger"/></a>
-					<p id="$id"><strong>Fig. $no</strong>$QUAD${genh(caption)} <em>$DRAFT_IMG_PLACEHOLDER_COPYRIGHT</em></p>
+					<a><img id="$id" src="$DRAFT_IMG_PLACEHOLDER" class="overlay-trigger"/></a>
+					<p><strong>Fig. $no</strong>$QUAD${genh(caption)} <em>$DRAFT_IMG_PLACEHOLDER_COPYRIGHT</em></p>
 					</section>
 				'.doctrim() + "\n";
 			} else {
 				var p = saveAsset(path);
 				return '
 					<section class="img-block ${sizeToClass(size)}">
-					<a><img src="$p" class="overlay-trigger"/></a>
-					<p id="$id"><strong>Fig. $no</strong>$QUAD${genh(caption)} <em>${genh(cright)}</em></p>
+					<a><img id="$id" src="$p" class="overlay-trigger"/></a>
+					<p><strong>Fig. $no</strong>$QUAD${genh(caption)} <em>${genh(cright)}</em></p>
 					</section>
 				'.doctrim() + "\n";
 			}
