@@ -1,19 +1,19 @@
 \chapter{Technology}
 
-
+Contributors: Giorgio Ambrosino; Brendan Finn, consultant; Christoff Krogskeepers, ITS Engineers; Pratik Dave
 
 > Any sufficiently advanced technology is indistinguishable from magic.
 @ Arthur C. Clarke, author and inventor, 1917–
 
 
-Information technology (IT) systems are an important component of high-quality BRT systems. BRT services 
-are designed to cater to large passenger volumes and must deliver fast, accurate, and reliable services 
-in the form of financial transactions, customer information, and operations systems. IT systems address 
-the complexities of day-to-day operations management, reducing manpower and contributing to sizable cost 
-savings. Over the years, the level of integration has increased so that IT now takes a system-oriented 
-approach. IT can be leveraged to foster cooperation among the various transport modes and coordinate 
-management of mobility systems. This chapter provides broad guidance on the planning, implementation, 
-and operations of IT systems. For a more comprehensive guide to IT systems for BRT and bus systems, refer 
+Information technology (IT) systems are an important component of high-quality BRT systems. BRT services
+are designed to cater to large passenger volumes and must deliver fast, accurate, and reliable services
+in the form of financial transactions, customer information, and operations systems. IT systems address
+the complexities of day-to-day operations management, reducing manpower and contributing to sizable cost
+savings. Over the years, the level of integration has increased so that IT now takes a system-oriented
+approach. IT can be leveraged to foster cooperation among the various transport modes and coordinate
+management of mobility systems. This chapter provides broad guidance on the planning, implementation,
+and operations of IT systems. For a more comprehensive guide to IT systems for BRT and bus systems, refer
 to the World Bank Toolkit on Intelligent Transport Systems.
 
 \begintable{Key IT System Functions}
@@ -31,7 +31,7 @@ to the World Bank Toolkit on Intelligent Transport Systems.
 \col \item Facilitates efficient junction management and signal priority for buses.
 \row
 \col *Fleet Management*
-\col \item Manages manpower and allocates duties;\item Schedules maintenance.; 
+\col \item Manages manpower and allocates duties;\item Schedules maintenance.;
 \row
 \col *Surveillance Systems*
 \col \item Ensures station security.
