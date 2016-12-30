@@ -22,7 +22,6 @@ Phasellus sed lacus ac erat luctus pretium a at massa. Ut quis massa nec dui rut
 \include{volume-1-landing-page.txt}
 
 \include{01-project-initiation-and-set-up/00-project-initiation.src}
-
 \meta\reset{chapter}{2}  \' skip to chapter 3 '\
 \include{03-project/00-project-set-up.src}
 
@@ -51,7 +50,7 @@ Phasellus sed lacus ac erat luctus pretium a at massa. Ut quis massa nec dui rut
 \volume{Technology}
 \include{volume-5-landing-page.txt}
 
-\meta\reset{chapter}{17} \' skip to chapter 18 insertion to change hash for file, not sure if GitHub would notice no diference from master, will check later '\
+\meta\reset{chapter}{17} \' skip to chapter 18 '\
 \include{18-fare_systems/fare-systems.src}
 
 \include{19-technology\technology.src}
@@ -97,4 +96,4 @@ There should be some introductory text here on this volume.
 
 
 \meta\reset{chapter}{33}  \' contributing should be the last volume and chapters '\
-\include{34-manual-for-collaboration/00-manual-for-collaboration.src} 
+\include{34-manual-for-collaboration/00-manual-for-collaboration.src}
