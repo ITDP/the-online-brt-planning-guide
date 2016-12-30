@@ -32,6 +32,8 @@ Phasellus sed lacus ac erat luctus pretium a at massa. Ut quis massa nec dui rut
 
 \include{04-demand-analysis/00-demand-analysis.src}
 \include{05-network_development/00-corridor-and-network-development.src}
+\include{06-service_planning/service-planning.src}
+\include{07-system-speed/system-speed-and-capacity.src}
 \include{08-traffic-impact-assessment/00-traffic-impact-assessment.src}
 
 \volume{Communications and Marketing}
@@ -49,7 +51,7 @@ Phasellus sed lacus ac erat luctus pretium a at massa. Ut quis massa nec dui rut
 \volume{Technology}
 \include{volume-5-landing-page.txt}
 
-\meta\reset{chapter}{17} \' skip to chapter 18 '\
+\meta\reset{chapter}{17} \' skip to chapter 18 insertion to change hash for file, not sure if GitHub would notice no diference from master, will check later '\
 \include{18-fare_systems/fare-systems.src}
 
 \include{19-technology\technology.src}
@@ -67,7 +69,7 @@ Phasellus sed lacus ac erat luctus pretium a at massa. Ut quis massa nec dui rut
 \meta\reset{chapter}{22}  \' skip to chapter 23 '\
 \include{roadway-design/roadway-design.src}
 
-\'include{24-intersections_and_signal_control/intersections-and-signal-control.src}'\
+\include{24-intersections_and_signal_control/intersections-and-signal-control.src}
 
 
 \meta\reset{chapter}{25} \' skip to chapter 26 '\
