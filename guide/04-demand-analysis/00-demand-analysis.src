@@ -1,5 +1,7 @@
 \chapter{Demand Analysis}
 
+\highlight{Contributors:} Walter Hook, *BRT Planning International*; Karl Fjellstrom, *Far East BRT*; Luis (Pilo) Willumsen, *consultant*; Arthur Szász, *Protocubo*; Ulises Navarro, *ITDP Latin America*; Pranjali Deshpande, *ITDP India*
+
 >The essence of mathematics is not to make simple things complicated, but to make complicated things
 simple.
 @Stan Gudder, mathematician
@@ -101,4 +103,3 @@ and suggests a few ways to handle them.
 \include{05-estimating-demand-using-a-full-transport-model.src}
 \include{06-risk-and-uncertainty.src}
 \include{07-conclusion.src}
-
