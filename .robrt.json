@@ -30,7 +30,6 @@
 
 			"ls -l .generated-js/pdf/fonts",
 
-			"cp -r .generated-js $ROBRT_OUTPUT_DIR/debug/",
 			"cp -r .generated-js/html $ROBRT_OUTPUT_DIR/guide",
 
 			"cd .generated-js/pdf/",
