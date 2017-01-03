@@ -82,6 +82,8 @@ Phasellus sed lacus ac erat luctus pretium a at massa. Ut quis massa nec dui rut
 \volume{Integration}
 
 \include{volume-7-landing-page.txt}
+\meta\reset{chapter}{28}  \' skip to chapter 29 '\
+\include{pedestrian-access/pedestrian-access.src}
 
 \meta\reset{chapter}{29} \' skip to chapter 30 '\
 \include{30-universal_access\universal-access.src}
