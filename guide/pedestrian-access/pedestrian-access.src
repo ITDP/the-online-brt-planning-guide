@@ -547,7 +547,7 @@ Source: L. Blinco, A. Seay, E. Zaloshnja, T. Miller, E. Romano, S. Luchter, R. S
 
 Table 29.3 lists weight factors that can be used to determine the relative safety of a location or area. This list includes direct costs (property damage, emergency medical services, medical treatment, lost productivity, insurance payouts) and indirect costs (insurance premiums, automobile safety features). These multipliers can be applied to existing crash data to show the approximate annual cost of the existing roadway configuration. This list can also be used to estimate potential cost savings of a proposal relative to the cost of construction.
 
-\begintable[small]{Factors to Determine the Relative Safety of a Location}
+\begintable[medium]{Factors to Determine the Relative Safety of a Location}
 \header
 \col Factor
 \col Severity
