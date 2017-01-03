@@ -8,7 +8,6 @@ import sys.io.File;
 import tink.template.Html;
 import transform.Context;
 import transform.NewDocument;
-import util.sys.FsUtil;
 
 import Assertion.*;
 import generator.tex.*;

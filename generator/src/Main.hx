@@ -24,6 +24,7 @@ class Main {
 		Usage:
 		  manu generate <input file> <output dir>
 		  manu statistics ... (run `manu statistics --help` for more)
+		  manu asset-server ... (run `manu asset-server --help` for more)
 		  manu unit-tests
 		  manu --version
 		  manu --help".doctrim();
@@ -119,6 +120,8 @@ class Main {
 				generate(ipath, opath);
 			case _[0] => cmd if (cmd != null && StringTools.startsWith("statistics", cmd)):
 				tools.Stats.run(args.slice(1));
+			case _[0] => cmd if (cmd != null && StringTools.startsWith("asset-server", cmd)):
+				tools.AssetServer.run(args.slice(1));
 			case [cmd] if (StringTools.startsWith("unit-tests", cmd)):
 				tests.RunAll.runAll();
 			case ["--version"]:
