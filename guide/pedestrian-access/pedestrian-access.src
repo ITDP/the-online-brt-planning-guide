@@ -434,17 +434,18 @@ Once the pedestrian flows have been displayed on a composite diagram, the moveme
 
 Just as a public transport corridor is designed to handle a particular customer volume, a pedestrian corridor also possesses an inherent capacity. If a walkway is too closely packed, then the desirability of walking is compromised. Crowded conditions cause delay and create the opportunity for crimes such as pickpocketing and sexual harassment. In general, the effective width of a walkway should be 1.5 to 2 meters in low-volume areas, and 3 to 4 meters in commercial areas. In areas that routinely have more foot traffic, a wider walkway is necessary. The formula for calculating such a width is provided below as per Herbie Huff and Robin Liggett’s 2014 The Highway Capacity Manual’s Method for Calculating Bicycle and Pedestrian Levels of Service: The Ultimate White Paper, which pulls the equation from the 2010 Highway Capacity Manual:
 
-Eq. 29.1
-F_w= 1.2276 ln⁡〖(W_v+0.5W_1+50p_pk+〖f_b W〗_buf+〖f_sw W〗_aA  )〗
+$$F_w=1.2276\ \text{ln}(W_v + 0.5W_1 + 50p_{pk} + f_{b}W_{buf} + f_{sw}W_{aA})$$
+
 Where:
-Fw¬ = Width of the crossing;
-Wv = Effective width of the outside through lane, bike lane, and shoulder width;
-W1 = Effective width of the combined bike lane and shoulder width;
-ppk = Proportion of on-street parking occupied;
-fb = Buffer area coefficient;
-Wbuf = Buffer width between roadway and sidewalk;
-fsw¬ = Sidewalk coefficient;
-WaA = Adjusted available sidewalk width.
+
+\item $$F_w =$$ width of the crossing;
+\item $$W_v =$$ effective width of the outside through lane, bike lane, and shoulder width;
+\item $$W_1 =$$ effective width of the combined bike lane and shoulder width;
+\item $$p_{pk} =$$ proportion of on-street parking occupied;
+\item $$f_b =$$ buffer area coefficient;
+\item $$W_{buf} =$$ buffer width between roadway and sidewalk;
+\item $$f_{sw} =$$ sidewalk coefficient;
+\item $$W_{aA} =$$ adjusted available sidewalk width.
 
 It is important not to oversize a walkway, lest it be barren.
 
