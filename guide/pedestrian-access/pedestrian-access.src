@@ -592,7 +592,7 @@ It is fairly typical in lower-income countries for distances between intersectio
 Pedestrian connectivity to a BRT station is also a function of the layout of area roads and paths, with and without pedestrian infrastructure. It is fairly typical in lower-income economies for the secondary street system to be extremely weak. Residential areas often connect to major arterials only at a very limited number of access points, and these local streets rarely connect to other residential areas except via the major arterials. Street networks that rely on a high number of minor roads that do not connect with each other severely limit the pedestrian’s ability to reach the BRT station. This pattern reduces the functionality of the BRT station, since it requires longer trips to reach destinations. Conversely, networks developed on an interconnected grid system provide greater accessibility, because streets are more connected, which allows pedestrians to travel directly to BRT stations. A grid street system also tends to be more resilient, because the system will not fail if one link is blocked. It is sometimes possible to find locations for small pedestrian shortcuts to reduce high detour factors caused by the lack of a secondary street system.
 
 
-\highlight{Chapter 29 References:}
+\section{References}
 
 Agran P., Castillo D., and Winn D. 1990. Limitations of data compiled from police reports on pediatric pedestrian and bicycle motor vehicle events. Accident Analysis and Prevention, vol. 22, no. 4, pp. 361-370.
 
@@ -603,3 +603,4 @@ Hautzinger, H., Dürholt, H., Hörnstein, E., Tassaux-Becker, B. 1993. Dunkelzif
 James, H. 1991. Under-reporting of road traffic accidents. Traffic Engineering and Control, December 1991, pp. 574-583.
 
 Institute of Transportation Engineers (ITE). 1998. Design and Safety of Pedestrian Facilities. Traffic Engineering Council Committee TENC 5A-5 and Zegeer, C.V.
+
