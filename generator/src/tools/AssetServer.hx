@@ -5,41 +5,131 @@ import js.node.*;
 import js.node.http.*;
 import sys.FileSystem;
 
-import Assertion.*;
+import Assertion.*;  // FIXME not really usefull in this server contex; we would need separate connection id's for each call; also, asserts on async code are useless
 import Sys.*;
 using Literals;
+using StringTools;
 
 class AssetServer {
-	var host:String;
 	var dir:String;
 	var server:js.node.http.Server;
 
-	function handle(req:IncomingMessage, res:ServerResponse)
+	function fail(res:ServerResponse, status, ?msg)
 	{
-		show(req);
+		res.statusCode = status;
+		if (msg != null) {
+			res.setHeader("Content-Type", "text/plain");
+			res.write(msg);
+		}
+		res.end();
 	}
 
-	function listen(port:Int)
-		server.listen(port);
-
-	function new(host, dir)
+	function handle(req:IncomingMessage, res:ServerResponse)
 	{
-		this.host = host;
+		var hashPat = ~/^([a-f0-9]+)(\.([a-z0-9]+))?$/i, hashLen = 160 >> 2;
+		switch [(req.method:String).toLowerCase()].concat(req.url.split("/").slice(1)) {  // TODO report necessity of req.method:String to HF
+		case ["post", "offer"]:  // POST /offer with Json serialization [<hash name>, <hash name>, ...] payload
+			var buf = new StringBuf();
+			req.setEncoding("utf-8");
+			req.on("data", function (chunk) buf.add(chunk));
+			req.on("end", function () {
+				show(buf.toString());
+				var payload = buf.toString();
+				var hashes:Array<String> = try {
+					var json = haxe.Json.parse(payload);
+					if (!Std.is(json, Array))
+						throw "expected array";
+					json;
+				} catch (e:Dynamic) {
+					show("bad json", payload);
+					return fail(res, 400, "could not parse the payload as json");
+				}
+				var want = [];
+				for (h in hashes) {
+					if (!Std.is(h, String) || !hashPat.match(h)) {
+						show("bad name", h);
+						return fail(res, 400, "bad asset name");
+					}
+					if (hashPat.matched(1).length != hashLen) {
+						show("bad name", h, hashPat.matched(1), hashPat.matched(2), hashLen);
+						return fail(res, 400, "bad asset name");
+					}
+					var path = haxe.io.Path.join([dir, h]);
+					if (!sys.FileSystem.exists(path))
+						want.push(h);
+				}
+				show(hashes.length, want.length);
+				res.statusCode = 200;
+				res.setHeader("Content-Type", "application/json");
+				res.write(haxe.Json.stringify(want));
+				res.end();
+			});
+		case ["put", "store", h]:  // PUT /store/<hash name>
+			if (!hashPat.match(h)) {
+				show("bad name", h);
+				return fail(res, 400, "bad asset name");
+			}
+			if (!hashPat.match(h) || hashPat.matched(1).length != hashLen) {
+				show("bad name", h, hashPat.matched(1), hashPat.matched(2), hashLen);
+				return fail(res, 400, "bad asset name");
+			}
+			var path = haxe.io.Path.join([dir, h]);
+			if (sys.FileSystem.exists(path)) {
+				res.statusCode = 200;  // ok
+				res.end();
+				return;
+			}
+			var buf = new haxe.io.BytesBuffer();
+			req.on("data", function (chunk:Buffer) buf.add(chunk.hxToBytes()));
+			req.on("end", function () {
+				var data = buf.getBytes();
+				var comp = Crypto.createHash("sha1").update(Buffer.hxFromBytes(data)).digest("hex");
+				if (comp.toLowerCase() != hashPat.matched(1).toLowerCase()) {
+					show("bad content", comp, h, data.length);
+					return fail(res, 400, "asset content doesn't match hash");
+				}
+				show(path);
+				sys.io.File.saveBytes(path, data);
+				res.statusCode = 201;  // created
+				res.end();
+			});
+		case ["post", "push"]:  // POST /push with yet unspecified payload
+			show("TODO (efficient PUT)");
+			fail(res, 500, "batch puts not yet implemented");
+		case ["get", "store", obj]:  // GET /store/<hash name>
+			show("TODO (autonomous asset retrieval)");
+			fail(res, 500, "asset serving has not yet been implemented; you can serve the files directly with your webserver\n");
+		case other:
+			show(false, "unknown route", req.method, req.url, other);
+			fail(res, 404);
+		}
+	}
+
+	function listen(port:Int, hostname:String)
+	{
+		server.listen(port, hostname);
+		server.once("listening", function () show("listening", server.address()));
+	}
+
+	function new(dir)
+	{
 		this.dir = dir;
 		this.server = Http.createServer(handle);
 	}
 
 	static var USAGE = "
 		Usage:
-		  manu asset-server start <host> <port> <data-folder>
-		  manu asset-server --help".doctrim();
+		  manu asset-server start <hostname> <port> <data-folder>
+		  manu asset-server --help
+		
+		Don't forget about setting DEBUG=1 for more information.".doctrim();
 
 	public static function run(args:Array<String>)
 	{
 		switch args {
 		case ["--help"]:
 			println(USAGE);
-		case ["start", host, port, dir]:
+		case ["start", hostname, port, dir]:
 			assert(~/^\d+$/.match(port));
 			if (!FileSystem.exists(dir))
 				FileSystem.createDirectory(dir);
@@ -48,7 +138,7 @@ class AssetServer {
 			assert(1 <= port && port < 65355);
 			assert(FileSystem.isDirectory(dir));
 
-			new AssetServer(host, dir).listen(port);
+			new AssetServer(dir).listen(port, hostname);
 		case _:
 			println(USAGE);
 			exit(1);
