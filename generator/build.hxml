@@ -10,6 +10,7 @@
 -lib version
 -lib tink_template
 -lib utest
+-lib hxnodejs
 -D tink_template_pos=off
 -D tink_template_filter_classes
 -cp include
@@ -28,7 +29,6 @@
 # use --debug for source-map generation
 -main Main
 -js bin/manu.js
--lib hxnodejs
 -resource bin/bundle/html.js@html.js
 -debug
 
