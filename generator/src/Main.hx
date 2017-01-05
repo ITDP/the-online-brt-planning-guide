@@ -103,8 +103,8 @@ class Main {
 		print(Ansi.setm([Bold]) + BANNER + "\n\n" + Ansi.set(Off));
 		if (Context.debug) println('Ansi escape codes are ${Ansi.available ? "enabled" : "disabled"}');
 
-		Context.debug = Sys.getEnv("DEBUG") == "1";
-		Context.draft = Sys.getEnv("DRAFT") == "1";
+		Context.debug = Environment.debug;
+		Context.draft = Environment.draft;
 		if (Ansi.available)
 			Context.hlmode = AnsiEscapes(Ansi.setm([Bold,Red]), Ansi.set(Off));
 		Context.prepareSourceMaps();

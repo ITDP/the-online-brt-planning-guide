@@ -1,5 +1,6 @@
 package tools;
 
+import Ansi;
 import js.Node;
 import js.node.*;
 import js.node.http.*;
@@ -9,6 +10,100 @@ import Assertion.*;  // FIXME not really usefull in this server contex; we would
 import Sys.*;
 using Literals;
 using StringTools;
+
+private class AssetServerClient {
+	var port:Int;
+	var hostname:String;
+
+	public function new(port, hostname)
+	{
+		this.port = port;
+		this.hostname = hostname;
+	}
+
+	function send(dir:String, buf:StringBuf)
+	{
+		var response = buf.toString();
+		var want:Array<String> = haxe.Json.parse(response);  // TODO validate
+
+		if (want.length == 0) {
+			println(Ansi.set(Green) + '=> Done, server does not need (or want) any files' + Ansi.set(Off));
+			return;
+		}
+
+		var simultaneous = 5;
+		println(Ansi.set(Green) + '=> PUTing assets (${want.length})' + Ansi.set(Off));
+		println(Ansi.set(Green) + ' --> Maximum number of simultaneous requests: $simultaneous' + Ansi.set(Off));
+		function put() {
+			if (want.length == 0) {
+				if (--simultaneous == 0)
+					println(Ansi.set(Green) + ' --> Ok!' + Ansi.set(Off));
+				return;
+			}
+
+			var h = want.shift();  // TODO properly validate h
+			var path = haxe.io.Path.join([dir, h]);
+			assert(FileSystem.exists(path), dir, h);
+			show(path);
+
+			var req = Http.request({
+				host : hostname,
+				port : port,
+				method : "PUT",
+				path : '/store/$h',
+				headers : { "Content-Type": "application/octet-stream" } });
+			function onResponse(res:IncomingMessage) {
+				assert(res != null);
+				assert(res.statusCode == 200 || res.statusCode == 201, res.statusCode);
+				weakAssert(res.statusCode == 201);
+				res.resume();
+				res.on("end", put);
+			}
+			req.on("response", onResponse);
+			req.on("error", function (err) assert(false, err));
+			var stream = Fs.createReadStream(path);
+			stream.pipe(req);
+			stream.on("end", function () req.end());
+		}
+		for (i in 0...simultaneous)
+			put();
+	}
+
+	function offer(dir)
+	{
+		assert(FileSystem.exists(dir) && FileSystem.isDirectory(dir));
+		var files = FileSystem.readDirectory(dir);
+		println(Ansi.set(Green) + '=> Offering hashes (${files.length})' + Ansi.set(Off));
+
+		var req = Http.request({
+			host : hostname,
+			port : port,
+			method : "POST",
+			path : "/offer",
+			headers : { "Content-Type" : "application/json" } });
+		function onResponse(res:IncomingMessage) {
+			assert(res != null);
+			switch res.statusCode {
+			case 200:
+				println(Ansi.set(Green) + ' --> Ok!' + Ansi.set(Off));
+			case other:
+				println(Ansi.set(Red) + ' --> FAILED, server responded with status = $other' + Ansi.set(Off));
+			}
+			var buf = new StringBuf();
+			res.on("data", function (chunk) buf.add(chunk));
+			res.on("end", send.bind(dir, buf));
+		}
+		req.on("response", onResponse);
+		req.on("error", function (err) assert(false, err));
+		req.write(haxe.Json.stringify(files));
+		req.end();
+	}
+
+	public function store(path)
+	{
+		offer(path);
+	}
+}
 
 class AssetServer {
 	var dir:String;
@@ -45,6 +140,7 @@ class AssetServer {
 					return fail(res, 400, "could not parse the payload as json");
 				}
 				var want = [];
+				var have = [ for (f in FileSystem.readDirectory(dir)) f => true ];  // TODO make this into a more general cache
 				for (h in hashes) {
 					if (!Std.is(h, String) || !hashPat.match(h)) {
 						show("bad name", h);
@@ -55,7 +151,7 @@ class AssetServer {
 						return fail(res, 400, "bad asset name");
 					}
 					var path = haxe.io.Path.join([dir, h]);
-					if (!sys.FileSystem.exists(path))
+					if (!have.exists(h))
 						want.push(h);
 				}
 				show(hashes.length, want.length);
@@ -74,7 +170,7 @@ class AssetServer {
 				return fail(res, 400, "bad asset name");
 			}
 			var path = haxe.io.Path.join([dir, h]);
-			if (sys.FileSystem.exists(path)) {
+			if (FileSystem.exists(path)) {
 				res.statusCode = 200;  // ok
 				res.end();
 				return;
@@ -119,7 +215,8 @@ class AssetServer {
 
 	static var USAGE = "
 		Usage:
-		  manu asset-server start <hostname> <port> <data-folder>
+		  manu asset-server start <hostname> <port> <data folder>
+		  manu asset-server store <hostname> <port> <local directory>
 		  manu asset-server --help
 		
 		Don't forget about setting DEBUG=1 for more information.".doctrim();
@@ -139,6 +236,13 @@ class AssetServer {
 			assert(FileSystem.isDirectory(dir));
 
 			new AssetServer(dir).listen(port, hostname);
+		case ["store", hostname, port, path]:
+			assert(~/^\d+$/.match(port));
+			var port = Std.parseInt(port);
+
+			assert(1 <= port && port < 65355);
+
+			new AssetServerClient(port, hostname).store(path);
 		case _:
 			println(USAGE);
 			exit(1);
