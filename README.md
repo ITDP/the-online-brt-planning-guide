@@ -1,6 +1,4 @@
-# The Online BRT Planning Guide
-[![View the last stable version of the guide](https://img.shields.io/badge/view-last_stable-blue.svg?style=flat-square)](https://brt.robrt.io/branch/master/guide)
-[![View the bleeding edge version of the guide](https://img.shields.io/badge/view-bleeding_edge-brightgreen.svg?style=flat-square)](https://brt.robrt.io/branch/development/guide)
+# The Online BRT Planning Guide [![View the last version of the guide](https://img.shields.io/badge/view-live-blue.svg?style=flat-square)](https://brt.robrt.io/branch/master/guide)
 
 The Bus Rapid Transit Planning Guide is the most comprehensive resource for
 planning a bus rapid transit (BRT) system, beginning with project preparation
