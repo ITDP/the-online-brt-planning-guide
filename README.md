@@ -1,4 +1,4 @@
-# The Online BRT Planning Guide [![View the last version of the guide](https://img.shields.io/badge/view-live-blue.svg?style=flat-square)](https://brt.robrt.io/branch/master/guide)
+# The Online BRT Planning Guide [![Current version](https://img.shields.io/badge/view-brtguide.itdp.org-blue.svg?style=flat-square)](https://brtguide.itdp.org)
 
 The Bus Rapid Transit Planning Guide is the most comprehensive resource for
 planning a bus rapid transit (BRT) system, beginning with project preparation
@@ -56,3 +56,4 @@ _You should be able to fix that by updating the remote repository URL to use eit
 git remote set-url origin https://<your-github-username-here>@github.com/protocubo/the-online-brt-planning-guide
 git remote set-url origin git@github.com:/protocubo/the-online-brt-planning-guide
 ```
+
