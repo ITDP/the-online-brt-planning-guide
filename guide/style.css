@@ -416,9 +416,20 @@ pre {
 	background: rgba(255,255,255,0.75);
 }
 .overlay img {
-	max-width: 1216px;
-	max-height: 80%
-	 margin-top: 40px;
+	max-height: 90%;
+	max-width: 90%;
+	min-width: 60%;
+	min-height: 60%;
+	height: auto;
+	width: auto;
+	margin: auto;
+	position: relative;
+	top: 50%;
+	-ms-transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-o-transform: tranlslateY(-50%);
+	transform: translateY(-50%);
 }
 
 /* scrollbar */

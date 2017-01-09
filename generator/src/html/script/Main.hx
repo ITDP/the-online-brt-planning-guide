@@ -57,9 +57,26 @@ class Main {
 		J("nav").append(toc);
 	}
 
+	static function figClick(e:Event)
+	{
+		var t  = J(e.target);
+		if (!t.is("img.overlay-trigger"))
+			return;
+
+		var olay = J(JQuery.parseHTML('<div class="overlay"><img src="${t.attr("src")}"/></div>'));
+		olay.click(function (e:Event) {
+			olay.off(e);
+			olay.remove();
+		});
+		t.after(olay);
+		e.preventDefault();
+		e.stopPropagation();
+	}
+
 	static function main()
 	{
 		JTHIS.ready(drawNav);
+		JTHIS.click(figClick);
 	}
 }
 
