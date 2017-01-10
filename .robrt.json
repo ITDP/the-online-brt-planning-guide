@@ -23,7 +23,7 @@
 			"cp generator/bin/manu.js $ROBRT_OUTPUT_DIR/bin/",
 			"cp -r generator/docs/design/web/mockup $ROBRT_OUTPUT_DIR/web-mockup",
 
-			"export GL_ANALYTICS_UA_ID=UA-77667300-3",
+			"export GL_ANALYTICS_UA_ID=UA-77667300-5",
 			"export DEBUG=1",
 			"nodejs generator/bin/manu.js generate guide/the-guide.src .generated-js",
 			"unset DEBUG",
