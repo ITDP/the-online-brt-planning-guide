@@ -7,6 +7,7 @@
 	},
 	"build" : {
 		"cmds" : [
+			"echo $GL_ANALYTICS_UA_ID",
 			"nodejs --version",
 
 			"cd $ROBRT_REPOSITORY_DIR",
@@ -16,29 +17,23 @@
 			"cd $ROBRT_REPOSITORY_DIR/generator",
 			"haxe -D travis build.hxml",
 			"nodejs bin/manu.js unit-tests",
-
 			"cd $ROBRT_REPOSITORY_DIR",
 			"cp LICENSE.md $ROBRT_OUTPUT_DIR/",
 			"mkdir -p $ROBRT_OUTPUT_DIR/bin",
 			"cp generator/bin/manu.js $ROBRT_OUTPUT_DIR/bin/",
-			"cp -r generator/docs/design/web/mockup $ROBRT_OUTPUT_DIR/web-mockup",
 
-			"export GL_ANALYTICS_UA_ID=UA-77667300-5",
 			"export DEBUG=1",
 			"nodejs generator/bin/manu.js generate guide/the-guide.src .generated-js",
 			"unset DEBUG",
 
-			"ls -l .generated-js/pdf/fonts",
-
 			"cp -r .generated-js/html $ROBRT_OUTPUT_DIR/guide",
 
+			"ls -l .generated-js/pdf/fonts",
 			"cd .generated-js/pdf/",
-			"mkdir -p $ROBRT_OUTPUT_DIR/pdf $ROBRT_OUTPUT_DIR/guide/pdf",
-
 			"latexmk -lualatex -pdflatex='lualatex -interaction=nonstopmode' book.tex",
+			"mkdir -p $ROBRT_OUTPUT_DIR/pdf $ROBRT_OUTPUT_DIR/guide/pdf",
 			"cp book.pdf $ROBRT_OUTPUT_DIR/guide/pdf/the-brt-planning-guide.pdf",
-			"cp book.log $ROBRT_OUTPUT_DIR/pdf/guide_lualatex.log",
-			"latexmk -C book.tex"
+			"cp book.log $ROBRT_OUTPUT_DIR/pdf/guide_lualatex.log"
 		]
 	}
 }
