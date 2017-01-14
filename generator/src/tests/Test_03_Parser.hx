@@ -21,12 +21,12 @@ class Test_03_Parser {
 	function fails(text:String, ?expected:ParserErrorValue, ?textPattern:EReg, ?epos:Position, ?p:haxe.PosInfos)
 	{
 		Assert.raises(parse.bind(text), ParserError, p);
-		if (textPattern != null || epos != null) {
+		if (expected != null || textPattern != null || epos != null) {
 			try {
 				parse(text);
 			} catch (err:ParserError) {
 				if (expected != null)
-					Assert.same(expected, err.err);
+					Assert.same(expected, err.err, p);
 				if (textPattern != null)
 					Assert.match(textPattern, err.toString(), p);
 				if (epos != null)
@@ -139,7 +139,7 @@ class Test_03_Parser {
 		Assert.same(
 			expand(Paragraph(HElemList([@wrap(1,1)Emphasis(HElemList([@len(1)Word("a"),@len(1)Wordspace])),@wrap(1,1)Emphasis(@len(1)Word("b")),@wrap(1,1)Emphasis(HElemList([@len(1)Wordspace,@len(1)Word("c")]))]))),
 			parse("*a **b** c*"));
-
+  // {\}}
 		fails("\\emph", MissingArgument(TCommand("emph")), mkPos(5, 5));
 		fails("\\emph a", MissingArgument(TCommand("emph")), mkPos(6,7));
 		fails("\\emph{a}{}", UnexpectedToken(TBrOpen), mkPos(8,9));
@@ -501,7 +501,7 @@ class Test_03_Parser {
 			parse("\\meta\\'a'\\\\reset{volume}{2}"));
 
 		var badCounter = "counter name should be 'volume' or 'chapter'";
-		var badValue = "reset value must be sctrictly greater or equal to zero";
+		var badValue = "reset value must be strictly greater or equal to zero";
 		fails("\\meta\\reset{section}{1}", BadValue(badCounter));
 		fails("\\meta\\reset{subsection}{1}", BadValue(badCounter));
 		fails("\\meta\\reset{subsubsection}{1}", BadValue(badCounter));
@@ -511,7 +511,7 @@ class Test_03_Parser {
 		fails("\\meta\\reset{volume}{1a}", BadValue(badValue));  // FIXME
 
 		fails("\\meta\\reset{}{1}", BadValue(badCounter));
-		fails("\\meta\\reset{volume}{}", BadValue(badCounter));
+		fails("\\meta\\reset{volume}{}", BadValue(badValue));
 
 		fails("\\meta\\reset", MissingArgument(TCommand("reset"), "counter name"));
 		fails("\\meta\\reset{volume}", MissingArgument(TCommand("reset"), "reset value"));
@@ -533,9 +533,11 @@ class Test_03_Parser {
 		//
 		//                 volume}{0}
 		// and this isn't something we want to encorage.
-		// Since we still don't use them in places were break spaces
-		// would be necessary, let's forbidd them for now.
-		fails("\\meta\\reset{\n\nvolume}{0}");
+		// However, we need to allow this for proper path parsing;
+		// otherwise, it would be necesarry to allow newline escaping,
+		// and that could cause tons of problems elsewhere.
+		Assert.same(expand(@len(24)MetaReset("volume",0)), parse("\\meta\\reset{\n\nvolume}{0}"));
+		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(6)"a \n\n b")), parse("\\html\\apply{a \n\n b}"));
 	}
 
 	public function test_017_boxes()
@@ -681,6 +683,40 @@ class Test_03_Parser {
 		fails("\\sub", MissingArgument(TCommand("sub")), mkPos(4, 4));
 		fails("\\sub a", MissingArgument(TCommand("sub")), mkPos(5, 6));
 		fails("\\sub{a}{}", UnexpectedToken(TBrOpen), mkPos(7, 8));
+	}
+
+	public function test_027_paths()
+	{
+		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(1)"a")), parse("\\html\\apply{a}"));
+
+		// whitespace in paths is maintained
+		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(3)" a ")), parse("\\html\\apply{ a }"));
+		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(6)"a \n\n b")), parse("\\html\\apply{a \n\n b}"));
+
+		// escapes and tex ligatures work the same (use the former to disable the latter)
+		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(2)"\\")), parse("\\html\\apply{\\\\}"));
+		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(2)"}")), parse("\\html\\apply{\\}}"));
+		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(3)"--")), parse("\\html\\apply{-\\-}"));
+	}
+
+	public function test_028_blob_sizes()
+	{
+		Assert.same(
+			expand(@wrap(12+7,10)ImgTable(MarginWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
+			parse("\\begintable[small]{a}\\useimage{x.svg}\\endtable"));
+		Assert.same(
+			expand(@wrap(12+8,10)ImgTable(TextWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
+			parse("\\begintable[medium]{a}\\useimage{x.svg}\\endtable"));
+		Assert.same(
+			expand(@wrap(12+7,10)ImgTable(FullWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
+			parse("\\begintable[large]{a}\\useimage{x.svg}\\endtable"));
+
+		Assert.same(
+			expand(@wrap(12+9,10)ImgTable(MarginWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
+			parse("\\begintable[ small ]{a}\\useimage{x.svg}\\endtable"));
+		Assert.same(
+			expand(@wrap(12+9,10)ImgTable(MarginWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
+			parse("\\begintable[\nsmall\n]{a}\\useimage{x.svg}\\endtable"));
 	}
 }
 

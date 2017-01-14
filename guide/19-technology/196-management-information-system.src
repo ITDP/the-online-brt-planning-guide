@@ -1,0 +1,67 @@
+
+
+\section{ Management Information System}
+
+> All of the biggest technological inventions created by man—the airplane, the automobile, the computer—says little about his intelligence, but speaks volumes about his laziness.
+@ Mark Kennedy, politician, 1957–
+
+\figure{assets/image10.jpeg}{The management information system.}{ ITDP.} 
+
+The management information system (MIS) uses data from the AVM and fare collection systems to generate 
+information to aid in optimizing planning and service. The information generated can support a wide range 
+of planning, analysis, reporting, and administrative functions. This includes service planning, scheduling, 
+resource optimization, performance, and contract management. The MIS helps identify loopholes and deficiencies 
+in the system and make quick decisions to address any shortcomings. 
+
+The IT service provider can develop a graphic dashboard that provides real-time output pertaining to 
+bus operations and financial transactions. For example, the dashboard can have different modules and 
+tab functions to show summaries of real-time passenger boarding at various stations, tickets issued, 
+buses in operation, bus positions, and bus speeds. There can be many different types of output reports 
+generated for personnel at different levels of management. The reports can be provided on a daily, weekly, 
+and monthly basis. 
+
+\figure[large]{assets/image11.jpeg}{Example of a dashboard screen.}{ GPS Integrated.}
+
+\item Bus operations reports can include the following:
+\item Trip summary;
+\item Bus equipment fault summary;
+\item Bus service disruption, speed violations, unauthorized stoppage, vehicle breakdown, infrastructure 
+damage, accidents, etc.;
+\item Route summary (number of buses, kilometers operated, average speed, alerts summary, infractions, performance 
+in comparison with previous weekly and monthly average);
+\item Operations summary of individual bus (kilometers operated, hours in operations, average speed, alerts 
+summary, infractions, performance in comparison route average over past week and month);
+\item Summary of bus operations by depot;
+\item Summary of bus operations by terminal;
+\item Staff and duty schedule reports;
+\item Financial reports.
+
+Staff duty and schedule reports are required to be maintained in order to comply with prevailing labor 
+practices and plan for systems operations and management. Staff and duty reports can include:
+
+\item Bus driver login reports;
+\item Noncompliance issues of different drivers for the shift;
+\item Bus operators supervision and maintenance staff login reports;
+\item Asset management and materials inventory at depots and CCC;
+\item Maintenance and supervision staff login reports;
+\item Administration and CCC staff login reports;
+\item All staff service hours and leave reports;
+\item Reports on staff requirement, accumulations, benefits, perks, etc.;
+\item Alerts to transport authority for duties towards staff like salary payments, leave approvals, material 
+requirements, judgments and decisions, etc.;
+\item Reports on violation of duty terms and conditions by staff.
+
+Financial reports can include the following:
+
+\item Payment for journey by passengers by purchase of paper tickets or use of smart cards;
+\item Payment toward purchase and recharge of a smart card;
+\item Fines paid by passengers;
+\item Daily cash collection at stations;
+\item Payment to bus operator and different subcontractors like fuel pump attendants, etc.;
+\item Payment to various service providers of the system like IT service provider, housekeeping agency, fare 
+collection agency, other vendors supplying stationery and assets to transport authority, electricity 
+and communication bills, etc.;
+\item Payment for civil works and infrastructure construction and maintenance;
+\item Payment to auditors;
+\item Compensation to staff, passengers, and contractors;
+\item All other administrative costs and payments.

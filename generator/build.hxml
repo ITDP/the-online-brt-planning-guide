@@ -10,6 +10,7 @@
 -lib version
 -lib tink_template
 -lib utest
+-lib ansi
 -D tink_template_pos=off
 -D tink_template_filter_classes
 -cp include

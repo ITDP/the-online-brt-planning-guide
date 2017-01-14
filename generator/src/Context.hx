@@ -1,8 +1,11 @@
+import PositionTools;
+
 class Context {
 	public static var debug = false;
 	public static var draft = false;
 	public static var timer = new Map<String,Float>();
 	public static var timerOrder = [];
+	public static var hlmode = AsciiUnderscore();
 
 	public static function prepareSourceMaps()
 	{

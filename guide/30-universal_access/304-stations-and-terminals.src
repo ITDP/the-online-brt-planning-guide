@@ -1,0 +1,234 @@
+\section{Stations and Terminals}
+
+> I think about non-visual design, which comes from my experience, but also from a general critique of architecture. It’s so much about how things look. I’m interested in how a building is experienced when you touch it with your hand, when you grab a railing or lean into an atrium.
+@ Chris Downey, architect, planner, and consultant
+
+This section presents universal access features of BRT stations and terminals.
+
+\subsection{Station Personnel}
+
+\figure{assets/image30.png}{A station attendant in a TransMilenio station. Image}{TransMilenio.}
+
+It is important to train BRT staff to be respectful and courteous to patrons with disabilities. While 
+many will need no assistance, some will need help with fare payment, route information, navigation (e.g., 
+to elevators and wide fare gates), and passage through turnstiles. The presence of uniformed staff and 
+security personnel makes BRT more appealing to persons with disabilities. This is especially true at 
+night, when such customers may be hesitant to travel. 
+
+\subsection{Fare Payment}
+
+\subsubsection{Fare Cards}
+
+Prepaid proximity cards (contactless cards) require less hand dexterity and benefit persons with limited 
+mobility. The option of purchasing multiple trips may also reduce stress for persons with disabilities. 
+However, disability correlates with poverty, and the problem of poor persons who cannot afford to prepay 
+for multiple trips needs to be recognized.
+
+\subsubsection{Fare-Card Vending Sites}
+
+A low counter, to serve wheelchair users and short persons, should ideally be included at neighborhood 
+fare card vending locations and should be a feature of formal BRT facilities. An accessible counter or 
+ticket vending window should be:
+
+\item 800 millimeters high, ideally with knee space for a wheelchair user; 
+\item At least 500 millimeters deep;
+\item At least 900 millimeters wide; 
+\item With at least 1,200 millimeters of clear space in front. 
+
+Electronic ticket vending machines should have buttons and slots for cash and for dispensing fare cards, 
+located not more than 1,200 millimeters above the ground. Assistance should be provided as needed to 
+blind customers, deaf customers, and others who may have difficulty with card-purchase procedures.
+
+Consideration should be given to hiring disabled persons to work at fare vending sites where appropriate 
+space needs are met.
+
+\subsubsection{Fare Gates}
+
+There should be one or more wide fare gates in each station (clear width of at least 900 millimeters) 
+for customers using wheelchairs, walkers, or crutches. 
+
+\subsection{Mobility Features}
+
+\subsubsection{Uniform Design}
+
+A uniform design throughout the system assists all customers with navigation, especially those with 
+sensory and cognitive disabilities. 
+
+\subsubsection{Entrances and Exits}
+
+Longer stations—especially those over 50 meters—should have entrances at each end when possible to 
+assist those who are unable to walk long distances, as well as all other customers. An exit should be 
+considered at the “far end” of such stations, even if an entrance is not possible. Exit doors require 
+a minimum of 900 millimeters of clear space. Manually operated doors should open easily, requiring no 
+more than 15 newtons of operating force.
+
+\subsubsection{Seats and Supports}
+
+\figure{assets/image31.jpeg}{Perches increase comfort for all customers (photo of Macrobus BRT station in Guadalajara, Mexico). }
+{Michael King }
+
+\figure[medium]{assets/image32.jpeg}{Elders also benefit from access features (TransOeste BRT station in Rio de Janeiro, Brazil). }
+{EMBARQ Brazil.}
+
+Provide seating (benches, folding seats) in stations, especially where wait times exceed five minutes. 
+Back and hip supports (horizontal “perches” or “leaning rails”), about 700 millimeters high, assist customers 
+with hidden disabilities such as arthritis. Seats and supports should be painted a high contrast color.
+
+Locate seats and supports where people are most likely to wait for the BRT vehicle (not in an out-of-the-way 
+location). Overcrowded stations present challenges to customers with special needs; locating seating 
+near the vehicle door addresses this. Coordinate seat location with doors reserved for those with disabilities.
+
+\subsubsection{Station Gates to Vehicles}
+
+\figure{assets/image33.jpeg}{Sliding doors are a feature of many BRT systems.}{ITDP}
+
+\figure[medium]{assets/image34.jpeg}{Sliding doors are a feature of many BRT systems.}{TransMilenio}
+
+Since the smallest platform-to-vehicle gap is usually found at the front entrance of the vehicle, this 
+entrance is typically designated for use by disabled persons, who also benefit from being closer to the 
+driver. Transparent sliding doors, activated when vehicles dock opposite the doors, enhance safety at 
+platform edges, especially for customers who have reduced vision. Transparent doors also facilitate visibility—that 
+is, to see route signs on approaching vehicles. Doors should have audible signals to assist all customers, 
+and especially blind persons, to know when they are opening and closing. A tactile warning strip is required 
+if sliding doors are not provided and platform edges are not protected. 
+
+\subsubsection{Elevators and Lifts}
+
+\figure{assets/image35.jpeg}{If grade-separated transfers across an intersection are necessary, then 
+infrastructure must be available to make such transfers possible.}{Lloyd Wright.}
+
+Ramps are preferred at regular stations because they require little maintenance and have few security 
+risks. At terminals, bridges, and other locations where customers must ascend multiple levels, elevators 
+may augment ramps. They also assist customers with reduced mobility and people carrying children or heavy 
+packages. Nevertheless, elevators should never be the primary mode due to maintenance issues. Escalators 
+are not recommended, as they have a poor maintenance history.
+
+\subsection{Visual Elements}
+
+\subsubsection{Lighting}
+
+Adequate lighting is essential for those with reduced vision. It also provides more safety and security 
+for all customers. 
+
+\subsubsection{Signage}
+
+Signs and the text on them need to be of a minimum size (Table 30.1). Many countries use icons and 
+specific colors to supplement text for route and station names, thus assisting persons with cognitive 
+impairments, visitors, tourists, and others who may not be able to read text. Variable signage indicating 
+the arrival time of the next vehicle helps those with hearing impairments. 
+
+\begintable{Recommended letter sizes and applications. Source: TRL}
+\header
+\col Application
+\col Minimum letter height
+\row
+\col Long-distance reading (e.g., signs on station entrances); Signs in corridors and stations; Information on vehicle-stop flags and shelters; Close reading, e.g., wall-mounted timetables; Minimum for any text displayed; 
+\col 150 mm; 50–100 mm; 50 mm; 25 mm; 22 mm; 
+\endtable
+
+\subsubsection{Color Contrast}
+
+\figure[medium]{assets/image36.png}{Signage in Lima, Peru, Metropolitano station. Image}{Tom Rickert/AEI.}
+
+Color contrast is useful for signage (see chart below) and for station features such as railings, turnstiles, 
+wide fare gates, tactile warnings at vehicle-entry gates, folding seats, and ischiatic supports. A number 
+of countries use “safety yellow” as the color of choice for such uses. The International Organization 
+for Standardization (ISO) standard 3864 specifies “safety yellow.” The standard in the United States 
+is “Yellow-Federal Standard \#33538.”
+
+\begintable{Color contrast for station signage. Source: Merseyside Code of Practice (UK) in Oxley (2002) and TRL, p. 162.}
+\header
+\col Background
+\col Sign board color
+\col Letter or symbol color
+\row
+\col Red brick or dark stone
+\col White
+\col Black, dark green, or dark blue
+\row
+\col Light brick or light stone or white walls
+\col Black or dark blue or dark green
+\col White or yellow
+\row
+\col Green vegetation
+\col White
+\col Black, dark green, or dark blue
+\row
+\col Backlit sign
+\col Black
+\col White or yellow
+\endtable
+
+\subsection{Audible Elements}
+
+Audible signage assists customers with reduced vision, particularly at the opening and closing of sliding 
+doors. Depending on the system, announcements can be activated by GPS technology, or simply provided 
+by station staff. 
+
+\subsection{Tactile Elements (Braille)}
+
+\figure[medium]{assets/image37.jpeg}{Travel information in Braille helps the sight-impaired plan and undertake 
+their journeys in Nagoya, Japan.}{Lloyd Wright.}
+
+Some blind persons may benefit from raised tactile route numbers at stations. Letters are generally 
+20 millimeters high and raised 1 to 2 millimeters. Others may prefer Braille signage. Consult with focus 
+groups and advisory committees to decide.
+
+\subsubsection{Adhesive Tactile Wayfinding}
+
+\figure{assets/image38.png}{Adhesive tactile wayfinding that utilizes a printing technique to create tactile differentiation in the pictograms and simple symbols to help users overcome visual impairments or language barriers (Cape Town, South Africa). )}{HHO Africa}
+
+\figure[medium]{assets/image39.png}{Adhesive tactile wayfinding that utilizes a printing technique to create tactile differentiation in the pictograms and simple symbols to help users overcome visual impairments or language barriers (Cape Town, South Africa). }{HHO Africa}
+
+Adhesive Tactile Wayfinding is a new development in signage made possible by three-dimensional printing 
+technology. The development of this signage was applied to the MyCiti Integrated Rapid Public Transport 
+(IRT) in Cape Town, South Africa. 
+
+MyCiti IRT signage and designs are supposed to encompass identification, confirmation, and directional 
+information that are inclusive of all IRT users. The MyCiti IRT system utilized international best practices 
+and standards to construct an exemplary IRT system with wayfinding and fair accessibility standards.
+
+Illiteracy and site impairment can hinder an individual’s ability to recognize and utilize signage. 
+While Braille is internationally recognized, it is not widely used in South Africa. Therefore, tactile 
+pictograms, or raised images, include a wider group of users. These three-dimensional signs featuring 
+universally understandable figures can be attached to poles surrounding IRT stations using the adhesive 
+backs.
+
+The wayfinding directional signs consist of the name of the MyCITI station, the distance to that specific 
+station, and an arrow pointing in the direction of the station. The signs are made more recognizable 
+by the MyCITI red branding on them. In some sections of Cape Town, tactile wayfinding systems have been 
+introduced, as seen in Figures 30.38 and 30.39.
+
+\item The original adhesive panels were designed to a width of 85 millimeters and a height of 274 millimeters 
+to accommodate three circular images with a diameter of 82 millimeters each. The image above on the left 
+consists of a pictogram of a bus, a directional arrow, and a distance indicating the nearest BRT station, 
+all printed in contrasting colors using MyCiti branding;
+\item After participants from a study viewed the design, the team decided to increase tactile distinction, 
+leading to more pronounced visibility, depth, and legibility;
+\item The designs for tactile wayfinding were well received by the cohort participating in the study, 
+especially for the benefits it would have for the sight impaired;
+\item Directional wayfinding signs are located within 500 meters around MyCiti stations;
+\item The adhesive panels allow for wayfinding arrows to be placed facing four directions for maximum 
+visibility;
+\item The wayfinding information is displayed in 40-millimeter white lettering or 120-millimeter symbols 
+on a 150-by-950-millimeter background in the contrasting blue color of MyCITI branding;
+\item Up to fourteen directional wayfinding signs are placed within the area around each MyCITI station.
+
+Because tactile wayfinding is relatively new, the design team in Cape Town is constantly looking for 
+feedback to improve its services. The team hopes that the design can be applied to civic amenities and 
+other places of public interest in the future. 
+
+\subsubsection{Terminals and Transfer Centers}
+
+\figure{assets/image42.jpeg}{Map of feeder buses that connect to the TransMilenio Portal del Norte 
+station in Bogota.}{Karl Fjellstrom/Far East BRT.}
+
+\figure{assets/image43.jpeg}{Cutaway model of underground terminal of Metropolitano BRT in the center 
+of Lima, Peru. }{Tom Rickert/AEI.}
+Terminals and transfer centers can be confusing for many customers and especially those new to the 
+system. Customers must understand different public transport modes and different schedules. Customers 
+also need direction to a range of public services and commerce. 
+
+\figure[medium]{assets/image40.jpeg}{TransMilenio system map in Bogota.}{Karl Fjellstrom/Far East BRT.} 
+   
+\figure[medium]{assets/image41.jpeg}{TransMilenio system map in Bogota.}{Karl Fjellstrom/Far East BRT.} 

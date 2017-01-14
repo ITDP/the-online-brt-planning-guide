@@ -32,10 +32,6 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 
 	static var comment = @:rule [
 		"'\\\\" => TComment(buf.toString()),
-		"['\\\\]" => {
-			buf.add(lexer.current);
-			lexer.token(comment);
-		},
 		"([^']|('[^'\\\\]))+" => {  // optimized for stack size from [^`\\\\]+ (or simply [^`]+)
 			buf.add(lexer.current);
 			lexer.token(comment);
@@ -194,7 +190,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"‐" => mk(lexer, TWord("-")),  // u2010 -> u002d
 		"‑" => mk(lexer, TWord("-")),  // u2011 -> u002d
 
-		"\\\\([{}\\[\\]\\*:@#>`\\-]|‒|―|‐|‑)" => mk(lexer, TWord(lexer.current.substr(1))),
+		"\\\\([{}\\[\\]\\*:@#>`\\-\\$]|‒|―|‐|‑)" => mk(lexer, TWord(lexer.current.substr(1))),
 		// more (special) escpaes
 		"\\\\^" => mk(lexer, TWord("'")),  // a way to specically type an ascii apostrophe
 		// not really an escape, but a special case no less

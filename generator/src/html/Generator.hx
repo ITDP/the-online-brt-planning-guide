@@ -393,6 +393,7 @@ class Generator {
 
 	@:template function renderToc(vno:Null<Int>, lno:String, name:Html, url:String);
 
+	// save data as jsonp
 	function saveData(global:String, data:Dynamic)
 	{
 		var path = 'data_$global.js';
@@ -452,7 +453,7 @@ class Generator {
 				b.add('<script src="$toc"></script>');
 				b.add('<script src="$script"></script>');
 				b.add('<div class="data-src-map" data-href="$srcMapPath"></div>\n');
-				if (glId != null) {
+				if (glId != null && glId != "") {
 					b.add('
 						<script>
 							(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){

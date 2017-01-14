@@ -55,11 +55,10 @@ class Main {
 					for (err in errors) {
 						if (err.fatal)
 							abort = true;
-						var hl = err.pos.highlight(80).renderHighlight(AsciiUnderscore("^")).split("\n");
-						println('${ANSI.set([Bold,Red])}ERROR: $err${ANSI.set(Off)}');
+						var hl = err.pos.highlight(80).renderHighlight(Context.hlmode).split("\n");
+						println('${ANSI.set(Bold,Red)}ERROR: $err${ANSI.set(Off)}');
 						println('  at ${err.pos.toString()}:');
-						println('    ${hl[0]}');
-						println('    ${hl[1]}');
+						println("    " + hl.join("\n    "));
 					}
 					if (abort) {
 						println("Validation has failed, aborting");
@@ -101,13 +100,16 @@ class Main {
 	static function main()
 	{
 		print(ANSI.set(Bold) + BANNER + "\n\n" + ANSI.set(Off));
+		if (Context.debug) println('ANSI escape codes are ${ANSI.available ? "enabled" : "disabled"}');
+
 		Context.debug = Sys.getEnv("DEBUG") == "1";
 		Context.draft = Sys.getEnv("DRAFT") == "1";
+		if (ANSI.available)
+			Context.hlmode = AnsiEscapes(ANSI.set(Bold,Red), ANSI.set(Off));
 		Context.prepareSourceMaps();
 		Assertion.enableShow = Context.debug;
 		Assertion.enableWeakAssert = Context.debug;
 		Assertion.enableAssert = true;
-		if (Context.debug) println('ANSI escape codes are ${ANSI.available ? "enabled" : "disabled"}');
 
 		try {
 			var args = Sys.args();
@@ -139,12 +141,11 @@ class Main {
 		} catch (e:parser.ParserError) {
 			print(ANSI.set(Bold,Red));
 			if (Context.debug) print("Parser ");
-			var hl = e.pos.highlight(80).renderHighlight(AsciiUnderscore("^")).split("\n");
+			var hl = e.pos.highlight(80).renderHighlight(Context.hlmode).split("\n");
 			println('ERROR: $e');
 			print(ANSI.set(Off));
 			println('  at ${e.pos.toString()}:');
-			println('    ${hl[0]}');
-			println('    ${hl[1]}');
+			println("    " + hl.join("\n    "));
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
 			printTimers();
 			exit(3);

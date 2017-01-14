@@ -131,6 +131,7 @@ class Test_02_Lexer {
 		Assert.same([TWord(">"), TEof], defs("\\>"));
 		Assert.same([TWord("`"), TEof], defs("\\`"));
 		Assert.same([TWord("-"), TEof], defs("\\-"));
+		Assert.same([TWord("$"), TEof], defs("\\$"));
 		Assert.same([TWord("‒"), TEof], defs("\\‒"));
 		Assert.same([TWord("―"), TEof], defs("\\―"));
 		Assert.same([TWord("‐"), TEof], defs("\\‐"));
@@ -145,8 +146,6 @@ class Test_02_Lexer {
 		Assert.same([TWord("\\"), TWord("’"), TEof], defs("\\\\'"));
 		Assert.same([TWord("\\"), TWord("code!"), TEof], defs("\\\\code!"));
 		Assert.same([TWord("\\"), TWord("codeblock!"), TWordSpace("\n"), TWord("foo"), TWordSpace("\n"), TWord("!"), TWordSpace("\n"), TEof], defs("\\\\codeblock!\nfoo\n!\n"));
-
-		// TODO some escapes depend on the parser
 	}
 
 	public function test_008_dash_treatment()
