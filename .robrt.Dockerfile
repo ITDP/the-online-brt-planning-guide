@@ -21,4 +21,5 @@ RUN haxelib git literals https://github.com/protocubo/literals.hx && cd /usr/sha
 RUN haxelib git sys-utils https://github.com/jonasmalacofilho/sys-utils.hx && cd /usr/share/haxe/lib/sys-utils/git && git checkout 43b7ddd; cd -
 RUN apt-get install -y npm
 RUN haxelib install tink_template
+RUN haxelib install ansi
 
