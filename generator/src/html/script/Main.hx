@@ -63,7 +63,7 @@ class Main {
 		if (!t.is("img.overlay-trigger"))
 			return;
 
-		var olay = J(JQuery.parseHTML('<div class="overlay"><img src="${t.attr("src")}"/></div>'));
+		var olay = J(JQuery.parseHTML('<div class="overlay"><div style="background-image: url(${t.attr("src")});"></div></div>'));
 		olay.click(function (e:Event) {
 			olay.off(e);
 			olay.remove();
