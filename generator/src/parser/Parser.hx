@@ -27,12 +27,17 @@ class Parser {
 	public static var defaultFigureSize = MarginWidth;
 	public static var defaultTableSize = TextWidth;
 
+	// command name fixing suggestions
 	static var verticalCommands = [
 		"volume", "chapter", "section", "subsection", "subsubsection",
 		"figure", "quotation", "item", "number", "beginbox", "endbox", "include",
 		"begintable", "header", "row", "col", "endtable",
 		"meta", "reset", "tex", "preamble", "export", "html", "apply"];
 	static var horizontalCommands = ["sup", "sub", "emph", "highlight"];
+	static var hardSuggestions = [  // some things can't be infered automatically
+		"quote" => "quotation",
+		"display" => "highlight"
+	];
 
 	var parent:Position;
 	var location:String;
@@ -61,6 +66,7 @@ class Parser {
 	inline function unexpectedCmd(cmd:Token):Dynamic
 	{
 		// EXPERIMENTAL: use Levenshtein distances to generate command suggestions
+		// also consider some hard coded suggestions, when necessary
 
 		// Levenshtein distance penalties for the NeedlemanWunsh
 		var df = function ( a, b ) return a==b ? 0 : 1;
@@ -73,7 +79,9 @@ class Parser {
 		name = name.toLowerCase();
 		var cmds = verticalCommands.concat(horizontalCommands);
 		if (Lambda.has(cmds, name))
-			throw unexpected(cmd);
+			throw new ParserError(cmd.pos, UnexpectedCommand(name));
+		if (hardSuggestions.exists(name))
+			throw new ParserError(cmd.pos, UnknownCommand(name, hardSuggestions[name]));
 		var dist = cmds.map(function (x) return x.split(""))
 			.map(NeedlemanWunsch.globalAlignment.bind(name.split(""), _, df, sf));
 		var best = 0;
@@ -420,7 +428,7 @@ class Parser {
 		discardNoise();
 		var text = hlist({ before:TAt });
 		var at = pop();
-		if (!at.def.match(TAt)) missingArg(at.pos, greaterThan, "author (prefixed with @)");
+		if (!at.def.match(TAt)) missingArg(at.pos, greaterThan, "author");
 		discardNoise();
 		var author = hlist(stop);
 		return mk(Quotation(text, author), greaterThan.pos.span(author.pos));
@@ -517,7 +525,7 @@ class Parser {
 		var val = arg(rawHorizontal, cmd, "reset value");
 		var reg = name.val.trim();
 		var no = ~/^[ \t\r\n]*[0-9][0-9]*[ \t\r\n]*$/.match(val.val) ? Std.parseInt(val.val.trim()) : null;
-		if (!Lambda.has(["volume","chapter"], reg)) badArg(name.pos, "counter name should be `volume` or `chapter`");
+		if (!Lambda.has(["volume","chapter"], reg)) badArg(name.pos, "counter name should be 'volume' or 'chapter'");
 		if (no == null || no < 0) badArg(val.pos, "reset value must be strictly greater or equal to zero");
 		return mk(MetaReset(reg, no), cmd.pos.span(val.pos));
 	}

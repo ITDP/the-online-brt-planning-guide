@@ -23,14 +23,13 @@
 			"cp generator/bin/manu.js $ROBRT_OUTPUT_DIR/bin/",
 			"cp -r generator/docs/design/web/mockup $ROBRT_OUTPUT_DIR/web-mockup",
 
-			"export GL_ANALYTICS_UA_ID=UA-77667300-3",
+			"export GL_ANALYTICS_UA_ID=UA-77667300-5",
 			"export DEBUG=1",
 			"nodejs generator/bin/manu.js generate guide/the-guide.src .generated-js",
 			"unset DEBUG",
 
 			"ls -l .generated-js/pdf/fonts",
 
-			"cp -r .generated-js $ROBRT_OUTPUT_DIR/debug/",
 			"cp -r .generated-js/html $ROBRT_OUTPUT_DIR/guide",
 
 			"cd .generated-js/pdf/",
