@@ -418,15 +418,14 @@ pre {
 	text-align: center;
 	top: 0;
 	left: 0;
-	background: rgba(255,255,255,0.75);
+	background: rgba(127,127,127,0.75);
 }
-.overlay img {
-	max-height: 90%;
-	max-width: 90%;
-	min-width: 60%;
-	min-height: 60%;
-	height: auto;
-	width: auto;
+.overlay div {
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+	height: 80%;
+	width: 80%;
 	margin: auto;
 	position: relative;
 	top: 50%;
