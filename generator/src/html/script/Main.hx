@@ -59,6 +59,7 @@ class Main {
 
 	static function figClick(e:Event)
 	{
+		var b = J("body");
 		var t  = J(e.target);
 		if (!t.is("img.overlay-trigger"))
 			return;
@@ -67,8 +68,10 @@ class Main {
 		olay.click(function (e:Event) {
 			olay.off(e);
 			olay.remove();
+			b.children().removeClass("blur");
 		});
-		t.after(olay);
+		b.children().addClass("blur");
+		b.append(olay);
 		e.preventDefault();
 		e.stopPropagation();
 	}
