@@ -186,6 +186,7 @@ footer {
 nav {
 	font-family: 'PT Sans', sans-serif;
 	font-size: 14px;
+	line-height: 18px;
 	float: left;
 	padding: 32px 0;
 	top: 38px;
@@ -201,18 +202,23 @@ nav ul, nav li, #toc-loading {
 	padding: 0;
 	margin: 0;
 	list-style: none;
-	font-size: 12px;
+	font-size: 14px;
 	color: #999;
 }
 nav a {
+	color: #333;
+}
+nav ul ul ul a {
 	color: #666;
+	font-size: 13px;
 }
 nav ul ul ul ul a {
 	color: #999;
+	font-size: 12px;
 }
 nav ul ul
 {
-	padding-left: 8px;
+	padding-left: 16px;
 }
 nav ul hr {
 	border: 0;
@@ -312,6 +318,7 @@ blockquote {
 blockquote .by {
 	display: block;
 	text-align: right;
+	margin-top: 8px;
 }
 blockquote .by::before {
 	content: "— ";
@@ -586,4 +593,3 @@ pre {
 		display: none;
 	}
 }
-
