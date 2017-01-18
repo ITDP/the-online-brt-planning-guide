@@ -34,7 +34,7 @@ and the PDFs.
 ## Contributing
 
 You can ask questions or report problems in the guide by [opening a GitHub
-issue](https://github.com/protocubo/the-online-brt-planning-guide/issues/new).
+issue](https://github.com/ITDP/the-online-brt-planning-guide/issues/new).
 
 If instead you want to propose changes to either the guide (i.e. a typo fix or
 a new section) or, if you're a programmer or a designer, to the generator tool,
@@ -53,7 +53,7 @@ _If you're seeing this error you problably have cloned the repository without su
 _You should be able to fix that by updating the remote repository URL to use either authenticated HTTPS or SSH.  Check your Git user interface help for instructions on how to do this.  If you're on the command line, adjust and execute one of the following commands:_
 
 ```
-git remote set-url origin https://<your-github-username-here>@github.com/protocubo/the-online-brt-planning-guide
-git remote set-url origin git@github.com:/protocubo/the-online-brt-planning-guide
+git remote set-url origin https://<your-github-username-here>@github.com/ITDP/the-online-brt-planning-guide
+git remote set-url origin git@github.com:/ITDP/the-online-brt-planning-guide
 ```
 
