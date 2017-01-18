@@ -291,7 +291,7 @@ class Generator {
 			if (Context.draft) {
 				return '
 					<section class="img-block ${sizeToClass(size)}">
-					<img src="$DRAFT_IMG_PLACEHOLDER"/>
+					<a><img src="$DRAFT_IMG_PLACEHOLDER" class="overlay-trigger"/></a>
 					<p id="$id"><strong>Fig. $no</strong>$QUAD${genh(caption)} <em>$DRAFT_IMG_PLACEHOLDER_COPYRIGHT</em></p>
 					</section>
 				'.doctrim() + "\n";
@@ -299,7 +299,7 @@ class Generator {
 				var p = saveAsset(path);
 				return '
 					<section class="img-block ${sizeToClass(size)}">
-					<img src="$p"/>
+					<a><img src="$p" class="overlay-trigger"/></a>
 					<p id="$id"><strong>Fig. $no</strong>$QUAD${genh(caption)} <em>${genh(cright)}</em></p>
 					</section>
 				'.doctrim() + "\n";
@@ -350,7 +350,7 @@ class Generator {
 				return '
 					<section class="img-block ${sizeToClass(size)}">
 					<h5 id="$id">Table $no$QUAD${genh(caption)} <em>$DRAFT_IMG_PLACEHOLDER_COPYRIGHT</em></h5>
-					<img src="$DRAFT_IMG_PLACEHOLDER"/>
+					<a><img src="$DRAFT_IMG_PLACEHOLDER" class="overlay-trigger"/></a>
 					</section>
 				'.doctrim() + "\n";
 			} else {
@@ -358,7 +358,7 @@ class Generator {
 				return '
 					<section class="img-block ${sizeToClass(size)}">
 					<h5 id="$id">Table $no$QUAD${genh(caption)}</h5>
-					<img src="$p"/>
+					<a><img src="$p" class="overlay-trigger"/></a>
 					</section>
 				'.doctrim() + "\n";
 			}
@@ -456,7 +456,7 @@ class Generator {
 				b.add('<script src="$toc"></script>');
 				b.add('<script src="$script"></script>');
 				b.add('<div class="data-src-map" data-href="$srcMapPath"></div>\n');
-				if (glId != null) {
+				if (glId != null && glId != "") {
 					b.add('
 						<script>
 							(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){

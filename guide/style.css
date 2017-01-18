@@ -16,6 +16,7 @@ h1, h2, h3, h4, h5, h6, h7 {
 	font-family: 'PT Sans', sans-serif;
 	font-weight: bold;
 	color: #666;
+	margin: 32px 0 16px 0;
 }
 h1 { font-size: 32px; }
 h2 { font-size: 28px; }
@@ -23,7 +24,6 @@ h3 { font-size: 24px; }
 h4 { font-size: 20px; }
 h5 { font-size: 16px; }
 h6 { font-size: 16px; }
-
 .brtcolor {
 	color: #00a95e;
 }
@@ -40,8 +40,7 @@ img {
 	border-radius: 2px;
 }
 .container {
-	margin-right: auto;
-	margin-left: auto;
+	margin: 0 auto;
 	padding: 0;
 }
 
@@ -187,9 +186,10 @@ footer {
 nav {
 	font-family: 'PT Sans', sans-serif;
 	font-size: 14px;
+	line-height: 18px;
 	float: left;
 	padding: 32px 0;
-	top: 33px;
+	top: 38px;
 	bottom: 0px;
 	width: 256px;
 	position: fixed;
@@ -202,18 +202,23 @@ nav ul, nav li, #toc-loading {
 	padding: 0;
 	margin: 0;
 	list-style: none;
-	font-size: 12px;
+	font-size: 14px;
 	color: #999;
 }
 nav a {
+	color: #333;
+}
+nav ul ul ul a {
 	color: #666;
+	font-size: 13px;
 }
 nav ul ul ul ul a {
 	color: #999;
+	font-size: 12px;
 }
 nav ul ul
 {
-	padding-left: 8px;
+	padding-left: 16px;
 }
 nav ul hr {
 	border: 0;
@@ -244,32 +249,38 @@ nav ul hr {
 /* img-block */
 
 .img-block {
-	margin: 0 0 15px;
+	margin: 16px 0;
 }
 .img-block img {
 	display: block;
 	width: 100%;
 	height: auto;
+	cursor: zoom-in;
 }
 .img-block p {
 	width: 100%;
-	margin: 5px 0px 15px;
+	margin: 8px 0px 16px;
 	font-size: 12px;
 	font-family: 'PT Sans', sans-serif;
 	color: #666;
 	text-align: left;
 }
-.img-block p.quad:before { content:"."; }
+.img-block p.quad:before {
+	content:".";
+}
+.img-block.sm {
+    margin: 0;
+}
 
 /* table */
 
 table {
-	width: 100%;
 	font-family: 'PT Sans', sans-serif;
-	font-size: 14px;
+	font-size: 12px;
 	border-spacing: 0;
 	border-collapse: collapse;
 	overflow: scroll;
+	margin: 16px auto;
 }
 th {
 	padding: 8px;
@@ -282,9 +293,10 @@ td {
 	vertical-align: top;
 	border-top: 1px solid #999;
 }
-td ul {
+td ul, th ul, td ol, th ol {
 	padding-start: 16px;
 	-webkit-padding-start: 16px;
+	margin: 0;
 }
 
 /* equation */
@@ -299,7 +311,6 @@ td ul {
 /* quotes */
 
 blockquote {
-	text-align: justify;
 	font-family: 'PT Serif', serif;
 	margin: 0;
 	background-color: #EEE;
@@ -308,20 +319,15 @@ blockquote {
 blockquote .by {
 	display: block;
 	text-align: right;
+	margin-top: 8px;
 }
 blockquote .by::before {
 	content: "— ";
 }
 blockquote.md {
 	width: 600px;
-	padding: 20px;
-	margin-bottom: 16px;
-}
-blockquote.lg {
-	width: 848px;
-	padding: 40px;
-	font-size: 20px;
-	text-align: center;
+	padding: 16px;
+	margin: 32px 0;
 }
 q {
 	quotes: "“" "”" "‘" "’";
@@ -362,8 +368,8 @@ q {
 /* lists */
 
 section > ul,ol {
-	padding-left: 40px;
-	width: 560px;
+	padding-left: 32px;
+	width: 576px;
 	font-family: 'PT Serif', serif;
 	text-align: justify;
 }
@@ -405,41 +411,44 @@ pre {
 
 /* overlay */
 
-label {
-	cursor:pointer;
-}
 .overlay {
 	position: fixed;
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
-	background-color: rgba(255,255,255,.75);
-	visibility: hidden;
-	text-align:center;
 	z-index: 999;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	top: 0;
+	left: 0;
+	background: rgba(127,127,127,0.75);
+	cursor: zoom-out;
 }
-.overlay img {
-	margin-top: 96px;
+.overlay div {
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
 	height: 80%;
-	width: auto;
-	display: inline;
+	width: 80%;
+	margin: auto;
+	position: relative;
+	top: 50%;
+	-ms-transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-o-transform: tranlslateY(-50%);
+	transform: translateY(-50%);
 }
-.overlay-trigger:checked + .overlay {
-	visibility: visible;
-}
-.overlay-trigger {
-	display: none;
+.blur {
+	filter: blur(3px) grayscale(.5);
 }
 
 /* scrollbar */
 
 ::-webkit-scrollbar {
-	width: 6px;
+	width: 8px;
 }
 ::-webkit-scrollbar-button {
-	width: 6px;
-	height: 6px;
+	width: 8px;
+	height: 0;
 }
 ::-webkit-scrollbar-thumb {
 	background: #CCC;
@@ -461,9 +470,12 @@ label {
 }
 
 /* menu */
+
 #toc-menu {
 	display: none;
 }
+
+/* responsive */
 
 @media (max-width: 1239px) {
 	body {
@@ -493,8 +505,9 @@ label {
 	blockquote.lg {
 		width: 100%;
 	}
-	
+
 	/* header */
+
 	header {
 		border-bottom: 0px;
 		position: relative;
@@ -511,7 +524,7 @@ label {
 		width: 100%;
 		text-align: right;
 	}
-	
+
 	/* nav */
 
 	nav {
@@ -531,7 +544,7 @@ label {
 		display: none;
 	}
 
-	
+
 	/* boxes */
 
 	.box {
@@ -555,18 +568,21 @@ label {
 	.box .sm {
 		margin-left: 32px;
 	}
-	
+
 	/* target */
+
 	.target {
 		display: block;
 	}
-	
+
 	/* tables */
+
 	table {
 		font-size: 10px;
 	}
-	
+
 	/* menu */
+
 	#toc-menu, #toc-loading {
 		display: block;
 		text-align: center;
@@ -581,4 +597,3 @@ label {
 		display: none;
 	}
 }
-

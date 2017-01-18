@@ -1,6 +1,4 @@
-# The Online BRT Planning Guide
-[![View the last stable version of the guide](https://img.shields.io/badge/view-last_stable-blue.svg?style=flat-square)](https://brt.robrt.io/branch/master/guide)
-[![View the bleeding edge version of the guide](https://img.shields.io/badge/view-bleeding_edge-brightgreen.svg?style=flat-square)](https://brt.robrt.io/branch/development/guide)
+# The Online BRT Planning Guide [![Current version](https://img.shields.io/badge/view-brtguide.itdp.org-blue.svg?style=flat-square)](https://brtguide.itdp.org)
 
 The Bus Rapid Transit Planning Guide is the most comprehensive resource for
 planning a bus rapid transit (BRT) system, beginning with project preparation
@@ -36,7 +34,7 @@ and the PDFs.
 ## Contributing
 
 You can ask questions or report problems in the guide by [opening a GitHub
-issue](https://github.com/protocubo/the-online-brt-planning-guide/issues/new).
+issue](https://github.com/ITDP/the-online-brt-planning-guide/issues/new).
 
 If instead you want to propose changes to either the guide (i.e. a typo fix or
 a new section) or, if you're a programmer or a designer, to the generator tool,
@@ -45,4 +43,17 @@ please (fork the repository and) open a pull request.
 More documentation on how to work with the guide and with GitHub will gradually
 become available. In the mean time, if you need help, do not hesitate to
 [contact the geeks behind the curtain](mailto:contato@protocubo.io).
+
+### Frequetly asked questions
+
+1. Tried to pull and got a LFS "rate limit reached for unauthenticated requests" error
+
+_If you're seeing this error you problably have cloned the repository without supplying any authentication.  This works great most of the time, but GitHub will enforce lower rate limits and you might trigger them if you're on a spree._
+
+_You should be able to fix that by updating the remote repository URL to use either authenticated HTTPS or SSH.  Check your Git user interface help for instructions on how to do this.  If you're on the command line, adjust and execute one of the following commands:_
+
+```
+git remote set-url origin https://<your-github-username-here>@github.com/ITDP/the-online-brt-planning-guide
+git remote set-url origin git@github.com:/ITDP/the-online-brt-planning-guide
+```
 

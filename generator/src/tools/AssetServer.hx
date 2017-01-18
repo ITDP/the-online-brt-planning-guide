@@ -1,6 +1,6 @@
 package tools;
 
-import Ansi;
+import ANSI;
 import js.Node;
 import js.node.*;
 import js.node.http.*;
@@ -27,17 +27,17 @@ private class AssetServerClient {
 		var want:Array<String> = haxe.Json.parse(response);  // TODO validate
 
 		if (want.length == 0) {
-			println(Ansi.set(Green) + '=> Done, server does not need (or want) any files' + Ansi.set(Off));
+			println(ANSI.set(Green) + '=> Done, server does not need (or want) any files' + ANSI.set(Off));
 			return;
 		}
 
 		var simultaneous = 5;
-		println(Ansi.set(Green) + '=> PUTing assets (${want.length})' + Ansi.set(Off));
-		println(Ansi.set(Green) + ' --> Maximum number of simultaneous requests: $simultaneous' + Ansi.set(Off));
+		println(ANSI.set(Green) + '=> PUTing assets (${want.length})' + ANSI.set(Off));
+		println(ANSI.set(Green) + ' --> Maximum number of simultaneous requests: $simultaneous' + ANSI.set(Off));
 		function put() {
 			if (want.length == 0) {
 				if (--simultaneous == 0)
-					println(Ansi.set(Green) + ' --> Ok!' + Ansi.set(Off));
+					println(ANSI.set(Green) + ' --> Ok!' + ANSI.set(Off));
 				return;
 			}
 
@@ -73,7 +73,7 @@ private class AssetServerClient {
 	{
 		assert(FileSystem.exists(dir) && FileSystem.isDirectory(dir));
 		var files = FileSystem.readDirectory(dir);
-		println(Ansi.set(Green) + '=> Offering hashes (${files.length})' + Ansi.set(Off));
+		println(ANSI.set(Green) + '=> Offering hashes (${files.length})' + ANSI.set(Off));
 
 		var req = Http.request({
 			host : hostname,
@@ -85,9 +85,9 @@ private class AssetServerClient {
 			assert(res != null);
 			switch res.statusCode {
 			case 200:
-				println(Ansi.set(Green) + ' --> Ok!' + Ansi.set(Off));
+				println(ANSI.set(Green) + ' --> Ok!' + ANSI.set(Off));
 			case other:
-				println(Ansi.set(Red) + ' --> FAILED, server responded with status = $other' + Ansi.set(Off));
+				println(ANSI.set(Red) + ' --> FAILED, server responded with status = $other' + ANSI.set(Off));
 			}
 			var buf = new StringBuf();
 			res.on("data", function (chunk) buf.add(chunk));

@@ -42,7 +42,7 @@ that is, the [`/guide`](guide) folder – is being discussed.
 
 ## Official repository and pull requests
 
-The official repository for the project is currently hosted at: https://github.com/protocubo/the-online-brt-planning-guide
+The official repository for the project is currently hosted at: https://github.com/ITDP/the-online-brt-planning-guide
 
 By submitting a pull request for this project, you agree to license your
 contribution to this project under the same licenses it uses.
