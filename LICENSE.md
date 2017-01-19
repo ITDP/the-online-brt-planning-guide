@@ -9,9 +9,9 @@ and Development Policy (ITDP).
 The generator program and its associated tools, files and documentation – that is,
 everything in the [`/generator`](generator) folder – is distributed under the MIT License.
 
-> Copyright (c) 2016 [Institute for Transportation and Development Policy](http://itdp.org),  
-> Copyright (c) 2016 [Protocubo Consultoria Ltda](http://protocubo.com.br)  
-> Copyright (c) 2016 and the authors of still in use contributions
+> Copyright (c) 2016–2017 [Institute for Transportation and Development Policy](http://itdp.org),  
+> Copyright (c) 2016–2017 [Protocubo Consultoria Ltda](http://protocubo.com.br)  
+> Copyright (c) 2016–2017 and the authors of still in use contributions
 >
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal
