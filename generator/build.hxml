@@ -1,35 +1,4 @@
-# --times
-# -D macro-times
-# -D dump=pretty
-
--lib utest
--lib hxparse
--lib assertion
--lib literals
--lib sys-utils
--lib version
--lib tink_template
--lib utest
--lib hxnodejs
--lib ansi
--D tink_template_pos=off
--D tink_template_filter_classes
--cp include
--cp extern
--cp src
-
---each
-
-# The html nav scrip
--main html.script.Main
--js bin/bundle/html.js
-
+build_client_js.hxml
 --next
-
-# The main tool, to run on Node
-# use --debug for source-map generation
--main Main
--js bin/manu.js
--resource bin/bundle/html.js@html.js
--debug
+build_main.hxml
 
