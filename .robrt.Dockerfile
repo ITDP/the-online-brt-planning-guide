@@ -23,4 +23,4 @@ RUN apt-get install -y npm
 RUN haxelib install tink_template
 RUN haxelib install ansi
 RUN apt-get install -y nodejs-legacy
-
+RUN apt-get install -y net-tools
