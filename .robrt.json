@@ -8,7 +8,7 @@
 	"build" : {
 		"cmds" : [
 			"echo $GL_ANALYTICS_UA_ID",
-			"nodejs --version",
+			"node --version",
 
 			"cd $ROBRT_REPOSITORY_DIR",
 			"git lfs pull",
