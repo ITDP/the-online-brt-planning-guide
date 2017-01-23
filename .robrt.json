@@ -12,21 +12,20 @@
 
 			"cd $ROBRT_REPOSITORY_DIR",
 			"git lfs pull",
-			"npm install",
 
 			"cd $ROBRT_REPOSITORY_DIR/generator",
 			"haxe -D travis build.hxml",
-			"nodejs bin/manu.js unit-tests",
+			"npm pack",
+			"npm install -g manu*.tgz",
+			"manu unit-tests",
+			"mkdir -p $ROBRT_OUTPUT_DIR/bin",
+			"cp manu*.tgz $ROBRT_OUTPUT_DIR/bin/",
+
 			"cd $ROBRT_REPOSITORY_DIR",
 			"cp LICENSE.md $ROBRT_OUTPUT_DIR/",
-			"mkdir -p $ROBRT_OUTPUT_DIR/bin",
-			"cp generator/bin/manu.js $ROBRT_OUTPUT_DIR/bin/",
-			"cp package.json $ROBRT_OUTPUT_DIR/bin/",
-
 			"export DEBUG=1",
-			"nodejs generator/bin/manu.js generate guide/the-guide.src .generated-js",
+			"manu generate guide/the-guide.src .generated-js",
 			"unset DEBUG",
-
 			"cp -r .generated-js/html $ROBRT_OUTPUT_DIR/guide",
 
 			"ls -l .generated-js/pdf/fonts",
