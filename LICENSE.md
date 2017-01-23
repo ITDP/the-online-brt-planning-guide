@@ -4,14 +4,30 @@ The Online BRT Planning Guide is an effort by the Institute for Transportation
 and Development Policy (ITDP).
 
 
-## The generator
+## Official repository and pull requests
 
-The generator program and its associated tools, files and documentation – that is,
+The official repository for the project is currently hosted at: https://github.com/ITDP/the-online-brt-planning-guide
+
+By submitting a pull request for this project, you agree to license your
+contribution to this project under the same licenses it uses.
+
+
+## The Online BRT Planning Guide
+
+At the moment, all rights are reserved.
+
+The adoption of some form of free copyright license for the guide contents –
+that is, the [`/guide`](guide) folder – is being discussed.
+
+
+## The generator (manu)
+
+The generator program (manu) and its associated tools, files and documentation – that is,
 everything in the [`/generator`](generator) folder – is distributed under the MIT License.
 
-> Copyright (c) 2016 [Institute for Transportation and Development Policy](http://itdp.org),  
-> Copyright (c) 2016 [Protocubo Consultoria Ltda](http://protocubo.com.br)  
-> Copyright (c) 2016 and the authors of still in use contributions
+> Copyright (c) 2016–2017 [Institute for Transportation and Development Policy](http://itdp.org),  
+> Copyright (c) 2016–2017 [Protocubo Consultoria Ltda](http://protocubo.com.br)  
+> Copyright (c) 2016–2017 and the authors of still in use contributions
 >
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal
@@ -30,20 +46,4 @@ everything in the [`/generator`](generator) folder – is distributed under the 
 > LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 > OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 > SOFTWARE.
-
-
-## The Online BRT Planning Guide
-
-At the moment, all rights are reserved.
-
-The adoption of some form of free copyright license for the guide contents –
-that is, the [`/guide`](guide) folder – is being discussed.
-
-
-## Official repository and pull requests
-
-The official repository for the project is currently hosted at: https://github.com/ITDP/the-online-brt-planning-guide
-
-By submitting a pull request for this project, you agree to license your
-contribution to this project under the same licenses it uses.
 
