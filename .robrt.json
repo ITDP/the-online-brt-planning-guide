@@ -21,6 +21,7 @@
 			"cp LICENSE.md $ROBRT_OUTPUT_DIR/",
 			"mkdir -p $ROBRT_OUTPUT_DIR/bin",
 			"cp generator/bin/manu.js $ROBRT_OUTPUT_DIR/bin/",
+			"cp package.json $ROBRT_OUTPUT_DIR/bin/",
 
 			"export DEBUG=1",
 			"nodejs generator/bin/manu.js generate guide/the-guide.src .generated-js",
