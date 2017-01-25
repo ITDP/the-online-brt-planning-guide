@@ -12,7 +12,7 @@ typedef SingleTypesetData = {
 }
 
 typedef SingleTypesetResult = {
-	errors:Null<Dynamic>
+	errors:Null<Array<String>>
 }
 
 /**

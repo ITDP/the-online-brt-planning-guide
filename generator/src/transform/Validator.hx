@@ -49,26 +49,42 @@ class Validator {
 			cback(errors.length > 0 ? errors : null);
 	}
 
+#if nodejs
+	/*
+	Initialize and configure MathJax, but only once.
+	*/
+	dynamic function initMathJax()
+	{
+		mathjax.Single.config({
+			displayMessages : false,
+			displayErrors : false,
+			undefinedCharError : true
+		});
+		this.initMathJax = function () {};
+	}
+
 	/*
 	Validate TeX math.
 	*/
-#if nodejs
 	function validateMath(tex:String, pos:Position)
 	{
-		// FIXME this completly ignores that the return is async ; )
 		wait++;
+		initMathJax();
 		mathjax.Single.typeset({
 			math:tex,
 			format:mathjax.Single.SingleTypesetFormat.TEX,
 			mml:true
 		}, function (res) {
 			if (res.errors != null)
-				errors.push(new ValidationError(pos, BadMath(tex)));
+				errors.push(new ValidationError(pos, BadMath(tex, res.errors)));
 			wait--;
 			tick();
 		});
 	}
 #else
+	/*
+	Skip TeX math validation unavailable in this platform.
+	*/
 	static dynamic function validateMath(tex:String, pos:Position)
 	{
 		show("WARNING will skip all math validation, no tex implementation available");
