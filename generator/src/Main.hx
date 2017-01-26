@@ -100,10 +100,9 @@ class Main {
 	static function main()
 	{
 		print(ANSI.set(Bold) + BANNER + "\n\n" + ANSI.set(Off));
-		if (Context.debug) println('ANSI escape codes are ${ANSI.available ? "enabled" : "disabled"}');
-
 		Context.debug = Sys.getEnv("DEBUG") == "1";
 		Context.draft = Sys.getEnv("DRAFT") == "1";
+        if (Context.debug) println('ANSI escape codes are ${ANSI.available ? "enabled" : "disabled"}');
 		if (ANSI.available)
 			Context.hlmode = AnsiEscapes(ANSI.set(Bold,Red), ANSI.set(Off));
 		Context.prepareSourceMaps();
