@@ -354,8 +354,8 @@ alighting (Ta) time.
 
 The value of this benefit comes from two things: 
 
-\item *A* The reduction in the travel time for all the customers that are using the limited-stop route ($$\text{Load}_\text{limited-stop at 
-k}$$) on each link where a station k is skipped. This should be multiplied by the value of customers’ time 
+\item *A* The reduction in the travel time for all the customers that are using the limited-stop route ($$\text{Load}_\text{limited-stop at k}$$)
+on each link where a station k is skipped. This should be multiplied by the value of customers’ time 
 ($$C_\text{travel}$$), which is usually treated as half their cost of waiting, or $$ C_\text{travel} = Cw/2$$. In the above examples, 
 a constant value of waiting of US$12 per hour has been used so that in the examples in this section 
 a constant value of travel time will be $6 per hour. It is usually set at one-third of the average wage. 

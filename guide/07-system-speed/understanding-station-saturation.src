@@ -362,9 +362,9 @@ $$ x_\text{dock} = {T_0 * N_\text{bus} + P_b * t_b + ({P_a * t_a \over P_a * t_a
 
 $$ x = {16 {\text{sec} \over \text{vehicle}} * 8 \text{vehicles} +( 33 \text{pax} * 5 {\text{sec} \over \text{pax}}) +  ({80*3.0  \over 80*3.0 +33*5}) * 80 \text{pax} * 3.0 {\text{sec} \over \text{pax}} \over 3,600 \text{sec}} $$ 
 
-$$ x = {128 \text{sec} + (165 \text{sec}) + ({240 \over 240 + 165}) * 240 \text{sec}] \over 3,600 \text{sec}} $$
+$$ x = {128 \text{sec} + (165 \text{sec}) + ({240 \over 240 + 165}) * 240 \text{sec} \over 3,600 \text{sec}} $$
 
-$$ x = {128 \text{sec} + (165 \text{sec}) + ({240 \over 405}) * 240 \text{sec}] \over 3,600 \text{sec}} $$
+$$ x = {128 \text{sec} + (165 \text{sec}) + ({240 \over 405}) * 240 \text{sec} \over 3,600 \text{sec}} $$
 
 $$ x = {128 \text{sec} + (165 \text{sec}) +  0.59 * 240 \text{sec} \over 3,600 \text{sec}} = 0.12 $$
 

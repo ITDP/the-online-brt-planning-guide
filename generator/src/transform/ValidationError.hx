@@ -3,7 +3,7 @@ package transform;
 import transform.NewDocument;
 
 enum ValidationErrorValue {
-	BadMath(math:String);
+	BadMath(math:String, errors:Array<String>);
 	AbsoluteOutputPath(path:String);  // best to pass the original path
 	EscapingOutputPath(path:String);  // best to pass the original path
 	FileNotFound(path:String);  // best to pass the computed path
@@ -31,17 +31,17 @@ class ValidationError extends GenericError {
 	override public function toString()
 	{
 		switch err {
-		case BadMath(math):
-			return 'Bad math: $$$$$math$$$$';
-		case AbsoluteOutputPath(path):
+		case BadMath(_, errors):
+			return 'Bad math: ${errors.join("; ")}';
+		case AbsoluteOutputPath(_):
 			return 'Output path cannot be absolute';
-		case EscapingOutputPath(path):
+		case EscapingOutputPath(_):
 			return 'Output path cannot escape the destination directory';
-		case FileNotFound(path):
+		case FileNotFound(_):
 			return 'File not found or not accessible (tip: paths are relative and case sensitive)';
-		case FileIsDirectory(path):
+		case FileIsDirectory(_):
 			return 'Expected file, not directory';
-		case WrongFileType(expected, path):
+		case WrongFileType(expected, _):
 			var valid = expected.map(function (i) {
 				var exts = i.validExtensions();
 				return exts.length > 0 ? '$i [.${exts.join(",.")}]' : i;
