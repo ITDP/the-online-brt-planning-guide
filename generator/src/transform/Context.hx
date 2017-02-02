@@ -43,6 +43,27 @@ private class DocumentContext<T> {
 		function set_subSubSection(v)
 			return subSubSection = v;
 
+	/*
+	Complete missing components from another context.
+
+	Modifies this context in place.
+	*/
+	public function completeFrom(other:DocumentContext<T>)
+	{
+		// TODO reimplement with a macro to prevent bugs
+		if (volume == null && other.volume != volume) volume = other.volume;
+		if (chapter == null && other.chapter != chapter) chapter = other.chapter;
+		if (section == null && other.section != section) section = other.section;
+		if (subSection == null && other.subSection != subSection) subSection = other.subSection;
+		if (subSubSection == null && other.subSubSection != subSubSection) subSubSection = other.subSubSection;
+		if (box == null && other.box != box) box = other.box;
+		if (figure == null && other.figure != figure) figure = other.figure;
+		if (table == null && other.table != table) table = other.table;
+	}
+
+	/*
+	Stringify into a string by joining all components.
+	*/
 	public macro function join(ethis:Expr, prefix:Bool, separator:String, fields:Array<Expr>)
 	{
 		var comp = [];

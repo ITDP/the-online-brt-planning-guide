@@ -35,6 +35,7 @@ class LargeTable {
 		case Superscript(i), Subscript(i): Math.round(pseudoHTypeset(i)*SUBTEXT_FACTOR);
 		case Emphasis(i), Highlight(i): pseudoHTypeset(i);
 		case Word(w), InlineCode(w), Math(w): w.length;
+		case Ref(_), RangeRef(_): 0;  // FIXME:xref
 		case HElemList(li):
 			var cnt = 0;
 			for (i in li)

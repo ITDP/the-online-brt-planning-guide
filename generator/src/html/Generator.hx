@@ -79,6 +79,10 @@ class Generator {
 			return '<code${genp(h.pos)}>${gent(code)}</code>';
 		case Math(tex):
 			return '<span class="mathjax"${genp(h.pos)}>\\(${gent(tex)}\\)</span>';
+		case Ref(_):
+			return '';  // FIXME:xref
+		case RangeRef(_):
+			return '';  // FIXME:xref
 		case HElemList(li):
 			var buf = new StringBuf();
 			if (godOn)
@@ -93,7 +97,12 @@ class Generator {
 		}
 	}
 
-	function genn(h:HElem)  // genN for plaiN
+	/*
+	Generate plaiN text for a horizontal element.
+
+	Stringifies a horizontal element without adding any markup.
+	*/
+	function genn(h:HElem)
 	{
 		switch h.def {
 		case Wordspace:
@@ -107,6 +116,8 @@ class Generator {
 			for (i in li)
 				buf.add(genn(i));
 			return buf.toString();
+		case Ref(_), RangeRef(_):
+			return "<ref>";  // FIXME:xref
 		case HEmpty:
 			return "";
 		}

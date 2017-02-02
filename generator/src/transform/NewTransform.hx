@@ -32,7 +32,7 @@ class NewTransform {
 			h = mk(Emphasis(htrim(i, ctx)), h.pos);
 		case Highlight(i):
 			h = mk(Highlight(htrim(i, ctx)), h.pos);
-		case Word(_), InlineCode(_), Math(_):
+		case Word(_), InlineCode(_), Math(_), Ref(_), RangeRef(_):
 			ctx.prevSpace = false;
 		case HElemList(li):
 			if (ctx.reverse) {
@@ -55,7 +55,7 @@ class NewTransform {
 	static function hclean(h:HElem)
 	{
 		var def = switch h.def {
-		case Wordspace, Word(_), InlineCode(_), Math(_), HEmpty:
+		case Wordspace, Word(_), InlineCode(_), Math(_), Ref(_), RangeRef(_), HEmpty:
 			h.def;
 		case Superscript(i):
 			i = hclean(i);
@@ -111,6 +111,8 @@ class NewTransform {
 		case HElemList(li):
 			for (i in li)
 				buf.add(genId(i));
+		case Ref(_), RangeRef(_):
+			buf.add("ref");  // FIXME:xref
 		case HEmpty:
 			// NOOP
 		}

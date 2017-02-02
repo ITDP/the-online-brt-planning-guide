@@ -4,6 +4,7 @@ import Assertion.*;
 import haxe.ds.Option;
 import haxe.io.Path;
 import parser.Token;
+typedef IdCtx = transform.Context.IdCtx;
 
 typedef Elem<T> = { def : T, pos : Position };
 typedef VElem = Elem<VDef>;
@@ -48,13 +49,22 @@ abstract PElem(Elem<String>) from Elem<String> {
 		return this.def;
 }
 
-// enum RefType {
-// 	AutoRef;
-// 	NumRef;
-// 	NameRef;
-// }
+enum RefTarget {
+	RVolume;
+	RChapter;
+	RSection;
+	RSubSection;
+	RSubSubSection;
+	RBox;
+	RFigure;
+	RTable;
+}
 
-// abstract RefId(Elem<{...
+enum RefOutput {
+	AutoRef;
+	NumRef;
+	NameRef;
+}
 
 /*
 A horizontal element.
@@ -68,8 +78,8 @@ enum HDef {
 	Word(w:String);
 	InlineCode(c:String);
 	Math(tex:String);
-	// Ref(type:Elem<RefType>, id:RefId);
-	// RangeRef(type:Elem<RefType>, id1:RefId, id2:RefId);
+	Ref(target:Elem<RefTarget>, output:Elem<RefOutput>, id:Elem<IdCtx>);
+	RangeRef(target:Elem<RefTarget>, output:Elem<RefOutput>, id1:Elem<IdCtx>, id2:Elem<IdCtx>);
 
 	HElemList(elem:Array<HElem>);
 	HEmpty;
