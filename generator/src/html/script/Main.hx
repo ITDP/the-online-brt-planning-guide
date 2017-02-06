@@ -2,10 +2,11 @@ package html.script;
 
 import html.script.Const;
 import js.jquery.*;
+//import js.html.Console.*;
 
 import Assertion.*;
 import js.Browser.*;
-import js.jquery.Helper.*;
+import js.jquery.Helper.*; //JTHIS:, J(dynamic):dynamic
 
 using StringTools;
 
@@ -18,9 +19,34 @@ class Main {
 		// parse and locate myselft
 		assert(tocData != null, "toc data is missing");
 		var toc = J(JQuery.parseHTML(tocData));
-		assert(document.URL.startsWith(document.baseURI));
-		var myUrl = document.URL.replace(document.baseURI, "").replace(window.location.hash, "");
-		if (myUrl == "")
+        
+        var baseURI = null;// document.baseURI ;
+        //FIXME IE workaround for the lack of document.baseURI 
+        if (baseURI == null) {
+            if (document.getElementsByTagName("base").length > 0){
+                var splitdocpath = document.URL.split("/");
+                js.Browser.console.log ("pop = " + splitdocpath.pop());
+                var docpath = splitdocpath.join("/");
+                js.Browser.console.log ("docpathi = " + docpath);
+                var base = document.getElementsByTagName("base")[0].attributes.getNamedItem("href").value;
+                js.Browser.console.log("base = " + base);
+                if (base.startsWith(".")){
+                    js.Browser.console.log("tonormalize = " +  docpath + "/" + base);
+                    baseURI = haxe.io.Path.normalize(docpath + "/" + base) + "/" ;
+                    if (document.URL.startsWith("file:///")){
+                        baseURI = baseURI.replace("file://","file:///"); //normalize eliminates the slash for root
+                        js.Browser.console.log("normalize+correct = " + baseURI);
+                    }
+                } else {
+                    baseURI = document.URL;
+                }
+            }
+        }
+        js.Browser.console.log("realbaseURI = " + document.baseURI);
+        js.Browser.console.log("calculated baseURI = " + baseURI);
+        assert(document.URL.startsWith(baseURI));
+        var myUrl = document.URL.replace(baseURI, "").replace(window.location.hash, "");
+        if (myUrl == "")
 			myUrl = "index.html";
 		var me = toc.find('a[href="$myUrl"]').not("#toc-menu").parent();
 		assert(me.length > 0, myUrl);
