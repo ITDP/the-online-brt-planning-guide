@@ -24,6 +24,7 @@ class Main {
 		if (baseURI == null) {
 			if (document.getElementsByTagName("base").length > 0){
 				var splitdocpath = document.URL.split("/");
+				splitdocpath.pop();
 				var docpath = splitdocpath.join("/");
 				var base = document.getElementsByTagName("base")[0].attributes.getNamedItem("href").value;
 				if (base.startsWith(".")){
