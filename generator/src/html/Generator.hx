@@ -183,11 +183,12 @@ class Generator {
 		case DVolume(no, name, children):
 			idc.volume = v.id.sure();
 			noc.volume = no;
-			var path = Path.join(["volume", idc.volume+".html"]);
-			bcs.volume = { no:no, name:new Html(genh(name)), url:path };  // FIXME raw html
+			var path = Path.join(["volume", idc.volume, "index.html"]);
+			var url = Path.normalize(Path.directory(path));
+			bcs.volume = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = 'Volume $no: ${genn(name)}';
-			var buf = bufs[path] = openBuffer(title, "..", bcs);
-			toc.add('<li class="volume">\n${renderToc(no, Std.string(no), new Html(genh(name)), path)}\n<ul>\n');
+			var buf = bufs[path] = openBuffer(title, "../..", bcs);
+			toc.add('<li class="volume">\n${renderToc(no, Std.string(no), new Html(genh(name)), url)}\n<ul>\n');
 			buf.add('
 				<section>
 				<h1 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h1>
@@ -201,10 +202,11 @@ class Generator {
 			idc.chapter = v.id.sure();
 			noc.chapter = no;
 			var path = Path.join([idc.chapter, "index.html"]);
-			bcs.chapter = { no:no, name:new Html(genh(name)), url:path };  // FIXME raw html
+			var url = Path.normalize(Path.directory(path));
+			bcs.chapter = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = 'Chapter $no: ${genn(name)}';
 			var buf = bufs[path] = openBuffer(title, "..", bcs);
-			toc.add('<li class="chapter">${renderToc(null, Std.string(noc.chapter), new Html(genh(name)), path)}<ul>\n');
+			toc.add('<li class="chapter">${renderToc(null, Std.string(noc.chapter), new Html(genh(name)), url)}<ul>\n');
 			buf.add('
 				<section>
 				<h2 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h2>
@@ -219,11 +221,12 @@ class Generator {
 			idc.section = v.id.sure();
 			noc.section = no;
 			var lno = noc.join(false, ".", chapter, section);
-			var path = Path.join([idc.chapter, idc.section+".html"]);
-			bcs.section = { no:no, name:new Html(genh(name)), url:path };  // FIXME raw html
+			var path = Path.join([idc.chapter, idc.section, "index.html"]);
+			var url = Path.normalize(Path.directory(path));
+			bcs.section = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = '$lno ${genn(name)}';  // TODO chapter name
-			var buf = bufs[path] = openBuffer(title, "..", bcs);
-			toc.add('<li class="section">${renderToc(null, lno, new Html(genh(name)), path)}<ul>\n');
+			var buf = bufs[path] = openBuffer(title, "../..", bcs);
+			toc.add('<li class="section">${renderToc(null, lno, new Html(genh(name)), url)}<ul>\n');
 			buf.add('
 				<section>
 				<h3 id="heading" class="volume${noc.volume}">$lno$QUAD${genh(name)}</h3>
@@ -410,7 +413,7 @@ class Generator {
 		srcCache = new Map();  // TODO abstract
 		lastSrcId = 0;
 		toc = new StringBuf();
-		toc.add('<ul><li class="volume">${renderToc(null, null, "BRT Planning Guide", "index.html")}</li>');
+		toc.add('<ul><li class="volume">${renderToc(null, null, "BRT Planning Guide", Path.normalize(""))}</li>');
 
 		var contents = genv(doc, new IdCtx(), new NoCtx(), {});  // TODO here for a hack
 		var root = bufs["index.html"] = openBuffer("The Online BRT Planning Guide", ".", {});

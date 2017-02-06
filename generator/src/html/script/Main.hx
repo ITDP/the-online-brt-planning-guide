@@ -1,5 +1,6 @@
 package html.script;
 
+import haxe.io.Path;
 import html.script.Const;
 import js.jquery.*;
 
@@ -19,9 +20,7 @@ class Main {
 		assert(tocData != null, "toc data is missing");
 		var toc = J(JQuery.parseHTML(tocData));
 		assert(document.URL.startsWith(document.baseURI));
-		var myUrl = document.URL.replace(document.baseURI, "").replace(window.location.hash, "");
-		if (myUrl == "")
-			myUrl = "index.html";
+		var myUrl = Path.normalize(document.URL.replace(document.baseURI, "").replace(window.location.hash, "").replace("index.html", ""));
 		var me = toc.find('a[href="$myUrl"]').not("#toc-menu").parent();
 		assert(me.length > 0, myUrl);
 		assert(me.is("li"));
