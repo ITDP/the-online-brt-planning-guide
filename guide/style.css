@@ -17,6 +17,7 @@ h1, h2, h3, h4, h5, h6, h7 {
 	font-weight: bold;
 	color: #666;
 	margin: 32px 0 16px 0;
+	max-width: 640px;
 }
 h1 { font-size: 32px; }
 h2 { font-size: 28px; }
