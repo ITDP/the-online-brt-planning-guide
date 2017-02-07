@@ -326,7 +326,7 @@ blockquote .by::before {
 	content: "— ";
 }
 blockquote.md {
-	width: 600px;
+	width: 608px;
 	padding: 16px;
 	margin: 32px 0;
 }
