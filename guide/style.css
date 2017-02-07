@@ -256,6 +256,7 @@ nav ul hr {
 	display: block;
 	width: 100%;
 	height: auto;
+	cursor: pointer;
 	cursor: zoom-in;
 }
 .img-block p {
@@ -421,6 +422,7 @@ pre {
 	top: 0;
 	left: 0;
 	background: rgba(127,127,127,0.75);
+	cursor: pointer;
 	cursor: zoom-out;
 }
 .overlay div {
