@@ -19,10 +19,12 @@ class Main {
 		// parse and locate myselft
 		assert(tocData != null, "toc data is missing");
 		var toc = J(JQuery.parseHTML(tocData));
-		assert(document.URL.startsWith(document.baseURI));
-		var myUrl = Path.normalize(document.URL.replace(document.baseURI, "").replace(window.location.hash, "").replace("index.html", ""));
+		var docUrl = Path.normalize(document.URL.replace(window.location.hash, ""));
+		assert(docUrl.startsWith(document.baseURI), docUrl);
+
+		var myUrl = Path.normalize(docUrl.replace(docUrl, "").replace("index.html", ""));
 		var me = toc.find('a[href="$myUrl"]').not("#toc-menu").parent();
-		assert(me.length > 0, myUrl);
+		assert(me.length > 0, document.URL, docUrl, document.baseURI, myUrl);
 		assert(me.is("li"));
 		assert(me.hasClass("volume") || me.hasClass("chapter") || me.hasClass("section"), "classes used in selectors");
 
