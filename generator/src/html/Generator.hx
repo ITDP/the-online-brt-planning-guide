@@ -156,7 +156,7 @@ class Generator {
 		buf.add(renderHead(title, base, path));
 		buf.add("<body>\n");
 		buf.add(renderBreadcrumbs(bcs));  // FIXME
-		buf.add('<div class="container"><nav><span id="toc-loading">Loading the table of contents...</span><a id="toc-menu" class="disabled" href="">Table of Contents</a></nav>\n<div class="col-text">\n');
+		buf.add('<div class="container"><nav><span id="toc-loading">Loading the table of contents...</span></nav>\n<div class="col-text">\n');
 		return buf;
 	}
 

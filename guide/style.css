@@ -514,18 +514,13 @@ pre {
 	header {
 		border-bottom: 0px;
 		position: relative;
+		height: auto;
 	}
 	header ul {
 		width: auto;
 	}
-	header ul li {
-		display: none;
-	}
 	header ul li:first-child {
-		padding: 0;
-		display: block;
-		width: 100%;
-		text-align: right;
+		padding: 0 8px 0 88px;
 	}
 
 	/* nav */
@@ -544,7 +539,6 @@ pre {
 		padding: 8px 0 0 8px;
 	}
 	nav ul {
-		display: none;
 	}
 
 
@@ -572,12 +566,6 @@ pre {
 		margin-left: 32px;
 	}
 
-	/* target */
-
-	.target {
-		display: block;
-	}
-
 	/* tables */
 
 	table {
@@ -586,17 +574,16 @@ pre {
 
 	/* menu */
 
-	#toc-menu, #toc-loading {
+	#toc-loading {
 		display: block;
-		text-align: center;
 		font-family: 'PT Sans', sans-serif;
-		font-weight: bold;
 		height: 16px;
 		padding: 8px;
 		color: #666;
 		line-height: 24px;
+		font-size: 16px;
 	}
-	#toc-menu.disabled {
+	#toc-menu {
 		display: none;
 	}
 }
