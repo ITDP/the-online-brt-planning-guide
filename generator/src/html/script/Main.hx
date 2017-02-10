@@ -18,27 +18,7 @@ class Main {
 		// parse and locate myselft
 		assert(tocData != null, "toc data is missing");
 		var toc = J(JQuery.parseHTML(tocData));
-		var baseURI = document.baseURI;
-
-		//FIXME IE workaround for the lack of document.baseURI
-		if (baseURI == null) {
-			if (document.getElementsByTagName("base").length > 0){
-				var splitdocpath = document.URL.split("/");
-				splitdocpath.pop();
-				var docpath = splitdocpath.join("/");
-				var base = document.getElementsByTagName("base")[0].attributes.getNamedItem("href").value;
-				if (base.startsWith(".")){
-					baseURI = haxe.io.Path.normalize(docpath + "/" + base) + "/" ;
-					if (document.URL.startsWith("file:///"))
-						baseURI = baseURI.replace("file://","file:///"); //normalize eliminates the slash for root
-				} else {
-					baseURI = document.URL;
-				}
-			}
-		}
-
-		assert(document.URL.startsWith(baseURI));
-		var myUrl = document.URL.replace(baseURI, "").replace(window.location.hash, "");
+		var myUrl = J("base").attr("x-rel-path");
 		if (myUrl == "")
 			myUrl = "index.html";
 		var me = toc.find('a[href="$myUrl"]').not("#toc-menu").parent();
