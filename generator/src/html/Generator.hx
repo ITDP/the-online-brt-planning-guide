@@ -142,10 +142,10 @@ class Generator {
 	function saveAsset(src, ?content)
 		return Context.time("html generation (saveAsset)", _saveAsset.bind(src, content));
 
-	@:template function renderHead(title:String, base:String);
+	@:template function renderHead(title:String, base:String, relPath:String);
 	@:template function renderBreadcrumbs(bcs:Breadcrumbs);  // FIXME
 
-	function openBuffer(title:String, base:String, bcs:Breadcrumbs)
+	function openBuffer(title:String, base:String, bcs:Breadcrumbs, url:String)
 	{
 		// TODO get normalize and google fonts with \html\apply or \html\link
 		// TODO get jquery and mathjax with \html\run
@@ -153,9 +153,10 @@ class Generator {
 		buf.add("<!DOCTYPE html>");
 		buf.add(FILE_BANNER);
 		buf.add("<html>\n");
-		buf.add(renderHead(title, base));
+		buf.add(renderHead(title, base, url));
+		buf.add("<body>\n");
 		buf.add(renderBreadcrumbs(bcs));  // FIXME
-		buf.add('<body>\n<div class="container"><nav><span id="toc-loading">Loading the table of contents...</span><a id="toc-menu" class="disabled" href="">Table of Contents</a></nav>\n<div class="col-text">\n');
+		buf.add('<div class="container"><nav><span id="toc-loading">Loading the table of contents...</span><a id="toc-menu" class="disabled" href="">Table of Contents</a></nav>\n<div class="col-text">\n');
 		return buf;
 	}
 
@@ -187,7 +188,7 @@ class Generator {
 			var url = Path.normalize(Path.directory(path));
 			bcs.volume = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = 'Volume $no: ${genn(name)}';
-			var buf = bufs[path] = openBuffer(title, "../..", bcs);
+			var buf = bufs[path] = openBuffer(title, "../..", bcs, url);
 			toc.add('<li class="volume">\n${renderToc(no, Std.string(no), new Html(genh(name)), url)}\n<ul>\n');
 			buf.add('
 				<section>
@@ -205,7 +206,7 @@ class Generator {
 			var url = Path.normalize(Path.directory(path));
 			bcs.chapter = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = 'Chapter $no: ${genn(name)}';
-			var buf = bufs[path] = openBuffer(title, "..", bcs);
+			var buf = bufs[path] = openBuffer(title, "..", bcs, url);
 			toc.add('<li class="chapter">${renderToc(null, Std.string(noc.chapter), new Html(genh(name)), url)}<ul>\n');
 			buf.add('
 				<section>
@@ -225,7 +226,7 @@ class Generator {
 			var url = Path.normalize(Path.directory(path));
 			bcs.section = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = '$lno ${genn(name)}';  // TODO chapter name
-			var buf = bufs[path] = openBuffer(title, "../..", bcs);
+			var buf = bufs[path] = openBuffer(title, "../..", bcs, url);
 			toc.add('<li class="section">${renderToc(null, lno, new Html(genh(name)), url)}<ul>\n');
 			buf.add('
 				<section>
@@ -382,6 +383,8 @@ class Generator {
 			return '<pre><code>${gent(code)}</code></pre>\n';
 		case DQuotation(text, by):
 			return '<blockquote class="md"><q>${genh(text)}</q><span class="by">${genh(by)}</span></blockquote>\n';
+        case DParagraph({pos:p, def:Math(tex)}):
+            return '<p${genp(v.pos)}><span class="mathjax"${genp(p)}>\\[${gent(tex)}\\]</span></p>\n';
 		case DParagraph(h):
 			return '<p${genp(v.pos)}>${genh(h)}</p>\n';
 		case DElemList(li):
@@ -416,7 +419,7 @@ class Generator {
 		toc.add('<ul><li class="volume">${renderToc(null, null, "BRT Planning Guide", Path.normalize(""))}</li>');
 
 		var contents = genv(doc, new IdCtx(), new NoCtx(), {});  // TODO here for a hack
-		var root = bufs["index.html"] = openBuffer("The Online BRT Planning Guide", ".", {});
+		var root = bufs["index.html"] = openBuffer("The Online BRT Planning Guide", ".", {}, Path.normalize("./"));
 		root.add('<section>\n<h1 id="heading" class="brtcolor">${gent("The Online BRT Planning Guide")}</h1>\n');
 		root.add(contents);
 		root.add('</section>\n');
