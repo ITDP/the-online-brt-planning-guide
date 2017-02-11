@@ -101,12 +101,14 @@ class Main {
 	static function main()
 	{
 		print(ANSI.set(Bold) + BANNER + "\n\n" + ANSI.set(Off));
-		if (Context.debug) println('ANSI escape codes are ${ANSI.available ? "enabled" : "disabled"}');
 
 		Context.debug = Environment.debug;
 		Context.draft = Environment.draft;
+		if (Context.debug)
+			println('ANSI escape codes are ${ANSI.available ? "enabled" : "disabled"}');
 		if (ANSI.available)
 			Context.hlmode = AnsiEscapes(ANSI.set(Bold,Red), ANSI.set(Off));
+
 		Context.prepareSourceMaps();
 		Assertion.enableShow = Context.debug;
 		Assertion.enableWeakAssert = Context.debug;

@@ -12,7 +12,7 @@ typedef SingleTypesetData = {
 }
 
 typedef SingleTypesetResult = {
-	errors:Null<Dynamic>
+	errors:Null<Array<String>>
 }
 
 /**
@@ -46,7 +46,7 @@ extern class Single {
 			extensions: 'Safe,TeX/noUndefined'
 		});
 	**/
-	public static function config(cfg:Dynamic):Void;
+	public static function config(cfg:Config):Void;
 
 	/**
 	Manually start MathJax (this is done automatically

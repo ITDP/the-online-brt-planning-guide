@@ -84,12 +84,17 @@ class Test_04_Validation {
 				}_{ 2^{\\mathrm{nd}}\\mathrm{\\;term} }
 				\\right]$$".doctrim(), timeout);
 
+		// more basic tests
 		passes("$$a\\ne b$$", timeout);
 		passes("$$a_{ij}$$", timeout);
 
+		// make sure newlines work
+		passes("$$foo\nbar$$", timeout);
+		// passes("$$\\textrm{foo\nbar}$$", timeout);  // fails due to MathJax#1694
+
 #if nodejs
-		fails("$$a\\neb$$", true, BadMath("a\\neb"), timeout);
-		fails("$$a_{ij$$", true, BadMath("a_{ij"), timeout);
+		fails("$$a\\neb$$", true, BadMath("a\\neb", ["TeX parse error: Undefined control sequence \\neb"]), timeout);
+		fails("$$a_{ij$$", true, BadMath("a_{ij", ["TeX parse error: Extra open brace or missing close brace"]), timeout);
 #elseif js
 #error "no JS platforms expected other than Node.js"
 #end
