@@ -7,7 +7,10 @@
 	},
 	"build" : {
 		"cmds" : [
+			"export DOCKER_HOST_IP=$(route -n | awk '/UG[ \t]/{print $2}')",
 			"echo $GL_ANALYTICS_UA_ID",
+			"echo $ASSET_URL_PREFIX",
+			"echo $DOCKER_HOST_IP",
 			"node --version",
 
 			"cd $ROBRT_REPOSITORY_DIR",
@@ -26,9 +29,8 @@
 			"export DEBUG=1",
 			"manu generate guide/the-guide.src .generated",
 
-			"export DOCKER_HOST_IP=$(route -n | awk '/UG[ \t]/{print $2}')",
-			"manu asset-server store $DOCKER_HOST_IP 6668 .generated/html/assets",
-			"rm -rf .generated/html/assets",
+			"if [ -z ${ASSET_URL_PREFIX+x} ]; then echo Skipped; else manu asset-server store $DOCKER_HOST_IP 6668 .generated/html/assets; fi",
+			"if [ -z ${ASSET_URL_PREFIX+x} ]; then echo Skipped; else rm -rf .generated/html/assets; fi",
 			"cp -r .generated/html $ROBRT_OUTPUT_DIR/guide",
 			"unset DEBUG",
 
