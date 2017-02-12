@@ -8,12 +8,24 @@
 <!-- Jquery -->
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js" ></script>
 <!-- MathJax -->
+<!-- FIXME! zoom attributes shall be inheritable from guide/*css, if styles are not here in config, MathJax.js create/overide (his) default styles -->
+<!-- By now, concentrating all styles here. Also filter (blur) seems to require a div (it does not work on span, so the setting here is useless -->
+<!-- Beware when testing: if you use MathJax menu to set the trigger, it overrides the settings in the menuSettings... remove  mjx.menu cookie -->
 <script type="text/x-mathjax-config">
-	MathJax.Hub.Config({
+    MathJax.Hub.Config({
 		tex2jax: {
 			ignoreClass: ".+",
 			processClass: "mathjax"
-		}
+		},
+        menuSettings:{
+            zoom: "Click"
+        },
+        MathZoom: {
+            styles: {
+            "#MathJax_Zoom":{"z-index":"1000","cursor":"zoom-out" },
+            "#MathJax_ZoomOverlay": {"opacity":"0.75","background":"rgba(127,127,127,0.75)","z-index":"999","cursor":"zoom-out","filter":"blur(3px) grayscale(.5)" }
+            }
+        }
 	});
 </script>
 <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML" ></script>

@@ -303,6 +303,11 @@ td ul, th ul, td ol, th ol {
 
 /* equation */
 
+.zoomable {
+	cursor:zoom-in;
+}
+
+
 .equation {
 	padding: 24px 0;
 	background-color: #EEE;

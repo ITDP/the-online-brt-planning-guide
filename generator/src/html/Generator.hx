@@ -381,7 +381,7 @@ class Generator {
 		case DQuotation(text, by):
 			return '<blockquote class="md"><q>${genh(text)}</q><span class="by">${genh(by)}</span></blockquote>\n';
         case DParagraph({pos:p, def:Math(tex)}):
-            return '<p${genp(v.pos)}><span class="mathjax"${genp(p)}>\\[${gent(tex)}\\]</span></p>\n';
+            return '<p${genp(v.pos)}><span class="mathjax zoomable"${genp(p)}>\\[${gent(tex)}\\]</span></p>\n';
 		case DParagraph(h):
 			return '<p${genp(v.pos)}>${genh(h)}</p>\n';
 		case DElemList(li):
