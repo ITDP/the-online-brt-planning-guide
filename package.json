@@ -13,7 +13,7 @@
   },
   "homepage": "https://brt.robrt.io/master/development",
   "dependencies": {
-    "mathjax-node": "",
+    "mathjax-node": "0.*.*",
     "source-map-support": ""
   }
 }
