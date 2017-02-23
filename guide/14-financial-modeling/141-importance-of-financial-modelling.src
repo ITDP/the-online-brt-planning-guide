@@ -18,11 +18,8 @@ Furthermore, financial modelling allows for the appraisal of:
 \item Free cash-flow and funding-gap analysis;
 \item Sensibility analysis.
 
-\figure[medium]{assets/image1.png}{Measuring various aspects of financial modelling.}{Logit.}
+\figure[medium]{assets/financial-modeling-aspects.jpg}{Measuring various aspects of financial modelling.}{Logit.}
 
-\figure[medium]{assets/image2.png}{Measuring various aspects of financial modelling.}{Logit.}
-
-\figure[medium]{assets/image3.png}{Measuring various aspects of financial modelling.}{Logit.}
 
 \subsection{ Importance of Modelling the Financial and Operations Aspects Simultaneously}
 
@@ -39,11 +36,8 @@ and the financial modelling simultaneously, utilizing the results of one to guid
 development of the other. For each scenario, a detailed financial analysis is conducted, which then feeds 
 back into the scenario development process.
 
-\figure[medium]{assets/image4.png}{The scenario development process has evolved to become a more iterative 
+\figure[medium]{assets/scenario-development-process.jpg}{The scenario development process has evolved to become a more iterative 
 process that develops the operational plan and financial appraisal simultaneously.}{Logit.}
-
-\figure[medium]{assets/image5.png}{The scenario development process has evolved to become a more iterative 
-process that develops the operational plan and financial appraisal simultaneously.}{ Logit.}
 
 An added benefit of approaching scenario development in this fashion is that it is possible to generate 
 awareness of financial implications as scenarios are being developed. This not only helps steer the scenarios 
