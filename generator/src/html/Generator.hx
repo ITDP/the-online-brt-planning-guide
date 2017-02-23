@@ -8,7 +8,6 @@ import sys.io.File;
 import tink.template.Html;
 import transform.Context;
 import transform.NewDocument;
-import util.sys.FsUtil;
 
 import Assertion.*;
 import generator.tex.*;
@@ -134,9 +133,13 @@ class Generator {
 		var name = ext != "" ? hash + "." + ext : hash;
 		var dst = Path.join([dir, name]);
 		var lpath = Path.join([ldir, name]);
-		File.saveBytes(lpath, data);
 		assetCache[src] = dst;
-		return dst;
+		File.saveBytes(lpath, data);
+
+		var prefix = Environment.assetUrlPrefix;
+		if (prefix == null)
+			prefix = "";
+		return prefix + dst;
 	}
 
 	function saveAsset(src, ?content)
@@ -442,7 +445,7 @@ class Generator {
 		s.useEnumIndex = true;
 		s.serialize(srcMap);
 
-		var glId = Sys.getEnv("GL_ANALYTICS_UA_ID");
+		var glId = Environment.googleAnalyticsId;
 
 		var toc = saveData(TocData, toc.toString());
 		var script = saveAsset("manu.js", haxe.Resource.getBytes("html.js"));
