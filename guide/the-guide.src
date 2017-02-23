@@ -67,6 +67,7 @@ Fortunately for cities, the technology for providing high-quality public transpo
 
 \include{volume-4-landing-page.txt}
 
+\meta\reset{chapter}{13} \' skip to chapter 18 '\
 \include{14-financial-modeling/financial-modeling.src}
 
 \volume{Technology}
