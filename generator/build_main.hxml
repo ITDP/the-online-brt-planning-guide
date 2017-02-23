@@ -1,6 +1,7 @@
 # --times
 # -D macro-times
 # -D dump=pretty
+-D macro_debug
 
 .libs_main.hxml
 .cp.hxml
