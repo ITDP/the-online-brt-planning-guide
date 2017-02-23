@@ -68,6 +68,8 @@ class Validator {
 	*/
 	function validateMath(tex:String, pos:Position)
 	{
+		if (Context.noMathValidation) return;
+
 		wait++;
 		initMathJax();
 		mathjax.Single.typeset({

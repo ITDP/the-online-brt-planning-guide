@@ -102,8 +102,8 @@ class Main {
 	{
 		print(ANSI.set(Bold) + BANNER + "\n\n" + ANSI.set(Off));
 
-		Context.debug = Environment.debug;
-		Context.draft = Environment.draft;
+		Context.debug = Context.debug;
+		Context.draft = Context.draft;
 		if (Context.debug)
 			println('ANSI escape codes are ${ANSI.available ? "enabled" : "disabled"}');
 		if (ANSI.available)
