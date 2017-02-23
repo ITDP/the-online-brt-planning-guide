@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/ITDP/the-online-brt-planning-guide/tree/master/generator",
   "dependencies": {
-    "mathjax-node": "",
+    "mathjax-node": "0.*.*",
     "source-map-support": ""
   }
 }
