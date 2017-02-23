@@ -67,6 +67,10 @@ Fortunately for cities, the technology for providing high-quality public transpo
 
 \include{volume-4-landing-page.txt}
 
+
+\meta\reset{chapter}{14} \' skip to chapter 15 '\
+\include{15-fare-policy-and-structure/fare-policy-and-structure.src}
+
 \volume{Technology}
 \include{volume-5-landing-page.txt}
 
