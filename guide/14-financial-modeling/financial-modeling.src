@@ -1,0 +1,9 @@
+\chapter{Financial Modeling}
+
+\include{141-importance-of-financial-modelling.src}
+\include{system-entities.src}
+\include{model-structure.src}
+\include{information-organization.src}
+\include{modelling-issues.src}
+\include{vehicle-operating-company-input-parameters.src}
+\include{147-regional-parameters.src}

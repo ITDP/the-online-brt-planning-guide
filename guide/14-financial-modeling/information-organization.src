@@ -1,0 +1,117 @@
+
+
+\section{Information Organization}
+
+Having addressed best practices, another important point relates to how the information should be structured
+and grouped together in the model. Proper information separation sheet division aids in better model development 
+and understanding.
+
+
+\subsection{Control Panel}
+
+The objective of the control panel is to show the relevant appraisal and profitability indexes, as 
+well as to allow for the selection of the most important parameters per the following breakdown:
+
+\subsubsection{Most Important Parameters}
+
+\item [Use of data validation options in order to limit choices/values to predetermined or feasible ones:
+\item Bus-type selection;
+\item Financing-type selection;
+\item Profitability “goals.”]
+\item [Sensitive consumption/operation parameters:
+\item Bus acquisition value information;
+\item Fuel, lubricant, tire, and other consumption rates;
+\item Driver sizing parameter information.]
+
+\subsubsection{Relevant Financial Results}
+
+\item System appraisal;
+\item IRR for system entities;
+\item EBITDA margins: profitability (consists of earnings before interest, tax, depreciation, and amortization, 
+divided by total revenue).
+
+\subsubsection{Goal-Seeking Functions and Automation}
+
+\item Implement macros to target certain profitability values or specific revenue values;
+\item The goal-seeking parameter may be expressed as an index of payment per kilometer, payment per 
+customer (technical tariff), or even a hybrid kilometer per customer payment;
+\item In essence, this goal-seeking approach targets a total payment amount for the system entity, which 
+may then be broken down into whichever index is desired.
+
+\subsection{Time-Based and Non-Time-Based Assumptions}
+
+As mentioned above, it is convenient to separate information by its temporal characteristic. Both time-based 
+and non-time-based sheets should cover the following topics, segregating the information accordingly: 
+
+
+Operational Plan
+
+\item Number of kilometers per fleet type;
+\item Number of vehicles per fleet type;
+\item [Ticket revenue:
+\item Number of customers/ridership;
+\item Tariff scheme per ride.]
+
+It is important to recalculate these numbers in the financial model for two reasons:
+
+\item So the model contains all relevant information of the system/scenarios and is “self-sufficient”;
+\item As a quality check toward the values calculated in the transportation model. 
+
+Fleet
+
+\item [Age profile per type of fleet per year:
+\item Place example;
+\item Indication of new acquisitions and sales (the change between two years).]
+
+\subsubsection{Operational Expenditures (Opex)}
+\item Opex per vehicles;
+\item Opex per personnel.
+
+Capital Expenditures (Capex)
+
+\item Indication of acquisitions and renewals;
+\item Indication of acquisition values per depreciation type;
+\item Indication of acquisition values to be financed by financing alternative.
+
+Fixed Assets
+
+\item Used for depreciation calculation;
+\item Must separate each item by depreciation category and rate.
+
+Financing Schemes
+
+\item Interest rates;
+\item Tenor of loan;
+\item Grace period;
+\item Percent financed;
+\item Finance indexes, used by ECAs.
+
+Financing Schedule
+
+\item Used to keep track of interest and principal repayment;
+\item Must separate and keep track of each loan individually (loan drawdown year and conditions).
+
+\subsection{Financial Sheet}
+
+Lastly, there is the financial sheet, which contains the necessary information for the financial appraisal 
+of the system entity. 
+
+\subsubsection{Income Statement and Cash-Flow Statement}
+\item The income statement is used to calculate the yearly earnings, profit, accumulated profit, and 
+taxes;
+\item The cash-flow statement is used in order to calculate the yearly free cash flow;
+\item [For the cash-flow statement, it is recommended that one segregate the different cash-flow origins 
+to properly calculate the cash requirements/overdraft or surpluses for the company:
+\item Cash flow from operations;
+\item Cash flow from investing;
+\item Cash flow from financing;
+\item Net cash flow.]
+
+Balance Sheet
+
+\item Used primarily to calculate increase/decrease in working capital;
+\item Can be used to calculate debt/equity ratios and other indexes to attest to company’s health;
+\item Aids in validating the free cash flow and system appraisal, once all information is categorized 
+and interrelated in the balance sheet;
+\item Discussion of how the balance sheet may be “omitted,” as long as these calculations are performed 
+elsewhere.
