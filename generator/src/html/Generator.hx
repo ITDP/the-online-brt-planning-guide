@@ -78,6 +78,10 @@ class Generator {
 			return '<code${genp(h.pos)}>${gent(code)}</code>';
 		case Math(tex):
 			return '<span class="mathjax"${genp(h.pos)}>\\(${gent(tex)}\\)</span>';
+		case Ref(_):
+			return '';  // FIXME:xref
+		case RangeRef(_):
+			return '';  // FIXME:xref
 		case HElemList(li):
 			var buf = new StringBuf();
 			if (godOn)
@@ -92,7 +96,12 @@ class Generator {
 		}
 	}
 
-	function genn(h:HElem)  // genN for plaiN
+	/*
+	Generate plaiN text for a horizontal element.
+
+	Stringifies a horizontal element without adding any markup.
+	*/
+	function genn(h:HElem)
 	{
 		switch h.def {
 		case Wordspace:
@@ -106,6 +115,8 @@ class Generator {
 			for (i in li)
 				buf.add(genn(i));
 			return buf.toString();
+		case Ref(_), RangeRef(_):
+			return "<ref>";  // FIXME:xref
 		case HEmpty:
 			return "";
 		}
@@ -242,7 +253,7 @@ class Generator {
 			idc.subSection = v.id.sure();
 			noc.subSection = no;
 			var lno = noc.join(false, ".", chapter, section, subSection);
-			var id = idc.join(true, ".", subSection);
+			var id = idc.join(true, ":", subSection);
 			toc.add('<li>${renderToc(null, lno, new Html(genh(name)), bcs.section.url+"#"+id)}<ul>\n');
 			var html = '
 				<section>
@@ -256,7 +267,7 @@ class Generator {
 			idc.subSubSection = v.id.sure();
 			noc.subSubSection = no;
 			var lno = noc.join(false, ".", chapter, section, subSection, subSubSection);
-			var id = idc.join(true, ".", subSection, subSubSection);
+			var id = idc.join(true, ":", subSection, subSubSection);
 			var html = '
 				<section>
 				<h5 id="$id" class="volume${noc.volume}">$lno$QUAD${genh(name)}</h5>
@@ -269,7 +280,7 @@ class Generator {
 			idc.box = v.id.sure();
 			noc.box = no;
 			var no = noc.join(false, ".", chapter, box);
-			var id = idc.join(true, ".", box);
+			var id = idc.join(true, ":", box);
 			var sz = TextWidth;
 			function autoSize(d:DElem) {
 				if (d.def.match(DTable(_, FullWidth|MarginWidth, _) | DFigure(_, FullWidth|MarginWidth, _)))
@@ -288,20 +299,20 @@ class Generator {
 			idc.figure = v.id.sure();
 			noc.figure = no;
 			var no = noc.join(false, ".", chapter, figure);
-			var id = idc.join(true, ".", figure);
+			var id = idc.join(true, ":", figure);
 			if (Context.draft) {
 				return '
 					<section class="img-block ${sizeToClass(size)}">
-					<a><img src="$DRAFT_IMG_PLACEHOLDER" class="overlay-trigger"/></a>
-					<p id="$id"><strong>Fig. $no</strong>$QUAD${genh(caption)} <em>$DRAFT_IMG_PLACEHOLDER_COPYRIGHT</em></p>
+					<a><img id="$id" src="$DRAFT_IMG_PLACEHOLDER" class="overlay-trigger"/></a>
+					<p><strong>Fig. $no</strong>$QUAD${genh(caption)} <em>$DRAFT_IMG_PLACEHOLDER_COPYRIGHT</em></p>
 					</section>
 				'.doctrim() + "\n";
 			} else {
 				var p = saveAsset(path);
 				return '
 					<section class="img-block ${sizeToClass(size)}">
-					<a><img src="$p" class="overlay-trigger"/></a>
-					<p id="$id"><strong>Fig. $no</strong>$QUAD${genh(caption)} <em>${genh(cright)}</em></p>
+					<a><img id="$id" src="$p" class="overlay-trigger"/></a>
+					<p><strong>Fig. $no</strong>$QUAD${genh(caption)} <em>${genh(cright)}</em></p>
 					</section>
 				'.doctrim() + "\n";
 			}

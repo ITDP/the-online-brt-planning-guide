@@ -137,6 +137,10 @@ class Validator {
 		case HElemList(li):
 			for (i in li)
 				hiter(i);
+		case Ref(_):
+			// TODO:xref
+		case RangeRef(_):
+			// TODO:xref
 		case Wordspace, Word(_), InlineCode(_), HEmpty:
 			// nothing to do
 		}

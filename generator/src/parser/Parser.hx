@@ -30,10 +30,10 @@ class Parser {
 	// command name fixing suggestions
 	static var verticalCommands = [
 		"volume", "chapter", "section", "subsection", "subsubsection",
-		"figure", "quotation", "item", "number", "beginbox", "endbox", "include",
+		"figure", "quotation", "id", "item", "number", "beginbox", "endbox", "include",
 		"begintable", "header", "row", "col", "endtable",
 		"meta", "reset", "tex", "preamble", "export", "html", "apply"];
-	static var horizontalCommands = ["sup", "sub", "emph", "highlight"];
+	static var horizontalCommands = ["sup", "sub", "emph", "highlight", "ref", "rangeref"];
 	static var hardSuggestions = [  // some things can't be infered automatically
 		"quote" => "quotation",
 		"display" => "highlight"
@@ -176,6 +176,39 @@ class Parser {
 		return mk(Emphasis(li), open.pos.span(close.pos));
 	}
 
+	function refId(cmd, name)
+	{
+		var raw = arg(rawHorizontal, cmd, name);
+		assert(~/^[a-z0-9:-]$/.match(raw));
+		show(raw);
+		var id = new IdCtx();
+		var target = RFigure;
+		return {
+			target : target,
+			id : id,
+			pos : raw.pos
+		};
+	}
+
+	function ref(cmd:Token):HElem
+	{
+		var o = optArg(rawHorizontal, cmd, "output type");
+		show(o);
+		switch cmd.def {
+		case TCommand("ref"):
+			var id = refId(cmd, "id");
+			return mk(Ref(mk(id.target, id.pos), mk(AutoRef, cmd.pos), mk(id.id, id.pos)), cmd.pos.span(id.pos));
+		case TCommand("rangeref"):
+			var id1 = refId(cmd, "first id");
+			var id2 = refId(cmd, "last id");
+			assert(id1.target == id2.target);
+			return mk(RangeRef(mk(id1.target, id1.pos), mk(AutoRef, cmd.pos), mk(id1.id, id1.pos), mk(id2.id, id2.pos)), cmd.pos.span(id2.pos));
+		case _:
+			assert(false);
+			return mk(HEmpty, cmd.pos);
+		}
+	}
+
 	function horizontal(stop:Stop):Nullable<HElem>
 	{
 		while (peek().def.match(TComment(_)))
@@ -196,18 +229,24 @@ class Parser {
 			mk(InlineCode(s), pos);
 		case { def:TCommand(cname), pos:pos } if (Lambda.has(horizontalCommands, cname)):
 			var cmd = pop();
-			var content = arg(hlist, cmd);
-			switch cname {
-			case "sup":
-				mk(Superscript(content.val), cmd.pos.span(content.pos));
-			case "sub":
-				mk(Subscript(content.val), cmd.pos.span(content.pos));
-			case "emph":
-				mk(Emphasis(content.val), cmd.pos.span(content.pos));
-			case "highlight":
-				mk(Highlight(content.val), cmd.pos.span(content.pos));
-			case _:
-				unexpected(cmd);
+			if (cname == "ref" || cname == "rangeref") {
+				var tmp = ref(cmd);
+				show(tmp);
+				tmp;
+			} else {
+				var content = arg(hlist, cmd);
+				switch cname {
+				case "sup":
+					mk(Superscript(content.val), cmd.pos.span(content.pos));
+				case "sub":
+					mk(Subscript(content.val), cmd.pos.span(content.pos));
+				case "emph":
+					mk(Emphasis(content.val), cmd.pos.span(content.pos));
+				case "highlight":
+					mk(Highlight(content.val), cmd.pos.span(content.pos));
+				case _:
+					unexpected(cmd);
+				}
 			}
 		case { def:TCommand(_) }:
 			// vertical commands end the current hlist; unknown commands will be handled later
@@ -253,6 +292,13 @@ class Parser {
 			}
 		}
 		return buf.toString();
+	}
+
+	function id(cmd:Token, stop:Stop)
+	{
+		var val = arg(rawHorizontal, cmd, "value");
+		var elem = vertical(stop).extractOr(mk(VEmpty, cmd.pos.span(val.pos)));  // check it later
+		return mk(Id(mk(val.val, val.pos.offset(1,-1)), elem), cmd.pos.span(elem.pos));
 	}
 
 	function hierarchy(cmd:Token)
@@ -578,6 +624,7 @@ class Parser {
 			null;
 		case TCommand(cmdName):
 			switch cmdName {
+			case "id": id(pop(), stop);
 			case "volume", "chapter", "section", "subsection", "subsubsection": hierarchy(pop());
 			case "figure": figure(pop());
 			case "begintable": table(pop());

@@ -32,7 +32,7 @@ class NewTransform {
 			h = mk(Emphasis(htrim(i, ctx)), h.pos);
 		case Highlight(i):
 			h = mk(Highlight(htrim(i, ctx)), h.pos);
-		case Word(_), InlineCode(_), Math(_):
+		case Word(_), InlineCode(_), Math(_), Ref(_), RangeRef(_):
 			ctx.prevSpace = false;
 		case HElemList(li):
 			if (ctx.reverse) {
@@ -55,7 +55,7 @@ class NewTransform {
 	static function hclean(h:HElem)
 	{
 		var def = switch h.def {
-		case Wordspace, Word(_), InlineCode(_), Math(_), HEmpty:
+		case Wordspace, Word(_), InlineCode(_), Math(_), Ref(_), RangeRef(_), HEmpty:
 			h.def;
 		case Superscript(i):
 			i = hclean(i);
@@ -111,6 +111,8 @@ class NewTransform {
 		case HElemList(li):
 			for (i in li)
 				buf.add(genId(i));
+		case Ref(_), RangeRef(_):
+			buf.add("ref");  // FIXME:xref
 		case HEmpty:
 			// NOOP
 		}
@@ -121,7 +123,11 @@ class NewTransform {
 	{
 		var li = [];
 		while (pool.length > 0) {
-			switch [parent.def, pool[0].def] {
+			var peek = switch pool[0].def {
+				case Id(_, elem): elem.def;
+				case other: other;
+				}
+			switch [parent.def, peek] {
 			case [Volume(_), Volume(_)]: break;
 			case [Chapter(_), Chapter(_)|Volume(_)]: break;
 			case [Section(_), Section(_)|Chapter(_)|Volume(_)]: break;
@@ -140,7 +146,7 @@ class NewTransform {
 	}
 
 	@:allow(transform.Transform)  // TODO remove
-	static function vertical(v:VElem, siblings:Array<VElem>, idc:IdCtx, noc:NoCtx):DElem  // MAYBE rename idc/noc to id/no
+	static function vertical(v:VElem, siblings:Array<VElem>, idc:IdCtx, noc:NoCtx, ?withId:String):DElem  // MAYBE rename idc/noc to id/no
 	{
 		// the parser should not output any nulls
 		assert(v != null);
@@ -159,49 +165,52 @@ class NewTransform {
 			case other: throw other;
 			}
 			return mkd(DEmpty, v.pos);
+		case Id(val, elem):
+			assert(elem.def.match(Volume(_)|Chapter(_)|Section(_)|SubSection(_)|SubSubSection(_)|Figure(_)|Table(_)|ImgTable(_)|Box(_)), "invalid elem to apply Id to", "TODO typeded error");
+			return vertical(elem, siblings, idc, noc, val.def);
 		case Volume(horizontal(_) => name):
-			var id = idc.volume = genId(name);
+			var id = idc.volume = withId != null ? withId : genId(name);
 			var no = noc.volume = noc.lastVolume + 1;
 			var children = consume(v, siblings, idc, noc);
 			return mkd(DVolume(no, name, children), v.pos.span(children.pos), id);
 		case Chapter(horizontal(_) => name):
-			var id = idc.chapter = genId(name);
+			var id = idc.chapter = withId != null ? withId : genId(name);
 			var no = noc.chapter = noc.lastChapter + 1;
 			var children = consume(v, siblings, idc, noc);
 			return mkd(DChapter(no, name, children), v.pos.span(children.pos), id);
 		case Section(horizontal(_) => name):
-			var id = idc.section = genId(name);
+			var id = idc.section = withId != null ? withId : genId(name);
 			var no = ++noc.section;
 			var children = consume(v, siblings, idc, noc);
 			return mkd(DSection(no, name, children), v.pos.span(children.pos), id);
 		case SubSection(horizontal(_) => name):
-			var id = idc.subSection = genId(name);
+			var id = idc.subSection = withId != null ? withId : genId(name);
 			var no = ++noc.subSection;
 			var children = consume(v, siblings, idc, noc);
 			return mkd(DSubSection(no, name, children), v.pos.span(children.pos), id);
 		case SubSubSection(horizontal(_) => name):
-			var id = idc.subSubSection = genId(name);
+			var id = idc.subSubSection = withId != null ? withId : genId(name);
 			var no = ++noc.subSubSection;
 			var children = consume(v, siblings, idc, noc);
 			return mkd(DSubSubSection(no, name, children), v.pos.span(children.pos), id);
 		case Box(name, contents):
-			var id = idc.box = genId(name);
+			var id = idc.box = withId != null ? withId : genId(name);
 			var no = ++noc.box;
 			return mkd(DBox(no, name, vertical(contents, null, idc, noc)), v.pos, id);  // FIXME resolve null and not allowing hierarchy elements inside boxes
 		case Figure(size, path, horizontal(_) => caption, horizontal(_) => copyright):
 			// figure id could be generated from paths, but let's keep things uniform across elements
-			var id = idc.figure = genId(caption);
+			var id = idc.figure = withId != null ? withId : genId(caption);
 			var no = ++noc.figure;
 			return mkd(DFigure(no, size, path, caption, copyright), v.pos, id);
 		case Table(size, horizontal(_) => caption, header, rows):
-			var id = idc.table = genId(caption);
+			var id = idc.table = withId != null ? withId : genId(caption);
 			var no = ++noc.table;
 			// FIXME resolve null and forbid hierarchy elements inside tables
 			var dheader = header.map(vertical.bind(_, null, idc, noc));
 			var drows = rows.map(function (r) return r.map(vertical.bind(_, null, idc, noc)));
 			return mkd(DTable(no, size, caption, dheader, drows), v.pos, id);
 		case ImgTable(size, horizontal(_) => caption, path):
-			var id = idc.table = genId(caption);
+			var id = idc.table = withId != null ? withId : genId(caption);
 			var no = ++noc.table;
 			return mkd(DImgTable(no, size, caption, path), v.pos, id);
 		case List(numbered, li):
@@ -223,8 +232,6 @@ class NewTransform {
 			case _: mkd(DElemList(li), v.pos.span(li[li.length -1 ].pos));
 			}
 		case VEmpty:
-			return mkd(DEmpty, v.pos);
-		case _:  // TODO remove
 			return mkd(DEmpty, v.pos);
 		}
 	}

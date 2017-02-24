@@ -105,6 +105,10 @@ class Generator {
 			return '\\code{${gent(code)}}';
 		case Math(tex):
 			return '$$$tex$$';
+		case Ref(_):
+			return '';  // FIXME:xref
+		case RangeRef(_):
+			return '';  // FIXME:xref
 		case HElemList(li):
 			var buf = new StringBuf();
 			for (i in li)
