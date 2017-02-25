@@ -513,20 +513,19 @@ class Test_03_Parser {
 			expand(@wrap(10,7)Box(@len(1)Word("a"),@skip(1)VElemList([Paragraph(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))]))),
 			parse("\\beginbox{a}b\n\nc\\endbox"));
 
-		fails("\\endbox", UnexpectedCommand("endbox"));
+		fails("\\endbox", UnexpectedToken(TCommand("endbox"), "no beginning"));
 
 		fails("\\beginbox", MissingArgument(TCommand("beginbox"), "name"), mkPos(9, 9));
 		fails("\\beginbox a", MissingArgument(TCommand("beginbox"), "name"), mkPos(10, 11));
 		fails("\\beginbox{a}{}", UnexpectedToken(TBrOpen), mkPos(12, 13));
 	}
 
-	// FIXME
-	// public function test_018_controled_nesting_of_vertical_elements()
-	// {
-	// 	fails("\\item[\\section{foo}]");
-	// 	fails("\\beginbox\\section{foo}\\endbox");
-	// 	fails("\\item[\\beginbox\\endbox]");
-	// }
+	public function test_018_controled_nesting_of_vertical_elements()
+	{
+		fails("\\item[\\section{foo}]", UnexpectedToken(TCommand("section"), "headings not allowed here"));
+		fails("\\beginbox{foo}\\section{bar}\\endbox", UnexpectedToken(TCommand("section"), "headings not allowed here"));
+		fails("\\item[\\beginbox{foo}\\endbox]", UnexpectedToken(TCommand("beginbox"), "boxes not allowed here"));
+	}
 
 	// TODO
 	// public function test_019_html_metas()
@@ -574,7 +573,7 @@ class Test_03_Parser {
 			expand(@wrap(12,10)ImgTable(TextWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
 			parse("\\begintable{a}\\useimage{x.svg}\\endtable"));
 
-		fails("\\endtable", UnexpectedCommand("endtable"));
+		fails("\\endtable", UnexpectedToken(TCommand("endtable"), "no beginning"));
 	}
 
 	public function test_024_paragraph_beginning()

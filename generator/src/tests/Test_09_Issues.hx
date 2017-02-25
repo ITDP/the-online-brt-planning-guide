@@ -67,6 +67,9 @@ class Test_09_Issues {
 		Assert.pass();
 	}
 
+	public function test_internal_0001()
+		Assert.raises(parse.bind("\\beginbox{foo}\\section{bar}\\endbox"));
+
 	public function new() {}
 }
 
