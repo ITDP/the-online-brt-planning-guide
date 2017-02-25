@@ -1,7 +1,6 @@
 FROM ubuntu:16.04
 ENV PS1="# "
 RUN mkdir -p /var/git
-LABEL comment=2016-06-09-updating-for-titlesec-2.10.2
 RUN apt-get update
 RUN apt-get install -y time net-tools
 RUN apt-get install -y texlive
