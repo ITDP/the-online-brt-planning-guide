@@ -764,7 +764,7 @@ of OD pairs, each individual OD matrix will largely cover a different part of th
 be some overlap and therefore the risk of “double counting” trips will happen twice. The individual matrices
 will have some OD pairs with actual values, and some OD pairs with zero trips (Tables 4.10 and 4.11).
 
-\begintable{OD Matrix \#1 Eastbound Morogoro Road and United Nations Intersection}
+\begintable{OD Matrix #1 Eastbound Morogoro Road and United Nations Intersection}
 \header
 \col Origins
 \col Destinations
@@ -832,7 +832,7 @@ will have some OD pairs with actual values, and some OD pairs with zero trips (T
 \endtable
 
 
-\begintable{OD Matrix \#2 Southbound Old Bagamoyo Road and United Nations Intersection}
+\begintable{OD Matrix #2 Southbound Old Bagamoyo Road and United Nations Intersection}
 \header
 \col Origins
 \col Destinations

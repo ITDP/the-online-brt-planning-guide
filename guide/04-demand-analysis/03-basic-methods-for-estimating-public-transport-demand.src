@@ -171,7 +171,7 @@ consider only the vehicle mix on each corridor and the level of congestion on th
 \col Type of BRT Corridor
 \col Projected Modal-Shift Impact from Private Vehicles
 \row
-\col Little congestion, buses \> 30 percent of the vehicle fleet
+\col Little congestion, buses > 30 percent of the vehicle fleet
 \col 5 percent
 \row
 \col Some congestion, buses around 25 percent of vehicle fleet

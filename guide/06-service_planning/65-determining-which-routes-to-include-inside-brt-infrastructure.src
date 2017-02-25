@@ -600,7 +600,7 @@ Empirical observation shows that using the coefficient of 0.7 mimics the series 
 high-frequency (above 80 vehicles per hour) busways in urban conditions. In fact, empirical observation 
 of busways with full BRT characteristics do tend to saturate at around 80 vehicles per hour, and for 
 a busway 0.4 is considered the beginning point of station saturation, so service planners will avoid 
-designing services with frequencies where x \> 0.4. In any case, queuing time per vehicle can be expressed 
+designing services with frequencies where x > 0.4. In any case, queuing time per vehicle can be expressed 
 (as a portion of an hour by):
 
 Eq. 6.30a

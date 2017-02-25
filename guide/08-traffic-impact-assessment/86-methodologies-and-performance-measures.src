@@ -101,25 +101,25 @@ travel speed.
 \row
 \col 
 \col <= 1.0
-\col \> 1.0
+\col > 1.0
 \row
-\col \>85
+\col >85
 \col A
 \col F
 \row
-\col \>67-85
+\col >67-85
 \col B
 \col F
 \row
-\col \>50-67
+\col >50-67
 \col C
 \col F
 \row
-\col \>40-50
+\col >40-50
 \col D
 \col F
 \row
-\col \>30-40
+\col >30-40
 \col E
 \col F
 \row
@@ -176,19 +176,19 @@ reentry delay, as well as the pedestrian scores.
 \col <= 2.00
 \row
 \col B
-\col \> 2.00-2.75
+\col > 2.00-2.75
 \row
 \col C
-\col \> 2.75-3.50
+\col > 2.75-3.50
 \row
 \col D
-\col \> 3.50-4.25
+\col > 3.50-4.25
 \row
 \col E
-\col \> 4.25-5.00
+\col > 4.25-5.00
 \row
 \col F
-\col \> 5.00
+\col > 5.00
 \endtable
 
 Source: Highway Capacity Manual, 2010.
