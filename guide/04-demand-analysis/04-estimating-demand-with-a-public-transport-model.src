@@ -1,7 +1,7 @@
 \section{ Estimating Demand with a Public Transport Model}
 
-> The best way to predict the future is to invent it.
-@ Immanuel Kant, philosopher, 1724–1804
+\quotation{The best way to predict the future is to invent it.}
+{Immanuel Kant, philosopher, 1724–1804}
 
 Aggregating boarding, alighting, and customer flows, as in the previous section, provide a useful “first
 cut” approach to demand estimation. However, this data does not provide information on where people wish

@@ -39,20 +39,8 @@ enum TokenDef {
 	TBrkOpen;
 	TBrkClose;
 
-	// Hashes(int qty): Quantity of hashes -
-	// This token is used for all fancy commands
-	// e.g:
-	// Fancy syntax for Section: \section {desc} => ### desc;
-	// Subsection \subsection {desc} => ## desc
-	// \figure => #FIG# == THashes(1) + TWord(FIG) + THashes(1)
-	THashes(q : Int);
-
-
-	TColon(q : Int);
+	// Emphasis mark
 	TAsterisk;
-	TAt;
-	//Used for Quotes
-	TGreater;
 }
 
 #if !cpp
