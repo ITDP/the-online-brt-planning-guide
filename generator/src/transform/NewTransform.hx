@@ -187,7 +187,7 @@ class NewTransform {
 		case Box(name, contents):
 			var id = idc.box = genId(name);
 			var no = ++noc.box;
-			return mkd(DBox(no, name, vertical(contents, null, idc, noc)), v.pos, id);  // FIXME resolve null and not allowing hierarchy elements inside boxes
+			return mkd(DBox(no, name, vertical(contents, [], idc, noc)), v.pos, id);  // FIXME forbid hierarchy elements inside boxes
 		case Figure(size, path, horizontal(_) => caption, horizontal(_) => copyright):
 			// figure id could be generated from paths, but let's keep things uniform across elements
 			var id = idc.figure = genId(caption);
@@ -196,9 +196,9 @@ class NewTransform {
 		case Table(size, horizontal(_) => caption, header, rows):
 			var id = idc.table = genId(caption);
 			var no = ++noc.table;
-			// FIXME resolve null and forbid hierarchy elements inside tables
-			var dheader = header.map(vertical.bind(_, null, idc, noc));
-			var drows = rows.map(function (r) return r.map(vertical.bind(_, null, idc, noc)));
+			// FIXME forbid hierarchy elements inside tables
+			var dheader = header.map(vertical.bind(_, [], idc, noc));
+			var drows = rows.map(function (r) return r.map(vertical.bind(_, [], idc, noc)));
 			return mkd(DTable(no, size, caption, dheader, drows), v.pos, id);
 		case ImgTable(size, horizontal(_) => caption, path):
 			var id = idc.table = genId(caption);
