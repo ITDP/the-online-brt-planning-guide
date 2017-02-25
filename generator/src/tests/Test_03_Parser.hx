@@ -577,16 +577,6 @@ class Test_03_Parser {
 		fails("\\endtable", UnexpectedCommand("endtable"));
 	}
 
-	public function test_023_escapes()
-	{
-		// automatically inactive; no need to escape
-		Assert.same(expand(Paragraph(@len(1)Word(":"))), parse(":"));
-		Assert.same(expand(Paragraph(@len(2)Word("::"))), parse("::"));
-		Assert.same(expand(Paragraph(@len(4)Word("::::"))), parse("::::"));
-		// double check
-		Assert.same(expand(Paragraph(HElemList([@len(2)Word("::"),@len(2)Word(":")]))), parse("::\\:"));
-	}
-
 	public function test_024_paragraph_beginning()
 	{
 		Assert.same(expand(Paragraph(@len(1)Word("a"))), parse("a"));

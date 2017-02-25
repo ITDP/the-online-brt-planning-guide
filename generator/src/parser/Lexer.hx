@@ -186,7 +186,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"‐" => mk(lexer, TWord("-")),  // u2010 -> u002d
 		"‑" => mk(lexer, TWord("-")),  // u2011 -> u002d
 
-		"\\\\([{}\\[\\]\\*:@#>`\\-\\$]|‒|―|‐|‑)" => mk(lexer, TWord(lexer.current.substr(1))),
+		"\\\\([{}\\[\\]\\*`\\-\\$]|‒|―|‐|‑)" => mk(lexer, TWord(lexer.current.substr(1))),
 		// more (special) escpaes
 		"\\\\^" => mk(lexer, TWord("'")),  // a way to specically type an ascii apostrophe
 		// not really an escape, but a special case no less
