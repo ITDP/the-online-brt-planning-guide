@@ -500,7 +500,7 @@ class Parser {
 			case "quotation": quotation(pop());
 			case "item", "number": list(peek(), stop);
 			case "meta", "tex", "html": meta(pop());
-			case "beginbox", "boxstart":
+			case "beginbox":
 				if (!restricted)
 					box(pop());
 				else
