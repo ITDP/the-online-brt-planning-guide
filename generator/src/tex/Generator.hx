@@ -36,9 +36,15 @@ class Generator {
 
 	static inline var ASSET_SUBDIR = "assets";
 
-	function _saveAsset(at:Array<String>, src:String):String
+	function _saveAsset(at:Array<String>, src:String, size:BlobSize):String
 	{
-		var ldir = Path.join(at.concat([ASSET_SUBDIR]));
+		var sdir =
+			switch size {
+			case MarginWidth: "mw";
+			case TextWidth: "tw";
+			case FullWidth: "fw";
+			}
+		var ldir = Path.join([ASSET_SUBDIR, sdir]);
 		var dir = Path.join([destDir, ldir]);
 		if (!FileSystem.exists(dir))
 			FileSystem.createDirectory(dir);
@@ -66,8 +72,8 @@ class Generator {
 		return lpath;
 	}
 
-	function saveAsset(at, src)
-		return Context.time("tex generation (saveAsset)", _saveAsset.bind(at, src));
+	function saveAsset(at, src, size)
+		return Context.time("tex generation (saveAsset)", _saveAsset.bind(at, src, size));
 
 	public function gent(text:String)
 	{
@@ -172,7 +178,7 @@ class Generator {
 		case DFigure(no, size, _.toInputPath() => path, caption, cright):
 			idc.figure = v.id.sure();
 			var id = idc.join(true, ":", chapter, figure);
-			path = saveAsset(at, path);
+			path = saveAsset(at, path, size);
 			// TODO handle size
 			// TODO enable on XeLaTeX too
 			// FIXME label
@@ -192,7 +198,7 @@ class Generator {
 		case DImgTable(no, size, caption, _.toInputPath() => path):
 			idc.table = v.id.sure();
 			var id = idc.join(true, ":", chapter, table);
-			path = saveAsset(at, path);
+			path = saveAsset(at, path, size);
 			// TODO handle size
 			// TODO enable on XeLaTeX too
 			// FIXME label
