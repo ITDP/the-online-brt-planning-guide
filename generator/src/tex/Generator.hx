@@ -36,9 +36,15 @@ class Generator {
 
 	static inline var ASSET_SUBDIR = "assets";
 
-	function _saveAsset(at:String, src:String):String
+	function _saveAsset(at:Array<String>, src:String, size:BlobSize):String
 	{
-		var ldir = Path.join([at, ASSET_SUBDIR]);
+		var sdir =
+			switch size {
+			case MarginWidth: "mw";
+			case TextWidth: "tw";
+			case FullWidth: "fw";
+			}
+		var ldir = Path.join([ASSET_SUBDIR, sdir]);
 		var dir = Path.join([destDir, ldir]);
 		if (!FileSystem.exists(dir))
 			FileSystem.createDirectory(dir);
@@ -66,8 +72,8 @@ class Generator {
 		return lpath;
 	}
 
-	public function saveAsset(at, src)
-		return Context.time("tex generation (saveAsset)", _saveAsset.bind(at, src));
+	function saveAsset(at, src, size)
+		return Context.time("tex generation (saveAsset)", _saveAsset.bind(at, src, size));
 
 	public function gent(text:String)
 	{
@@ -115,9 +121,9 @@ class Generator {
 		}
 	}
 
-	public function genv(v:DElem, at:String, idc:IdCtx)
+	public function genv(v:DElem, at:Array<String>, idc:IdCtx)
 	{
-		assert(!at.endsWith(".tex"), at, "should not but a directory");
+		assert(!Lambda.foreach(at, function (p) return p.endsWith(".tex")), at, "should not be anything but a directory");
 		switch v.def {
 		case DHtmlApply(_):
 			return "";
@@ -135,8 +141,8 @@ class Generator {
 		case DVolume(no, name, children):
 			idc.volume = v.id.sure();
 			var id = idc.join(true, ":", volume);
-			var path = Path.join([at, idc.volume+".tex"]);
-			var dir = Path.join([at, idc.volume]);
+			var path = Path.join(at.concat([idc.volume+".tex"]));
+			var dir = at.concat([idc.volume]);
 			var buf = new StringBuf();
 			bufs[path] = buf;
 			buf.add("% This file is part of the\n");
@@ -146,7 +152,7 @@ class Generator {
 		case DChapter(no, name, children):
 			idc.chapter = v.id.sure();
 			var id = idc.join(true, ":", volume, chapter);
-			var path = Path.join([at, idc.chapter+".tex"]);
+			var path = Path.join(at.concat([idc.chapter+".tex"]));
 			var buf = new StringBuf();
 			bufs[path] = buf;
 			buf.add("% This file is part of the\n");
@@ -172,7 +178,7 @@ class Generator {
 		case DFigure(no, size, _.toInputPath() => path, caption, cright):
 			idc.figure = v.id.sure();
 			var id = idc.join(true, ":", chapter, figure);
-			path = saveAsset(at, path);
+			path = saveAsset(at, path, size);
 			// TODO handle size
 			// TODO enable on XeLaTeX too
 			// FIXME label
@@ -192,7 +198,7 @@ class Generator {
 		case DImgTable(no, size, caption, _.toInputPath() => path):
 			idc.table = v.id.sure();
 			var id = idc.join(true, ":", chapter, table);
-			path = saveAsset(at, path);
+			path = saveAsset(at, path, size);
 			// TODO handle size
 			// TODO enable on XeLaTeX too
 			// FIXME label
@@ -245,7 +251,7 @@ class Generator {
 		preamble.add("\n\n");
 
 		var idc = new IdCtx();
-		var contents = genv(doc, "./", idc);
+		var contents = genv(doc, ["./"], idc);
 
 		var root = new StringBuf();
 		root.add(preamble.toString());

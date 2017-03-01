@@ -37,10 +37,32 @@ class ParserError extends GenericError {
 				'Unexpected interword space (0x${hex(s)})';
 			case TBreakSpace(s):
 				'Unexpected vertical space (0x${hex(s)})';
+			case TComment(_):
+				'Unexpected comment';
+			case TMath(_):
+				'Unexpected math';
+			case TWord(_):
+				'Unexpected word';
+			case TCode(_), TCodeBlock(_):
+				'Unexpected code excerpt ($def)';
+			case TCommand(name):
+				'Unexpected command \'\\${name}\'';
+			case TBrOpen, TBrClose:
+				'Unexpected argument delimiter ($def)';
+			case TBrkOpen, TBrkClose:
+				'Unexpected optional argument delimiter ($def)';
+			case THashes(_):
+				'Unexpected number sign \'#\' (tip: to escape it, use \'\\#\')';
+			case TColon(_):
+				'Unexpected colon \':\' (tip: to escape it, use \'\\:\')';
+			case TAsterisk:
+				'Unexpected emphasis mark \'*\' (tip: to escape it, use \'\\*\')';
+			case TAt:
+				'Unexpected author mark \'@\' (tip: to escape it, use \'\\@\')';
+			case TGreater:
+				'Unexpected quotation mark \'>\' (tip: to escape it, use \'\\>\')';
 			case TEof:
 				"Unexpected end of file";
-			case other:
-				'Unexpected $other';
 			}
 			if (desc != null)
 				msg += '; $desc';
@@ -67,9 +89,13 @@ class ParserError extends GenericError {
 			return msg.toString();
 		case UnclosedToken(def):
 			return switch def {
-			case TBrOpen: "Unclosed braces '{'";
-			case TBrkOpen: "Unclosed brackets '{'";
-			case TCode(_): "Unclosed code excerpt";
+			case TBrOpen: "Unclosed argument (tip: to escape the opening brace, use '\\{')";
+			case TBrkOpen: "Unclosed optional argument (tip: to escape the opening bracket, use '\\[')";
+			case TAsterisk: "Unclosed emphasis (tip: to escape the opening asterisk, use '\\*')";
+			case TCommand("begintable"): "Table never ends (tip: use '\\endtable' to terminate the table)";
+			case TCommand("beginbox"): "Box never ends (tip: use '\\endbox' to terminate the box)";
+			case TCodeBlock(_): "Code excerpt never ends (tip: use an identical '\\codeblock[text]' to terminate the fence)";
+			case TCode(_): "Inline code exceprt never ends (tip: use an identical '\\code<character>' to terminate the fence)";
 			case other: "Unclosed token " + other;
 			}
 		case BadValue(details):

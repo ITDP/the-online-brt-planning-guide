@@ -22,4 +22,7 @@ RUN haxelib git sys-utils https://github.com/jonasmalacofilho/sys-utils.hx && cd
 RUN apt-get install -y npm
 RUN haxelib install tink_template
 RUN haxelib install ansi
+RUN apt-get install -y nodejs-legacy
+RUN apt-get install -y net-tools
+RUN apt-get update && apt-get install -y imagemagick
 

@@ -228,7 +228,7 @@ class Parser {
 	}
 
 	function hlist(stop:Stop)
-		return mkList(horizontal, stop);
+		return mkList(horizontal(stop));
 
 	// FIXME document slash behavior
 	function rawHorizontal(stop:Stop):String
@@ -355,7 +355,7 @@ class Parser {
 	{
 		assert(cmd.def.match(TCommand("col")), cmd);
 		// TODO handle empty cells
-		return vlist({ beforeAny:[TCommand("col"), TCommand("row"), TCommand("endtable")] });
+		return vlist({ beforeAny:[TCommand("col"), TCommand("row"), TCommand("endtable")] }, true);
 	}
 
 	function tableRow(cmd:Token)
@@ -438,13 +438,13 @@ class Parser {
 	function listItem(mark:Token, stop:Stop)
 	{
 		assert(mark.def.match(TCommand("item" | "number")), mark);
-		var item:VElem = switch optArg(vlist, mark, "item content").cases() {
+		var item:VElem = switch optArg(vlist.bind(_, true), mark, "item content").cases() {
 		case Some(vlist):
 			vlist.val.pos = vlist.pos;
 			vlist.val;
 		case None:
 			var st = peek().pos;
-			vertical(stop).extractOr({
+			vertical(stop, true).extractOr({
 				// FIXME duplicated from mkList and delicate
 				var at = peek().pos;
 				at = at.offset(0, at.min - at.max);
@@ -479,7 +479,7 @@ class Parser {
 	{
 		assert(begin.def.match(TCommand("beginbox")), begin);
 		var name = arg(hlist, begin, "name");
-		var li = vlist({ beforeAny:[TCommand("endbox")] });
+		var li = vlist({ beforeAny:[TCommand("endbox")] }, true);
 		discardVerticalNoise();
 		var end = pop();
 		if (end.def.match(TEof)) unclosed(begin);
@@ -566,7 +566,7 @@ class Parser {
 		}
 	}
 
-	function vertical(stop:Stop):Nullable<VElem>
+	function vertical(stop:Stop, restricted:Bool):Nullable<VElem>
 	{
 		discardVerticalNoise();
 		return switch peek().def {
@@ -578,15 +578,24 @@ class Parser {
 			null;
 		case TCommand(cmdName):
 			switch cmdName {
-			case "volume", "chapter", "section", "subsection", "subsubsection": hierarchy(pop());
+			case "volume", "chapter", "section", "subsection", "subsubsection":
+				if (!restricted)
+					hierarchy(pop());
+				else
+					unexpected(pop(), "headings not allowed here");
 			case "figure": figure(pop());
 			case "begintable": table(pop());
 			case "quotation": quotation(pop());
 			case "item", "number": list(peek(), stop);
 			case "meta", "tex", "html": meta(pop());
-			case "beginbox", "boxstart": box(pop());
+			case "beginbox", "boxstart":
+				if (!restricted)
+					box(pop());
+				else
+					unexpected(pop(), "boxes not allowed here");
 			case "include": include(pop());
 			case name if (Lambda.has(horizontalCommands, name)): paragraph(stop);
+			case "endbox", "endtable": unexpected(pop(), "no beginning");
 			case _: unexpectedCmd(peek()); null;
 			}
 		case THashes(1) if (peek(1).def.match(TWord("FIG")) && peek(2).def.match(THashes(1))):
@@ -606,15 +615,15 @@ class Parser {
 		}
 	}
 
-	function vlist(stop:Stop)
-		return mkList(vertical, stop);
+	function vlist(stop:Stop, restricted:Bool)
+		return mkList(vertical(stop, restricted));
 
 	public function file():File
 	{
 		switch cache[location] {
 		case null:
 			var entry = cache[location] = { parent:parent, ast:None };
-			var ast = vlist({});
+			var ast = vlist({}, false);
 			entry.ast = Some(ast);
 			return ast;
 		case { parent:original, ast:None }:
