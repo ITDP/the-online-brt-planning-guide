@@ -8,7 +8,6 @@ import sys.io.File;
 import tink.template.Html;
 import transform.Context;
 import transform.NewDocument;
-import util.sys.FsUtil;
 
 import Assertion.*;
 import generator.tex.*;
@@ -134,9 +133,13 @@ class Generator {
 		var name = ext != "" ? hash + "." + ext : hash;
 		var dst = Path.join([dir, name]);
 		var lpath = Path.join([ldir, name]);
-		File.saveBytes(lpath, data);
 		assetCache[src] = dst;
-		return dst;
+		File.saveBytes(lpath, data);
+
+		var prefix = Context.assetUrlPrefix;
+		if (prefix == null)
+			prefix = "";
+		return prefix + dst;
 	}
 
 	function saveAsset(src, ?content)
@@ -286,7 +289,7 @@ class Generator {
 			noc.figure = no;
 			var no = noc.join(false, ".", chapter, figure);
 			var id = idc.join(true, ".", figure);
-			if (Context.draft) {
+			if (Context.dinossaurFigures) {
 				return '
 					<section class="img-block ${sizeToClass(size)}">
 					<a><img src="$DRAFT_IMG_PLACEHOLDER" class="overlay-trigger"/></a>
@@ -344,7 +347,7 @@ class Generator {
 			noc.table = no;
 			var no = noc.join(false, ".", chapter, table);
 			var id = idc.join(true, ".", table);
-			if (Context.draft) {
+			if (Context.dinossaurFigures) {
 				return '
 					<section class="img-block ${sizeToClass(size)}">
 					<h5 id="$id">Table $no$QUAD${genh(caption)} <em>$DRAFT_IMG_PLACEHOLDER_COPYRIGHT</em></h5>
@@ -442,7 +445,7 @@ class Generator {
 		s.useEnumIndex = true;
 		s.serialize(srcMap);
 
-		var glId = Sys.getEnv("GL_ANALYTICS_UA_ID");
+		var glId = Context.googleAnalyticsId;
 
 		var toc = saveData(TocData, toc.toString());
 		var script = saveAsset("manu.js", haxe.Resource.getBytes("html.js"));

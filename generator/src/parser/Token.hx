@@ -13,6 +13,7 @@ enum TokenDef {
 	// (Block) comments: begin at \' and end at '\
 	TComment(s:String);
 
+	// Embededed TeX math
 	TMath(s : String);
 
 	// Unformated text
