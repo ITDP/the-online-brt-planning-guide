@@ -164,10 +164,6 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"\\]" => mk(lexer, TBrkClose),
 
 		"\\*" => mk(lexer, TAsterisk),
-		":+" => mk(lexer, TColon(countmark(lexer.current, ":"))),
-		"@" => mk(lexer, TAt),
-		"#+" => mk(lexer, THashes(countmark(lexer.current, "#"))),
-		">" => mk(lexer, TGreater),
 
 		// tex-style ligatures or typing conventions
 		// use `' and ``'' for proper quotes
@@ -190,7 +186,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 
 		// basic escape sequences
 		"\\\\\\\\" => mk(lexer, TEscaped("\\")),
-		"\\\\([{}\\[\\]\\*:@#>`\\-\\$]|‒|―|‐|‑)" => mk(lexer, TEscaped(lexer.current.substr(1))),
+		"\\\\([{}\\[\\]\\*`\\-\\$]|‒|―|‐|‑)" => mk(lexer, TEscaped(lexer.current.substr(1))),
 		// more/special escaping
 		"\\\\^" => mk(lexer, TEscaped("'")),  // a way to specically type an ascii apostrophe
 		// not really an escape, but a special case no less
@@ -208,7 +204,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		// note 2:
 		// > 0xEF is used to exclude the BOM; other utf-8 chars
 		// > beginning with 0xEF are restored later
-		"([^ \t\r\n*{}\\[\\]\\\\#>@\\*:$\\-`'\\xE2\\xEF]|(\\xE2[^\\x80])|(\\xE2\\x80[^\\x90-\\x95])|(\\xEF[^\\xBB])|(\\xEF\\xBB[^\\xBF]))+" => mk(lexer, TWord(lexer.current))
+		"([^ \t\r\n{}\\[\\]\\\\\\*$\\-`'\\xE2\\xEF]|(\\xE2[^\\x80])|(\\xE2\\x80[^\\x90-\\x95])|(\\xEF[^\\xBB])|(\\xEF\\xBB[^\\xBF]))+" => mk(lexer, TWord(lexer.current))
 	];
 
 	public function new(bytes:haxe.io.Bytes, sourceName)

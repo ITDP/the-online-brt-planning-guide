@@ -2,8 +2,8 @@
 
 \section{ Basic Service Planning Concepts}
 
-> When I was young, I had to learn the fundamentals of basketball. You can have all the physical ability in the world, but you still have to know the fundamentals.
-@ Michael Jordan, former professional basketball player, 1963–
+\quotation{When I was young, I had to learn the fundamentals of basketball. You can have all the physical ability in the world, but you still have to know the fundamentals.}
+{Michael Jordan, former professional basketball player, 1963–}
 
 \subsection{ BRT Stations and Saturation}
 
@@ -60,7 +60,7 @@ system breakdown is considerable.
 
 A low saturation level, or a high level of service, means that there is a low likelihood of vehicles 
 waiting in a queue at a BRT stop. A high saturation level means that there will likely be long queues 
-at stopping bays. For saturation levels over one (x \> 1), the station will certainly have queues increasing 
+at stopping bays. For saturation levels over one ($$x > 1$$), the station will certainly have queues increasing 
 to the point where the system does not move until long after the peak is over. 
 
 \subsection{ Sub-Stops and Docking Bays}
