@@ -1,9 +1,14 @@
-1.0.0-alpha: (work in progress) ???
+2.0.0: (work in progress)
+ - first non-alpha release (the system is online, let's not keep this an eternal alpha)
+ - remove all vertical markdown syntax (`>@` for quotations, `#` for headings and `#FIG#` for figures)
  - ???
 
-0.0.2: ???
+1.0.0-alpha: Development version
+ - many additions
+
+0.0.2: Development version
  - total rewrite of the generator and the spec
- - ???
+ - many additions
 
 0.0.1: Proof on concept generator
 

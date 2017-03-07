@@ -2,8 +2,8 @@
 
 \section{ Implementation Phasing}
 
-> It is not always what we know or analyzed before we make a decision that makes it a great decision. It is what we do after we make the decision to implement and execute it that makes it a good decision.
-@ William Pollard, clergyman, 1828–93
+\quotation{It is not always what we know or analyzed before we make a decision that makes it a great decision. It is what we do after we make the decision to implement and execute it that makes it a good decision.}
+{William Pollard, clergyman, 1828–93}
 
 Preparation of implementation schedule is very important in deployment of IT systems for BRT. The aim 
 is to minimize the organizational/operational impacts, avoiding large-scale problems that frequently 

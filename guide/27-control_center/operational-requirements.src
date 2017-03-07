@@ -2,8 +2,8 @@
 
 \section{Operational Requirements}
 
-> The world is not to be put in order. The world is order. It is for us to put ourselves in unison with this order.
-@ Henry Miller, writer, 1891–1980
+\quotation{The world is not to be put in order. The world is order. It is for us to put ourselves in unison with this order.}
+{Henry Miller, writer, 1891–1980}
 
 For a BRT system that operates for a longer period than normal office hours, it might be required to 
 implement a shift system. In this case there would, however, still be some groups in the BRTMC that would 

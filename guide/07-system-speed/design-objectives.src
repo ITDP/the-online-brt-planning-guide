@@ -1,7 +1,7 @@
 \section{Design Objectives}
 
-> An optimist will tell you the glass is half-full; the pessimist, half-empty; and the engineer will tell you the glass is twice the size it needs to be.
-@ Anonymous
+\quotation{An optimist will tell you the glass is half-full; the pessimist, half-empty; and the engineer will tell you the glass is twice the size it needs to be.}
+{Anonymous}
 
 BRT projects seek to optimize one basic parameter: minimizing door-to-door travel time. Thus, to achieve 
 that goal, BRT must be designed and planned—including corridor selection, routes and service plan, and 
