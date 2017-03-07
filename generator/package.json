@@ -1,6 +1,6 @@
 {
   "name": "manu",
-  "version": "2.0.0-alpha",
+  "version": "2.0.0",
   "description": "manu – processor for the manuscript markup language",
   "repository": {
     "type": "git",
