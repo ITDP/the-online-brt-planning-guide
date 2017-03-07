@@ -1,7 +1,7 @@
 \section{ Estimating Demand with a Public Transport Model}
 
-> The best way to predict the future is to invent it.
-@ Immanuel Kant, philosopher, 1724–1804
+\quotation{The best way to predict the future is to invent it.}
+{Immanuel Kant, philosopher, 1724–1804}
 
 Aggregating boarding, alighting, and customer flows, as in the previous section, provide a useful “first
 cut” approach to demand estimation. However, this data does not provide information on where people wish
@@ -764,7 +764,7 @@ of OD pairs, each individual OD matrix will largely cover a different part of th
 be some overlap and therefore the risk of “double counting” trips will happen twice. The individual matrices
 will have some OD pairs with actual values, and some OD pairs with zero trips (Tables 4.10 and 4.11).
 
-\begintable{OD Matrix \#1 Eastbound Morogoro Road and United Nations Intersection}
+\begintable{OD Matrix #1 Eastbound Morogoro Road and United Nations Intersection}
 \header
 \col Origins
 \col Destinations
@@ -832,7 +832,7 @@ will have some OD pairs with actual values, and some OD pairs with zero trips (T
 \endtable
 
 
-\begintable{OD Matrix \#2 Southbound Old Bagamoyo Road and United Nations Intersection}
+\begintable{OD Matrix #2 Southbound Old Bagamoyo Road and United Nations Intersection}
 \header
 \col Origins
 \col Destinations

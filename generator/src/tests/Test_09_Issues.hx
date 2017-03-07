@@ -50,20 +50,25 @@ class Test_09_Issues {
 
 	public function test_possible_issue_with_unexpected_hashes()
 	{
-		Assert.raises(parse.bind("a#b"));
-		Assert.raises(parse.bind("a # b"));
+		parse("a#b");
+		parse("a # b");
+		Assert.pass();
 	}
 
-	public function test_issue_43()
+	public function test_issue_0043()
 	{
-		Assert.raises(parse.bind("a@b"));
+		parse("a@b");
+		Assert.pass();
 	}
 
-	public function test_issue_44()
+	public function test_issue_0044()
 	{
 		parse("\\item [a\n\nb]");
 		Assert.pass();
 	}
+
+	public function test_internal_0001()
+		Assert.raises(parse.bind("\\beginbox{foo}\\section{bar}\\endbox"));
 
 	public function new() {}
 }

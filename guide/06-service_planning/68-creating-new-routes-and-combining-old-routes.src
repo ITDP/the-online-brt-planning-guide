@@ -2,8 +2,8 @@
 
 \section{ Creating New Routes and Combining Old Routes}
 
-> The path is the goal.
-@ Mahatma Gandhi, political and spiritual leader, 1847–1948
+\quotation{The path is the goal.}
+{Mahatma Gandhi, political and spiritual leader, 1847–1948}
 
 There are two fairly typical problems of existing public transport routing that emerge for historical 
 reasons. One problem is that a traditional public transport market may have routes that run along a major 
@@ -39,9 +39,9 @@ could prove to be advantageous by avoiding the transfer penalty on as many custo
 An example of this can be seen from the BRT service planning for Ashland Avenue in Chicago. The bus 
 routes in Chicago mainly run north and south up the major arterials, or east and west on crosstown streets. 
 The city plans to build Gold or Silver-standard BRT infrastructure through both the Central Loop downtown 
-(Washington and Madison Streets) and along Ashland Avenue. One existing non-BRT bus route (\#20) runs 
-east-west connecting Ashland and points west to the Central Loop. Another bus route (\#9) runs north-south 
-on Ashland Avenue. The demand on Ashland from Route \#9 alone came nowhere near to saturating the planned 
+(Washington and Madison Streets) and along Ashland Avenue. One existing non-BRT bus route (#20) runs 
+east-west connecting Ashland and points west to the Central Loop. Another bus route (#9) runs north-south 
+on Ashland Avenue. The demand on Ashland from Route #9 alone came nowhere near to saturating the planned 
 BRT corridor, so tests were run to see if there would be any benefit in pulling additional demand onto 
 Ashland.
 
@@ -61,7 +61,7 @@ grid-pattern bus services will not optimally serve the demand when converted to 
 planning revealed that two L-shaped (top) and two S-shaped services (bottom) providing direct connections 
 between Ashland and the Central Loop could provide the optimal service improvement. Image}{ Pedro Szász.}
 
-In addition to recommending a BRT service to replace Route \#9 up and down Ashland, a southern “L” shaped 
+In addition to recommending a BRT service to replace Route #9 up and down Ashland, a southern “L” shaped 
 route was recommended connecting to the Central Loop BRT link, a northern “L” shaped route connecting 
 to the Central Loop BRT, and two “S” shaped routes, coming from the west, turning onto Ashland for a 
 stretch, and then turning again into the Central Loop, as shown above. 

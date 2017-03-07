@@ -143,11 +143,8 @@ class Test_04_Validation {
 		fails("\\volume{}", true, BlankValue("volume", "name"));
 		fails("\\chapter{}", true, BlankValue("chapter", "name"));
 		fails("\\section{}", true, BlankValue("section", "name"));
-		fails("# ", true, BlankValue("section", "name"));
 		fails("\\subsection{}", true, BlankValue("sub-section", "name"));
-		fails("## ", true, BlankValue("sub-section", "name"));
 		fails("\\subsubsection{}", true, BlankValue("sub-sub-section", "name"));
-		fails("### ", true, BlankValue("sub-sub-section", "name"));
 		fails("\\beginbox{}\\endbox", true, BlankValue("box", "name"));
 		fails("\\begintable{}\\header\\col a\\col b\\row\\col 1\\col b\\endtable", true, BlankValue("table", "caption"));
 		fails('\\begintable{}\\useimage{$png}\\endtable', true, BlankValue("table", "caption"));
@@ -155,8 +152,6 @@ class Test_04_Validation {
 		fails('\\figure{$png}{caption}{}', true, BlankValue("figure", "copyright"));
 		fails("\\quotation{a}{}", true, BlankValue("quotation", "author"));
 		fails("\\quotation{}{b}", true, BlankValue("quotation", "text"));
-		fails(">a@\n\nb", true, BlankValue("quotation", "author"));
-		fails(">@a\n\nb", true, BlankValue("quotation", "text"));
 
 		// TODO test empty path errors
 

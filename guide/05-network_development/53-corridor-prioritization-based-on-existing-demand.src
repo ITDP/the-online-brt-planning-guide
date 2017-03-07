@@ -2,8 +2,8 @@
 
 \section{Corridor Prioritization Based on Existing Demand}
 
-> Many roads lead to the path, but basically there are only two: reason and practice.
-@ Bodhidharma, Buddhist monk, 6th century
+\quotation{Many roads lead to the path, but basically there are only two: reason and practice.}
+{Bodhidharma, Buddhist monk, 6th century}
 
 Once both existing ridership and existing speed data have been mapped, the two datasets can be overlaid 
 so that there is one map showing where high demand and low speeds overlap. This is a good indication 

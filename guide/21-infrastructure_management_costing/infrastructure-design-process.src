@@ -1,7 +1,7 @@
 \section{ Infrastructure Design Process}
 
-> The designer has an obligation to provide an appropriate conceptual model for the way that the device works. It doesn't have to be completely accurate but it has to be sufficiently accurate that it will help in both the learning of the operation and also dealing with novel situations.
-@ Don Norman, scientist and psychologist, 1935–
+\quotation{The designer has an obligation to provide an appropriate conceptual model for the way that the device works. It doesn't have to be completely accurate but it has to be sufficiently accurate that it will help in both the learning of the operation and also dealing with novel situations.}
+{Don Norman, scientist and psychologist, 1935–}
 
 The design of the infrastructure takes place in three basic stages, though in practice it is often 
 more of an evolutionary process. In the first stage, conceptual designs will be developed based on the 

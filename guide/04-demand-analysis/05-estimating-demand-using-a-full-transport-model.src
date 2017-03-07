@@ -1,7 +1,7 @@
 \section{Estimating Demand Using a Full-Transport Model}
 
-> Those who have knowledge, don’t predict. Those who predict, don’t have knowledge.
-@ Lao Tzu, philosopher, 6th century BC
+\quotation{Those who have knowledge, don’t predict. Those who predict, don’t have knowledge.}
+{Lao Tzu, philosopher, 6th century BC}
 
 Most BRT systems in the world have been planned using only a public transport model, without having
 the full transportation system modeled. The lack of full modeling occurs because such modeling is only

@@ -6,7 +6,10 @@
 *.out
 *.pdf
 .generated
-generator/bin/
+generator/*.tgz
+generator/bin/*
 generator/dump/
-node_modules
+generator/node_modules
+
+!generator/bin/manu
 
