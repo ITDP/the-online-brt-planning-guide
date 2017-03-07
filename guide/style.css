@@ -304,10 +304,8 @@ td ul, th ul, td ol, th ol {
 /* equation */
 
 .equation {
-	padding: 24px 0;
-	background-color: #EEE;
-	border-radius: 2px;
-	font-size: 150%;
+	cursor: pointer;
+	cursor: zoom-in;
 }
 
 /* quotes */

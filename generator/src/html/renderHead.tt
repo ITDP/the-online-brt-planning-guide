@@ -8,13 +8,25 @@
 <!-- Jquery -->
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js" ></script>
 <!-- MathJax -->
+<!-- FIXME styling here instead of client css because of MathZoom inner workings -->
+<!-- FIXME missing blur on out of focus elements; can use "math zoomed" and "math unzommed" events but need a different structure -->
+<!-- BEWARE when testing: if you use MathJax menu to set the trigger, it overrides the settings in the menuSettings... if necessary, remove the mjx.menu cookie -->
 <script type="text/x-mathjax-config">
-	MathJax.Hub.Config({
-		tex2jax: {
-			ignoreClass: ".+",
-			processClass: "mathjax"
-		}
-	});
+MathJax.Hub.Config({
+  tex2jax: {
+    ignoreClass: ".+",
+    processClass: "mathjax"
+  },
+  menuSettings:{
+    zoom: "Click"
+  },
+  MathZoom: {
+    styles: {
+      "#MathJax_Zoom":{"z-index":"1000","cursor":"pointer","cursor":"zoom-out" },
+      "#MathJax_ZoomOverlay": {"opacity":"0.75","background":"rgba(127,127,127,0.75)","z-index":"999","cursor":"pointer","cursor":"zoom-out" }
+    }
+  }
+});
 </script>
 <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML" ></script>
 <!-- Google Fonts -->
