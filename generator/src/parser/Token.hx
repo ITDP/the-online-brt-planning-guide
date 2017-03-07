@@ -18,6 +18,7 @@ enum TokenDef {
 
 	// Unformated text
 	TWord(s:String);
+	TEscaped(s:String);
 
 	// Code and/or preformated text (inline)
 	TCode(s:String);

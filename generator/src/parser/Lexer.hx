@@ -156,8 +156,6 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 			mk(lexer, TCodeBlock(code), pos);
 		},
 
-		"\\\\\\\\" => mk(lexer, TWord("\\")),
-
 		"(\\\\[a-zA-Z][a-zA-Z0-9]*)" => mk(lexer, TCommand(lexer.current.substr(1))),
 
 		"{" => mk(lexer, TBrOpen),
@@ -186,9 +184,11 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"‐" => mk(lexer, TWord("-")),  // u2010 -> u002d
 		"‑" => mk(lexer, TWord("-")),  // u2011 -> u002d
 
-		"\\\\([{}\\[\\]\\*`\\-\\$]|‒|―|‐|‑)" => mk(lexer, TWord(lexer.current.substr(1))),
-		// more (special) escpaes
-		"\\\\^" => mk(lexer, TWord("'")),  // a way to specically type an ascii apostrophe
+		// basic escape sequences
+		"\\\\\\\\" => mk(lexer, TEscaped("\\")),
+		"\\\\([{}\\[\\]\\*`\\-\\$]|‒|―|‐|‑)" => mk(lexer, TEscaped(lexer.current.substr(1))),
+		// more/special escaping
+		"\\\\^" => mk(lexer, TEscaped("'")),  // a way to specically type an ascii apostrophe
 		// not really an escape, but a special case no less
 		"$" => mk(lexer, TWord(lexer.current)),
 

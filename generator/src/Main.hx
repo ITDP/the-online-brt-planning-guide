@@ -137,11 +137,14 @@ class Main {
 		} catch (e:hxparse.UnexpectedChar) {
 			print(ANSI.set(Bold,Red));
 			if (Context.debug) print("Lexer ");
+			var cpos = e.pos.toPosition();
+			cpos.max = cpos.min + e.char.length;  // hxparse.UnexpectedChar generates 0 length positions
+			var hl = cpos.highlight(80).renderHighlight(Context.hlmode).split("\n");
 			println('ERROR: Unexpected character `${e.char}`');
 			print(ANSI.set(Off));
-			println('  at ${e.pos.toPosition().toString()}');
+			println('  at ${cpos.toString()}');
+			println("    " + hl.join("\n    "));
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
-			printTimers();
 			exit(2);
 		} catch (e:parser.ParserError) {
 			print(ANSI.set(Bold,Red));

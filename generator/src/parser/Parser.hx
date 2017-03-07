@@ -185,7 +185,7 @@ class Parser {
 			null;
 		case { def:tdef } if (stop.beforeAny != null && Lambda.exists(stop.beforeAny,Type.enumEq.bind(tdef))):
 			null;
-		case { def:TWord(s), pos:pos }:
+		case { def:TWord(s)|TEscaped(s), pos:pos }:
 			pop();
 			mk(Word(s), pos);
 		case { def:TMath(tex), pos:pos }:
@@ -241,7 +241,7 @@ class Parser {
 				break;
 			case { def:TComment(_) }:
 				pop();
-			case { def:TWord(w) }:
+			case { def:TWord(w)|TEscaped(w) }:
 				pop();
 				buf.add(w);
 			case { src:src, pos:pos }:
@@ -512,7 +512,7 @@ class Parser {
 			}
 		case TCodeBlock(c):
 			mk(CodeBlock(c), pop().pos);
-		case TWord(_), TAsterisk, TCode(_), TMath(_):
+		case TWord(_), TEscaped(_), TAsterisk, TCode(_), TMath(_):
 			paragraph(stop);
 		case _:
 			unexpected(peek());
