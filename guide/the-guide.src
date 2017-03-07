@@ -64,8 +64,9 @@ Fortunately for cities, the technology for providing high-quality public transpo
 \include{11-the-case-for-marketing-and-customer-service/00-the-case-for-marketing-and-customer-service.src}
 
 \volume{Business Plan}
-
 \include{volume-4-landing-page.txt}
+\include{12-institutional-planning/00-institutional-planning.manu}
+
 
 \volume{Technology}
 \include{volume-5-landing-page.txt}
