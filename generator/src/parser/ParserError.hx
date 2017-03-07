@@ -43,6 +43,8 @@ class ParserError extends GenericError {
 				'Unexpected math';
 			case TWord(_):
 				'Unexpected word';
+			case TEscaped(_):
+				'Unexpected escape sequence';
 			case TCode(_), TCodeBlock(_):
 				'Unexpected code excerpt ($def)';
 			case TCommand(name):

@@ -96,7 +96,7 @@ class Test_02_Lexer {
 
 		Assert.same([TAsterisk, TWord("foo"), TAsterisk, TEof], defs("*foo*"));
 		Assert.same([TAsterisk, TAsterisk, TWord("foo"), TAsterisk, TAsterisk, TAsterisk, TAsterisk, TAsterisk, TEof], defs("**foo*****"));
-		Assert.same([TWord("foo"), TAsterisk, TWord("*"), TEof], defs("foo*\\*"));
+		Assert.same([TWord("foo"), TAsterisk, TEscaped("*"), TEof], defs("foo*\\*"));
 
 		Assert.same([TGreater, TEof], defs(">"));
 		Assert.same([TGreater, TWord("foo"), TAt, TWord("Bar"), TEof], defs(">foo@Bar"));
@@ -119,33 +119,33 @@ class Test_02_Lexer {
 	{
 		Assert.raises(defs.bind("\\"));
 
-		Assert.same([TWord("\\"), TEof], defs("\\\\"));
-		Assert.same([TWord("{"), TEof], defs("\\{"));
-		Assert.same([TWord("}"), TEof], defs("\\}"));
-		Assert.same([TWord("["), TEof], defs("\\["));
-		Assert.same([TWord("]"), TEof], defs("\\]"));
-		Assert.same([TWord("*"), TEof], defs("\\*"));
-		Assert.same([TWord(":"), TEof], defs("\\:"));
-		Assert.same([TWord("@"), TEof], defs("\\@"));
-		Assert.same([TWord("#"), TEof], defs("\\#"));
-		Assert.same([TWord(">"), TEof], defs("\\>"));
-		Assert.same([TWord("`"), TEof], defs("\\`"));
-		Assert.same([TWord("-"), TEof], defs("\\-"));
-		Assert.same([TWord("$"), TEof], defs("\\$"));
-		Assert.same([TWord("‒"), TEof], defs("\\‒"));
-		Assert.same([TWord("―"), TEof], defs("\\―"));
-		Assert.same([TWord("‐"), TEof], defs("\\‐"));
-		Assert.same([TWord("‑"), TEof], defs("\\‑"));
+		Assert.same([TEscaped("\\"), TEof], defs("\\\\"));
+		Assert.same([TEscaped("{"), TEof], defs("\\{"));
+		Assert.same([TEscaped("}"), TEof], defs("\\}"));
+		Assert.same([TEscaped("["), TEof], defs("\\["));
+		Assert.same([TEscaped("]"), TEof], defs("\\]"));
+		Assert.same([TEscaped("*"), TEof], defs("\\*"));
+		Assert.same([TEscaped(":"), TEof], defs("\\:"));
+		Assert.same([TEscaped("@"), TEof], defs("\\@"));
+		Assert.same([TEscaped("#"), TEof], defs("\\#"));
+		Assert.same([TEscaped(">"), TEof], defs("\\>"));
+		Assert.same([TEscaped("`"), TEof], defs("\\`"));
+		Assert.same([TEscaped("-"), TEof], defs("\\-"));
+		Assert.same([TEscaped("$"), TEof], defs("\\$"));
+		Assert.same([TEscaped("‒"), TEof], defs("\\‒"));
+		Assert.same([TEscaped("―"), TEof], defs("\\―"));
+		Assert.same([TEscaped("‐"), TEof], defs("\\‐"));
+		Assert.same([TEscaped("‑"), TEof], defs("\\‑"));
 
 		// special cases
 		Assert.same([TWord("’"), TEof], defs("'"));  // this is usually enough
-		Assert.same([TWord("'"), TEof], defs('\\^'));  // should only be needed for paths: joe's => joe\^s
+		Assert.same([TEscaped("'"), TEof], defs('\\^'));  // should only be needed for paths: joe's => joe\^s
 
 		// just in case
-		Assert.same([TWord("\\"), TCommand("foo"), TEof], defs("\\\\\\foo"));
-		Assert.same([TWord("\\"), TWord("’"), TEof], defs("\\\\'"));
-		Assert.same([TWord("\\"), TWord("code!"), TEof], defs("\\\\code!"));
-		Assert.same([TWord("\\"), TWord("codeblock!"), TWordSpace("\n"), TWord("foo"), TWordSpace("\n"), TWord("!"), TWordSpace("\n"), TEof], defs("\\\\codeblock!\nfoo\n!\n"));
+		Assert.same([TEscaped("\\"), TCommand("foo"), TEof], defs("\\\\\\foo"));
+		Assert.same([TEscaped("\\"), TWord("’"), TEof], defs("\\\\'"));
+		Assert.same([TEscaped("\\"), TWord("code!"), TEof], defs("\\\\code!"));
+		Assert.same([TEscaped("\\"), TWord("codeblock!"), TWordSpace("\n"), TWord("foo"), TWordSpace("\n"), TWord("!"), TWordSpace("\n"), TEof], defs("\\\\codeblock!\nfoo\n!\n"));
 	}
 
 	public function test_008_dash_treatment()
