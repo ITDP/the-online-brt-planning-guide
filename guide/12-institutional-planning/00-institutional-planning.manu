@@ -28,10 +28,10 @@ research will be able to link these differences to empirically observable differ
 and eventually articulate clearer guidance with respect to best practices. Setting up the right institutional
 structure for a BRT system should start with understanding the key functions of a BRT system.
 
-\include{121-basic-brt-functions.src}
-\include{122-initial-brt-project-office.src}
-\include{123-long-term-institutional-structure-for-brt-management.src}
-\include{124-alternative-institutional-structures-for-brt-system-management.src}
-\include{125-conclusion.src}
-\include{bibliography.src}
+\include{01-basic-brt-functions.manu}
+\include{02-initial-brt-project-office.manu}
+\include{03-long-term-institutional-structure-for-brt-management.manu}
+\include{04-alternative-institutional-structures-for-brt-system-management.manu}
+\include{05-conclusion.manu}
+\include{06-bibliography.manu}
 

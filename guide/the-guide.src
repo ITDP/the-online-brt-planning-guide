@@ -65,7 +65,7 @@ Fortunately for cities, the technology for providing high-quality public transpo
 
 \volume{Business Plan}
 \include{volume-4-landing-page.txt}
-\include{12-institutional-planning/institutional-planning.src}
+\include{12-institutional-planning/00-institutional-planning.manu}
 
 
 \volume{Technology}
