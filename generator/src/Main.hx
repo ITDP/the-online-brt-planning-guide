@@ -24,6 +24,7 @@ class Main {
 		Usage:
 		  manu generate <input file> <output dir>
 		  manu statistics ... (run `manu statistics --help` for more)
+		  manu asset-server ... (run `manu asset-server --help` for more)
 		  manu unit-tests
 		  manu --version
 		  manu --help".doctrim();
@@ -100,11 +101,14 @@ class Main {
 	static function main()
 	{
 		print(ANSI.set(Bold) + BANNER + "\n\n" + ANSI.set(Off));
-		Context.debug = Sys.getEnv("DEBUG") == "1";
-		Context.draft = Sys.getEnv("DRAFT") == "1";
-        if (Context.debug) println('ANSI escape codes are ${ANSI.available ? "enabled" : "disabled"}');
+
+		Context.debug = Context.debug;
+		Context.draft = Context.draft;
+		if (Context.debug)
+			println('ANSI escape codes are ${ANSI.available ? "enabled" : "disabled"}');
 		if (ANSI.available)
 			Context.hlmode = AnsiEscapes(ANSI.set(Bold,Red), ANSI.set(Off));
+
 		Context.prepareSourceMaps();
 		Assertion.enableShow = Context.debug;
 		Assertion.enableWeakAssert = Context.debug;
@@ -118,6 +122,8 @@ class Main {
 				generate(ipath, opath);
 			case _[0] => cmd if (cmd != null && StringTools.startsWith("statistics", cmd)):
 				tools.Stats.run(args.slice(1));
+			case _[0] => cmd if (cmd != null && StringTools.startsWith("asset-server", cmd)):
+				tools.AssetServer.run(args.slice(1));
 			case [cmd] if (StringTools.startsWith("unit-tests", cmd)):
 				tests.RunAll.runAll();
 			case ["--version"]:
@@ -131,11 +137,14 @@ class Main {
 		} catch (e:hxparse.UnexpectedChar) {
 			print(ANSI.set(Bold,Red));
 			if (Context.debug) print("Lexer ");
+			var cpos = e.pos.toPosition();
+			cpos.max = cpos.min + e.char.length;  // hxparse.UnexpectedChar generates 0 length positions
+			var hl = cpos.highlight(80).renderHighlight(Context.hlmode).split("\n");
 			println('ERROR: Unexpected character `${e.char}`');
 			print(ANSI.set(Off));
-			println('  at ${e.pos.toPosition().toString()}');
+			println('  at ${cpos.toString()}');
+			println("    " + hl.join("\n    "));
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
-			printTimers();
 			exit(2);
 		} catch (e:parser.ParserError) {
 			print(ANSI.set(Bold,Red));

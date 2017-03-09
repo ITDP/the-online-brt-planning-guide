@@ -4,7 +4,7 @@
   <output>
     <movie outputType="CustomBuild" />
     <movie input="" />
-    <movie path="bin\unit-tests.n" />
+    <movie path="bin\manu.js" />
     <movie fps="0" />
     <movie width="0" />
     <movie height="0" />
@@ -30,12 +30,16 @@
   </build>
   <!-- haxelib libraries -->
   <haxelib>
-    <library name="hxparse" />
-    <library name="assertion" />
-    <library name="literals" />
-    <library name="sys-utils" />
-    <library name="version" />
-    <library name="tink_template" />
+    <library name="utest"/>
+    <library name="hxparse"/>
+    <library name="assertion"/>
+    <library name="literals"/>
+    <library name="sys-utils"/>
+    <library name="version"/>
+    <library name="tink_template"/>
+    <library name="utest"/>
+    <library name="hxnodejs"/>
+    <library name="ansi"/>
   </haxelib>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>

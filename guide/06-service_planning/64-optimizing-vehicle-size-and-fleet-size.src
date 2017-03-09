@@ -1125,7 +1125,7 @@ Eq. 6.21b
 
 $$ \text{Fleet}_\text{route} = {\text{MaxLoadperCycle}_\text{route} \over {\text{VSize} * \text{LoadFactor}}} $$
 
-$$ \text{Fleet}_\text{route} = {\\text{MaxLoad} * TC * [ 1 - \text{PHtoCC} * (\text{TC} -1) ] \over {\text{VSize} * \text{LoadFactor}}} $$
+$$ \text{Fleet}_\text{route} = {\text{MaxLoad} * TC * [ 1 - \text{PHtoCC} * (\text{TC} -1) ] \over {\text{VSize} * \text{LoadFactor}}} $$
 
 Where:
 \item $$ \text{Fleet}_\text{route}$$: Number of buses needed to serve the route;

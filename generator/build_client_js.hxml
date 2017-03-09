@@ -1,0 +1,16 @@
+# --times
+# -D macro-times
+# -D dump=pretty
+
+# reference tink_template here simply to avoid a bug were the compilation
+# server would start failing when it's included in one build but not on the
+# other one
+-lib tink_template
+
+.libs_client_js.hxml
+.cp.hxml
+
+# Client JS code
+-main html.script.Main
+-js bin/bundle/html.js
+

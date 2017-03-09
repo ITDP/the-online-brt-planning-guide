@@ -119,7 +119,7 @@ class LargeTable {
 		return icost;
 	}
 
-	public static function gen(v:DElem, id:String, gen:Generator, genAt:String, genIdc:IdCtx)
+	public static function gen(v:DElem, id:String, gen:Generator, genAt:Array<String>, genIdc:IdCtx)
 	{
 		assert(v.def.match(DTable(_)), v);
 		switch v.def {
