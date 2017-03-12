@@ -2,8 +2,8 @@
 
 \section{ Deciding on Stop Elimination and Express Services }
 
-> If you want a happy ending that depends, of course, on where you stop your story.
-@ Orson Welles, actor, director, producer, and writer, 1915–1985
+\quotation{If you want a happy ending that depends, of course, on where you stop your story.}
+{Orson Welles, actor, director, producer, and writer, 1915–1985}
 
 This section addresses the question of whether a new BRT service should retain the same stations as 
 preexisting services, and whether limited-stop services should be created. Creating limited-stop services 
@@ -799,8 +799,8 @@ total number of trips is similar to the previous examples.
 Two options are tested to illustrate some general principles, correspondent 
 boarding, alighting, and loads are shown in Table 6.44 where the stations highlighted in red would be 
 both limited and local stops, while the stations in gray would be served only by the local service.
-\item One limited-stop service that stops only at the high volume stations, \#1, \#7, \#13, \#19, and \#25. 
-\item One limited-stop service that stops at \#1–7, then \#13, then \#19–25. 
+\item One limited-stop service that stops only at the high volume stations, #1, #7, #13, #19, and #25. 
+\item One limited-stop service that stops at #1–7, then #13, then #19–25. 
 
 \begintable{Boardings, Alightings, and Load Comparison between Varying Service Patterns for Clustered 
 Demand Example}

@@ -1,7 +1,7 @@
 \section{Basic Methods for Estimating Public Transport Demand}
 
-> Computers are useless. They can only give you answers.
-@ Pablo Picasso, artist, 1881–1973
+\quotation{Computers are useless. They can only give you answers.}
+{Pablo Picasso, artist, 1881–1973}
 
 The proper data processing of an appropriate sample size, with a few inference models, shall be enough
 to describe the demand of the current public transport system in the influence area of the BRT system.
@@ -14,7 +14,7 @@ on each existing bus route, and how many customers are boarding and alighting at
 
 \figure[medium]{assets/image15.png}{Aggregate data for boarding and alighting at current bus stops, allocated
 to future Guangzhou BRT stations (passengers per hour) in May 2009. (The system opened in February 2010.)}
-{ ITDP.}
+{ITDP.}
 
 This is done by simply adding up the boarding and alighting numbers from each of the bus routes at
 each stop, and calculating the onboard customers along each link. For cities that do not have defined
@@ -171,7 +171,7 @@ consider only the vehicle mix on each corridor and the level of congestion on th
 \col Type of BRT Corridor
 \col Projected Modal-Shift Impact from Private Vehicles
 \row
-\col Little congestion, buses \> 30 percent of the vehicle fleet
+\col Little congestion, buses > 30 percent of the vehicle fleet
 \col 5 percent
 \row
 \col Some congestion, buses around 25 percent of vehicle fleet
