@@ -20,7 +20,6 @@ If you are interested in editing the guide or have comments, please email brtgui
 
 You can find the Table of Contents essentially on the left - in the left-side menu. Click on a volume title and it will expand with the chapters beneath it, while taking you to the landing page for that volume. To go to a particular chapter, click on the chapter name in the left-side menu. And to get to the different subsections, you click on those in the menu as well. On the top you can see the "breadcrumbs" - or the path you have taken within the guide.
 
-
 \highlight{Introduction}
 
 Cities are faced with the tremendous challenge of providing residents access to jobs, education, and public services, all while not exhausting the finite environmental, social, and economic resources available to them. At the same time, just over half of all people currently live in cities, and that proportion is projected to grow to two thirds of the global population by 2050. Further, the challenges of providing access and mobility to a growing population are only compounded more by the ramifications of climate change, which are not distributed equitably, as well as growing disparity and inequity globally. Fortunately, leaders at international, national, and city levels have turned a corner, as seen with the Paris Climate Agreement and Habitat III, to not just strive towards sustainable and equitable transport, but actively set goals, take action, and hold themselves accountable.
@@ -37,88 +36,65 @@ The chapters of the guide are grouped in the following volumes: Volume I: Projec
 
 Fortunately for cities, the technology for providing high-quality public transport have been developed, tested, and documented in cities around the world. It is instead the political will and planning processes that need to be developed to push past auto-centric development in which cities have become gridlocked. Using these building blocks of BRT, this guide hopes to provide parties delivering public transport services to urban areas a process with step-by-step documentation. This audience includes municipal planning professionals, planning consultants, as well as non-governmental organizations and civic organizations involved in transport, environment, and community development. Other potential stakeholders include business groups, regional and national government agencies, and international development organizations. With proper planning and investment, high-quality BRT can help mitigate the effects of climate change and catalyze the movement towards a more livable and sustainable scale of development for all people.
 
+
 \volume{Project Preparation}
-
 \include{volume-1-landing-page.txt}
-
 \include{01-project-initiation-and-set-up/00-project-initiation.src}
-\meta\reset{chapter}{2}  \' skip to chapter 3 '\
+\meta\reset{chapter}{2}  \' TODO missing chapter 2, skip to chapter 3 '\
 \include{03-project/00-project-set-up.src}
 
+
 \volume{Operations}
-
 \include{volume-2-landing-page.txt}
-
 \include{04-demand-analysis/00-demand-analysis.src}
 \include{05-network_development/00-corridor-and-network-development.src}
 \include{06-service_planning/service-planning.src}
 \include{07-system-speed/system-speed-and-capacity.src}
 \include{08-traffic-impact-assessment/00-traffic-impact-assessment.src}
 
+
 \volume{Communications and Marketing}
-
 \include{volume-3-landing-page.txt}
-
 \include{09-strategic-planning-for-communications/00-strategic-planning-for-communications.src}
 \include{10-public-participation/00-public-participation.src}
 \include{11-the-case-for-marketing-and-customer-service/00-the-case-for-marketing-and-customer-service.src}
 
+
 \volume{Business Plan}
 \include{volume-4-landing-page.txt}
 \include{12-institutional-planning/00-institutional-planning.manu}
-
-
 \include{13-business-structure/00-business-structure.manu}
+\meta\reset{chapter}{17} \' TODO missing part of volume 4, up to chapter 17 '\
+
 
 \volume{Technology}
 \include{volume-5-landing-page.txt}
-
-\meta\reset{chapter}{17} \' skip to chapter 18 '\
 \include{18-fare_systems/fare-systems.src}
-
 \include{19-technology\technology.src}
-
 \include{20-vehicles/vehicles.src}
 
 
 \volume{Infrastructure}
-
 \include{volume-6-landing-page.txt}
-
-
 \include{21-infrastructure_management_costing/infrastructure-management-and-costing.src}
-
-\meta\reset{chapter}{22}  \' skip to chapter 23 '\
+\meta\reset{chapter}{22}  \' TODO missing chapter 22, skip to chapter 23 '\
 \include{roadway-design/roadway-design.src}
-
 \include{24-intersections_and_signal_control/intersections-and-signal-control.src}
-
-
-\meta\reset{chapter}{25} \' skip to chapter 26 '\
+\meta\reset{chapter}{25} \' TODO missing chapter 25, skip to chapter 26 '\
 \include{26-depots\depots.src}
-
 \include{27-control_center\control-center.src}
 
 
-
-
 \volume{Integration}
-
 \include{volume-7-landing-page.txt}
-\meta\reset{chapter}{28}  \' skip to chapter 29 '\
+\meta\reset{chapter}{28}  \' TODO missing chapter 28, skip to chapter 29 '\
 \include{pedestrian-access/pedestrian-access.src}
-
-\meta\reset{chapter}{29} \' skip to chapter 30 '\
 \include{30-universal_access\universal-access.src}
-
 \include{31-bicycle_predicab_integration/bicycle-and-predicab-integration.src}
-
 \include{32-transportation_demand_management/transportation-demand-management-tdm.src}
+\meta\reset{chapter}{33}  \' TODO missing chapter 33 '\
 
 \volume{Meta}
-
 There should be some introductory text here on this volume.
-
-
-\meta\reset{chapter}{33}  \' contributing should be the last volume and chapters '\
 \include{34-manual-for-collaboration/00-manual-for-collaboration.src}
+
