@@ -90,11 +90,12 @@ The principal components of this consensus are each discussed in turn in this ch
 \number Multiple vehicle operators on each BRT corridor;
 \number Quality of service contracting.
 
-\include{131-private-brt-operations.src}
-\include{132-brt-operating-contract-types.src}
-\include{133-competitive-tendering.src}
-\include{134-competition-within-the-brt-market.src}
-\include{135-quality-of-service-contracts.src}
-\include{136-duration-of-concession-contracts.src}
-\include{137-the-tendering-process.src}
-\include{bibliography.src}
+\include{01-private-brt-operations.manu}
+\include{02-brt-operating-contract-types.manu}
+\include{03-competitive-tendering.manu}
+\include{04-competition-within-the-brt-market.manu}
+\include{05-quality-of-service-contracts.manu}
+\include{06-duration-of-concession-contracts.manu}
+\include{07-the-tendering-process.manu}
+\include{08-bibliography.manu}
+
