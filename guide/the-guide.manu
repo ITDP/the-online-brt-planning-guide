@@ -78,7 +78,7 @@ Fortunately for cities, the technology for providing high-quality public transpo
 \include{volume-6-landing-page.manu}
 \include{21-infrastructure_management_costing/infrastructure-management-and-costing.manu}
 \meta\reset{chapter}{22}  \' TODO missing chapter 22, skip to chapter 23 '\
-\include{roadway-design/roadway-design.manu}
+\include{23-roadway-design/roadway-design.manu}
 \include{24-intersections_and_signal_control/intersections-and-signal-control.manu}
 \meta\reset{chapter}{25} \' TODO missing chapter 25, skip to chapter 26 '\
 \include{26-depots\depots.manu}
@@ -88,7 +88,7 @@ Fortunately for cities, the technology for providing high-quality public transpo
 \volume{Integration}
 \include{volume-7-landing-page.manu}
 \meta\reset{chapter}{28}  \' TODO missing chapter 28, skip to chapter 29 '\
-\include{pedestrian-access/pedestrian-access.manu}
+\include{29-pedestrian-access/pedestrian-access.manu}
 \include{30-universal_access\universal-access.manu}
 \include{31-bicycle_predicab_integration/bicycle-and-predicab-integration.manu}
 \include{32-transportation_demand_management/transportation-demand-management-tdm.manu}
