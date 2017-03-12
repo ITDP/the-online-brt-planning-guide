@@ -48,12 +48,12 @@ The topics discussed in this chapter are:
 \item Creating New Routes and Combining Old Routes;
 \item Pulling Services onto a BRT Trunk Corridor from a Parallel Corridor.
 
-\include{61-introduction.src}
-\include{62-basic-data-collection.src}
-\include{63-basic-service-planning-concepts.src}
-\include{64-optimizing-vehicle-size-and-fleet-size.src}
-\include{65-determining-which-routes-to-include-inside-brt-infrastructure.src}
-\include{66-direct-services,-trunk-and-feeder-services,-or-hybrids.src}
-\include{67-deciding-on-stop-elimination-and-express-services.src}
-\include{68-creating-new-routes-and-combining-old-routes.src}
-\include{69-pulling-services-onto-a-brt-trunk-corridor-from-a-parallel-corridor.src}
+\include{61-introduction.manu}
+\include{62-basic-data-collection.manu}
+\include{63-basic-service-planning-concepts.manu}
+\include{64-optimizing-vehicle-size-and-fleet-size.manu}
+\include{65-determining-which-routes-to-include-inside-brt-infrastructure.manu}
+\include{66-direct-services,-trunk-and-feeder-services,-or-hybrids.manu}
+\include{67-deciding-on-stop-elimination-and-express-services.manu}
+\include{68-creating-new-routes-and-combining-old-routes.manu}
+\include{69-pulling-services-onto-a-brt-trunk-corridor-from-a-parallel-corridor.manu}

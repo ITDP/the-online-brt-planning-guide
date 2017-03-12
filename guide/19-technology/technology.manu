@@ -36,12 +36,12 @@ to the World Bank Toolkit on Intelligent Transport Systems.
 \col *Surveillance Systems*
 \col \item Ensures station security.
 \endtable
-\include{191-vehicle-tracking.src}
-\include{192-customer-information.src}
-\include{fare-collection.src}
-\include{194-signal-control.src}
-\include{195-surveillance.src}
-\include{196-management-information-system.src}
-\include{197-planning-and-implementation-for-it-systems.src}
-\include{198-implementation-phasing.src}
-\include{199-monitoring-and-evaluation.src}
+\include{191-vehicle-tracking.manu}
+\include{192-customer-information.manu}
+\include{fare-collection.manu}
+\include{194-signal-control.manu}
+\include{195-surveillance.manu}
+\include{196-management-information-system.manu}
+\include{197-planning-and-implementation-for-it-systems.manu}
+\include{198-implementation-phasing.manu}
+\include{199-monitoring-and-evaluation.manu}

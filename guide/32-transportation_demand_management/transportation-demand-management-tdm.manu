@@ -53,7 +53,7 @@ The following provides an overview of TDM strategies that can be particularly ef
 improving the efficiency of regional transportation systems, but also in enhancing the benefits of BRT
 and similar public transport investments.
 
-\include{cost-based-strategies.src}
-\include{supply-based-strategies.src}
-\include{supportive-strategies.src}
-\include{case-studies.src}
+\include{cost-based-strategies.manu}
+\include{supply-based-strategies.manu}
+\include{supportive-strategies.manu}
+\include{case-studies.manu}

@@ -95,10 +95,10 @@ thus requiring more infrastructure and fleet than necessary and exaggerating rev
 of demand, thus limiting the performance and success of the BRT system. Section 4.6 discusses these issues
 and suggests a few ways to handle them.
 
-\include{01-overview-of-demand-analysis.src}
-\include{02-data-collection.src}
-\include{03-basic-methods-for-estimating-public-transport-demand.src}
-\include{04-estimating-demand-with-a-public-transport-model.src}
-\include{05-estimating-demand-using-a-full-transport-model.src}
-\include{06-risk-and-uncertainty.src}
-\include{07-conclusion.src}
+\include{01-overview-of-demand-analysis.manu}
+\include{02-data-collection.manu}
+\include{03-basic-methods-for-estimating-public-transport-demand.manu}
+\include{04-estimating-demand-with-a-public-transport-model.manu}
+\include{05-estimating-demand-using-a-full-transport-model.manu}
+\include{06-risk-and-uncertainty.manu}
+\include{07-conclusion.manu}

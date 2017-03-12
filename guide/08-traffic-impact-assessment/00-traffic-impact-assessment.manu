@@ -43,10 +43,10 @@ and roadways, both capacity and speed of the road for mixed traffic and buses im
 Conditions for pedestrians were also greatly improved, with customers waiting in the station rather than
 on the side of the road.}{ Duan Xiaomei, GMEDRI}
 
-\include{81-requirements-for-a-traffic-impact-assessment.src}
-\include{82-data-needs.src}
-\include{83-study-area-and-extent-of-assessment.src}
-\include{84-level-of-analysis.src}
-\include{85-estimating-traffic-volumes.src}
-\include{86-methodologies-and-performance-measures.src}
-\include{87-mitigation.src}
+\include{81-requirements-for-a-traffic-impact-assessment.manu}
+\include{82-data-needs.manu}
+\include{83-study-area-and-extent-of-assessment.manu}
+\include{84-level-of-analysis.manu}
+\include{85-estimating-traffic-volumes.manu}
+\include{86-methodologies-and-performance-measures.manu}
+\include{87-mitigation.manu}

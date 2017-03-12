@@ -24,8 +24,8 @@ the dot files have configuration information
 
 The content in the guide
 
-At the moment, the entry point of processing is in the file guide/the-guide.src,
-where other files are pointed with the \code!\include{point/to/other/file.src}! command.
+At the moment, the entry point of processing is in the file guide/the-guide.manu,
+where other files are pointed with the \code!\include{point/to/other/file.manu}! command.
 A user manual on how to contribute and of the supported syntax is being developed in the chapter
 called Manual for Collaboration.
 

@@ -10,10 +10,10 @@ elements using an infrastructure cost calculator. The cost of maintaining the in
 by means of an infrastructure maintenance cost calculator (as detailed in Section 21.4.2), whereby life-cycle
 costing of infrastructure elements or materials can be evaluated.
 
-\include{infrastructure-components.src}
-\include{infrastructure-design-process.src}
-\include{213-project-management-of-the-design-process.src}
-\include{214-infrastructure-costing.src}
-\include{appendix-a-bogotas-land-acquisition-process.src}
-\include{appendix-b-brt-infrastructure-maintenance-cost-calculator.src}
-\include{appendix-c-yichang-brt-project-investment-cost-estimates.src}
+\include{infrastructure-components.manu}
+\include{infrastructure-design-process.manu}
+\include{213-project-management-of-the-design-process.manu}
+\include{214-infrastructure-costing.manu}
+\include{appendix-a-bogotas-land-acquisition-process.manu}
+\include{appendix-b-brt-infrastructure-maintenance-cost-calculator.manu}
+\include{appendix-c-yichang-brt-project-investment-cost-estimates.manu}

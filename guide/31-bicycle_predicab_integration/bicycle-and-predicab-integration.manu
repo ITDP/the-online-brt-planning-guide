@@ -12,6 +12,6 @@ available modes, costs, and familiarity with different modes. There are certain 
 more time- and cost-effective for cyclists to continue to their destinations without using public transport.
 A complete system of bicycle infrastructure and parking allows for the individual to make the best decision.
 
-\include{311-bicycle-network.src}
-\include{312-bicycle-infrastructure.src}
-\include{313-bicycle-systems.src}
+\include{311-bicycle-network.manu}
+\include{312-bicycle-infrastructure.manu}
+\include{313-bicycle-systems.manu}

@@ -20,13 +20,13 @@ not adequately adapted to existing infrastructure and operational needs, like ac
 
 
 \figure[medium]{assets/image1.jpeg}{Control Center in Lanzhou, China.}{ Karl Fjellstrom, Far East BRT.}
-\include{development-of-the-traffic-management-center-concept.src}
-\include{the-brtmc.src}
-\include{273brt-stakeholders.src}
-\include{location-of-brtmc.src}
-\include{staffing-of-the-brtmc.src}
-\include{floor-space-requirements.src}
-\include{layout-and-site-planning.src}
-\include{building-requirements.src}
-\include{costing.src}
-\include{operational-requirements.src}
+\include{development-of-the-traffic-management-center-concept.manu}
+\include{the-brtmc.manu}
+\include{273brt-stakeholders.manu}
+\include{location-of-brtmc.manu}
+\include{staffing-of-the-brtmc.manu}
+\include{floor-space-requirements.manu}
+\include{layout-and-site-planning.manu}
+\include{building-requirements.manu}
+\include{costing.manu}
+\include{operational-requirements.manu}

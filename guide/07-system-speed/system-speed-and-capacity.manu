@@ -25,10 +25,10 @@ the concept of station saturation; and the fourth section provides the equation 
 and capacity for a proposed solution. The last two sections consider the effects of basic features on
 system capacity and speed.
 
-\include{design-objectives.src}
-\include{the-process-of-designing-high-capacity-and-high-speed-brt-corridors.src}
-\include{understanding-station-saturation.src}
-\include{calculating-corridor-capacity.src}
-\include{expanding-corridor-capacity.src}
-\include{optimizing-the-station-to-vehicle-interface.src}
-\include{route-distribution-among-multiple-sub-stops.src}
+\include{design-objectives.manu}
+\include{the-process-of-designing-high-capacity-and-high-speed-brt-corridors.manu}
+\include{understanding-station-saturation.manu}
+\include{calculating-corridor-capacity.manu}
+\include{expanding-corridor-capacity.manu}
+\include{optimizing-the-station-to-vehicle-interface.manu}
+\include{route-distribution-among-multiple-sub-stops.manu}

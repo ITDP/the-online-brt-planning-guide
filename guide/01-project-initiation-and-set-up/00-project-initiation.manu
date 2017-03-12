@@ -40,8 +40,8 @@ of public transport operations. The topics discussed in this chapter are:
 \item Barriers to Project Development;
 \item Understanding and Presenting the Benefits.
 
-\include{11project-catalyst.src}
-\include{12political-commitment.src}
-\include{13statement-of-vision.src}
-\include{14-barriers-to-project-development.src}
-\include{15-understanding-and-presenting-the-benefits.src}
+\include{11project-catalyst.manu}
+\include{12political-commitment.manu}
+\include{13statement-of-vision.manu}
+\include{14-barriers-to-project-development.manu}
+\include{15-understanding-and-presenting-the-benefits.manu}

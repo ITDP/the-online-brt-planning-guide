@@ -42,14 +42,14 @@ technology? Is the technology selected financially viable? An attractive, sophis
 may entice decision-makers to make an instinctive choice, but nevertheless, basic questions about maintenance,
 spare parts, and operational costs should be an integral part of the decision-making process (Figure
 20.2).
-\include{201-decision-making-matrix.src}
-\include{202-vehicle-size.src}
-\include{203vehicle-floor-height.src}
-\include{204-vehicle-interior-design.src}
-\include{205environmental-performance.src}
-\include{206-other-physical-characteristics.src}
-\include{207-vehicle-aesthetics.src}
-\include{208-strategic-considerations.src}
-\include{209-docking-systems.src}
-\include{2010-vehicle-costs.src}
-\include{2011-bibliography.src}
+\include{201-decision-making-matrix.manu}
+\include{202-vehicle-size.manu}
+\include{203vehicle-floor-height.manu}
+\include{204-vehicle-interior-design.manu}
+\include{205environmental-performance.manu}
+\include{206-other-physical-characteristics.manu}
+\include{207-vehicle-aesthetics.manu}
+\include{208-strategic-considerations.manu}
+\include{209-docking-systems.manu}
+\include{2010-vehicle-costs.manu}
+\include{2011-bibliography.manu}
