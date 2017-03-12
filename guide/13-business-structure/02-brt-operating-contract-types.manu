@@ -6,7 +6,7 @@
 The number of different types of vehicle operating contracts used in BRT systems continues to grow,
 but these types can generally be grouped into the typology of vehicle operating contracts listed in Table
 13.1.
-\begintable{Contract Forms Typical of BRT Systems and Their Pros and Cons}
+\begintable[large]{Contract Forms Typical of BRT Systems and Their Pros and Cons}
 \header
 \col Contract Type
 \col Description
@@ -541,7 +541,7 @@ with false assumptions about their potential profitability.
 
 \subsubsection{BRT Systems with Unregulated Entry}
 
-*“Unregulated entry without quality control*” and “*unregulated entry with quality control*” are not
+*“Unregulated entry without quality control”* and *“unregulated entry with quality control”* are not
 generally seen in BRT systems, and they are almost universally accepted as being inappropriate for BRT
 systems. Under these two contract types, informal operators are allowed to operate as many vehicles as
 they would like on as many routes as they want whenever they want, so long as they have a vehicle of

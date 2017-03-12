@@ -58,7 +58,7 @@ a consortium of the former operators in the same corridor, are coded pink. In al
 the leverage of the government over the private operator, to compel better services and lower costs,
 is considerably weaker.
 
-\subsection{ Competitive Tendering in Lower-Income Economies}
+\subsection{Competitive Tendering in Lower-Income Economies}
 
 \subsubsection{Managed Competitive Tendering of BRT Operations}
 
@@ -191,6 +191,7 @@ product. Table 13.2 provides a summary of the bidding categories and weightings.
 \highlight{†} If the proposal meets all the requirements, then the proposal will be categorized as
 ELIGIBLE.
 
+\' FIXME footnotes '\
 \* If the proposal is below any given minimal value, then the proposal will be categorized as NOT ELIGIBLE.
 \*\* If the proposal does not meet the established range, then the proposal will be categorized as NOT
 ELIGIBLE.
@@ -199,15 +200,11 @@ ELIGIBLE.
 
 The “economic capacity” category refers to the ability of the company to provide a minimum equity level
 as an initial investment. The minimum equity level is equal to 14 percent of the total value of the vehicles
-being offered to the system. The minimum owner’s equity is defined in Equation 13.1.
+being offered to the system. The minimum owner’s equity is defined in Equation 13.1:
 
-Eq. 13.1\' TODO Math:
+$$\text{Minimum Owner's Equity}=\operatorname{NMV} \times \text{US\$ 200,00} \times 14%$$
 
-Mininum Owner’s Equity = NMV x US$200,000 x 14% '\
-
-Where:
-
-NMV = Maximum number of vehicles offered to the system.
+Where $$\operatorname{NMV}$$ is the maximum number of vehicles offered to the system.
 
 The value of US\$200,000 was the approximate cost of an articulated vehicle in Phase I of TransMilenio,
 based on the specifications required by TransMilenio SA.
@@ -293,6 +290,7 @@ bids for Phase II trunk lines of TransMilenio.
 
 Source: TransMilenio SA
 
+\' FIXME footnotes '\
 \* The “Revenues to TransMilenio” column represents the amount of revenues that the bidding firms are
 willing to give to the public company (TransMilenio SA) in order to manage the system.
 
@@ -365,7 +363,7 @@ to modern vehicle operating companies, and most continue to struggle with perfor
 issues and low quality of service. The services offered by the winner of the tender have tended to be
 better.
 
-*Negotiated Operating Contracts Around the World*
+\subsubsection{Negotiated Operating Contracts Around the World}
 
 In many other countries, particularly in South Africa, Mexico, and Ecuador, municipal governments never
 required a real competitive tender. In South Africa, the existing minibus industry in South Africa has

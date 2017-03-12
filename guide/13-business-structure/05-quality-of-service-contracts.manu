@@ -42,7 +42,7 @@ for fines and penalties are explicitly set out in the initial contract. Areas co
 incentive contract include maintenance practices, customer service, driver safety, administrative practices,
 and environmental performance. Table 13.4 summarizes the types of infractions and their associated penalties.
 
-\begintable{Penalty System within TransMilenio’s Quality Incentive Contracting}
+\begintable[large]{Penalty System within TransMilenio’s Quality Incentive Contracting}
 \header
 \col Area
 \col Type of infraction
@@ -270,14 +270,8 @@ Once this quality of service contract was developed in Bogotá, it was modified 
 in other countries. In Guangzhou, the operating contracts with the private operators include a system
 of penalties linked to penalty points, as shown in the Table 13.6.
 
-\begintable{Penalty Point System in the Guangzhou BRT System Operating Contracts}
+\begintable[large]{Penalty Point System in the Guangzhou BRT System Operating Contracts}
 \header
-\col
-\col
-\col Performance Indicators and Penalties, Guangzhou BRT
-\col
-\col
-\row
 \col No
 \col Evaluate Item
 \col Points
