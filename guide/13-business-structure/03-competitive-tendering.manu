@@ -205,11 +205,13 @@ The “economic capacity” category refers to the ability of the company to pro
 as an initial investment. The minimum equity level is equal to 14 percent of the total value of the vehicles
 being offered to the system. The minimum owner’s equity is defined in Equation 13.1:
 
-$$\text{Minimum Owner's Equity}=\operatorname{NMV}\times\,\text{US\$ 200,00}\,\times14\%$$
+\' TeX: must escape $ and % '\
+\' TeX: correcting the space between \text and \times with \, '\
+$$\text{Minimum Owner's Equity}=\operatorname{NMV}\times\,\text{US\$200,00}\,\times14\%$$
 
 Where $$\operatorname{NMV}$$ is the maximum number of vehicles offered to the system.
 
-The value of US$ 200,000 was the approximate cost of an articulated vehicle in Phase I of TransMilenio,
+The value of US$200,000 was the approximate cost of an articulated vehicle in Phase I of TransMilenio,
 based on the specifications required by TransMilenio SA.
 
 The points system was used in a way that rewarded inclusion of the existing operators, but the design
