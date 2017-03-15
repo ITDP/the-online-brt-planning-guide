@@ -179,18 +179,14 @@ class Generator {
 			idc.figure = v.id.sure();
 			var id = idc.join(true, ":", chapter, figure);
 			path = saveAsset(at, path, size);
-			// TODO handle size
-			// TODO enable on XeLaTeX too
-			// FIXME label
-			return '
-			\\ifxetex
-				% disabled for now
-			\\else
-				{  % group required to avoid fignote settings escaping
-					\\img{\\hsize}{$path}
-					\\fignote{$no}{${genh(caption)}\\label{$id}}{${genh(cright)}}
+			var csize =
+				switch size {
+				case MarginWidth: "small";
+				case TextWidth: "medium";
+				case FullWidth: "large";
 				}
-			\\fi'.doctrim() + "\n\n";  // FIXME use more neutral names
+			// FIXME label
+			return '\\manu${csize}figure{$path}{$no}{${genh(caption)}\\label{${id}}}{${genh(cright)}}\n${genp(v.pos)}\n';
 		case DTable(_):
 			idc.table = v.id.sure();
 			var id = idc.join(true, ":", chapter, table);
@@ -199,18 +195,14 @@ class Generator {
 			idc.table = v.id.sure();
 			var id = idc.join(true, ":", chapter, table);
 			path = saveAsset(at, path, size);
-			// TODO handle size
-			// TODO enable on XeLaTeX too
-			// FIXME label
-			return '
-			\\ifxetex
-				% disabled for now
-			\\else
-				{  % group required to avoid fignote settings escaping
-					\\tabletitle{$no}{${genh(caption)}}\n\\label{$id}\n
-					\\img{\\hsize}{$path}
+			var csize =
+				switch size {
+				case MarginWidth: "small";
+				case TextWidth: "medium";
+				case FullWidth: "large";
 				}
-			\\fi'.doctrim() + "\n\n";  // FIXME use more neutral names
+			// FIXME label
+			return '\\manu${csize}imgtable{$path}{$no}{${genh(caption)}\\label{${id}}}\n${genp(v.pos)}\n';
 		case DList(numbered, li):
 			var buf = new StringBuf();
 			var env = numbered ? "enumerate" : "itemize";
