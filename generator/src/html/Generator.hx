@@ -102,7 +102,7 @@ class Generator {
 		case Superscript(h), Subscript(h), Emphasis(h), Highlight(h):
 			return genn(h);
 		case Word(cte), InlineCode(cte), Math(cte), Url(cte):
-			return cte;
+			return gent(cte);
 		case HElemList(li):
 			var buf = new StringBuf();
 			for (i in li)
