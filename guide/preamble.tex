@@ -111,8 +111,9 @@
 \definecolor{volumeVII}{cmyk}{0.25,1,1.4,0.15}
 \definecolor{volumeVIII}{gray}{0.25}
 
-%headings
+% headings
 \usepackage{titlesec}
+\setcounter{secnumdepth}{3}
 \titleformat{\part}[display]{\bfseries\huge\color{volume\thepart}\familycapsf}{{\fontsize{10mm}{10mm}\selectfont VOLUME \thepart}}{0pt}{\vskip 5mm \rule{105mm}{1.5mm} \\ \vskip 2.25mm}[]
 \titleformat{\chapter}[display]{\bfseries\LARGE\color{volume\thepart}\familycapsf}{}{0pt}{\thechapter.\ }[]
 \titleformat*{\section}{\bfseries\Large\color{volume\thepart}\familycapsf}
