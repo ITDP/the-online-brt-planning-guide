@@ -89,9 +89,12 @@ class Generator {
 
 	public function genp(pos:Position)
 	{
-		var lpos = pos.toLinePosition();
-		if (Context.debug)
+		if (Context.texNoPositions)
+			return "";
+		if (Context.debug) {
+			var lpos = pos.toLinePosition();
 			return '% @ ${lpos.src}: lines ${lpos.lines.min + 1}-${lpos.lines.max}: code points ${lpos.codes.min + 1}-${lpos.codes.max}\n';  // TODO slow, be careful!
+		}
 		return '% @ ${pos.src}: bytes ${pos.min + 1}-${pos.max}\n';
 	}
 

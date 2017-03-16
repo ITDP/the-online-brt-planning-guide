@@ -11,6 +11,8 @@
  - tex: generate tex figures and img-tables with correct sizes (partial)
  - syntax: add `\url` for URL literals
  - syntax: add `\title` for non sectioning titles (think: titles for paragraphs)
+ - ui: added `DRAFT_NO_MATH_VALIDATION` and `DRAFT_DINOSSAUR_FIGURES` configuration environment variables: both are implied from `DRAFT`
+ - ui: added `TEX_NO_POSITIONS` configuration environment variables
  - other small fixes and improvements
 
 1.0.0-alpha: development of a stable system
