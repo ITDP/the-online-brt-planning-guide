@@ -6,7 +6,7 @@ Git is a computer program \[ideally\] to be installed on a contributor's compute
 the required content to produce the BRT Planning Guide (this repository) and submit proposals for changes.
 Git is originally a command line tool, but there are several graphic tools. It may require a two hour effort to 
 install it and learn the basics of using it without assistance and 20 minutes with assistance.
-More about git in the Pro Git book (https://git-scm.com/book/en/v2).
+More about git in the Pro Git book (\url{https://git-scm.com/book/en/v2}).
 
 Github is a website that hosts repositories like this one, where contribution from several people can be centralized,
 its use is free for open-source projects. Contributors to the BRT Planning Guide are required to have a github account,

@@ -60,6 +60,7 @@ enum HDef {
 	Word(w:String);
 	InlineCode(c:String);
 	Math(tex:String);
+	Url(u:String);  // just a typeset url (e.g. in bibliography listings)
 
 	HElemList(elem:Array<HElem>);
 	HEmpty;

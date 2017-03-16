@@ -48,7 +48,7 @@ passenger transport”.
 Several bodies have worked toward creating standards for IT systems:
 \item In the USA, the National ITS Architecture is published at . This website also contains detailed 
 technical information and guidance on how to use it; 
-\item In Europe, the ITS System Architecture is called FRAME (http://www.frame-online.net/node/38).
+\item In Europe, the ITS System Architecture is called FRAME (\url{http://www.frame-online.net/node/38}).
 
 Communication protocols: 
 \item TPEG for transmission of language independent multimodal travel and traffic information systems, 

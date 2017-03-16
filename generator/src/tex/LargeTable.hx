@@ -34,7 +34,7 @@ class LargeTable {
 		case Wordspace: SPACE_COST;
 		case Superscript(i), Subscript(i): Math.round(pseudoHTypeset(i)*SUBTEXT_FACTOR);
 		case Emphasis(i), Highlight(i): pseudoHTypeset(i);
-		case Word(w), InlineCode(w), Math(w): w.length;
+		case Word(w), InlineCode(w), Math(w), Url(w): w.length;
 		case HElemList(li):
 			var cnt = 0;
 			for (i in li)

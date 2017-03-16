@@ -75,13 +75,16 @@ class Generator {
 	function saveAsset(at, src, size)
 		return Context.time("tex generation (saveAsset)", _saveAsset.bind(at, src, size));
 
-	public function gent(text:String)
+	public function gent(text:String, preserveSlashes=false)
 	{
-		text = text.split("\\").map(function (safe) {
-			return texEscapes.replace(safe, "\\$1").replace("/", "\\slash{}");  // assumes texEscapes has 'g' flag
-		}).join("\\textbackslash{}");
-		// FIXME complete
-		return text;
+		return text.split("\\").map(
+			function (safe) {
+				var part = texEscapes.replace(safe, "\\$1");  // assumes texEscapes has 'g' flag
+				if (preserveSlashes)
+					return part;
+				return part.replace("/", "\\slash\\hspace{0pt}");
+			}
+		).join("\\textbackslash{}");
 	}
 
 	public function genp(pos:Position)
@@ -111,6 +114,8 @@ class Generator {
 			return '\\code{${gent(code)}}';
 		case Math(tex):
 			return '$$$tex$$';
+		case Url(address):
+			return '\\url{${gent(address, true)}}';
 		case HElemList(li):
 			var buf = new StringBuf();
 			for (i in li)

@@ -66,8 +66,8 @@ frequency, and hence longer waiting times for customers.
 \col 25–35
 \endtable
 
-\figure{assets/image21.jpeg}{The 18-meter articulated vehicle has become standard in many BRT applications. 
-    Image of Hangzhou, China, BRT vehicle}{ Kangming Xu (http://www.brtchina.org).}
+\figure{assets/image21.jpeg}{The 18-meter articulated vehicle has become standard in many BRT applications.}
+	{Image of Hangzhou, China, BRT vehicle Kangming Xu (\url{http://www.brtchina.org}).}
 
 Increasingly, the 18-meter articulated vehicle is becoming the standard for BRT systems. The Curitiba 
 system has utilized the larger bi-articulated vehicles, as have Mexico City’s Insurgentes Avenue and 
@@ -89,7 +89,7 @@ As vehicle length increases, there can be a diminishing return in terms of deliv
 capacity is reached and vehicle congestion occurs, then the additional capacity may not be fully realized. 
 Figure 7.11 gives an example of this effect for a given set of parameters.
 
-\figure[medium]{assets/image22.jpeg}{Relationship between vehicle size and capacity. Graph}{ Steer Davies Greer.}
+\figure[medium]{assets/image22.jpeg}{Relationship between vehicle size and capacity.}{Graph Steer Davies Greer.}
 
 \figure{assets/image23.jpeg}{The perception of a relatively empty busway next to heavily congested mixed-traffic 
 lanes, as seen in this image of Quito.}{Lloyd Wright}

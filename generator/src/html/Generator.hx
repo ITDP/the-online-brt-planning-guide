@@ -78,6 +78,8 @@ class Generator {
 			return '<code${genp(h.pos)}>${gent(code)}</code>';
 		case Math(tex):
 			return '<span class="mathjax"${genp(h.pos)}>\\(${gent(tex)}\\)</span>';
+		case Url(address):
+			return '<a class="url" href="${address.urlEncode()}">${gent(address)}</a>';
 		case HElemList(li):
 			var buf = new StringBuf();
 			if (godOn)
@@ -99,7 +101,7 @@ class Generator {
 			return " ";
 		case Superscript(h), Subscript(h), Emphasis(h), Highlight(h):
 			return genn(h);
-		case Word(cte), InlineCode(cte), Math(cte):
+		case Word(cte), InlineCode(cte), Math(cte), Url(cte):
 			return cte;
 		case HElemList(li):
 			var buf = new StringBuf();

@@ -194,6 +194,10 @@ class Parser {
 		case { def:TCode(s), pos:pos }:
 			pop();
 			mk(InlineCode(s), pos);
+		case { def:TCommand("url"), pos:pos }:
+			var cmd = pop();
+			var address = arg(rawHorizontal, cmd);
+			mk(Url(address.val.trim()), cmd.pos.span(address.pos));
 		case { def:TCommand(cname), pos:pos } if (Lambda.has(horizontalCommands, cname)):
 			var cmd = pop();
 			var content = arg(hlist, cmd);

@@ -139,7 +139,7 @@ class Validator {
 		case HElemList(li):
 			for (i in li)
 				hiter(i);
-		case Wordspace, Word(_), InlineCode(_), HEmpty:
+		case Wordspace, Word(_), InlineCode(_), Url(_), HEmpty:
 			// nothing to do
 		}
 	}
