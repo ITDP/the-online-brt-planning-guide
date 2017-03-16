@@ -180,6 +180,9 @@ class Generator {
 			idc.box = v.id.sure();
 			var id = idc.join(true, ":", chapter, box);
 			return '\\beginbox{$no}{${genh(name)}}\n\\label{$id}\n${genv(children, at, idc)}\\endbox\n${genp(v.pos)}\n';
+		case DTitle(name):
+			// FIXME optional id
+			return '\\manutitle{${genh(name)}}\n${genp(v.pos)}\n';
 		case DFigure(no, size, _.toInputPath() => path, caption, cright):
 			idc.figure = v.id.sure();
 			var id = idc.join(true, ":", chapter, figure);

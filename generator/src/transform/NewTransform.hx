@@ -188,6 +188,8 @@ class NewTransform {
 			var id = idc.box = genId(name);
 			var no = ++noc.box;
 			return mkd(DBox(no, name, vertical(contents, [], idc, noc)), v.pos, id);  // TODO assert that restricted vertical mode has been respected
+		case Title(name):
+			return mkd(DTitle(name), v.pos);
 		case Figure(size, path, horizontal(_) => caption, horizontal(_) => copyright):
 			// figure id could be generated from paths, but let's keep things uniform across elements
 			var id = idc.figure = genId(caption);
@@ -224,8 +226,6 @@ class NewTransform {
 			}
 		case VEmpty:
 			return mkd(DEmpty, v.pos);
-		case _:  // TODO remove
-			return mkd(DEmpty, v.pos);
 		}
 	}
 
@@ -239,7 +239,8 @@ class NewTransform {
 		assert(d != null);
 		assert(d.def != null);
 		var def = switch d.def {
-		case DHtmlApply(_), DLaTeXPreamble(_), DLaTeXExport(_), DFigure(_), DImgTable(_), DCodeBlock(_), DQuotation(_), DEmpty:
+		case DHtmlApply(_), DLaTeXPreamble(_), DLaTeXExport(_), DTitle(_), DFigure(_),
+				DImgTable(_), DCodeBlock(_), DQuotation(_), DEmpty:
 			d.def;
 		case DVolume(no, name, children):
 			DVolume(no, name, clean(children));

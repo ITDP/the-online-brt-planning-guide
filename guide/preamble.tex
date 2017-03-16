@@ -237,6 +237,16 @@
 	\unblockmargin
 }
 
+% non sectioning titles: \manutitle{<name>}
+\newcommand{\manutitle}[1]{
+	{
+	\setlength{\parindent}{0cm}
+	\vskip 2.25mm plus 2.25mm
+	{\bfseries\sffamily #1}
+	\vskip 2.25mm plus 2.25mm
+	}
+}
+
 % unsupported things in xetex
 \ifxetex
 	\let\manusmallfigure=\nop \let\manumediumfigure=\nop \let\manulargefigure=\nop

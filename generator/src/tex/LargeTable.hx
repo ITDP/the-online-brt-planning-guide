@@ -56,7 +56,7 @@ class LargeTable {
 				cnt += pseudoTypeset(i);
 			cnt/li.length;
 		case DFigure(_, _, _, caption, cright): TBL_MARK_COST + pseudoHTypeset(caption) + SPACE_COST + pseudoHTypeset(cright);
-		case DTable(_), DImgTable(_), DBox(_): BAD_COST; // not allowed (for now?)
+		case DTable(_), DImgTable(_), DBox(_): BAD_COST; // not allowed (for now?) FIXME review
 		case DQuotation(text, by): QUOTE_COST + pseudoHTypeset(text) + QUOTE_COST + LINE_BREAK_COST + EM_DASH_COST + pseudoHTypeset(by);
 		case DList(numbered, li):
 			var markCost = BULLET_COST + SPACE_COST;
@@ -67,7 +67,7 @@ class LargeTable {
 				cnt += markCost + pseudoTypeset(i);
 			cnt/li.length;
 		case DCodeBlock(code): code.length;
-		case DParagraph(h): pseudoHTypeset(h);
+		case DParagraph(h), DTitle(h): pseudoHTypeset(h);
 		}
 	}
 

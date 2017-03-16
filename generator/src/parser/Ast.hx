@@ -89,6 +89,7 @@ enum VDef {
 	Section(name:HElem);
 	SubSection(name:HElem);
 	SubSubSection(name:HElem);
+	Title(name:HElem);
 	Figure(size:BlobSize, path:PElem, caption:HElem, copyright:HElem);
 	Table(size:BlobSize, caption:HElem, header:TableRow, rows:Array<TableRow>);  // copyright/source?
 	ImgTable(size:BlobSize, caption:HElem, path:PElem);  // copyright/source?

@@ -10,6 +10,7 @@
  - tex: generate `\manu<size>figure` and `\manu<size>imgtable` calls instead of fixed and inlined TeX code
  - tex: generate tex figures and img-tables with correct sizes (partial)
  - syntax: add `\url` for URL literals
+ - syntax: add `\title` for non sectioning titles (think: titles for paragraphs)
  - other small fixes and improvements
 
 1.0.0-alpha: development of a stable system
