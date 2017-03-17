@@ -168,7 +168,7 @@
 \def\endbox{ \vskip 3.5mm \end{leftbar} }
 
 % code
-\let\code\texttt
+\newcommand\code[1]{\texttt{\color{gray50}#1}}  % TODO better isolate it from surrounding roman text
 \def\begincode{
 	\begingroup
 	\vskip 3.5mm
