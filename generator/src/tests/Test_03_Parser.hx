@@ -668,5 +668,22 @@ class Test_03_Parser {
 			expand(@wrap(12+9,10)ImgTable(MarginWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
 			parse("\\begintable[\nsmall\n]{a}\\useimage{x.svg}\\endtable"));
 	}
+
+	public function test_029_test_url()
+	{
+		Assert.same(expand(Paragraph(@wrap(5,1)Url(@len(3)"foo"))), parse("\\url{foo}"));
+		Assert.same(expand(Paragraph(@wrap(5,1)Url(@len(5)"foo"))), parse("\\url{ foo }"));  // unstable: triming
+		fails("\\url", MissingArgument(TCommand("url")), mkPos(4, 4));
+		fails("\\url a", MissingArgument(TCommand("url")), mkPos(5, 6));
+		fails("\\url{a}{}", UnexpectedToken(TBrOpen), mkPos(7, 8));
+	}
+
+	public function test_030_test_title()
+	{
+		Assert.same(expand(@wrap(7,1)Title(Word(@len(3)"foo"))), parse("\\title{foo}"));
+		fails("\\title", MissingArgument(TCommand("title"), "name"), mkPos(6, 6));  // unstable: arg description
+		fails("\\title a", MissingArgument(TCommand("title"), "name"), mkPos(7, 8));  // unstable: arg description
+		fails("\\title{a}{}", UnexpectedToken(TBrOpen), mkPos(9, 10));
+	}
 }
 
