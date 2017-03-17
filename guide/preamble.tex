@@ -110,6 +110,7 @@
 \definecolor{volumeVI}{cmyk}{0.25,0.6,1,0.1}
 \definecolor{volumeVII}{cmyk}{0.25,1,1.4,0.15}
 \definecolor{volumeVIII}{gray}{0.25}
+\colorlet{volume}{greenbrt}  % used when there's no part number yet, such as in the temporary (and bodgy) cover
 
 % headings
 \usepackage{titlesec}
@@ -268,6 +269,8 @@
 	\baselineskip=4.5mm
 	\parindent=7mm
 	\color{gray75}
+
+	\part*{The BRT Planning Guide}
 }
 
 % math
