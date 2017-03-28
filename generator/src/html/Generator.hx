@@ -78,6 +78,8 @@ class Generator {
 			return '<code${genp(h.pos)}>${gent(code)}</code>';
 		case Math(tex):
 			return '<span class="mathjax"${genp(h.pos)}>\\(${gent(tex)}\\)</span>';
+		case Url(address):
+			return '<a class="url" href="${address.urlEncode()}">${gent(address)}</a>';
 		case HElemList(li):
 			var buf = new StringBuf();
 			if (godOn)
@@ -99,8 +101,8 @@ class Generator {
 			return " ";
 		case Superscript(h), Subscript(h), Emphasis(h), Highlight(h):
 			return genn(h);
-		case Word(cte), InlineCode(cte), Math(cte):
-			return cte;
+		case Word(cte), InlineCode(cte), Math(cte), Url(cte):
+			return gent(cte);
 		case HElemList(li):
 			var buf = new StringBuf();
 			for (i in li)
@@ -284,6 +286,9 @@ class Generator {
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim() + "\n";
+		case DTitle(name):
+			// FIXME
+			return genv({ def:DParagraph({ def:Highlight(name), pos:v.pos }), pos:v.pos, id:v.id }, idc, noc, bcs);
 		case DFigure(no, size, _.toInputPath() => path, caption, cright):
 			idc.figure = v.id.sure();
 			noc.figure = no;
@@ -383,8 +388,8 @@ class Generator {
 			return '<pre><code>${gent(code)}</code></pre>\n';
 		case DQuotation(text, by):
 			return '<blockquote class="md"><q>${genh(text)}</q><span class="by">${genh(by)}</span></blockquote>\n';
-        case DParagraph({pos:p, def:Math(tex)}):
-            return '<p${genp(v.pos)}><span class="mathjax"${genp(p)}>\\[${gent(tex)}\\]</span></p>\n';
+		case DParagraph({pos:p, def:Math(tex)}):
+			return '<p${genp(v.pos)}><span class="mathjax equation"${genp(p)}>\\[${gent(tex)}\\]</span></p>\n';
 		case DParagraph(h):
 			return '<p${genp(v.pos)}>${genh(h)}</p>\n';
 		case DElemList(li):

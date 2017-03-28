@@ -1,0 +1,161 @@
+
+
+\section{ Vehicle Size}
+
+\quotation{It's not the size of the dog in the fight, it's the size of the fight in the dog.}
+{Mark Twain, author, 1835–1910}
+
+The size and required customer capacity of the vehicle are largely determined by the modeling analysis 
+conducted at the outset of the project. The analysis process will have determined a projected customer 
+volume for a particular corridor. Vehicle capacities, in conjunction with service frequency, are the 
+primary factors that will help achieve a required volume of customers. 
+
+Table 20.2 summarizes the various vehicle-length options, along with the associated customer capacity. 
+The actual customer capacity depends upon a range of factors, including interior layout, the number of 
+seated versus standing customers, and cultural norms regarding the space required per customer.
+ 
+\begintable{Vehicle Options and Customer Capacities}
+\header
+\col Vehicle type
+\col Vehicle length (meters)
+\col Capacity (customers per vehicle)
+\row
+\col Bi-articulated
+\col 24
+\col 240–270 customers
+\row
+\col Articulated
+\col 18.5
+\col 120–170 customers
+\row
+\col Tandem-axle
+\col 15
+\col 80–100 customers
+\row
+\col Double decker
+\col 12–15
+\col 80–130 customers
+\row
+\col Standard
+\col 12
+\col 60–80 customers
+\row
+\col Midi-bus
+\col 6
+\col 25–35 customers
+\row
+\col Mini-bus (vans)
+\col 3
+\col 10–16 customers
+\endtable
+
+\subsection{Calculating the Optimum Vehicle Size}
+
+The methodology for calculating the appropriate vehicle type in any given situation has already been 
+put forward in Chapter 6: Service Planning. Equation 20.1 summarizes the principal calculation required 
+to determine the optimum vehicle size.
+
+Eq. 20.1 Determining Required Vehicle Capacity
+
+\' TODO Math: 
+
+Cb = CcorridorL*F*SB '\
+
+Where:
+
+C\sub{b} = Customer capacity of the vehicle, in passengers per vehicle
+
+C\sub{corridor} = Number of people the corridor can transport, in passengers per hour per direction (pphpd)
+
+L = Load factor, is the average occupancy of the vehicles, expressed as a percent
+
+F = Service frequency, is the number of vehicles per hour
+
+SB = Number of independent stopping bays in each station
+
+The so-called “optimum” vehicle size, though, may vary from corridor to corridor. One option is to 
+operate different-sized vehicles in different corridors of the city. However, this lack of commonality 
+can be disadvantageous for several reasons. First, purchasing different vehicle types will tend to reduce 
+economies of scale in procurement and lead to higher-overall vehicle costs. Second, different vehicle 
+types may have different maintenance needs and different sets of spare parts, and thus again undermining 
+overall economies of scale. Third, managing a fleet of different vehicle types reduces operational flexibility 
+in using vehicles in different corridors, especially when breakdowns and other maintenance requirements 
+may take some vehicles offline for a period of time. Fourth, different-sized vehicles means that station 
+sizes will need to accommodate multiple types of vehicles. 
+
+For all these reasons, it is typically preferred to choose a single vehicle type that can serve the 
+spectrum of trunk-line routes. Likewise, one or two smaller vehicle types can be chosen for the feeder 
+services.
+
+A common mistake involves assuming that larger vehicles are somehow better. In truth, the best vehicle 
+size is one that allows for a cost-effective operation for the given volumes and service frequency. If 
+a large vehicle requires ten-minute headways so that the optimum load levels can be achieved, then choosing 
+a lower-capacity vehicle might be more convenient. Customers prefer headways in the range of one to four 
+minutes. Long wait times will ultimately lead customers to choose alternative modes of transport, such 
+as private vehicles. It is important that the operational design include a preference analysis that studies 
+time valuation by customers in such a way that the optimum vehicle type and fleet numbers can be chosen, 
+and that an appropriate quality level can be achieved with the allocated budget.
+
+\subsection{ Bi-articulated, Articulated, and Standard-sized Vehicles}
+
+High-volume systems (over seven thousand customers per hour per direction) will likely require both 
+large-sized (articulate or bi-articulated) vehicles and high-frequency service (Figures 20.3 and 20.4). 
+Lower-volume systems should also strive for high-frequency service, but obviously with smaller vehicle 
+types. Systems in Brisbane, Australia, and Jakarta, Indonesia, operate trunk corridors with twelve-meter 
+standard-sized vehicles (Figure 20.5). The smaller size does not mean these systems are inferior to cities 
+operating with larger vehicles. Instead, the size may just be a reflection of the appropriate configuration 
+for the particular demand characteristics. 
+
+\figure{assets/image3.jpeg}{ In Curitiba, 24-meter bi-articulated vehicles are utilized on trunk corridors.}{Volvo Bus Corporation.}
+\figure{assets/image4.jpeg}{Bogotá’s system uses a mix of 18-meter articulated and 24-meter bi-articulated vehicles.}{TransMilenio SA.}
+
+
+\figure{assets/image5.jpeg}{In Brisbane, Australia, trunk corridors are served by standard 12-meter 
+vehicles.}{ Queensland Transport.}
+
+While the numerous vehicle manufacturers offer a wide range of options, consideration of market availability 
+is also a key factor. Engaging in informal discussions with vehicle manufacturers at the outset can help 
+highlight the availability of different product features. Clearly, the vehicle specifications should 
+not be designed around any one manufacturer, but a broad understanding of the existing options from manufacturers 
+can help shape the analysis. 
+
+Along the same lines, the number of manufacturers providing a particular vehicle type is a legitimate 
+consideration. A single-sourced vehicle will tend to increase costs due to the lack of a competitive 
+manufacturing environment. As an example, currently only one major manufacturer produces a bi-articulated 
+vehicle. Thus, if this type of vehicle is chosen the bidding process is more likely to be less competitive. 
+The lack of competition ultimately results in higher prices for operators, which will then translate 
+into higher customer fares.
+
+\subsection{ Double-decker Vehicles}
+
+Increasing the length of the vehicle is just one way of increasing customer capacity. Adding another 
+customer level with a double-decker configuration is another option that is occasionally utilized. Despite 
+being less popular at a global level, double-decker vehicles have successfully created a niche market 
+in such cities as Singapore, London, and Hong Kong (Figure 20.6).
+
+\figure[medium]{assets/image6.jpeg}{In Hong Kong, the double-decker represents an iconic image for the city.}{ Volvo Bus Corporation.}
+
+The double decker has been successful in creating an iconic image for cities. Double-deckers can generate 
+an intriguing image to a public-transport system and can be quite popular when applied to tourist routes, 
+as the vehicle’s upper deck offers a great vantage point for sightseeing. 
+
+However, double-deckers can bring many complications and additional costs. The costs of adding a second 
+floor to the vehicle are not entirely devoted to customer space. A significant amount of space is consumed 
+by the stairway on both decks of the vehicle. The stairway also creates potentially troublesome difficulties 
+for customers, particularly during boarding and alighting. Moving up and down the stairway as the vehicle 
+moves can be dangerous. The width of the stairway also makes two-way customer movement difficult. The 
+net effect is dramatically lengthened customer boarding and alighting times. London has phased out its 
+iconic “Routemaster,” in part due to the severe injuries and even deaths resulting from customers falling 
+from either the interior stairway or the back alighting step. 
+
+Double-deckers are also not particularly suitable for high-volume operations where customers are frequently 
+boarding and alighting. Double-deckers are best used on conventional commuter routes where most of the 
+boarding and alighting takes place at a few station points in the center of the city and then again at 
+a distant suburban location. To date, double-decker vehicles have not been utilized in a full BRT system.
+
+\subsection{Fleet Size}
+
+The vehicle size will impact the number of vehicles needed to meet the demand. Depending on that decision, 
+the fleet size may need to be adjusted and is determined entirely by the operational plan. A method for 
+calculating the fleet size needed based on projected customer demand and the needs for a reserve fleet 
+is outlined in Chapter 6: Service Planning. 

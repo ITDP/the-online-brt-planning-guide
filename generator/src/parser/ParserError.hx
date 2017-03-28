@@ -43,6 +43,8 @@ class ParserError extends GenericError {
 				'Unexpected math';
 			case TWord(_):
 				'Unexpected word';
+			case TEscaped(_):
+				'Unexpected escape sequence';
 			case TCode(_), TCodeBlock(_):
 				'Unexpected code excerpt ($def)';
 			case TCommand(name):
@@ -51,16 +53,8 @@ class ParserError extends GenericError {
 				'Unexpected argument delimiter ($def)';
 			case TBrkOpen, TBrkClose:
 				'Unexpected optional argument delimiter ($def)';
-			case THashes(_):
-				'Unexpected number sign \'#\' (tip: to escape it, use \'\\#\')';
-			case TColon(_):
-				'Unexpected colon \':\' (tip: to escape it, use \'\\:\')';
 			case TAsterisk:
 				'Unexpected emphasis mark \'*\' (tip: to escape it, use \'\\*\')';
-			case TAt:
-				'Unexpected author mark \'@\' (tip: to escape it, use \'\\@\')';
-			case TGreater:
-				'Unexpected quotation mark \'>\' (tip: to escape it, use \'\\>\')';
 			case TEof:
 				"Unexpected end of file";
 			}
@@ -76,12 +70,6 @@ class ParserError extends GenericError {
 			case TCommand(name):
 				msg.add(" to \\");
 				msg.add(name);
-			case TGreater:
-				msg.add(" to quotation");
-			case TWord(w) if (Lambda.has(["FIG", "EQ", "TAB"], w)):
-				msg.add(" to #");
-				msg.add(w);
-				msg.add("#");
 			case other:
 				msg.add(" to token ");
 				msg.add(other);

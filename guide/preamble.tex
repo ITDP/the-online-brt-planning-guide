@@ -110,9 +110,11 @@
 \definecolor{volumeVI}{cmyk}{0.25,0.6,1,0.1}
 \definecolor{volumeVII}{cmyk}{0.25,1,1.4,0.15}
 \definecolor{volumeVIII}{gray}{0.25}
+\colorlet{volume}{greenbrt}  % used when there's no part number yet, such as in the temporary (and bodgy) cover
 
-%headings
+% headings
 \usepackage{titlesec}
+\setcounter{secnumdepth}{3}
 \titleformat{\part}[display]{\bfseries\huge\color{volume\thepart}\familycapsf}{{\fontsize{10mm}{10mm}\selectfont VOLUME \thepart}}{0pt}{\vskip 5mm \rule{105mm}{1.5mm} \\ \vskip 2.25mm}[]
 \titleformat{\chapter}[display]{\bfseries\LARGE\color{volume\thepart}\familycapsf}{}{0pt}{\thechapter.\ }[]
 \titleformat*{\section}{\bfseries\Large\color{volume\thepart}\familycapsf}
@@ -136,6 +138,9 @@
 \patchcmd{\ttlh@hang}{\noindent}{}{}{}
 \makeatother
 
+% no-op macros
+\newcommand\nop{}
+
 %box
 \usepackage{framed}
 
@@ -151,16 +156,19 @@
 }
 {\endMakeFramed}
 
+
 \newcommand{\boxtitle}[2]{{\noindent\bfseries\color{volume\thepart}\familycapsf Box \thechapter.#1. #2} \\ }
 \def\beginbox#1#2{ 
 	\begin{leftbar} 
 	\vskip 3.5mm
 	\boxtitle{#1}{#2} 
+	\let\manusmallfigure=\manumediumfigure \let\manusmallimgtable=\manumediumimgtable  % can't handle small figures or image tables for now, because marginpar isn't supported here
+	\let\blockmargin=\nop\let\unblockmargin=\nop  % marginfix not supported here
 }
 \def\endbox{ \vskip 3.5mm \end{leftbar} }
 
 % code
-\let\code\texttt
+\newcommand\code[1]{\texttt{\color{gray50}#1}}  % TODO better isolate it from surrounding roman text
 \def\begincode{
 	\begingroup
 	\vskip 3.5mm
@@ -181,11 +189,70 @@
 \setlist{nolistsep,leftmargin=7mm,rightmargin=7mm}
 \labelindent=7mm
 
-% images - img {width}{filename} - fignote{figure number}{text}{credits}
-% requires a group ({})
 \usepackage{graphicx}
-\newcommand{\img}[2]{\noindent\includegraphics[width=#1]{#2} \\}
-\newcommand{\fignote}[3]{\noindent\raggedright\footnotesize\sffamily\color{gray50}{\bfseries Figure \thechapter.#1.} #2 {\itshape #3} \par}
+\usepackage{marginfix}  % improve marginpars, used for placing figures (and, in the future, tables) on the margin
+
+% figures: \manu<size>figure{<path>}{<local number>}{caption}{copyright}
+\newcommand\figcaption[3]{\footnotesize\sffamily\color{gray50}{\bfseries Figure \thechapter.#1.} #2 {\itshape #3}}
+\newcommand{\manusmallfigure}[4]{
+	\marginpar{
+		\noindent\includegraphics[width=49mm]{#1} \\
+		\noindent\raggedright\figcaption{#2}{#3}{#4}\par
+	}
+}
+\newcommand{\manumediumfigure}[4]{
+	{
+		\noindent\includegraphics[width=105mm]{#1} \\
+		\noindent\figcaption{#2}{#3}{#4}\par
+	}
+}
+\newcommand{\manulargefigure}[4]{
+	\blockmargin
+	{
+		\noindent\includegraphics[width=161mm]{#1} \\
+		\vbox{\hsize=161mm\noindent\figcaption{#2}{#3}{#4}}
+	}
+	\unblockmargin
+}
+
+% img tables: \manu<size>imgtable{<path>}{<local number>}{<title>}
+\newcommand\tabletitletext[2]{{\bfseries\color{volume\thepart}\sffamily Table \thechapter.#1. #2}}
+\newcommand{\manusmallimgtable}[4]{
+	\marginpar{
+		\noindent\raggedright\tabletitletext{#2}{#3}\par
+		\noindent\includegraphics[width=49mm]{#1}
+	}
+}
+\newcommand{\manumediumimgtable}[4]{
+	{
+		\noindent\tabletitletext{#2}{#3}\par
+		\noindent\includegraphics[width=105mm]{#1}
+	}
+}
+\newcommand{\manulargeimgtable}[4]{
+	\blockmargin
+	{
+		\vbox{\hsize=161mm\noindent\tabletitletext{#2}{#3}}
+		\noindent\includegraphics[width=161mm]{#1}
+	}
+	\unblockmargin
+}
+
+% non sectioning titles: \manutitle{<name>}
+\newcommand{\manutitle}[1]{
+	{
+	\setlength{\parindent}{0cm}
+	\vskip 2.25mm plus 2.25mm
+	{\bfseries\sffamily #1}
+	\vskip 2.25mm plus 2.25mm
+	}
+}
+
+% unsupported things in xetex
+\ifxetex
+	\let\manusmallfigure=\nop \let\manumediumfigure=\nop \let\manulargefigure=\nop
+	\let\manusmallimgtable=\nop \let\manumediumimgtable=\nop \let\manulargeimgtable=\nop
+\fi
 
 %quotation {quote}{name, about, 1900 - 2000}
 \renewcommand{\quotation}[2]{\begingroup\leftskip=14mm\rightskip=14mm {\small\color{gray50} \noindent\textit{``#1''} \\\hbox{}\hfill --- #2} \par\endgroup \smallskip }
@@ -202,6 +269,8 @@
 	\baselineskip=4.5mm
 	\parindent=7mm
 	\color{gray75}
+
+	\part*{The BRT Planning Guide}
 }
 
 % math
@@ -212,12 +281,16 @@
 
 \usepackage[
     bookmarks,
+    bookmarksnumbered,
     colorlinks,
     draft=false,
-    linkcolor=black,
-    citecolor=black,
-    pdftitle={The BRT Planning Guide},  % TODO fetch from somewhere
+    pdftitle={The BRT Planning Guide},
     pdfauthor={Institute for Transportation and Development Policy},
-    unicode
-]{hyperref}  % FIXME needs some styling
+    unicode,
+    allcolors=greenbrt,
+    breaklinks=true
+]{hyperref}  % TODO reuse infos
+
+% better bookmarks than with just hyperref (replaces them)
+\usepackage{bookmark}
 

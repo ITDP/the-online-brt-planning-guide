@@ -32,7 +32,7 @@ class NewTransform {
 			h = mk(Emphasis(htrim(i, ctx)), h.pos);
 		case Highlight(i):
 			h = mk(Highlight(htrim(i, ctx)), h.pos);
-		case Word(_), InlineCode(_), Math(_):
+		case Word(_), InlineCode(_), Math(_), Url(_):
 			ctx.prevSpace = false;
 		case HElemList(li):
 			if (ctx.reverse) {
@@ -55,7 +55,7 @@ class NewTransform {
 	static function hclean(h:HElem)
 	{
 		var def = switch h.def {
-		case Wordspace, Word(_), InlineCode(_), Math(_), HEmpty:
+		case Wordspace, Word(_), InlineCode(_), Math(_), Url(_), HEmpty:
 			h.def;
 		case Superscript(i):
 			i = hclean(i);
@@ -106,7 +106,7 @@ class NewTransform {
 			buf.add("-");
 		case Superscript(i), Subscript(i), Emphasis(i), Highlight(i):
 			buf.add(genId(i));
-		case Word(cte), InlineCode(cte), Math(cte):
+		case Word(cte), InlineCode(cte), Math(cte), Url(cte):
 			buf.add(~/[^a-z0-9\-]/ig.replace(cte, "").toLowerCase());
 		case HElemList(li):
 			for (i in li)
@@ -188,6 +188,8 @@ class NewTransform {
 			var id = idc.box = genId(name);
 			var no = ++noc.box;
 			return mkd(DBox(no, name, vertical(contents, [], idc, noc)), v.pos, id);  // TODO assert that restricted vertical mode has been respected
+		case Title(name):
+			return mkd(DTitle(name), v.pos);
 		case Figure(size, path, horizontal(_) => caption, horizontal(_) => copyright):
 			// figure id could be generated from paths, but let's keep things uniform across elements
 			var id = idc.figure = genId(caption);
@@ -224,8 +226,6 @@ class NewTransform {
 			}
 		case VEmpty:
 			return mkd(DEmpty, v.pos);
-		case _:  // TODO remove
-			return mkd(DEmpty, v.pos);
 		}
 	}
 
@@ -239,7 +239,8 @@ class NewTransform {
 		assert(d != null);
 		assert(d.def != null);
 		var def = switch d.def {
-		case DHtmlApply(_), DLaTeXPreamble(_), DLaTeXExport(_), DFigure(_), DImgTable(_), DCodeBlock(_), DQuotation(_), DEmpty:
+		case DHtmlApply(_), DLaTeXPreamble(_), DLaTeXExport(_), DTitle(_), DFigure(_),
+				DImgTable(_), DCodeBlock(_), DQuotation(_), DEmpty:
 			d.def;
 		case DVolume(no, name, children):
 			DVolume(no, name, clean(children));
