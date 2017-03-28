@@ -18,7 +18,7 @@ dependent on the operation itself, as denominated in kilometer-dependent paramet
 also indirectly dependent on the size of the fleet/bus operation, which will be referred to as vehicle-dependent 
 parameters. 
 
-\emph{Kilometer-Dependent Parameters}
+\title{Kilometer-Dependent Parameters}
 
 Kilometer-dependent parameters, as implied by the name, refer to sizing parameters that are directly 
 and linearly dependent on the operational service. 
@@ -73,20 +73,20 @@ around those in Table 14.2.
 \col 0.26
 \endtable
 
-Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates
+Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: \url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
 
 For the fuel price, one must consider the “bulk” price, because fuel will be purchased in great quantities. 
 Usually, a fuel tank and pump will be installed at the garage depot and be supplied weekly by a tank 
 truck.
 
-Lubricants
+*Lubricants*
 
 Lubricants are also a relevant cost item and, for simplification purposes, may be considered as a percentage 
 of the total fuel cost. As a rule of thumb, this amount ranges from 3 to 5 percent of the total fuel 
 cost, but may be calculated from the bottom up though specific lubricant cost and engine lubrication 
 rates.
 
-Tires
+*Tires*
 
 Tires are another relevant cost parameter and depend on a couple of other parameters, which vary per 
 vehicle:
@@ -191,9 +191,9 @@ possible. As a result, one may calculate the tire cost per kilometer as follows:
 \endtable
 
 Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: 
-https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates
+\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
 
-Parts and Replacements
+*Parts and Replacements*
 
 Parts and replacements costs are strongly dependent on the quality and efficiency of the maintenance 
 program. In other words, depending on the maintenance program, costs may vary considerably.
@@ -277,9 +277,9 @@ type.
 \endtable
 
 Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: 
-https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates
+\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
 
-Vehicle Dependent
+\title{Vehicle Dependent}
 
 Vehicle-dependent cost refers to items that are indirectly dependent on the fleet size. The rationale 
 behind this is that the larger the fleet, the larger the number of mechanics, traffic supervisors, back 
@@ -298,7 +298,7 @@ The employees may be divided into two different categories, which must be treate
 These employee/vehicle ratios must then be multiplied by the average salary per category, to company 
 salary tax, 13th check, benefits, and other costs amount to the total cost of employment.
 
-Vehicle Drivers
+*Vehicle Drivers*
 
 Vehicle drivers sizing ratio depends more on the system schedule than on predetermined sizing ranges. 
 For starters, the operational personnel must be sized utilizing the operational fleet size, not the total 
@@ -313,156 +313,130 @@ hour for a working day, Saturday, and Sunday:
 \begintable{Number of Trips Per Hour for Weekdays and Weekends}
 \header
 \col Hourly Range
-\col
 \col Weekday Trips
 \col Saturday Trips
 \col Sunday Trips
 \row
-\col \highlight{00:00}
-\col 01:00
+\col \highlight{00:00-01:00}
 \col 48
 \col 48
 \col 48
 \row
-\col \highlight{01:00}
-\col 02:00
+\col \highlight{01:00-02:00}
 \col 59
 \col 59
 \col 59
 \row
-\col \highlight{02:00}
-\col 03:00
+\col \highlight{02:00-03:00}
 \col 57
 \col 57
 \col 57
 \row
-\col \highlight{03:00}
-\col 04:00
+\col \highlight{03:00-04:00}
 \col 44
 \col 44
 \col 44
 \row
-\col \highlight{04:00}
-\col 05:00
+\col \highlight{04:00-05:00}
 \col 456
 \col 259
 \col 231
 \row
-\col \highlight{05:00}
-\col 06:00
+\col \highlight{05:00-06:00}
 \col 2.584
 \col 1.500
 \col 1.173
 \row
-\col \highlight{06:00}
-\col 07:00
+\col \highlight{06:00-07:00}
 \col 3.496
 \col 1.865
 \col 1.289
 \row
-\col \highlight{07:00}
-\col 08:00
+\col \highlight{07:00-08:00}
 \col 2.960
 \col 1.852
 \col 1.320
 \row
-\col \highlight{08:00}
-\col 09:00
+\col \highlight{08:00-09:00}
 \col 2.067
 \col 1.642
 \col 1.260
 \row
-\col \highlight{09:00}
-\col 10:00
+\col \highlight{09:00-10:00}
 \col 1.721
 \col 1.507
 \col 1.200
 \row
-\col \highlight{10:00}
-\col 11:00
+\col \highlight{10:00-11:00}
 \col 1.662
 \col 1.494
 \col 1.193
 \row
-\col \highlight{11:00}
-\col 12:00
+\col \highlight{11:00-12:00}
 \col 1.825
 \col 1.548
 \col 1.234
 \row
-\col \highlight{12:00}
-\col 13:00
+\col \highlight{12:00-13:00}
 \col 1.893
 \col 1.634
 \col 1.276
 \row
-\col \highlight{13:00}
-\col 14:00
+\col \highlight{13:00-14:00}
 \col 1.806
 \col 1.620
 \col 1.276
 \row
-\col \highlight{14:00}
-\col 15:00
+\col \highlight{14:00-15:00}
 \col 1.806
 \col 1.621
 \col 1.284
 \row
-\col \highlight{15:00}
-\col 16:00
+\col \highlight{15:00-16:00}
 \col 1.910
 \col 1.625
 \col 1.320
 \row
-\col \highlight{16:00}
-\col 17:00
+\col \highlight{16:00-17:00}
 \col 2.539
 \col 1.690
 \col 1.317
 \row
-\col \highlight{17:00}
-\col 18:00
+\col \highlight{17:00-18:00}
 \col 3.095
 \col 1.723
 \col 1.346
 \row
-\col \highlight{18:00}
-\col 19:00
+\col \highlight{18:00-19:00}
 \col 2.802
 \col 1.664
 \col 1.308
 \row
-\col \highlight{19:00}
-\col 20:00
+\col \highlight{19:00-20:00}
 \col 2.164
 \col 1.509
 \col 1.245
 \row
-\col \highlight{20:00}
-\col 21:00
+\col \highlight{20:00-21:00}
 \col 1.614
 \col 1.278
 \col 1.121
 \row
-\col \highlight{21:00}
-\col 22:00
+\col \highlight{21:00-22:00}
 \col 1.442
 \col 1.152
 \col 1.018
 \row
-\col \highlight{22:00}
-\col 23:00
+\col \highlight{22:00-23:00}
 \col 1.372
 \col 1.016
 \col 905
 \row
-\col \highlight{23:00}
-\col 24:00
+\col \highlight{23:00-24:00}
 \col 944
 \col 851
 \col 781
 \row
-\col 
 \col Total:
 \col 40.367
 \col 29.259
@@ -476,157 +450,131 @@ of the entire day:
 \begintable{Percentage of Fleet Utilization Per Hour for Weekdays and Weekends}
 \header
 \col Hourly Range
-\col
 \col Weekday Trips
 \col Saturday Trips
 \col Sunday Trips
 \row
-\col \highlight{00:00}
-\col 01:00
+\col \highlight{00:00-01:00}
 \col 1%
 \col 1%
 \col 1%
 \row
-\col \highlight{01:00}
-\col 02:00
+\col \highlight{01:00-02:00}
 \col 2%
 \col 2%
 \col 2%
 \row
-\col \highlight{02:00}
-\col 03:00
+\col \highlight{02:00-03:00}
 \col 2%
 \col 2%
 \col 2%
 \row
-\col \highlight{03:00}
-\col 04:00
+\col \highlight{03:00-04:00}
 \col 1%
 \col 1%
 \col 1%
 \row
-\col \highlight{04:00}
-\col 05:00
+\col \highlight{04:00-05:00}
 \col 13%
 \col 7%
 \col 7%
 \row
-\col \highlight{05:00}
-\col 06:00
+\col \highlight{05:00-06:00}
 \col 74%
 \col 43%
 \col 34%
 \row
-\col \highlight{06:00}
-\col 07:00
+\col \highlight{06:00-07:00}
 \col 100%
 \col 53%
 \col 37%
 \row
-\col \highlight{07:00}
-\col 08:00
+\col \highlight{07:00-08:00}
 \col 85%
 \col 53%
 \col 38%
 \row
-\col \highlight{08:00}
-\col 09:00
+\col \highlight{08:00-09:00}
 \col 59%
 \col 47%
 \col 36%
 \row
-\col \highlight{09:00}
-\col 10:00
+\col \highlight{09:00-10:00}
 \col 49%
 \col 43%
 \col 34%
 \row
-\col \highlight{10:00}
-\col 11:00
+\col \highlight{10:00-11:00}
 \col 48%
 \col 43%
 \col 34%
 \row
-\col \highlight{11:00}
-\col 12:00
+\col \highlight{11:00-12:00}
 \col 52%
 \col 44%
 \col 35%
 \row
-\col \highlight{12:00}
-\col 13:00
+\col \highlight{12:00-13:00}
 \col 54%
 \col 47%
 \col 37%
 \row
-\col \highlight{13:00}
-\col 14:00
+\col \highlight{13:00-14:00}
 \col 52%
 \col 46%
 \col 37%
 \row
-\col \highlight{14:00}
-\col 15:00
+\col \highlight{14:00-15:00}
 \col 52%
 \col 46%
 \col 37%
 \row
-\col \highlight{15:00}
-\col 16:00
+\col \highlight{15:00-16:00}
 \col 55%
 \col 46%
 \col 38%
 \row
-\col \highlight{16:00}
-\col 17:00
+\col \highlight{16:00-17:00}
 \col 73%
 \col 48%
 \col 38%
 \row
-\col \highlight{17:00}
-\col 18:00
+\col \highlight{17:00-18:00}
 \col 89%
 \col 49%
 \col 39%
 \row
-\col \highlight{18:00}
-\col 19:00
+\col \highlight{18:00-19:00}
 \col 80%
 \col 48%
 \col 37%
 \row
-\col \highlight{19:00}
-\col 20:00
+\col \highlight{19:00-20:00}
 \col 62%
 \col 43%
 \col 36%
 \row
-\col \highlight{20:00}
-\col 21:00
+\col \highlight{20:00-21:00}
 \col 46%
 \col 37%
 \col 32%
 \row
-\col \highlight{21:00}
-\col 22:00
+\col \highlight{21:00-22:00}
 \col 41%
 \col 33%
 \col 29%
 \row
-\col \highlight{22:00}
-\col 23:00
+\col \highlight{22:00-23:00}
 \col 39%
 \col 29%
 \col 26%
 \row
-\col \highlight{23:00}
-\col 24:00
+\col \highlight{23:00-24:00}
 \col 27%
 \col 24%
 \col 22%
 \row
 \col Total vehicle utilization hours:
-\col
 \col \highlight{11.55}
 \col \highlight{8.37}
 \col \highlight{6.67}
@@ -650,9 +598,9 @@ From the total weekly hours, we can see that the Saturday and Sunday requirement
 14 hours (8.37 + 6.67 = 15.04). In other words, the total weekly work hours would be determined by the 
 following equation:
 
-Eq. 14.1 Total weekly work hours\' TODO Math: 
+Eq. 14.1 Total weekly work hours:
 
-(5 days*7hoursday)+15.04 hours2 hours=42.52hoursweek '\
+$$ (5 \text{days} * { 7\text{hours} \over \text{day}} ) +  {15.04 \text{hours} \over 2 \text{hours}} = 42.52 { \text{hours} \over \text{week}} $$ 
 
 Since 42.52 hours per week is under the weekly regimen of 44 hours, no additional weekly hours are 
 required. In case this number were over 44 hours, then one should calculate the “factor” of exceeding 
@@ -667,9 +615,9 @@ a global nighttime factor of 1.0293.
 In addition to all of this, one must calculate the provision for vacation period, national holidays 
 (if applicable), and yearly absentee days. 
 
-Eq. 14.2 Provision for national holidays or absentees\' TODO Math: 
+Eq. 14.2 Provision for national holidays or absentees: 
 
-365 days[(total days in year) – (missed work days)] '\
+$$ 365 \text{days} \over [(\text{total days} \in \text{year}) – (\text{missed work days})] $$
 
 For a 30-day vacation period, the ratio would be 365/335. All these provisions, calculated separately, 
 must then be multiplied so one reaches a total coverage factor. 
@@ -688,7 +636,7 @@ for an extremely peak-concentrated operation, up until 2.80, for a very distribu
 Rio de Janeiro City). In case the system is designed with onboard fare personnel, their sizing is similar 
 to the driver sizing.
 
-Operational Control
+*Operational Control*
 
 Operational control staff are responsible for the scheduling, inspecting, and release of the vehicles 
 from the garage depot. The smaller the operation, the fewer inspectors are necessary; however, the following 
@@ -719,7 +667,7 @@ vehicles, one could expect the following sizing parameters:
 \begintable{Sizing Parameters for Vehicle Operating Company (400 Vehicles)}
 \header
 \col \highlight{Position}
-\col \highlight{\#}
+\col \highlight{#}
 \col \highlight{Salary (US\$)}
 \col \highlight{Salary/Minimum Wage}
 \col \highlight{Total (US\$)}
@@ -776,7 +724,7 @@ vehicles, one could expect the following sizing parameters:
 \endtable
 
 Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate:
-https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates
+\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
 
 For this situation, one can derive a sizing ratio of approximately 0.12 in relation to the operating 
 fleet, and an average salary of approximately US\$900 (R\$2,020). Given that the average salary is superior 
@@ -790,7 +738,7 @@ of two hundred vehicles:
 \begintable{Sizing Parameters for Vehicle Operating Company (200 Vehicles)}
 \header
 \col Position
-\col \#
+\col #
 \col Salary (US\$)
 \col Salary/Minimum Wage
 \col Total (US\$)
@@ -847,7 +795,7 @@ of two hundred vehicles:
 \endtable
 
 Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: 
-https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates
+\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
 
 For this smaller company size, one can see that the average salary had a 10 percent increase and the 
 sizing ratio increased from 0.1175 to 0.1550. Of course, in cases where the vehicle operating company 
@@ -860,7 +808,7 @@ In any case, a reasonable sizing parameter to be used is something in the range 
 average salary depends on the local condition, but as a proxy, in this case, it would equal approximately 
 3.0 to 3.2 times the minimum wage. 
 
-Garage Depot/Maintenance
+*Garage Depot/Maintenance*
 
 The garage depot/maintenance staff is responsible for maintaining the vehicles in operational conditions, 
 as well as aiming to reduce maintenance costs and breakdown occurrences. The garage depot/maintenance 
@@ -885,7 +833,7 @@ vehicles, one could expect the following sizing parameters:
 \begintable{Sizing Parameters for Garage Depot/Maintenance (400 Vehicles)}
 \header
 \col Position
-\col \#
+\col #
 \col Salary (US\$)
 \col Salary/Minimum Wage
 \col Total (US\$)
@@ -974,7 +922,7 @@ vehicles, one could expect the following sizing parameters:
 \endtable
 
 Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: 
-https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates
+\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
 
 For this situation, one can derive a sizing ratio of approximately 0.42 in relation to the operating 
 fleet, and an average salary of approximately US\$700 (R\$1,575). The overhead of the garage depot/maintenance 
@@ -987,7 +935,7 @@ of two hundred vehicles:
 \begintable{Sizing Parameters for Garage Depot/Maintenance (200 Vehicles)}
 \header
 \col \highlight{Position}
-\col \highlight{\#}
+\col \highlight{#}
 \col \highlight{Salary (US\$)}
 \col \highlight{Salary/Minimum Wage}
 \col \highlight{Total (US\$)}
@@ -1076,7 +1024,7 @@ of two hundred vehicles:
 \endtable
 
 Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: 
-https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates
+\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
 
 As a result, one may see that the average salary is roughly the same and the ratio sizing parameter 
 had a small increase from 0.4225 to 0.4600. Of course, in case the vehicle operating company were considerably 
@@ -1084,7 +1032,7 @@ smaller, or larger, probably the salary levels would change and the number of pe
 as well. In any case, it is safe to size the garage depot/maintenance to something in the range of 0.420 
 to 0.480, with an average salary of approximately 2.3 to 2.4 times the minimum wage.
 
-Back Office Personnel
+*Back Office Personnel*
 
 The back office personnel are assigned the responsibility of managing the company and performing the 
 roles of recruiting and procurement, among others. Since the back office size relates to the overall 
@@ -1120,7 +1068,7 @@ vehicles, one could expect the following sizing parameters:
 \begintable{Sizing Parameters for Back Office Personnel (400 Vehicles)}
 \header
 \col Position
-\col \#
+\col #
 \col Salary (US\$)
 \col Salary/Minimum Wage
 \col Total (US\$)
@@ -1249,7 +1197,7 @@ vehicles, one could expect the following sizing parameters:
 \endtable
 
 Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: 
-https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates
+\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
 
 For this situation, one can derive a sizing ratio of 0.10, in relation to the operating fleet, and 
 an average salary of approximately US\$820.00 (R\$1,840.00). As mentioned before, there is less room 
@@ -1261,7 +1209,7 @@ of two hundred vehicles:
 \begintable{Sizing Parameters for Back Office Personnel (200 Vehicles)}
 \header
 \col Position
-\col \#
+\col #
 \col Salary (US\$)
 \col Salary/Minimum Wage
 \col Total (US\$)
@@ -1390,14 +1338,14 @@ of two hundred vehicles:
 \endtable
 
 Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: 
-https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates
+\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
 
 As a result, one may see that the average salary is slightly higher, which is consistent with the inability 
 to shed the upper level positions. The ratio sizing parameter thus has a 30 percent increase, going from 
 0.10 to 0.13. In any case, it is safe to size the back office personnel in the range of 0.090 to 0.150, 
 with an average salary of approximately 2.7 to 3.1 times the minimum wage.
 
-Directors Pay
+*Directors Pay*
 
 Lastly, there is the sizing of the cost related to the company’s directors. This sizing parameter could 
 be considered within the back office personnel, but since this item is even less scalable and more dependent 
@@ -1414,7 +1362,7 @@ and is strongly dependent on regional conditions.
 In addition to the expenses mentioned above, there are other operating expenditures that are less significant 
 but that should be considered.
 
-Licensing/Insurance/City Taxes
+*Licensing/Insurance/City Taxes*
 
 Usually, each vehicle is subject to yearly licensing, obligatory insurance, and city taxes. Licensing 
 and insurance tend to have a fixed value per vehicle. Hence, at a given time in the year, the vehicle 
@@ -1423,7 +1371,7 @@ City taxes may also be fixed, or possess descending yearly values per vehicle, b
 age. These unit values are specific to each city and country. Moreover, there are additional insurances 
 that may be contracted by the vehicle operating company that may be paid monthly. 
 
-Onboard Surveillance and Fare Maintenance
+*Onboard Surveillance and Fare Maintenance*
 
 Depending on the system attributes, it may be the operating vehicle company’s responsibility to maintain 
 the onboard fare system and surveillance equipment, as well as paying for the data communication fees. 
@@ -1432,7 +1380,7 @@ the onboard fare system and surveillance equipment, as well as paying for the da
 This is not a substantial value, and in Brazil, these values may amount to about US\$245 per month 
 (approximately R\$550 per month).
 
-Other Costs
+*Other Costs*
 
 Finally, there are many other overhead costs, whose individual sizing is not recommended. Usually, 
 these costs amount to 3 to 8 percent of total operational expenditures and, as such, it is recommended 
@@ -1459,13 +1407,15 @@ A list of items included in this estimation is presented below:
 \item Travel;
 \item Other.
 
-\subsection{ Capital Expenditures (Capex)}
+\subsection{Capital Expenditures (Capex)}
 
 Capex refers to expenditures whose aim it is to create future benefits. A capital expenditure is incurred 
 when a business spends money either to buy fixed assets or to add to the value of an existing asset, 
 with a useful life that extends beyond the tax year.
 
-*Vehicle Acquisition*
+\title{Vehicles}
+
+*Acquisition*
 
 For the vehicle operating company, the initial vehicle acquisition is the single most important capital 
 expenditure of the operation. Since the vehicles must be acquired before the operation commences, they 
@@ -1485,7 +1435,7 @@ overestimated unless there is a firm intention of buying or request on the table
 one try to obtain actual vehicle transaction values for similar specifications in similar regions, in 
 order to obtain a better vehicle price estimation.
 
-Replacements
+*Replacements*
 
 Ideally, vehicles should be replaced when they reach their useful life. In some systems, which have 
 been operating under the same concessionaire over a long period, the public agency may establish a maximum 
@@ -1518,13 +1468,14 @@ lines may not be available.
 
 In any case, these financing considerations are only pertinent in a leveraged/shareholder appraisal. 
 In that case, it is important to treat the financing options accordingly.
-\item \highlight{Depot and Other Capex}
+
+\title{Depot and Other Capex}
 
 In addition to the vehicle acquisition costs, there are other significant capital expenditures worth 
 noting. Most of these other capital costs are incurred at the beginning of the operation or at the system’s 
 startup. 
 
-Land/Depot Acquisition
+*Land/Depot Acquisition*
 
 The first other capital expenditure worth mentioning is the land/depot acquisition cost. For this item, 
 it is important to determine if the land is to be leased/donated by the city, or if it will be the vehicle 
@@ -1560,7 +1511,7 @@ whereabouts in order to calculate the total land acquisition capital cost. In th
 lies with the vehicle operating company, then the land acquisition would be a onetime acquisition to 
 take place at year zero.
 
-Depot Setup 
+*Depot Setup*
 
 Once the depot land is determined, the next capital expenditure is the depot setup. Depot setup may 
 be divided into two components:
@@ -1599,7 +1550,7 @@ percent relates to depot building and edifications, 20 percent to installation c
 30 percent to the equipment costs. In any case, a more detailed analysis should be conducted to validate 
 these ballpark numbers. 
 
-Equipment—ITS per Vehicle
+*Equipment—ITS per Vehicle*
 
 Together with the depot setup capital expenditures, the additional relevant “other” capital expenditure 
 has to do with the intelligent transportation systems (ITS). With ITS, one encompasses the onboard fare 

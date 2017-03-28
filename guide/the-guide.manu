@@ -64,12 +64,9 @@ Fortunately for cities, the technology for providing high-quality public transpo
 \include{volume-4-landing-page.manu}
 \include{12-institutional-planning/00-institutional-planning.manu}
 \include{13-business-structure/00-business-structure.manu}
+\include{14-financial-modeling/financial-modeling.manu}
+
 \meta\reset{chapter}{17} \' TODO missing part of volume 4, up to chapter 17 '\
-
-
-\meta\reset{chapter}{13} \' skip to chapter 18 '\
-\include{14-financial-modeling/financial-modeling.src}
-
 \volume{Technology}
 \include{volume-5-landing-page.manu}
 \include{18-fare_systems/fare-systems.manu}

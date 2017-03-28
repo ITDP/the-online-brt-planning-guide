@@ -12,8 +12,7 @@ and understanding.
 The objective of the control panel is to show the relevant appraisal and profitability indexes, as 
 well as to allow for the selection of the most important parameters per the following breakdown:
 
-\subsubsection{Most Important Parameters}
-
+Most Important Parameters
 \item [Use of data validation options in order to limit choices/values to predetermined or feasible ones:
 \item Bus-type selection;
 \item Financing-type selection;
@@ -23,15 +22,13 @@ well as to allow for the selection of the most important parameters per the foll
 \item Fuel, lubricant, tire, and other consumption rates;
 \item Driver sizing parameter information.]
 
-\subsubsection{Relevant Financial Results}
-
+Relevant Financial Results
 \item System appraisal;
 \item IRR for system entities;
 \item EBITDA margins: profitability (consists of earnings before interest, tax, depreciation, and amortization, 
 divided by total revenue).
 
-\subsubsection{Goal-Seeking Functions and Automation}
-
+Goal-Seeking Functions and Automation
 \item Implement macros to target certain profitability values or specific revenue values;
 \item The goal-seeking parameter may be expressed as an index of payment per kilometer, payment per 
 customer (technical tariff), or even a hybrid kilometer per customer payment;
@@ -45,7 +42,6 @@ and non-time-based sheets should cover the following topics, segregating the inf
 
 
 Operational Plan
-
 \item Number of kilometers per fleet type;
 \item Number of vehicles per fleet type;
 \item [Ticket revenue:
@@ -53,33 +49,28 @@ Operational Plan
 \item Tariff scheme per ride.]
 
 It is important to recalculate these numbers in the financial model for two reasons:
-
 \item So the model contains all relevant information of the system/scenarios and is “self-sufficient”;
 \item As a quality check toward the values calculated in the transportation model. 
 
 Fleet
-
 \item [Age profile per type of fleet per year:
 \item Place example;
 \item Indication of new acquisitions and sales (the change between two years).]
 
-\subsubsection{Operational Expenditures (Opex)}
+Operational Expenditures (Opex)
 \item Opex per vehicles;
 \item Opex per personnel.
 
 Capital Expenditures (Capex)
-
 \item Indication of acquisitions and renewals;
 \item Indication of acquisition values per depreciation type;
 \item Indication of acquisition values to be financed by financing alternative.
 
 Fixed Assets
-
 \item Used for depreciation calculation;
 \item Must separate each item by depreciation category and rate.
 
 Financing Schemes
-
 \item Interest rates;
 \item Tenor of loan;
 \item Grace period;
@@ -87,7 +78,6 @@ Financing Schemes
 \item Finance indexes, used by ECAs.
 
 Financing Schedule
-
 \item Used to keep track of interest and principal repayment;
 \item Must separate and keep track of each loan individually (loan drawdown year and conditions).
 
@@ -96,7 +86,7 @@ Financing Schedule
 Lastly, there is the financial sheet, which contains the necessary information for the financial appraisal 
 of the system entity. 
 
-\subsubsection{Income Statement and Cash-Flow Statement}
+Income Statement and Cash-Flow Statement
 \item The income statement is used to calculate the yearly earnings, profit, accumulated profit, and 
 taxes;
 \item The cash-flow statement is used in order to calculate the yearly free cash flow;
@@ -108,7 +98,6 @@ to properly calculate the cash requirements/overdraft or surpluses for the compa
 \item Net cash flow.]
 
 Balance Sheet
-
 \item Used primarily to calculate increase/decrease in working capital;
 \item Can be used to calculate debt/equity ratios and other indexes to attest to company’s health;
 \item Aids in validating the free cash flow and system appraisal, once all information is categorized 
