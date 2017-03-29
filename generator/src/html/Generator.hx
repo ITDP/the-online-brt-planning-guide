@@ -37,7 +37,6 @@ class Generator {
 	static inline var INDEX = "index";
 	static inline var ROOT_URL = "./";
 
-	
 	var destDir:String;
 	var godOn:Bool;
 	var bufs:Map<String,StringBuf>;
