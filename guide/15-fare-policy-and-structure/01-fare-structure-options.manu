@@ -50,7 +50,7 @@ The fare type must be decided taking into account the objectives of the local go
 to funding. Several options exist and, as explained before, can serve purposes such as making the system 
 financially viable (even profitable) or as an income distribution tool.
 
-\subsubsection{Open Fare (Free Fare)}
+\title{Open Fare (Free Fare)}
 
 As the name implies, free fare systems involve charging nothing for public transport use. Some public 
 transport systems in Belgium have realized that their fare collection process is so costly that it makes 
@@ -120,7 +120,7 @@ other aspects of public space such as footpaths, public parks, and even city str
 suggest charging pedestrians for using a footpath or families for using a park. In the same way, public 
 transport could also be viewed as an essential public good that should not be burdened by a fee.
 
-\subsubsection{Flat Fare vs. Distance-Based Fare}
+\title{Flat Fare vs. Distance-Based Fare}
 
 Many cities often debate whether to apply a flat fare or a distance-based fare. A flat fare means that 
 a single price applies to any trip within the system. By contrast, a distance-based fare means that the 
@@ -264,7 +264,7 @@ the technical fare can be recalculated using a distance-based fare.
 \figure[medium]{assets/image4.jpg}{Analysis of the impact of different fare structures on TransJakarta’s Phase II ridership.}
 {ITDP.}
 
-\subsubsection{Zonal Fare}
+\title{Zonal Fare}
 
 Zonal fares are sometimes touted as a simplified version of a distance-based fare. In the case of a 
 zonal fare, customers are charged by the number of zones that are crossed. Thus, if a customer travels 
@@ -284,7 +284,7 @@ systems, this can lead to social inequities if lower-income citizens live on the
 and need to travel downtown for work, and hence will need to pay a higher fare. To a certain extent, 
 the advent of the smart card has made the zonal system unnecessary.
 
-\subsubsection{Time-Based Fare}
+\title{Time-Based Fare}
 
 While fares can vary by distance, they can also vary by time. The most typical form of time-based pricing 
 is to have a peak-period fare and an off-peak fare. Charging more for peak periods tends to be more profitable 
@@ -328,7 +328,7 @@ or handicapped citizens. These adjustments can easily be handled by a smart card
 
 \subsection{ Discounts }
 
-\subsubsection{Multi-Trip Discounts}
+\title{Multi-Trip Discounts}
 
 One of the main cost advantages that private motor vehicle travel has over public transport is that 
 once the customer has sunk the investment into the procurement of the vehicle, the marginal cost of using 
@@ -348,7 +348,7 @@ since vehicle operating companies are paid based on kilometers, there is no fina
 such passes. Conventional vehicle operating companies, however, will be paid with a combination of kilometers 
 and customer numbers, meaning that a time-pass will have a big impact on the finances of the entire system.
 
-\subsubsection{Transfer-Discounted Fare for Intermodal Transfers }
+\title{Transfer-Discounted Fare for Intermodal Transfers }
 
 In many cities today, fare structures between different modes, such as rail and bus services, are not 
 well integrated. However, the increasing sophistication of cash cards and modern fare systems is creating 
@@ -378,11 +378,11 @@ de Transporte Público (SITP), plans to enforce a time-based discount fare for i
 means that customers will be able to travel among the different transport modes offered by the city at 
 a discounted fare as exemplified in Equation 15.1.
 
-Eq. 15. Bogotá’s SITP transfer discounts example (2011 prices in Colombian Pesos): 
+Eq. 15.1 Bogotá’s SITP transfer discounts example (2011 prices in Colombian Pesos): 
 
-$$ BRT + Conventional Bus = COP1700 + COP1400 = COP3100 (No transfer discount) $$ 
+$$ \text{BRT} + \text{Conventional Bus} =  COP1700 + COP1400 = COP3100 \text{(No transfer discount)} $$ 
 
-$$ BRT + Conventional Bus = COP1700 + COP500= COP2200 (With transfer discount) $$
+$$ \text{BRT} + \text{Conventional Bus} =  COP1700 + COP500 = COP2200 \text{(With transfer discount)} $$ 
 
 Customers will be able to save COP 900, which is nearly a 30 percent savings. This becomes very useful 
 in a city such as Bogotá, where lower-income citizens tend to live on the outskirts of the city and are 
@@ -401,7 +401,7 @@ underground metro operator receives a much higher payment per passenger-kilomete
 operators. Such inequities may be acceptable in some cases, but it does raise questions about fairness, 
 especially if two services are of comparable quality but of radically different cost structures.
 
-\subsubsection{User Profile Discounts }
+\title{User Profile Discounts }
 
 Providing fare discounts to special groups is a relatively common practice in public transport systems 
 around the world. In some countries, while sometimes socially desirable, the requirement that a BRT authority 
@@ -487,7 +487,7 @@ should carefully consider the full ramifications.
 
 \subsection{ Other Sources of Income}
 
-\subsubsection{Fares for Feeder Operation}
+\title{Fares for Feeder Operation}
 
 The fare handling system for feeder services will often follow a different operational process than 
 the fare system for trunk lines. As noted earlier, cities such as Bogotá and Quito now compensate feeder 
@@ -557,7 +557,7 @@ a spatial or a cost perspective. Third, the effectiveness of “honor” payment
 in developing cities is still not proven. Fourth, costly fare collection machines left unprotected at 
 feeder stations could be subject to maintenance issues and even theft.
 
-\subsubsection{Publicity}
+\title{Publicity}
 
 Publicity can be used as a means of generating additional income for the system. The BRT infrastructure, 
 including stations, vehicles, and fare collection medium can all be used. Furthermore, the system can 
@@ -572,7 +572,7 @@ U20 World Cup in Colombia.}{ La Casa Editorial El Tiempo (CEET).}
 All contracts between the different actors need to consider where the profits from publicity will go. 
 In Bogotá, for example, publicity in vehicles belongs to the vehicle operating company.
 
-\subsubsection{Government and Cross-Subsidies}
+\title{Government and Cross-Subsidies}
 
 As described in the previous chapters, there are several instances where subsidies can be implemented 
 in the system, whether directly to the fare or to user groups, for long distance travel and others. 
@@ -596,7 +596,7 @@ the operation of a BRT system without the need to have a constant income flow. A
 obligations of the vehicle operators must be considered carefully in order not to subsidize the companies 
 themselves in detriment of the end users. 
 
-\subsubsection{Multilateral Organizations}
+\title{Multilateral Organizations}
 
 Multilateral organizations can often provide good credit access and conditions for public projects. 
 These can be taken generally by the city itself, or sometimes are available to the private sector, with 

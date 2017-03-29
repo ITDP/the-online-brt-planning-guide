@@ -1,9 +1,7 @@
-
-
 \section{ Fare Parameters}
 
-> Never let anyone define what you are capable of by using parameters that don’t apply to you.
-@ Chuck Close, artist, 1940-
+\quotation{Never let anyone define what you are capable of by using parameters that don’t apply to you.}
+{Chuck Close, artist, 1940-}
 
 The business structure of the BRT system should do what it can to ensure long-term high-quality service 
 to its customers. BRT systems are vulnerable to being used for political purposes, other than providing 
@@ -47,21 +45,17 @@ depends on the contractually determined rate that the BRT authority has agreed t
 per kilometer, multiplied by the projected total annual kilometers of operations that are programmed. 
 This relationship is outlined by the following equation:
 
-Eq. 15.2: Payment to trunk operators
+Eq. 15.2: Payment to trunk operators:
 
-/' TODO: Math : Pay_(Trunk Operators)= Distance_Daily* Fleet *(Cost_Operating+ ROI) '/
+$$ \text{Pay}_\text{Trunk Operators} = \text{Distance}_\text{Daily} * \text{Fleet} * (\text{cost}_\text{Operating}+ ROI) $$
 
 Where:
 
-PayTrunk Operators = Total payments to trunk operators;
-
-DistanceDaily = Projected needed daily vehicle kilometers;
-
-Fleet = Projected total number of vehicles;
-
-CostOperating = Estimated operating cost per kilometer;
-
-ROI = Return on investment.
+\item $$ \text{Pay}_\text{Trunk Operators}$$: Total payments to trunk operators;
+\item $$ \text{Distance}_\text{Daily}$$: Projected needed daily vehicle kilometers;
+\item $$ \text{Fleet}$$: Projected total number of vehicles;
+\item $$ \text{cost}_\text{Operating}$$: Estimated operating cost per kilometer;
+\item $$ ROI $$: Return on investment.
 
 \subsection{ Feeder Operator Remuneration}
 

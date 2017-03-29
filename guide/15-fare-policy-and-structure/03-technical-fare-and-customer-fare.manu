@@ -1,9 +1,6 @@
-
-
 \section{ Technical Fare and Customer Fare}
 
-> But surely for everything you have to love you have to pay some price.
-@ —Agatha Christie, writer, 1890-1976
+\quotation{ But surely for everything you have to love you have to pay some price.}{Agatha Christie, writer, 1890-1976}
 
 \subsection{ Calculating the Technical Fare}
 
@@ -22,21 +19,18 @@ costs and any operational investments that will be the financial responsibility 
 including the depreciation of the vehicle value and financing charges. The following equation summarizes 
 this basic relationship.
 
-\highlight{Eq. 15.3: Basic form of technical fare calculation}\' TODO Math: 
+Eq. 15.3  Basic form of technical fare calculation: 
 
-Technical fare =CostOperationalCustomersDaily '\
+$$ \text{Technical fare} = {\text{cost}_\text{operational} \over \text{Customers}_\text{Daily} } $$
 
 Where:
-
-CostOperational = Total BRT system daily operational costs;
-
-CustomersDaily = Total projected daily customers.
+\item $$ \text{cost}_\text{operational}$$: Total BRT system daily operational costs;
+\item $$ \text{Customers}_\text{Daily}$$: Total projected daily customers.
 
 Figure 15.10 provides a more detailed and expanded calculation of the technical fare.
 
-/' TODO: Should this be math? '/
-\figure[medium]{assets/image10.jpg}{Detailed form of technical fare calculation; passengers per kilometer index.}
-{ TransMilenio SA.}
+\figure{assets/image10.jpg}{Detailed form of technical fare calculation; passengers per kilometer index.}
+{TransMilenio SA.}
 
 The contracts for the private operating companies are likely to be nonuniform. Some companies will 
 invest only in ninety vehicles, while others will invest in more. In the case of TransMilenio, it was 
@@ -97,31 +91,22 @@ change for the operators, the technical fare will go through adjustments.
 On a periodic basis, such as every two weeks, the technical fare is updated based on the changes in 
 the base factors. The calculation for the changes in the technical fare is given in Equation 15.4.
 
-\highlight{Eq. 15.4 Calculating changes in the technical fare}\' TODO Math: 
+Eq. 15.4 Calculating changes in the technical fare: 
 
-∆FT=%CML∆CML∆PKI+%CF∆CF+∆%F+%CC∆CC-1 '\
+$$ ∆F_T = \%C_{ML} {∆C_{ML} \over ∆PKI} + \%C_F (∆C_F + ∆\%F) + \%C_C ∆C_C - 1 $$
 
 Where:
+\item $$ ∆F_T $$: Change in the technical fare;
+\item $$ \%C_{ML} $$: Proportion of the main lane cost (%);
+\item $$ ∆C_{ML} $$: Change in the cost per kilometer (main lane);
+\item $$ ∆PKI $$: Change in the passengers per kilometer (main lane);
+\item $$ \%C_F $$: Proportion of the feeder cost;
+\item $$ ∆C_F $$: Change in the feeder remuneration, by passenger that use feeding services;
+\item $$ ∆\%F $$: Change in the percentage of passengers that use feeding services;
+\item $$ \%C_C $$: Proportion of the collection cost;
+\item $$ ∆C_C  $$: Change in the collection cost.
 
-∆FT = Change in the technical fare;
-
-%CML = Proportion of the main lane cost (%);
-
-∆CML = Change in the cost per kilometer (main lane);
-
-∆PKI = Change in the passengers per kilometer (main lane);
-
-%C\sub{F} = Proportion of the feeder cost;
-
-∆C\sub{F} = Change in the feeder remuneration, by passenger that use feeding services;
-
-∆%F = Change in the percentage of passengers that use feeding services;
-
-%C\sub{F} = Proportion of the collection cost;
-
-∆C\sub{F} = Change in the collection cost.
-
-15.3.3 Customer Fare and Contingency Fund
+\subsection{Customer Fare and Contingency Fund}
 
 As noted above, the “customer fare” is the payment required by the customer for a single trip on the 
 system. Unfortunately, costs tend to rise over time, implying that fares must also rise. For reasons 
@@ -157,15 +142,15 @@ buffer against unexpected contingencies that led to the development of a conting
 of TransMilenio. The difference between the technical fare in Bogotá and the customer fare is simply 
 that an additional charge has been created to pay into a contingency fund (Equation 15.5).
 
-\highlight{Eq. 15.5: Relationship between customer fare, technical fare, and contingency fund}\' TODO Math: 
+Eq. 15.5 Relationship between customer fare, technical fare, and contingency fund: 
 
-Customer fare = Technical fare + Contingency fund payment '\
+$$ \text{Customer fare} = \text{Technical fare} + \text{Contingency fund payment} $$
 
 Figure 15.12 graphically illustrates the relationship between the customer fare and the technical fare. 
 In general, the customer fare should be slightly greater than the technical fare, and this difference 
 is deposited into the contingency fund.
 
-\figure[medium]{assets/image13.jpg}{Understanding customer tariffs and technical tariffs.}{ITDP}
+\figure{assets/image13.jpg}{Understanding customer tariffs and technical tariffs.}{ITDP}
 
 The contingency fund is designed to handle unexpected events such as unusual low levels of service 
 demand, extended hours of operation, terrorism and vandalism, and problems associated with hyperinflation. 
@@ -222,12 +207,12 @@ public transport market segment;
 because they have a greater portion of public transport-dependent users. This is due to increased traffic 
 congestion and parking costs, and improved public transport service due to economies of scale.
 
-\highlight{Phil Goodwin, in the document “A Review of New Demand Elasticities with Special Reference 
+Phil Goodwin, in the document “A Review of New Demand Elasticities with Special Reference 
 to Short and Long Run Effects of Price Changes,” produced the average elasticity values summarized in 
 Table 15.4. He noted that price impacts tend to increase over time as consumers have more options (related 
 to increases in real incomes, automobile ownership, and now telecommunications that can substitute for 
 physical travel). In 2006, Peter Nelson, Andrew Baglino, Winston Harrington, Elena Safirova, and Abram 
-Lipman found similar values in their analysis of Washington, D.C., public transport demand. }
+Lipman found similar values in their analysis of Washington, D.C., public transport demand. 
 \begintable{Transportation Elasticities}
 \header
 \col 
