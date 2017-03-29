@@ -34,6 +34,7 @@ class Generator {
 	static var assetCache = new Map<String,String>();
 	static inline var ASSET_SUBDIR = "assets";
 	@:template static var FILE_BANNER;
+	static inline var INDEX = "index";
 	
 	var destDir:String;
 	var godOn:Bool;
@@ -152,13 +153,17 @@ class Generator {
 
 	function openBuffer(title:String, base:String, bcs:Breadcrumbs, url:String)
 	{
+		var depth = Path.normalize(url).split("/").length - 1;
+		var computedBase = depth > 0 ? [ for (i in 0...depth) ".." ].join("/") : ".";
+		show(url, base, computedBase);
+		assert(base == computedBase);
 		// TODO get normalize and google fonts with \html\apply or \html\link
 		// TODO get jquery and mathjax with \html\run
 		var buf = new StringBuf();
 		buf.add("<!DOCTYPE html>");
 		buf.add(FILE_BANNER);
 		buf.add("<html>\n");
-		buf.add(renderHead(title, base, url));
+		buf.add(renderHead(title, computedBase, url));
 		buf.add("<body>\n");
 		buf.add(renderBreadcrumbs(bcs, url));  // FIXME
 		buf.add('<div class="container">\n<div class="col-text">\n');
@@ -189,11 +194,11 @@ class Generator {
 		case DVolume(no, name, children):
 			idc.volume = v.id.sure();
 			noc.volume = no;
-			var path = Path.join(["volume", idc.volume, "index.html"]);
-			var url = Path.normalize(Path.directory(path));
+			var path = Path.join(["volume", idc.volume + ".html"]);
+			var url = Path.normalize(Path.withoutExtension(path));
 			bcs.volume = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = 'Volume $no: ${genn(name)}';
-			var buf = bufs[path] = openBuffer(title, "../..", bcs, url);
+			var buf = bufs[path] = openBuffer(title, "..", bcs, url);
 			toc.add('<li class="volume">\n${renderToc(no, Std.string(no), new Html(genh(name)), url)}\n<ul>\n');
 			buf.add('
 				<section>
@@ -207,8 +212,8 @@ class Generator {
 		case DChapter(no, name, children):
 			idc.chapter = v.id.sure();
 			noc.chapter = no;
-			var path = Path.join([idc.chapter, "index.html"]);
-			var url = Path.normalize(Path.directory(path));
+			var path = Path.join([idc.chapter, INDEX + ".html"]);
+			var url = Path.normalize(Path.withoutExtension(path));
 			bcs.chapter = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = 'Chapter $no: ${genn(name)}';
 			var buf = bufs[path] = openBuffer(title, "..", bcs, url);
@@ -227,11 +232,11 @@ class Generator {
 			idc.section = v.id.sure();
 			noc.section = no;
 			var lno = noc.join(false, ".", chapter, section);
-			var path = Path.join([idc.chapter, idc.section, "index.html"]);
-			var url = Path.normalize(Path.directory(path));
+			var path = Path.join([idc.chapter, idc.section + ".html"]);
+			var url = Path.normalize(Path.withoutExtension(path));
 			bcs.section = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = '$lno ${genn(name)}';  // TODO chapter name
-			var buf = bufs[path] = openBuffer(title, "../..", bcs, url);
+			var buf = bufs[path] = openBuffer(title, "..", bcs, url);
 			toc.add('<li class="section">${renderToc(null, lno, new Html(genh(name)), url)}<ul>\n');
 			buf.add('
 				<section>
@@ -424,10 +429,16 @@ class Generator {
 		srcCache = new Map();  // TODO abstract
 		lastSrcId = 0;
 		toc = new StringBuf();
-		toc.add('<ul><li class="volume">${renderToc(null, null, "BRT Planning Guide", Path.normalize(""))}</li>');
 
-		var contents = genv(doc, new IdCtx(), new NoCtx(), {});  // TODO here for a hack
-		var root = bufs["index.html"] = openBuffer("The Online BRT Planning Guide", ".", {}, Path.normalize("./"));
+		var rootPath = INDEX + ".html";
+		var rootUrl = INDEX;
+
+		// `toc.add` and `genv` ordering is relevant
+		toc.add('<ul><li class="volume">${renderToc(null, null, "BRT Planning Guide", rootUrl)}</li>');
+		// it's necessary to process all `\html\apply` before actually opening buffers and writing heads
+		var contents = genv(doc, new IdCtx(), new NoCtx(), {});
+
+		var root = bufs[rootPath] = openBuffer("The Online BRT Planning Guide", ".", {}, rootUrl);
 		root.add('<section>\n<h1 id="heading" class="brtcolor">${gent("The Online BRT Planning Guide")}</h1>\n');
 		root.add(contents);
 		root.add('</section>\n');
