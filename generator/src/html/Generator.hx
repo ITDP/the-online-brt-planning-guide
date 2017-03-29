@@ -29,6 +29,15 @@ typedef Breadcrumbs = {
 	?section:BreadcrumbItem
 }
 
+/*
+Generate a static website
+
+Assumes that the server will:
+
+ - serve `<foo>.html` to a `<foo>` request if it doesn't already match an
+   existing file (e.g. nginx configured to `try_files $uri $uri/ $uri.html 404`)
+ - serve `<foo>/index.html` to a `<foo>/` request
+*/
 @:hasTemplates
 class Generator {
 	static var assetCache = new Map<String,String>();
