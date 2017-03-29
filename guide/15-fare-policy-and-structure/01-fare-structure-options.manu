@@ -1,9 +1,6 @@
-
-
 \section{ Fare Structure Options}
 
-> Whatever affects one directly, affects all indirectly. I can never be what I ought to be until you are what you ought to be. This is the interrelated structure of reality.
-@ Martin Luther King Jr., civil rights leader, 1929-1968
+\quotation{Whatever affects one directly, affects all indirectly. I can never be what I ought to be until you are what you ought to be. This is the interrelated structure of reality.}{Martin Luther King Jr., civil rights leader, 1929-1968}
 
 \subsection{ Objectives of Establishing a Fare Structure}
 
@@ -381,12 +378,11 @@ de Transporte Público (SITP), plans to enforce a time-based discount fare for i
 means that customers will be able to travel among the different transport modes offered by the city at 
 a discounted fare as exemplified in Equation 15.1.
 
-\highlight{Eq. 15. SEQ Equation \* ARABIC 1 Bogotá’s SITP transfer discounts example (2011 prices in 
-Colombian Pesos).}\' TODO Math: 
+Eq. 15. Bogotá’s SITP transfer discounts example (2011 prices in Colombian Pesos): 
 
-BRT + Conventional Bus = COP1700 + COP1400 = COP3100 (No transfer discount) '\\' TODO Math: 
+$$ BRT + Conventional Bus = COP1700 + COP1400 = COP3100 (No transfer discount) $$ 
 
-BRT + Conventional Bus = COP1700 + COP500= COP2200 (With transfer discount) '\
+$$ BRT + Conventional Bus = COP1700 + COP500= COP2200 (With transfer discount) $$
 
 Customers will be able to save COP 900, which is nearly a 30 percent savings. This becomes very useful 
 in a city such as Bogotá, where lower-income citizens tend to live on the outskirts of the city and are 
@@ -432,7 +428,7 @@ of the system. For example, providing a below marginal cost subsidy to a child m
 parent must pay more to cover the subsidy. In effect, no social equity is being achieved. 
 
 \figure[medium]{assets/image5.jpg}{Bay Area Rapid Transit (BART) system tickets including senior, student, 
-and handicapped discount tickets.}{ BART (http://www.bart.gov/).}
+and handicapped discount tickets.}{ BART (\url{http://www.bart.gov/}).}
 
 Chile and Brazil, for example, both place a legal obligation on the public transport operators to accept 
 special discounts for students and the elderly. In Brazil, private vehicle operators are not compensated 

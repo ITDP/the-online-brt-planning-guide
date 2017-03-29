@@ -2,8 +2,8 @@
 
 
 
-> Price is what you pay. Value is what you get.
-@ Warren Buffett, businessman, 1930-
+\quotation{Price is what you pay. Value is what you get.}
+{Warren Buffett, businessman, 1930-}
 
 
 Defining fare policies can be a tricky subject. There must be an adequate balance between the technical 
@@ -37,6 +37,6 @@ be and allow them to start considering possible financing sources, such as priva
 In the following sections, we will discuss objectives, techniques, and points to consider when deciding 
 on a fare policy for a BRT system.
 
-\include{151-fare-structure-options.src}
-\include{152-fare-parameters.src}
-\include{153-technical-fare-and-customer-fare.src}
+\include{01-fare-structure-options.manu}
+\include{02-fare-parameters.manu}
+\include{03-technical-fare-and-customer-fare.manu}
