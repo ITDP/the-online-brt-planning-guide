@@ -160,7 +160,7 @@ class Generator {
 		buf.add("<html>\n");
 		buf.add(renderHead(title, base, url));
 		buf.add("<body>\n");
-		buf.add(renderBreadcrumbs(bcs, path));  // FIXME
+		buf.add(renderBreadcrumbs(bcs, url));  // FIXME
 		buf.add('<div class="container">\n<div class="col-text">\n');
 		return buf;
 	}
