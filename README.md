@@ -10,7 +10,7 @@ It is a huge effort by the Institute of Transportation and Development Policy
 This project aims to make the guide more accessible and keep it up-to-date:
 
  - the guide is now available online in a website format that is easy to navigate
- - PDFs are also available to those that need to print it
+ - PDFs are also available to those that need to print them
  - the online publication of updates is automatic
  - the entire history of the guide is kept with Git
  - revisions and contributions are easier with GitHub
