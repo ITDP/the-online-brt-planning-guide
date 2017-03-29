@@ -10,6 +10,21 @@ html {
 	display: none;
 }
 
+/* references */
+
+.url {
+	white-space: -moz-pre-wrap !important;
+	white-space: -webkit-pre-wrap;
+	white-space: -pre-wrap;
+	white-space: -o-pre-wrap;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	word-break: break-all;
+	white-space: normal;
+	font-family: monospace;
+	font-size: 14px;
+}
+
 /* headings */
 
 h1, h2, h3, h4, h5, h6, h7 {
@@ -94,6 +109,9 @@ header ul li {
 }
 header ul li:first-child {
 	padding: 0 8px 0 120px;
+}
+header ul li.jump-to-nav {
+	display: none;
 }
 header ul li ul {
 	line-height: 16px;
@@ -512,25 +530,23 @@ pre {
 	header {
 		border-bottom: 0px;
 		position: relative;
+		height: auto;
 	}
 	header ul {
 		width: auto;
 	}
-	header ul li {
-		display: none;
-	}
 	header ul li:first-child {
-		padding: 0;
-		display: block;
-		width: 100%;
-		text-align: right;
+		padding: 0 8px 0 88px;
+	}
+	header ul li.jump-to-nav {
+		display: inline;
 	}
 
 	/* nav */
 
 	nav {
 		padding: 0 0 8px 0;
-		margin-top: 16px;
+		margin: 16px 0;
 		width: 100%;
 		position: relative;
 		top: 0;
@@ -542,7 +558,6 @@ pre {
 		padding: 8px 0 0 8px;
 	}
 	nav ul {
-		display: none;
 	}
 
 
@@ -570,12 +585,6 @@ pre {
 		margin-left: 32px;
 	}
 
-	/* target */
-
-	.target {
-		display: block;
-	}
-
 	/* tables */
 
 	table {
@@ -584,17 +593,16 @@ pre {
 
 	/* menu */
 
-	#toc-menu, #toc-loading {
+	#toc-loading {
 		display: block;
-		text-align: center;
 		font-family: 'PT Sans', sans-serif;
-		font-weight: bold;
 		height: 16px;
 		padding: 8px;
 		color: #666;
 		line-height: 24px;
+		font-size: 16px;
 	}
-	#toc-menu.disabled {
+	#toc-menu {
 		display: none;
 	}
 }

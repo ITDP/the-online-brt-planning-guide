@@ -29,11 +29,11 @@ class Parser {
 
 	// command name fixing suggestions
 	static var verticalCommands = [
-		"volume", "chapter", "section", "subsection", "subsubsection",
+		"volume", "chapter", "section", "subsection", "subsubsection", "title",
 		"figure", "quotation", "item", "number", "beginbox", "endbox", "include",
 		"begintable", "header", "row", "col", "endtable",
 		"meta", "reset", "tex", "preamble", "export", "html", "apply"];
-	static var horizontalCommands = ["sup", "sub", "emph", "highlight"];
+	static var horizontalCommands = ["sup", "sub", "emph", "highlight", "url"];
 	static var hardSuggestions = [  // some things can't be infered automatically
 		"quote" => "quotation",
 		"display" => "highlight"
@@ -194,6 +194,10 @@ class Parser {
 		case { def:TCode(s), pos:pos }:
 			pop();
 			mk(InlineCode(s), pos);
+		case { def:TCommand("url"), pos:pos }:
+			var cmd = pop();
+			var address = arg(rawHorizontal, cmd);
+			mk(Url(address.val.trim()), cmd.pos.span(address.pos));
 		case { def:TCommand(cname), pos:pos } if (Lambda.has(horizontalCommands, cname)):
 			var cmd = pop();
 			var content = arg(hlist, cmd);
@@ -261,6 +265,7 @@ class Parser {
 		case TCommand("section"): mk(Section(name.val), cmd.pos.span(name.pos));
 		case TCommand("subsection"): mk(SubSection(name.val), cmd.pos.span(name.pos));
 		case TCommand("subsubsection"): mk(SubSubSection(name.val), cmd.pos.span(name.pos));
+		case TCommand("title"): mk(Title(name.val), cmd.pos.span(name.pos));
 		case _: unexpected(cmd);
 		}
 	}
@@ -490,8 +495,8 @@ class Parser {
 			null;
 		case TCommand(cmdName):
 			switch cmdName {
-			case "volume", "chapter", "section", "subsection", "subsubsection":
-				if (!restricted)
+			case "volume", "chapter", "section", "subsection", "subsubsection", "title":
+				if (!restricted || cmdName == "title")
 					hierarchy(pop());
 				else
 					unexpected(pop(), "headings not allowed here");

@@ -27,8 +27,9 @@
 			"cd $ROBRT_REPOSITORY_DIR",
 			"cp LICENSE.md $ROBRT_OUTPUT_DIR/",
 			"export DEBUG=1",
-			"manu generate guide/the-guide.src .generated",
-			"find guide -type f -iname '*.src' -print0 | xargs -0 manu stat tokens",
+			"export TEX_NO_POSITIONS=1",
+			"manu generate guide/the-guide.manu .generated",
+			"find guide -type f -iname '*.manu' -print0 | xargs -0 manu stat tokens",
 
 			"if [ -z ${ASSET_URL_PREFIX+x} ]; then echo Skipped; else manu asset-server store $DOCKER_HOST_IP 6668 .generated/html/assets; fi",
 			"if [ -z ${ASSET_URL_PREFIX+x} ]; then echo Skipped; else rm -rf .generated/html/assets; fi",

@@ -156,6 +156,12 @@ class Test_05_Transform {
 		}, parse("\\volume{a}b\\volume{c}d"));
 	}
 
+	public function test_002_survivability_of_simple_velems()
+	{
+		Assert.same(expand( DTitle(Word("foo")) ), transform(expand( Title(Word("foo")) )));
+		// TODO
+	}
+
 	public function test_old_002_hierarchy_content_binding()
 	{
 		// FIXME no lists with length == 1

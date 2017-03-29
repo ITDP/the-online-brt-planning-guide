@@ -78,6 +78,8 @@ class Generator {
 			return '<code${genp(h.pos)}>${gent(code)}</code>';
 		case Math(tex):
 			return '<span class="mathjax"${genp(h.pos)}>\\(${gent(tex)}\\)</span>';
+		case Url(address):
+			return '<a class="url" href="${address.urlEncode()}">${gent(address)}</a>';
 		case HElemList(li):
 			var buf = new StringBuf();
 			if (godOn)
@@ -99,8 +101,8 @@ class Generator {
 			return " ";
 		case Superscript(h), Subscript(h), Emphasis(h), Highlight(h):
 			return genn(h);
-		case Word(cte), InlineCode(cte), Math(cte):
-			return cte;
+		case Word(cte), InlineCode(cte), Math(cte), Url(cte):
+			return gent(cte);
 		case HElemList(li):
 			var buf = new StringBuf();
 			for (i in li)
@@ -146,7 +148,7 @@ class Generator {
 		return Context.time("html generation (saveAsset)", _saveAsset.bind(src, content));
 
 	@:template function renderHead(title:String, base:String, relPath:String);
-	@:template function renderBreadcrumbs(bcs:Breadcrumbs);  // FIXME
+	@:template function renderBreadcrumbs(bcs:Breadcrumbs, relPath:String);  // FIXME
 
 	function openBuffer(title:String, base:String, bcs:Breadcrumbs, path:String)
 	{
@@ -158,8 +160,8 @@ class Generator {
 		buf.add("<html>\n");
 		buf.add(renderHead(title, base, path));
 		buf.add("<body>\n");
-		buf.add(renderBreadcrumbs(bcs));  // FIXME
-		buf.add('<div class="container"><nav><span id="toc-loading">Loading the table of contents...</span><a id="toc-menu" class="disabled" href="">Table of Contents</a></nav>\n<div class="col-text">\n');
+		buf.add(renderBreadcrumbs(bcs, path));  // FIXME
+		buf.add('<div class="container">\n<div class="col-text">\n');
 		return buf;
 	}
 
@@ -284,6 +286,9 @@ class Generator {
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim() + "\n";
+		case DTitle(name):
+			// FIXME
+			return genv({ def:DParagraph({ def:Highlight(name), pos:v.pos }), pos:v.pos, id:v.id }, idc, noc, bcs);
 		case DFigure(no, size, _.toInputPath() => path, caption, cright):
 			idc.figure = v.id.sure();
 			noc.figure = no;
@@ -455,6 +460,7 @@ class Generator {
 			var b = bufs[p];
 			if (p.endsWith(".html")) {
 				b.add("</div>\n");
+				b.add('<nav id="navigate"><span id="toc-loading">Loading the table of contents...</span></nav>\n');
 				b.add("</div>\n");
 				b.add('<script src="$toc"></script>');
 				b.add('<script src="$script"></script>');

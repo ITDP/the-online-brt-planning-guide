@@ -45,14 +45,7 @@ class Main {
 		// fix fragments
 		toc.find('a[href^="#"]').attr("href", function (_, u) return myUrl + u);
 
-		// set-up the responsive behaviour
-		J("#toc-menu").click(function (e) {
-			J("nav ul").css("display", function (_, cur) return cur == "none" ? "block" : "");
-			e.preventDefault();
-		});
-
 		J("#toc-loading").remove();
-		J("#toc-menu").removeClass("disabled");
 		J("nav").append(toc);
 	}
 
