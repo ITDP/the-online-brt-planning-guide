@@ -11,7 +11,9 @@
 			"echo $GL_ANALYTICS_UA_ID",
 			"echo $ASSET_URL_PREFIX",
 			"echo $DOCKER_HOST_IP",
+
 			"dpkg -s haxe",
+			"haxelib list",
 			"node --version",
 
 			"cd $ROBRT_REPOSITORY_DIR",
