@@ -247,7 +247,7 @@ class Generator {
 			idc.subSection = v.id.sure();
 			noc.subSection = no;
 			var lno = noc.join(false, ".", chapter, section, subSection);
-			var id = idc.join(true, ".", subSection);
+			var id = idc.join(false, "/", subSection);
 			toc.add('<li>${renderToc(null, lno, new Html(genh(name)), bcs.section.url+"#"+id)}<ul>\n');
 			var html = '
 				<section>
@@ -261,7 +261,7 @@ class Generator {
 			idc.subSubSection = v.id.sure();
 			noc.subSubSection = no;
 			var lno = noc.join(false, ".", chapter, section, subSection, subSubSection);
-			var id = idc.join(true, ".", subSection, subSubSection);
+			var id = idc.join(false, "/", subSection, subSubSection);
 			var html = '
 				<section>
 				<h5 id="$id" class="volume${noc.volume}">$lno$QUAD${genh(name)}</h5>
@@ -274,7 +274,7 @@ class Generator {
 			idc.box = v.id.sure();
 			noc.box = no;
 			var no = noc.join(false, ".", chapter, box);
-			var id = idc.join(true, ".", box);
+			var id = idc.join(true, ":", box);
 			var sz = TextWidth;
 			function autoSize(d:DElem) {
 				if (d.def.match(DTable(_, FullWidth|MarginWidth, _) | DFigure(_, FullWidth|MarginWidth, _)))
@@ -296,7 +296,7 @@ class Generator {
 			idc.figure = v.id.sure();
 			noc.figure = no;
 			var no = noc.join(false, ".", chapter, figure);
-			var id = idc.join(true, ".", figure);
+			var id = idc.join(true, ":", figure);
 			if (Context.dinossaurFigures) {
 				return '
 					<section class="img-block ${sizeToClass(size)}">
@@ -317,7 +317,7 @@ class Generator {
 			idc.table = v.id.sure();
 			noc.table = no;
 			var no = noc.join(false, ".", chapter, table);
-			var id = idc.join(true, ".", table);
+			var id = idc.join(true, ":", table);
 			var buf = new StringBuf();
 			function writeCell(cell:DElem, header:Bool)
 			{
@@ -354,7 +354,7 @@ class Generator {
 			idc.table = v.id.sure();
 			noc.table = no;
 			var no = noc.join(false, ".", chapter, table);
-			var id = idc.join(true, ".", table);
+			var id = idc.join(true, ":", table);
 			if (Context.dinossaurFigures) {
 				return '
 					<section class="img-block ${sizeToClass(size)}">
