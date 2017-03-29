@@ -14,7 +14,7 @@
 <li><a href="(:bcs.section.url:)"><strong>(:bcs.section.name:)</strong></a></li>
 (:end:)
 <li class="jump-to-nav">/</li>
-<li class="jump-to-nav"><a href="(:relPath:)#navigate"><strong>...</strong></a></li>
+<li class="jump-to-nav"><a href="(:relPath:)#action:navigate"><strong>...</strong></a></li>
 </ul>
 <noscript>
 <div class="js-required-banner">

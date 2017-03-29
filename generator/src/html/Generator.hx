@@ -434,8 +434,8 @@ class Generator {
 		// TODO tt, commit in downloads, chapter download
 		toc.add('
 			<li class="keep">
-			<a href="#nav-options">More options</a>
-			<ul class="target" id="nav-options">
+			<a href="#action:more-options">More options</a>
+			<ul class="target" id="action:more-options">
 			<li><a href="pdf/the-brt-planning-guide.pdf">Download the guide as PDF</a></li>
 			<!--<li>Chapter: Corridor And Network Development</li>-->
 			<li><a href="../">Server debug</a></li>
@@ -463,7 +463,7 @@ class Generator {
 			var b = bufs[p];
 			if (p.endsWith(".html")) {
 				b.add("</div>\n");
-				b.add('<nav id="navigate"><span id="toc-loading">Loading the table of contents...</span></nav>\n');
+				b.add('<nav id="action:navigate"><span id="toc-loading">Loading the table of contents...</span></nav>\n');
 				b.add("</div>\n");
 				b.add('<script src="$toc"></script>');
 				b.add('<script src="$script"></script>');
