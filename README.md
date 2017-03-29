@@ -57,7 +57,7 @@ git remote set-url origin https://<your-github-username-here>@github.com/ITDP/th
 git remote set-url origin git@github.com:/ITDP/the-online-brt-planning-guide
 ```
 
-#### 2. How can I run _manu_ and generate the guide locally
+#### 2. How to locally run _manu_ and generate the guide?
 
 First, you need to [clone](https://help.github.com/articles/cloning-a-repository/) the project's repository.
 Then, install [Node.js](https://nodejs.org), get an [up-to-date _manu_ package](https://brtguide.itdp.org/branch/master/bin/) and install it with `npm i -g <path-to-downloaded-tgz-file>` (`npm` is automatically installed with Node.js).
