@@ -1,6 +1,6 @@
+\' section{ Importance of Financial Modelling} content moved to land page and provisional quotations as well'\
 
-
-\section{ Importance of Financial Modelling}
+\quotation{Imagine the world of mobile based on Nokia and Motorola if Apple had not been restarted by a missionary entrepreneur named Steve Jobs who cared more for his vision than being tactical and financial.}{Vinod Khosla, engineer co-founder of Sun Microsystems, 1955–}
 
 The success of advanced transportation systems, such as BRT, does not depend solely on technical resources, 
 such as coherent operational planning, technology selection, and transportation infrastructure, 
@@ -10,18 +10,22 @@ It is based on this information that decision makers may begin searching for fin
 
 Furthermore, financial modelling allows for the appraisal of:
 
+\'provisional review by acs bellow '\
 \item Different types of tariff structures;
 \item Vehicle fleet compositions;
 \item Cost/sizing parameters;
 \item Financing options/fees;
-\item Profit level/business valuation for the system’s entities;
-\item Free cash-flow and funding-gap analysis;
-\item Sensibility analysis.
+\item Profit level/business value of system entities \'valuation for the system’s entities;'\
+\item Free cash-flow and funding-gap; \' analysis;'\
+\item Uncertainties. \'Sensibility analysis.'\
 
 \figure[medium]{assets/financial-modeling-aspects.jpg}{Measuring various aspects of financial modelling.}{Logit.}
 
+\section{ Importance of Financial Modelling}
+\'subsection provisionaly removed {Importance of Modelling the Financial and Operations Aspects Simultaneously} and provisional quotation as well '\
 
-\subsection{ Importance of Modelling the Financial and Operations Aspects Simultaneously}
+\quotation{When it is obvious that the goals cannot be reached, don't adjust the goals, adjust the action steps.}
+{Confucius, philosopher, 551 - 479 BC}
 
 Previously, transportation studies and financial appraisals were treated as separate entities, and 
 they did not move at the same speed. The problem with this approach is that sound technical plans may 
