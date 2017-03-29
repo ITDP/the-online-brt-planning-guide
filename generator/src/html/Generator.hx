@@ -34,7 +34,6 @@ class Generator {
 	static var assetCache = new Map<String,String>();
 	static inline var ASSET_SUBDIR = "assets";
 	@:template static var FILE_BANNER;
-	static inline var INDEX = "index";
 	static inline var ROOT_URL = "./";
 
 	var destDir:String;
@@ -154,8 +153,8 @@ class Generator {
 
 	function openBuffer(title:String, bcs:Breadcrumbs, url:String)
 	{
-		assert(url == Path.normalize(url) || url == ROOT_URL, url, Path.normalize(url));
-		var path = url == ROOT_URL ? "index.html" : Path.withExtension(url, "html");
+		assert(Path.removeTrailingSlashes(url) == Path.normalize(url) || url == ROOT_URL, url);
+		var path = Path.normalize(url.endsWith("/") ? Path.join([url, "index.html"]) : Path.withExtension(url, "html"));
 		var depth = path.split("/").length - 1;
 		var computedBase = depth > 0 ? [ for (i in 0...depth) ".." ].join("/") : ".";
 		// TODO get normalize and google fonts with \html\apply or \html\link
@@ -197,7 +196,7 @@ class Generator {
 		case DVolume(no, name, children):
 			idc.volume = v.id.sure();
 			noc.volume = no;
-			var url = Path.normalize(Path.join(["volume", idc.volume]));
+			var url = Path.join(["volume", idc.volume]);
 			bcs.volume = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = 'Volume $no: ${genn(name)}';
 			var buf = openBuffer(title, bcs, url);
@@ -214,7 +213,7 @@ class Generator {
 		case DChapter(no, name, children):
 			idc.chapter = v.id.sure();
 			noc.chapter = no;
-			var url = Path.normalize(Path.join([idc.chapter, INDEX]));
+			var url = Path.addTrailingSlash(idc.chapter);
 			bcs.chapter = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = 'Chapter $no: ${genn(name)}';
 			var buf = openBuffer(title, bcs, url);
@@ -233,7 +232,7 @@ class Generator {
 			idc.section = v.id.sure();
 			noc.section = no;
 			var lno = noc.join(false, ".", chapter, section);
-			var url = Path.normalize(Path.join([idc.chapter, idc.section]));
+			var url = Path.join([idc.chapter, idc.section]);
 			bcs.section = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = '$lno ${genn(name)}';  // TODO chapter name
 			var buf = openBuffer(title, bcs, url);
