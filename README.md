@@ -57,3 +57,29 @@ git remote set-url origin https://<your-github-username-here>@github.com/ITDP/th
 git remote set-url origin git@github.com:/ITDP/the-online-brt-planning-guide
 ```
 
+2. How can I run manu and generate the guide locally
+
+First, you need to [clone](https://help.github.com/articles/cloning-a-repository/) the project's repository.
+
+Then, install [Node.js](https://nodejs.org), get an [up-to-date manu](https://brtguide.itdp.org/branch/master/bin/) package and install it with `npm i -g <path-to-manu-tgz-file>`.
+_(you can also build it locally, check out [`.robrt.Dockerfile`](.robrt.Dockerfile) and [`.robrt.json`](.robrt.json) to see how we do it in the server)_
+
+With manu installed you should be able to run `manu` in your command line.
+Try `manu --help` to query the available commands and options.
+
+Then, you can generate the guide by running something like
+
+```bash
+manu generate guide/the-guide.manu .generated
+```
+
+in a command line at the root of local copy of the project.  This will populate a `.generated` directory with `.html` and `.tex` files.
+
+At this point, the website is already fully functional.
+However, it's necessary to start a server and configure it to automatically try adding `.html` extensions to URLs.
+Since we already have Node.js installed for manu, the easiest way to do start this server is with [`http-server`](https://www.npmjs.com/package/http-server) (you can install it with `npm -i -g http-server`):
+also in a command line at the root folder of the project run `http-server .generated/html --ext html -o`.
+
+To generate the PDFs you'll need a working LaTeX installation with `lualatex` and `latexmk`:
+navigate to `.generated/pdf` and run `latexmk -lualatex book.tex`.
+
