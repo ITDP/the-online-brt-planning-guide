@@ -1,0 +1,223 @@
+
+
+\section{ Implementation Phasing}
+
+\quotation{It is not always what we know or analyzed before we make a decision that makes it a great decision. It is what we do after we make the decision to implement and execute it that makes it a good decision.}
+{William Pollard, clergyman, 1828–93}
+
+Preparation of implementation schedule is very important in deployment of IT systems for BRT. The aim 
+is to minimize the organizational/operational impacts, avoiding large-scale problems that frequently 
+occur when complex systems are introduced in a single step. Each phase must be clearly identified through 
+a milestone. The implementation phase should be defined on the basis of realistic timing and carefully 
+estimated deadlines. This will help avoid common problems such as delays, contract-conflicting behavior 
+of contractor, effort/resources required by contracting body/transport operator, etc. The definition 
+of a step-by-step implementation plan and the setup of related milestones facilitates the management 
+of penalties due to delays during the implementation (sign-off of each phase, positive results of the 
+testing procedure, final acceptance, etc.). 
+
+The plan can be made by consultants/advisers to the transport authority jointly seeking inputs from 
+the authority. The plan should highlight important milestones to be achieved, deadlines, time frame for 
+implementation including resource mobilization, equipment procurement, demo and testing, actual fitments, 
+staff hiring, etc. The preparation of pre-implementation plan facilitates transport authorities to know 
+well in advance about budget requirements and the time span that will be required by the service provider 
+to commence system operations. It helps transport authorities plan for and allocate their monetary and 
+manpower resources accordingly. 
+
+Project-management tools should be used, with detailed time line and resource tracking and analysis, 
+manpower allocation of tasks, milestones, dependency analysis, critical path analysis, responsibility 
+assignment, etc. The initial planning should commence during the detailed design phase, so that there 
+is a clear vision of how the ITS deployment will be achieved. This will ensure that adequate resources 
+have been mobilized, responsibilities are clear, and potential barriers have been foreseen and mitigated. 
+The plan should be comprehensive and cover all aspects of the ITS deployment through to installation, 
+testing/commissioning, sign-off, and the initial operational period.
+
+\subsection{ Tendering}
+
+At a general level, the main objective of the procurement process is to select a supplier whose proposal 
+complies with the technical objectives and requirements determined by the implementing agency, and offers 
+the lowest cost among the bidders. The overall tendering procedure should be defined so that the financial 
+factor only comes into play among the bidders whose proposals are acceptable in technical terms. Various 
+tendering schemes are available to achieve this objective. A typical tendering procedure includes the 
+following steps: 
+\number Tender specifications; 
+\number Invitation to tender (which may follow from prequalification);
+\number Pre-bid meeting;
+\number Proposal application and evaluation;
+\number Negotiation and contracting.
+
+The tender specifications must clearly identify the systems/tools (hardware, software) and the support 
+services in order to allow bidders to define the price. The overall cost estimation should include not 
+only the cost of the technology (individual hardware and software components), but also the costs related 
+to the operation and support services (e.g., total days for the installation in different depots, meeting 
+with contractors, resources necessary for detailed design, management, etc.).
+
+The following are key articles of tendering prescriptions and contractual rules:
+
+\item Award criteria (technical and financial qualification criteria, experience). The mutual relevance between 
+technical and financial criteria must be defined in such a way to preserve the technical value of the 
+proposal. The most common approach is to require bidders to submit the financial proposal in a separately 
+sealed envelope. The technical proposal is evaluated first, and only proposals with a satisfactory technical 
+score (or which are deemed to be compliant) proceed to the stage of financial assessment. There are various 
+ways to define evaluation criteria and related calculation formula. The options usually relate to the 
+relevance the Client should assign to the criteria. Factors used as technical criteria are: technical 
+quality of the proposal, quality of the maintenance service, description of the implementation modalities, 
+technical assistance for the start up of the system, technical documentation, etc.;
+\item Warranties. Warranties can be of different form and objective: requirement for the eligibility of the 
+offer, for the compliance of the implementation to technical specifications and contract rules, for the 
+compliance of services and prescriptions after the implementation is completed (in case also the operation 
+of system/service is contracted). The tender should oblige the bidder to provide unlimited software licenses. 
+Unlimited software licenses means not only that the licenses are not time limited, but also that no extra 
+costs will occur in case of the license up-scaling (e.g., increase of vehicles connected to the AVM, 
+of equipped depots for data upload and download, etc.). The tender documentation should require bidders 
+to declare/list the cost of each device, component, or services (onboard terminal, onboard unit, gate, 
+contact/contactless reader, training day, etc.). It should also require that the contractor is obliged 
+to maintain these prices for a specified time period (e.g., five years in case of up-scaling of some 
+system components); 
+\item Technical specifications and annexure. Technical specifications of products required and annexure are 
+based on the main results of a feasibility analysis. It is recommended to focus on functionalities and 
+operative requirements rather than technology solutions and technical features of each component. Functional 
+specifications should be described in terms of “operational scenarios.” This provides the bidder with 
+sufficient freedom to propose the most effective solution, while still meeting the client requirements. 
+The specifications should not include technical conditions or requirements that could be seen as a restriction 
+of open competition, or that give an unfair advantage to a specific bidder. Restriction on competition 
+could occur if the tender specifies the use of a specific type of equipment, or a specific piece of software, 
+even though other makes could equally do the job. It is reasonable to state a preference for something 
+if it is already in widespread use in the organization, but it is not reasonable to make it mandatory 
+if there is no technical barrier to alternatives. Sometimes, integration is required between a proposed 
+system and an already existing system. In this case, the previous supplier will have strong advantage 
+of thorough understanding of the existing system and knowledge of the amount of work involved in the 
+integration. To overcome this, the tender process should provide all the information about existing system 
+including system description, functionality, data elements, etc. The technical specifications part of 
+the bid document should mention in general the requirements of the system, of various gadgets and compulsion 
+of certified standards. The annexure section should provide bidders with all the required formats for 
+bid submission like cover letter, price bid, declaration form, power of attorney, etc.; 
+\item Implementation timeline. This should include milestones and corresponding payments;
+\item Service level benchmarks and service provider obligations. This should include penalties for inadequate 
+performance and procedures for conflict resolution.
+
+As a standard practice, the bid submission process should follow a two-cover system: one sealed cover 
+with technical bid and the other with financial bid. To perform the evaluation phase of the technical 
+part of the bid proposals, an iterative methodology can be used. The evaluation is based on the repeated 
+identification of the evaluation factors (at N+1 level) that contribute to the evaluation of each criteria/sub 
+criteria (at N level) according to the weighted factors. This methodology is applied starting from the 
+bottom level of criteria or sub-criteria defined in the tendering documentation, up to the level that 
+is considered appropriate. One example of this methodology is based on a scoring system. The bidder must 
+score minimum marks as specified in technical capability criteria. Sample criteria and their corresponding 
+weights are presented in Table 19.6.
+
+\begintable{Technical Criteria for the Bidding Process}
+\header
+\col Criteria
+\col Points
+\row
+\col The number of projects for smart card-based AFC solutions to be used in bus/rail-based public transport services, implemented in the past seven years and the cost for each project should be more than ___ USD. 20 Points for each project subject to a maximum of 100 points.
+\col 100
+\row
+\col 1. Number of AFC smart card clearinghouse solutions delivered in the past seven years by the bidder that clear and settle revenue between multiple independent transit operations operating various modes of transport systems; and/or; 2. Service providers that manage AFC infrastructure, implemented in the past seven years.; 
+\col 50
+\row
+\col Vehicle tracing/PIS display/AFC system/vehicle dispatching and scheduling/depot management system
+\col 150
+\row
+\col Overseas Experience:; International experience of projects costing more than one million US dollars (10 points for each project subject to a maximum of 50 points); 
+\col 50
+\row
+\col CVs of the key professionals (employees or full-time consultant)
+\col 50
+\row
+\col Quality System Certification
+\col 50
+\row
+\col Number of Projects for which at least 50 Units of Turnstiles/Flap Gates supplied/commissioned in Public Transit System during the last three years from the due date of tender. (Per Project—10 Points up to maximum of 5 Project)
+\col 50
+\row
+\col Project execution methodology (to be judged through a write-up of not more than 5,000 words and presentation)
+\col 200
+\row
+\col Total Marks
+\col 700
+\row
+\col Minimum Qualifying Marks Required
+\col 490
+\endtable
+
+\subsection{ Implementation Oversight}
+
+Each and every step of implementation has to be carefully planned, supervised, and monitored. An IT 
+deployment team should be established at an early stage, and ideally at least some of its members should 
+be involved in the functional specification and detailed design phases. This is necessary to ensure that 
+they have a deep understanding of what the IT system should achieve and how it is intended to work. Building 
+relevant expertise and capacity of this team can be achieved by:
+
+\item Engaging consultants and technical experts for roles such as project management, system integration, 
+design verification, system and component testing, system commissioning, supplier interface; 
+\item Bringing in IT and software specialists who have experience with complex IT projects and system integration 
+(not necessarily in the ITS or even transportation domain);
+\item Partnering with cities and/or transport operators who have ITS system experience, and who are willing 
+to act as mentors and perhaps provide some of their staff on a support basis or temporary reassignment;
+\item Organizing study tours for the team at places where such systems are already successfully functional;
+\item Enrolling a third party as a project management consultant with expertise in sector.
+
+The team may be built up as deployment approaches, gradually bringing in people from the units that 
+will utilize the ITS functions, and from support functions that will be involved in the installation 
+and commissioning (e.g., maintenance section, IT department). The team should have members with different 
+skills and professional backgrounds in order to cover all the required domains (technical, financial, 
+operative, management, etc.). Capacity building is essential and needs to be carefully planned and adequately 
+resourced. This will include core skill training, up-skilling, and training and skill transfer by suppliers.
+
+The testing procedure takes place at the end of each implementation phase (milestone) and at the end 
+of the realization (for final acceptance of the whole system). The testing of the results of each phase 
+(both intermediate and final) is organized into three different levels:
+
+\item Quantitative and technical congruency of system supply and components;
+\item Functional test (base/core functions, other functions);
+\item Performance test.
+
+The testing procedures should be devised and agreed with the supplier(s), and conducted either in-house 
+or by an independent firm with the relevant expertise. The conformance of the system is based on the 
+following verifications: 
+
+\item Actual number of installed components; 
+\item Technical and operational conformity of installation activities;
+\item Presence of software licenses; 
+\item Technical documents and manuals included in the object of the contract. 
+
+Functional tests measure the level of responsiveness of functions to contractual specifications: they 
+can be divided in tests of a single subsystem and of the whole system. Each functionality must be tested 
+under a wide range of operational conditions. Functional tests prove that the function complies with 
+specification (during the specified test). Performance tests measure how long the system is able to provide 
+the functionality properly over a certain time period or number of tests. The positive verification of 
+each milestone (phase) testing leads to the processing of related payment. If not all the results of 
+the testing are positive the contracting authority can decide if:
+
+\item The test should be entirely repeated and the implementation activities/installation of the next phase 
+should be stopped (waiting for positive verification of repeated tests). In this case no payment will 
+be processed—this situation implies major incompliance from the supplier side and the presence of critical 
+factors impeding the work progress;
+\item The test should be partly repeated, the system functionalities and performances are such to go on with 
+the implementation activities/installation for next phase. A percentage of the payment will be transferred 
+to the supplier, and the remaining quota will be paid too when current problems are solved—in these situations 
+incompliance is less significant and has no impact on the following stages of work.
+
+The supply and installation of components does not imply that these components are operated by the 
+transport companies (or accepted by the contracting body). It is normal to have a period of live operation 
+and debugging: even more the start-up and operation of the system is mandatory to allow the overall IT 
+system(s) to be tested in live conditions in order to detect problems that were not apparent in the testing 
+of the individual units. The positive results of the phase test regulates the payments but they do not 
+mean the final acceptance of the testing: all hardware and software products should not be accepted until 
+they have passed the final testing where each component and subsystem will be tested as part of the comprehensive 
+system. The guarantee should commence its period from the date of final acceptance of the system (positive 
+acceptance tests). The reference date for the guarantee should not become the date of the installation 
+of each component, or its initial testing. Project personnel need to be cautioned on what they sign off 
+on at various testing phases.
+
+\subsection{Pilot Demonstration}
+
+A pilot demonstration will help identify and solve problems before the overall system comes online. 
+The subsequent phases are managed as “extensions” of the components and consolidation of functionalities. 
+Payments should be scheduled according to each implementation milestone in terms of the percentage of 
+the total price. Each payment would be carried out after the successful test planned for each phase. 
+The last payment (i.e., 10 percent of the total) should be linked to the successful final testing (acceptance) 
+of the overall system and to the proven compliance with all the contract obligations. Value and timing 
+of the payments will assure adequate cash flow for the provider (especially in the first phase of the 
+implementation), without leaving the BRT agency overexposed. 

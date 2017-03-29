@@ -29,11 +29,11 @@ class Parser {
 
 	// command name fixing suggestions
 	static var verticalCommands = [
-		"volume", "chapter", "section", "subsection", "subsubsection",
+		"volume", "chapter", "section", "subsection", "subsubsection", "title",
 		"figure", "quotation", "item", "number", "beginbox", "endbox", "include",
 		"begintable", "header", "row", "col", "endtable",
 		"meta", "reset", "tex", "preamble", "export", "html", "apply"];
-	static var horizontalCommands = ["sup", "sub", "emph", "highlight"];
+	static var horizontalCommands = ["sup", "sub", "emph", "highlight", "url"];
 	static var hardSuggestions = [  // some things can't be infered automatically
 		"quote" => "quotation",
 		"display" => "highlight"
@@ -185,7 +185,7 @@ class Parser {
 			null;
 		case { def:tdef } if (stop.beforeAny != null && Lambda.exists(stop.beforeAny,Type.enumEq.bind(tdef))):
 			null;
-		case { def:TWord(s), pos:pos }:
+		case { def:TWord(s)|TEscaped(s), pos:pos }:
 			pop();
 			mk(Word(s), pos);
 		case { def:TMath(tex), pos:pos }:
@@ -194,6 +194,10 @@ class Parser {
 		case { def:TCode(s), pos:pos }:
 			pop();
 			mk(InlineCode(s), pos);
+		case { def:TCommand("url"), pos:pos }:
+			var cmd = pop();
+			var address = arg(rawHorizontal, cmd);
+			mk(Url(address.val.trim()), cmd.pos.span(address.pos));
 		case { def:TCommand(cname), pos:pos } if (Lambda.has(horizontalCommands, cname)):
 			var cmd = pop();
 			var content = arg(hlist, cmd);
@@ -217,9 +221,6 @@ class Parser {
 		case { def:TWordSpace(s), pos:pos }:
 			pop();
 			mk(Wordspace, pos);
-		case { def:TColon(q), pos:pos } if (q != 3):
-			pop();
-			mk(Word("".rpad(":", q)), pos);
 		case { def:tdef } if (tdef.match(TBreakSpace(_) | TEof)):
 			null;
 		case other:
@@ -228,7 +229,7 @@ class Parser {
 	}
 
 	function hlist(stop:Stop)
-		return mkList(horizontal, stop);
+		return mkList(horizontal(stop));
 
 	// FIXME document slash behavior
 	function rawHorizontal(stop:Stop):String
@@ -244,7 +245,7 @@ class Parser {
 				break;
 			case { def:TComment(_) }:
 				pop();
-			case { def:TWord(w) }:
+			case { def:TWord(w)|TEscaped(w) }:
 				pop();
 				buf.add(w);
 			case { src:src, pos:pos }:
@@ -264,20 +265,8 @@ class Parser {
 		case TCommand("section"): mk(Section(name.val), cmd.pos.span(name.pos));
 		case TCommand("subsection"): mk(SubSection(name.val), cmd.pos.span(name.pos));
 		case TCommand("subsubsection"): mk(SubSubSection(name.val), cmd.pos.span(name.pos));
+		case TCommand("title"): mk(Title(name.val), cmd.pos.span(name.pos));
 		case _: unexpected(cmd);
-		}
-	}
-
-	function mdHeading(hashes:Token, stop:Stop)
-	{
-		discardNoise();
-		var name = hlist(stop);
-
-		return switch hashes.def {
-		case THashes(1): mk(Section(name), hashes.pos.span(name.pos));
-		case THashes(2): mk(SubSection(name), hashes.pos.span(name.pos));
-		case THashes(3): mk(SubSubSection(name), hashes.pos.span(name.pos));
-		case _: unexpected(hashes, 'only sections (#), subsections (##) and subsubsections (###) allowed');
 		}
 	}
 
@@ -291,71 +280,11 @@ class Parser {
 		return mk(Figure(size, mk(path.val, path.pos.offset(1,-1)), caption.val, copyright.val), cmd.pos.span(copyright.pos));
 	}
 
-	/*
-	After having already read a `#FIG#` tag, parse the reaming of the
-	vertical block as a combination of a of path (delimited by `{}`),
-	copyright (after a `@` marker) and caption (everything before the `@`
-	and that isn't part of the path).
-	*/
-	function mdFigure(tag:Array<Token>, stop)
-	{
-		assert(tag[0].def.match(THashes(1)), tag[0]);
-		// assert(tag[1].def.match(TWord("FIG") | TWord("FIG:small") | TWord("FIG:medium") | TWord("FIG:large")), tag[1]);
-		assert(tag[2].def.match(THashes(1)), tag[2]);
-
-		var spat = ~/^FIG(:(small|medium|large))?$/;
-		var size = switch tag[1].def {
-		case TWord(n) if (spat.match(n)):
-			var s = spat.matched(2);
-			blobSize(s != null ? { val:s, pos:tag[1].pos } : null, defaultFigureSize);
-		case _:
-			unexpected(tag[1]);
-		}
-
-		var captionParts = [];
-		var path = null;
-		var copyright = null;
-		var lastPos = null;
-		while (true) {
-			var h = hlist({ beforeAny:[TBrOpen,TAt] });  // FIXME consider current stop
-			if (!h.def.match(HEmpty)) {
-				captionParts.push(h);
-				lastPos = h.pos;
-				continue;
-			}
-			switch peek().def {
-			case TBrOpen:
-				if (path != null) unexpected(peek(), "path already given");
-				var p = arg(rawHorizontal, tag[1], "path");
-				lastPos = p.pos;
-				path = mk(p.val, p.pos.offset(1,-1));
-			case TAt:
-				if (copyright != null) unexpected(peek(), "copyright already given");
-				pop();
-				copyright = hlist({ before:TBrOpen });  // FIXME consider current stop
-				lastPos = copyright.pos;
-			case TBreakSpace(_), TEof:
-				break;
-			case _:
-				unexpected(peek());
-			}
-		}
-		assert(lastPos != null);
-		if (captionParts.length == 0) badValue(lastPos, "caption cannot be empty");
-		if (path == null) missingArg(lastPos, tag[1], "path");
-		if (copyright == null) missingArg(lastPos, tag[1], "copyright");  // TODO test
-		var caption = if (captionParts.length == 1)
-				captionParts[0]
-			else
-				mk(HElemList(captionParts), captionParts[0].pos.span(captionParts[captionParts.length - 1].pos));
-		return mk(Figure(size, path, caption, copyright), tag[0].pos.span(lastPos));
-	}
-
 	function tableCell(cmd:Token)
 	{
 		assert(cmd.def.match(TCommand("col")), cmd);
 		// TODO handle empty cells
-		return vlist({ beforeAny:[TCommand("col"), TCommand("row"), TCommand("endtable")] });
+		return vlist({ beforeAny:[TCommand("col"), TCommand("row"), TCommand("endtable")] }, true);
 	}
 
 	function tableRow(cmd:Token)
@@ -422,29 +351,17 @@ class Parser {
 		return mk(Quotation(text.val, author.val), cmd.pos.span(author.pos));
 	}
 
-	function mdQuotation(greaterThan:Token, stop:Stop)
-	{
-		assert(greaterThan.def.match(TGreater), greaterThan);
-		discardNoise();
-		var text = hlist({ before:TAt });
-		var at = pop();
-		if (!at.def.match(TAt)) missingArg(at.pos, greaterThan, "author");
-		discardNoise();
-		var author = hlist(stop);
-		return mk(Quotation(text, author), greaterThan.pos.span(author.pos));
-	}
-
 	// TODO docs
 	function listItem(mark:Token, stop:Stop)
 	{
 		assert(mark.def.match(TCommand("item" | "number")), mark);
-		var item:VElem = switch optArg(vlist, mark, "item content").cases() {
+		var item:VElem = switch optArg(vlist.bind(_, true), mark, "item content").cases() {
 		case Some(vlist):
 			vlist.val.pos = vlist.pos;
 			vlist.val;
 		case None:
 			var st = peek().pos;
-			vertical(stop).extractOr({
+			vertical(stop, true).extractOr({
 				// FIXME duplicated from mkList and delicate
 				var at = peek().pos;
 				at = at.offset(0, at.min - at.max);
@@ -479,7 +396,7 @@ class Parser {
 	{
 		assert(begin.def.match(TCommand("beginbox")), begin);
 		var name = arg(hlist, begin, "name");
-		var li = vlist({ beforeAny:[TCommand("endbox")] });
+		var li = vlist({ beforeAny:[TCommand("endbox")] }, true);
 		discardVerticalNoise();
 		var end = pop();
 		if (end.def.match(TEof)) unclosed(begin);
@@ -566,7 +483,7 @@ class Parser {
 		}
 	}
 
-	function vertical(stop:Stop):Nullable<VElem>
+	function vertical(stop:Stop, restricted:Bool):Nullable<VElem>
 	{
 		discardVerticalNoise();
 		return switch peek().def {
@@ -578,43 +495,44 @@ class Parser {
 			null;
 		case TCommand(cmdName):
 			switch cmdName {
-			case "volume", "chapter", "section", "subsection", "subsubsection": hierarchy(pop());
+			case "volume", "chapter", "section", "subsection", "subsubsection", "title":
+				if (!restricted || cmdName == "title")
+					hierarchy(pop());
+				else
+					unexpected(pop(), "headings not allowed here");
 			case "figure": figure(pop());
 			case "begintable": table(pop());
 			case "quotation": quotation(pop());
 			case "item", "number": list(peek(), stop);
 			case "meta", "tex", "html": meta(pop());
-			case "beginbox", "boxstart": box(pop());
+			case "beginbox":
+				if (!restricted)
+					box(pop());
+				else
+					unexpected(pop(), "boxes not allowed here");
 			case "include": include(pop());
 			case name if (Lambda.has(horizontalCommands, name)): paragraph(stop);
+			case "endbox", "endtable": unexpected(pop(), "no beginning");
 			case _: unexpectedCmd(peek()); null;
 			}
-		case THashes(1) if (peek(1).def.match(TWord("FIG")) && peek(2).def.match(THashes(1))):
-			mdFigure([pop(), pop(), pop()], stop);
-		case THashes(_) if (!peek(1).def.match(TWord("EQ") | TWord("TAB"))):  // TODO remove EQ/TAB when possible
-			mdHeading(pop(), stop);
-		case TGreater:
-			mdQuotation(pop(), stop);
 		case TCodeBlock(c):
 			mk(CodeBlock(c), pop().pos);
-		case TWord(_), TAsterisk, TCode(_), TMath(_):
-			paragraph(stop);
-		case TColon(q) if (q != 3):
+		case TWord(_), TEscaped(_), TAsterisk, TCode(_), TMath(_):
 			paragraph(stop);
 		case _:
 			unexpected(peek());
 		}
 	}
 
-	function vlist(stop:Stop)
-		return mkList(vertical, stop);
+	function vlist(stop:Stop, restricted:Bool)
+		return mkList(vertical(stop, restricted));
 
 	public function file():File
 	{
 		switch cache[location] {
 		case null:
 			var entry = cache[location] = { parent:parent, ast:None };
-			var ast = vlist({});
+			var ast = vlist({}, false);
 			entry.ast = Some(ast);
 			return ast;
 		case { parent:original, ast:None }:

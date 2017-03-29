@@ -1,0 +1,36 @@
+{
+  "name": "manu",
+  "version": "2.0.0",
+  "description": "manu – processor for the manuscript markup language",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ITDP/the-online-brt-planning-guide.git"
+  },
+  "bin": "bin/manu",
+  "main": "bin/manu.js",
+  "files": [
+    "bin/manu",
+    "bin/manu.js",
+    "bin/manu.js.map",
+    "docs",
+    "extern",
+    "include",
+    "src",
+    "autocomplete.hxml",
+    "build.hxml",
+    "build_client_js.hxml",
+    "build_main.hxml",
+    "VERSION"
+  ],
+  "author": "ITDP, Protocubo and other contributors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ITDP/the-online-brt-planning-guide/issues"
+  },
+  "homepage": "https://github.com/ITDP/the-online-brt-planning-guide/tree/master/generator",
+  "dependencies": {
+    "mathjax-node": "0.*.*",
+    "source-map-support": ""
+  }
+}
+

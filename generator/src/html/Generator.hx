@@ -8,7 +8,6 @@ import sys.io.File;
 import tink.template.Html;
 import transform.Context;
 import transform.NewDocument;
-import util.sys.FsUtil;
 
 import Assertion.*;
 import generator.tex.*;
@@ -79,6 +78,8 @@ class Generator {
 			return '<code${genp(h.pos)}>${gent(code)}</code>';
 		case Math(tex):
 			return '<span class="mathjax"${genp(h.pos)}>\\(${gent(tex)}\\)</span>';
+		case Url(address):
+			return '<a class="url" href="${address.urlEncode()}">${gent(address)}</a>';
 		case HElemList(li):
 			var buf = new StringBuf();
 			if (godOn)
@@ -100,8 +101,8 @@ class Generator {
 			return " ";
 		case Superscript(h), Subscript(h), Emphasis(h), Highlight(h):
 			return genn(h);
-		case Word(cte), InlineCode(cte), Math(cte):
-			return cte;
+		case Word(cte), InlineCode(cte), Math(cte), Url(cte):
+			return gent(cte);
 		case HElemList(li):
 			var buf = new StringBuf();
 			for (i in li)
@@ -134,9 +135,13 @@ class Generator {
 		var name = ext != "" ? hash + "." + ext : hash;
 		var dst = Path.join([dir, name]);
 		var lpath = Path.join([ldir, name]);
-		File.saveBytes(lpath, data);
 		assetCache[src] = dst;
-		return dst;
+		File.saveBytes(lpath, data);
+
+		var prefix = Context.assetUrlPrefix;
+		if (prefix == null)
+			prefix = "";
+		return prefix + dst;
 	}
 
 	function saveAsset(src, ?content)
@@ -284,12 +289,15 @@ class Generator {
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim() + "\n";
+		case DTitle(name):
+			// FIXME
+			return genv({ def:DParagraph({ def:Highlight(name), pos:v.pos }), pos:v.pos, id:v.id }, idc, noc, bcs);
 		case DFigure(no, size, _.toInputPath() => path, caption, cright):
 			idc.figure = v.id.sure();
 			noc.figure = no;
 			var no = noc.join(false, ".", chapter, figure);
 			var id = idc.join(true, ".", figure);
-			if (Context.draft) {
+			if (Context.dinossaurFigures) {
 				return '
 					<section class="img-block ${sizeToClass(size)}">
 					<a><img src="$DRAFT_IMG_PLACEHOLDER" class="overlay-trigger"/></a>
@@ -347,7 +355,7 @@ class Generator {
 			noc.table = no;
 			var no = noc.join(false, ".", chapter, table);
 			var id = idc.join(true, ".", table);
-			if (Context.draft) {
+			if (Context.dinossaurFigures) {
 				return '
 					<section class="img-block ${sizeToClass(size)}">
 					<h5 id="$id">Table $no$QUAD${genh(caption)} <em>$DRAFT_IMG_PLACEHOLDER_COPYRIGHT</em></h5>
@@ -383,8 +391,8 @@ class Generator {
 			return '<pre><code>${gent(code)}</code></pre>\n';
 		case DQuotation(text, by):
 			return '<blockquote class="md"><q>${genh(text)}</q><span class="by">${genh(by)}</span></blockquote>\n';
-        case DParagraph({pos:p, def:Math(tex)}):
-            return '<p${genp(v.pos)}><span class="mathjax"${genp(p)}>\\[${gent(tex)}\\]</span></p>\n';
+		case DParagraph({pos:p, def:Math(tex)}):
+			return '<p${genp(v.pos)}><span class="mathjax equation"${genp(p)}>\\[${gent(tex)}\\]</span></p>\n';
 		case DParagraph(h):
 			return '<p${genp(v.pos)}>${genh(h)}</p>\n';
 		case DElemList(li):
@@ -445,7 +453,7 @@ class Generator {
 		s.useEnumIndex = true;
 		s.serialize(srcMap);
 
-		var glId = Sys.getEnv("GL_ANALYTICS_UA_ID");
+		var glId = Context.googleAnalyticsId;
 
 		var toc = saveData(TocData, toc.toString());
 		var script = saveAsset("manu.js", haxe.Resource.getBytes("html.js"));

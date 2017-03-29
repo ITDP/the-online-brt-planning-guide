@@ -68,6 +68,8 @@ class Validator {
 	*/
 	function validateMath(tex:String, pos:Position)
 	{
+		if (Context.noMathValidation) return;
+
 		wait++;
 		initMathJax();
 		mathjax.Single.typeset({
@@ -137,7 +139,7 @@ class Validator {
 		case HElemList(li):
 			for (i in li)
 				hiter(i);
-		case Wordspace, Word(_), InlineCode(_), HEmpty:
+		case Wordspace, Word(_), InlineCode(_), Url(_), HEmpty:
 			// nothing to do
 		}
 	}
@@ -151,6 +153,7 @@ class Validator {
 		case DSubSection(_): "sub-section";
 		case DSubSubSection(_): "sub-sub-section";
 		case DBox(_): "box";
+		case DTitle(_): "title";
 		case DList(_): "list";
 		case DTable(_), DImgTable(_): "table";
 		case DFigure(_): "figure";
@@ -186,6 +189,9 @@ class Validator {
 			if (notHEmpty(name, d, "name"))
 				hiter(name);
 			diter(children);
+		case DTitle(name):
+			if (notHEmpty(name, d, "name"))
+				hiter(name);
 		case DElemList(items), DList(_, items):
 			for (i in items)
 				diter(i);

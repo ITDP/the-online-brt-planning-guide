@@ -10,6 +10,21 @@ html {
 	display: none;
 }
 
+/* references */
+
+.url {
+	white-space: -moz-pre-wrap !important;
+	white-space: -webkit-pre-wrap;
+	white-space: -pre-wrap;
+	white-space: -o-pre-wrap;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	word-break: break-all;
+	white-space: normal;
+	font-family: monospace;
+	font-size: 14px;
+}
+
 /* headings */
 
 h1, h2, h3, h4, h5, h6, h7 {
@@ -304,10 +319,8 @@ td ul, th ul, td ol, th ol {
 /* equation */
 
 .equation {
-	padding: 24px 0;
-	background-color: #EEE;
-	border-radius: 2px;
-	font-size: 150%;
+	cursor: pointer;
+	cursor: zoom-in;
 }
 
 /* quotes */

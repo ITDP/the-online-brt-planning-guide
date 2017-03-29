@@ -34,7 +34,7 @@ class LargeTable {
 		case Wordspace: SPACE_COST;
 		case Superscript(i), Subscript(i): Math.round(pseudoHTypeset(i)*SUBTEXT_FACTOR);
 		case Emphasis(i), Highlight(i): pseudoHTypeset(i);
-		case Word(w), InlineCode(w), Math(w): w.length;
+		case Word(w), InlineCode(w), Math(w), Url(w): w.length;
 		case HElemList(li):
 			var cnt = 0;
 			for (i in li)
@@ -56,7 +56,7 @@ class LargeTable {
 				cnt += pseudoTypeset(i);
 			cnt/li.length;
 		case DFigure(_, _, _, caption, cright): TBL_MARK_COST + pseudoHTypeset(caption) + SPACE_COST + pseudoHTypeset(cright);
-		case DTable(_), DImgTable(_), DBox(_): BAD_COST; // not allowed (for now?)
+		case DTable(_), DImgTable(_), DBox(_): BAD_COST; // not allowed (for now?) FIXME review
 		case DQuotation(text, by): QUOTE_COST + pseudoHTypeset(text) + QUOTE_COST + LINE_BREAK_COST + EM_DASH_COST + pseudoHTypeset(by);
 		case DList(numbered, li):
 			var markCost = BULLET_COST + SPACE_COST;
@@ -67,7 +67,7 @@ class LargeTable {
 				cnt += markCost + pseudoTypeset(i);
 			cnt/li.length;
 		case DCodeBlock(code): code.length;
-		case DParagraph(h): pseudoHTypeset(h);
+		case DParagraph(h), DTitle(h): pseudoHTypeset(h);
 		}
 	}
 
@@ -119,7 +119,7 @@ class LargeTable {
 		return icost;
 	}
 
-	public static function gen(v:DElem, id:String, gen:Generator, genAt:String, genIdc:IdCtx)
+	public static function gen(v:DElem, id:String, gen:Generator, genAt:Array<String>, genIdc:IdCtx)
 	{
 		assert(v.def.match(DTable(_)), v);
 		switch v.def {

@@ -1,0 +1,5 @@
+foo
+
+\begintable{title}
+\header \col day \col date
+\row \col thursday \col date 23

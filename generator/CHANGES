@@ -1,5 +1,27 @@
-0.0.2: (work in progress)
- - total rewrite of the generator and the spec
+2.0.0: future first release: manu is already online, let's not keep it in eternal alpha state
+ - parser: improved messages for parsing errors and unclosed/unexpected tokens
+ - syntax: introduce a restricted vertical mode for box, list and table contents: headings and other boxes not allowed
+ - syntax: remove all vertical markdown syntax: `>@` for quotations, `#` for headings and `#FIG#` for figures
+ - syntax: remove deprecated syntax: `\boxstart`
+ - ui: improved handling for unexpected char errors: print the highlighted context as well
+ - tex: separate generated tex assets by size: this allows asset compression before the LuaLaTeX run
+ - lexer: new TEscaped token to differentiate between regular and escaped text
+ - html: generate DParagraph(Math) as display math
+ - tex: generate `\manu<size>figure` and `\manu<size>imgtable` calls instead of fixed and inlined TeX code
+ - tex: generate tex figures and img-tables with correct sizes (partial)
+ - syntax: add `\url` for URL literals
+ - syntax: add `\title` for non sectioning titles (think: titles for paragraphs)
+ - ui: added `DRAFT_NO_MATH_VALIDATION` and `DRAFT_DINOSSAUR_FIGURES` configuration environment variables: both are implied from `DRAFT`
+ - ui: added `TEX_NO_POSITIONS` configuration environment variables
+ - other small fixes and improvements
 
-0.0.1: Proof on concept generator
+1.0.0-alpha: development of a stable system
+ - syntax: change math markers to `$$`; `\$` is still allowed, but is mostly unnecessary
+ - other: better error messages throughout
+ - ui: add color and underscore highlight modes for error context
+ - many more fixes, improvements and additions
+
+0.0.2: total rewrite of the generator and the spec
+
+0.0.1: proof on concept generator
 

@@ -1,0 +1,95 @@
+\section{Traffic Signal Priority}
+
+\quotation{On a traffic light green means go and yellow means yield, but on a banana it’s just the opposite. Green means hold on, yellow means go ahead, and red means where the hell did you get that banana.}
+{Mitch Hedberg, comedian, 1968–2005}
+
+\figure{assets/image17.jpeg}{Active signal priority for BRT and restricted turning movements for vehicles in mixed traffic 
+can do much to improve public transport travel times.}{Lloyd Wright.}
+
+Signal priority for BRT vehicles is the adjustment of traffic signals to give priority to a corridor 
+with a BRT system over a corridor without one, and to give priority to the BRT system over mixed traffic 
+within the same corridor. Once equipment and techniques were developed to do this in a responsive way 
+after the detection of BRT vehicles approaching an intersection, the expression “active signal priority” 
+became the way to indicate this advance. Since then “passive signal priority” is used to indicate that 
+such detection technology is not being applied.
+
+\subsection{Passive Signal Priority}
+
+Together with signal phase simplification, passive signal priority is crucial to proper BRT intersection 
+design. The two techniques are complementary and must be considered jointly for implementation.
+
+Prioritization is primarily achieved by extending the relative green time for the BRT corridor over 
+the crossing streets that do not have public transport. This action reduces the travel time of the entire 
+traffic stream (both BRT and mixed-traffic) on the corridor at the expense of the travel time of the 
+crossing traffic stream. 
+
+Without special consideration for BRT, the optimal phase time in a signalized intersection is such 
+that the cycle time is as brief as possible without growing queues. At the highest extreme, this guideline 
+would change to give as much green time as possible to the BRT corridor without resulting queues. The 
+longest green signal phase would depend on the flow of mixed traffic on the crossing street. The ideal 
+way to balance the traffic light, however, is to consider the average wait time by each flow, including 
+pedestrians multiplied by the number of people in each flow. 
+
+In applying traffic signal priority to a BRT corridor, it is typical that cycle time becomes as low 
+as 60 seconds and does not rise above 120 seconds except at major intersections or during peak hours 
+in order to allow larger relative green time for the BRT corridor. The relative green time faced by the 
+BRT system should be extended above 50 percent, if possible. It is typical for the BRT green time to 
+be 30 seconds in a 60-second cycle or 40 to 60 seconds in a 120-second cycle. 
+
+Synchronization of green signal phases between intersections (or “green wave,” see coordination as 
+discussed in Section 24.1.3: Traffic Signal Concepts) is not common with BRT systems because BRT travel 
+times are not regularly subject to variable dwell time at stations (especially when multiple route services 
+use the same corridor or frequencies are high). If BRT vehicle speeds are reasonably predictable or controlled, 
+then it is possible to coordinate traffic lights in a BRT corridor. This practice is used in Ottawa, 
+Ontario, Canada (Levinson et al., 2003b). If boarding and alighting times are somewhat regular and of 
+the same magnitude of the green time of the green wave planned for mixed traffic, coordination will lead 
+to the opposite effect, as every time the BRT vehicles dwell in a station they are likely to reach the 
+next traffic light at the beginning of the red light.
+
+\subsection{Active Signal Priority}
+
+Active, or real-time priority techniques, change the actual traffic signal phasing when a BRT vehicle 
+is observed to be approaching the intersection. 
+
+The normal vehicle identification mechanism is to have a transponder detect the BRT vehicle prior to 
+its arrival at the stop line. If the BRT vehicle is detected during the green phase, and the green phase 
+is nearing the yellow phase, then the green phase is extended. If the detection occurs during the red 
+or the yellow interval, the green time is recalled more quickly than normal. Some general guidelines 
+for applying phase extension or phase shortening include:
+\item The minimum side street green time is set based on the amount of time pedestrians need to cross 
+the road;
+\item The amount of green signal extension or advance should be up to a specific, set maximum;
+\item The BRT corridor green is not generally both advanced and extended in the same cycle. 
+
+The green times are likely to be most easily extended at intersections with light cross traffic.
+
+\figure[medium]{assets/image18.png}{Active priority can reduce red time for the BRT corridor when the BRT vehicle 
+is detected approaching the intersection.}{ITDP}
+
+\figure[medium]{assets/image19.png}{Using active priority, the green time for the BRT corridor is extended 
+when a BRT vehicle is detected approaching the intersection.}{ITDP}
+
+The importance of active traffic signal priority on BRT vehicle speeds tends to be greatest in systems 
+with fairly low bus volumes, particularly with bus headways longer than five minutes where intersections 
+are frequent and might be a relevant measure for increasing system speeds. In such instances, signal 
+priority may reduce signal delay by between 10 and 20 percent. In this context, it is often easier to 
+give buses signal priority at intersections without major disruption to mixed-traffic flows.
+
+When BRT vehicle headways are less than 2.5 minutes, it is generally difficult to implement active 
+signal priority at all: the non-BRT traffic direction would essentially be in a state of a permanent 
+red phase. However, even with BRT vehicles at high frequencies, giving active priority to the BRT running 
+on less important cross streets can yield benefits of between 4 to 10 percent of the delay in traffic 
+signals. While this savings is not as significant as some other priority measures such as restricting 
+mixed-traffic turns, it can be a justifiable expenditure contributing to efficiency gains as vehicle 
+detection, signaling equipment, and priority software become more common, and their costs increasingly 
+affordable.
+
+At an even higher level of sophistication, the priority phasing can be based on observed traffic levels 
+for both the BRT vehicles and the general traffic. A special weighting can be given to BRT vehicles or 
+to the BRT corridor. In traffic systems where flows are quite irregular, real-time control that adjusts 
+signal times to observed traffic levels can yield benefits. In such real-time systems, phase changing 
+is usually based on a trade-off between the benefits and costs faced by the green and red approaches 
+and for the general principle of shortening red times; a fully actuated system based on total vehicle 
+movements, which also includes BRT vehicles, is probably more important than BRT-specific detection. 
+The application of signal priority, both passive and active, is looked at further in Section 24.7: Merging 
+with Mixed Traffic in Narrow Sections and Section 24.8: BRT Lanes at Roundabouts. 

@@ -36,9 +36,15 @@ class Generator {
 
 	static inline var ASSET_SUBDIR = "assets";
 
-	function _saveAsset(at:String, src:String):String
+	function _saveAsset(at:Array<String>, src:String, size:BlobSize):String
 	{
-		var ldir = Path.join([at, ASSET_SUBDIR]);
+		var sdir =
+			switch size {
+			case MarginWidth: "mw";
+			case TextWidth: "tw";
+			case FullWidth: "fw";
+			}
+		var ldir = Path.join([ASSET_SUBDIR, sdir]);
 		var dir = Path.join([destDir, ldir]);
 		if (!FileSystem.exists(dir))
 			FileSystem.createDirectory(dir);
@@ -66,23 +72,29 @@ class Generator {
 		return lpath;
 	}
 
-	public function saveAsset(at, src)
-		return Context.time("tex generation (saveAsset)", _saveAsset.bind(at, src));
+	function saveAsset(at, src, size)
+		return Context.time("tex generation (saveAsset)", _saveAsset.bind(at, src, size));
 
-	public function gent(text:String)
+	public function gent(text:String, preserveSlashes=false)
 	{
-		text = text.split("\\").map(function (safe) {
-			return texEscapes.replace(safe, "\\$1").replace("/", "\\slash{}");  // assumes texEscapes has 'g' flag
-		}).join("\\textbackslash{}");
-		// FIXME complete
-		return text;
+		return text.split("\\").map(
+			function (safe) {
+				var part = texEscapes.replace(safe, "\\$1");  // assumes texEscapes has 'g' flag
+				if (preserveSlashes)
+					return part;
+				return part.replace("/", "\\slash\\hspace{0pt}");
+			}
+		).join("\\textbackslash{}");
 	}
 
 	public function genp(pos:Position)
 	{
-		var lpos = pos.toLinePosition();
-		if (Context.debug)
+		if (Context.texNoPositions)
+			return "";
+		if (Context.debug) {
+			var lpos = pos.toLinePosition();
 			return '% @ ${lpos.src}: lines ${lpos.lines.min + 1}-${lpos.lines.max}: code points ${lpos.codes.min + 1}-${lpos.codes.max}\n';  // TODO slow, be careful!
+		}
 		return '% @ ${pos.src}: bytes ${pos.min + 1}-${pos.max}\n';
 	}
 
@@ -105,6 +117,8 @@ class Generator {
 			return '\\code{${gent(code)}}';
 		case Math(tex):
 			return '$$$tex$$';
+		case Url(address):
+			return '\\url{${gent(address, true)}}';
 		case HElemList(li):
 			var buf = new StringBuf();
 			for (i in li)
@@ -115,9 +129,9 @@ class Generator {
 		}
 	}
 
-	public function genv(v:DElem, at:String, idc:IdCtx)
+	public function genv(v:DElem, at:Array<String>, idc:IdCtx)
 	{
-		assert(!at.endsWith(".tex"), at, "should not but a directory");
+		assert(!Lambda.foreach(at, function (p) return p.endsWith(".tex")), at, "should not be anything but a directory");
 		switch v.def {
 		case DHtmlApply(_):
 			return "";
@@ -135,8 +149,8 @@ class Generator {
 		case DVolume(no, name, children):
 			idc.volume = v.id.sure();
 			var id = idc.join(true, ":", volume);
-			var path = Path.join([at, idc.volume+".tex"]);
-			var dir = Path.join([at, idc.volume]);
+			var path = Path.join(at.concat([idc.volume+".tex"]));
+			var dir = at.concat([idc.volume]);
 			var buf = new StringBuf();
 			bufs[path] = buf;
 			buf.add("% This file is part of the\n");
@@ -146,7 +160,7 @@ class Generator {
 		case DChapter(no, name, children):
 			idc.chapter = v.id.sure();
 			var id = idc.join(true, ":", volume, chapter);
-			var path = Path.join([at, idc.chapter+".tex"]);
+			var path = Path.join(at.concat([idc.chapter+".tex"]));
 			var buf = new StringBuf();
 			bufs[path] = buf;
 			buf.add("% This file is part of the\n");
@@ -169,22 +183,21 @@ class Generator {
 			idc.box = v.id.sure();
 			var id = idc.join(true, ":", chapter, box);
 			return '\\beginbox{$no}{${genh(name)}}\n\\label{$id}\n${genv(children, at, idc)}\\endbox\n${genp(v.pos)}\n';
+		case DTitle(name):
+			// FIXME optional id
+			return '\\manutitle{${genh(name)}}\n${genp(v.pos)}\n';
 		case DFigure(no, size, _.toInputPath() => path, caption, cright):
 			idc.figure = v.id.sure();
 			var id = idc.join(true, ":", chapter, figure);
-			path = saveAsset(at, path);
-			// TODO handle size
-			// TODO enable on XeLaTeX too
-			// FIXME label
-			return '
-			\\ifxetex
-				% disabled for now
-			\\else
-				{  % group required to avoid fignote settings escaping
-					\\img{\\hsize}{$path}
-					\\fignote{$no}{${genh(caption)}\\label{$id}}{${genh(cright)}}
+			path = saveAsset(at, path, size);
+			var csize =
+				switch size {
+				case MarginWidth: "small";
+				case TextWidth: "medium";
+				case FullWidth: "large";
 				}
-			\\fi'.doctrim() + "\n\n";  // FIXME use more neutral names
+			// FIXME label
+			return '\\manu${csize}figure{$path}{$no}{${genh(caption)}\\label{${id}}}{${genh(cright)}}\n${genp(v.pos)}\n';
 		case DTable(_):
 			idc.table = v.id.sure();
 			var id = idc.join(true, ":", chapter, table);
@@ -192,19 +205,15 @@ class Generator {
 		case DImgTable(no, size, caption, _.toInputPath() => path):
 			idc.table = v.id.sure();
 			var id = idc.join(true, ":", chapter, table);
-			path = saveAsset(at, path);
-			// TODO handle size
-			// TODO enable on XeLaTeX too
-			// FIXME label
-			return '
-			\\ifxetex
-				% disabled for now
-			\\else
-				{  % group required to avoid fignote settings escaping
-					\\tabletitle{$no}{${genh(caption)}}\n\\label{$id}\n
-					\\img{\\hsize}{$path}
+			path = saveAsset(at, path, size);
+			var csize =
+				switch size {
+				case MarginWidth: "small";
+				case TextWidth: "medium";
+				case FullWidth: "large";
 				}
-			\\fi'.doctrim() + "\n\n";  // FIXME use more neutral names
+			// FIXME label
+			return '\\manu${csize}imgtable{$path}{$no}{${genh(caption)}\\label{${id}}}\n${genp(v.pos)}\n';
 		case DList(numbered, li):
 			var buf = new StringBuf();
 			var env = numbered ? "enumerate" : "itemize";
@@ -245,7 +254,7 @@ class Generator {
 		preamble.add("\n\n");
 
 		var idc = new IdCtx();
-		var contents = genv(doc, "./", idc);
+		var contents = genv(doc, ["./"], idc);
 
 		var root = new StringBuf();
 		root.add(preamble.toString());

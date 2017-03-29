@@ -268,32 +268,6 @@ class Test_03_Parser {
 		fails("\\section{", UnclosedToken(TBrOpen), mkPos(8,9));
 	}
 
-	public function test_010_md_headings()
-	{
-		Assert.same(
-			expand(@wrap(1,0)Section(HElemList([@len(1)Word("a"),@len(1)Wordspace,@len(1)Word("b")]))),
-			parse("#a b"));
-		Assert.same(
-			expand(VElemList([Paragraph(@len(1)Word("a")),@skip(2)@wrap(2,0)Section(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))])),
-			parse("a\n\n# b\n\nc"));
-
-		Assert.same(
-			expand(@wrap(2,0)SubSection(HElemList([@len(1)Word("a"),@len(1)Wordspace,@len(1)Word("b")]))),
-			parse("##a b"));
-		Assert.same(
-			expand(VElemList([Paragraph(@len(1)Word("a")),@skip(2)@wrap(3,0)SubSection(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))])),
-			parse("a\n\n## b\n\nc"));
-
-		Assert.same(
-			expand(@wrap(3,0)SubSubSection(HElemList([@len(1)Word("a"),@len(1)Wordspace,@len(1)Word("b")]))),
-			parse("###a b"));
-		Assert.same(
-			expand(VElemList([Paragraph(@len(1)Word("a")),@skip(2)@wrap(4,0)SubSubSection(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))])),
-			parse("a\n\n### b\n\nc"));
-
-		fails("####a b", UnexpectedToken(THashes(4), "only sections (#), subsections (##) and subsubsections (###) allowed"), mkPos(0, 4));
-	}
-
 	public function test_011_quotations()
 	{
 		Assert.same(
@@ -303,19 +277,11 @@ class Test_03_Parser {
 			expand(@wrap(12,1)Quotation(@len(1)Word("a"),@skip(3)@len(1)Word("b"))),  // FIXME @skip
 			parse("\\quotation\n{a}\n{b}"));
 
-		Assert.same(
-			expand(@wrap(1,0)Quotation(@len(1)Word("a"),@skip(1)@len(1)Word("b"))),
-			parse(">a@b"));
-		Assert.same(
-			expand(@wrap(2,0)Quotation(HElemList([@len(1)Word("a"),@len(1)Wordspace]),@skip(1)@len(1)Word("b"))),
-			parse("> a\n@b"));
-
 		fails("\\quotation", MissingArgument(TCommand("quotation"), "text"), mkPos(10, 10));
 		fails("\\quotation a", MissingArgument(TCommand("quotation"), "text"), mkPos(11, 12));
 		fails("\\quotation{a}", MissingArgument(TCommand("quotation"), "author"), mkPos(13, 13));
 		fails("\\quotation{a} b", MissingArgument(TCommand("quotation"), "author"), mkPos(14, 15));
 		fails("\\quotation{a}{b}{}", UnexpectedToken(TBrOpen), mkPos(16, 17));
-		fails(">a\n\nb", MissingArgument(TGreater, "author"));
 	}
 
 	public function test_012_figures()
@@ -323,11 +289,6 @@ class Test_03_Parser {
 		Assert.same(
 			expand(@wrap(8,1)Figure(MarginWidth,@elem@len(7)"fig.png",@skip(2)@len(7)Word("caption"),@skip(2)@len(9)Word("copyright"))),  // FIXME no pos for path, @skip
 			parse("\\figure{fig.png}{caption}{copyright}"));
-
-		Assert.same(
-			expand(@wrap(6,0)Figure(MarginWidth,@elem@len(7)"fig.png",@skip(1)@len(7)Word("caption"),@skip(1)@len(9)Word("copyright"))),  // FIXME no pos for path, @skip
-			parse("#FIG#{fig.png}caption@copyright"));
-		// TODO other/weird orderings of #FIG# details
 	}
 
 	public function test_013_lists()
@@ -552,20 +513,19 @@ class Test_03_Parser {
 			expand(@wrap(10,7)Box(@len(1)Word("a"),@skip(1)VElemList([Paragraph(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))]))),
 			parse("\\beginbox{a}b\n\nc\\endbox"));
 
-		fails("\\endbox", UnexpectedCommand("endbox"));
+		fails("\\endbox", UnexpectedToken(TCommand("endbox"), "no beginning"));
 
 		fails("\\beginbox", MissingArgument(TCommand("beginbox"), "name"), mkPos(9, 9));
 		fails("\\beginbox a", MissingArgument(TCommand("beginbox"), "name"), mkPos(10, 11));
 		fails("\\beginbox{a}{}", UnexpectedToken(TBrOpen), mkPos(12, 13));
 	}
 
-	// FIXME
-	// public function test_018_controled_nesting_of_vertical_elements()
-	// {
-	// 	fails("\\item[\\section{foo}]");
-	// 	fails("\\beginbox\\section{foo}\\endbox");
-	// 	fails("\\item[\\beginbox\\endbox]");
-	// }
+	public function test_018_controled_nesting_of_vertical_elements()
+	{
+		fails("\\item[\\section{foo}]", UnexpectedToken(TCommand("section"), "headings not allowed here"));
+		fails("\\beginbox{foo}\\section{bar}\\endbox", UnexpectedToken(TCommand("section"), "headings not allowed here"));
+		fails("\\item[\\beginbox{foo}\\endbox]", UnexpectedToken(TCommand("beginbox"), "boxes not allowed here"));
+	}
 
 	// TODO
 	// public function test_019_html_metas()
@@ -613,17 +573,7 @@ class Test_03_Parser {
 			expand(@wrap(12,10)ImgTable(TextWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
 			parse("\\begintable{a}\\useimage{x.svg}\\endtable"));
 
-		fails("\\endtable", UnexpectedCommand("endtable"));
-	}
-
-	public function test_023_escapes()
-	{
-		// automatically inactive; no need to escape
-		Assert.same(expand(Paragraph(@len(1)Word(":"))), parse(":"));
-		Assert.same(expand(Paragraph(@len(2)Word("::"))), parse("::"));
-		Assert.same(expand(Paragraph(@len(4)Word("::::"))), parse("::::"));
-		// double check
-		Assert.same(expand(Paragraph(HElemList([@len(2)Word("::"),@len(2)Word(":")]))), parse("::\\:"));
+		fails("\\endtable", UnexpectedToken(TCommand("endtable"), "no beginning"));
 	}
 
 	public function test_024_paragraph_beginning()
@@ -717,6 +667,23 @@ class Test_03_Parser {
 		Assert.same(
 			expand(@wrap(12+9,10)ImgTable(MarginWidth,@len(1)Word("a"),@skip(11)@elem@len(5)"x.svg")),
 			parse("\\begintable[\nsmall\n]{a}\\useimage{x.svg}\\endtable"));
+	}
+
+	public function test_029_test_url()
+	{
+		Assert.same(expand(Paragraph(@wrap(5,1)Url(@len(3)"foo"))), parse("\\url{foo}"));
+		Assert.same(expand(Paragraph(@wrap(5,1)Url(@len(5)"foo"))), parse("\\url{ foo }"));  // unstable: triming
+		fails("\\url", MissingArgument(TCommand("url")), mkPos(4, 4));
+		fails("\\url a", MissingArgument(TCommand("url")), mkPos(5, 6));
+		fails("\\url{a}{}", UnexpectedToken(TBrOpen), mkPos(7, 8));
+	}
+
+	public function test_030_test_title()
+	{
+		Assert.same(expand(@wrap(7,1)Title(Word(@len(3)"foo"))), parse("\\title{foo}"));
+		fails("\\title", MissingArgument(TCommand("title"), "name"), mkPos(6, 6));  // unstable: arg description
+		fails("\\title a", MissingArgument(TCommand("title"), "name"), mkPos(7, 8));  // unstable: arg description
+		fails("\\title{a}{}", UnexpectedToken(TBrOpen), mkPos(9, 10));
 	}
 }
 

@@ -18,7 +18,11 @@ abstract Nullable<T>(Null<T>) from Null<T> {
 
 	public inline function sure():T
 	{
+#if macro
+		if (this == null) throw "Assertion failed: calling sure() on null";
+#else
 		assert(this != null);
+#end
 		return this;
 	}
 
