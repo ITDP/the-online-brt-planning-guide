@@ -1,4 +1,4 @@
-\section{Introduction}
+\chapter{Informal Transit Transition to BRT}
 
 \quotation{If you don’t create change, change will create you.}
 {Anonymous}
@@ -99,3 +99,10 @@ and Curitiba, see *Transit Planning in Curitiba and Bogotá: Roles in Interactio
 Arturo Ardila-Gómez (Ardila-Gómez, 2004). This transition has taken a variety of paths in different countries,
 with different outcomes. This chapter provides guidance to BRT project managers.
 
+\include{01-balancing-brt-project-implementation-and-system-regulation.manu}
+\include{02-developing-an-industry-transition-strategy.manu}
+\include{03-managing-competing-public-transport-routes.manu}
+\include{04-outreach-to-impacted-operators.manu}
+\include{05-managing-a-negotiated-operating-contract-with-impacted-operators.manu}
+\include{06-company-formation.manu}
+\include{07-references.manu}
