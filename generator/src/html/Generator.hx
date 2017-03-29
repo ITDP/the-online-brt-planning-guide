@@ -35,6 +35,8 @@ class Generator {
 	static inline var ASSET_SUBDIR = "assets";
 	@:template static var FILE_BANNER;
 	static inline var INDEX = "index";
+	static inline var ROOT_URL = "./";
+
 	
 	var destDir:String;
 	var godOn:Bool;
@@ -153,10 +155,10 @@ class Generator {
 
 	function openBuffer(title:String, bcs:Breadcrumbs, url:String)
 	{
-		assert(url == Path.normalize(url));
-		var depth = url.split("/").length - 1;
+		assert(url == Path.normalize(url) || url == ROOT_URL, url, Path.normalize(url));
+		var path = url == ROOT_URL ? "index.html" : Path.withExtension(url, "html");
+		var depth = path.split("/").length - 1;
 		var computedBase = depth > 0 ? [ for (i in 0...depth) ".." ].join("/") : ".";
-		var path = Path.withExtension(url, "html");
 		// TODO get normalize and google fonts with \html\apply or \html\link
 		// TODO get jquery and mathjax with \html\run
 		var buf = new StringBuf();
@@ -429,14 +431,12 @@ class Generator {
 		lastSrcId = 0;
 		toc = new StringBuf();
 
-		var rootUrl = INDEX;
-
 		// `toc.add` and `genv` ordering is relevant
-		toc.add('<ul><li class="volume">${renderToc(null, null, "BRT Planning Guide", rootUrl)}</li>');
+		toc.add('<ul><li class="volume">${renderToc(null, null, "BRT Planning Guide", ROOT_URL)}</li>');
 		// it's necessary to process all `\html\apply` before actually opening buffers and writing heads
 		var contents = genv(doc, new IdCtx(), new NoCtx(), {});
 
-		var root = openBuffer("The Online BRT Planning Guide", {}, rootUrl);
+		var root = openBuffer("The Online BRT Planning Guide", {}, ROOT_URL);
 		root.add('<section>\n<h1 id="heading" class="brtcolor">${gent("The Online BRT Planning Guide")}</h1>\n');
 		root.add(contents);
 		root.add('</section>\n');

@@ -1,6 +1,6 @@
 <header>
 <ul>
-<li><a class="brtcolor" href="(:INDEX:)"><strong>BRT Planning Guide</strong></a></li>
+<li><a class="brtcolor" href="(:ROOT_URL:)"><strong>BRT Planning Guide</strong></a></li>
 (:if bcs.volume != null:)
 <li>/</li>
 <li><a class="volume(:bcs.volume.no:)" href="(:bcs.volume.url:)"><strong>(:bcs.volume.name:)</strong></a></li>
