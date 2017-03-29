@@ -14,6 +14,7 @@
  - ui: added `DRAFT_NO_MATH_VALIDATION` and `DRAFT_DINOSSAUR_FIGURES` configuration environment variables: both are implied from `DRAFT`
  - ui: added `TEX_NO_POSITIONS` configuration environment variables
  - other small fixes and improvements
+ - html: generate cleaner urls (#119)
 
 1.0.0-alpha: development of a stable system
  - syntax: change math markers to `$$`; `\$` is still allowed, but is mostly unnecessary

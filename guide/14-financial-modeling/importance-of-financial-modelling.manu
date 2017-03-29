@@ -1,0 +1,56 @@
+\' section{ Importance of Financial Modelling} content moved to land page and provisional quotations as well'\
+
+\quotation{Imagine the world of mobile based on Nokia and Motorola if Apple had not been restarted by a missionary entrepreneur named Steve Jobs who cared more for his vision than being tactical and financial.}{Vinod Khosla, engineer co-founder of Sun Microsystems, 1955–}
+
+The success of advanced transportation systems, such as BRT, does not depend solely on technical resources, 
+such as coherent operational planning, technology selection, and transportation infrastructure, 
+but also upon financial resources to ensure smooth operation for the entities involved. Through financial modelling, 
+it is possible to identify specific issues of the project design, as well as quantify the monetary amounts involved. 
+It is based on this information that decision makers may begin searching for financing alternatives and decide on operational scenarios.
+
+Furthermore, financial modelling allows for the appraisal of:
+
+\'provisional review by acs bellow '\
+\item Different types of tariff structures;
+\item Vehicle fleet compositions;
+\item Cost/sizing parameters;
+\item Financing options/fees;
+\item Profit level/business value of system entities \'valuation for the system’s entities;'\
+\item Free cash-flow and funding-gap; \' analysis;'\
+\item Uncertainties. \'Sensibility analysis.'\
+
+\figure[medium]{assets/financial-modeling-aspects.jpg}{Measuring various aspects of financial modelling.}{Logit.}
+
+\section{ Importance of Financial Modelling}
+\'subsection provisionaly removed {Importance of Modelling the Financial and Operations Aspects Simultaneously} and provisional quotation as well '\
+
+\quotation{When it is obvious that the goals cannot be reached, don't adjust the goals, adjust the action steps.}
+{Confucius, philosopher, 551 - 479 BC}
+
+Previously, transportation studies and financial appraisals were treated as separate entities, and 
+they did not move at the same speed. The problem with this approach is that sound technical plans may 
+have been developed, which, once finished, proved to be financially unsustainable and required significant 
+changes. Not only would this result in unwanted project development costs for necessary alterations but 
+also political costs, due to the postponement of the operational plan and possible tender definitions. 
+Additionally, decision makers might have to roll back already made decisions, at an even greater political 
+cost, or condemn the city to otherwise avoidable subsidies. 
+
+The correct approach to developing successful transportation plans is to develop the operational plan 
+and the financial modelling simultaneously, utilizing the results of one to guide the refinement and 
+development of the other. For each scenario, a detailed financial analysis is conducted, which then feeds 
+back into the scenario development process.
+
+\figure[medium]{assets/scenario-development-process.jpg}{The scenario development process has evolved to become a more iterative 
+process that develops the operational plan and financial appraisal simultaneously.}{Logit.}
+
+An added benefit of approaching scenario development in this fashion is that it is possible to generate 
+awareness of financial implications as scenarios are being developed. This not only helps steer the scenarios 
+toward more sustainable alternatives, but also prepares decision makers for decisions regarding the following 
+issues:
+
+\item Subsidy analysis (if subsidies exist, the analysis includes: subsidy amount, one-off subsidy, 
+operational subsidy, or subsidy cap limits);
+\item Technology choice and vehicle composition (with/without AC, Euro IV/Euro V fleet, type of fuel);
+\item Number of system operators (depends on levels of minimum scale);
+\item Tariff schemes;
+\item Financing options/government guarantees.

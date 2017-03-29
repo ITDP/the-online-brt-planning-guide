@@ -1,0 +1,606 @@
+\section{Fare Structure Options}
+
+\quotation{Whatever affects one directly, affects all indirectly. I can never be what I ought to be until you are what you ought to be. This is the interrelated structure of reality.}
+{Martin Luther King Jr., civil rights leader, 1929--1968}
+
+\subsection{Objectives of Establishing a Fare Structure}
+
+The fare structure will, in a large manner, define the income of the system. Careful consideration
+must be taken when defining the fare structure in order to have a cost-efficient system that takes into
+account the purchasing capacity of the users. Fare structures can be used as mechanisms of income distribution
+and should be used by local governments as part of their tools to reach development goals.
+
+Depending on sources of finance, the fare structure may serve the objective of either making the system
+financially viable or even profitable.
+
+\subsection{Cost Recovery and Profitability}
+
+As with any project, costs to be incurred can be divided into two: Capital Expenditures (Capex) and
+Operational Expenditures (Opex). Capex will be all investments on equipment or infrastructure that will
+create future benefits. These include all infrastructure investments, vehicle purchases, fare collection
+equipment, control centers, etc. Opex, on the other hand will be the ongoing expenses the system incurs
+due to its regular operation. These include all personnel costs, utility bills, petrol, maintenance,
+financial costs, etc.
+
+The BRT system will have, as other projects, several sources of income to cover Capex and Opex. The
+most evident one is the customer fare (when not considering free systems). Others may include publicity
+on stations, vehicles, or on the fare collection medium, cross-subsidies from other transport mediums
+(car usage, parking, and petrol taxes), and government subsidies, among others. The BRT authority has
+a responsibility of balancing the expenditures versus the income that the system generates based on the
+objectives that the system has. If no public funds will be used, the other sources of income generated
+by the system must be sufficient to cover both Capex and Opex.
+
+Having a profitable system may entail certain benefits: the system is able to provide a higher quality
+system (technologically and infrastructure-wise), be less prone to political swings, benefit vulnerable
+populations, and be less of a burden to taxpayers.
+
+If the only source of revenue for the system, however, is the customer fare, the political viability
+of charging all costs to it may not be an option. BRT authorities have to balance both the technical
+and political aspects to reach a truly “fair fare” for their BRT system.
+
+Developing countries should try to target fare structures that cover most, or all, of the system’s
+expenses, due to the lower availability of government funding. This may be politically difficult, however,
+because it would put the entire system’s cost burden on the customer fare.
+
+\figure{assets/image1.jpg}{How do BRT authorities manage to balance the technical and political aspects
+when defining the fare policy structure?}{ITDP.}
+
+\subsection{Fare Types}
+
+The fare type must be decided taking into account the objectives of the local government and access
+to funding. Several options exist and, as explained before, can serve purposes such as making the system
+financially viable (even profitable) or as an income distribution tool.
+
+\title{Open Fare (Free Fare)}
+
+As the name implies, free fare systems involve charging nothing for public transport use. Some public
+transport systems in Belgium have realized that their fare collection process is so costly that it makes
+sense just to provide a free service. By eliminating the fare charges for public transport, there is
+no need for fare collection and fare verification equipment, no staffing requirements for fare operations,
+no smart cards or other payment mediums, and no customer wait times for fare purchases.
+
+Further, the design of vehicle interiors and stations is void of the requirements from the fare system.
+For the vehicle interiors, there is much more space for seating. The implications for station design
+mean that an open rather than closed design can be utilized. An open design means that there is less
+visual and physical severance from the station (Figure 15.2). These
+types of stations are also less costly to construct.
+
+\figure{assets/image2.jpg}{The Orlando LYMMO system charges no fare, and thus
+the station designers had considerably more freedom to create an intriguing and open design.}
+{Lloyd Wright.}
+
+Of course, the main benefit from fare-free systems is the impact on customer numbers. In Hasselt, Belgium,
+bus patronage jumped from 23,000 customers per month to 300,000 customers per month with the introduction
+of fare-free service. About 25 percent of private vehicle users have switched to public transport since
+the implementation of this scheme. Likewise, urban rail fares have also been eliminated in certain areas
+of Belgium. An added benefit of free fares can derive from considering that, if occupancy rises, it will
+do so by shifting away from other modes of transport, mainly the use of private cars. This may entail
+positive externalities such as CO2 emission reductions, fewer car crashes, and reduction in public transport
+times, among others.
+
+The basis of the decision in Belgium was the fact that approximately 60 percent of the system’s revenues
+were being used to print, distribute, and inspect fares. If other externality costs, such as impacts
+on station design and customer wait times, are considered, then the case for fare-free travel will be
+even stronger.
+
+Fare-free systems have become increasingly common in both Europe and North America. In the United States,
+cities such as Denver, Miami, and Orlando have some services that operate fare free.
+
+The development of a fare-free system does not mean that the overall business structure must radically
+change. Private operators can still bid competitively for providing the services. Payment to the operators
+can still be based on the number of kilometers travelled. The only change is the origin of the revenue
+stream, which instead of being from the customers will be from other sources, such as road pricing, gas
+taxes, and parking fees. For example, Orlando pays for its LYMMO service entirely through a parking fee.
+
+
+In the case of lower-income economies, there is likely to be less of a case for a free-fare system,
+principally because the cost of fare collection will likely be less. With lower labor costs, there will
+be fewer instances in lower-income economies where the costs of fare collection begin to approach the
+revenues gained, thus justifying the elimination of fares.
+
+However, there are examples of cities such as Bogotá utilizing free-fare structures for feeder services.
+Since feeder services will typically operate with open rather than closed station environments, any fare
+collection will likely have to occur onboard the vehicles. This arrangement implies that fare readers
+are required at the doorways. An exit reader may also be required if the transition from the feeder service
+to the trunk service passes through an open area. All this onboard fare equipment means that the vehicle
+costs are considerably higher. Additionally, onboard fare collection and verification may also imply
+a required intervention from the driver (such as providing change) that will slow dwell times and overall
+travel times. For all these reasons, free-fare systems have a fairly wide applicability to feeder services
+in both higher-income and lower-income economies.
+
+The main arguments against free-fare systems relate to financial viability, security, and economic
+principle. First, for many lower-income economies, the ability to secure system financing from other
+sources besides fares may be limited. In most cases, though, the growth in private motorized vehicles
+does provide significant scope for using some form of vehicle fees as a revenue source, even though this
+may be politically hard to accomplish.
+
+Second, some argue against free fares on the economic principle that free goods always lead to market
+inefficiencies. If a product is not priced, it simply will not be valued by the public, thus the public
+transport system will be seen as an inferior good. Again, though, one could extend this argument to many
+other aspects of public space such as footpaths, public parks, and even city streets. Few people would
+suggest charging pedestrians for using a footpath or families for using a park. In the same way, public
+transport could also be viewed as an essential public good that should not be burdened by a fee.
+
+\title{Flat Fare vs. Distance-Based Fare}
+
+Many cities often debate whether to apply a flat fare or a distance-based fare. A flat fare means that
+a single price applies to any trip within the system. By contrast, a distance-based fare means that the
+fare level varies by the number of kilometers travelled.
+
+Each of these options involves a different set of trade-offs. Flat fares can be equitable if low-income
+groups tend to take long trips and reside at the urban fringe. These peri-urban areas offer property
+at substantially lower costs than central areas. The long distances between the peri-urban communities
+and employment opportunities in the city can inhibit access to jobs, health care, and education. If a
+distance-based fare were implemented in such a situation, the poor at the urban fringe would end up paying
+the highest transport costs. In order to achieve greater social equity, a flat fare helps to give such
+low-income groups access to services and opportunities in the city center. In such instances, a flat
+fare acts as a cross-subsidy from higher-income residents in the central parts of the city to lower-income
+residents located in peri-urban areas. One of the principal reasons that Bogotá instituted a flat fare
+was to promote a greater sense of social equity within its public transport system. As TransMilenio’s
+system has expanded, however, the average trip distance within the system is increasing, as is the cost
+of providing each trip. This trend is putting upward pressure on the base fare.
+
+A flat fare also permits the use of simpler fare collection technologies. Ticketless options, such
+as coin-based machines (please refer to Chapter 18: Fare Systems), are possible with a flat fare. Further,
+a flat fare implies that no distance-verification step is required upon exiting the system. The lack
+of this verification step reduces queues and thus improves overall system efficiency. In general, a flat
+fare scheme reduces the level of complexity in fare collection by an order of magnitude.
+
+Distance-based fare systems are utilized quite frequently in higher-income economies, as well as in
+some rail systems in lower-income economies, such as the SkyTrain in Bangkok, and the Metro in Delhi.
+Distance-based fare structures most closely mirror actual operating costs, thereby providing a truer
+measure of expenses for system operators. A longer journey implies that more fuel and labor is required.
+Thus, distance-based systems do not involve the implied cross-subsidy that exists in flat fare systems.
+
+A distance-based fare will likely get the planned system closer to full cost recovery than a flat fare.
+So long as the fare revenue is higher than the cost of operating the system, the fare can also vary based
+on trip distance. More complex fare structures offer the possibility of optimizing the profitability
+and equity of the system.
+
+The principal disadvantage of complex fare systems, such as distance-based fares, is that these can
+lead to customer confusion over the actual cost of a given trip. In order to indicate the system fare
+structure, typically a complex matrix of fares must be posted at the stations. Customers may enter the
+system without knowing exactly how much their trip will cost. In turn, the result may be that a customer
+arrives at a destination without sufficient funds on their fare card. This situation may imply the need
+for a fare adjustment machine at the exit area. It may also imply that customers may be liable for penalties
+and fines, which will stir customer anger and/or embarrassment. Such incidents can be quite effective
+in discouraging future use of the system. In Washington D.C., for example, the fare table for the Metrorail
+can be quite overwhelming for non-regular users, and it requires some knowledge of the city and the system,
+which is not very likely of tourists (see Figure 15.3).
+
+\figure[medium]{assets/image3.jpg}{The Washington, D.C., Metrorail fare table.}{ITDP.}
+
+The complexity also means that more things can go wrong with the system, adding to maintenance costs
+and potential system shutdowns. In the case of cities such as Jakarta, the complexity of the fare system
+meant that it did not work properly during its first year of operation.
+
+It is also possible to have a mix of both flat fares and distance-based fares. The base fare can be
+set quite high, and the additional distance–based fee can be set quite low relative to the overall fare
+price. Alternatively, a flat fare may be utilized within a well-defined urban area while journeys extending
+to regional locations, such as other municipalities, can require an additional charge. A mixed fare system
+can be appropriate when a metropolitan area includes satellite commuter cities. If such cities are predominantly
+middle- or higher-income in nature, then the justification for cross-subsidies is less. For example,
+the busways in São Paulo charge a flat fare in central areas but revert to a distance-based scheme for
+continuing on to satellite destinations.
+
+Before deciding on a flat fare, it is worth testing the impact of different fare structures on total
+system profits. Different fare structures can have widely different impacts on ridership under different
+conditions.
+
+For example, on the first corridor of the TransJakarta system there are a lot of customers going very
+short distances, as it is a major shopping area, and people are going from shop to shop. TransJakarta,
+which adopted a flat fare system, loses a lot of customers because there are minibuses that offer a competing
+service at a price below the fare for TransJakarta. For short distance trips, customers tend to use the
+minibuses, but for longer trips where the time savings becomes a major issue, customers tend to use TransJakarta.
+These short trips on the corridor, however, are generally a highly profitable sort of trip to serve.
+
+On the other hand, on Corridors 2 and 3, most customers were making a very long trip from the periphery
+to the city center. On these corridors, the flat fare structure gives TransJakarta a competitive advantage
+over other commercial operators who charged a zone-based fare. This flat fare also attracted a lot of
+ridership from low-income residents who live at the city’s periphery and who are highly price sensitive.
+
+Therefore, TransJakarta wished to test the impact of a distance-based fare on profit. Table 15.1
+shows the results of this analysis. These results clearly show that shifting to a fare structure
+with a reasonably high minimum fare combined with a distance-based fare would yield substantially
+more profit than a flat fare system.  Figure 15.4 highlights the amount of ridership
+that each of the different fare strategies would generate.
+
+\begintable{Comparing Different Fare Structures on Transjakarta}
+\header
+\col Option
+\col Base fare (Rp)
+\col Variable portion of fare (Rp/km)
+\col Demand (paying customer)
+\col Collected fare (US\$)
+\col Average distance (km)
+\col Operating cost (US\$)
+\col Profit (US\$)
+\col Max. peak frequency (buses/h)
+\row
+\col \highlight{Flat fare}
+\col Rp 2,500
+\col 0 Rp/km
+\col 11,523
+\col \$3,201
+\col 13.47 km
+\col \$1,973
+\col \$1,228
+\col 40
+\row
+\col \highlight{Variable fare 1}
+\col Rp 1,500
+\col 70 Rp/km
+\col 13,653
+\col \$3,283
+\col 9.87 km
+\col \$1,927
+\col \$1,356
+\col 46
+\row
+\col \highlight{Variable fare 2}
+\col Rp 1,000
+\col 110 Rp/km
+\col 16,374
+\col \$3,719
+\col 7.94 km
+\col \$2,054
+\col \$1,666
+\col 53
+\row
+\col \highlight{Variable fare 3}
+\col Rp 1,500
+\col 50 Rp/km
+\col 18,270
+\col \$4,129
+\col 10.68 km
+\col \$2,521
+\col \$1,607
+\col 62
+\endtable
+
+Doing this analysis requires a public transport model with an OD matrix of public transport trips.
+If average public transport trip distances along the planned BRT corridor can be closely estimated, then
+the technical fare can be recalculated using a distance-based fare.
+
+\figure[medium]{assets/image4.jpg}{Analysis of the impact of different fare structures on TransJakarta’s Phase II ridership.}
+{ITDP.}
+
+\title{Zonal Fare}
+
+Zonal fares are sometimes touted as a simplified version of a distance-based fare. In the case of a
+zonal fare, customers are charged by the number of zones that are crossed. Thus, if a customer travels
+from one city district to another, he or she is charged more than someone who only travels within a single
+district.
+
+The principal advantage of a zonal system is its simplicity, both in terms of reducing customer confusion
+over fares, as well as in terms of the fare technology required. It is easier to understand the cost
+implications of travelling in a city with a few zones as opposed to a significant number of permutations
+related to distance-base combinations.
+
+The principal disadvantage of a zonal system relates to peculiarities in the fare structure, where
+very short trips between zones can cost double a long trip inside a zone. This type of situation leads
+to an inequitable application of fare policy and can lead to anger among customers. This very scenario
+has occurred in Santiago, Chile, and has resulted in some dissatisfaction with the system. As with distance-based
+systems, this can lead to social inequities if lower-income citizens live on the outskirts of the city
+and need to travel downtown for work, and hence will need to pay a higher fare. To a certain extent,
+the advent of the smart card has made the zonal system unnecessary.
+
+\title{Time-Based Fare}
+
+While fares can vary by distance, they can also vary by time. The most typical form of time-based pricing
+is to have a peak-period fare and an off-peak fare. Charging more for peak periods tends to be more profitable
+in part because roads are most congested during peak hours, creating the strongest incentive to use a
+BRT system then. Peak-hour customers are also mostly commuters, who have the least flexibility in their
+travel schedule. Being less flexible means they are less price sensitive, and will pay more to make the
+trip.
+
+Public transport services that are heavily used during peak hours also have higher operating costs
+than services with demand that is more smoothly distributed throughout the day. The higher costs occur
+mainly because more vehicles are needed to service the peak period and because of the impact on labor
+needs. Bus drivers and other system operators tend to want to work an eight-hour day, whereas the morning
+and evening peaks will require extra labor. The less peaked the demand, the fewer the number of additional
+workers that are required to cover the peak periods. A fare system that encourages people to travel during
+nonpeak periods will help better distribute demand in a way that is more operationally efficient.
+
+Santiago has defined a 20 percent discount during nonpeak hours, so transport users prefer to ride
+during nonpeak hours, reducing system congestion and improving the efficiency of the fleet. TransJakarta
+also offered a discount for early morning customers; before 7:30 in the morning, the fare was reduced
+from Rp 2,500 to Rp 1,500. This type of pricing acts to help spread the peak. Additionally, the lower
+price served social equity purposes, since early morning riders tend to be from the lowest income groups.
+Special attention needs to be paid since cross-subsidies may end up coming from lower-income populations
+because they generally have less flexible travel schedules, and will most likely end up travelling during
+the peak time.
+
+Other systems use a time-based fare where the fare card buys the right to use the system for a maximum
+amount of time. This type of fare has much application when it is desirable to provide transfers in systems
+without physical integration between stations. Thus, transfers between rail services, trunk BRT services,
+and feeder BRT services can take place without the need for physically closed transfer environments.
+This is discussed further in the following section.
+
+The advantage to a time-based system is the savings provided to certain customers, especially those
+travelling at nonpeak periods or those making linked trips using various modes. A time-based restriction
+also sometimes is useful to prevent some customers from loitering in the system.
+
+If such a scheme is used, the technology must adjust for incidents when it is not the customer’s fault
+that the time has been exceeded. For example, if a serious delay occurs in the system due to a breakdown,
+customers will become irate if they also have to pay more. Also, additional time may be given to senior
+or handicapped citizens. These adjustments can easily be handled by a smart card–based system (see Chapter
+18: Fare Systems).
+
+\subsection{ Discounts }
+
+\title{Multi-Trip Discounts}
+
+One of the main cost advantages that private motor vehicle travel has over public transport is that
+once the customer has sunk the investment into the procurement of the vehicle, the marginal cost of using
+the car goes down the more the vehicle is used. This situation creates an incentive to drive more. Public
+transport fares that force people to pay per trip create the opposite incentive—to use the system as
+little as possible.
+
+Daily, weekly, and monthly passes, and multi-trip discounts are a good way to create incentives among
+public transport customers to use the system more. Studies show that such incentives will have a particularly
+large impact on discretionary travel during nonpeak periods. Multi-trip passes can also have significant
+benefits in terms of reducing queues at the fare booths and the amount of labor needed to staff ticketing
+sales.
+
+If such passes will be used, careful consideration needs to be given to the way the contracts with
+vehicle operating companies are structured, ensuring that financing is secured. In Bogotá, for example,
+since vehicle operating companies are paid based on kilometers, there is no financial impact on implementing
+such passes. Conventional vehicle operating companies, however, will be paid with a combination of kilometers
+and customer numbers, meaning that a time-pass will have a big impact on the finances of the entire system.
+
+\title{Transfer-Discounted Fare for Intermodal Transfers }
+
+In many cities today, fare structures between different modes, such as rail and bus services, are not
+well integrated. However, the increasing sophistication of cash cards and modern fare systems is creating
+many possibilities for giving special discounts for customers transferring from other public transport
+systems. Such forms of integration can even take place without necessarily having to integrate these
+public transport systems from a management perspective. This issue is particularly important in the growing
+number of cities that are building metro systems on some high demand corridors but are considering BRT
+on other corridors.
+
+In the past, providing a discount for metro or commuter rail system users on the BRT system required
+a high level of interagency coordination, and discussions frequently broke down on these grounds. For
+example, in São Paulo, there were bus services, commuter rail service, and the metro system operated
+by the State of São Paulo, but another, bigger bus system operated by the Municipality of São Paulo.
+Fare system integration between these systems remains elusive even today, even though these systems are
+all currently governed by the same political party.
+
+True fare “integration” between different modes is sometimes confused with fare “compatibility.” Fare
+integration implies that a customer pays for a multimodal fare that does not incur any penalty for changing
+from one mode to another. Seoul’s fare system comes quite close to achieving this level of integration.
+Fare compatibility instead just means the various modes share the same payment medium. With fare compatibility,
+the customer will pay multiple fares according to the number of systems utilized in the journey. Thus,
+with fare compatibility the customer gains some convenience with a single fare card, but the customer
+incurs another full fare cost whenever transferring between systems.
+
+The city of Bogotá, with the implementation of its integrated public transport system, Sistema Integrado
+de Transporte Público (SITP), plans to enforce a time-based discount fare for intermodal transfers. This
+means that customers will be able to travel among the different transport modes offered by the city at
+a discounted fare as exemplified in Equation 15.1.
+
+Eq. 15.1 Bogotá’s SITP transfer discounts example (2011 prices in Colombian Pesos):
+
+$$ \text{BRT} + \text{Conventional Bus} =  COP1700 + COP1400 = COP3100 \text{(No transfer discount)} $$
+
+$$ \text{BRT} + \text{Conventional Bus} =  COP1700 + COP500 = COP2200 \text{(With transfer discount)} $$
+
+Customers will be able to save COP 900, which is nearly a 30 percent savings. This becomes very useful
+in a city such as Bogotá, where lower-income citizens tend to live on the outskirts of the city and are
+more likely to require at least one transfer to reach their destination. This scheme results in a cross-subsidy
+from customers or, depending on the contract type defined for the bus operators, may need direct subsidies
+from the local government. Again, this may be used as an income distribution scheme; however, careful
+consideration must be taken to ensure that the income sources for this type of subsidies are secured.
+
+Perhaps the greatest challenge to fare integration between different public transport modes is not
+the payment technology but the significant differences in operating costs. Attempting to combine systems
+with dramatically different per kilometer operational costs raises many equity issues. This incompatibility
+is especially true when one system requires a significant operating subsidy and another system does not.
+For example, in Seoul, the underground rail system requires a massive operational subsidy while the bus
+system operates with no subsidy. In order to equilibrate an integrated fare and business structure, the
+underground metro operator receives a much higher payment per passenger-kilometer served than the vehicle
+operators. Such inequities may be acceptable in some cases, but it does raise questions about fairness,
+especially if two services are of comparable quality but of radically different cost structures.
+
+\title{User Profile Discounts}
+
+Providing fare discounts to special groups is a relatively common practice in public transport systems
+around the world. In some countries, while sometimes socially desirable, the requirement that a BRT authority
+accept special discount fares creates a difficult challenge for any public transport agency. Controlling
+fraud in the use of discount passes poses a difficult technical challenge.
+
+The determination of discount eligibility for children and the elderly is typically based on age limits.
+For example, system managers and operators may decide that children under five years of age and adults
+over sixty years of age qualify for special discounts. The determination of student eligibility is often
+predicated on either age limits and/or the possession of valid student identification. Student discounts
+may be limited to only certain student segments, such as primary, middle, secondary, and university levels
+of education.
+
+Discounts to children, students, and the elderly are typically given for reasons of social equity (Figure 15.5).
+Economically, a discount strategy can make sense so long as the discounted fare covers at least the marginal cost
+ of each customer. If fare levels are to be reduced below marginal cost levels, then some sort of subsidy
+ system will need to be put in place. Subsidies can take the form of cross-subsidies between customer user
+groups or direct subsidies from the government to the operators. In either case, the introduction of subsidies
+significantly increases financial complexity within the operation of the system, and subsidies also create
+complications with respect to operator incentives. Thus, if a discounted fare structure is to be utilized,
+it is usually best for the discounted fares to at least cover marginal costs. Otherwise, the resulting cross-subsidy
+can effectively render the discount meaningless, while simultaneously increasing the management costs
+of the system. For example, providing a below marginal cost subsidy to a child may simply mean that the
+parent must pay more to cover the subsidy. In effect, no social equity is being achieved.
+
+\figure[medium]{assets/image5.jpg}{Bay Area Rapid Transit (BART) system tickets including senior, student,
+and handicapped discount tickets.}{ BART (\url{http://www.bart.gov/}).}
+
+Chile and Brazil, for example, both place a legal obligation on the public transport operators to accept
+special discounts for students and the elderly. In Brazil, private vehicle operators are not compensated
+for the provision of this service, and the cost burden related to this service and its fraudulent abuse
+is a continuing cause of operator claims that they need fare increases. In many instances, operators
+will simply not stop if they see many students at a stop.
+
+If the BRT system does not have a reliable mechanism to track the number of trips made using such discount
+passes, it has no way to place a valid claim to the government for compensation. This situation has created
+an ongoing justification for requiring government subsidies, but no clear basis on which to determine
+an appropriate level. The subsidies are thus a source of ongoing tension between the government and the
+operators.
+
+On the other hand, Brazil has another subsidized fare that goes to employed workers called “Vale Transporte.”
+Vale Transporte is a public transport voucher that is as good as cash to any vehicle operator. Recently
+the Vale Transporte voucher system has been extended and can even be used with some formerly informal
+sector minivan services. As this increases demand for public transport services and does not adversely
+affect bus system profits, it is generally supported in the public transport community. Critics of the
+program are unhappy about the fact that it targets middle-income people with jobs rather than the very
+poor, and it costs the government a lot of money to administer, but these are not problems from the point
+of view of public transport operations. Voucher systems are therefore the preferred route for subsidizing
+categorical discounts.
+
+Discounted fare systems are also highly susceptible to fraud. As noted above, the qualifications for
+a child, student, or elderly discount are based upon age or a special identification. However, once the
+discount passes are issued, it is extremely difficult to ascertain exactly who is using the pass. The
+discount passes can be “lent” to family or friends who otherwise do not qualify for the discount. More
+worrying is the development of a gray market for discount passes in which persons obtain passes and sell
+them to others. Likewise, certain types of monthly passes for frequent users can be abused. If the monthly
+pass allows unlimited travel on the system, then the pass may end up being shared among several persons.
+
+
+There are mechanisms to combat fare fraud to an extent. First, the avoidance of discount passes that
+allow unlimited travel is one option. Instead, discount fare passes that deduct credits for each trip
+undertaken can somewhat help avoid shared passes. Or, a discount pass could limit its use to no more
+than two trips per day (i.e., the number of trips in a typical commute).
+
+Second, formal registration and photo identification on the discount card can be the basis for a verification
+process. The verification could be conducted randomly when customers are inside the system. Also, when
+a discount card is read at the turnstile area, an indicator light could alert the platform staff. A random
+verification of such persons could help to stem fraud.
+
+An exception to these recommendations is travel for very young children as designated by a certain
+age. Requiring a travel pass for a very young child is problematic since it can create a burden on parents.
+Further, small children who sit in the lap of a parent are not necessarily adding significantly to the
+operational cost of the system, although certainly space for any strollers can more than compensate.
+Also, given that the appearance of young children changes considerably in the earliest years, photo passes
+are not particularly useful. Undoubtedly, some parents will insist that their six- or seven-year-old
+is only five, but the scope of this sort of deception is usually not significant enough to warrant a
+stringent approach.
+
+In summary, fare discounts are well-meaning attempts to increase affordability and social equity within
+a public transport system. In some cases, though, the added costs and complexity of implementing a fare
+discount strategy can negate these intended benefits. Before committing to a fare discount system, cities
+should carefully consider the full ramifications.
+
+\subsection{Other Sources of Income}
+
+\title{Fares for Feeder Operation}
+
+The fare handling system for feeder services will often follow a different operational process than
+the fare system for trunk lines. As noted earlier, cities such as Bogotá and Quito now compensate feeder
+operators by a combination of the vehicle kilometers travelled and the number of customers carried. This
+compensation package attempts to balance incentives in order to motivate operators to provide high-quality
+service.
+
+Within this model, feeder operations have a range of options for fare collection and fare verification.
+In Bogotá, feeder operators do not collect the fares from customers boarding at feeder stations. Instead,
+customers only pay once they reach the terminal stations or intermediate transfer stations. For the return
+trip home, customers pay upon entering the trunk-line corridor and then transfer for free to the feeder
+services. However, for the return trip, entry into the feeder service is restricted to those persons
+who have previously marked their card upon leaving the station. This system holds the advantage of not
+making the feeder operators handle any revenues from customers. By avoiding fare collection and fare
+verification at the feeder level, there is considerable time savings, as well as the avoidance of any
+corruption.
+
+However, the system has the disadvantage of allowing customers to travel from one feeder stop to another
+feeder stop without paying anything. This situation occurs because payment is only made once customers
+reach a terminal. In some ways, the “free ride” between feeder stops could be viewed as a positive marketing
+point for TransMilenio, since people will enjoy having a free neighborhood service. However, the number
+of persons taking advantage of this free service is now reaching 15 percent of total feeder ridership.
+TransMilenio has changed feeder operator contracts from being based exclusively on kilometers travelled
+to being a combination of kilometers travelled and customers carried. It is possible that the addition
+of customers carried to the contract will provide an incentive for operators to curb the free use of
+the feeder services.
+
+There are other options for feeder fare control that can avoid some of the issues faced by TransMilenio.
+Another option is for feeder services to collect fares when customers board the feeder vehicle. While
+it would likely not be practical to make the driver handle fare collection and/or fare verification,
+the addition of fare collection staff to the vehicle could be a solution. Boarding the vehicle could
+take place at a single doorway (e.g., the rear door). Likewise, alighting the vehicle would then only
+be allowed at the other doorway (e.g., the front door).
+
+The fare collection staff (i.e., conductor) could be from the fare collection company and not from
+the feeder operating company. This separation of interests would help to avoid any mishandling of fare
+revenues. Customers boarding the feeder vehicle would enter a closed reservoir area in the bus, and then
+proceed through a turnstile once payment to the fare collection staff is made. The reservoir concept
+allows the vehicle to continue to the next stop while customers are being processed through fare collection.
+The reservoir concept is already utilized extensively in Brazil for conventional bus services. The disadvantage
+of this option is the cost of adding another staff person to the vehicle and the cost of the fare collection
+infrastructure within the vehicle. However, in many developing cities, the lower labor costs, in conjunction
+with political needs to maximize employment, make this option a viable possibility. Further, if the free
+ridership problem experienced in Bogotá was of such a magnitude, then the additional fare collection
+staff could be fully cost justified.
+
+If the feeder customer volumes are sufficiently high, then other options utilizing more sophisticated
+fare technologies may be possible. These options include:
+
+\item Fare collection vending machines at feeder stations (either open or closed stations);
+\item Smart card readers upon entering a closed feeder station;
+\item Smart card readers upon entering the feeder vehicle.
+
+Cities such as London are utilizing coin-fed fare collection machines at conventional open bus stations
+(see Chapter 18: Fare Systems). This type of technology could be adaptable to feeder services in some
+developing cities. If the station was closed (i.e., no entrance without fare payment), then a coin-based
+or even smart-card-based system could permit entrance to the station. Alternatively, a fare card purchased
+at a vending machine in an “open” station could then be verified inside the vehicle. The verification
+could either be done in a closed reservoir environment on the bus or by way of an honor system, where
+customers self-validate their fare tickets. If smart cards are utilized, then again, the fare verification
+could take place through a self-validating machine inside the vehicle.
+
+All of these technological solutions, though, do have limitations in the developing city context. First,
+the cost of the technologies for feeder services may be prohibitive from both a capital and operating
+cost standpoint. Second, creating “closed” stations at feeder stops may not be practicable from either
+a spatial or a cost perspective. Third, the effectiveness of “honor” payment and verification systems
+in developing cities is still not proven. Fourth, costly fare collection machines left unprotected at
+feeder stations could be subject to maintenance issues and even theft.
+
+\title{Publicity}
+
+Publicity can be used as a means of generating additional income for the system. The BRT infrastructure,
+including stations, vehicles, and fare collection medium can all be used. Furthermore, the system can
+be used to communicate important messages from the local government or as means of art galleries to enhance
+the user experience (Figure 15.6 and Figure 15.7).
+
+\figure{assets/image6.jpg}{Cleaner diesel campaign on the TransMilenio system buses.}{ Ecopetrol.}
+
+\figure{assets/image7.jpg}{A publicity and marketing campaign used in a BRT station for the 2011 FIFA
+U20 World Cup in Colombia.}{ La Casa Editorial El Tiempo (CEET).}
+
+All contracts between the different actors need to consider where the profits from publicity will go.
+In Bogotá, for example, publicity in vehicles belongs to the vehicle operating company.
+
+\title{Government and Cross-Subsidies}
+
+As described in the previous chapters, there are several instances where subsidies can be implemented
+in the system, whether directly to the fare or to user groups, for long distance travel and others.
+
+Decision makers need to be very careful about which strategy to use when implementing subsidies. Special
+care needs to be taken with the sources of income to be used. Subsidies that come from the fare may have
+negative results, since this will mean that the entire population is paying for something that will only
+benefit public transport customers. When implementing cross-subsidies for income distribution purposes,
+the “giver” and the “receiver” must be clearly identified.
+
+The preferred sources of income for subsidies should then be from other less beneficial modes of transport
+to the city (that produce large negative externalities), such as private cars. These subsidies would
+be in the form of congestion charging and pollution taxes, among others. If subsidies are given to the
+operation of the system, they should be given as a constant and guaranteed income flow that is supported
+by technical analysis, as opposed to being given based on only political grounds, which would generate
+a hole in the city’s future finances.
+
+Other forms of subsidies can be given to the Capex of the system. By building infrastructure and charging
+the vehicle operators for the right of use of this infrastructure, the local government will be subsidizing
+the operation of a BRT system without the need to have a constant income flow. Again, the contractual
+obligations of the vehicle operators must be considered carefully in order not to subsidize the companies
+themselves in detriment of the end users.
+
+\title{Multilateral Organizations}
+
+Multilateral organizations can often provide good credit access and conditions for public projects.
+These can be taken generally by the city itself, or sometimes are available to the private sector, with
+the city as collateral. This is a good way of financing the infrastructure of the BRT system at a lower
+cost than what the financial market offers.
+

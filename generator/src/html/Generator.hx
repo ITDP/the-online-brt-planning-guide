@@ -29,12 +29,22 @@ typedef Breadcrumbs = {
 	?section:BreadcrumbItem
 }
 
+/*
+Generate a static website
+
+Assumes that the server will:
+
+ - serve `<foo>.html` to a `<foo>` request if it doesn't already match an
+   existing file (e.g. nginx configured to `try_files $uri $uri/ $uri.html 404`)
+ - serve `<foo>/index.html` to a `<foo>/` request
+*/
 @:hasTemplates
 class Generator {
 	static var assetCache = new Map<String,String>();
 	static inline var ASSET_SUBDIR = "assets";
 	@:template static var FILE_BANNER;
-	
+	static inline var ROOT_URL = "./";
+
 	var destDir:String;
 	var godOn:Bool;
 	var bufs:Map<String,StringBuf>;
@@ -148,20 +158,26 @@ class Generator {
 		return Context.time("html generation (saveAsset)", _saveAsset.bind(src, content));
 
 	@:template function renderHead(title:String, base:String, relPath:String);
-	@:template function renderBreadcrumbs(bcs:Breadcrumbs);  // FIXME
+	@:template function renderBreadcrumbs(bcs:Breadcrumbs, relPath:String);  // FIXME
 
-	function openBuffer(title:String, base:String, bcs:Breadcrumbs, path:String)
+	function openBuffer(title:String, bcs:Breadcrumbs, url:String)
 	{
+		assert(Path.removeTrailingSlashes(url) == Path.normalize(url) || url == ROOT_URL, url);
+		var path = Path.normalize(url.endsWith("/") ? Path.join([url, "index.html"]) : Path.withExtension(url, "html"));
+		var depth = path.split("/").length - 1;
+		var computedBase = depth > 0 ? [ for (i in 0...depth) ".." ].join("/") : ".";
 		// TODO get normalize and google fonts with \html\apply or \html\link
 		// TODO get jquery and mathjax with \html\run
 		var buf = new StringBuf();
 		buf.add("<!DOCTYPE html>");
 		buf.add(FILE_BANNER);
 		buf.add("<html>\n");
-		buf.add(renderHead(title, base, path));
+		buf.add(renderHead(title, computedBase, url));
 		buf.add("<body>\n");
-		buf.add(renderBreadcrumbs(bcs));  // FIXME
-		buf.add('<div class="container"><nav><span id="toc-loading">Loading the table of contents...</span><a id="toc-menu" class="disabled" href="">Table of Contents</a></nav>\n<div class="col-text">\n');
+		buf.add(renderBreadcrumbs(bcs, url));  // FIXME
+		buf.add('<div class="container">\n<div class="col-text">\n');
+		assert(!bufs.exists(path));
+		bufs[path] = buf;
 		return buf;
 	}
 
@@ -189,11 +205,11 @@ class Generator {
 		case DVolume(no, name, children):
 			idc.volume = v.id.sure();
 			noc.volume = no;
-			var path = Path.join(["volume", idc.volume+".html"]);
-			bcs.volume = { no:no, name:new Html(genh(name)), url:path };  // FIXME raw html
+			var url = Path.join(["volume", idc.volume]);
+			bcs.volume = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = 'Volume $no: ${genn(name)}';
-			var buf = bufs[path] = openBuffer(title, "..", bcs, path);
-			toc.add('<li class="volume">\n${renderToc(no, Std.string(no), new Html(genh(name)), path)}\n<ul>\n');
+			var buf = openBuffer(title, bcs, url);
+			toc.add('<li class="volume">\n${renderToc(no, Std.string(no), new Html(genh(name)), url)}\n<ul>\n');
 			buf.add('
 				<section>
 				<h1 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h1>
@@ -206,11 +222,11 @@ class Generator {
 		case DChapter(no, name, children):
 			idc.chapter = v.id.sure();
 			noc.chapter = no;
-			var path = Path.join([idc.chapter, "index.html"]);
-			bcs.chapter = { no:no, name:new Html(genh(name)), url:path };  // FIXME raw html
+			var url = Path.addTrailingSlash(idc.chapter);
+			bcs.chapter = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = 'Chapter $no: ${genn(name)}';
-			var buf = bufs[path] = openBuffer(title, "..", bcs, path);
-			toc.add('<li class="chapter">${renderToc(null, Std.string(noc.chapter), new Html(genh(name)), path)}<ul>\n');
+			var buf = openBuffer(title, bcs, url);
+			toc.add('<li class="chapter">${renderToc(null, Std.string(noc.chapter), new Html(genh(name)), url)}<ul>\n');
 			buf.add('
 				<section>
 				<h2 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h2>
@@ -225,11 +241,11 @@ class Generator {
 			idc.section = v.id.sure();
 			noc.section = no;
 			var lno = noc.join(false, ".", chapter, section);
-			var path = Path.join([idc.chapter, idc.section+".html"]);
-			bcs.section = { no:no, name:new Html(genh(name)), url:path };  // FIXME raw html
+			var url = Path.join([idc.chapter, idc.section]);
+			bcs.section = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = '$lno ${genn(name)}';  // TODO chapter name
-			var buf = bufs[path] = openBuffer(title, "..", bcs, path);
-			toc.add('<li class="section">${renderToc(null, lno, new Html(genh(name)), path)}<ul>\n');
+			var buf = openBuffer(title, bcs, url);
+			toc.add('<li class="section">${renderToc(null, lno, new Html(genh(name)), url)}<ul>\n');
 			buf.add('
 				<section>
 				<h3 id="heading" class="volume${noc.volume}">$lno$QUAD${genh(name)}</h3>
@@ -244,7 +260,7 @@ class Generator {
 			idc.subSection = v.id.sure();
 			noc.subSection = no;
 			var lno = noc.join(false, ".", chapter, section, subSection);
-			var id = idc.join(true, ".", subSection);
+			var id = idc.join(false, "/", subSection);
 			toc.add('<li>${renderToc(null, lno, new Html(genh(name)), bcs.section.url+"#"+id)}<ul>\n');
 			var html = '
 				<section>
@@ -258,7 +274,7 @@ class Generator {
 			idc.subSubSection = v.id.sure();
 			noc.subSubSection = no;
 			var lno = noc.join(false, ".", chapter, section, subSection, subSubSection);
-			var id = idc.join(true, ".", subSection, subSubSection);
+			var id = idc.join(false, "/", subSection, subSubSection);
 			var html = '
 				<section>
 				<h5 id="$id" class="volume${noc.volume}">$lno$QUAD${genh(name)}</h5>
@@ -271,7 +287,7 @@ class Generator {
 			idc.box = v.id.sure();
 			noc.box = no;
 			var no = noc.join(false, ".", chapter, box);
-			var id = idc.join(true, ".", box);
+			var id = idc.join(true, ":", box);
 			var sz = TextWidth;
 			function autoSize(d:DElem) {
 				if (d.def.match(DTable(_, FullWidth|MarginWidth, _) | DFigure(_, FullWidth|MarginWidth, _)))
@@ -293,7 +309,7 @@ class Generator {
 			idc.figure = v.id.sure();
 			noc.figure = no;
 			var no = noc.join(false, ".", chapter, figure);
-			var id = idc.join(true, ".", figure);
+			var id = idc.join(true, ":", figure);
 			if (Context.dinossaurFigures) {
 				return '
 					<section class="img-block ${sizeToClass(size)}">
@@ -314,7 +330,7 @@ class Generator {
 			idc.table = v.id.sure();
 			noc.table = no;
 			var no = noc.join(false, ".", chapter, table);
-			var id = idc.join(true, ".", table);
+			var id = idc.join(true, ":", table);
 			var buf = new StringBuf();
 			function writeCell(cell:DElem, header:Bool)
 			{
@@ -351,7 +367,7 @@ class Generator {
 			idc.table = v.id.sure();
 			noc.table = no;
 			var no = noc.join(false, ".", chapter, table);
-			var id = idc.join(true, ".", table);
+			var id = idc.join(true, ":", table);
 			if (Context.dinossaurFigures) {
 				return '
 					<section class="img-block ${sizeToClass(size)}">
@@ -421,18 +437,21 @@ class Generator {
 		srcCache = new Map();  // TODO abstract
 		lastSrcId = 0;
 		toc = new StringBuf();
-		toc.add('<ul><li class="volume">${renderToc(null, null, "BRT Planning Guide", "index.html")}</li>');
 
-		var contents = genv(doc, new IdCtx(), new NoCtx(), {});  // TODO here for a hack
-		var root = bufs["index.html"] = openBuffer("The Online BRT Planning Guide", ".", {}, "index.html");
+		// `toc.add` and `genv` ordering is relevant
+		toc.add('<ul><li class="volume">${renderToc(null, null, "BRT Planning Guide", ROOT_URL)}</li>');
+		// it's necessary to process all `\html\apply` before actually opening buffers and writing heads
+		var contents = genv(doc, new IdCtx(), new NoCtx(), {});
+
+		var root = openBuffer("The Online BRT Planning Guide", {}, ROOT_URL);
 		root.add('<section>\n<h1 id="heading" class="brtcolor">${gent("The Online BRT Planning Guide")}</h1>\n');
 		root.add(contents);
 		root.add('</section>\n');
 		// TODO tt, commit in downloads, chapter download
 		toc.add('
 			<li class="keep">
-			<a href="#nav-options">More options</a>
-			<ul class="target" id="nav-options">
+			<a href="#action:more-options">More options</a>
+			<ul class="target" id="action:more-options">
 			<li><a href="pdf/the-brt-planning-guide.pdf">Download the guide as PDF</a></li>
 			<!--<li>Chapter: Corridor And Network Development</li>-->
 			<li><a href="../">Server debug</a></li>
@@ -460,6 +479,7 @@ class Generator {
 			var b = bufs[p];
 			if (p.endsWith(".html")) {
 				b.add("</div>\n");
+				b.add('<nav id="action:navigate"><span id="toc-loading">Loading the table of contents...</span></nav>\n');
 				b.add("</div>\n");
 				b.add('<script src="$toc"></script>');
 				b.add('<script src="$script"></script>');
