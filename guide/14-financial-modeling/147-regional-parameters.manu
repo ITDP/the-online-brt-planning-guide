@@ -1,0 +1,49 @@
+\section{ Regional Parameters}
+
+In addition to the sizing parameters discussed above, there are specific regional parameters that must also be considered. 
+Depreciation rates, taxes, and financing options vary from country to country and, depending on the country, 
+their parameters may impact profitability significantly.
+
+\subsection{Depreciation}
+
+Depreciation is a method for allocating the cost of the “use” of a fixed asset over the course of its 
+useful life. Depreciation is thus an accounting principle, since no monetary transactions occur, and 
+it is used as a tax shield to reduce the basis for tax calculations. 
+
+Usually, the depreciation rates should be such so as to match the asset’s useful life. However, specific 
+regulations determine standard maximum rates (the maximum rate equals minimum useful life) that should 
+be used per category. That being said, one may choose to depreciate an item over a longer period of time 
+if that better reflects the item’s useful life (less tax shield benefit). Generally speaking, a vehicle 
+operating company should have the following depreciation categories:
+
+\item Vehicles: four years (Brazil);
+\item Building/edifications: twenty-five years (Brazil);
+\item Installations: ten years (Brazil);
+\item Equipment: five years (Brazil);
+\item Computers/furniture/others: three years (Brazil).
+
+\subsection{ Financing Options}
+
+Financing options may vary depending on country risk, industry risk, and company/government liability. 
+These issues mentioned above may affect the interest rate, financing period, grace period, and financing 
+type: constant amortization system or constant payment system.
+
+For this item, it is best to refer to considerations made in other chapters of this guide.
+
+\subsection{ Taxes }
+
+Lastly, the tax system may also vary from country to country. The general taxing structure is similar 
+in most countries, but the rates and fiscal credit limits are usually different. One may break down the 
+taxing system in the following categories/moments:
+
+\item [Profit taxes—applied upon company’s profit;
+\item The profit basis for taxation may be subject to tax shields originated from depreciation, fiscal 
+credits, and losses brought forward;
+\item Regarding losses brought forward, some countries limit the number of years the losses may be brought 
+forward and the percent that it may deduce forms the profit basis.]
+\item [Face value taxes—applied upon company’s gross revenue;
+\item The basis value for face value taxes may be reduced due to fiscal credits.]
+\item Tax shields—may vary per country;
+\item Fiscal credits—may vary per country; 
+\item City taxes—not all face value taxes; for instance, some may be country taxes. Certain taxes may 
+be defined at a municipal level and vary city to city.
