@@ -632,7 +632,7 @@ As a result, the sizing factor is calculated using the following variables:
 
 Having calculated the sizing factor, this number should then be multiplied by the union driver pay 
 and benefits. As an orientation, for 44 hours/week working hours, the driver ratio could vary from 1.80, 
-for an extremely peak-concentrated operation, up until 2.80, for a very distributed daily service (i.e., 
+for an extremely peak-concentrated operation, up until 2.80, for a very distributed daily service (e.g., 
 Rio de Janeiro City). In case the system is designed with onboard fare personnel, their sizing is similar 
 to the driver sizing.
 
