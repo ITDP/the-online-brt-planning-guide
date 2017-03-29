@@ -151,12 +151,12 @@ class Generator {
 	@:template function renderHead(title:String, base:String, relPath:String);
 	@:template function renderBreadcrumbs(bcs:Breadcrumbs, relPath:String);  // FIXME
 
-	function openBuffer(title:String, base:String, bcs:Breadcrumbs, url:String)
+	function openBuffer(title:String, bcs:Breadcrumbs, url:String)
 	{
-		var depth = Path.normalize(url).split("/").length - 1;
+		assert(url == Path.normalize(url));
+		var depth = url.split("/").length - 1;
 		var computedBase = depth > 0 ? [ for (i in 0...depth) ".." ].join("/") : ".";
-		show(url, base, computedBase);
-		assert(base == computedBase);
+		var path = Path.withExtension(url, "html");
 		// TODO get normalize and google fonts with \html\apply or \html\link
 		// TODO get jquery and mathjax with \html\run
 		var buf = new StringBuf();
@@ -167,6 +167,8 @@ class Generator {
 		buf.add("<body>\n");
 		buf.add(renderBreadcrumbs(bcs, url));  // FIXME
 		buf.add('<div class="container">\n<div class="col-text">\n');
+		assert(!bufs.exists(path));
+		bufs[path] = buf;
 		return buf;
 	}
 
@@ -194,11 +196,10 @@ class Generator {
 		case DVolume(no, name, children):
 			idc.volume = v.id.sure();
 			noc.volume = no;
-			var path = Path.join(["volume", idc.volume + ".html"]);
-			var url = Path.normalize(Path.withoutExtension(path));
+			var url = Path.normalize(Path.join(["volume", idc.volume]));
 			bcs.volume = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = 'Volume $no: ${genn(name)}';
-			var buf = bufs[path] = openBuffer(title, "..", bcs, url);
+			var buf = openBuffer(title, bcs, url);
 			toc.add('<li class="volume">\n${renderToc(no, Std.string(no), new Html(genh(name)), url)}\n<ul>\n');
 			buf.add('
 				<section>
@@ -212,11 +213,10 @@ class Generator {
 		case DChapter(no, name, children):
 			idc.chapter = v.id.sure();
 			noc.chapter = no;
-			var path = Path.join([idc.chapter, INDEX + ".html"]);
-			var url = Path.normalize(Path.withoutExtension(path));
+			var url = Path.normalize(Path.join([idc.chapter, INDEX]));
 			bcs.chapter = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = 'Chapter $no: ${genn(name)}';
-			var buf = bufs[path] = openBuffer(title, "..", bcs, url);
+			var buf = openBuffer(title, bcs, url);
 			toc.add('<li class="chapter">${renderToc(null, Std.string(noc.chapter), new Html(genh(name)), url)}<ul>\n');
 			buf.add('
 				<section>
@@ -232,11 +232,10 @@ class Generator {
 			idc.section = v.id.sure();
 			noc.section = no;
 			var lno = noc.join(false, ".", chapter, section);
-			var path = Path.join([idc.chapter, idc.section + ".html"]);
-			var url = Path.normalize(Path.withoutExtension(path));
+			var url = Path.normalize(Path.join([idc.chapter, idc.section]));
 			bcs.section = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = '$lno ${genn(name)}';  // TODO chapter name
-			var buf = bufs[path] = openBuffer(title, "..", bcs, url);
+			var buf = openBuffer(title, bcs, url);
 			toc.add('<li class="section">${renderToc(null, lno, new Html(genh(name)), url)}<ul>\n');
 			buf.add('
 				<section>
@@ -430,7 +429,6 @@ class Generator {
 		lastSrcId = 0;
 		toc = new StringBuf();
 
-		var rootPath = INDEX + ".html";
 		var rootUrl = INDEX;
 
 		// `toc.add` and `genv` ordering is relevant
@@ -438,7 +436,7 @@ class Generator {
 		// it's necessary to process all `\html\apply` before actually opening buffers and writing heads
 		var contents = genv(doc, new IdCtx(), new NoCtx(), {});
 
-		var root = bufs[rootPath] = openBuffer("The Online BRT Planning Guide", ".", {}, rootUrl);
+		var root = openBuffer("The Online BRT Planning Guide", {}, rootUrl);
 		root.add('<section>\n<h1 id="heading" class="brtcolor">${gent("The Online BRT Planning Guide")}</h1>\n');
 		root.add(contents);
 		root.add('</section>\n');
