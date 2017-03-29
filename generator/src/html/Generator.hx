@@ -148,7 +148,7 @@ class Generator {
 		return Context.time("html generation (saveAsset)", _saveAsset.bind(src, content));
 
 	@:template function renderHead(title:String, base:String, relPath:String);
-	@:template function renderBreadcrumbs(bcs:Breadcrumbs);  // FIXME
+	@:template function renderBreadcrumbs(bcs:Breadcrumbs, relPath:String);  // FIXME
 
 	function openBuffer(title:String, base:String, bcs:Breadcrumbs, path:String)
 	{
@@ -160,8 +160,8 @@ class Generator {
 		buf.add("<html>\n");
 		buf.add(renderHead(title, base, path));
 		buf.add("<body>\n");
-		buf.add(renderBreadcrumbs(bcs));  // FIXME
-		buf.add('<div class="container"><nav><span id="toc-loading">Loading the table of contents...</span><a id="toc-menu" class="disabled" href="">Table of Contents</a></nav>\n<div class="col-text">\n');
+		buf.add(renderBreadcrumbs(bcs, path));  // FIXME
+		buf.add('<div class="container">\n<div class="col-text">\n');
 		return buf;
 	}
 
@@ -460,6 +460,7 @@ class Generator {
 			var b = bufs[p];
 			if (p.endsWith(".html")) {
 				b.add("</div>\n");
+				b.add('<nav id="navigate"><span id="toc-loading">Loading the table of contents...</span></nav>\n');
 				b.add("</div>\n");
 				b.add('<script src="$toc"></script>');
 				b.add('<script src="$script"></script>');
