@@ -67,7 +67,7 @@ _(You can also build **manu** locally from the sources; see [`.robrt.Dockerfile`
 With _manu_ installed you should be able to run `manu` in your command line.
 Try `manu --help` to query the available commands and options.
 
-You can generate the guide with `manu generate guide/the-guide.manu .generated` in a command line at the root of local copy of the project.
+You can generate the guide with `manu generate guide/index.manu .generated` in a command line at the root of local copy of the project.
 This will populate a `.generated` directory with `.html` and `.tex` files.
 
 At this point, the website is already functional, it's just a matter of starting a server _(configuring it to automatically try adding `.html` extensions)_.
