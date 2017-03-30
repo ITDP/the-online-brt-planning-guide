@@ -105,6 +105,12 @@ class Test_05_Transform {
 		no.chapter = 0;
 		Assert.equals(0, no.chapter);
 		Assert.equals(0, no.lastChapter);
+
+		// keep lastChapter if non-zero even after volume reset
+		no.chapter = 1;
+		@:privateAccess no.lastChapter = 2;
+		no.volume = 2;
+		Assert.equals(2, no.lastChapter);
 	}
 
 	public function test_old_001_example()
