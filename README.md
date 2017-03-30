@@ -10,7 +10,7 @@ It is a huge effort by the Institute of Transportation and Development Policy
 This project aims to make the guide more accessible and keep it up-to-date:
 
  - the guide is now available online in a website format that is easy to navigate
- - PDFs are also available to those that need to print them
+ - a PDF of the guide is available to those that need to print it
  - the online publication of updates is automatic
  - the entire history of the guide is kept with Git
  - revisions and contributions are easier with GitHub
@@ -28,7 +28,7 @@ with version control.
 
 The second contains the source-code for the generator tool, that takes the text
 for the guide and the assets and builds, in a single run, both the full website
-and the PDFs.
+and the PDF.
 
 
 ## Contributing
@@ -36,7 +36,7 @@ and the PDFs.
 You can ask questions or report problems in the guide by [opening a GitHub
 issue](https://github.com/ITDP/the-online-brt-planning-guide/issues/new).
 
-If instead you want to propose changes to either the guide (i.e. a typo fix or
+If instead you want to propose changes to either the guide (e.g. a typo fix or
 a new section) or, if you're a programmer or a designer, to the generator tool,
 please (fork the repository and) open a pull request.
 
