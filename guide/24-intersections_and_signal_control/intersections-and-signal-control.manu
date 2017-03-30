@@ -1,7 +1,5 @@
 \chapter{Intersections and Signal Control}
 
-\highlight{Contributors:} John Jones, *HHO Africa*; Karl Fjellstrom, *Far East BRT*; Annie Weinstock, *BRT Planning International*; Elkin Bello, *consultant*; Ulises Navarro, *ITDP Latin America*; Carlos Pardo, *Despacio*; Pedro Szász, *consultant*; Arthur Szász, *Protocubo*
-
 \quotation{A bland smile is like a green light at an intersection, it feels good when you get one, but you forget it the moment you’re past it.}
 {Douglas Coupland, novelist, 1961–}
 
@@ -50,3 +48,5 @@ to improve intersection efficiency, particularly when grade separation is availa
 \include{248-brt-lanes-at-roundabouts.manu}
 \include{249-integrating-pedestrian-and-cyclist-movements.manu}
 \include{2410-grade-separation.manu}
+
+\highlight{Contributors:} John Jones, *HHO Africa*; Karl Fjellstrom, *Far East BRT*; Annie Weinstock, *BRT Planning International*; Elkin Bello, *consultant*; Ulises Navarro, *ITDP Latin America*; Carlos Pardo, *Despacio*; Pedro Szász, *consultant*; Arthur Szász, *Protocubo*

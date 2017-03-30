@@ -1,7 +1,5 @@
 \chapter{Universal Access}
 
-\highlight{Contributors:} Tom Rickert, *Access Exchange International*; Michael King, *BuroHappold Engineering*
-
 \include{301-introduction.manu}
 \include{302-consultation-with-customers-with-special-needs.manu}
 \include{303-station-access.manu}
@@ -12,3 +10,5 @@
 \include{308-orientation,-information,-and-evaluation.manu}
 \include{309-brt-accessibility-check-list.manu}
 \include{bibliography.manu}
+
+\highlight{Contributors:} Tom Rickert, *Access Exchange International*; Michael King, *BuroHappold Engineering*

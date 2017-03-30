@@ -1,7 +1,5 @@
 \chapter{The Case for Marketing and Customer Service}
 
-\highlight{Contributors:} Peter Trickett, *consultant*; Carlos Pardo, *Despacio*; Jemilah Magnusson, *ITDP*; Liz London, *consultant*
-
 \quotation{We’re obviously going to spend a lot in marketing because we think the product sells itself.}
 {James Allchin, former Microsoft executive, 1951 -}
 
@@ -16,3 +14,5 @@ This chapter will review some basic components of branding, marketing, and custo
 \include{consolidating-the-brand-architecture.manu}
 \include{implementation.manu}
 \include{customer-service.manu}
+
+\highlight{Contributors:} Peter Trickett, *consultant*; Carlos Pardo, *Despacio*; Jemilah Magnusson, *ITDP*; Liz London, *consultant*

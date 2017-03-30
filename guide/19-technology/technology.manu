@@ -1,7 +1,5 @@
 \chapter{Technology}
 
-\highlight{Contributors:} Giorgio Ambrosino, *consultant*; Brendan Finn, *consultant*; Christoff Krogskeepers, *ITS Engineers*; Pratik Dave, *consultant*
-
 \quotation{Any sufficiently advanced technology is indistinguishable from magic.}
 {Arthur C. Clarke, author and inventor, 1917–}
 
@@ -45,3 +43,5 @@ to the World Bank Toolkit on Intelligent Transport Systems.
 \include{197-planning-and-implementation-for-it-systems.manu}
 \include{198-implementation-phasing.manu}
 \include{199-monitoring-and-evaluation.manu}
+
+\highlight{Contributors:} Giorgio Ambrosino, *consultant*; Brendan Finn, *consultant*; Christoff Krogskeepers, *ITS Engineers*; Pratik Dave, *consultant*
