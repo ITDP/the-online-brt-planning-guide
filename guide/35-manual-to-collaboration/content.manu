@@ -1,33 +1,20 @@
-\chapter{Manual to collaboration}
+\chapter{Manual to Collaboration}
 
-Newcomers to git
+The project lives in GitHub, a platform widely used for collaboration to
+projects using *Git*:
+\url{https://github.com/ITDP/the-online-brt-planning-guide}.  You can ask
+questions or report problems in the guide by opening an issue.
 
-Git is a computer program \[ideally\] to be installed on a contributor's computer, where it shall manage a copy (clone) of 
-the required content to produce the BRT Planning Guide (this repository) and submit proposals for changes.
-Git is originally a command line tool, but there are several graphic tools. It may require a two hour effort to 
-install it and learn the basics of using it without assistance and 20 minutes with assistance.
-More about git in the Pro Git book (\url{https://git-scm.com/book/en/v2}).
+If instead you want to propose changes to either the guide (e.g. a typo fix or
+a new section) or, if you're a programmer or a designer, to the generator tool,
+please (fork the repository and) open a pull request.
 
-Github is a website that hosts repositories like this one, where contribution from several people can be centralized,
-its use is free for open-source projects. Contributors to the BRT Planning Guide are required to have a github account,
-with that only it is possible to submit changes proposals to the guide, although it is not practical for large ones.
+This \[work in progress\] chapter goes into more detail on how each tool works,
+including a definition of the sytanx for \code`.manu` files.
 
-To simply navigate through folders and files make sure you click on the file name (in light blue on the left side)
-and NOT in the gray message in the middle of the same container (that will lead you to the last changes on the file)
-
-Files structure
-
-Generator directory holds code files that will process the content in the Guide directory,
-which contains the source (text files and assets as images referenced in the text files) for the BRT Planning Guide,
-the dot files have configuration information
-(describing where and how processing the repository must take place and about git itself).
-
-The content in the guide
-
-At the moment, the entry point of processing is in the file guide/the-guide.manu,
-where other files are pointed with the \code!\include{point/to/other/file.manu}! command.
-A user manual on how to contribute and of the supported syntax is being developed in the chapter
-called Manual for Collaboration.
+More documentation on how to work with the guide and with GitHub will gradually
+become available. In the mean time, if you need help, do not hesitate to
+contact the geeks behind the curtain at contato@protocubo.io.
 
 
 

@@ -97,7 +97,9 @@ Fortunately for cities, the technology for providing high-quality public transpo
 \include{32-transportation_demand_management/transportation-demand-management-tdm.manu}
 \meta\reset{chapter}{33}  \' TODO missing chapter 33 '\
 
-\volume{Meta}
+\volume{About the Guide}
 There should be some introductory text here on this volume.
-\include{34-manual-for-collaboration/00-manual-for-collaboration.manu}
+\include{volume-8-landing-page.manu}
+\include{34-how-it-works/content.manu}
+\include{35-manual-to-collaboration/content.manu}
 
