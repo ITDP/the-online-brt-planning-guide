@@ -60,7 +60,7 @@ git remote set-url origin git@github.com:/ITDP/the-online-brt-planning-guide
 #### 2. How to locally run _manu_ and generate the guide?
 
 First, you need to [clone](https://help.github.com/articles/cloning-a-repository/) the project's repository.
-Then, install [Node.js](https://nodejs.org), get an [up-to-date _manu_ package](https://brtguide.itdp.org/branch/master/bin/) and install it with `npm i -g <path-to-downloaded-tgz-file>` (`npm` is automatically installed with Node.js).
+Then, install [Node.js](https://nodejs.org), get an [up-to-date _manu_ package](https://brtguide.itdp.org/branch/master/bin/) and install it with `npm install -g <path-to-downloaded-tgz-file>` (`npm` is automatically installed with Node.js).
 
 _(You can also build **manu** locally from the sources; see [`.robrt.Dockerfile`](.robrt.Dockerfile)/[`.robrt.json`](.robrt.json) for how it's done in the server)_
 
@@ -71,7 +71,7 @@ You can generate the guide with `manu generate guide/index.manu .generated` in a
 This will populate a `.generated` directory with `.html` and `.tex` files.
 
 At this point, the website is already functional, it's just a matter of starting a server _(configuring it to automatically try adding `.html` extensions)_.
-Since we already have Node.js installed for _manu_, the easiest way to do this is with [`http-server`](https://www.npmjs.com/package/http-server) (you can install it with `npm -i -g http-server`):
+Since we already have Node.js installed for _manu_, the easiest way to do this is with [`http-server`](https://www.npmjs.com/package/http-server) (you can install it with `npm install -g http-server`):
 also at the root folder of the project, run `http-server .generated/html --ext html -o`.
 
 To create the PDF you'll need a working LaTeX installation with `lualatex` and `latexmk`:
