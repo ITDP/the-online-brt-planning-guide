@@ -67,11 +67,11 @@ Fortunately for cities, the technology for providing high-quality public transpo
 \include{14-financial-modeling/financial-modeling.manu}
 \include{15-fare-policy-and-structure/00-fare-policy-and-structure.manu}
 \include{16-informal-transit-transition-to-brt/00-informal-transit-transition-to-brt.manu}
+\meta\reset{chapter}{17} \' TODO missing part of volume 4, up to chapter 17 '\
 
 
 \volume{Technology}
 \include{volume-5-landing-page.manu}
-\meta\reset{chapter}{17} \' TODO missing part of volume 4, up to chapter 17 '\
 \include{18-fare_systems/fare-systems.manu}
 \include{19-technology\technology.manu}
 \include{20-vehicles/vehicles.manu}
@@ -95,10 +95,10 @@ Fortunately for cities, the technology for providing high-quality public transpo
 \include{30-universal_access\universal-access.manu}
 \include{31-bicycle_predicab_integration/bicycle-and-predicab-integration.manu}
 \include{32-transportation_demand_management/transportation-demand-management-tdm.manu}
-\meta\reset{chapter}{33}  \' TODO missing chapter 33 '\
+\meta\reset{chapter}{33}  \' TODO missing chapter 33, skip to chapter 34 '\
+
 
 \volume{About the Guide}
-There should be some introductory text here on this volume.
 \include{volume-8-landing-page.manu}
 \include{34-how-it-works/content.manu}
 \include{35-manual-to-collaboration/content.manu}
