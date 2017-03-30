@@ -451,13 +451,13 @@ class Generator {
 		root.add('</section>\n');
 		// TODO tt, commit in downloads, chapter download
 		toc.add('
+			<li class="keep"><a href="pdf/the-brt-planning-guide.pdf">Download in PDF</a></li>
+			<li class="keep"><a href="https://github.com/ITDP/the-online-brt-planning-guide" target="_blank">Contribute now</a></li>
 			<li class="keep">
-			<a href="#action:more-options">More options</a>
-			<ul class="target" id="action:more-options">
-			<li><a href="pdf/the-brt-planning-guide.pdf">Download the guide as PDF</a></li>
-			<!--<li>Chapter: Corridor And Network Development</li>-->
-			<li><a href="../">Server debug</a></li>
-			</ul>
+			<a href="#action:more-options">Other options</a>
+				<ul class="target" id="action:more-options">
+				<li><a href="../" target="_blank">Extra files</a></li>
+				</ul>
 			</li>
 		'.doctrim());
 		toc.add("\n</ul>");
