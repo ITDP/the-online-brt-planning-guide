@@ -43,7 +43,7 @@ As a rule of thumb, a vehicle with AC will, aside from having a larger cost, als
 percent more fuel. That being said, as reference values, the consumption per vehicle should have values 
 around those in Table 14.2.
 
-\begintable{Costs Per Kilometer of Spare Parts by Vehicle Type}
+\begintable{Fuel Consuption Costs by Vehicle Type}
 \header
 \col Bus Type
 \col US\$/km
@@ -73,7 +73,7 @@ around those in Table 14.2.
 \col 0.26
 \endtable
 
-Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: \url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
+Source: Logit. 2013 Brazilian Data 
 
 For the fuel price, one must consider the “bulk” price, because fuel will be purchased in great quantities. 
 Usually, a fuel tank and pump will be installed at the garage depot and be supplied weekly by a tank 
@@ -190,8 +190,7 @@ possible. As a result, one may calculate the tire cost per kilometer as follows:
 \col 0.10
 \endtable
 
-Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: 
-\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
+Source: Logit. 2013 Brazilian Data 
 
 *Parts and Replacements*
 
@@ -275,9 +274,7 @@ type.
 \col 78,000
 \col 0.27
 \endtable
-
-Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: 
-\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
+Source: Logit. 2013 Brazilian Data 
 
 \title{Vehicle Dependent}
 
@@ -598,9 +595,15 @@ From the total weekly hours, we can see that the Saturday and Sunday requirement
 14 hours (8.37 + 6.67 = 15.04). In other words, the total weekly work hours would be determined by the 
 following equation:
 
-Eq. 14.1 Total weekly work hours:
+Example of total weekly work hours for one driver:
 
-$$ (5 \text{days} * { 7\text{hours} \over \text{day}} ) +  {15.04 \text{hours} \over 2 \text{hours}} = 42.52 { \text{hours} \over \text{week}} $$ 
+$$ (5 \text{days} * { 7\text{hours} \over \text{day}} ) +  {{8.37 \text{hours on Saturday} + 6.67 \text{hours on Sunday}} \over 2\text{drivers}} = $$
+
+$$ 35 \text{hours(during the week)} +  {15.52 \text{hours (during the weekend for two drivers)}} = $$
+
+$$ 35 \text{hours(during the week)} +  {7.76 \text{hours (during the weekend)}} = $$
+
+$$ 42.76 { \text{hours} \over \text{week}} $$ 
 
 Since 42.52 hours per week is under the weekly regimen of 44 hours, no additional weekly hours are 
 required. In case this number were over 44 hours, then one should calculate the “factor” of exceeding 
@@ -612,14 +615,18 @@ weekly hours occur during the nighttime shift. To that amount, one may apply the
 pay and thus reach a nighttime shift factor. In Brazil, this overtime pay factor is 1.3714, which gives 
 a global nighttime factor of 1.0293. 
 
-In addition to all of this, one must calculate the provision for vacation period, national holidays 
+In addition to all of this, one must calculate an factor to provide personell to cover for vacation period, holidays 
 (if applicable), and yearly absentee days. 
 
-Eq. 14.2 Provision for national holidays or absentees: 
+Bellow an example of calculatint the  Ratio for Personnel Time Off to compensate for holidays(e.g. 10), sickness or personal time off (e.g. expected an average of drivers about 4 per year) and vacation (e.g. 30 days): 
+ 
+$$ {365 \text{days} \over [(\text{total days} \in \text{year}) – (\text{missed work days})]}= $$
+$$ {365 \over [365 – (10 + 4 + 30)]}= $$
+$$ {365 \over [365 – 44]}= $$
+$$ {365 \over [321]}= $$
+$$ 1.137$$
 
-$$ 365 \text{days} \over [(\text{total days} \in \text{year}) – (\text{missed work days})] $$
-
-For a 30-day vacation period, the ratio would be 365/335. All these provisions, calculated separately, 
+The ratio would be 113% (we need 13% more personnel to cover time off). All these provisions, calculated separately, 
 must then be multiplied so one reaches a total coverage factor. 
 
 As a result, the sizing factor is calculated using the following variables:
@@ -723,8 +730,7 @@ vehicles, one could expect the following sizing parameters:
 \col \highlight{0.1175}
 \endtable
 
-Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate:
-\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
+Source: Logit. 2013 Brazilian Data 
 
 For this situation, one can derive a sizing ratio of approximately 0.12 in relation to the operating 
 fleet, and an average salary of approximately US\$900 (R\$2,020). Given that the average salary is superior 
@@ -794,8 +800,7 @@ of two hundred vehicles:
 \col \highlight{0.155}
 \endtable
 
-Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: 
-\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
+Source: Logit. 2013 Brazilian Data 
 
 For this smaller company size, one can see that the average salary had a 10 percent increase and the 
 sizing ratio increased from 0.1175 to 0.1550. Of course, in cases where the vehicle operating company 
@@ -921,8 +926,7 @@ vehicles, one could expect the following sizing parameters:
 \col \highlight{0.4225}
 \endtable
 
-Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: 
-\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
+Source: Logit. 2013 Brazilian Data 
 
 For this situation, one can derive a sizing ratio of approximately 0.42 in relation to the operating 
 fleet, and an average salary of approximately US\$700 (R\$1,575). The overhead of the garage depot/maintenance 
@@ -1023,8 +1027,7 @@ of two hundred vehicles:
 \col \highlight{0.46}
 \endtable
 
-Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: 
-\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
+Source: Logit. 2013 Brazilian Data 
 
 As a result, one may see that the average salary is roughly the same and the ratio sizing parameter 
 had a small increase from 0.4225 to 0.4600. Of course, in case the vehicle operating company were considerably 
@@ -1196,8 +1199,7 @@ vehicles, one could expect the following sizing parameters:
 \col \highlight{0.1}
 \endtable
 
-Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: 
-\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
+Source: Logit. 2013 Brazilian Data 
 
 For this situation, one can derive a sizing ratio of 0.10, in relation to the operating fleet, and 
 an average salary of approximately US\$820.00 (R\$1,840.00). As mentioned before, there is less room 
@@ -1337,8 +1339,7 @@ of two hundred vehicles:
 \col \highlight{0.13}
 \endtable
 
-Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: 
-\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
+Source: Logit. 2013 Brazilian Data 
 
 As a result, one may see that the average salary is slightly higher, which is consistent with the inability 
 to shed the upper level positions. The ratio sizing parameter thus has a 30 percent increase, going from 
