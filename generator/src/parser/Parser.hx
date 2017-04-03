@@ -231,7 +231,19 @@ class Parser {
 	function hlist(stop:Stop)
 		return mkList(horizontal(stop));
 
-	// FIXME document slash behavior
+	/*
+	Read in raw mode
+
+	In this mode, tokens are converted back to their original inputs, with
+	the exceptions bellow:
+	 - escapes are processed and, thus, retained their interpreted value
+	 - comments are discarded
+	
+	Note: because of this, in raw mode is perfectly valid to write
+	`\windows`, even though we don't have such command; this is
+	intentional, so that it's possible – although not encouraged – to pass
+	Windows-style paths with backslashes.
+	*/
 	function rawHorizontal(stop:Stop):String
 	{
 		var buf = new StringBuf();
