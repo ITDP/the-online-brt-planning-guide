@@ -257,7 +257,7 @@ class Parser {
 				break;
 			case { def:TComment(_) }:
 				pop();
-			case { def:TWord(w)|TEscaped(w) }:
+			case { def:TEscaped(w) }:
 				pop();
 				buf.add(w);
 			case { src:src, pos:pos }:
