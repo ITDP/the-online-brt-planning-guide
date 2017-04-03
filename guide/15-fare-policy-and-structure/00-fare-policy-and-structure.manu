@@ -34,3 +34,5 @@ on a fare policy for a BRT system.
 \include{02-fare-parameters.manu}
 \include{03-technical-fare-and-customer-fare.manu}
 
+\highlight{Contributors:} Fabio Gordillo, *GSD+*
+
