@@ -47,6 +47,7 @@ class Generator {
 	@:template static var FILE_BANNER;
 	static inline var ROOT_URL = "./";
 
+	var hasher:AssetHasher;
 	var destDir:String;
 	var godOn:Bool;
 	var bufs:Map<String,StringBuf>;
@@ -138,11 +139,7 @@ class Generator {
 		var ext = Path.extension(src).toLowerCase();
 		weakAssert(ext != "", src, "web server might expect an extension for automatic content-type headers");
 		var data = content != null ? content : File.getBytes(src);
-#if nodejs
-		var hash = js.node.Crypto.createHash("sha1").update(js.node.buffer.Buffer.hxFromBytes(data)).digest("hex");
-#else
-		var hash = haxe.crypto.Sha1.make(data).toHex();
-#end
+		var hash = hasher.hash(src, data, content == null);  // don't use a cache if content doesn't depend on src
 
 		var name = ext != "" ? hash + "." + ext : hash;
 		var dst = Path.join([dir, name]);
@@ -508,8 +505,9 @@ class Generator {
 		}
 	}
 
-	public function new(destDir, godOn)
+	public function new(hasher, destDir, godOn)
 	{
+		this.hasher = hasher;
 		// TODO validate destDir
 		this.destDir = destDir;
 		this.godOn = godOn;

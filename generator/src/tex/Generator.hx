@@ -28,6 +28,7 @@ class Generator {
 	%  platform: ${Main.version.platform}
 	'.doctrim();  // TODO runtime version, sources version
 
+	var hasher:AssetHasher;
 	var destDir:String;
 	var preamble:StringBuf;
 	var bufs:Map<String,StringBuf>;
@@ -51,11 +52,7 @@ class Generator {
 
 		var ext = Path.extension(src).toLowerCase();
 		var data = File.getBytes(src);
-#if nodejs
-		var hash = js.node.Crypto.createHash("sha1").update(js.node.buffer.Buffer.hxFromBytes(data)).digest("hex");
-#else
-		var hash = haxe.crypto.Sha1.make(data).toHex();
-#end
+		var hash = hasher.hash(src, data);
 
 		// TODO question: is the extension even neccessary?
 		var name = ext != "" ? hash + "." + ext : hash;
@@ -270,8 +267,9 @@ class Generator {
 		}
 	}
 
-	public function new(destDir)
+	public function new(hasher, destDir)
 	{
+		this.hasher = hasher;
 		// TODO validate destDir
 		this.destDir = destDir;
 		bufs = new Map();

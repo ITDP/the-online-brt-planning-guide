@@ -44,7 +44,8 @@ class Test_09_Issues {
 
 	public function test_issue_0008()
 	{
-		var g = new TexGen("/a/b/c/d");
+		var h = new AssetHasher();
+		var g = new TexGen(h, "/a/b/c/d");
 		Assert.equals("\\}\\}", g.gent("}}"));
 	}
 

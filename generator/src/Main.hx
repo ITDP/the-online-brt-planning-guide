@@ -75,15 +75,17 @@ class Main {
 				if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
 				if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
 
+				var hasher = new AssetHasher();
+
 				println(ANSI.set(Green) + " --> HTML generation" + ANSI.set(Off));
 				Context.time("html generation", function () {
-					var hgen = new html.Generator(Path.join([opath, "html"]), true);
+					var hgen = new html.Generator(hasher, Path.join([opath, "html"]), true);
 					hgen.writeDocument(doc);
 				});
 
 				println(ANSI.set(Green) + " --> PDF preparation (TeX generation)" + ANSI.set(Off));
 				Context.time("tex generation", function () {
-					var tgen = new tex.Generator(Path.join([opath, "pdf"]));
+					var tgen = new tex.Generator(hasher, Path.join([opath, "pdf"]));
 					tgen.writeDocument(doc);
 				});
 
