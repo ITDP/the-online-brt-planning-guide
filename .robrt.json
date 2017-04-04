@@ -18,7 +18,8 @@
 
 			"cd $ROBRT_REPOSITORY_DIR",
 			"git lfs pull",
-			"git lfs logs last",
+			"git lfs logs last | tee .lfs.log",
+			"grep -qi 'no logs to show' .lfs.log",
 
 			"cd $ROBRT_REPOSITORY_DIR/generator",
 			"haxe -D travis build.hxml",
