@@ -17,10 +17,10 @@
 			"node --version",
 
 			"cd $ROBRT_REPOSITORY_DIR",
-			"git lfs pull 2>&1 | tee .lfs-pull.log",
+			"git lfs pull 2>&1 | tee .lfs-pull.log || echo \"error exit code: $?\" >> .lfs-pull.log",
 			"git lfs logs last 2>&1 | tee .lfs-logs-last.log",
 			"grep -qi 'no logs to show' .lfs-logs-last.log",
-			"grep -qiv 'batch response' .lfs-pull.log",
+			"grep -qiv 'error\|\(batch response\)' .lfs-pull.log",
 
 			"cd $ROBRT_REPOSITORY_DIR/generator",
 			"haxe -D travis build.hxml",
