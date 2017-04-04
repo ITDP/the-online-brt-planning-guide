@@ -17,9 +17,10 @@
 			"node --version",
 
 			"cd $ROBRT_REPOSITORY_DIR",
-			"git lfs pull",
-			"git lfs logs last | tee .lfs.log",
-			"grep -qi 'no logs to show' .lfs.log",
+			"git lfs pull | tee .lfs-pull.log",
+			"git lfs logs last | tee .lfs-logs-last.log",
+			"grep -qi 'no logs to show' .lfs-logs-last.log",
+			"grep -qiv 'batch response' .lfs-pull.log",
 
 			"cd $ROBRT_REPOSITORY_DIR/generator",
 			"haxe -D travis build.hxml",
