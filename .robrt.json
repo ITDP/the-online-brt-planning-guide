@@ -18,6 +18,7 @@
 
 			"cd $ROBRT_REPOSITORY_DIR",
 			"git lfs pull",
+			"git lfs logs last",
 
 			"cd $ROBRT_REPOSITORY_DIR/generator",
 			"haxe -D travis build.hxml",
