@@ -17,7 +17,7 @@
 			"node --version",
 
 			"cd $ROBRT_REPOSITORY_DIR",
-			"if [ -z ${NO_CAP_GH_TOKEN+x} ]; then git remote set-url origin https://$NO_CAP_GH_TOKEN:$NO_CAP_GH_TOKEN@github.com/ITDP/the-online-brt-planning-guide; fi",
+			"if [ -z ${NO_CAP_GH_TOKEN+x} ]; then echo Skipped; else git remote set-url origin https://$NO_CAP_GH_TOKEN:$NO_CAP_GH_TOKEN@github.com/ITDP/the-online-brt-planning-guide; fi",
 			"git lfs pull 2>&1 | tee .lfs-pull.log || echo \"error exit code: $?\" >> .lfs-pull.log",
 			"git lfs logs last 2>&1 | tee .lfs-logs-last.log",
 			"grep -qi 'no logs to show' .lfs-logs-last.log",
