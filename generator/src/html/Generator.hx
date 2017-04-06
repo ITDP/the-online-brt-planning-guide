@@ -144,13 +144,13 @@ class Generator {
 		var name = ext != "" ? hash + "." + ext : hash;
 		var dst = Path.join([dir, name]);
 		var lpath = Path.join([ldir, name]);
-		assets[src] = dst;
 		File.saveBytes(lpath, data);
 
 		var prefix = Context.assetUrlPrefix;
-		if (prefix == null)
-			prefix = "";
-		return prefix + dst;
+		if (prefix != null)
+			dst = prefix + dst;
+		assets[src] = dst;
+		return dst;
 	}
 
 	function saveAsset(src, ?content)
