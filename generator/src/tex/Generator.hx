@@ -113,7 +113,7 @@ class Generator {
 		case InlineCode(code):
 			return '\\code{${gent(code)}}';
 		case Math(tex):
-			return '$$$tex$$';
+			return '\\($tex\\)';
 		case Url(address):
 			return '\\url{${gent(address, true)}}';
 		case HElemList(li):
