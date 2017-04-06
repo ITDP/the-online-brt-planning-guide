@@ -232,7 +232,7 @@ class Generator {
 		case DQuotation(text, by):
 			return '\\quotation{${genh(text)}}{${genh(by)}}\n${genp(v.pos)}\n';
 		case DParagraph({pos:p, def:Math(tex)}):
-			return '$$$$$tex$$$$';
+			return '\\[$tex\\]';
 		case DParagraph(h):
 			return '${genh(h)}\\par\n${genp(v.pos)}\n';
 		case DElemList(li):
