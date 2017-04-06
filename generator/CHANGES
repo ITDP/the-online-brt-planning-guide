@@ -23,6 +23,7 @@
  - syntax: change math markers to `$$`; `\$` is still allowed, but is mostly unnecessary
  - other: better error messages throughout
  - ui: add color and underscore highlight modes for error context
+ - optimization: add an asset server for sharing across builds, branches and pull requests
  - many more fixes, improvements and additions
 
 0.0.2: total rewrite of the generator and the spec
