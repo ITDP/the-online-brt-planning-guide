@@ -48,7 +48,7 @@ class LargeTable {
 	{
 		if (v == null || v.def == null) return 0.;
 		return switch v.def {
-		case DLaTeXPreamble(_), DLaTeXExport(_), DHtmlApply(_), DHtmlStore(_), DHtmlToHead(_), DEmpty: 0;
+		case DLaTeXPreamble(_), DLaTeXExport(_), DHtmlStore(_), DHtmlToHead(_), DEmpty: 0;
 		case DVolume(_), DChapter(_), DSection(_), DSubSection(_), DSubSubSection(_): BAD_COST; // not allowed in tables
 		case DElemList(li):
 			var cnt = 0.;

@@ -180,8 +180,6 @@ class Test_03_Parser {
 		fails("\\subsubection", UnknownCommand("subsubection", "subsubsection"));
 		fails("\\metaa\\reset", UnknownCommand("metaa", "meta"));
 		fails("\\meta\\rest", UnknownCommand("rest", "reset"));
-		fails("\\hml\\apply", UnknownCommand("hml", "html"));
-		fails("\\html\\appply", UnknownCommand("appply", "apply"));
 		fails("\\text\\preamble", UnknownCommand("text", "tex"));
 		fails("\\tex\\preambl", UnknownCommand("preambl", "preamble"));
 
@@ -498,7 +496,7 @@ class Test_03_Parser {
 		// otherwise, it would be necesarry to allow newline escaping,
 		// and that could cause tons of problems elsewhere.
 		Assert.same(expand(@len(24)MetaReset("volume",0)), parse("\\meta\\reset{\n\nvolume}{0}"));
-		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(6)"a \n\n b")), parse("\\html\\apply{a \n\n b}"));
+		Assert.same(expand(@wrap(12,1)HtmlStore(@elem@len(6)"a \n\n b")), parse("\\html\\store{a \n\n b}"));
 	}
 
 	public function test_017_boxes()
@@ -637,16 +635,16 @@ class Test_03_Parser {
 
 	public function test_027_paths()
 	{
-		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(1)"a")), parse("\\html\\apply{a}"));
+		Assert.same(expand(@wrap(12,1)HtmlStore(@elem@len(1)"a")), parse("\\html\\store{a}"));
 
 		// whitespace in paths is maintained
-		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(3)" a ")), parse("\\html\\apply{ a }"));
-		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(6)"a \n\n b")), parse("\\html\\apply{a \n\n b}"));
+		Assert.same(expand(@wrap(12,1)HtmlStore(@elem@len(3)" a ")), parse("\\html\\store{ a }"));
+		Assert.same(expand(@wrap(12,1)HtmlStore(@elem@len(6)"a \n\n b")), parse("\\html\\store{a \n\n b}"));
 
 		// escapes and tex ligatures work the same (use the former to disable the latter)
-		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(2)"\\")), parse("\\html\\apply{\\\\}"));
-		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(2)"}")), parse("\\html\\apply{\\}}"));
-		Assert.same(expand(@wrap(12,1)HtmlApply(@elem@len(3)"--")), parse("\\html\\apply{-\\-}"));
+		Assert.same(expand(@wrap(12,1)HtmlStore(@elem@len(2)"\\")), parse("\\html\\store{\\\\}"));
+		Assert.same(expand(@wrap(12,1)HtmlStore(@elem@len(2)"}")), parse("\\html\\store{\\}}"));
+		Assert.same(expand(@wrap(12,1)HtmlStore(@elem@len(3)"--")), parse("\\html\\store{-\\-}"));
 	}
 
 	public function test_028_blob_sizes()

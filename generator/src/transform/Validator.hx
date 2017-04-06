@@ -167,7 +167,6 @@ class Validator {
 		case DElemList(_): "[list of elements]";
 		case DLaTeXPreamble(_): "LaTeX preamble configuration";
 		case DLaTeXExport(_): "LaTeX export call";
-		case DHtmlApply(_): "CSS inclusion";
 		case DHtmlStore(_): "Asset inclusion";
 		case DHtmlToHead(_): "Append to <head>";
 		}
@@ -235,8 +234,6 @@ class Validator {
 			var ndest = Path.normalize(dest);
 			if (ndest.startsWith(".."))
 				errors.push(new ValidationError(d.pos, EscapingOutputPath(dest)));
-		case DHtmlApply(path):
-			push(validateSrcPath(path, [Css]));
 		case DHtmlStore(path):
 			push(validateSrcPath(path, [File]));
 		case DHtmlToHead(_), DCodeBlock(_), DEmpty:

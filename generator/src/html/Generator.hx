@@ -165,7 +165,7 @@ class Generator {
 		var path = Path.normalize(url.endsWith("/") ? Path.join([url, "index.html"]) : Path.withExtension(url, "html"));
 		var depth = path.split("/").length - 1;
 		var computedBase = depth > 0 ? [ for (i in 0...depth) ".." ].join("/") : ".";
-		// TODO get normalize and google fonts with \html\apply or \html\link
+		// TODO get normalize and google fonts with \html\head
 		// TODO get jquery and mathjax with \html\run
 		var buf = new StringBuf();
 		buf.add("<!DOCTYPE html>");
@@ -196,10 +196,6 @@ class Generator {
 	function genv(v:DElem, idc:IdCtx, noc:NoCtx, bcs:Breadcrumbs)
 	{
 		switch v.def {
-		case DHtmlApply(_.toInputPath() => path):
-			var html = '<link href="${saveAsset(path)}" rel="stylesheet" type="text/css">';
-			customHead.push(new Html(html));
-			return "";
 		case DHtmlStore(_.toInputPath() => path):
 			saveAsset(path);
 			return "";
@@ -460,7 +456,7 @@ class Generator {
 
 		// `toc.add` and `genv` ordering is relevant
 		toc.add('<ul><li class="volume">${renderToc(null, null, "BRT Planning Guide", ROOT_URL)}</li>');
-		// it's necessary to process all `\html\apply` before actually opening buffers and writing heads
+		// it's necessary to process all `\html\head` before actually opening buffers and writing heads
 		var contents = genv(doc, new IdCtx(), new NoCtx(), {});
 
 		var root = openBuffer("The Online BRT Planning Guide", {}, ROOT_URL);

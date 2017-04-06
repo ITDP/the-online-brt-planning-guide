@@ -146,8 +146,6 @@ class NewTransform {
 		assert(v != null);
 		assert(v.def != null);
 		switch v.def {
-		case HtmlApply(path):
-			return mkd(DHtmlApply(path), v.pos);
 		case HtmlStore(path):
 			return mkd(DHtmlStore(path), v.pos);
 		case HtmlToHead(template):
@@ -243,7 +241,7 @@ class NewTransform {
 		assert(d != null);
 		assert(d.def != null);
 		var def = switch d.def {
-		case DHtmlApply(_), DHtmlStore(_), DHtmlToHead(_), DLaTeXPreamble(_), DLaTeXExport(_),
+		case DHtmlStore(_), DHtmlToHead(_), DLaTeXPreamble(_), DLaTeXExport(_),
 				DTitle(_), DFigure(_), DImgTable(_), DCodeBlock(_), DQuotation(_), DEmpty:
 			d.def;
 		case DVolume(no, name, children):

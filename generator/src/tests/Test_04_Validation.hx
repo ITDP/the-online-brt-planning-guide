@@ -112,7 +112,8 @@ class Test_04_Validation {
 
 		passes('\\tex\\export{$file}{nothing}');
 		passes('\\tex\\export{$dir}{nothing}');
-		passes('\\html\\apply{$css}');
+		passes('\\html\\store{$css}');
+		passes('\\html\\store{$png}');
 		passes('\\tex\\preamble{$tex}');
 		passes('\\figure{$jpeg}{foo}{bar}');
 		passes('\\figure{$jpg}{foo}{bar}');
@@ -124,7 +125,7 @@ class Test_04_Validation {
 		fails('\\tex\\export{$file.noexists}{nothing}', true, FileNotFound('$file.noexists'), ~/file not found or not accessible/i);
 		fails('\\tex\\export{$dir.noexists}{nothing}', true, FileNotFound('$dir.noexists'));
 		fails('\\tex\\preamble{$dir}', true, FileIsDirectory(dir), ~/expected file, not directory/i);
-		fails('\\html\\apply{$png}', true, WrongFileType([Css], png), ~/file does not match expected types.+expected.+css/i);
+		fails('\\html\\store{$dir}', true, FileIsDirectory(dir), ~/expected file, not directory/i);
 		fails('\\figure{$css}{foo}{bar}', true, WrongFileType([Jpeg, Png], css));
 		fails('\\begintable{foo}\\useimage{$tex}\\endtable', true, WrongFileType([Jpeg, Png], tex));
 

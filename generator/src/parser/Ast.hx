@@ -80,7 +80,6 @@ A vertical element.
 */
 enum VDef {
 	MetaReset(name:String, val:Int);
-	HtmlApply(path:PElem);
 	HtmlStore(path:PElem);
 	HtmlToHead(template:String);
 	LaTeXPreamble(path:PElem);

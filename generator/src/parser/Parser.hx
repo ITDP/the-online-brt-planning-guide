@@ -32,7 +32,7 @@ class Parser {
 		"volume", "chapter", "section", "subsection", "subsubsection", "title",
 		"figure", "quotation", "item", "number", "beginbox", "endbox", "include",
 		"begintable", "header", "row", "col", "endtable",
-		"meta", "reset", "tex", "preamble", "export", "html", "apply", "store", "head"];
+		"meta", "reset", "tex", "preamble", "export", "html", "store", "head"];
 	static var horizontalCommands = ["sup", "sub", "emph", "highlight", "url"];
 	static var hardSuggestions = [  // some things can't be infered automatically
 		"quote" => "quotation",
@@ -464,7 +464,6 @@ class Parser {
 		var p = arg(rawHorizontal, cmd, "source path");
 		var path = mk(p.val, p.pos.offset(1, -1));
 		return switch cmd.def {
-		case TCommand("apply"): mk(HtmlApply(path), cmd.pos.span(p.pos));
 		case TCommand("store"): mk(HtmlStore(path), cmd.pos.span(p.pos));
 		case TCommand("preamble"): mk(LaTeXPreamble(path), cmd.pos.span(p.pos));
 		case _: unexpected(cmd);
@@ -494,7 +493,7 @@ class Parser {
 		return switch [meta.def, exec.def] {
 		case [TCommand("meta"), TCommand("reset")]: 
 			metaReset(exec);
-		case [TCommand("html"), TCommand("apply"|"store")], [TCommand("tex"), TCommand("preamble")]:
+		case [TCommand("html"), TCommand("store")], [TCommand("tex"), TCommand("preamble")]:
 			targetInclude(exec);
 		case [TCommand("html"), TCommand("head")]:
 			htmlEmbed(exec);

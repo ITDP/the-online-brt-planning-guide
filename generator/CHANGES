@@ -17,6 +17,7 @@
  - html: generate cleaner urls (#119)
  - syntax: add `\html\store` for storing assets manually
  - syntax: add `\html\head` for writing to the <head>
+ - syntax: ~deprecate~ remove `\html\apply`
 
 1.0.0-alpha: development of a stable system
  - syntax: change math markers to `$$`; `\$` is still allowed, but is mostly unnecessary
