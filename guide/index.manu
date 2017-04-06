@@ -7,6 +7,8 @@ matter (a brief introduction) and the inclusion of volumes and chapters.
 (but first, some special instructions; you are encouraged to disregard these)
 '\
 \tex\preamble{preamble.tex}\tex\export{fonts}{fonts}
+\html\head{ <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css" rel="stylesheet" type="text/css"> }
+\html\head{ <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700italic,700|PT+Sans:400,400italic,700,700italic" rel="stylesheet" type="text/css"> }
 \html\store{style.css}\html\head{ <link rel="stylesheet" href="\$$assetPath(style.css)" /> }
 \html\store{favicon.ico}\html\head{ <link rel="shortcut icon" href="\$$assetPath(favicon.ico)" /> }
 
