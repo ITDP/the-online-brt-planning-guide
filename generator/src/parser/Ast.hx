@@ -17,7 +17,7 @@ Stores the path as it was on the source file and allows lazy checking and resolu
 @:forward(pos)
 abstract PElem(Elem<String>) from Elem<String> {
 	/*
-	Computes a path to read from.
+	Computes a path to read from
 
 	Considers the raw value as a relative path using as basis the directory
 	inside which the source file with that value lived.
@@ -30,7 +30,7 @@ abstract PElem(Elem<String>) from Elem<String> {
 	}
 
 	/*
-	Computes a path to read from.
+	Computes a path to write to
 
 	Takes an optional base directory (default: `./`).
 	*/
@@ -42,7 +42,7 @@ abstract PElem(Elem<String>) from Elem<String> {
 	}
 
 	/*
-	Expose the raw value (explicitly).
+	Expose the raw value (explicitly)
 	*/
 	public function internal():String
 		return this.def;
@@ -81,6 +81,8 @@ A vertical element.
 enum VDef {
 	MetaReset(name:String, val:Int);
 	HtmlApply(path:PElem);
+	HtmlStore(path:PElem);
+	HtmlToHead(template:String);
 	LaTeXPreamble(path:PElem);
 	LaTeXExport(src:PElem, dest:PElem);
 

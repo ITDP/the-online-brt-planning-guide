@@ -42,16 +42,16 @@ Assumes that the server will:
 */
 @:hasTemplates
 class Generator {
-	static var assetCache = new Map<String,String>();
 	static inline var ASSET_SUBDIR = "assets";
 	@:template static var FILE_BANNER;
 	static inline var ROOT_URL = "./";
 
+	var assets:Map<String,String>;
 	var hasher:AssetHasher;
 	var destDir:String;
 	var godOn:Bool;
 	var bufs:Map<String,StringBuf>;
-	var stylesheets:Array<String>;
+	var customHead:Array<Html>;
 	var srcCache:Map<String,Int>;
 	var lastSrcId:Int;
 	var toc:StringBuf;
@@ -128,8 +128,8 @@ class Generator {
 
 	function _saveAsset(src:String, ?content:Bytes)
 	{
-		if (assetCache.exists(src))
-			return assetCache[src];
+		if (assets.exists(src))
+			return assets[src];
 
 		var dir = ASSET_SUBDIR;
 		var ldir = Path.join([destDir, ASSET_SUBDIR]);
@@ -144,7 +144,7 @@ class Generator {
 		var name = ext != "" ? hash + "." + ext : hash;
 		var dst = Path.join([dir, name]);
 		var lpath = Path.join([ldir, name]);
-		assetCache[src] = dst;
+		assets[src] = dst;
 		File.saveBytes(lpath, data);
 
 		var prefix = Context.assetUrlPrefix;
@@ -197,7 +197,27 @@ class Generator {
 	{
 		switch v.def {
 		case DHtmlApply(_.toInputPath() => path):
-			stylesheets.push(saveAsset(path));
+			var html = '<link href="${saveAsset(path)}" rel="stylesheet" type="text/css">';
+			customHead.push(new Html(html));
+			return "";
+		case DHtmlStore(_.toInputPath() => path):
+			saveAsset(path);
+			return "";
+		case DHtmlToHead(template):
+			var t = new haxe.Template(template);
+			var err = null;
+			var tmacros = {
+				assetPath : function (resolve, src)
+				{
+					// treat the `src` path as if it was a PEelem
+					var path = ({ def:src, pos:v.pos }:PElem);
+					err = transform.Validator.validateSrcPath(path, [File]);
+					return assets[path.toInputPath()];
+				}
+			};
+			var html = t.execute({}, tmacros);
+			assert(err == null, err, v.pos);
+			customHead.push(new Html(html));
 			return "";
 		case DLaTeXPreamble(_), DLaTeXExport(_):
 			return "";
@@ -431,8 +451,9 @@ class Generator {
 	{
 		// FIXME get the document name elsewhere
 
+		assets = new Map();
 		bufs = new Map();
-		stylesheets = [];  // FIXME unique stylesheet collection
+		customHead = [];  // FIXME unique stylesheet collection
 		srcCache = new Map();  // TODO abstract
 		lastSrcId = 0;
 		toc = new StringBuf();

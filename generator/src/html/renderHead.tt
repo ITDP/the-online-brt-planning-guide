@@ -32,7 +32,7 @@ MathJax.Hub.Config({
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700italic,700|PT+Sans:400,400italic,700,700italic" rel="stylesheet" type="text/css">
 <!-- Custom CSSs -->
-(:for p in stylesheets:)
-<link href="(:p:)" rel="stylesheet" type="text/css">
+(:for elem in customHead:)
+(:elem:)
 (:end:)
 </head>

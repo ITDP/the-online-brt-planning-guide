@@ -130,7 +130,7 @@ class Generator {
 	{
 		assert(!Lambda.foreach(at, function (p) return p.endsWith(".tex")), at, "should not be anything but a directory");
 		switch v.def {
-		case DHtmlApply(_):
+		case DHtmlApply(_), DHtmlStore(_), DHtmlToHead(_):
 			return "";
 		case DLaTeXPreamble(_.toInputPath() => path):
 			// TODO validate path (or has Transform done so?)

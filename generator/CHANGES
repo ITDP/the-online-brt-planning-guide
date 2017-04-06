@@ -15,6 +15,8 @@
  - ui: added `TEX_NO_POSITIONS` configuration environment variables
  - other small fixes and improvements
  - html: generate cleaner urls (#119)
+ - syntax: add `\html\store` for storing assets manually
+ - syntax: add `\html\head` for writing to the <head>
 
 1.0.0-alpha: development of a stable system
  - syntax: change math markers to `$$`; `\$` is still allowed, but is mostly unnecessary
