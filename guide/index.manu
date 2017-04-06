@@ -1,5 +1,15 @@
+\'
+Welcome to the "manu"script files for the BRT Planning Guide, 4th Edition
+
+This is the entry point –  or "index" – to the text.  We begin with the front
+matter (a brief introduction) and the inclusion of volumes and chapters.
+
+(but first, some special instructions; you are encouraged to disregard these)
+'\
 \tex\preamble{preamble.tex}\tex\export{fonts}{fonts}
-\html\apply{style.css}
+\html\store{style.css}\html\head{ <link rel="stylesheet" href="\$$assetPath(style.css)" /> }
+\html\store{favicon.ico}\html\head{ <link rel="shortcut icon" href="\$$assetPath(favicon.ico)" /> }
+
 
 Welcome to the BRT Planning Guide, 4th Edition.
 
