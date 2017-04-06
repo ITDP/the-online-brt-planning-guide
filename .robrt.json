@@ -35,6 +35,9 @@
 			"cp LICENSE.md $ROBRT_OUTPUT_DIR/",
 			"export DEBUG=1",
 			"export TEX_NO_POSITIONS=1",
+			"favicon=gray",
+			"if [ \"${ROBRT_IS_PR}\" -eq 1 ]; then favicon=red; elif [ \"${ROBRT_HEAD}\" = master ]; then favicon=green; fi",
+			"cp guide/{itdp_$favicon,favicon}.ico",
 			"manu generate guide/index.manu .generated",
 			"find guide -type f -iname '*.manu' -print0 | xargs -0 manu stat tokens",
 
