@@ -113,7 +113,7 @@ class Generator {
 		case InlineCode(code):
 			return '\\code{${gent(code)}}';
 		case Math(tex):
-			return '$$$tex$$';
+			return '\\($tex\\)';
 		case Url(address):
 			return '\\url{${gent(address, true)}}';
 		case HElemList(li):
@@ -231,6 +231,8 @@ class Generator {
 			return '\\begincode\n${gent(code)}\n\\endcode\n${genp(v.pos)}\n';
 		case DQuotation(text, by):
 			return '\\quotation{${genh(text)}}{${genh(by)}}\n${genp(v.pos)}\n';
+		case DParagraph({pos:p, def:Math(tex)}):
+			return '\\[$tex\\]';
 		case DParagraph(h):
 			return '${genh(h)}\\par\n${genp(v.pos)}\n';
 		case DElemList(li):
