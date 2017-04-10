@@ -44,7 +44,7 @@ More documentation on how to work with the guide and with GitHub will gradually
 become available. In the mean time, if you need help, do not hesitate to
 [contact the geeks behind the curtain](mailto:contato@protocubo.io).
 
-### Frequetly asked questions
+### Frequently asked questions
 
 #### 1. Tried to pull and got a LFS "rate limit reached for unauthenticated requests" error
 
