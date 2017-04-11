@@ -92,7 +92,7 @@ class Generator {
 		case Math(tex):
 			return '<span class="mathjax"${genp(h.pos)}>\\(${gent(tex)}\\)</span>';
 		case Url(address):
-			return '<a class="url" href="${address.urlEncode()}">${gent(address)}</a>';
+			return '<a class="url" href="${gent(address)}">${gent(address)}</a>';
 		case HElemList(li):
 			var buf = new StringBuf();
 			if (godOn)

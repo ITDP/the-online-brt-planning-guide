@@ -16,6 +16,7 @@ import parser.AstTools.*;
 
 class Test_09_Issues {
 	static inline var SRC = "Test_09_Issues.hx";
+	var h = new AssetHasher();
 
 	function parse(str:String)
 	{
@@ -44,7 +45,6 @@ class Test_09_Issues {
 
 	public function test_issue_0008()
 	{
-		var h = new AssetHasher();
 		var g = new TexGen(h, "/a/b/c/d");
 		Assert.equals("\\}\\}", g.gent("}}"));
 	}
@@ -70,6 +70,13 @@ class Test_09_Issues {
 
 	public function test_internal_0001()
 		Assert.raises(parse.bind("\\beginbox{foo}\\section{bar}\\endbox"));
+
+	public function test_internal_0002()
+	{
+		var g = new HtmlGen(h, "/a/b/c/d", false);
+		Assert.equals("<a class=\"url\" href=\"http://foo/bar\">http://foo/bar</a>",
+				@:privateAccess g.genh(expand(Url("http://foo/bar"))));
+	}
 
 	public function new() {}
 }
