@@ -77,4 +77,4 @@ also at the root folder of the project, run `http-server .generated/html --ext h
 To create the PDF you'll need a working LaTeX installation with `lualatex` and `latexmk`:
 navigate to `.generated/pdf` and run `latexmk -lualatex book.tex`.
 
-_(You may notice that the generated PDF is huge; the server automatically compacts all images before running LaTeX, according to their resulting physical size and reasonable assumptions on printer limitations)_
+_(You may notice that the generated PDF is huge; the server automatically compacts all images before running LaTeX, according to their resulting physical size and reasonable assumptions on printer limitations.)_
