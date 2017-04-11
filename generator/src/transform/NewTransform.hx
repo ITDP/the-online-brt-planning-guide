@@ -193,8 +193,9 @@ class NewTransform {
 		case Title(name):
 			return mkd(DTitle(name), v.pos);
 		case Figure(size, path, horizontal(_) => caption, horizontal(_) => copyright):
-			// figure id could be generated from paths, but let's keep things uniform across elements
-			var id = idc.figure = genId(caption);
+			// prefer path for id generation, but fallback to caption if a generic file name is recognized
+			var fname = new haxe.io.Path(path.internal()).file;
+			var id = idc.figure = genId(~/^(image|figure)/i.match(fname) ? caption : mk(Word(fname), path.pos));
 			var no = ++noc.figure;
 			return mkd(DFigure(no, size, path, caption, copyright), v.pos, id);
 		case Table(size, horizontal(_) => caption, header, rows):
