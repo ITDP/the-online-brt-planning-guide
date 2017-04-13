@@ -149,7 +149,7 @@ class LargeTable {
 				if (large) {
 					buf.add('
 						% requires the ifoddpage package
-						\\relax\\checkoddpage\\ifoddpage\\else%
+						\\relax\\checkoddpage\\ifoddpageoroneside\\else%
 							\\kern ${NO_MODULES-noModules}\\tablemodule%
 						\\fi%'.doctrim());
 				}
