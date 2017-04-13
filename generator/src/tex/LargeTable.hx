@@ -23,8 +23,8 @@ class LargeTable {
 
 	// external parameters
 	// TODO make metas commands to change them
-	static inline var NO_MODULES = 30;
-	static inline var NO_MODULES_LARGE = 46;
+	static inline var NO_MODULES = 30*2;
+	static inline var NO_MODULES_LARGE = 46*2;
 	static inline var MIN_COLUMN = 5;
 	static inline var SEPAR_SIZE = 1;
 
