@@ -100,8 +100,28 @@ class Main {
 			println('  $k: ${Math.round(Context.timer[k]*1e3)} ms');
 	}
 
+	static function customTrace(msg, ?pos:haxe.PosInfos)
+	{
+		var buf = new StringBuf();
+		buf.add(msg);
+		if (pos.customParams != null) {
+			buf.add(" {");
+			buf.add(pos.customParams.join(", "));
+			buf.add("}");
+		}
+		buf.add("  // in ");
+		buf.add(pos.methodName);
+		buf.add(" (");
+		buf.add(pos.fileName);
+		buf.add(":");
+		buf.add(pos.lineNumber);
+		buf.add(")\n");
+		js.Node.process.stderr.write(buf.toString());
+	}
+
 	static function main()
 	{
+		haxe.Log.trace = customTrace;
 		print(ANSI.set(Bold) + BANNER + "\n\n" + ANSI.set(Off));
 
 		Context.debug = Context.debug;
