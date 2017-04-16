@@ -14,8 +14,14 @@
 			"echo $FORCE_GREY_FAVICON",
 
 			"dpkg -s haxe",
-			"haxelib list",
 			"node --version",
+
+			"haxelib --global install hmm",
+			"haxelib --global run hmm setup",
+			"haxelib --global list",
+
+			"hmm install",
+			"haxelib list",
 
 			"cd $ROBRT_REPOSITORY_DIR",
 			"if [ -z ${NO_CAP_GH_TOKEN+x} ]; then echo Skipped; else git remote set-url origin https://$NO_CAP_GH_TOKEN:$NO_CAP_GH_TOKEN@github.com/ITDP/the-online-brt-planning-guide; fi",
