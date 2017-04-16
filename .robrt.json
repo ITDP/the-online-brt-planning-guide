@@ -14,7 +14,6 @@
 			"echo $FORCE_GREY_FAVICON",
 
 			"dpkg -s haxe",
-			"haxelib list",
 			"node --version",
 
 			"cd $ROBRT_REPOSITORY_DIR",
@@ -25,6 +24,12 @@
 			"! grep -qi 'error\\|\\(batch response\\)' .lfs-pull.log",
 
 			"cd $ROBRT_REPOSITORY_DIR/generator",
+			"cp docs/fakesudo.sh /usr/bin/sudo",
+			"haxelib --global install hmm",
+			"haxelib --global run hmm setup",
+			"haxelib --global list",
+			"hmm install",
+			"haxelib list",
 			"haxe -D travis build.hxml",
 			"npm pack",
 			"npm install -g manu*.tgz",
