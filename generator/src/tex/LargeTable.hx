@@ -114,8 +114,12 @@ class LargeTable {
 				}
 			}
 		}
-		var check = available - Lambda.fold(icost, function (p,x) return p+x, 0);
-		weakAssert(check == 0 && Lambda.foreach(icost, function (x) return x >= MIN_COLUMN), check, width, ncost, icost, priori, itCnt, pos.toLinePosition());
+		var isum = Lambda.fold(icost, function (p,x) return p + x, 0);
+		var tiny = Lambda.filter(icost, function (x) return x < MIN_COLUMN);
+		if (Context.debug)
+			weakAssert(isum == available && tiny.length == 0, isum, available, width, ncost, icost, priori, itCnt, pos.toString());
+		else
+			weakAssert(isum == available && tiny.length == 0, isum, available, pos.toString());
 		return icost;
 	}
 
@@ -141,10 +145,7 @@ class LargeTable {
 				var large = size.match(FullWidth);
 				var noModules = large ? NO_MODULES_LARGE : NO_MODULES;
 				var colWidths = computeTableWidths(noModules, header, rows, v.pos);
-				if (Context.debug) {
-					trace(v.pos.toLinePosition());
-					trace(colWidths);
-				}
+				show(colWidths, v.pos);
 				buf.add('\\halign to ${noModules}\\tablemodule{%');
 				if (large) {
 					buf.add('

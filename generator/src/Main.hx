@@ -113,7 +113,7 @@ class Main {
 
 		Context.prepareSourceMaps();
 		Assertion.enableShow = Context.debug;
-		Assertion.enableWeakAssert = Context.debug;
+		Assertion.enableWeakAssert = true;
 		Assertion.enableAssert = true;
 
 		try {
