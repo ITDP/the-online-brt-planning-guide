@@ -7,8 +7,6 @@
 	},
 	"build" : {
 		"cmds" : [
-			"cp $ROBRT_REPOSITORY_DIR/generator/docs/fakesudo.sh /usr/bin/sudo",
-
 			"export DOCKER_HOST_IP=$(route -n | awk '/UG[ \t]/{print $2}')",
 			"echo $GL_ANALYTICS_UA_ID",
 			"echo $ASSET_URL_PREFIX",
@@ -18,13 +16,6 @@
 			"dpkg -s haxe",
 			"node --version",
 
-			"haxelib --global install hmm",
-			"haxelib --global run hmm setup",
-			"haxelib --global list",
-
-			"hmm install",
-			"haxelib list",
-
 			"cd $ROBRT_REPOSITORY_DIR",
 			"if [ -z ${NO_CAP_GH_TOKEN+x} ]; then echo Skipped; else git remote set-url origin https://$NO_CAP_GH_TOKEN:$NO_CAP_GH_TOKEN@github.com/ITDP/the-online-brt-planning-guide; fi",
 			"git lfs pull 2>&1 | tee .lfs-pull.log || echo \"error exit code: $?\" >> .lfs-pull.log",
@@ -33,6 +24,12 @@
 			"! grep -qi 'error\\|\\(batch response\\)' .lfs-pull.log",
 
 			"cd $ROBRT_REPOSITORY_DIR/generator",
+			"cp docs/fakesudo.sh /usr/bin/sudo",
+			"haxelib --global install hmm",
+			"haxelib --global run hmm setup",
+			"haxelib --global list",
+			"hmm install",
+			"haxelib list",
 			"haxe -D travis build.hxml",
 			"npm pack",
 			"npm install -g manu*.tgz",
