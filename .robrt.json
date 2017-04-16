@@ -7,6 +7,8 @@
 	},
 	"build" : {
 		"cmds" : [
+			"cp $ROBRT_REPOSITORY_DIR/generator/docs/fakesudo.sh /usr/bin/sudo",
+
 			"export DOCKER_HOST_IP=$(route -n | awk '/UG[ \t]/{print $2}')",
 			"echo $GL_ANALYTICS_UA_ID",
 			"echo $ASSET_URL_PREFIX",
