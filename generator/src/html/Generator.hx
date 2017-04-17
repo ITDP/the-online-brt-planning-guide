@@ -212,7 +212,7 @@ class Generator {
 				}
 			};
 			var html = t.execute({}, tmacros);
-			assert(err == null, err, v.pos);
+			assert(err == null, err, v.pos.toString());
 			customHead.push(new Html(html));
 			return "";
 		case DLaTeXPreamble(_), DLaTeXExport(_):

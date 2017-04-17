@@ -344,7 +344,7 @@ class Parser {
 				if (!peek().def.match(TCommand("row"))) break;
 				var row = tableRow(pop());
 				rows.push(row);
-				assert(row.length == header.length, row.length, header.length, rows.length, begin.pos);
+				assert(row.length == header.length, row.length, header.length, rows.length, begin.pos.toString());
 			}
 			var end = pop();  // should have already discarted any vnoise before
 			if (end.def.match(TEof)) unclosed(begin);

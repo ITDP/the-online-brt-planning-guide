@@ -103,6 +103,7 @@ class Main {
 	static function customTrace(msg, ?pos:haxe.PosInfos)
 	{
 		var buf = new StringBuf();
+		buf.add(" --> ");
 		buf.add(msg);
 		if (pos.customParams != null) {
 			buf.add(" {");

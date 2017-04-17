@@ -145,7 +145,7 @@ class LargeTable {
 				var large = size.match(FullWidth);
 				var noModules = large ? NO_MODULES_LARGE : NO_MODULES;
 				var colWidths = computeTableWidths(noModules, header, rows, v.pos);
-				show(colWidths, v.pos);
+				show(colWidths, v.pos.toString());
 				buf.add('\\halign to ${noModules}\\tablemodule{%');
 				if (large) {
 					buf.add('
