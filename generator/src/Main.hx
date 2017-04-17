@@ -106,9 +106,9 @@ class Main {
 		buf.add(" --> ");
 		buf.add(msg);
 		if (pos.customParams != null) {
-			buf.add(" {");
+			buf.add(" {{ ");
 			buf.add(pos.customParams.join(", "));
-			buf.add("}");
+			buf.add(" }}");
 		}
 		buf.add("  // in ");
 		buf.add(pos.methodName);
