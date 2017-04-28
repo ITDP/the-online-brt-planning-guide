@@ -1,9 +1,7 @@
-
-
 \section{ Funding BRT’s Capital Costs }
 
 \quotation{ Money often costs too much.}
-{ —Ralph Waldo Emerson, author, poet, and philosopher, 1803-1882}
+{Ralph Waldo Emerson, author, poet, and philosopher, 1803-1882}
 
 The capital costs of BRT systems are generally funded in a manner similar to other medium- to large-scale 
 capital projects of the same implementing agency, which is usually a level of government (municipality, 
@@ -25,11 +23,11 @@ The funding details of forty-eight BRT projects in nine countries were analyzed 
 Practice in National Support for Urban Transportation, Part 2: Growing Rapid Transit Infrastructure—Funding, 
 Financing, and Capacity* (2015), and the source of funding was broken down into the following five main 
 sources of funding: 
-\item National government;
-\item State government;
-\item City/metropolitan governments or transport authorities;
-\item Government-owned entities;
-\item Private sector backed primarily by user fees.
++\number National government;
++\number State government;
++\number City/metropolitan governments or transport authorities;
++\number Government-owned entities;
++\number Private sector backed primarily by user fees.
 
 Funding sources in this case refers to the level of government that has ultimate spending discretion 
 to choose a project and takes ultimate responsibility for paying for the project, either directly or 
@@ -110,7 +108,7 @@ such a PPP funding mechanism linked to a public land development deal has only b
 in a limited way. While this may evolve, as this would be a financial innovation in most countries, it 
 should only be considered as a last resort. 
 
-\subsection{BRT Capital Funding from General Tax Revenues}
+\title{BRT Capital Funding from General Tax Revenues}
 
 By far the most common source of funding for BRT capital costs not covered by fare revenue is general 
 budget revenues, sometimes specifically earmarked for transit. Most typically, these are value added 
@@ -190,13 +188,13 @@ Indian cities, the vehicle procurement is covered by private investment, while i
 BRT vehicle procurement is covered by a grant of new vehicles from the national government through the 
 JNNURM program. 
 
-In Indonesia, the only city with BRT is Jakarta, and the government of DKI Jakarta (Daerah Khusus Ibukota 
+In Indonesia, the government of DKI Jakarta (Daerah Khusus Ibukota 
 Jakarta) is a state-level government. Jakarta pays for all of its BRT corridors out of general budget 
 revenue. For most phases DKI Jakarta also funds the vehicle procurement and ticketing equipment using 
 the same general tax revenue of the city. This differs markedly from urban rail, most notably with the 
 Jakarta metro, where the national government funds more than half of the total capital costs. 
 
-\subsection{BRT Capital Funding from Fuel Levies and Other Motor-Vehicle-Related Sources}
+\title{BRT Capital Funding from Fuel Levies and Other Motor-Vehicle-Related Sources}
 
 There are obvious merits in raising revenues from motorists to fund BRT capital costs. The higher costs 
 imposed on motorists incentivizes a shift to public transport, which generally results in overall economic 
@@ -315,7 +313,7 @@ It should, in principle, be possible to utilize the property tax administrative 
 parking levies, where such a system exists, in which case additional administration costs are potentially 
 containable. 
 
-*Property Development as a Source of BRT Station and Terminal Funding*
+\title{Property Development as a Source of BRT Station and Terminal Funding}
 
 Some BRT systems have leased or sold development rights at key stations or transfer terminals to developers 
 in exchange for the developer paying all or part of the station or terminal development cost. This practice 
@@ -341,9 +339,9 @@ have been utilized to build the BRT system’s infrastructure.
 \figure[medium]{assets/image2.jpg}{The development of a hospital complex over the Mater Hill station in Brisbane 
 generated important infrastructure revenues for the BRT system.}{ Queensland Transport.}
 
-\highlight{In China, in the Lanzhou BRT system, shopping malls were built underground directly under 
+In China, in the Lanzhou BRT system, shopping malls were built underground directly under 
 the BRT corridor. As this did not require any new land acquisition, it could be done by the municipality’s 
-construction companies, and the proceeds used to defray project costs.}
+construction companies, and the proceeds used to defray project costs.
 
 \figure[medium]{assets/image3.jpg}{Shopping mall under the Lanzhou BRT corridor.}{ Karl Fjellstrom.}
 

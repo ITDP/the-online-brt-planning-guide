@@ -1,9 +1,7 @@
-
-
 \section{ Financing BRT Capital Costs }
 
 \quotation{ A promise made is a debt unpaid.}
-{ ―Robert W. Service from the poem, “The Cremation of Sam McGee,” poet, 1874-1958.}
+{Robert W. Service from the poem, “The Cremation of Sam McGee,” poet, 1874-1958.}
 
 Whatever the ultimate source of funding for a BRT project, in many circumstances it is advisable to 
 debt finance a BRT’s capital costs. BRT infrastructure, in particular, requires large, up-front capital 
@@ -105,19 +103,19 @@ to borrow money from international development banks as it has wanted to avoid c
 \subsection{ Debt Financing Options}
 
 The above study found five main sources of BRT financing: 
-\item Bonds;
-\item National Government and National Development Bank Loans (NDB);
-\item Multilateral Development Bank (MDB) Loans;
-\item Commercial Loans;
-\item Bilateral Loans or Loans from Export Credit Agencies.
+\number Bonds;
+\number National Government and National Development Bank Loans (NDB);
+\number Multilateral Development Bank (MDB) Loans;
+\number Commercial Loans;
+\number Bilateral Loans or Loans from Export Credit Agencies.
 
 Each of these sources of financing has its advantages and disadvantages. The main differences include: 
 
-\item Eligibility for the type of debt (i.e., credit rating accepted);
-\item Cost of the capital (i.e., the interest rate);
-\item Length of the credit (the repayment period on the debt) and the grace period; 
-\item Conditions placed on the loan (conditionality); 
-\item Transaction costs of securing the loan (time and work required to secure the loan). 
+\number Eligibility for the type of debt (i.e., credit rating accepted);
+\number Cost of the capital (i.e., the interest rate);
+\number Length of the credit (the repayment period on the debt) and the grace period; 
+\number Conditions placed on the loan (conditionality); 
+\number Transaction costs of securing the loan (time and work required to secure the loan). 
 
 To the borrower, the ideal source of financing would have a very low interest rate, a very long repayment 
 period with a long grace period, few conditions, and minimal transaction costs. To the lender, the riskier 
@@ -174,7 +172,7 @@ cities’ credit ratings and/or lending to cities through a National Development
 \col Medium
 \endtable
 
-\subsubsection{Bond Finance}
+\title{Bond Finance}
 
 Bonds issued by state, municipal, and public authorities are a popular mechanism for financing BRT 
 infrastructure in the United States and Europe. It is likely that more cities in emerging markets with 
@@ -240,7 +238,7 @@ to issue bonds for construction of its Metro Line 12 on the Mexican Bond market,
 interest, or 3 percent below commercial rates, indicates that bond financing should be an attractive 
 method of BRT financing moving forward (Corrales, 2010).
 
-\subsubsection{Multilateral Development Banks}
+\title{Multilateral Development Banks}
 
 In lower-income economies, by far the best and most important source of financing for BRT has come 
 from the Multilateral Development Banks (MDBs). MDBs are intergovernmental financial institutions that 
@@ -301,7 +299,9 @@ used for the Dar es Salaam BRT (World Bank, 2013).
 
 The advantage of MDB financing is that the interest rate is usually as low, the grace period long, 
 and the terms as long as any other lending source, without the loan being tied to companies of a particular 
-nationality. The disadvantages to borrowing from MDBs, from the perspective of the borrower, are several. 
+nationality. 
+
+The disadvantages to borrowing from MDBs, from the perspective of the borrower, are several. 
 First, the project must be opened up to international competitive bidding. Secondly, the fees are often 
 expensive. Third, the transaction costs are high. Projects funded by the MDBs must pass a series of project 
 evaluation criteria to secure approval from the bank board of directors, such as internal rate of return 
@@ -330,7 +330,7 @@ different political parties the municipality could potentially find it difficult
 MDB. Some of the regional development banks are finding mechanisms to get around this to lend directly 
 to cities and states without needing national government approval. 
 
-\subsubsection{National Development Banks}
+\title{National Development Banks}
 
 National governments sometimes lend money to states, cities, and the private sector for urban transport 
 projects. This is often done through a national development bank (NDB) that is committed to providing 
@@ -406,7 +406,7 @@ States. Indonesia does not have a national development bank. India had a develop
 but over time its role as a development bank has been diminished, and it increasingly functions like 
 any other commercial bank. 
 
-\subsubsection{Commercial Credit}
+\title{Commercial Credit}
 
 While development banks will often offer interest rates below those of commercial lending institutions, 
 this type of concessionary financing may not always be available. A country may not qualify for concessionary 
@@ -457,9 +457,9 @@ loans from private banks to finance their urban infrastructure.
 \endtable
 
 Commercial loans for public transit infrastructure occur in three basic types: 
-\item Direct commercial lending to governments;
-\item Commercial lending to government owned enterprises (GOEs);
-\item Commercial lending to private sector investors in public infrastructure through public private 
+\number Direct commercial lending to governments;
+\number Commercial lending to government owned enterprises (GOEs);
+\number Commercial lending to private sector investors in public infrastructure through public private 
 partnerships.
 
 Direct commercial lending to governments happens in countries like Mexico where city and state governments 
