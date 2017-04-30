@@ -45,8 +45,10 @@
     },
     {
       "name": "utest",
-      "type": "haxelib",
-      "version": null
+      "type": "git",
+      "dir": null,
+      "ref": "master",
+      "url": "https://github.com/fponticelli/utest"
     },
     {
       "name": "version",
