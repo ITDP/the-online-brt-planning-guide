@@ -209,6 +209,12 @@ class Test_02_Lexer {
 		Assert.raises(defs.bind("\\>"));
 	}
 
+	public function test_012_disallowed_input()
+	{
+		// non-breaking spaces
+		Assert.raises(defs.bind(" "));
+	}
+
 	public function test_991_position()
 	{
 		Assert.same({ min:0, max:0 }, positions("")[0]);

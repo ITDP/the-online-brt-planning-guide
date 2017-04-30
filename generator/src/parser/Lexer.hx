@@ -84,6 +84,10 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 	}
 
 	public static var tokens = @:rule [
+		"\\xC2\\xA0" => {
+			var hex = haxe.io.Bytes.ofString(lexer.current).toHex();
+			throw new hxparse.UnexpectedChar('non-breaking space (0x$hex)', lexer.curPos());
+		},
 		"" => {
 			// TODO remove hack to fix eof min position
 			var pos = mkPos(lexer.curPos());
@@ -209,7 +213,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		// note 2:
 		// > 0xEF is used to exclude the BOM; other utf-8 chars
 		// > beginning with 0xEF are restored later
-		"([^ \t\r\n{}\\[\\]\\\\\\*$\\-`'\\xE2\\xEF]|(\\xE2[^\\x80])|(\\xE2\\x80[^\\x90-\\x95])|(\\xEF[^\\xBB])|(\\xEF\\xBB[^\\xBF]))+" => mk(lexer, TWord(lexer.current))
+		"([^ \t\r\n{}\\[\\]\\\\\\*$\\-`'\\xE2\\xEF\\xC2]|(\\xE2[^\\x80])|(\\xE2\\x80[^\\x90-\\x95])|(\\xEF[^\\xBB])|(\\xEF\\xBB[^\\xBF])|(\\xC2[^\\xA0]))+" => mk(lexer, TWord(lexer.current))
 	];
 
 	public function new(bytes:haxe.io.Bytes, sourceName)

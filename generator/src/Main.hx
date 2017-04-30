@@ -161,7 +161,9 @@ class Main {
 			print(ANSI.set(Bold,Red));
 			if (Context.debug) print("Lexer ");
 			var cpos = e.pos.toPosition();
-			cpos.max = cpos.min + e.char.length;  // hxparse.UnexpectedChar generates 0 length positions
+			// hxparse generates errors with 0-length positions; we don't
+			if (cpos.max == cpos.min)
+				cpos.max = cpos.min + e.char.length;
 			var hl = cpos.highlight(80).renderHighlight(Context.hlmode).split("\n");
 			println('ERROR: Unexpected character `${e.char}`');
 			print(ANSI.set(Off));
