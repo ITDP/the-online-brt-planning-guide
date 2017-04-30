@@ -211,50 +211,50 @@ that each of the different fare strategies would generate.
 \col Base fare (Rp)
 \col Variable portion of fare (Rp/km)
 \col Demand (paying customer)
-\col Collected fare (US\$)
+\col Collected fare (US$)
 \col Average distance (km)
-\col Operating cost (US\$)
-\col Profit (US\$)
+\col Operating cost (US$)
+\col Profit (US$)
 \col Max. peak frequency (buses/h)
 \row
 \col \highlight{Flat fare}
 \col Rp 2,500
 \col 0 Rp/km
 \col 11,523
-\col \$3,201
+\col $3,201
 \col 13.47 km
-\col \$1,973
-\col \$1,228
+\col $1,973
+\col $1,228
 \col 40
 \row
 \col \highlight{Variable fare 1}
 \col Rp 1,500
 \col 70 Rp/km
 \col 13,653
-\col \$3,283
+\col $3,283
 \col 9.87 km
-\col \$1,927
-\col \$1,356
+\col $1,927
+\col $1,356
 \col 46
 \row
 \col \highlight{Variable fare 2}
 \col Rp 1,000
 \col 110 Rp/km
 \col 16,374
-\col \$3,719
+\col $3,719
 \col 7.94 km
-\col \$2,054
-\col \$1,666
+\col $2,054
+\col $1,666
 \col 53
 \row
 \col \highlight{Variable fare 3}
 \col Rp 1,500
 \col 50 Rp/km
 \col 18,270
-\col \$4,129
+\col $4,129
 \col 10.68 km
-\col \$2,521
-\col \$1,607
+\col $2,521
+\col $1,607
 \col 62
 \endtable
 

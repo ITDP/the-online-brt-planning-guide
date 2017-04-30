@@ -215,7 +215,7 @@ in the US Federal Transit Administration’s National Transit Database, of the f
 the United States (Los Angeles, Cleveland, Las Vegas, Eugene, Oregon, and Pittsburgh), only Cleveland
 lists separate fare box recovery ratios for its BRT system.
 
-\begintable{Greater Cleveland Rapid Transit Authority Operating Expenses and Revenue (in US\$)}
+\begintable{Greater Cleveland Rapid Transit Authority Operating Expenses and Revenue (in US$)}
 \header
 \col Mode
 \col Operating Expense
@@ -223,23 +223,23 @@ lists separate fare box recovery ratios for its BRT system.
 \col Cost Recovery Ratio
 \row
 \col BRT
-\col \$6,514,207
-\col \$4,813,838
+\col $6,514,207
+\col $4,813,838
 \col 74%
 \row
 \col LRT
-\col \$12,339,684
-\col \$2,970,307
+\col $12,339,684
+\col $2,970,307
 \col 24%
 \row
 \col Heavy Rail
-\col \$29,362,013
-\col \$6,489,400
+\col $29,362,013
+\col $6,489,400
 \col 22%
 \row
 \col Bus
-\col \$142,998,626
-\col \$35,208,409
+\col $142,998,626
+\col $35,208,409
 \col 25%
 \endtable
 

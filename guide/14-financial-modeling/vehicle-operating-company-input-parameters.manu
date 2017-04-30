@@ -25,9 +25,9 @@ and linearly dependent on the operational service.
 
 *Fuel*
 
-Out of these parameters, the biggest cost component is the fuel cost (US\$), which can be calculated 
+Out of these parameters, the biggest cost component is the fuel cost (US$), which can be calculated 
 by multiplying the consumption rate (l/km) by the number of kilometers (km) and then by the fuel price 
-(US\$/l). Typically, the consumption rate is expressed as l/km, such that multiplying the consumption 
+(US$/l). Typically, the consumption rate is expressed as l/km, such that multiplying the consumption 
 rate by the total number of kilometers gives the total number of liters used. This may be counterintuitive 
 at first, since one usually thinks about consumption efficiency in terms of distance travelled per unit 
 of fuel.
@@ -46,7 +46,7 @@ around those in Table 14.2.
 \begintable{Costs Per Kilometer of Spare Parts by Vehicle Type}
 \header
 \col Bus Type
-\col US\$/km
+\col US$/km
 \row
 \col \highlight{Microbus}
 \col 0.05
@@ -73,7 +73,7 @@ around those in Table 14.2.
 \col 0.26
 \endtable
 
-Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: \url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
+Source: Logit. Currency conversions from R$ to US$ with 2013 exchange rate: \url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
 
 For the fuel price, one must consider the “bulk” price, because fuel will be purchased in great quantities. 
 Usually, a fuel tank and pump will be installed at the garage depot and be supplied weekly by a tank 
@@ -119,11 +119,11 @@ possible. As a result, one may calculate the tire cost per kilometer as follows:
 \header
 \col Vehicle Type
 \col Number of Tires
-\col Cost per Unit (US\$)
+\col Cost per Unit (US$)
 \col Useful Life (km)
 \col Number of Retreadings
-\col Retreading Cost per Unit (US\$)
-\col Cost per km (US\$)
+\col Retreading Cost per Unit (US$)
+\col Cost per km (US$)
 \row
 \col Microbus
 \col 6
@@ -190,7 +190,7 @@ possible. As a result, one may calculate the tire cost per kilometer as follows:
 \col 0.10
 \endtable
 
-Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: 
+Source: Logit. Currency conversions from R$ to US$ with 2013 exchange rate: 
 \url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
 
 *Parts and Replacements*
@@ -222,10 +222,10 @@ type.
 \begintable{Cost Per Kilometer by Vehicle Type}
 \header
 \col 
-\col Value of Vehicle with Air Conditioning (US\$)
+\col Value of Vehicle with Air Conditioning (US$)
 \col Technical Coefficient
 \col Average Annual Distance Travelled (km)
-\col Cost per km (US\$)
+\col Cost per km (US$)
 \row
 \col \highlight{Microbus}
 \col 113,130.46
@@ -276,7 +276,7 @@ type.
 \col 0.27
 \endtable
 
-Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: 
+Source: Logit. Currency conversions from R$ to US$ with 2013 exchange rate: 
 \url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
 
 \title{Vehicle Dependent}
@@ -668,9 +668,9 @@ vehicles, one could expect the following sizing parameters:
 \header
 \col \highlight{Position}
 \col \highlight{#}
-\col \highlight{Salary (US\$)}
+\col \highlight{Salary (US$)}
 \col \highlight{Salary/Minimum Wage}
-\col \highlight{Total (US\$)}
+\col \highlight{Total (US$)}
 \col \highlight{Weight}
 \col \highlight{Sizing Ratio}
 \row
@@ -723,11 +723,11 @@ vehicles, one could expect the following sizing parameters:
 \col \highlight{0.1175}
 \endtable
 
-Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate:
+Source: Logit. Currency conversions from R$ to US$ with 2013 exchange rate:
 \url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
 
 For this situation, one can derive a sizing ratio of approximately 0.12 in relation to the operating 
-fleet, and an average salary of approximately US\$900 (R\$2,020). Given that the average salary is superior 
+fleet, and an average salary of approximately US$900 (R$2,020). Given that the average salary is superior 
 to the salary of the traffic inspectors/supervisors, which are the positions more directly dependent 
 on the fleet size, one should expect that a different operating fleet size should produce a different 
 sizing ratio different average salary. 
@@ -739,9 +739,9 @@ of two hundred vehicles:
 \header
 \col Position
 \col #
-\col Salary (US\$)
+\col Salary (US$)
 \col Salary/Minimum Wage
-\col Total (US\$)
+\col Total (US$)
 \col Weight
 \col Sizing Ratio
 \row
@@ -794,7 +794,7 @@ of two hundred vehicles:
 \col \highlight{0.155}
 \endtable
 
-Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: 
+Source: Logit. Currency conversions from R$ to US$ with 2013 exchange rate: 
 \url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
 
 For this smaller company size, one can see that the average salary had a 10 percent increase and the 
@@ -834,9 +834,9 @@ vehicles, one could expect the following sizing parameters:
 \header
 \col Position
 \col #
-\col Salary (US\$)
+\col Salary (US$)
 \col Salary/Minimum Wage
-\col Total (US\$)
+\col Total (US$)
 \col Weight
 \col Sizing Ratio
 \row
@@ -921,11 +921,11 @@ vehicles, one could expect the following sizing parameters:
 \col \highlight{0.4225}
 \endtable
 
-Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: 
+Source: Logit. Currency conversions from R$ to US$ with 2013 exchange rate: 
 \url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
 
 For this situation, one can derive a sizing ratio of approximately 0.42 in relation to the operating 
-fleet, and an average salary of approximately US\$700 (R\$1,575). The overhead of the garage depot/maintenance 
+fleet, and an average salary of approximately US$700 (R$1,575). The overhead of the garage depot/maintenance 
 department, which differs from the operational control, is smaller and most positions have a larger dependency 
 on the number of vehicles. 
 
@@ -936,9 +936,9 @@ of two hundred vehicles:
 \header
 \col \highlight{Position}
 \col \highlight{#}
-\col \highlight{Salary (US\$)}
+\col \highlight{Salary (US$)}
 \col \highlight{Salary/Minimum Wage}
-\col \highlight{Total (US\$)}
+\col \highlight{Total (US$)}
 \col \highlight{Weight}
 \col \highlight{Sizing Ratio}
 \row
@@ -1023,7 +1023,7 @@ of two hundred vehicles:
 \col \highlight{0.46}
 \endtable
 
-Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: 
+Source: Logit. Currency conversions from R$ to US$ with 2013 exchange rate: 
 \url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
 
 As a result, one may see that the average salary is roughly the same and the ratio sizing parameter 
@@ -1069,9 +1069,9 @@ vehicles, one could expect the following sizing parameters:
 \header
 \col Position
 \col #
-\col Salary (US\$)
+\col Salary (US$)
 \col Salary/Minimum Wage
-\col Total (US\$)
+\col Total (US$)
 \col Weight
 \col Sizing Ratio
 \row
@@ -1196,11 +1196,11 @@ vehicles, one could expect the following sizing parameters:
 \col \highlight{0.1}
 \endtable
 
-Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: 
+Source: Logit. Currency conversions from R$ to US$ with 2013 exchange rate: 
 \url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
 
 For this situation, one can derive a sizing ratio of 0.10, in relation to the operating fleet, and 
-an average salary of approximately US\$820.00 (R\$1,840.00). As mentioned before, there is less room 
+an average salary of approximately US$820.00 (R$1,840.00). As mentioned before, there is less room 
 for scalability due to size and most positions still require at least two employees. 
 
 As an example, the table below shows the sizing for vehicle operating company with an operating fleet 
@@ -1210,9 +1210,9 @@ of two hundred vehicles:
 \header
 \col Position
 \col #
-\col Salary (US\$)
+\col Salary (US$)
 \col Salary/Minimum Wage
-\col Total (US\$)
+\col Total (US$)
 \col Weight
 \col Sizing Ratio
 \row
@@ -1337,7 +1337,7 @@ of two hundred vehicles:
 \col \highlight{0.13}
 \endtable
 
-Source: Logit. Currency conversions from R\$ to US\$ with 2013 exchange rate: 
+Source: Logit. Currency conversions from R$ to US$ with 2013 exchange rate: 
 \url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
 
 As a result, one may see that the average salary is slightly higher, which is consistent with the inability 
@@ -1352,7 +1352,7 @@ be considered within the back office personnel, but since this item is even less
 on the specific operation/country conditions, it is best to treat it separately. 
 
 As an example, for a vehicle operating company with approximately 400 vehicles in Brazil, it is possible 
-to observe payments to directors totaling up to US\$40,000 per month (about R\$90,000 per month)—approximately 
+to observe payments to directors totaling up to US$40,000 per month (about R$90,000 per month)—approximately 
 65 minimum wages. If the company were half that size, in terms of vehicles, and thus generating less 
 revenue and profits, this total director payment amount could be reduced by 30 to 50 percent. Since for 
 the financial model what matters is the total cost related to the directors, one could have more directors 
@@ -1377,8 +1377,8 @@ Depending on the system attributes, it may be the operating vehicle company’s 
 the onboard fare system and surveillance equipment, as well as paying for the data communication fees. 
 
 
-This is not a substantial value, and in Brazil, these values may amount to about US\$245 per month 
-(approximately R\$550 per month).
+This is not a substantial value, and in Brazil, these values may amount to about US$245 per month 
+(approximately R$550 per month).
 
 *Other Costs*
 
@@ -1544,8 +1544,8 @@ is also proportional to the fleet size it needs to service, the driving paramete
 installation Capex may also be the fleet size.
 
 Based upon other systems’ information, in Brazil, the total expenditure for building/edification, equipment 
-and installation costs may range between about US\$9,000 to US\$13,000 per vehicle (R\$20,000 to 30,000 
-per vehicle—currency conversions from R\$ to US\$ with 2013 exchange rate). Of this amount, roughly 50 
+and installation costs may range between about US$9,000 to US$13,000 per vehicle (R$20,000 to 30,000 
+per vehicle—currency conversions from R$ to US$ with 2013 exchange rate). Of this amount, roughly 50 
 percent relates to depot building and edifications, 20 percent to installation costs, and approximately 
 30 percent to the equipment costs. In any case, a more detailed analysis should be conducted to validate 
 these ballpark numbers. 
@@ -1568,6 +1568,6 @@ there should be subsequent renewals rates at years five, ten, and so forth.
 The total cost per bus for this equipment installation may vary depending on if it is to be installed 
 on an existing fleet or on a new fleet. Ideally, the equipment should be installed during vehicle assembly, 
 since the installation itself is of better quality, and this reduces the cost. In Brazil, the approximate 
-ITS Capex is approximately US\$6,600 to US\$5,300 (R\$12,000 to R\$15,000 per vehicle—currency conversions 
-from R\$ to US\$ with 2013 exchange rate). This value is roughly 50 percent related to the fare system, 
+ITS Capex is approximately US$6,600 to US$5,300 (R$12,000 to R$15,000 per vehicle—currency conversions 
+from R$ to US$ with 2013 exchange rate). This value is roughly 50 percent related to the fare system, 
 35 percent related to the monitoring system, and 15 percent related to the variable messaging panels.
