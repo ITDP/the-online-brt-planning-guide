@@ -108,7 +108,6 @@ class Test_02_Lexer {
 		Assert.same([TEscaped("*"), TEof], defs("\\*"));
 		Assert.same([TEscaped("`"), TEof], defs("\\`"));
 		Assert.same([TEscaped("-"), TEof], defs("\\-"));
-		Assert.same([TEscaped("$"), TEof], defs("\\$"));
 		Assert.same([TEscaped("‒"), TEof], defs("\\‒"));
 		Assert.same([TEscaped("―"), TEof], defs("\\―"));
 		Assert.same([TEscaped("‐"), TEof], defs("\\‐"));
@@ -117,12 +116,16 @@ class Test_02_Lexer {
 		// special cases
 		Assert.same([TWord("’"), TEof], defs("'"));  // this is usually enough
 		Assert.same([TEscaped("'"), TEof], defs('\\^'));  // should only be needed for paths: joe's => joe\^s
+		Assert.same([TEscaped("$$"), TEof], defs("\\$$"));
 
 		// just in case
 		Assert.same([TEscaped("\\"), TCommand("foo"), TEof], defs("\\\\\\foo"));
 		Assert.same([TEscaped("\\"), TWord("’"), TEof], defs("\\\\'"));
 		Assert.same([TEscaped("\\"), TWord("code!"), TEof], defs("\\\\code!"));
 		Assert.same([TEscaped("\\"), TWord("codeblock!"), TWordSpace("\n"), TWord("foo"), TWordSpace("\n"), TWord("!"), TWordSpace("\n"), TEof], defs("\\\\codeblock!\nfoo\n!\n"));
+		Assert.same([TEscaped("$$"), TEof], defs("\\$$"));
+		Assert.raises(defs.bind("\\$"));
+		Assert.raises(defs.bind("$\\$"));
 	}
 
 	public function test_008_dash_treatment()
