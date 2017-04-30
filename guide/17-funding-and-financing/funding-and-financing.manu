@@ -1,9 +1,7 @@
 \chapter{Funding and Financing}
 
-
-
-\quotation{Money never starts an idea; it is the idea that starts the money.}{W. J. Cameron, journalist, 1878-1955}
-
+\quotation{Money never starts an idea; it is the idea that starts the money.}
+{W. J. Cameron, journalist, 1878-1955}
 
 This chapter reviews how the capital costs of many of the best BRT systems around the world were both 
 funded and financed. Any BRT project must be funded in order to get built. Sometimes, if the funds are 
@@ -15,7 +13,6 @@ the system’s own revenue, primarily fare revenue, or some form of government f
 how many of the world’s better BRT systems have secured the necessary funding and financing needed to 
 become operational. 
 
-
 A BRT system should be designed to cover at least its basic operating costs from its own fare revenue. 
 In lower-income economies where most people depend on public transport, this is usually possible. In 
 higher-income economies, while public transit rarely covers its operating costs, the introduction of 
@@ -25,13 +22,13 @@ losses from traditional bus services. As such, the best way to fund operations i
 to cover its operational costs from fare revenue. Other chapters provide guidance on how this can be 
 done. 
 
-
 If a new BRT system is developed that will face ongoing operational losses, as has occurred in a few 
 countries such as South Africa, it is best to have a sense of the scale of these losses in advance and 
 to plan accordingly. This chapter provides limited guidance with respect to how to fund and finance the 
 operating losses of a BRT system other than to say that they should not be debt financed, and the source 
 of public revenue should be recurring (i.e., general taxation) rather than a onetime source of revenue 
 (such as the proceeds from the privatization of a power plant or sale of public land). 
+
 \include{171-a-strategic-overview-of-funding-and-financing.manu}
 \include{172-funding-brts-capital-costs.manu}
 \include{173-financing-brt-capital-costs.manu}
