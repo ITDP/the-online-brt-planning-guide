@@ -42,16 +42,16 @@ Assumes that the server will:
 */
 @:hasTemplates
 class Generator {
-	static var assetCache = new Map<String,String>();
 	static inline var ASSET_SUBDIR = "assets";
 	@:template static var FILE_BANNER;
 	static inline var ROOT_URL = "./";
 
+	var assets:Map<String,String>;
 	var hasher:AssetHasher;
 	var destDir:String;
 	var godOn:Bool;
 	var bufs:Map<String,StringBuf>;
-	var stylesheets:Array<String>;
+	var customHead:Array<Html>;
 	var srcCache:Map<String,Int>;
 	var lastSrcId:Int;
 	var toc:StringBuf;
@@ -92,7 +92,7 @@ class Generator {
 		case Math(tex):
 			return '<span class="mathjax"${genp(h.pos)}>\\(${gent(tex)}\\)</span>';
 		case Url(address):
-			return '<a class="url" href="${address.urlEncode()}">${gent(address)}</a>';
+			return '<a class="url" href="${gent(address)}">${gent(address)}</a>';
 		case HElemList(li):
 			var buf = new StringBuf();
 			if (godOn)
@@ -128,8 +128,8 @@ class Generator {
 
 	function _saveAsset(src:String, ?content:Bytes)
 	{
-		if (assetCache.exists(src))
-			return assetCache[src];
+		if (assets.exists(src))
+			return assets[src];
 
 		var dir = ASSET_SUBDIR;
 		var ldir = Path.join([destDir, ASSET_SUBDIR]);
@@ -144,13 +144,13 @@ class Generator {
 		var name = ext != "" ? hash + "." + ext : hash;
 		var dst = Path.join([dir, name]);
 		var lpath = Path.join([ldir, name]);
-		assetCache[src] = dst;
 		File.saveBytes(lpath, data);
 
 		var prefix = Context.assetUrlPrefix;
-		if (prefix == null)
-			prefix = "";
-		return prefix + dst;
+		if (prefix != null)
+			dst = prefix + dst;
+		assets[src] = dst;
+		return dst;
 	}
 
 	function saveAsset(src, ?content)
@@ -165,7 +165,7 @@ class Generator {
 		var path = Path.normalize(url.endsWith("/") ? Path.join([url, "index.html"]) : Path.withExtension(url, "html"));
 		var depth = path.split("/").length - 1;
 		var computedBase = depth > 0 ? [ for (i in 0...depth) ".." ].join("/") : ".";
-		// TODO get normalize and google fonts with \html\apply or \html\link
+		// TODO get normalize and google fonts with \html\head
 		// TODO get jquery and mathjax with \html\run
 		var buf = new StringBuf();
 		buf.add("<!DOCTYPE html>");
@@ -196,8 +196,24 @@ class Generator {
 	function genv(v:DElem, idc:IdCtx, noc:NoCtx, bcs:Breadcrumbs)
 	{
 		switch v.def {
-		case DHtmlApply(_.toInputPath() => path):
-			stylesheets.push(saveAsset(path));
+		case DHtmlStore(_.toInputPath() => path):
+			saveAsset(path);
+			return "";
+		case DHtmlToHead(template):
+			var t = new haxe.Template(template);
+			var err = null;
+			var tmacros = {
+				assetPath : function (resolve, src)
+				{
+					// treat the `src` path as if it was a PEelem
+					var path = ({ def:src, pos:v.pos }:PElem);
+					err = transform.Validator.validateSrcPath(path, [File]);
+					return assets[path.toInputPath()];
+				}
+			};
+			var html = t.execute({}, tmacros);
+			assert(err == null, err, v.pos.toString());
+			customHead.push(new Html(html));
 			return "";
 		case DLaTeXPreamble(_), DLaTeXExport(_):
 			return "";
@@ -431,15 +447,16 @@ class Generator {
 	{
 		// FIXME get the document name elsewhere
 
+		assets = new Map();
 		bufs = new Map();
-		stylesheets = [];  // FIXME unique stylesheet collection
+		customHead = [];  // FIXME unique stylesheet collection
 		srcCache = new Map();  // TODO abstract
 		lastSrcId = 0;
 		toc = new StringBuf();
 
 		// `toc.add` and `genv` ordering is relevant
 		toc.add('<ul><li class="volume">${renderToc(null, null, "BRT Planning Guide", ROOT_URL)}</li>');
-		// it's necessary to process all `\html\apply` before actually opening buffers and writing heads
+		// it's necessary to process all `\html\head` before actually opening buffers and writing heads
 		var contents = genv(doc, new IdCtx(), new NoCtx(), {});
 
 		var root = openBuffer("The Online BRT Planning Guide", {}, ROOT_URL);

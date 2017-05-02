@@ -295,6 +295,7 @@ nav ul hr {
 /* table */
 
 table {
+	width: 100%;
 	font-family: 'PT Sans', sans-serif;
 	font-size: 12px;
 	border-spacing: 0;

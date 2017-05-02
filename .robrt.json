@@ -11,9 +11,9 @@
 			"echo $GL_ANALYTICS_UA_ID",
 			"echo $ASSET_URL_PREFIX",
 			"echo $DOCKER_HOST_IP",
+			"echo $FORCE_GREY_FAVICON",
 
 			"dpkg -s haxe",
-			"haxelib list",
 			"node --version",
 
 			"cd $ROBRT_REPOSITORY_DIR",
@@ -24,6 +24,12 @@
 			"! grep -qi 'error\\|\\(batch response\\)' .lfs-pull.log",
 
 			"cd $ROBRT_REPOSITORY_DIR/generator",
+			"cp docs/fakesudo.sh /usr/bin/sudo",
+			"haxelib --global install hmm",
+			"haxelib --global run hmm setup",
+			"haxelib --global list",
+			"hmm install",
+			"haxelib list",
 			"haxe -D travis build.hxml",
 			"npm pack",
 			"npm install -g manu*.tgz",
@@ -35,6 +41,9 @@
 			"cp LICENSE.md $ROBRT_OUTPUT_DIR/",
 			"export DEBUG=1",
 			"export TEX_NO_POSITIONS=1",
+			"favicon=grey",
+			"if [ \"${FORCE_GREY_FAVICON}\" -eq 1 ]; then echo Skipped; elif [ \"${ROBRT_IS_PR}\" -eq 1 ]; then favicon=red; elif [ \"${ROBRT_HEAD}\" = master ]; then favicon=green; fi",
+			"cp guide/{itdp_$favicon,favicon}.ico",
 			"manu generate guide/index.manu .generated",
 			"find guide -type f -iname '*.manu' -print0 | xargs -0 manu stat tokens",
 
