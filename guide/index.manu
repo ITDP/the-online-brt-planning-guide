@@ -84,7 +84,7 @@ Fortunately for cities, the technology for providing high-quality public transpo
 \include{14-financial-modeling/financial-modeling.manu}
 \include{15-fare-policy-and-structure/00-fare-policy-and-structure.manu}
 \include{16-informal-transit-transition-to-brt/00-informal-transit-transition-to-brt.manu}
-\meta\reset{chapter}{17} \' TODO missing part of volume 4, up to chapter 17 '\
+\include{17-funding-and-financing/00-index.manu}
 
 
 \volume{Technology}
