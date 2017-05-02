@@ -146,8 +146,10 @@ class NewTransform {
 		assert(v != null);
 		assert(v.def != null);
 		switch v.def {
-		case HtmlApply(path):
-			return mkd(DHtmlApply(path), v.pos);
+		case HtmlStore(path):
+			return mkd(DHtmlStore(path), v.pos);
+		case HtmlToHead(template):
+			return mkd(DHtmlToHead(template), v.pos);
 		case LaTeXPreamble(path):
 			return mkd(DLaTeXPreamble(path), v.pos);
 		case LaTeXExport(src, dst):
@@ -191,8 +193,9 @@ class NewTransform {
 		case Title(name):
 			return mkd(DTitle(name), v.pos);
 		case Figure(size, path, horizontal(_) => caption, horizontal(_) => copyright):
-			// figure id could be generated from paths, but let's keep things uniform across elements
-			var id = idc.figure = genId(caption);
+			// prefer path for id generation, but fallback to caption if a generic file name is recognized
+			var fname = new haxe.io.Path(path.internal()).file;
+			var id = idc.figure = genId(~/^(image|figure)/i.match(fname) ? caption : mk(Word(fname), path.pos));
 			var no = ++noc.figure;
 			return mkd(DFigure(no, size, path, caption, copyright), v.pos, id);
 		case Table(size, horizontal(_) => caption, header, rows):
@@ -239,8 +242,8 @@ class NewTransform {
 		assert(d != null);
 		assert(d.def != null);
 		var def = switch d.def {
-		case DHtmlApply(_), DLaTeXPreamble(_), DLaTeXExport(_), DTitle(_), DFigure(_),
-				DImgTable(_), DCodeBlock(_), DQuotation(_), DEmpty:
+		case DHtmlStore(_), DHtmlToHead(_), DLaTeXPreamble(_), DLaTeXExport(_),
+				DTitle(_), DFigure(_), DImgTable(_), DCodeBlock(_), DQuotation(_), DEmpty:
 			d.def;
 		case DVolume(no, name, children):
 			DVolume(no, name, clean(children));

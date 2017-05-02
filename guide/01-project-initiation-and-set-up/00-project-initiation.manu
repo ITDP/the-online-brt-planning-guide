@@ -1,7 +1,5 @@
 \chapter{Project Initiation}
 
-\highlight{Contributors:} Carlos Pardo, *Despacio*; Annie Weinstock, *BRT Planning International*
-
 \quotation{Never doubt that a small group of thoughtful, committed citizens can change the world. **Indeed** it is the only thing that ever has.}
 {Margaret Mead, anthropologist, 1901–1978}
 
@@ -45,3 +43,5 @@ of public transport operations. The topics discussed in this chapter are:
 \include{13statement-of-vision.manu}
 \include{14-barriers-to-project-development.manu}
 \include{15-understanding-and-presenting-the-benefits.manu}
+
+\highlight{Contributors:} Carlos Pardo, *Despacio*; Annie Weinstock, *BRT Planning International*

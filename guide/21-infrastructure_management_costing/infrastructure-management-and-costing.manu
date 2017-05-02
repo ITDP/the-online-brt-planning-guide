@@ -1,7 +1,5 @@
 \chapter{Infrastructure Management and Costing}
 
-\highlight{Contributors:} Andre Frieslaar, *HHO Africa*; Susan Smit, *HHO Africa*; Karl Fjellstrom, *Far East BRT*; Annie Weinstock, *BRT Planning International*; Ulises Navarro, *ITDP Latin America*; Carlos Pardo, *Despacio*
-
 The objective of this chapter is to provide an overview of the infrastructure design process required
 to deliver a BRT corridor and its associated infrastructure components. The chapter first describes the
 infrastructure components that make up a BRT system, and then describes the infrastructure design process.
@@ -17,3 +15,5 @@ costing of infrastructure elements or materials can be evaluated.
 \include{appendix-a-bogotas-land-acquisition-process.manu}
 \include{appendix-b-brt-infrastructure-maintenance-cost-calculator.manu}
 \include{appendix-c-yichang-brt-project-investment-cost-estimates.manu}
+
+\highlight{Contributors:} Andre Frieslaar, *HHO Africa*; Susan Smit, *HHO Africa*; Karl Fjellstrom, *Far East BRT*; Annie Weinstock, *BRT Planning International*; Ulises Navarro, *ITDP Latin America*; Carlos Pardo, *Despacio*

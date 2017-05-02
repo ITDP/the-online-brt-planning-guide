@@ -258,9 +258,9 @@
 \renewcommand{\quotation}[2]{\begingroup\leftskip=14mm\rightskip=14mm {\small\color{gray50} \noindent\textit{``#1''} \\\hbox{}\hfill --- #2} \par\endgroup \smallskip }
 
 %tables
-%note: \tablemodule*46 must match \textwidth+\marginparsep+\marginparwidth
+%note: \tablemodule*46*2 must match \textwidth+\marginparsep+\marginparwidth
 \usepackage{ifoddpage}
-\newdimen\tablemodule \tablemodule=\textwidth \divide\tablemodule by 30
+\newdimen\tablemodule \tablemodule=\textwidth \divide\tablemodule by 60
 \newcommand{\tabletitle}[2]{{\noindent\bfseries\color{volume\thepart}\sffamily Table \thechapter.#1. #2} \par }
 \newcommand{\tablesource}[1]{\noindent\raggedright\footnotesize\sffamily\color{gray50}{\bfseries Source:} #1 \par \smallskip}
 

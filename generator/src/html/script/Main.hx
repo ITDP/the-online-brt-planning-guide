@@ -1,5 +1,6 @@
 package html.script;
 
+import haxe.io.Path;
 import html.script.Const;
 import js.jquery.*;
 
@@ -19,8 +20,7 @@ class Main {
 		assert(tocData != null, "toc data is missing");
 		var toc = J(JQuery.parseHTML(tocData));
 		var myUrl = J("base").attr("x-rel-path");
-		if (myUrl == "")
-			myUrl = "index.html";
+		assert(myUrl != null);
 		var me = toc.find('a[href="$myUrl"]').not("#toc-menu").parent();
 		assert(me.length > 0, myUrl);
 		assert(me.is("li"));
@@ -45,14 +45,7 @@ class Main {
 		// fix fragments
 		toc.find('a[href^="#"]').attr("href", function (_, u) return myUrl + u);
 
-		// set-up the responsive behaviour
-		J("#toc-menu").click(function (e) {
-			J("nav ul").css("display", function (_, cur) return cur == "none" ? "block" : "");
-			e.preventDefault();
-		});
-
 		J("#toc-loading").remove();
-		J("#toc-menu").removeClass("disabled");
 		J("nav").append(toc);
 	}
 

@@ -1,0 +1,108 @@
+\chapter{Manual to Collaboration}
+
+The project lives in GitHub, a platform widely used for collaboration to
+projects using *Git*:
+\url{https://github.com/ITDP/the-online-brt-planning-guide}.  You can ask
+questions or report problems in the guide by opening an issue.
+
+If instead you want to propose changes to either the guide (e.g. a typo fix or
+a new section) or, if you're a programmer or a designer, to the generator tool,
+please (fork the repository and) open a pull request.
+
+This \[work in progress\] chapter goes into more detail on how each tool works,
+including a definition of the sytanx for \code`.manu` files.
+
+More documentation on how to work with the guide and with GitHub will gradually
+become available. In the mean time, if you need help, do not hesitate to
+contact the geeks behind the curtain at contato@protocubo.io.
+
+
+
+\section{Getting started}
+
+To do...
+
+
+
+\section{Basic text}
+
+Simple, continuous text is the most basic and essential element, and can *usually* be simply typed in the source files.
+
+Paragraphs can be split into several lines for improved readibility.
+Instead, paragraphs end at blank lines, or more specificaly, visibly empty lines.
+
+\codeblock\end
+This is the first paragraph.
+This previous line break didn't end this paragraph.
+
+Now *this* is a new paragraph, because of the
+previous empty line.
+\end
+
+\subsection{Reserved characters and escaping}
+
+The most important character with special meaning is the backslash (\code!\!).
+It's used to indicate with instructions are special commands (like the \code!\item! command), and to use special characters like normal characters.
+
+The backslash itself can be typed as regular text, as in ``a \\ backslash'', by typing \code!a \\ backslash!.
+By preceding any special character, such as the backslash itself, with another backslash, we indicate that we want that otherwise special character to appear in the output; this is called escaping.
+
+\subsection{Commands}
+
+In other to provide more than simple text, but at the same time keep the input readable in simple text editors and compatible with version control systems like git, the backslash (\code!\!) can be used to denote calls to some available commands.  These range from text annotation commands (like \code!\code! or \code!\emph!) to more complex elements (like \code!\figure! or \code!\begintable!).
+
+Commands can take (and usually require) arguments, and those can be typed wraped in braces (\code!\emph{some important text}!), when they are mandatory, or in brackets (\code!\figure[small]!), if they are optional.
+
+\subsection{Subscripts and superscripts}
+
+Subscripts and superscripts, such as in 1\sup{fst} or n\sub{th}, can be added to text by using, respectively, the \code!\sup! and \code!\sub! commands.
+Some examples are show in table X. \' TODO ref '\
+
+\begintable[small]{Example subscript and superscripts}
+\header \col Result \col Source
+\row \col 1\sup{fst} \col \code!1\sup{fst}!
+\row \col n\sub{th} \col \code!n\sub{th}!
+\row \col brown\sup{tm} \col \code!brown\sup{tm}!
+\row \col lazy\sub{ish} \col \code!lazy\sub{ish}!
+\endtable
+
+\subsection{Emphasis and highlight}
+
+\subsection{Math and equations}
+
+\subsection{Comments and annotations}
+
+\subsection{Code}
+
+
+
+
+\section{Content hierarchy}
+
+To do...
+
+\subsection{Organizing the sources}
+
+
+
+\section{Other visual elements}
+
+To do...
+
+\subsection{Boxes}
+
+\subsection{Figures}
+
+\subsection{Tables}
+
+\subsection{Equation blocks}
+
+\subsection{Code blocks}
+
+
+
+
+\section{Formal specification}
+
+To do...
+

@@ -1,0 +1,1573 @@
+
+
+\section{Vehicle Operating Company Input Parameters}
+
+The vehicle operating company input parameters may be broken down into two categories:
+
+\number Operational expenditures (Opex);
+\number Capital expenditures (Capex).
+
+In addition to these parameters, the company is also subject to taxes, depreciation rates, and even 
+different financing options, which may vary from city to city, or country to country.
+
+\subsection{ Operational Expenditures (Opex)}
+
+Operational expenditures refer to expenses incurred in the course of ordinary business, such as sales, 
+general, and administrative expenses. For the vehicle operating company, these expenses are directly 
+dependent on the operation itself, as denominated in kilometer-dependent parameters. The expenses are 
+also indirectly dependent on the size of the fleet/bus operation, which will be referred to as vehicle-dependent 
+parameters. 
+
+\title{Kilometer-Dependent Parameters}
+
+Kilometer-dependent parameters, as implied by the name, refer to sizing parameters that are directly 
+and linearly dependent on the operational service. 
+
+*Fuel*
+
+Out of these parameters, the biggest cost component is the fuel cost (US$), which can be calculated 
+by multiplying the consumption rate (l/km) by the number of kilometers (km) and then by the fuel price 
+(US$/l). Typically, the consumption rate is expressed as l/km, such that multiplying the consumption 
+rate by the total number of kilometers gives the total number of liters used. This may be counterintuitive 
+at first, since one usually thinks about consumption efficiency in terms of distance travelled per unit 
+of fuel.
+
+The consumption rate is different depending on vehicle specification:
+\item Vehicle size (eight meters, twelve meters, and eighteen meters);
+\item Front/rear engine specification;
+\item Air conditioning (AC), or not;
+\item Vehicle technology standard (Euro IV or Euro V);
+\item City conditions (altitude, humid/dry).
+
+As a rule of thumb, a vehicle with AC will, aside from having a larger cost, also consume around 10 
+percent more fuel. That being said, as reference values, the consumption per vehicle should have values 
+around those in Table 14.2.
+
+\begintable{Costs Per Kilometer of Spare Parts by Vehicle Type}
+\header
+\col Bus Type
+\col US$/km
+\row
+\col \highlight{Microbus}
+\col 0.05
+\row
+\col \highlight{Minibus}
+\col 0.05
+\row
+\col \highlight{Mid-Size bus}
+\col 0.06
+\row
+\col \highlight{Conventional bus}
+\col 0.06
+\row
+\col \highlight{Semi-Standard bus}
+\col 0.08
+\row
+\col \highlight{Standard bus}
+\col 0.09
+\row
+\col \highlight{Articulated bus}
+\col 0.17
+\row
+\col \highlight{Bi-articulated bus}
+\col 0.26
+\endtable
+
+Source: Logit. Currency conversions from R$ to US$ with 2013 exchange rate: \url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
+
+For the fuel price, one must consider the “bulk” price, because fuel will be purchased in great quantities. 
+Usually, a fuel tank and pump will be installed at the garage depot and be supplied weekly by a tank 
+truck.
+
+*Lubricants*
+
+Lubricants are also a relevant cost item and, for simplification purposes, may be considered as a percentage 
+of the total fuel cost. As a rule of thumb, this amount ranges from 3 to 5 percent of the total fuel 
+cost, but may be calculated from the bottom up though specific lubricant cost and engine lubrication 
+rates.
+
+*Tires*
+
+Tires are another relevant cost parameter and depend on a couple of other parameters, which vary per 
+vehicle:
+
+\item [Number of tires per bus:
+\item Smaller vehicles—four to six;
+\item 12- to 15-meter vehicles—six;
+\item 18-meter articulated vehicles—ten.]
+\item [Tire type: 
+\item Smaller vehicles—175/75 R17.5;
+\item 12- to 13-meter buses—275/80 R22.5;
+\item 18-meter articulated buses—295/80 R 22.5.]
+\item Tire unit cost per tire type;
+\item Useful life per vehicle type;
+\item Number of tire retreading allowed per vehicle type;
+\item Tire retreading unit cost (approximately 25 percent of new tire cost);
+\item Consumption;
+\item Price—new/recap.
+
+Tire retreading/regrooving are processes intended to prolong the useful life of the tire and thus reduce 
+the cost per kilometer. The regrooving process is the initial step, and consists of cutting into the 
+tread of a tire and tread a pattern deeper than the original, so as to prolong its useful life. Once 
+the regrooving reaches its limit, the tire is subjected to a retreading process, which consists of reconditioning 
+the tire by replacing the worn tread with new material. 
+
+The total useful life of a tire should be expressed considering the maximum number of retreading processes 
+possible. As a result, one may calculate the tire cost per kilometer as follows:
+
+\begintable{Tire Cost Per Kilometer by Vehicle Type}
+\header
+\col Vehicle Type
+\col Number of Tires
+\col Cost per Unit (US$)
+\col Useful Life (km)
+\col Number of Retreadings
+\col Retreading Cost per Unit (US$)
+\col Cost per km (US$)
+\row
+\col Microbus
+\col 6
+\col 365.91
+\col 120,000
+\col 2.00
+\col 109.42
+\col 0.03
+\row
+\col Minibus
+\col 6
+\col 676.30
+\col 120,000
+\col 2.00
+\col 164.52
+\col 0.05
+\row
+\col Mid-Size bus
+\col 6
+\col 676.30
+\col 160,000
+\col 2.50
+\col 164.52
+\col 0.04
+\row
+\col Conventional bus
+\col 6
+\col 676.30
+\col 160,000
+\col 2.50
+\col 164.52
+\col 0.04
+\row
+\col Semi-Standard bus
+\col 6
+\col 676.30
+\col 160,000
+\col 2.50
+\col 164.52
+\col 0.04
+\row
+\col Standard bus
+\col 6
+\col 676.30
+\col 160,000
+\col 2.50
+\col 164.52
+\col 0.04
+\row
+\col Articulated bus
+\col 10
+\col 676.30
+\col 160,000
+\col 2.50
+\col 164.52
+\col 0.07
+\row
+\col Bi-articulated bus
+\col 14
+\col 676.30
+\col 160,000
+\col 2.50
+\col 164.52
+\col 0.10
+\endtable
+
+Source: Logit. Currency conversions from R$ to US$ with 2013 exchange rate: 
+\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
+
+*Parts and Replacements*
+
+Parts and replacements costs are strongly dependent on the quality and efficiency of the maintenance 
+program. In other words, depending on the maintenance program, costs may vary considerably.
+
+In order to size this item correctly, there are two parameters to consider:
+
+\item [Vehicle acquisition value:
+\item The parts and replacement costs must be correspondent to the makeup of a new vehicle;
+\item The total vehicle acquisition value is superior to just the parts and replacements makeup of the 
+vehicle, and must be considered without tires and without specific acquisition cost values.]
+\item [Kilometers travelled:
+\item The cost driver for “wear” is usage, and thus, the more kilometers a vehicle travels in a year, 
+the greater need of parts and replacements it should have.]
+
+That being said, the sizing of this item must then relate a percentage of vehicle acquisition value 
+correspondent to an average of kilometers travelled per year. In case the vehicle travels more kilometers 
+or, in case the vehicle acquisition cost is smaller or larger, the cost of parts and replacements per 
+kilometer must vary.
+
+Because of a couple of tariff readjustment studies in Brazil, it was identified that the parts and 
+replacements costs vary from 3 to 5 percent of the vehicle acquisition value. In addition to that, for 
+the cities considered, 78,000 kilometers per year (6.5 kilometers/month) is approximately the average 
+kilometers travelled per year. Consequently, one may derive a cost per kilometer to be utilized per vehicle 
+type. 
+
+\begintable{Cost Per Kilometer by Vehicle Type}
+\header
+\col 
+\col Value of Vehicle with Air Conditioning (US$)
+\col Technical Coefficient
+\col Average Annual Distance Travelled (km)
+\col Cost per km (US$)
+\row
+\col \highlight{Microbus}
+\col 113,130.46
+\col 4.0%
+\col 78,000
+\col 0.06
+\row
+\col \highlight{Minibus}
+\col 98,184.95
+\col 4.0%
+\col 78,000
+\col 0.05
+\row
+\col \highlight{Mid-Size bus}
+\col 129,126.92
+\col 4.0%
+\col 78,000
+\col 0.07
+\row
+\col \highlight{Conventional bus}
+\col 135,915.96
+\col 4.0%
+\col 78,000
+\col 0.07
+\row
+\col \highlight{Semi-Standard bus}
+\col 167,518.90
+\col 4.0%
+\col 78,000
+\col 0.09
+\row
+\col \highlight{Standard bus}
+\col 199,171.00
+\col 4.0%
+\col 78,000
+\col 0.10
+\row
+\col \highlight{Articulated bus}
+\col 350,349.31
+\col 4.0%
+\col 78,000
+\col 0.18
+\row
+\col \highlight{Bi-articulated bus}
+\col 533,589.41
+\col 4.0%
+\col 78,000
+\col 0.27
+\endtable
+
+Source: Logit. Currency conversions from R$ to US$ with 2013 exchange rate: 
+\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
+
+\title{Vehicle Dependent}
+
+Vehicle-dependent cost refers to items that are indirectly dependent on the fleet size. The rationale 
+behind this is that the larger the fleet, the larger the number of mechanics, traffic supervisors, back 
+office, and overhead that is necessary. As a result, the sizing parameter for these costs will be a personnel/vehicle 
+or cost/vehicle, that must then be multiplied by the corresponding fleet.
+
+The main cost item relating to the entire vehicle operation is personnel-related costs. One may say 
+that a vehicle operating company is personnel intensive, usually having this cost account for 30 to 40 
+percent of the operator’s total payment.
+
+The employees may be divided into two different categories, which must be treated separately:
+
+\item Vehicle drivers and possible onboard fare personnel;
+\item Garage depot/back office personnel.
+
+These employee/vehicle ratios must then be multiplied by the average salary per category, to company 
+salary tax, 13th check, benefits, and other costs amount to the total cost of employment.
+
+*Vehicle Drivers*
+
+Vehicle drivers sizing ratio depends more on the system schedule than on predetermined sizing ranges. 
+For starters, the operational personnel must be sized utilizing the operational fleet size, not the total 
+fleet. The reason for this is that it is the operational fleet that is related to the vehicle timetables 
+and schedule.
+
+In order to properly size the number of drivers required for the system, a detailed analysis, bus route 
+per bus route, must be conducted. However, in case the majority of the bus routes have a cycle time of 
+around one hour, a simplified sizing method may be utilized. First, one needs the number of trips per 
+hour for a working day, Saturday, and Sunday:
+
+\begintable{Number of Trips Per Hour for Weekdays and Weekends}
+\header
+\col Hourly Range
+\col Weekday Trips
+\col Saturday Trips
+\col Sunday Trips
+\row
+\col \highlight{00:00-01:00}
+\col 48
+\col 48
+\col 48
+\row
+\col \highlight{01:00-02:00}
+\col 59
+\col 59
+\col 59
+\row
+\col \highlight{02:00-03:00}
+\col 57
+\col 57
+\col 57
+\row
+\col \highlight{03:00-04:00}
+\col 44
+\col 44
+\col 44
+\row
+\col \highlight{04:00-05:00}
+\col 456
+\col 259
+\col 231
+\row
+\col \highlight{05:00-06:00}
+\col 2.584
+\col 1.500
+\col 1.173
+\row
+\col \highlight{06:00-07:00}
+\col 3.496
+\col 1.865
+\col 1.289
+\row
+\col \highlight{07:00-08:00}
+\col 2.960
+\col 1.852
+\col 1.320
+\row
+\col \highlight{08:00-09:00}
+\col 2.067
+\col 1.642
+\col 1.260
+\row
+\col \highlight{09:00-10:00}
+\col 1.721
+\col 1.507
+\col 1.200
+\row
+\col \highlight{10:00-11:00}
+\col 1.662
+\col 1.494
+\col 1.193
+\row
+\col \highlight{11:00-12:00}
+\col 1.825
+\col 1.548
+\col 1.234
+\row
+\col \highlight{12:00-13:00}
+\col 1.893
+\col 1.634
+\col 1.276
+\row
+\col \highlight{13:00-14:00}
+\col 1.806
+\col 1.620
+\col 1.276
+\row
+\col \highlight{14:00-15:00}
+\col 1.806
+\col 1.621
+\col 1.284
+\row
+\col \highlight{15:00-16:00}
+\col 1.910
+\col 1.625
+\col 1.320
+\row
+\col \highlight{16:00-17:00}
+\col 2.539
+\col 1.690
+\col 1.317
+\row
+\col \highlight{17:00-18:00}
+\col 3.095
+\col 1.723
+\col 1.346
+\row
+\col \highlight{18:00-19:00}
+\col 2.802
+\col 1.664
+\col 1.308
+\row
+\col \highlight{19:00-20:00}
+\col 2.164
+\col 1.509
+\col 1.245
+\row
+\col \highlight{20:00-21:00}
+\col 1.614
+\col 1.278
+\col 1.121
+\row
+\col \highlight{21:00-22:00}
+\col 1.442
+\col 1.152
+\col 1.018
+\row
+\col \highlight{22:00-23:00}
+\col 1.372
+\col 1.016
+\col 905
+\row
+\col \highlight{23:00-24:00}
+\col 944
+\col 851
+\col 781
+\row
+\col Total:
+\col 40.367
+\col 29.259
+\col 23.305
+\endtable
+
+Having the total trips per hour, one may assume that in the peak hour, 100 percent of the operational 
+fleet is utilized. Consequently, one may calculate the percentage of the fleet utilization over the course 
+of the entire day: 
+
+\begintable{Percentage of Fleet Utilization Per Hour for Weekdays and Weekends}
+\header
+\col Hourly Range
+\col Weekday Trips
+\col Saturday Trips
+\col Sunday Trips
+\row
+\col \highlight{00:00-01:00}
+\col 1%
+\col 1%
+\col 1%
+\row
+\col \highlight{01:00-02:00}
+\col 2%
+\col 2%
+\col 2%
+\row
+\col \highlight{02:00-03:00}
+\col 2%
+\col 2%
+\col 2%
+\row
+\col \highlight{03:00-04:00}
+\col 1%
+\col 1%
+\col 1%
+\row
+\col \highlight{04:00-05:00}
+\col 13%
+\col 7%
+\col 7%
+\row
+\col \highlight{05:00-06:00}
+\col 74%
+\col 43%
+\col 34%
+\row
+\col \highlight{06:00-07:00}
+\col 100%
+\col 53%
+\col 37%
+\row
+\col \highlight{07:00-08:00}
+\col 85%
+\col 53%
+\col 38%
+\row
+\col \highlight{08:00-09:00}
+\col 59%
+\col 47%
+\col 36%
+\row
+\col \highlight{09:00-10:00}
+\col 49%
+\col 43%
+\col 34%
+\row
+\col \highlight{10:00-11:00}
+\col 48%
+\col 43%
+\col 34%
+\row
+\col \highlight{11:00-12:00}
+\col 52%
+\col 44%
+\col 35%
+\row
+\col \highlight{12:00-13:00}
+\col 54%
+\col 47%
+\col 37%
+\row
+\col \highlight{13:00-14:00}
+\col 52%
+\col 46%
+\col 37%
+\row
+\col \highlight{14:00-15:00}
+\col 52%
+\col 46%
+\col 37%
+\row
+\col \highlight{15:00-16:00}
+\col 55%
+\col 46%
+\col 38%
+\row
+\col \highlight{16:00-17:00}
+\col 73%
+\col 48%
+\col 38%
+\row
+\col \highlight{17:00-18:00}
+\col 89%
+\col 49%
+\col 39%
+\row
+\col \highlight{18:00-19:00}
+\col 80%
+\col 48%
+\col 37%
+\row
+\col \highlight{19:00-20:00}
+\col 62%
+\col 43%
+\col 36%
+\row
+\col \highlight{20:00-21:00}
+\col 46%
+\col 37%
+\col 32%
+\row
+\col \highlight{21:00-22:00}
+\col 41%
+\col 33%
+\col 29%
+\row
+\col \highlight{22:00-23:00}
+\col 39%
+\col 29%
+\col 26%
+\row
+\col \highlight{23:00-24:00}
+\col 27%
+\col 24%
+\col 22%
+\row
+\col Total vehicle utilization hours:
+\col \highlight{11.55}
+\col \highlight{8.37}
+\col \highlight{6.67}
+\endtable
+
+Given that the driver utilization is directly dependent on the bus utilization, one may say that the 
+“total” of total vehicle utilization hours equals the amount of driver working hours necessary.
+
+Having calculated that, one must then verify the work regimen of the drivers in terms of daily working 
+hours, weekly working hours, and also how these working hours may be spread out. In Brazil, for instance, 
+many union agreements allow for a seven-hour working day (seven hours of work and one hour for lunch), 
+a total of forty-four-hour working week and a 6 to 1 working regimen (work six days, rest one). That 
+being the case, we can see that 11.55 hours (total weekday vehicle utilization hours) divided by 7 hours 
+(workday hours) results in a ratio of 1.65. In other words, given the working scale alone, one could 
+say that 1.65 drivers are necessary per bus in order to man the fleet in a working day. Given that this 
+number is under 2, no overtime additional pay is necessary. If this number were over 2, then it would 
+be necessary to calculate the daily overtime factor (total daily hours divided by 14 hours) and multiply 
+that by the overtime pay.
+
+From the total weekly hours, we can see that the Saturday and Sunday requirement totals a value over 
+14 hours (8.37 + 6.67 = 15.04). In other words, the total weekly work hours would be determined by the 
+following equation:
+
+Eq. 14.1 Total weekly work hours:
+
+$$ (5 \text{days} * { 7\text{hours} \over \text{day}} ) +  {15.04 \text{hours} \over 2 \text{hours}} = 42.52 { \text{hours} \over \text{week}} $$ 
+
+Since 42.52 hours per week is under the weekly regimen of 44 hours, no additional weekly hours are 
+required. In case this number were over 44 hours, then one should calculate the “factor” of exceeding 
+hours total hours per 44 hours and multiply that by the overtime pay. 
+
+Based on this number, one must also consider additional pay that may be required for the nighttime 
+shift (10:00 pm to 5:00 am). For the above examples, one may calculate that 7.88 percent of the total 
+weekly hours occur during the nighttime shift. To that amount, one may apply the nighttime shift additional 
+pay and thus reach a nighttime shift factor. In Brazil, this overtime pay factor is 1.3714, which gives 
+a global nighttime factor of 1.0293. 
+
+In addition to all of this, one must calculate the provision for vacation period, national holidays 
+(if applicable), and yearly absentee days. 
+
+Eq. 14.2 Provision for national holidays or absentees: 
+
+$$ 365 \text{days} \over [(\text{total days} \in \text{year}) – (\text{missed work days})] $$
+
+For a 30-day vacation period, the ratio would be 365/335. All these provisions, calculated separately, 
+must then be multiplied so one reaches a total coverage factor. 
+
+As a result, the sizing factor is calculated using the following variables:
+
+\item Daily work scale ratio;
+\item Daily overtime factor;
+\item Weekly overtime factor;
+\item Weekly nighttime factor;
+\item Coverage/absentee provision factor.
+
+Having calculated the sizing factor, this number should then be multiplied by the union driver pay 
+and benefits. As an orientation, for 44 hours/week working hours, the driver ratio could vary from 1.80, 
+for an extremely peak-concentrated operation, up until 2.80, for a very distributed daily service (e.g., 
+Rio de Janeiro City). In case the system is designed with onboard fare personnel, their sizing is similar 
+to the driver sizing.
+
+*Operational Control*
+
+Operational control staff are responsible for the scheduling, inspecting, and release of the vehicles 
+from the garage depot. The smaller the operation, the fewer inspectors are necessary; however, the following 
+positions are nearly mandatory:
+
+\item Head of operational control;
+\item Controllers;
+\item Traffic inspectors/supervisors;
+\item Bus schedulers/programmers;
+\item Assistants.
+
+Given that these are different positions, with different numbers of professionals per position, earning 
+different wage amounts, there are two ways to address this sizing dilemma:
+\item Individually size each position, in terms of the number of employees and base salary;
+\item Adopt average ratios and average salaries, which are representative of the operation control as 
+a whole.
+
+In terms of convenience, it is always preferable to adopt average values; however, one must be careful 
+in case the size of the companies varies greatly. The reason for this is that certain positions—such 
+as the head of operational control, controllers, and bus schedulers—will have around the same number 
+of professionals regardless of the fact if the vehicle operating company has one hundred vehicles or 
+six hundred vehicles. Other positions such as traffic inspectors/supervisors are more directly dependent 
+on the size of the company and fleet.
+
+As an example, for the sizing of a vehicle operating company with an operating fleet of four hundred 
+vehicles, one could expect the following sizing parameters:
+
+\begintable{Sizing Parameters for Vehicle Operating Company (400 Vehicles)}
+\header
+\col \highlight{Position}
+\col \highlight{#}
+\col \highlight{Salary (US$)}
+\col \highlight{Salary/Minimum Wage}
+\col \highlight{Total (US$)}
+\col \highlight{Weight}
+\col \highlight{Sizing Ratio}
+\row
+\col Head of operational control
+\col 1
+\col 3,557.14
+\col 11.8
+\col 3,557.14
+\col 8.40%
+\col 0.0025
+\row
+\col Controllers
+\col 4
+\col 1,511.78
+\col 5
+\col 6,047.13
+\col 14.30%
+\col 0.01
+\row
+\col Traffic inspectors/supervisors
+\col 30
+\col 800.36
+\col 2.7
+\col 24,010.67
+\col 57.00%
+\col 0.075
+\row
+\col Bus schedulers/ programmers
+\col 6
+\col 978.21
+\col 3.2
+\col 5,869.28
+\col 13.90%
+\col 0.015
+\row
+\col Assistants
+\col 6
+\col 444.64
+\col 1.5
+\col 2,667.85
+\col 6.30%
+\col 0.015
+\row
+\col \highlight{Average total salary}
+\col \highlight{47}
+\col \highlight{896.85}
+\col \highlight{3}
+\col \highlight{42,152.07}
+\col \highlight{100.00%}
+\col \highlight{0.1175}
+\endtable
+
+Source: Logit. Currency conversions from R$ to US$ with 2013 exchange rate:
+\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
+
+For this situation, one can derive a sizing ratio of approximately 0.12 in relation to the operating 
+fleet, and an average salary of approximately US$900 (R$2,020). Given that the average salary is superior 
+to the salary of the traffic inspectors/supervisors, which are the positions more directly dependent 
+on the fleet size, one should expect that a different operating fleet size should produce a different 
+sizing ratio different average salary. 
+
+As an example, the table below shows the sizing for a vehicle operating company with an operating fleet 
+of two hundred vehicles: 
+
+\begintable{Sizing Parameters for Vehicle Operating Company (200 Vehicles)}
+\header
+\col Position
+\col #
+\col Salary (US$)
+\col Salary/Minimum Wage
+\col Total (US$)
+\col Weight
+\col Sizing Ratio
+\row
+\col Head of operational control
+\col 1
+\col 3,557.14
+\col 11.8
+\col 3,557.14
+\col 12.00%
+\col 0.005
+\row
+\col Controllers
+\col 4
+\col 1,511.78
+\col 5
+\col 6,047.13
+\col 20.50%
+\col 0.02
+\row
+\col Traffic inspectors/supervisors
+\col 16
+\col 800.36
+\col 2.7
+\col 12,805.69
+\col 43.40%
+\col 0.08
+\row
+\col Bus schedulers/programmers
+\col 5
+\col 978.21
+\col 3.2
+\col 4,891.06
+\col 16.60%
+\col 0.025
+\row
+\col Assistants
+\col 5
+\col 444.64
+\col 1.5
+\col 2,223.21
+\col 7.50%
+\col 0.025
+\row
+\col \highlight{Average total salary}
+\col \highlight{31}
+\col \highlight{952.40}
+\col \highlight{3.2}
+\col \highlight{29,524.23}
+\col \highlight{100.00%}
+\col \highlight{0.155}
+\endtable
+
+Source: Logit. Currency conversions from R$ to US$ with 2013 exchange rate: 
+\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
+
+For this smaller company size, one can see that the average salary had a 10 percent increase and the 
+sizing ratio increased from 0.1175 to 0.1550. Of course, in cases where the vehicle operating company 
+is smaller, the salary levels would most likely be lower and the number of controllers, for instance, 
+might be lower as well, having other positions take on part of the work. For the financial model, what 
+matters is the total cost of the operational control, so in case the ratio increase is offset by an average 
+salary decrease, the result is the same. 
+
+In any case, a reasonable sizing parameter to be used is something in the range of 0.10 to 0.16. The 
+average salary depends on the local condition, but as a proxy, in this case, it would equal approximately 
+3.0 to 3.2 times the minimum wage. 
+
+*Garage Depot/Maintenance*
+
+The garage depot/maintenance staff is responsible for maintaining the vehicles in operational conditions, 
+as well as aiming to reduce maintenance costs and breakdown occurrences. The garage depot/maintenance 
+personnel sizing issues are similar to the ones addressed in the operational control sizing. The denominator, 
+for the ratio analysis, is the operational fleet. 
+
+Typically, the expected positions should be:
+
+\item Head of maintenance;
+\item Maintenance supervisors;
+\item Mechanics;
+\item Assistant mechanics;
+\item Electricians;
+\item Panel beaters;
+\item Spray painters;
+\item Tire repairmen;
+\item Others.
+
+As an example, for the sizing of a vehicle operating company with an operating fleet of four hundred 
+vehicles, one could expect the following sizing parameters:
+
+\begintable{Sizing Parameters for Garage Depot/Maintenance (400 Vehicles)}
+\header
+\col Position
+\col #
+\col Salary (US$)
+\col Salary/Minimum Wage
+\col Total (US$)
+\col Weight
+\col Sizing Ratio
+\row
+\col Head of maintenance
+\col 1
+\col 3,557.14
+\col 11.8
+\col 3,557.14
+\col 5.30%
+\col 0.0025
+\row
+\col Maintenance supervisors
+\col 8
+\col 1,511.78
+\col 5
+\col 12,094.26
+\col 18.00%
+\col 0.02
+\row
+\col Mechanics
+\col 32
+\col 978.21
+\col 3.2
+\col 31,302.80
+\col 46.50%
+\col 0.08
+\row
+\col Assistant mechanics
+\col 32
+\col 293.46
+\col 1
+\col 9,390.84
+\col 13.90%
+\col 0.08
+\row
+\col Electricians
+\col 12
+\col 1,067.14
+\col 3.5
+\col 12,805.69
+\col 19.00%
+\col 0.03
+\row
+\col Panel beaters
+\col 12
+\col 889.28
+\col 2.9
+\col 10,671.41
+\col 15.80%
+\col 0.03
+\row
+\col Spray painters
+\col 8
+\col 1,067.14
+\col 3.5
+\col 8,537.13
+\col 12.70%
+\col 0.02
+\row
+\col Tire repairmen
+\col 8
+\col 622.50
+\col 2.1
+\col 4,979.99
+\col 7.40%
+\col 0.02
+\row
+\col Others
+\col 56
+\col 444.64
+\col 1.5
+\col 24,899.96
+\col 37.00%
+\col 0.14
+\row
+\col \highlight{Average total salary}
+\col \highlight{169}
+\col \highlight{699.64}
+\col \highlight{2.3}
+\col \highlight{118,239.22}
+\col \highlight{175.60%}
+\col \highlight{0.4225}
+\endtable
+
+Source: Logit. Currency conversions from R$ to US$ with 2013 exchange rate: 
+\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
+
+For this situation, one can derive a sizing ratio of approximately 0.42 in relation to the operating 
+fleet, and an average salary of approximately US$700 (R$1,575). The overhead of the garage depot/maintenance 
+department, which differs from the operational control, is smaller and most positions have a larger dependency 
+on the number of vehicles. 
+
+As an example, the table below shows the sizing for vehicle operating company with an operating fleet 
+of two hundred vehicles:
+
+\begintable{Sizing Parameters for Garage Depot/Maintenance (200 Vehicles)}
+\header
+\col \highlight{Position}
+\col \highlight{#}
+\col \highlight{Salary (US$)}
+\col \highlight{Salary/Minimum Wage}
+\col \highlight{Total (US$)}
+\col \highlight{Weight}
+\col \highlight{Sizing Ratio}
+\row
+\col Head of maintenance
+\col 1
+\col 3,557.14
+\col 11.8
+\col 3,557.14
+\col 5.30%
+\col 0.005
+\row
+\col Maintenance supervisors
+\col 5
+\col 1,511.78
+\col 5
+\col 7,558.92
+\col 11.20%
+\col 0.025
+\row
+\col Mechanics
+\col 17
+\col 978.21
+\col 3.2
+\col 16,629.61
+\col 24.70%
+\col 0.085
+\row
+\col Assistant mechanics
+\col 17
+\col 293.46
+\col 1
+\col 4,988.88
+\col 7.40%
+\col 0.085
+\row
+\col Electricians
+\col 7
+\col 1,067.14
+\col 3.5
+\col 7,469.99
+\col 11.10%
+\col 0.035
+\row
+\col Panel beaters
+\col 7
+\col 889.28
+\col 2.9
+\col 6,224.99
+\col 9.20%
+\col 0.035
+\row
+\col Spray painters
+\col 5
+\col 1,067.14
+\col 3.5
+\col 5,335.70
+\col 7.90%
+\col 0.025
+\row
+\col Tire repair men
+\col 5
+\col 622.50
+\col 2.1
+\col 3,112.49
+\col 4.60%
+\col 0.025
+\row
+\col Others
+\col 28
+\col 444.64
+\col 1.5
+\col 12,449.98
+\col 18.50%
+\col 0.14
+\row
+\col \highlight{Average total salary}
+\col \highlight{92}
+\col \highlight{731.82}
+\col \highlight{2.4}
+\col \highlight{67,327.70}
+\col \highlight{100.00%}
+\col \highlight{0.46}
+\endtable
+
+Source: Logit. Currency conversions from R$ to US$ with 2013 exchange rate: 
+\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
+
+As a result, one may see that the average salary is roughly the same and the ratio sizing parameter 
+had a small increase from 0.4225 to 0.4600. Of course, in case the vehicle operating company were considerably 
+smaller, or larger, probably the salary levels would change and the number of personnel would be altered 
+as well. In any case, it is safe to size the garage depot/maintenance to something in the range of 0.420 
+to 0.480, with an average salary of approximately 2.3 to 2.4 times the minimum wage.
+
+*Back Office Personnel*
+
+The back office personnel are assigned the responsibility of managing the company and performing the 
+roles of recruiting and procurement, among others. Since the back office size relates to the overall 
+size of the company, one could argue using as a denominator for the ratio parameter the total number 
+of buses, considering the operational and reserve fleet. However, in order to keep coherence with the 
+other personnel sizing above and considering that the back office is usually more dependent on people 
+than assets, it is recommended the use of the same driver index: personnel/operational fleet. 
+
+The back office, similar to the operational control department, is less scalable than other operational 
+positions. Independent of the size of the company, a minimum structure is required, which is usually 
+sufficient for a larger “leap” in overall employee numbers. In other words, the back office increases 
+in steps. 
+
+Typically, the expected positions for the back office personnel are:
+\item Back office manager;
+\item Secretary;
+\item Head of employee relations;
+\item Accountant;
+\item Nurse;
+\item Work safety engineer;
+\item Work safety technician;
+\item [Assistants:
+\item Accounting; 
+\item Financial;
+\item Employee relations; 
+\item Data processing; 
+\item Procurement; 
+\item Administrative; 
+\item Other assistants.]
+
+As an example, for the sizing of a vehicle operating company with an operating fleet of four hundred 
+vehicles, one could expect the following sizing parameters:
+\begintable{Sizing Parameters for Back Office Personnel (400 Vehicles)}
+\header
+\col Position
+\col #
+\col Salary (US$)
+\col Salary/Minimum Wage
+\col Total (US$)
+\col Weight
+\col Sizing Ratio
+\row
+\col Back office manager
+\col 1
+\col 3,601.60
+\col 11.9
+\col 3,601.60
+\col 11.00%
+\col 0.0025
+\row
+\col Secretary
+\col 2
+\col 500.22
+\col 1.7
+\col 1,000.44
+\col 3.10%
+\col 0.005
+\row
+\col Employee relations head
+\col 2
+\col 1,600.71
+\col 5.3
+\col 3,201.42
+\col 9.80%
+\col 0.005
+\row
+\col Accountant
+\col 1
+\col 2,000.89
+\col 6.6
+\col 2,000.89
+\col 6.10%
+\col 0.0025
+\row
+\col Accounting assistant
+\col 2
+\col 800.36
+\col 2.7
+\col 1,600.71
+\col 4.90%
+\col 0.005
+\row
+\col Financial assistant
+\col 2
+\col 1,000.44
+\col 3.3
+\col 2,000.89
+\col 6.10%
+\col 0.005
+\row
+\col Employee relations assistant
+\col 4
+\col 500.22
+\col 1.7
+\col 2,000.89
+\col 6.10%
+\col 0.01
+\row
+\col Data processing assistant
+\col 3
+\col 800.36
+\col 2.7
+\col 2,401.07
+\col 7.30%
+\col 0.0075
+\row
+\col Procurement assistant
+\col 1
+\col 800.36
+\col 2.7
+\col 800.36
+\col 2.40%
+\col 0.0025
+\row
+\col Administrative assistant
+\col 5
+\col 800.36
+\col 2.7
+\col 4,001.78
+\col 12.20%
+\col 0.0125
+\row
+\col Other assistants
+\col 8
+\col 333.48
+\col 1.1
+\col 2,667.85
+\col 8.20%
+\col 0.02
+\row
+\col Nurse
+\col 2
+\col 500.22
+\col 1.7
+\col 1,000.44
+\col 3.10%
+\col 0.005
+\row
+\col Work safety engineer
+\col 1
+\col 1,600.71
+\col 5.3
+\col 1,600.71
+\col 4.90%
+\col 0.0025
+\row
+\col Work safety technician
+\col 6
+\col 800.36
+\col 2.7
+\col 4,802.13
+\col 14.70%
+\col 0.015
+\row
+\col \highlight{Average total salary}
+\col \highlight{40}
+\col \highlight{817.03}
+\col \highlight{2.7}
+\col \highlight{32,681.19}
+\col \highlight{100.00%}
+\col \highlight{0.1}
+\endtable
+
+Source: Logit. Currency conversions from R$ to US$ with 2013 exchange rate: 
+\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
+
+For this situation, one can derive a sizing ratio of 0.10, in relation to the operating fleet, and 
+an average salary of approximately US$820.00 (R$1,840.00). As mentioned before, there is less room 
+for scalability due to size and most positions still require at least two employees. 
+
+As an example, the table below shows the sizing for vehicle operating company with an operating fleet 
+of two hundred vehicles:
+
+\begintable{Sizing Parameters for Back Office Personnel (200 Vehicles)}
+\header
+\col Position
+\col #
+\col Salary (US$)
+\col Salary/Minimum Wage
+\col Total (US$)
+\col Weight
+\col Sizing Ratio
+\row
+\col Back office manager
+\col 1
+\col 3.60
+\col 11.9
+\col 3,601.60
+\col 15.10%
+\col 0.005
+\row
+\col Secretary
+\col 2
+\col 500.22
+\col 1.7
+\col 1,000.44
+\col 4.20%
+\col 0.01
+\row
+\col Employee relations head
+\col 1
+\col 1,600.71
+\col 5.3
+\col 1,600.71
+\col 6.70%
+\col 0.005
+\row
+\col Accountant
+\col 1
+\col 2,000.89
+\col 6.6
+\col 2,000.89
+\col 8.40%
+\col 0.005
+\row
+\col Accounting assistant
+\col 2
+\col 800.36
+\col 2.7
+\col 1,600.71
+\col 6.70%
+\col 0.01
+\row
+\col Financial assistant
+\col 2
+\col 1,000.44
+\col 3.3
+\col 2,000.89
+\col 8.40%
+\col 0.01
+\row
+\col Employee relations assistant
+\col 2
+\col 500.22
+\col 1.7
+\col 1,000.44
+\col 4.20%
+\col 0.01
+\row
+\col Data processing assistant
+\col 2
+\col 800.36
+\col 2.7
+\col 1,600.71
+\col 6.70%
+\col 0.01
+\row
+\col Procurement assistant
+\col 1
+\col 800.36
+\col 2.7
+\col 800.36
+\col 3.30%
+\col 0.005
+\row
+\col Administrative assistant
+\col 3
+\col 800.36
+\col 2.7
+\col 2,401.07
+\col 10.00%
+\col 0.015
+\row
+\col Other assistants
+\col 3
+\col 333.48
+\col 1.1
+\col 1,000.44
+\col 4.20%
+\col 0.015
+\row
+\col Nurse
+\col 1
+\col 500.22
+\col 1.7
+\col 500.22
+\col 2.10%
+\col 0.005
+\row
+\col Work safety engineer
+\col 1
+\col 1,600.71
+\col 5.3
+\col 1,600.71
+\col 6.70%
+\col 0.005
+\row
+\col Work safety technician
+\col 4
+\col 800.36
+\col 2.7
+\col 3,201.42
+\col 13.40%
+\col 0.02
+\row
+\col \highlight{Average total salary}
+\col \highlight{26}
+\col \highlight{919.64}
+\col \highlight{3.1}
+\col \highlight{23,910.63}
+\col \highlight{100.00%}
+\col \highlight{0.13}
+\endtable
+
+Source: Logit. Currency conversions from R$ to US$ with 2013 exchange rate: 
+\url{https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates}
+
+As a result, one may see that the average salary is slightly higher, which is consistent with the inability 
+to shed the upper level positions. The ratio sizing parameter thus has a 30 percent increase, going from 
+0.10 to 0.13. In any case, it is safe to size the back office personnel in the range of 0.090 to 0.150, 
+with an average salary of approximately 2.7 to 3.1 times the minimum wage.
+
+*Directors Pay*
+
+Lastly, there is the sizing of the cost related to the company’s directors. This sizing parameter could 
+be considered within the back office personnel, but since this item is even less scalable and more dependent 
+on the specific operation/country conditions, it is best to treat it separately. 
+
+As an example, for a vehicle operating company with approximately 400 vehicles in Brazil, it is possible 
+to observe payments to directors totaling up to US$40,000 per month (about R$90,000 per month)—approximately 
+65 minimum wages. If the company were half that size, in terms of vehicles, and thus generating less 
+revenue and profits, this total director payment amount could be reduced by 30 to 50 percent. Since for 
+the financial model what matters is the total cost related to the directors, one could have more directors 
+earning less each, or the opposite. In any case, this is a less sensible item in terms of total Opex 
+and is strongly dependent on regional conditions.
+
+In addition to the expenses mentioned above, there are other operating expenditures that are less significant 
+but that should be considered.
+
+*Licensing/Insurance/City Taxes*
+
+Usually, each vehicle is subject to yearly licensing, obligatory insurance, and city taxes. Licensing 
+and insurance tend to have a fixed value per vehicle. Hence, at a given time in the year, the vehicle 
+operating company will be required to renew these licenses for the entire fleet (operational and reserve). 
+City taxes may also be fixed, or possess descending yearly values per vehicle, based upon on vehicle 
+age. These unit values are specific to each city and country. Moreover, there are additional insurances 
+that may be contracted by the vehicle operating company that may be paid monthly. 
+
+*Onboard Surveillance and Fare Maintenance*
+
+Depending on the system attributes, it may be the operating vehicle company’s responsibility to maintain 
+the onboard fare system and surveillance equipment, as well as paying for the data communication fees. 
+
+
+This is not a substantial value, and in Brazil, these values may amount to about US$245 per month 
+(approximately R$550 per month).
+
+*Other Costs*
+
+Finally, there are many other overhead costs, whose individual sizing is not recommended. Usually, 
+these costs amount to 3 to 8 percent of total operational expenditures and, as such, it is recommended 
+to treat them as a percent markup on total operating costs. 
+
+A list of items included in this estimation is presented below:
+\item Water and sewage;
+\item Electric energy;
+\item Communications costs (telephone and internet);
+\item Building upkeep;
+\item Security;
+\item Certifications;
+\item Land tax;
+\item Accounting and legal support;
+\item Other equipment/machinery maintenance;
+\item Banking expenses and money transport;
+\item Other support vehicle expenses;
+\item Food;
+\item Marketing and public relations;
+\item Office supplies;
+\item Data processing;
+\item Environmental protection/waste management;
+\item Publications;
+\item Travel;
+\item Other.
+
+\subsection{Capital Expenditures (Capex)}
+
+Capex refers to expenditures whose aim it is to create future benefits. A capital expenditure is incurred 
+when a business spends money either to buy fixed assets or to add to the value of an existing asset, 
+with a useful life that extends beyond the tax year.
+
+\title{Vehicles}
+
+*Acquisition*
+
+For the vehicle operating company, the initial vehicle acquisition is the single most important capital 
+expenditure of the operation. Since the vehicles must be acquired before the operation commences, they 
+happen before the “zero” date mark, occurring between the year before year zero and the moment year zero 
+starts. As discussed previously, this implies that the vehicle acquisition cost be considered at year 
+zero. For the financial analysis, this consideration is of paramount importance; otherwise, profitability 
+indexes may be considerably overestimated.
+
+Regarding the vehicle acquisition cost, it is important that the vehicle make, year, engine technology, 
+emissions standard, seat capacity, and possession of an air conditioning system be clearly defined. Depending 
+on the engine technology and emissions standard, vehicle cost may increase substantially. Also, if the 
+vehicle is equipped for air conditioning, not only will there be an additional air conditioning equipment 
+cost, but windows and doors may have to be fitted differently, further increasing assembly cost.
+
+As an estimate of these values, one must not rely entirely on quotation values, since they are generally 
+overestimated unless there is a firm intention of buying or request on the table. It is recommended that 
+one try to obtain actual vehicle transaction values for similar specifications in similar regions, in 
+order to obtain a better vehicle price estimation.
+
+*Replacements*
+
+Ideally, vehicles should be replaced when they reach their useful life. In some systems, which have 
+been operating under the same concessionaire over a long period, the public agency may establish a maximum 
+fleet average age, to gradually replace the older vehicles without having to impose a drastic fleet renovation. 
+This practice is satisfactory for an evenly distributed or old fleet; however, if the fleet is new, it 
+may cause a suboptimal fleet usage. The reason for this is that one would have to replace vehicles just 
+slightly over the target average age to maintain the overall fleet age below the average target age. 
+This situation should be avoided if possible.
+
+The vehicle useful life may vary per the vehicle typology (18-meter articulated bus, 12-meter bus, 
+etc.), if it runs in mixed traffic, and the quality of the pavement, among other variables. One usually 
+establishes the useful life as the tipping point before major repairs are needed to the chassis and engine. 
+For modern/latest series engines, this is said to be on average one million kilometers, which for articulated 
+vehicles running in segregated lanes 65,000 kilometers per month on average, this translates roughly 
+to twelve years. However, with proper maintenance and vehicle care, the useful life can be extended past 
+this projected useful life.
+
+Once the useful life is reached, the vehicles must be replaced with new vehicles, whose purchase order 
+must be made at least six months before the actual moment these new vehicles are required for operation. 
+Consequently, if the vehicle is to be replaced at the end of year eight, for instance, then the new vehicle 
+acquisition must also be concluded in year eight. 
+
+At the moment of vehicle replacement, it is possible that the financing conditions available at year 
+zero are no longer the same. The reason for this is twofold: 
+\item Sometimes special conditions are given for new systems, where the government assumes part of the 
+investment risk and hence the interest rates and conditions are better;
+\item Usually, for a diverse fleet, the replacement of all vehicles does not happen simultaneously, 
+hence the total investing amount is different. That being said, for lesser amounts, perhaps certain credit 
+lines may not be available.
+
+In any case, these financing considerations are only pertinent in a leveraged/shareholder appraisal. 
+In that case, it is important to treat the financing options accordingly.
+
+\title{Depot and Other Capex}
+
+In addition to the vehicle acquisition costs, there are other significant capital expenditures worth 
+noting. Most of these other capital costs are incurred at the beginning of the operation or at the system’s 
+startup. 
+
+*Land/Depot Acquisition*
+
+The first other capital expenditure worth mentioning is the land/depot acquisition cost. For this item, 
+it is important to determine if the land is to be leased/donated by the city, or if it will be the vehicle 
+operating company’s responsibility to procure it. 
+
+The argument in favor of the city donating/leasing the land or, better yet, renting it, is that the 
+city may make “one off” investments and clear well-positioned land in order to maximize system efficiency. 
+In the case that the depot is well positioned, the system’s dead kilometers (the distance from the depot 
+to the routes) may be reduced to a minimum, which in return minimizes the variable, nonproductive, operational 
+cost. Since the total vehicle operating cost determines the technical fare and, consequently, the fare 
+price or system subsidy, it is in the system’s best interest to minimize avoidable costs to the fullest.
+
+Once the system is established, densely populated “prime” real estate locations close to the corridor 
+have dramatically higher land acquisition costs. The vehicle operating company will be inclined to set 
+up its depot facility at places “close enough” to the system that possess an accessible land acquisition 
+price. As a result, these locations may be suboptimal. Also, leasing/renting the land is a way of reducing 
+the start-up cost, and hence improve the operating company’s profitability, which in return allows for 
+lower tariffs or subsidies. The argument in favor of the vehicle operating company procuring and setting 
+up its own depot greatly simplifies the whole process, with much less city bureaucracy involved.
+
+In any case, leaving the above issue aside, it is necessary to determine the size of the land needed 
+for the depot. As a rule of thumb, one may use the following sizing correspondence:
+\item Small vehicle—about 30 square meters;
+\item 8-meter vehicle—about 80 square meters;
+\item 12- to 13-meter vehicle—100 square meters;
+\item 18-meter articulated vehicle—150 square meters;
+\item Double articulated 24- to 28- meter vehicle—200 square meters.
+
+It is important to state that the correspondence above is based upon average values and includes necessary 
+areas for bus parking, fueling, maintenance, and the administration building. Once a total amount of 
+square meters is determined, it is necessary to obtain a market price per square meters at that location’s 
+whereabouts in order to calculate the total land acquisition capital cost. In the case that the responsibility 
+lies with the vehicle operating company, then the land acquisition would be a onetime acquisition to 
+take place at year zero.
+
+*Depot Setup*
+
+Once the depot land is determined, the next capital expenditure is the depot setup. Depot setup may 
+be divided into two components:
+
+\item Building/edification costs;
+\item Equipment and installation costs.
+
+It may be a bit tricky to separate, at times, the edification costs from installation costs and, likewise, 
+the equipment costs from installation costs. However, one should attempt to at least separate the building/edification 
+costs, since they possess different depreciation and renewal rates. 
+
+Building/edification costs refer to the infrastructure setup of the garage depot. In order to size 
+the total cost ideally, a block layout for the depot should be developed/made available. This would indicate 
+how the depot is to be set up, the paving and covering, among other definitions. However, garage depots 
+do not require special or complex setups, and based upon other garage depot reference investment values, 
+it is possible to approximate the sizing of the investment for a new location. Since the driving parameter 
+for garage depot investment amount is the required depot area, and that in return is dependent on the 
+total fleet size, one may use the fleet size as the driving parameter for depot building/edification 
+costs. As is the case of the land acquisition, the depot building/edification Capex are a onetime acquisition 
+to take place at year zero.
+
+The other component of the depot setup is the equipment and installation costs. For an initial setup, 
+the installation costs are considerably more and may amount to as much as two-thirds of the equipment 
+costs. However, it may be a bit tricky to separate the two, hence one can regard them jointly as equipment 
+and installation costs. The equipment side of this equation will need replacing over time and, through 
+observation, one may consider a periodic renewal rate of 20 percent of the total cost related to equipment 
+and installation every five years. This means that in addition to the initial acquisition at year zero, 
+there should be subsequent renewal rates at years five, ten, and so forth. Given that the equipment acquisition 
+is also proportional to the fleet size it needs to service, the driving parameter for the equipment and 
+installation Capex may also be the fleet size.
+
+Based upon other systems’ information, in Brazil, the total expenditure for building/edification, equipment 
+and installation costs may range between about US$9,000 to US$13,000 per vehicle (R$20,000 to 30,000 
+per vehicle—currency conversions from R$ to US$ with 2013 exchange rate). Of this amount, roughly 50 
+percent relates to depot building and edifications, 20 percent to installation costs, and approximately 
+30 percent to the equipment costs. In any case, a more detailed analysis should be conducted to validate 
+these ballpark numbers. 
+
+*Equipment—ITS per Vehicle*
+
+Together with the depot setup capital expenditures, the additional relevant “other” capital expenditure 
+has to do with the intelligent transportation systems (ITS). With ITS, one encompasses the onboard fare 
+system (necessary, especially for feeder buses), the monitoring system (CCTV, onboard computer), and 
+the bus panels for variable messaging. This cost may vary according to system specifications. For instance, 
+an onboard fare system may not be required or more sophisticated components with additional functionalities 
+may be necessary. In any case, the three functionalities mentioned above serve as good references for 
+what is generally needed. 
+
+Since this equipment is to be mounted on the vehicles, the driving parameter for its sizing is also 
+total fleet size. Given that the equipment is prone to wear and tear, one may consider a periodic renewal 
+rate of 20 percent every five years. In other words, in addition to the initial acquisition at year zero, 
+there should be subsequent renewals rates at years five, ten, and so forth. 
+
+The total cost per bus for this equipment installation may vary depending on if it is to be installed 
+on an existing fleet or on a new fleet. Ideally, the equipment should be installed during vehicle assembly, 
+since the installation itself is of better quality, and this reduces the cost. In Brazil, the approximate 
+ITS Capex is approximately US$6,600 to US$5,300 (R$12,000 to R$15,000 per vehicle—currency conversions 
+from R$ to US$ with 2013 exchange rate). This value is roughly 50 percent related to the fare system, 
+35 percent related to the monitoring system, and 15 percent related to the variable messaging panels.

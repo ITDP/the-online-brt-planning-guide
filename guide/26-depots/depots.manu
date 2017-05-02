@@ -1,7 +1,5 @@
 \chapter{Depots}
 
-\highlight{Contributors:} Andre Frieslaar, **HHO Africa**; Ulises Navarro, **ITDP Latin America**; Karina Licea, **consultant**
-
 \quotation{Maintenance is terribly important.}
 {Manolo Blahnik, fashion designer, 1942–}
 
@@ -21,3 +19,5 @@ are discussed and, finally, the need for intermediate parking facilities within 
 \include{265-design-considerations.manu}
 \include{266-intermediate-parking-facilities.manu}
 \include{267-cost.manu}
+
+\highlight{Contributors:} Andre Frieslaar, **HHO Africa**; Ulises Navarro, **ITDP Latin America**; Karina Licea, **consultant**

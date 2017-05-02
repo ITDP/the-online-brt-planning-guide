@@ -32,7 +32,7 @@ class Parser {
 		"volume", "chapter", "section", "subsection", "subsubsection", "title",
 		"figure", "quotation", "item", "number", "beginbox", "endbox", "include",
 		"begintable", "header", "row", "col", "endtable",
-		"meta", "reset", "tex", "preamble", "export", "html", "apply"];
+		"meta", "reset", "tex", "preamble", "export", "html", "store", "head"];
 	static var horizontalCommands = ["sup", "sub", "emph", "highlight", "url"];
 	static var hardSuggestions = [  // some things can't be infered automatically
 		"quote" => "quotation",
@@ -231,7 +231,19 @@ class Parser {
 	function hlist(stop:Stop)
 		return mkList(horizontal(stop));
 
-	// FIXME document slash behavior
+	/*
+	Read in raw mode
+
+	In this mode, tokens are converted back to their original inputs, with
+	the exceptions bellow:
+	 - escapes are processed and, thus, retained their interpreted value
+	 - comments are discarded
+	
+	Note: because of this, in raw mode is perfectly valid to write
+	`\windows`, even though we don't have such command; this is
+	intentional, so that it's possible – although not encouraged – to pass
+	Windows-style paths with backslashes.
+	*/
 	function rawHorizontal(stop:Stop):String
 	{
 		var buf = new StringBuf();
@@ -245,7 +257,7 @@ class Parser {
 				break;
 			case { def:TComment(_) }:
 				pop();
-			case { def:TWord(w)|TEscaped(w) }:
+			case { def:TEscaped(w) }:
 				pop();
 				buf.add(w);
 			case { src:src, pos:pos }:
@@ -332,7 +344,7 @@ class Parser {
 				if (!peek().def.match(TCommand("row"))) break;
 				var row = tableRow(pop());
 				rows.push(row);
-				assert(row.length == header.length, row.length, header.length, rows.length, begin.pos);
+				assert(row.length == header.length, row.length, header.length, rows.length, begin.pos.toString());
 			}
 			var end = pop();  // should have already discarted any vnoise before
 			if (end.def.match(TEof)) unclosed(begin);
@@ -452,10 +464,17 @@ class Parser {
 		var p = arg(rawHorizontal, cmd, "source path");
 		var path = mk(p.val, p.pos.offset(1, -1));
 		return switch cmd.def {
-		case TCommand("apply"): mk(HtmlApply(path), cmd.pos.span(p.pos));
+		case TCommand("store"): mk(HtmlStore(path), cmd.pos.span(p.pos));
 		case TCommand("preamble"): mk(LaTeXPreamble(path), cmd.pos.span(p.pos));
 		case _: unexpected(cmd);
 		}
+	}
+
+	function htmlEmbed(cmd:Token)
+	{
+		assert(cmd.def.match(TCommand("head")), cmd);
+		var p = arg(rawHorizontal, cmd, "html");
+		return mk(HtmlToHead(p.val), cmd.pos.span(p.pos));
 	}
 
 	function texExport(cmd:Token)
@@ -474,8 +493,10 @@ class Parser {
 		return switch [meta.def, exec.def] {
 		case [TCommand("meta"), TCommand("reset")]: 
 			metaReset(exec);
-		case [TCommand("html"), TCommand("apply")], [TCommand("tex"), TCommand("preamble")]:
+		case [TCommand("html"), TCommand("store")], [TCommand("tex"), TCommand("preamble")]:
 			targetInclude(exec);
+		case [TCommand("html"), TCommand("head")]:
+			htmlEmbed(exec);
 		case [TCommand("tex"), TCommand("export")]:
 			texExport(exec);
 		case _:

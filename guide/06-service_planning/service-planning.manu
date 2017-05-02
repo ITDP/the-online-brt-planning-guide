@@ -1,7 +1,5 @@
 \chapter{Service Planning}
 
-\highlight{Contributors:} Walter Hook , *BRT Planning International*;  Pedro Szász , *consultant*;  Arthur Szász , *Protocubo*;  Annie Weinstock , *BRT Planning International*;  Ulises Navarro , *ITDP Latin America*;  Chris Kost , *ITDP Africa*;  Karl Fjellstrom, *Far East BRT*
-
 \quotation{Always design a thing by considering it in its next larger context—a chair in a room, a room in a house, a house in an environment, an environment in a city plan.}
 {Eliel Saarinen, architect, 1873–1950}
 
@@ -57,3 +55,5 @@ The topics discussed in this chapter are:
 \include{67-deciding-on-stop-elimination-and-express-services.manu}
 \include{68-creating-new-routes-and-combining-old-routes.manu}
 \include{69-pulling-services-onto-a-brt-trunk-corridor-from-a-parallel-corridor.manu}
+
+\highlight{Contributors:} Walter Hook , *BRT Planning International*;  Pedro Szász , *consultant*;  Arthur Szász , *Protocubo*;  Annie Weinstock , *BRT Planning International*;  Ulises Navarro , *ITDP Latin America*;  Chris Kost , *ITDP Africa*;  Karl Fjellstrom, *Far East BRT*

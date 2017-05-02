@@ -1,7 +1,5 @@
 \chapter{Fare Systems}
 
-\highlight{Contributors:} Christoff Krogscheepers, *ITS Engineers*; Fabio Gordillo, *GSD PLUS*; Chris Kost, *ITDP Africa*
-
 \quotation{Buy the ticket, take the ride.}
 {Hunter S. Thompson, journalist and author, 1937–2005}
 
@@ -60,3 +58,5 @@ The sections below discuss each of these components in more detail.
 \include{186-tendering-process.manu}
 \include{187-costs.manu}
 \include{188-case-studies.manu}
+
+\highlight{Contributors:} Christoff Krogscheepers, *ITS Engineers*; Fabio Gordillo, *GSD PLUS*; Chris Kost, *ITDP Africa*

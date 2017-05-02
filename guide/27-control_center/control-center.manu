@@ -1,7 +1,5 @@
 \chapter{Control Center}
 
-\highlight{Contributors:} Johann Andersen, *Techso*
-
 \quotation{Everyone in a complex system has a slightly different interpretation. The more interpretations we gather, the easier it becomes to gain a sense of the whole.}
 {Margaret J. Wheatley, writer and management consultant, 1944–}
 
@@ -30,3 +28,5 @@ not adequately adapted to existing infrastructure and operational needs, like ac
 \include{building-requirements.manu}
 \include{costing.manu}
 \include{operational-requirements.manu}
+
+\highlight{Contributors:} Johann Andersen, *Techso*

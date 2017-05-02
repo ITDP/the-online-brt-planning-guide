@@ -1,7 +1,5 @@
 \chapter{Vehicles}
 
-\highlight{Contributors:} Anne Krassner, **Citi Bike NYC**; Carlos Pardo, **Despacio**; Chris Kost, **ITDP Africa**
-
 \quotation{Don’t worry, sweetie, don’t worry! Nobody in New York notices a bus until it’s about to hit them!  (Samantha in “Sex and the City”)}
 {Kim Cattrall, actress, 1956--}
 
@@ -53,3 +51,5 @@ spare parts, and operational costs should be an integral part of the decision-ma
 \include{209-docking-systems.manu}
 \include{2010-vehicle-costs.manu}
 \include{2011-bibliography.manu}
+
+\highlight{Contributors:} Anne Krassner, **Citi Bike NYC**; Carlos Pardo, **Despacio**; Chris Kost, **ITDP Africa**

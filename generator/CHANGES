@@ -14,11 +14,16 @@
  - ui: added `DRAFT_NO_MATH_VALIDATION` and `DRAFT_DINOSSAUR_FIGURES` configuration environment variables: both are implied from `DRAFT`
  - ui: added `TEX_NO_POSITIONS` configuration environment variables
  - other small fixes and improvements
+ - html: generate cleaner urls (#119)
+ - syntax: add `\html\store` for storing assets manually
+ - syntax: add `\html\head` for writing to the <head>
+ - syntax: ~deprecate~ remove `\html\apply`
 
 1.0.0-alpha: development of a stable system
  - syntax: change math markers to `$$`; `\$` is still allowed, but is mostly unnecessary
  - other: better error messages throughout
  - ui: add color and underscore highlight modes for error context
+ - optimization: add an asset server for sharing across builds, branches and pull requests
  - many more fixes, improvements and additions
 
 0.0.2: total rewrite of the generator and the spec

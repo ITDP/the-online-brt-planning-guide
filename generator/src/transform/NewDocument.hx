@@ -12,7 +12,8 @@ typedef BlobSize = parser.BlobSize;
 A document level definition.
 */
 enum DDef {
-	DHtmlApply(path:PElem);
+	DHtmlStore(path:PElem);
+	DHtmlToHead(template:String);
 	DLaTeXPreamble(path:PElem);
 	DLaTeXExport(src:PElem, dest:PElem);
 

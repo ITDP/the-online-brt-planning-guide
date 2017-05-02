@@ -75,15 +75,17 @@ class Main {
 				if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
 				if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
 
+				var hasher = new AssetHasher();
+
 				println(ANSI.set(Green) + " --> HTML generation" + ANSI.set(Off));
 				Context.time("html generation", function () {
-					var hgen = new html.Generator(Path.join([opath, "html"]), true);
+					var hgen = new html.Generator(hasher, Path.join([opath, "html"]), true);
 					hgen.writeDocument(doc);
 				});
 
 				println(ANSI.set(Green) + " --> PDF preparation (TeX generation)" + ANSI.set(Off));
 				Context.time("tex generation", function () {
-					var tgen = new tex.Generator(Path.join([opath, "pdf"]));
+					var tgen = new tex.Generator(hasher, Path.join([opath, "pdf"]));
 					tgen.writeDocument(doc);
 				});
 
@@ -98,8 +100,29 @@ class Main {
 			println('  $k: ${Math.round(Context.timer[k]*1e3)} ms');
 	}
 
+	static function customTrace(msg, ?pos:haxe.PosInfos)
+	{
+		var buf = new StringBuf();
+		buf.add(" --> ");
+		buf.add(msg);
+		if (pos.customParams != null) {
+			buf.add(" {{ ");
+			buf.add(pos.customParams.join(", "));
+			buf.add(" }}");
+		}
+		buf.add("  // in ");
+		buf.add(pos.methodName);
+		buf.add(" (");
+		buf.add(pos.fileName);
+		buf.add(":");
+		buf.add(pos.lineNumber);
+		buf.add(")\n");
+		js.Node.process.stderr.write(buf.toString());
+	}
+
 	static function main()
 	{
+		haxe.Log.trace = customTrace;
 		print(ANSI.set(Bold) + BANNER + "\n\n" + ANSI.set(Off));
 
 		Context.debug = Context.debug;
@@ -111,7 +134,7 @@ class Main {
 
 		Context.prepareSourceMaps();
 		Assertion.enableShow = Context.debug;
-		Assertion.enableWeakAssert = Context.debug;
+		Assertion.enableWeakAssert = true;
 		Assertion.enableAssert = true;
 
 		try {
@@ -138,7 +161,9 @@ class Main {
 			print(ANSI.set(Bold,Red));
 			if (Context.debug) print("Lexer ");
 			var cpos = e.pos.toPosition();
-			cpos.max = cpos.min + e.char.length;  // hxparse.UnexpectedChar generates 0 length positions
+			// hxparse generates errors with 0-length positions; we don't
+			if (cpos.max == cpos.min)
+				cpos.max = cpos.min + e.char.length;
 			var hl = cpos.highlight(80).renderHighlight(Context.hlmode).split("\n");
 			println('ERROR: Unexpected character `${e.char}`');
 			print(ANSI.set(Off));

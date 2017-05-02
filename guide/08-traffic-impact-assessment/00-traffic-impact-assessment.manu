@@ -1,7 +1,5 @@
 \chapter{Traffic-Impact Assessment}
 
-\highlight{Contributors:} Chrsitoff Krogscheepers, *ITS Engineers*; Ulises Navarro, *ITDP Latin America*; Pedro Szász, *consultant*; Carlos Pardo, *Despacio*; Annie Weinstock, *BRT Planning International*
-
 \quotation{A life is not important except in the impact it has on other lives.}
 {Jackie Robinson, first African American to play in Major League Baseball, 1919–1972}
 
@@ -50,3 +48,5 @@ on the side of the road.}{ Duan Xiaomei, GMEDRI}
 \include{85-estimating-traffic-volumes.manu}
 \include{86-methodologies-and-performance-measures.manu}
 \include{87-mitigation.manu}
+
+\highlight{Contributors:} Chrsitoff Krogscheepers, *ITS Engineers*; Ulises Navarro, *ITDP Latin America*; Pedro Szász, *consultant*; Carlos Pardo, *Despacio*; Annie Weinstock, *BRT Planning International*

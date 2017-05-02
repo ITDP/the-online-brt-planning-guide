@@ -105,6 +105,12 @@ class Test_05_Transform {
 		no.chapter = 0;
 		Assert.equals(0, no.chapter);
 		Assert.equals(0, no.lastChapter);
+
+		// keep lastChapter if non-zero even after volume reset
+		no.chapter = 1;
+		@:privateAccess no.lastChapter = 2;
+		no.volume = 2;
+		Assert.equals(2, no.lastChapter);
 	}
 
 	public function test_old_001_example()
@@ -259,7 +265,7 @@ class Test_05_Transform {
 				@id("k")@wrap(9,0)DChapter(3,@len(1)Word("k"),@skip(1)DElemList([DParagraph(@len(1)Word("l")),
 				@id("m")@wrap(9,0)DSection(1,@len(1)Word("m"),@skip(1)DElemList([DParagraph(@len(1)Word("n")),
 				@id("o")@wrap(12,0)DSubSection(1,@len(1)Word("o"),@skip(1)DElemList([DParagraph(@len(1)Word("p")),
-				@id("c")@wrap(8,1)DFigure(1,MarginWidth,@elem@len(1)"f",@skip(2)@len(1)Word("c"),@skip(2)@len(2)Word("cp"))])),  // 3-1 -> Chapter3,Fig1
+				@id("f")@wrap(8,1)DFigure(1,MarginWidth,@elem@len(1)"f",@skip(2)@len(1)Word("c"),@skip(2)@len(2)Word("cp"))])),  // 3-1 -> Chapter3,Fig1
 				@id("q")@wrap(12,0) DSubSection(2,@len(1) Word("q"),@skip(1) DParagraph(@len(1) Word("r")))]))]))]))
 			])),
 		parse("\\volume{a}b\\chapter{c}d\\chapter{e}f\\section{g}h\\section{i}j\\chapter{k}l\\section{m}n\\subsection{o}p\\figure{f}{c}{cp}\\subsection{q}r"));

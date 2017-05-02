@@ -14,6 +14,8 @@ using StringTools;
 	public var File = "Generic file";
 	public var Jpeg = "JPEG/JPG image file";
 	public var Png = "PNG image file";
+	public var Gif = "GIF image file";
+	public var Ico = "ICO icon file";
 	public var Js = "Javascript source file";
 	public var Css = "Cascading style sheet (CSS) file";
 	public var Tex = "TeX source file";
@@ -23,6 +25,7 @@ using StringTools;
 		return switch this {
 		case Jpeg: ["jpeg", "jpg"];
 		case Png: ["png"];
+		case Ico: ["ico"];
 		case Js: ["js"];
 		case Css: ["css"];
 		case Tex: ["tex"];
@@ -164,7 +167,8 @@ class Validator {
 		case DElemList(_): "[list of elements]";
 		case DLaTeXPreamble(_): "LaTeX preamble configuration";
 		case DLaTeXExport(_): "LaTeX export call";
-		case DHtmlApply(_): "CSS inclusion";
+		case DHtmlStore(_): "Asset inclusion";
+		case DHtmlToHead(_): "Append to <head>";
 		}
 	}
 	
@@ -230,9 +234,9 @@ class Validator {
 			var ndest = Path.normalize(dest);
 			if (ndest.startsWith(".."))
 				errors.push(new ValidationError(d.pos, EscapingOutputPath(dest)));
-		case DHtmlApply(path):
-			push(validateSrcPath(path, [Css]));
-		case DCodeBlock(_), DEmpty:
+		case DHtmlStore(path):
+			push(validateSrcPath(path, [File]));
+		case DHtmlToHead(_), DCodeBlock(_), DEmpty:
 			// nothing to do
 		}
 	}

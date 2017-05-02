@@ -23,8 +23,8 @@ class LargeTable {
 
 	// external parameters
 	// TODO make metas commands to change them
-	static inline var NO_MODULES = 30;
-	static inline var NO_MODULES_LARGE = 46;
+	static inline var NO_MODULES = 30*2;
+	static inline var NO_MODULES_LARGE = 46*2;
 	static inline var MIN_COLUMN = 5;
 	static inline var SEPAR_SIZE = 1;
 
@@ -48,7 +48,7 @@ class LargeTable {
 	{
 		if (v == null || v.def == null) return 0.;
 		return switch v.def {
-		case DLaTeXPreamble(_), DLaTeXExport(_), DHtmlApply(_), DEmpty: 0;
+		case DLaTeXPreamble(_), DLaTeXExport(_), DHtmlStore(_), DHtmlToHead(_), DEmpty: 0;
 		case DVolume(_), DChapter(_), DSection(_), DSubSection(_), DSubSubSection(_): BAD_COST; // not allowed in tables
 		case DElemList(li):
 			var cnt = 0.;
@@ -114,8 +114,12 @@ class LargeTable {
 				}
 			}
 		}
-		var check = available - Lambda.fold(icost, function (p,x) return p+x, 0);
-		weakAssert(check == 0 && Lambda.foreach(icost, function (x) return x >= MIN_COLUMN), check, width, ncost, icost, priori, itCnt, pos.toLinePosition());
+		var isum = Lambda.fold(icost, function (p,x) return p + x, 0);
+		var tiny = Lambda.filter(icost, function (x) return x < MIN_COLUMN);
+		if (Context.debug)
+			weakAssert(isum == available && tiny.length == 0, isum, available, width, ncost, icost, priori, itCnt, pos.toString());
+		else
+			weakAssert(isum == available && tiny.length == 0, isum, available, pos.toString());
 		return icost;
 	}
 
@@ -141,15 +145,12 @@ class LargeTable {
 				var large = size.match(FullWidth);
 				var noModules = large ? NO_MODULES_LARGE : NO_MODULES;
 				var colWidths = computeTableWidths(noModules, header, rows, v.pos);
-				if (Context.debug) {
-					trace(v.pos.toLinePosition());
-					trace(colWidths);
-				}
+				show(colWidths, v.pos.toString());
 				buf.add('\\halign to ${noModules}\\tablemodule{%');
 				if (large) {
 					buf.add('
 						% requires the ifoddpage package
-						\\relax\\checkoddpage\\ifoddpage\\else%
+						\\relax\\checkoddpage\\ifoddpageoroneside\\else%
 							\\kern ${NO_MODULES-noModules}\\tablemodule%
 						\\fi%'.doctrim());
 				}
