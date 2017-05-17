@@ -45,7 +45,7 @@ occur at small amounts even at low saturation levels, and these delays simply in
 In the case of a bus station, saturation is defined as the percentage of time that the station is occupied 
 by vehicles boarding and alighting customers. 
 
-\figure{assets/image8.jpeg}{Relationship between travel time and saturation levelsi.}{ Steer Davies 
+\figure{assets/image8.jpeg}{Relationship between travel time and saturation levels.}{ Steer Davies 
 Gleave.}
 
 In general, stations should be planned at less than 40 percent saturation, or else the risk of congestion 
