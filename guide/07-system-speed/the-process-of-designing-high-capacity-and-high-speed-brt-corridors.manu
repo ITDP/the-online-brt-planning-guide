@@ -6,7 +6,7 @@
 To clearly understand the following three sections, the reader must be familiar with the definitions 
 outlined in the “Basic Concepts” section of Chapter 6: Service Planning.
 
-\subsubsection{Concepts Review}
+\subsection{Concepts Review}
 
 One can reasonably expect that capacities are independent of demand — that once the specifications of 
 design and operation are given, the capacity could be calculated regardless of the demand. This is true 
@@ -81,7 +81,7 @@ monitoring operational data of a built system, one can certainly tell the lower 
 (capacity will certainly be greater or equal to the maximum load observed), but even so, the operational 
 capacity would be subject to debate.
 
-\subsubsection{ Simulating Solutions}
+\subsection{ Simulating Solutions}
 
 Regardless of the debate about operational capacities of transport systems, it is very simple to evaluate 
 the capacity and speed of a proposed design solution under any condition and compare it with other solutions 
