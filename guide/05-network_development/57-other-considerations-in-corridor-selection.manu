@@ -298,8 +298,7 @@ stakeholder group (transit users and car users). In this first case, each
 group is given an equal weighting.
 
 
-\begintable[large]{Time 
-savings benefits, Scenario 1}
+\begintable[medium]{Time savings benefits, Scenario 1}
 \header
 \col \highlight{Corridor }
 \col \highlight{Time savings benefits} \' TODO: Multicol && multirow '\
@@ -361,7 +360,7 @@ this amount of prioritization
 to car interests would not change the overall result.
 
 
-\begintable[large]{Time savings benefits, Scenario 2}
+\begintable[medium]{Time savings benefits, Scenario 2}
 \header
 \col \highlight{Corridor }
 \col \highlight{Time savings benefits} \' TODO: Multicol && multirow '\
@@ -407,7 +406,7 @@ weighting of ten
 to private vehicles, then the result would change.
 
 
-\begintable[large]{Time savings benefits, Scenario 3}
+\begintable[medium]{Time savings benefits, Scenario 3}
 \header
 \col 
 \highlight{Corridor }
