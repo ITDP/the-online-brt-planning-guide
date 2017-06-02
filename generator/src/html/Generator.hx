@@ -455,7 +455,7 @@ class Generator {
 		toc = new StringBuf();
 
 		// `toc.add` and `genv` ordering is relevant
-		toc.add('<ul><li class="volume">${renderToc(null, null, "BRT Planning Guide", ROOT_URL)}</li>');
+		toc.add('<ul><li class="index">${renderToc(null, null, "BRT Planning Guide", ROOT_URL)}</li>');
 		// it's necessary to process all `\html\head` before actually opening buffers and writing heads
 		var contents = genv(doc, new IdCtx(), new NoCtx(), {});
 
@@ -465,9 +465,9 @@ class Generator {
 		root.add('</section>\n');
 		// TODO tt, commit in downloads, chapter download
 		toc.add('
-			<li class="keep"><a href="pdf/the-brt-planning-guide.pdf">Download in PDF</a></li>
-			<li class="keep"><a href="https://github.com/ITDP/the-online-brt-planning-guide" target="_blank">Contribute now</a></li>
-			<li class="keep">
+			<li><a href="pdf/the-brt-planning-guide.pdf">Download in PDF</a></li>
+			<li><a href="https://github.com/ITDP/the-online-brt-planning-guide" target="_blank">Contribute now</a></li>
+			<li>
 			<a href="#action:more-options">Other options</a>
 				<ul class="target" id="action:more-options">
 				<li><a href="../" target="_blank">Extra files</a></li>
