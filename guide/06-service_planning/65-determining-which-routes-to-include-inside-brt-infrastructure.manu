@@ -431,7 +431,7 @@ Where:
 
 So, using the values defined above for the corridor: 
 
-$$TT_\text{outside}={5\text{km} \over 10 \text{km/hr} } * 1 \text{hr} ={ 5 \over 10\text{hr} }  = 0.5 \text{hours} $$
+$$TT_\text{outside}={5\text{km} \over 10 \text{km/hr} } * 1 \text{hr} ={ 5 \text{hr} \over 10 }  = 0.5 \text{hours} $$
 
 $$TT_\text{outside}$$ will remain 0.5 hours (30 minutes) per bus no matter how many buses are operating outside 
 the corridor.
@@ -477,7 +477,7 @@ Where:
 If one wants to know the speed inside the busway without any vehicle congestion, one should calculate 
 the initial value of $$TT_\text{inside}$$, with only one vehicle in the corridor: 
 
-$$TT_\text{inside-no-congestion}={5\text{km} \over 25 \text{km/hr} }  = { 5 \over 25 \text{hr} }  = 0.2 \text{hours} $$
+$$TT_\text{inside-no-congestion}={5\text{km} \over 25 \text{km/hr} }  = { 5 \text{hr} \over 25 }  = 0.2 \text{hours} $$
 
 Usually, when performing this type of analysis, if one is planning to build a Silver or Gold Standard 
 BRT, one would normally assume that the average speed of the BRT corridor before saturation would be 

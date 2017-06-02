@@ -45,7 +45,7 @@ occur at small amounts even at low saturation levels, and these delays simply in
 In the case of a bus station, saturation is defined as the percentage of time that the station is occupied 
 by vehicles boarding and alighting customers. 
 
-\figure{assets/image8.jpeg}{Relationship between travel time and saturation levelsi.}{ Steer Davies 
+\figure{assets/image8.jpeg}{Relationship between travel time and saturation levels.}{ Steer Davies 
 Gleave.}
 
 In general, stations should be planned at less than 40 percent saturation, or else the risk of congestion 
@@ -196,7 +196,7 @@ already organized to operate on corridors in a manner that was not fully consist
 As the Mexico City system expanded, inter-corridor routes were added, and the system began to serve more 
 customers, while reducing unnecessary transfers and station saturation.
 
-The better systems, such as Bogotá’s TransMilenio, Curitiba’s system, Rio’s Transoeste, Lima’s Metropolitano, 
+Systems such as Bogotá’s TransMilenio, Curitiba’s system, Rio’s TransOeste/TransCarioca/TransOlímpica, Lima’s Metropolitano, 
 and others provide fully integrated feeder bus services that connect to the trunk services in formal 
 transfer terminals, offering a better quality and more comprehensive door-to-door service than the trunk-only 
 services. In this case, a former bus route that overlaps the trunk BRT corridor for only part of its 
@@ -697,7 +697,7 @@ can be justified by the demand, however, are likely to contribute to operating d
 mixed-traffic lanes, as seen in this image of Guangzhou can 
 create political pressures. Images}{ ITDP.}
 
-\figure{assets/image26.jpeg}{Despite carrying far more passengers per lane than a car lane, this buswayi, in Jakarta, can also be perceived as empty.}{ITDP.}
+\figure{assets/image26.jpeg}{Despite carrying far more passengers per lane than a car lane, this busway, in Jakarta, can also be perceived as empty.}{ITDP.}
 
 On a BRT system, a corridor with relatively high frequency should have been chosen, so the chances 
 are that frequencies will rarely drop below six in any case. But what appears as high frequency in mixed 
@@ -716,7 +716,7 @@ On the other hand, if headways are very low, and frequency is very high, congest
 and service irregularity become a risk. Figure 6.23 illustrates the relationship between service frequency 
 and congestion. 
 
-\figure{assets/image27.jpeg}{Service frequency and the potential impact on vehicle velocity at a station 
+\figure{assets/image27.jpeg}{Service frequency and the potential impact on vehicle speed at a station 
 with no passing lanes. Graph}{ Steer Davies Gleave.}
 
 Service irregularity (bus bunching) is an even greater risk with higher frequency. For these reasons, 
