@@ -25,14 +25,19 @@ class Main {
 		assert(me.length > 0, myUrl);
 		assert(me.is("li"));
 
-		// remove distant ancestors
+		// fix fragments
+		toc.find('a[href^="#"]').attr("href", function (_, u) return myUrl + u);
+
+		// remove distant ancestors and (if necessary) draw the overview toc
 		if (me.hasClass("index")) {
 			toc.find("li.section").remove();
 		} else if (me.hasClass("volume")) {
 			toc.find("li.chapter").not(me.find("li.chapter")).remove();
+			drawOverview(me.clone());
 		} else if (me.hasClass("chapter")) {
 			toc.find("li.chapter").not(me).not(me.siblings("li.chapter")).remove();
 			toc.find("li.section").not(me.find("li.section")).remove();
+			drawOverview(me.clone());
 		} else if (me.hasClass("section")) {
 			toc.find("li.chapter").not(me.parents("li.volume").find("li.chapter")).remove();
 			toc.find("li.section").not(me).not(me.siblings("li.section")).remove();
@@ -41,15 +46,22 @@ class Main {
 			assert(false, "missing any of the expected classes", me);
 		}
 
-		// remove grandchildren
+		// remove grandchildren from the nav toc
 		me.children("ul").find("ul").remove();
 		assert(toc.find('a[href="$myUrl"]').parent().children("ul").find("ul").length == 0);
 
-		// fix fragments
-		toc.find('a[href^="#"]').attr("href", function (_, u) return myUrl + u);
-
+		// draw the nav toc
 		J("#toc-loading").remove();
 		J("nav").append(toc);
+	}
+
+	static function drawOverview(internals:JQuery)
+	{
+		// TODO customize the internals
+
+		var oview = J(JQuery.parseHTML("<ul></ul>"));
+		oview.append(internals);
+		J("div.col-text").append(oview);
 	}
 
 	static function figClick(e:Event)
