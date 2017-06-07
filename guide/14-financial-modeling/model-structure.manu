@@ -43,8 +43,7 @@ instance, each “group header” would be placed on the same column, with each 
 occupying progressive columns to the right as shown in Figure 14.3. This gives structure to the document 
 and allows for a simpler understanding of the assumptions.
 
-\figure{assets/grouping-hieararchy.jpg}{An example of the hierarchical grouping of Opex items in a table format. 
-Image}{ Logit.}
+\figure{assets/grouping-hieararchy.jpg}{An example of the hierarchical grouping of Opex items in a table format.}{ Logit.}
 
 \subsection{ Temporal Characteristic of Information}
 
