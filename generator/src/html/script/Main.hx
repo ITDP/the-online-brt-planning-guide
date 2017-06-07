@@ -24,14 +24,11 @@ class Main {
 		var me = toc.find('a[href="$myUrl"]').not("#toc-menu").parent();
 		assert(me.length > 0, myUrl);
 		assert(me.is("li"));
-		assert(me.hasClass("volume") || me.hasClass("chapter") || me.hasClass("section"), "classes used in selectors");
-
-		// remove grandchildren
-		me.children("ul").find("ul").remove();
-		assert(toc.find('a[href="$myUrl"]').parent().children("ul").find("ul").length == 0);
 
 		// remove distant ancestors
-		if (me.hasClass("volume")) {
+		if (me.hasClass("index")) {
+			toc.find("li.section").remove();
+		} else if (me.hasClass("volume")) {
 			toc.find("li.chapter").not(me.find("li.chapter")).remove();
 		} else if (me.hasClass("chapter")) {
 			toc.find("li.chapter").not(me).not(me.siblings("li.chapter")).remove();
@@ -39,8 +36,14 @@ class Main {
 		} else if (me.hasClass("section")) {
 			toc.find("li.chapter").not(me.parents("li.volume").find("li.chapter")).remove();
 			toc.find("li.section").not(me).not(me.siblings("li.section")).remove();
-			me.siblings("li.section").find("li").not(me.find("li")).not("keep").remove();
+			me.siblings("li.section").find("li").not(me.find("li")).remove();
+		} else {
+			assert(false, "missing any of the expected classes", me);
 		}
+
+		// remove grandchildren
+		me.children("ul").find("ul").remove();
+		assert(toc.find('a[href="$myUrl"]').parent().children("ul").find("ul").length == 0);
 
 		// fix fragments
 		toc.find('a[href^="#"]').attr("href", function (_, u) return myUrl + u);
