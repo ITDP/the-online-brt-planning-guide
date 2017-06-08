@@ -292,8 +292,10 @@ div.toccompact .section { margin:  6px 0; font-size: 12px; }
 div.toccompact .section  ul { font-size: 11px; }
 
 div.toccompact .volume>a::after  { content: " contains:"; }
-div.toccompact .chapter>a::after  { content: " contains:"; }
-div.toccompact .volume .chapter>a::after  { content: ""; }
+div.toccompact .chapter>a::after { content: " contains:"; }
+div.toccompact .volume .chapter>a::after { content: ""; }
+
+div#toc li.chapter li li li { display: none; }
 
 /* img-block */
 
