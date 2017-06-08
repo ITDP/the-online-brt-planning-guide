@@ -269,19 +269,6 @@ nav ul hr {
 
 div#toc { font-family: 'PT Sans', sans-serif; }
 div#toc a:hover { color: #00a95e!important; }
-div#toc li { list-style: none; margin: 4px 0; }
-div#toc ul { padding: 0; margin-left: 32px; }
-div#toc .volume  { margin: 32px 0; font-size: 16px; }
-div#toc .chapter { margin: 16px 0; font-size: 15px; }
-div#toc .section { margin:  8px 0; font-size: 14px; }
-div#toc .section  ul { font-size: 13px; }
-div#toc .chapter a { color: #333; }
-div#toc .section a { color: #666; }
-div#toc .section  ul a { color: #999; }
-div#toc li.nav { display:none; }
-
-div#toc { font-family: 'PT Sans', sans-serif; }
-div#toc a:hover { color: #00a95e!important; }
 div#toc li { list-style: none; }
 div#toc ul { padding: 0; }
 div#toc li.nav { display:none; }
@@ -296,7 +283,7 @@ div.tocfull .chapter { margin: 16px 0; font-size: 15px; }
 div.tocfull .section { margin:  8px 0; font-size: 14px; }
 div.tocfull .section  ul { font-size: 13px; }
 
-div.toccompact { border-radius: 2px; margin: 32px 0; border: 1px solid #CCC; margin-right: 288px; }
+div.toccompact { border-radius: 2px; margin: 32px 0; border: 1px solid #CCC; margin-right: 288px; padding: 8px 16px;}
 div.toccompact li { margin: 3px 0; }
 div.toccompact ul { margin-left: 16px; }
 div.toccompact .volume  { margin: 24px 0; font-size: 14px; }
