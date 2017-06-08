@@ -457,7 +457,10 @@ class Generator {
 		// `toc.add` and `genv` ordering is relevant
 		// it's necessary to process all `\html\head` before actually opening buffers and writing heads
 		toc = new StringBuf();
-		toc.add('<div id="toc"><ul><li class="index">${renderToc(null, null, "BRT Planning Guide", ROOT_URL)}</li>');
+		toc.add(
+				'<div id="toc" class="tocfull">
+					<ul><li class="index">${renderToc(null, null, "BRT Planning Guide", ROOT_URL)}</li>
+				'.doctrim());
 		var contents = genv(doc, new IdCtx(), new NoCtx(), {});
 
 		// now we're ready to open toc as a proper buffer
