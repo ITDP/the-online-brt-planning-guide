@@ -273,7 +273,6 @@ div#toc li { list-style: none; margin: 4px 0; }
 div#toc ul { padding: 0; margin-left: 32px; }
 div#toc .volume  { margin: 32px 0; font-size: 16px; }
 div#toc .chapter { margin: 16px 0; font-size: 15px; }
-div#toc .chapter::before { content: "Chapter "; }
 div#toc .section { margin:  8px 0; font-size: 14px; }
 div#toc .section  ul { font-size: 13px; }
 div#toc .chapter a { color: #333; }

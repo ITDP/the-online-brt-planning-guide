@@ -67,6 +67,9 @@ class Main {
 		me.children("ul").find("ul").remove();
 		assert(toc.find('a[href="$myUrl"]').parent().children("ul").find("ul").length == 0);
 
+		// remove prefix from chapters
+		toc.find("li.chapter>a").text(function (_, name) return ~/^Chapter /.replace(name, ""));
+
 		// draw the nav toc
 		J("#toc-loading").remove();
 		J("nav").append(toc);
