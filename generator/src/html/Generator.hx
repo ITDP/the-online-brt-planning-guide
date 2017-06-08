@@ -457,8 +457,7 @@ class Generator {
 		// `toc.add` and `genv` ordering is relevant
 		// it's necessary to process all `\html\head` before actually opening buffers and writing heads
 		toc = new StringBuf();
-		toc.add('<ul><li class="index">${renderToc(null, null, "BRT Planning Guide", ROOT_URL)}</li>');
-		toc.add('<li class="toc-link">${renderToc(null, null, "Table of Contents", TOC_URL)}</li>');
+		toc.add('<div id="toc"><ul><li class="index">${renderToc(null, null, "BRT Planning Guide", ROOT_URL)}</li>');
 		var contents = genv(doc, new IdCtx(), new NoCtx(), {});
 
 		// now we're ready to open toc as a proper buffer
@@ -472,16 +471,17 @@ class Generator {
 		root.add('</section>\n');
 		// TODO tt, commit in downloads, chapter download
 		toc.add('
-			<li><a href="pdf/the-brt-planning-guide.pdf">Download in PDF</a></li>
-			<li><a href="https://github.com/ITDP/the-online-brt-planning-guide" target="_blank">Contribute now</a></li>
-			<li>
+			<li class="nav toc-link"><a href="$TOC_URL">View all content</a></li>
+			<li class="nav"><a href="pdf/the-brt-planning-guide.pdf">Download in PDF</a></li>
+			<li class="nav"><a href="https://github.com/ITDP/the-online-brt-planning-guide" target="_blank">Contribute now</a></li>
+			<li class="nav">
 			<a href="#action:more-options">Other options</a>
 				<ul class="target" id="action:more-options">
 				<li><a href="../" target="_blank">Extra files</a></li>
 				</ul>
 			</li>
 		'.doctrim());
-		toc.add("\n</ul>");
+		toc.add("\n</ul></div>");
 
 		var srcMap = [
 			for (p in srcCache.keys())

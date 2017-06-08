@@ -29,7 +29,7 @@ class Main {
 	{
 		// parse and locate myselft
 		assert(tocData != null, "toc data is missing");
-		var toc = J(JQuery.parseHTML(tocData)).find("li.index").closest("ul");
+		var toc = J(JQuery.parseHTML(tocData)).find("div#toc>ul");
 		var myUrl = J("base").attr("x-rel-path");
 		assert(myUrl != null);
 		var me = toc.find('a[href="$myUrl"]').not("#toc-menu").parent();
@@ -74,9 +74,7 @@ class Main {
 
 	static function drawOverview(internals:JQuery)
 	{
-		// TODO customize the internals
-
-		var oview = J(JQuery.parseHTML("<ul></ul>"));
+		var oview = J(JQuery.parseHTML('<div id="toc"><ul></ul></div>'));
 		oview.append(internals);
 		J("div.col-text").append(oview);
 	}
