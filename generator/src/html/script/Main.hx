@@ -12,7 +12,7 @@ using StringTools;
 
 class Main {
 
-	static function getToc(e:Event)
+	static function getToc()
 	{
 		var req = new haxe.Http("table-of-contents");
 		req.onData =
@@ -100,7 +100,7 @@ class Main {
 
 	static function main()
 	{
-		JTHIS.ready(getToc);
+		getToc();
 		JTHIS.click(figClick);
 	}
 }
