@@ -291,6 +291,10 @@ div.toccompact .chapter { margin: 12px 0; font-size: 13px; }
 div.toccompact .section { margin:  6px 0; font-size: 12px; }
 div.toccompact .section  ul { font-size: 11px; }
 
+div.toccompact .volume>a::after  { content: " contains:"; }
+div.toccompact .chapter>a::after  { content: " contains:"; }
+div.toccompact .volume .chapter>a::after  { content: ""; }
+
 /* img-block */
 
 .img-block {
