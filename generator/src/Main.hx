@@ -15,6 +15,7 @@ class Main {
 		commit : Version.getGitCommitHash().substr(0,7),
 		fullCommit : Version.getGitCommitHash(),
 		haxe : Version.getHaxeCompilerVersion(),
+		commit_timestamp : Version.getGitCommitTimestamp(),
 		runtime : #if neko "Neko" #elseif js "JS" #elseif cpp "C++" #end,
 		platform : Sys.systemName()
 	}
@@ -30,7 +31,7 @@ class Main {
 		  manu --help".doctrim();
 	static var BUILD_INFO = '
 		manu for ${version.platform}/${version.runtime}
-		built from commit ${version.commit} with Haxe ${version.haxe}'.doctrim();
+		built from commit ${version.commit} and date ${Date.fromTime(version.commit_timestamp)} with Haxe ${version.haxe}'.doctrim();
 
 	static function generate(ipath, opath)
 	{

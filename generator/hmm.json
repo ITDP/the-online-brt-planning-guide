@@ -52,8 +52,9 @@
     },
     {
       "name": "version",
-      "type": "haxelib",
-      "version": null
+      "type": "git",
+      "ref": "master",
+      "url": "https://github.com/lehonma/haxe-version.git"
     }
   ]
 }

@@ -10,6 +10,7 @@ generator/*.tgz
 generator/bin/*
 generator/dump/
 generator/node_modules
+generator/.vscode
 
 !generator/bin/manu
 
