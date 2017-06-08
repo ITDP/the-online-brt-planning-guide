@@ -11,19 +11,36 @@ import js.jquery.Helper.*;
 using StringTools;
 
 class Main {
-	static var tocData(get,never):String;
-		static function get_tocData() return Reflect.field(js.Lib.global, TocData);
 
-	static function drawNav(e:Event)
+	static function getToc(e:Event)
+	{
+		var req = new haxe.Http("table-of-contents");
+		req.onData =
+			function (tocData:String)
+			{
+				JTHIS.ready(function (_) drawNav(tocData));
+			}
+		req.onStatus = function (status) weakAssert(status == 200, status);
+		req.onError = function (msg) assert(false, msg);
+		req.request();
+	}
+
+	static function drawNav(tocData:String)
 	{
 		// parse and locate myselft
 		assert(tocData != null, "toc data is missing");
-		var toc = J(JQuery.parseHTML(tocData));
+		var toc = J(JQuery.parseHTML(tocData)).find("li.index").closest("ul");
 		var myUrl = J("base").attr("x-rel-path");
 		assert(myUrl != null);
 		var me = toc.find('a[href="$myUrl"]').not("#toc-menu").parent();
 		assert(me.length > 0, myUrl);
 		assert(me.is("li"));
+
+		// if we're the ToC, just remove the placeholder
+		if (me.hasClass("toc-link")) {
+			J("#toc-loading").remove();
+			return;
+		}
 
 		// fix fragments
 		toc.find('a[href^="#"]').attr("href", function (_, u) return myUrl + u);
@@ -85,7 +102,7 @@ class Main {
 
 	static function main()
 	{
-		JTHIS.ready(drawNav);
+		JTHIS.ready(getToc);
 		JTHIS.click(figClick);
 	}
 }

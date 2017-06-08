@@ -45,6 +45,7 @@ class Generator {
 	static inline var ASSET_SUBDIR = "assets";
 	@:template static var FILE_BANNER;
 	static inline var ROOT_URL = "./";
+	static inline var TOC_URL = "table-of-contents";
 
 	var assets:Map<String,String>;
 	var hasher:AssetHasher;
@@ -452,12 +453,18 @@ class Generator {
 		customHead = [];  // FIXME unique stylesheet collection
 		srcCache = new Map();  // TODO abstract
 		lastSrcId = 0;
-		toc = new StringBuf();
 
 		// `toc.add` and `genv` ordering is relevant
-		toc.add('<ul><li class="index">${renderToc(null, null, "BRT Planning Guide", ROOT_URL)}</li>');
 		// it's necessary to process all `\html\head` before actually opening buffers and writing heads
+		toc = new StringBuf();
+		toc.add('<ul><li class="index">${renderToc(null, null, "BRT Planning Guide", ROOT_URL)}</li>');
+		toc.add('<li class="toc-link">${renderToc(null, null, "Table of Contents", TOC_URL)}</li>');
 		var contents = genv(doc, new IdCtx(), new NoCtx(), {});
+
+		// now we're ready to open toc as a proper buffer
+		var tmp = toc.toString();
+		toc = openBuffer("Table of contents", {}, TOC_URL);
+		toc.add(tmp);
 
 		var root = openBuffer("The Online BRT Planning Guide", {}, ROOT_URL);
 		root.add('<section>\n<h1 id="heading" class="brtcolor">${gent("The Online BRT Planning Guide")}</h1>\n');
@@ -487,7 +494,6 @@ class Generator {
 
 		var glId = Context.googleAnalyticsId;
 
-		var toc = saveData(TocData, toc.toString());
 		var script = saveAsset("manu.js", haxe.Resource.getBytes("html.js"));
 		var srcMapPath = saveAsset("src.haxedata", Bytes.ofString(s.toString()));
 
@@ -497,7 +503,6 @@ class Generator {
 				b.add("</div>\n");
 				b.add('<nav id="action:navigate"><span id="toc-loading">Loading the table of contents...</span></nav>\n');
 				b.add("</div>\n");
-				b.add('<script src="$toc"></script>');
 				b.add('<script src="$script"></script>');
 				b.add('<div class="data-src-map" data-href="$srcMapPath"></div>\n');
 				if (glId != null && glId != "") {
