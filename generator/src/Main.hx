@@ -31,7 +31,7 @@ class Main {
 		  manu --help".doctrim();
 	static var BUILD_INFO = '
 		manu for ${version.platform}/${version.runtime}
-		built from commit ${version.commit} and date ${Date.fromTime(version.commit_timestamp)} with Haxe ${version.haxe}'.doctrim();
+		built from commit ${version.commit} and date ${Date.fromTime(version.commit_timestamp*1000)} with Haxe ${version.haxe}'.doctrim();
 
 	static function generate(ipath, opath)
 	{
