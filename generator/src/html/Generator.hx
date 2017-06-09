@@ -480,6 +480,9 @@ class Generator {
 				<li><a href="../" target="_blank">Extra files</a></li>
 				</ul>
 			</li>
+			<li class="nav">
+				<a href="https://github.com/ITDP/the-online-brt-planning-guide/commit/${Main.version.fullCommit}">#${Main.version.commit} | ${DateTools.format(Date.fromTime(Main.version.commit_timestamp*1000), "%b %d %Y")}
+			</li>
 		'.doctrim());
 		toc.add("\n</ul></div>");
 
