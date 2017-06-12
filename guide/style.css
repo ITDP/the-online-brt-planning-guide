@@ -265,6 +265,38 @@ nav ul hr {
 	margin: 0;
 }
 
+/* full and compact tables of content */
+
+div#toc { font-family: 'PT Sans', sans-serif; }
+div#toc a:hover { color: #00a95e!important; }
+div#toc li { list-style: none; }
+div#toc ul { padding: 0; }
+div#toc li.nav { display:none; }
+div#toc .chapter a { color: #333; }
+div#toc .section a { color: #666; }
+div#toc .section  ul a { color: #999; }
+
+div.tocfull li { margin: 4px 0; }
+div.tocfull ul { margin-left: 32px; }
+div.tocfull .volume  { margin: 32px 0; font-size: 16px; }
+div.tocfull .chapter { margin: 16px 0; font-size: 15px; }
+div.tocfull .section { margin:  8px 0; font-size: 14px; }
+div.tocfull .section  ul { font-size: 13px; }
+
+div.toccompact { border-radius: 2px; margin: 32px 0; border: 1px solid #CCC; margin-right: 288px; padding: 8px 16px;}
+div.toccompact li { margin: 3px 0; }
+div.toccompact ul { margin-left: 16px; }
+div.toccompact .volume  { margin: 24px 0; font-size: 14px; }
+div.toccompact .chapter { margin: 12px 0; font-size: 13px; }
+div.toccompact .section { margin:  6px 0; font-size: 12px; }
+div.toccompact .section  ul { font-size: 11px; }
+
+div.toccompact .volume>a::after  { content: " contains:"; }
+div.toccompact .chapter>a::after { content: " contains:"; }
+div.toccompact .volume .chapter>a::after { content: ""; }
+
+div#toc li.chapter li li li { display: none; }
+
 /* img-block */
 
 .img-block {
@@ -508,6 +540,9 @@ pre {
 	}
 	.col-text p {
 		margin-right: 0px;
+	}
+	div.toccompact {
+		margin-right: 0;
 	}
 	.sm, .md, .lg {
 		width: 100%;

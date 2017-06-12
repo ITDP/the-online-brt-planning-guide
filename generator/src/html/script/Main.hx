@@ -11,28 +11,50 @@ import js.jquery.Helper.*;
 using StringTools;
 
 class Main {
-	static var tocData(get,never):String;
-		static function get_tocData() return Reflect.field(js.Lib.global, TocData);
 
-	static function drawNav(e:Event)
+	static function getToc()
+	{
+		var req = new haxe.Http("table-of-contents");
+		req.onData =
+			function (tocData:String)
+			{
+				JTHIS.ready(function (_) drawNav(tocData));
+			}
+		req.onStatus = function (status) weakAssert(status == 200, status);
+		req.onError = function (msg) assert(false, msg);
+		req.request();
+	}
+
+	static function drawNav(tocData:String)
 	{
 		// parse and locate myselft
 		assert(tocData != null, "toc data is missing");
-		var toc = J(JQuery.parseHTML(tocData));
+		var toc = J(JQuery.parseHTML(tocData)).find("div#toc>ul");
 		var myUrl = J("base").attr("x-rel-path");
 		assert(myUrl != null);
 		var me = toc.find('a[href="$myUrl"]').not("#toc-menu").parent();
 		assert(me.length > 0, myUrl);
 		assert(me.is("li"));
 
-		// remove distant ancestors
+		// if we're the ToC, just remove the placeholder
+		if (me.hasClass("toc-link")) {
+			J("#toc-loading").remove();
+			return;
+		}
+
+		// fix fragments
+		toc.find('a[href^="#"]').attr("href", function (_, u) return myUrl + u);
+
+		// remove distant ancestors and (if necessary) draw the overview toc
 		if (me.hasClass("index")) {
 			toc.find("li.section").remove();
 		} else if (me.hasClass("volume")) {
 			toc.find("li.chapter").not(me.find("li.chapter")).remove();
+			drawOverview(me.clone());
 		} else if (me.hasClass("chapter")) {
 			toc.find("li.chapter").not(me).not(me.siblings("li.chapter")).remove();
 			toc.find("li.section").not(me.find("li.section")).remove();
+			drawOverview(me.clone());
 		} else if (me.hasClass("section")) {
 			toc.find("li.chapter").not(me.parents("li.volume").find("li.chapter")).remove();
 			toc.find("li.section").not(me).not(me.siblings("li.section")).remove();
@@ -41,15 +63,23 @@ class Main {
 			assert(false, "missing any of the expected classes", me);
 		}
 
-		// remove grandchildren
+		// remove grandchildren from the nav toc
 		me.children("ul").find("ul").remove();
 		assert(toc.find('a[href="$myUrl"]').parent().children("ul").find("ul").length == 0);
 
-		// fix fragments
-		toc.find('a[href^="#"]').attr("href", function (_, u) return myUrl + u);
+		// remove prefix from chapters
+		toc.find("li.chapter>a").text(function (_, name) return ~/^Chapter /.replace(name, ""));
 
+		// draw the nav toc
 		J("#toc-loading").remove();
 		J("nav").append(toc);
+	}
+
+	static function drawOverview(internals:JQuery)
+	{
+		var oview = J(JQuery.parseHTML('<div id="toc" class="toccompact"><ul></ul></div>'));
+		oview.append(internals);
+		J("div.col-text").append(oview);
 	}
 
 	static function figClick(e:Event)
@@ -73,7 +103,7 @@ class Main {
 
 	static function main()
 	{
-		JTHIS.ready(drawNav);
+		getToc();
 		JTHIS.click(figClick);
 	}
 }

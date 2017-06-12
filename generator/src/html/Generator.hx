@@ -45,6 +45,7 @@ class Generator {
 	static inline var ASSET_SUBDIR = "assets";
 	@:template static var FILE_BANNER;
 	static inline var ROOT_URL = "./";
+	static inline var TOC_URL = "table-of-contents";
 
 	var assets:Map<String,String>;
 	var hasher:AssetHasher;
@@ -224,7 +225,7 @@ class Generator {
 			bcs.volume = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = 'Volume $no: ${genn(name)}';
 			var buf = openBuffer(title, bcs, url);
-			toc.add('<li class="volume">\n${renderToc(no, Std.string(no), new Html(genh(name)), url)}\n<ul>\n');
+			toc.add('<li class="volume">\n${renderToc(no, "Volume " + no, new Html(genh(name)), url)}\n<ul>\n');
 			buf.add('
 				<section>
 				<h1 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h1>
@@ -241,7 +242,7 @@ class Generator {
 			bcs.chapter = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = 'Chapter $no: ${genn(name)}';
 			var buf = openBuffer(title, bcs, url);
-			toc.add('<li class="chapter">${renderToc(null, Std.string(noc.chapter), new Html(genh(name)), url)}<ul>\n');
+			toc.add('<li class="chapter">${renderToc(null, "Chapter " + noc.chapter, new Html(genh(name)), url)}<ul>\n');
 			buf.add('
 				<section>
 				<h2 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h2>
@@ -452,12 +453,20 @@ class Generator {
 		customHead = [];  // FIXME unique stylesheet collection
 		srcCache = new Map();  // TODO abstract
 		lastSrcId = 0;
-		toc = new StringBuf();
 
 		// `toc.add` and `genv` ordering is relevant
-		toc.add('<ul><li class="index">${renderToc(null, null, "BRT Planning Guide", ROOT_URL)}</li>');
 		// it's necessary to process all `\html\head` before actually opening buffers and writing heads
+		toc = new StringBuf();
+		toc.add(
+				'<div id="toc" class="tocfull">
+					<ul><li class="index">${renderToc(null, null, "BRT Planning Guide", ROOT_URL)}</li>
+				'.doctrim());
 		var contents = genv(doc, new IdCtx(), new NoCtx(), {});
+
+		// now we're ready to open toc as a proper buffer
+		var tmp = toc.toString();
+		toc = openBuffer("Table of contents", {}, TOC_URL);
+		toc.add(tmp);
 
 		var root = openBuffer("The Online BRT Planning Guide", {}, ROOT_URL);
 		root.add('<section>\n<h1 id="heading" class="brtcolor">${gent("The Online BRT Planning Guide")}</h1>\n');
@@ -465,16 +474,17 @@ class Generator {
 		root.add('</section>\n');
 		// TODO tt, commit in downloads, chapter download
 		toc.add('
-			<li><a href="pdf/the-brt-planning-guide.pdf">Download in PDF</a></li>
-			<li><a href="https://github.com/ITDP/the-online-brt-planning-guide" target="_blank">Contribute now</a></li>
-			<li>
+			<li class="nav toc-link"><a href="$TOC_URL">View all content</a></li>
+			<li class="nav"><a href="pdf/the-brt-planning-guide.pdf">Download in PDF</a></li>
+			<li class="nav"><a href="https://github.com/ITDP/the-online-brt-planning-guide" target="_blank">Contribute now</a></li>
+			<li class="nav">
 			<a href="#action:more-options">Other options</a>
 				<ul class="target" id="action:more-options">
 				<li><a href="../" target="_blank">Extra files</a></li>
 				</ul>
 			</li>
 		'.doctrim());
-		toc.add("\n</ul>");
+		toc.add("\n</ul></div>");
 
 		var srcMap = [
 			for (p in srcCache.keys())
@@ -487,7 +497,6 @@ class Generator {
 
 		var glId = Context.googleAnalyticsId;
 
-		var toc = saveData(TocData, toc.toString());
 		var script = saveAsset("manu.js", haxe.Resource.getBytes("html.js"));
 		var srcMapPath = saveAsset("src.haxedata", Bytes.ofString(s.toString()));
 
@@ -497,7 +506,6 @@ class Generator {
 				b.add("</div>\n");
 				b.add('<nav id="action:navigate"><span id="toc-loading">Loading the table of contents...</span></nav>\n');
 				b.add("</div>\n");
-				b.add('<script src="$toc"></script>');
 				b.add('<script src="$script"></script>');
 				b.add('<div class="data-src-map" data-href="$srcMapPath"></div>\n');
 				if (glId != null && glId != "") {

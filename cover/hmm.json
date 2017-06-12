@@ -1,0 +1,26 @@
+{
+  "dependencies": [
+    {
+      "name": "ansi",
+      "type": "haxelib",
+      "version": null
+    },
+    {
+      "name": "assertion",
+      "type": "git",
+      "dir": null,
+      "ref": "master",
+      "url": "https://github.com/protocubo/assertion.hx"
+    },
+    {
+      "name": "hxnodejs",
+      "type": "haxelib",
+      "version": null
+    },
+    {
+      "name": "tink_template",
+      "type": "haxelib",
+      "version": null
+    }
+  ]
+}
