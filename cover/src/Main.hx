@@ -13,7 +13,7 @@ class Main {
 		} catch (e:Dynamic) {
 			var stack = StringTools.trim(CallStack.toString(CallStack.exceptionStack()));
 			var out = js.Node.process.stderr;
-			out.write(stack.split("\n").join("\ncall stack: called from "));
+			out.write(stack);
 			out.write("\n" + ANSI.set(Red,Bold) + 'ERROR: $e' + ANSI.set(Off) + "\n");
 			Sys.exit(1);
 		}
