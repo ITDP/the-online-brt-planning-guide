@@ -57,7 +57,7 @@ Fortunately for cities, the technology for providing high-quality public transpo
 \volume{Project Preparation}
 \include{volume-1-landing-page.manu}
 \include{01-project-initiation-and-set-up/00-project-initiation.manu}
-\meta\reset{chapter}{2}  \' TODO missing chapter 2, skip to chapter 3 '\
+\include{02-why-brt\why-brt.manu}
 \include{03-project/00-project-set-up.manu}
 
 
