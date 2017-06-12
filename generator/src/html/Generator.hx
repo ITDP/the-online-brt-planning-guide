@@ -176,7 +176,7 @@ class Generator {
 		buf.add("<body>\n");
 		buf.add(renderBreadcrumbs(bcs, url));  // FIXME
 		buf.add('<div class="container">\n<div class="col-text">\n');
-		assert(!bufs.exists(path));
+		assert(!bufs.exists(path), path, "reserved or already used path");
 		bufs[path] = buf;
 		return buf;
 	}
@@ -454,6 +454,14 @@ class Generator {
 		srcCache = new Map();  // TODO abstract
 		lastSrcId = 0;
 
+
+		// reserve some buffers
+		var reserved = new StringBuf();
+		bufs[ROOT_URL] = reserved;  // temp.; due to ordering constraints
+		bufs[TOC_URL] = reserved;  // temp.; due to ordering constraints
+		for (keyword in ["assets", "volume"])
+			bufs[keyword] = reserved;
+
 		// `toc.add` and `genv` ordering is relevant
 		// it's necessary to process all `\html\head` before actually opening buffers and writing heads
 		toc = new StringBuf();
@@ -502,6 +510,9 @@ class Generator {
 
 		for (p in bufs.keys()) {
 			var b = bufs[p];
+			if (b == reserved)
+				continue;
+
 			if (p.endsWith(".html")) {
 				b.add("</div>\n");
 				b.add('<nav id="action:navigate"><span id="toc-loading">Loading the table of contents...</span></nav>\n');
