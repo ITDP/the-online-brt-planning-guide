@@ -33,7 +33,7 @@ class Main {
 
 		assert(Fs.exists(tocPath) && !Fs.isDirectory(tocPath), tocPath);
 		assert(Fs.exists(dataDir) && Fs.isDirectory(dataDir), dataDir);
-		assert(Fs.exists(outputDir) && Fs.isDirectory(outputDir), outputDir);
+		assert(!Fs.exists(outputDir) || Fs.isDirectory(outputDir), outputDir);
 
 		var toc = readToc(tocPath);
 		var ctx = new Context(dataDir);
@@ -57,6 +57,7 @@ class Main {
 
 	static function generateHtml(toc, ctx, outputDir)
 	{
+		Fs.createDirectory(outputDir);
 		File.saveContent(Path.join([outputDir, "index.html"]), html.Index.render(toc, ctx));
 
 		var htmlStatics = Path.join([ctx.dataDir, "statics", "html"]);
