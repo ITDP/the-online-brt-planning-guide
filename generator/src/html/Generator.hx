@@ -160,10 +160,32 @@ class Generator {
 	@:template function renderHead(title:String, base:String, relPath:String);
 	@:template function renderBreadcrumbs(bcs:Breadcrumbs, relPath:String);  // FIXME
 
-	function openBuffer(title:String, bcs:Breadcrumbs, url:String)
+	var reserved = new StringBuf();
+
+	function urlToPath(url:String)
 	{
 		assert(Path.removeTrailingSlashes(url) == Path.normalize(url) || url == ROOT_URL, url);
-		var path = Path.normalize(url.endsWith("/") ? Path.join([url, "index.html"]) : Path.withExtension(url, "html"));
+		return Path.normalize(url.endsWith("/") ? Path.join([url, "index.html"]) : Path.withExtension(url, "html"));
+	}
+
+	function reserveBuffer(url:String)
+	{
+		var path = urlToPath(url);
+		assert(!bufs.exists(path) || bufs[path] == reserved, bufs[path].toString());
+		bufs[path] = reserved;
+	}
+	
+	function unreserveBuffer(url:String)
+	{
+		var path = urlToPath(url);
+		assert(bufs[path] == reserved, bufs[path].toString());
+		assert(bufs[path].toString().length == 0, bufs[path].toString());
+		bufs.remove(path);
+	}
+
+	function openBuffer(title:String, bcs:Breadcrumbs, url:String)
+	{
+		var path = urlToPath(url);
 		var depth = path.split("/").length - 1;
 		var computedBase = depth > 0 ? [ for (i in 0...depth) ".." ].join("/") : ".";
 		// TODO get normalize and google fonts with \html\head
@@ -455,12 +477,10 @@ class Generator {
 		lastSrcId = 0;
 
 
-		// reserve some buffers
-		var reserved = new StringBuf();
-		bufs[ROOT_URL] = reserved;  // temp.; due to ordering constraints
-		bufs[TOC_URL] = reserved;  // temp.; due to ordering constraints
 		for (keyword in ["assets", "volume"])
-			bufs[keyword] = reserved;
+			reserveBuffer(keyword);
+		reserveBuffer(ROOT_URL);  // temporary due to ordering constraints
+		reserveBuffer(TOC_URL);  // temporary due to ordering constraints
 
 		// `toc.add` and `genv` ordering is relevant
 		// it's necessary to process all `\html\head` before actually opening buffers and writing heads
@@ -470,6 +490,10 @@ class Generator {
 					<ul><li class="index">${renderToc(null, null, "BRT Planning Guide", ROOT_URL)}</li>
 				'.doctrim());
 		var contents = genv(doc, new IdCtx(), new NoCtx(), {});
+
+		// remove temporary constraints
+		for (url in [ROOT_URL, TOC_URL])
+			unreserveBuffer(url);
 
 		// now we're ready to open toc as a proper buffer
 		var tmp = toc.toString();
