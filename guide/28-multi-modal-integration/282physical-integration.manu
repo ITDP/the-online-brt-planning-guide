@@ -1,6 +1,6 @@
 
 
-\section{Physical integration}
+\section{Physical Integration}
 
 Physical (or spatial) integration describes efforts to co-locate the various parts of a transport system. 
 This generally occurs at stations, but also happens elsewhere in the network. Examples include taxi stands 
@@ -21,13 +21,13 @@ stations and train stations, and, in some cases, airports. Again, physical plann
 this option viable. Customers from such modes often are carrying luggage or goods and need a convenient 
 transfer mechanism.
 
-\figure{assets/image1.jpeg}{The Airport Station of Cape Town’s BRT allows passengers to go 
+\figure[medium]{assets/image1.jpeg}{The Airport Station of Cape Town’s BRT allows passengers to go 
 into downtown.}{ITDP.}
 
 \figure{assets/image2.jpeg}{The Cape Town BRT service from the airport has buses with space 
 for luggage.}{ITDP.}
 
-\figure{assets/image3.jpeg}{Transcarioca in Rio de Janeiro connects to the airport.}{ITDP.}
+\figure[medium]{assets/image3.JPG}{Transcarioca in Rio de Janeiro connects to the airport.}{ITDP.}
 
 Aside from BRT buses and feeder buses, which form an integral part of the BRT system, other local bus 
 services may interface with BRT stations. These include municipal buses, private buses, and various coach 
@@ -76,25 +76,25 @@ rail service is owned by a completely different agency from the BRT system, inte
 to achieve. When two modes are controlled by different operators, there is little motivation to make 
 the connection as smooth as possible.  These realities hone the focus of integration.
 
-\figure{assets/image4.jpeg}{Map showing relationship of various public transport networks 
+\figure[medium]{assets/image4.jpeg}{Map showing relationship of various public transport networks 
 in Zoetermeer, Netherlands.}{ infrastruct.wordpress.com.}
 
-\figure{assets/image5.jpeg}{Sketch of interconnected public transport networks (regional 
+\figure[medium]{assets/image5.jpeg}{Sketch of interconnected public transport networks (regional 
 rail, tram, BRT) in Al Ain, United Arab Emirates.}{ Nelson\\Nygaard.}
 
 \figure{assets/image6.jpeg}{Bike route along a LRT corridor in Charlotte, North Carolina, 
 USA.}{Michael King.}
 
-\figure{assets/image7.jpeg}{Cross-section of 64 meter-wide corridor showing BRT/LRT, highway 
+\figure[medium]{assets/image7.jpeg}{Cross-section of 64 meter-wide corridor showing BRT/LRT, highway 
 in tunnel, linear park, utilities, local streets, and sidewalk cafes in Doha, Qatar.}{ Nelson\\Nygaard.}
 
 \figure{assets/image8.jpeg}{The Brisbane Busway is closely integrated with the city’s commuter 
 rail service.}{ Queensland Transport.}
 
-\figure{assets/image9.jpeg}{A model of integrated train, bus, and canal systems in Changzhou, 
+\figure[medium]{assets/image9.jpeg}{A model of integrated train, bus, and canal systems in Changzhou, 
 China.}{Michael King.}
 
-\figure{assets/image10.jpeg}{The Morogoro BRT in Dar es Salaam, Tanzania, has parallel bike 
+\figure[medium]{assets/image10.jpg}{The Morogoro BRT in Dar es Salaam, Tanzania, has parallel bike 
 lanes and improved sidewalks all along the corridor.}{ITDP Africa}
 
 \subsection{Terminals and Stations}
@@ -110,19 +110,19 @@ of intermodal transfer facilities in order to ensure they can cope with high flo
 of multimodal integration is a physical challenge often trying to connect modes that are offset both 
 horizontally and vertically.
 
-\figure{assets/image11.jpeg}{In Pimpri-Chinchwad, India, The terminal is open aired and spacious.}
+\figure[medium]{assets/image11.JPG}{In Pimpri-Chinchwad, India, The terminal is open aired and spacious.}
 {ITDP}
 
-\figure{assets/image12.jpeg}{Pimpri-Chinchwad’s terminal has places for people to sit while 
+\figure{assets/image12.JPG}{Pimpri-Chinchwad’s terminal has places for people to sit while 
 waiting for the bus.}{ITDP}
 
-\figure{assets/image13.jpeg}{Customers can transfer from the BRT buses to feeder buses at 
+\figure{assets/image13.JPG}{Customers can transfer from the BRT buses to feeder buses at 
 the Pimpri-Chinchwad terminal.}{ITDP}
 
-\figure{assets/image14.jpeg}{BRT buses are at level with the high platform at the Pimpri-Chinchwad 
+\figure[medium]{assets/image14.JPG}{BRT buses are at level with the high platform at the Pimpri-Chinchwad 
 terminal.}{ITDP}
 
-\figure{assets/image15.jpeg}{For customers transferring to and from the feeder busses that 
+\figure[medium]{assets/image15.JPG}{For customers transferring to and from the feeder busses that 
 run in mixed traffic and are not high platform at Pimpri-Chinchwad’s terminal, steps are built from the 
 high platform of the station to the ground.}{ITDP}
 
@@ -176,17 +176,17 @@ done without leading to a “hostile” interface with the urban environment.
 As BRT stations are often located at street level in the median, connecting to any other mode will 
 typically require crossing the street or going up or down a level. 
 
-\figure{assets/image16.jpeg}{In Yichang, the BRT system stops at this intercity bus terminal and also has some small shops.}{ITDP.}
+\figure{assets/image16.JPG}{In Yichang, the BRT system stops at this intercity bus terminal and also has some small shops.}{ITDP.}
 
-\figure{assets/image17.jpeg}{This station in Yichang allows customers to board.}{ITDP.}
+\figure{assets/image17.JPG}{This station in Yichang allows customers to board.}{ITDP.}
 
-\figure{assets/image18.jpeg}{This station in Yichang also has places for buses to layover 
+\figure[medium]{assets/image18.JPG}{This station in Yichang also has places for buses to layover 
 during off-peak hours.}{ITDP.}
 
-\figure{assets/image19.jpeg}{Right-of-way reserved for future BRT in Arlington, Virginia, 
+\figure[medium]{assets/image19.jpeg}{Right-of-way reserved for future BRT in Arlington, Virginia, 
 USA. Photo by Michael King.}{ITDP.}
 
-\figure{assets/image20.jpeg}{Removable panels provide additional access to a BRT station 
+\figure[medium]{assets/image20.jpeg}{Removable panels provide additional access to a BRT station 
 during high volume events such as New Year's Eve. Brisbane, Australia.}{ ITDP.}
 
 \figure{assets/image21.jpeg}{Urban Design and Land Use}{ITPD}
@@ -303,12 +303,12 @@ also require food and beverage outlets;
 benefit from children play areas, VIP lounges, business centers, internet kiosks, and culture-specific 
 facilities such as prayer rooms. 
 
-\figure{assets/image22.jpeg}{escalator capacity is designed for the 
+\figure[medium]{assets/image22.jpeg}{escalator capacity is designed for the 
 morning rush hour peak, Hong Kong.}{Oren Tatcher.}
 
 \figure{assets/image23.jpeg}{Customers resting against "leaning rail"}{Oren Tatcher}
 
-\figure{assets/image24.jpeg}{Shops within transport station.}{Oren Tatcher}
+\figure[medium]{assets/image24.jpeg}{Shops within transport station.}{Oren Tatcher}
 
 \subsubsection{Internal Intermodal Connections}
 
@@ -320,16 +320,16 @@ stacked vertically. Access is accomplished via gentle ramps and escalators. Berl
 train station) is similarly stacked vertically. São Paulo's Metro terminals have large ramps connecting 
 the trains and BRT.
 
-\figure{assets/image25.jpeg}{A map of high speed ferries connections to Hong Kong Airport. 
+\figure[medium]{assets/image25.jpeg}{A map of high speed ferries connections to Hong Kong Airport. 
 From the various seaports one can connect to other transport.}{Hong Kong International Airport.}
 
 \figure{assets/image26.jpeg}{A direct connection between monorail and shopping mall, 
 Seattle, Washington, USA.}{Michael King.}
 
-\figure{assets/image27.jpeg}{An integrated bus station and shopping mall, Jakarta, Indonesia. 
+\figure[medium]{assets/image27.jpeg}{An integrated bus station and shopping mall, Jakarta, Indonesia. 
 }{Michael King.}
 
-\figure{assets/image28.jpeg}{A railway station with integrated bike path in Zoetermeer, 
+\figure[medium]{assets/image28.jpeg}{A railway station with integrated bike path in Zoetermeer, 
 Netherlands.}{“Wandelen in beeld.”}
 
 \highlight{Source: \url{http://www.nlwandel.nl/Album/NS-Buytenpark%20%28Zoetermeer%29/slides/01%20Station%20Zoetermeer.html}}
@@ -344,16 +344,16 @@ The general idea is to "extend" the transport station outward. This increases pa
 from the overall surface-level walking experience. They should only be used in high volume situations 
 where physical separation is desired for flow control. See Chapters 29 and 30 for more information.
 
-\figure{assets/image29.jpeg}{Pedestrian bridges connecting Skytrain to malls in Bangkok, 
+\figure[medium]{assets/image29.jpeg}{Pedestrian bridges connecting Skytrain to malls in Bangkok, 
 Thailand.}{Michael King.}
 
 \figure{assets/image30.jpeg}{A covered walkway leading to a train station in Vancouver, 
 Canada. It leads to the bus stop, shopping center, and park-and-Ride.}{Michael King.}
 
-\figure{assets/image31.jpeg}{Fig. 28.17. A pedestrian route through a bus depot to a train station, 
+\figure{assets/image31.jpeg}{A pedestrian route through a bus depot to a train station, 
 Buenos Aires.}{Michael King.}
 
-\figure{assets/image32.jpeg}{Fig. 28.18.– An analysis of actual five-minute walking distances around 
+\figure[medium]{assets/image32.jpeg}{An analysis of actual five-minute walking distances around 
 station, Trenton, New Jersey, USA. By identifying actual walking routes the implementing agency could 
 then make upgrades.}{ Nelson\\Nygaard.}
 
@@ -366,30 +366,30 @@ such as bike ramps directly into terminals. In that the physical space needed to
 bicycle transport is so much smaller than that needed for auto transport, the economic benefits are clear. 
 To wit, the bike to car parking ratio is 10:1. See Chapter 31 for more information.
 
-\figure{assets/image33.jpeg}{A BRT Station and Cycle Center in Brisbane, Australia.}{ITDP.}
+\figure[medium]{assets/image33.jpeg}{A BRT Station and Cycle Center in Brisbane, Australia.}{ITDP.}
 
 \figure{assets/image34.jpeg}{The Ozone Station of the Nagoya, Japan public transport 
 system represents a nexus of the elevated BRT system, the suburban rail system, and the subway system, 
 as well as ample provisions for bicycle parking.}{Lloyd Wright.}
 
-\figure{assets/image35.jpeg}{Bike parking at a train stationin Buxtehude,Germany.}{Michael King.}
+\figure[medium]{assets/image35.jpeg}{Bike parking at a train stationin Buxtehude,Germany.}{Michael King.}
 
 \figure{assets/image36.jpeg}{Bike route and parking at a train stationin Berlin, Germany. 
 }{Michael King.}
 
 \figure{assets/image37.jpeg}{Bike parking at Midway Airport in Chicago.}{Michael King.}
 
-\figure{assets/image38.jpeg}{Bike parking at a BRT terminal in Bogotá.}{Karl Fjellstrom.}
+\figure{assets/image38.JPG}{Bike parking at a BRT terminal in Bogotá.}{Karl Fjellstrom.}
 
-\figure{assets/image39.jpeg}{//TODO: FIXME!}{Gabriel T. de Oliveira, ITDP.}
+\figure{assets/image39.JPG}{//TODO: FIXME!}{Gabriel T. de Oliveira, ITDP.}
 
-\figure{assets/image40.jpeg}{Fig. xxxx Bike parking facilities are located near stations for Transoeste 
+\figure[medium]{assets/image40.JPG}{Fig. xxxx Bike parking facilities are located near stations for Transoeste 
 in Rio de Janeiro.}{Gabriel T. de Oliveira, ITDP.}
 
 \figure{assets/image41.png}{Bike share stations are located along the BRT corridor in Guangzhou, 
 China. Bike lanes were added to run parallel to the corridor as well.}{Karl Fjellstrom.}
 
-\figure{assets/image42.jpeg}{Fig. xxx Bike lanes running parallel to the BRT in Belo Horizonte.}{ITDP Brazil.}
+\figure[medium]{assets/image42.jpeg}{Bike lanes running parallel to the BRT in Belo Horizonte.}{ITDP Brazil.}
 
 \subsubsection{Non-BRT Bus Facilities}
 
@@ -410,7 +410,7 @@ to and from the hub moves smoothly and the hub area does not become gridlocked.
 urban areas, staging may need to be provided in a different site, with on-time dispatch to the pick-up 
 area. 
 
-\figure{assets/image43.png}{Typical layout of bus station. Taxi, Pedicab, and Paratransit Facilities}{ITDP}
+\figure[medium]{assets/image43.png}{Typical layout of bus station. Taxi, Pedicab, and Paratransit Facilities}{ITDP}
 
 \quotation{Too bad all the people who know how to run the country are busy driving taxi cabs and cutting hair.}
 {George Burns, comedian, 1896 – 1996}
@@ -447,10 +447,10 @@ of their travel time without customers. Thus, these non-customer trips can add g
 levels without serving any real purpose. This, however, may be changing with taxi-ordering apps such 
 as Uber, EasyTaxi, and others, but it is unclear if this is the case or if these will increase congestion.
 
-\figure{assets/image44.jpeg}{A taxi stand at a BRT station in Quito, Ecuador. 
+\figure[medium]{assets/image44.jpeg}{A taxi stand at a BRT station in Quito, Ecuador. 
 }{Lloyd Wright.}
 
-\figure{assets/image45.jpeg}{ A taxi stand at Metro station in Kuala Lumpur, Malaysia.}{Lloyd Wright.}
+\figure[medium]{assets/image45.jpeg}{ A taxi stand at Metro station in Kuala Lumpur, Malaysia.}{Lloyd Wright.}
 
 \subsubsection{Park+Ride and Kiss+Ride Facilities}
 
@@ -522,9 +522,9 @@ which makes the journey longer;
 The preferred solution is to build a parking garage and integrate it into the surrounding building 
 context so that it does not call attention to itself. 
 
-\figure{assets/image46.jpeg}{The park-and-ride facility at the Mo Chit station of the Bangkok 
+\figure[medium]{assets/image46.jpeg}{The park-and-ride facility at the Mo Chit station of the Bangkok 
 Skytrain brings customers who would normally drive in private vehicles.}{Thirayoot Limanond.}
 
-\figure{assets/image47.jpeg}{The parking facility at the Eight Mile Plains station of 
+\figure[medium]{assets/image47.jpeg}{The parking facility at the Eight Mile Plains station of 
 the Brisbane BRT system provides convenient access for drivers. People arriving by foot or bike must 
 walk through the lot.}{ Queensland Transport.}

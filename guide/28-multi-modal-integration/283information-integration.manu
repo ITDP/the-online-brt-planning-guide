@@ -33,23 +33,23 @@ intermodal possibilities within the station and along the transport route, and a
 information. Much of this will be provided by each service provider; however, the smart systems will 
 organize and coordinate the information.
 
-\figure{assets/image48.jpeg}{Overhead wayfinding signs which use mostly pictograms and 
+\figure[medium]{assets/image48.jpeg}{Overhead wayfinding signs which use mostly pictograms and 
 colors for quick comprehension.}{Michael King.}
 
 \figure{assets/image49.jpeg}{Wayfinding signs in Metro station showing surrounding neighborhoods, 
 wheelchair boarding, and bicycle parking, Rio de Janeiro.}{Michael King.}
 
-\figure{assets/image50.jpeg}{A wayfinding map at a Metro terminal station, showing location 
+\figure[medium]{assets/image50.jpeg}{A wayfinding map at a Metro terminal station, showing location 
 of bus stops surrounding the station in Philadelphia, USA.}{Michael King.}
 
-\figure{assets/image51.jpeg}{A wayfinding map in a Metro station in Rio de Janeiro showing 
+\figure[medium]{assets/image51.jpeg}{A wayfinding map in a Metro station in Rio de Janeiro showing 
 multimodal connections.}{Michael King.}
 
-\figure{assets/image52.png}{A map of public transport connections to New York City airports. 
+\figure[medium]{assets/image52.png}{A map of public transport connections to New York City airports. 
 Note the current bus connection to LaGuardia Airport is to be upgraded to BRT.}{ Port Authority 
 of New York and New Jersey.}
 
-\figure{assets/image53.jpeg}{BRT arrival information at the top of the stairs in the pedestrian mall 
+\figure[medium]{assets/image53.jpeg}{BRT arrival information at the top of the stairs in the pedestrian mall 
 to access the underground BRT station, Brisbane, Australia.}{ ITDP.}
 
 \subsubsection{External Circulation}
@@ -61,17 +61,17 @@ of the information at this level is highly detailed. It is important to display 
 Signage is not limited to the station proper; signs giving directions to stations should also be away 
 from the station.  
 
-\figure{assets/image54.jpeg}{A wayfinding map with walking distances and intermodal connections 
+\figure[medium]{assets/image54.jpeg}{A wayfinding map with walking distances and intermodal connections 
 (ferry, bus, train) inVancouver, Canada.}{Michael King.}
 
 \figure{assets/image55.jpeg}{A wayfinding map with walking distances around a train station 
 in Dubai, United Arab Emirates.}{Michael King.}
 
-\figure{assets/image56.jpeg}{A wayfinding map of pedestrian bridges in Hong Kong.}{Michael King.}
+\figure[medium]{assets/image56.jpeg}{A wayfinding map of pedestrian bridges in Hong Kong.}{Michael King.}
 
 \figure{assets/image57.jpeg}{A wayfinding sign to public transport inside a mall in Dubai, 
 United Arab Emirates.}{Michael King.}
 
-\figure{assets/image58.jpeg}{A wayfinding sign found outside the Metro station, Washington, 
+\figure[medium]{assets/image58.jpeg}{A wayfinding sign found outside the Metro station, Washington, 
 DC. These signs route patrons to the station, thereby extending the station "footprint."}
 {Michael King.}

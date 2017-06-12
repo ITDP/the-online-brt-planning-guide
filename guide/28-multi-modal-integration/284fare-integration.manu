@@ -25,8 +25,8 @@ The easiest to start with is using a common fare media, like a smart card. It is
 institutional issues behind that though, including coordinating multiple agencies or operators, as well 
 as the accounting and accountability needed behind that (Jorge Rebelo, \url{http://blogs.worldbank.org/transport/nine-suggestions-designing-and-implementing-integrated-fare-systems}).
 
-\figure{assets/image59.jpeg}{In Buenos Aires, Argentina, a customer can use the SUBE fare 
+\figure[medium]{assets/image59.JPG}{In Buenos Aires, Argentina, a customer can use the SUBE fare 
 for the bus, metro, train, and BRT system pictured above.}{ITDP.}
 
-\figure{assets/image60.jpeg}{Fig. xxxx In Guangzhou, the 'Yang Cheng Tong' card can be used for the 
+\figure[medium]{assets/image60.JPG}{Fig. xxxx In Guangzhou, the 'Yang Cheng Tong' card can be used for the 
 bike share system, the bus, the BRT, and the Metro.}{Karl Fjellstrom.}
