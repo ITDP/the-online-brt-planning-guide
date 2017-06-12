@@ -58,10 +58,10 @@ passing lanes. On the TransOeste corridor in Rio de Janeiro (Figure 22.44) a pas
 only at station areas. Outside the station areas, only a single lane of busway is provided for each direction 
 of travel.
 
-\figure{assets/image49.jpeg}{The TransOeste in Rio de Janeiro provides passing lanes at stations.}{ 
+\figure{assets/image49.jpg}{The TransOeste in Rio de Janeiro provides passing lanes at stations.}{ 
 Clarisse Linke.}
 
-\figure[medium]{assets/image50.jpeg}{In Guangzhou, the passing lane is provided through a widening of the roadway 
+\figure[medium]{assets/image50.jpg}{In Guangzhou, the passing lane is provided through a widening of the roadway 
 at this midblock station area.}{ ITDP.}
 
 \subsection{ Station Types}
@@ -130,7 +130,7 @@ in queue. Therefore, sub-stops need to be spaced at least 1.7 times the vehicle 
 in order to allow for buses to bus in or out of the sub-stops. These details of station design are described 
 in more detail in Chapter 25: Stations and Terminals. 
 
-\figure[medium]{assets/image51.jpeg}{The existence of a passing lane makes the high customer capacities achieved 
+\figure[medium]{assets/image51.jpg}{The existence of a passing lane makes the high customer capacities achieved 
 in the Bogotá system possible.}{ Carlos Pardo.}
 
 The passing lane may exist as just a second lane in the station area, or the additional lane may be 
@@ -138,7 +138,7 @@ extended all along the corridor (Figure 22.47). Whether the second lane is neede
 area depends on the saturation levels along the corridor, and especially depends on the level of congestion 
 at intersections.
 
-\figure[medium]{assets/image52.jpeg}{Options for provision of a passing lane.}{ITDP.}
+\figure[medium]{assets/image52.jpg}{Options for provision of a passing lane.}{ITDP.}
 
 The principal difficulty in including a passing lane is the impact on road space. The additional lane 
 in each direction would seem to require a road width few developing cities can reasonably provide. However, 
@@ -168,7 +168,7 @@ to have a seamless integration where the customer remains in a paid-fare area an
 the system between feeder and trunk due to space constraints. Thus, a bit of creativity is required to 
 design and control the transfer process. 
 
-\figure[medium]{assets/image53.png}{An intermediate transfer station on Cape Town’s MyCITI system, with a closed 
+\figure[medium]{assets/image53.jpg}{An intermediate transfer station on Cape Town’s MyCITI system, with a closed 
 environment between the trunk platform on the left and the feeder platform on the right.}{ Planning 
 Partners.}
 
@@ -190,7 +190,7 @@ for the holding of off-duty buses, or buses waiting for their departure time on 
 facilities may also be required for drivers changing shift, ablution facilities, and accommodation for 
 a localized dispatch.
 
-\figure[medium]{assets/image54.jpeg}{An interchange station in Bogotá, with a closed environment between the 
+\figure[medium]{assets/image54.jpg}{An interchange station in Bogotá, with a closed environment between the 
 two trunk platforms.}{ ITDP.} 
 
 \subsection{ Station Configurations}
@@ -232,7 +232,7 @@ HHO Africa.}
 
 \title{Off-Set Stations}
 
-\figure{assets/image56.jpeg}{An off-set station in Cape Town, South Africa. The platforms are arranged 
+\figure{assets/image56.jpg}{An off-set station in Cape Town, South Africa. The platforms are arranged 
 a distance apart to allow for a passing lane on each side at the station docking area.}{ITDP.}
 
 Another way to address constraints in road width with a center-aligned configuration is to off-set 
@@ -245,14 +245,14 @@ a slight turn at the station area. Nevertheless, in cities with restricted road 
 be effective in allowing passing lanes at stations. Cape Town, South Africa, has applied this concept 
 on its Atlantis corridor (Figure 22.53).
 
-\figure[medium]{assets/image57.jpeg}{By offsetting the sub-stops and elongating the platform, passing lanes 
+\figure[medium]{assets/image57.jpg}{By offsetting the sub-stops and elongating the platform, passing lanes 
 can fit into relatively narrow road widths.}{Lloyd Wright.}
 
-\figure[medium]{assets/image58.jpeg}{An offset station in Cape Town, South Africa.}{ Pierre Smit.}
+\figure[medium]{assets/image58.jpg}{An offset station in Cape Town, South Africa.}{ Pierre Smit.}
 
-\figure{assets/image59.jpeg}{An offset station in Bogotá, Colombia.}{ ITDP.}
+\figure{assets/image59.jpg}{An offset station in Bogotá, Colombia.}{ ITDP.}
 
-\figure[medium]{assets/image60.jpeg}{A multiple sub-stop, split, side-aligned station in Guangzhou, China.}
+\figure[medium]{assets/image60.jpg}{A multiple sub-stop, split, side-aligned station in Guangzhou, China.}
 { ITDP.} 
 
 \title{Split, Side-Aligned Station Configuration}
@@ -273,10 +273,10 @@ lost or lose their paid fare). Additionally, building two stations instead of a 
 will tend to increase overall construction costs and may require more road space. To address space constraints, 
 split stations can be staggered.
 
-\figure[medium]{assets/image61.png}{An alternative means of connecting split and side-aligned stations is to 
+\figure[medium]{assets/image61.jpg}{An alternative means of connecting split and side-aligned stations is to 
 provide a full set of route permutations.}{ HHO Africa.}
 
-\figure[medium]{assets/image62.png}{However, the required number of permutations becomes excessive, even for 
+\figure[medium]{assets/image62.jpg}{However, the required number of permutations becomes excessive, even for 
 just a single intersection. Median stations permit easier platform transfers and multiple route permutations. 
 }{ HHO Africa.}
 
@@ -289,8 +289,8 @@ The marginal width gained from a staggered configuration, estimated at 0.5 meter
 and given the operational advantages of center-aligned stations, they are recommended over split stations. 
 For those reasons, split stations receive no points in *The BRT Standard*.
 
-\figure[medium]{assets/image63.jpeg}{Relative space requirements for roadway configurations with median stations.}
+\figure[medium]{assets/image63.jpg}{Relative space requirements for roadway configurations with median stations.}
 { HHO Africa.}
 
-\figure[medium]{assets/image64.jpeg}{Relative space requirements for roadway configurations with staggered 
+\figure[medium]{assets/image64.jpg}{Relative space requirements for roadway configurations with staggered 
 stations.}{ HHO Africa.}

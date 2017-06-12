@@ -17,7 +17,7 @@ to expect traffic to come from the opposite direction. One-way busways in the me
 are awarded even fewer points and one-way busways that run alongside the curb of a one-way street fewer 
 still. Virtual lanes are awarded the least points.
 
-\figure[medium]{assets/image8.jpeg}{Examples of different BRT roadway configurations from The BRT Standard.}
+\figure[medium]{assets/image8.jpg}{Examples of different BRT roadway configurations from The BRT Standard.}
 { ITDP.}
 
 A corridor may have multiple configurations over its length. Like many other design decisions associated 
@@ -27,16 +27,16 @@ it splits into one-way, median-aligned busways running on one-way streets. Curit
 lanes, both lanes on the side, and streets exclusively for BRT (Figures 22.9, 22.10, and 22.11). Curitiba 
 essentially tailors the roadway configuration to the particular situation on the given road segment.
 
-\figure[medium]{assets/image9.jpeg}{Curitiba utilizes a variety of roadway configurations. Each street’s design 
+\figure[medium]{assets/image9.jpg}{Curitiba utilizes a variety of roadway configurations. Each street’s design 
 depends on the local circumstances.}{ Lloyd Wright.}
 
-\figure{assets/image10.jpeg}{Curitiba utilizes a variety of roadway configurations. Each street’s design 
+\figure{assets/image10.jpg}{Curitiba utilizes a variety of roadway configurations. Each street’s design 
 depends on the local circumstances.}{ URBS and the Municipality of Curitiba.}
 
-\figure{assets/image11.jpeg}{Curitiba utilizes a variety of roadway configurations. Each street’s design 
+\figure{assets/image11.jpg}{Curitiba utilizes a variety of roadway configurations. Each street’s design 
 depends on the local circumstances.}{ Lloyd Wright.}
 
-\figure[medium]{assets/image12.png}{TransJakarta utilizes buses with doorways on both sides of the vehicle 
+\figure[medium]{assets/image12.jpg}{TransJakarta utilizes buses with doorways on both sides of the vehicle 
 in order to service both median and curbside stations.}{ ITDP.}
 
 \beginbox{The Example of Dar es Salaam, Tanzania}
@@ -106,7 +106,7 @@ and section view of Stretch 5 at a width of 38.5 meters.}{ Logit.}
 Following are the typical configurations for BRT corridor design to consider in the conceptual design 
 phase and that should become the basis for the detailed engineering.
 
-\figure[medium]{assets/image18.jpeg}{Insertion of bus lane and station in a narrow space in Quito.}
+\figure[medium]{assets/image18.jpg}{Insertion of bus lane and station in a narrow space in Quito.}
 {Andre Frieslaar.}
 
 \beginbox {Options for Narrow Roadways}
@@ -160,10 +160,10 @@ to select multiple routing options from a single station platform. A single stat
 costs in comparison to the construction of separate stations for each direction. For more information 
 about station configurations, see the next section.
 
-\figure{assets/image19.jpeg}{A median busway in Bogotá with a single median station has become the 
+\figure{assets/image19.jpg}{A median busway in Bogotá with a single median station has become the 
 standard for high-quality BRT systems.}{ ITDP.}
 
-\figure{assets/image20.jpeg}{One section of Lima, Peru’s BRT, with a single lane for mixed traffic 
+\figure{assets/image20.jpg}{One section of Lima, Peru’s BRT, with a single lane for mixed traffic 
 in one direction, and two lanes in the other direction.}{ITDP.}
 
 \subsection{ Curbside Busways}
@@ -177,13 +177,13 @@ if turning vehicles frequently interfere with busway operations. Curbside busway
 for the entire busway to be stopped due to a single taxi picking up a customer, a policeman temporarily 
 parking, an accident, or a turning vehicle trapped behind high pedestrian-crossing volumes (Figure 22.17).
 
-\figure{assets/image21.jpeg}{Curbside bus lanes often fail due to traffic congestion and poor enforcement 
+\figure{assets/image21.jpg}{Curbside bus lanes often fail due to traffic congestion and poor enforcement 
 (Hangzhou, China).}{ ITDP.}
 
-\figure{assets/image22.jpeg}{Curbside bus lanes often fail due to traffic congestion and poor enforcement 
+\figure{assets/image22.jpg}{Curbside bus lanes often fail due to traffic congestion and poor enforcement 
 (New York City).}{ ITDP.}
 
-\figure[medium]{assets/image23.jpeg}{In this image from Quito, Ecuador, the Trolé BRT vehicle operates in an 
+\figure[medium]{assets/image23.jpg}{In this image from Quito, Ecuador, the Trolé BRT vehicle operates in an 
 “exclusive” curbside lane, but is blocked by merging traffic from a side street. A median busway would 
 largely avoid these types of conflicts. }{ Lloyd Wright.}
 
@@ -203,10 +203,10 @@ Lima has implemented a two-lane, two-way busway adjacent to a two-lane, two-way 
 (Figure 22.19). Intersections along a side-aligned busway can be problematic, but can be dealt with by 
 using traffic signals and roundabouts.
 
-\figure{assets/image24.jpeg}{In this city-center location, Lima, Peru is able to segregate the busway 
+\figure{assets/image24.jpg}{In this city-center location, Lima, Peru is able to segregate the busway 
 to the side of an existing roadway.}{ ITDP.}
 
-\figure{assets/image25.jpeg}{In this city-center location Curitiba, Brazil, is able to segregate the 
+\figure{assets/image25.jpg}{In this city-center location Curitiba, Brazil, is able to segregate the 
 busway to the side of an existing railway.}{ ITDP.}
 
 \subsection{ Fixed Guided Busways}
@@ -230,10 +230,10 @@ with the side wheel and the guidance track. Guide wheels are also prone to being
 bus docks incorrectly at a curbside stop outside of the guided busway sections, providing an ongoing 
 maintenance issue.
 
-\figure[medium]{assets/image26.jpeg}{Nagoya, Japan’s elevated BRT line utilizes a mechanical guidance system to reduce the required roadway width.}
+\figure[medium]{assets/image26.jpg}{Nagoya, Japan’s elevated BRT line utilizes a mechanical guidance system to reduce the required roadway width.}
 {Lloyd Wright.}
 
-\figure{assets/image27.jpeg}{Nagoya, Japan’s elevated BRT line utilizes a mechanical guidance system 
+\figure{assets/image27.jpg}{Nagoya, Japan’s elevated BRT line utilizes a mechanical guidance system 
 to reduce the required roadway width.}{ Lloyd Wright.}
 
 \begintable{Advantages and Disadvantages of Guided Busway Systems}
@@ -273,7 +273,7 @@ not be well-versed in utilizing this construction technique. However, given that
 represents perhaps the single-highest cost item in system infrastructure, any potential cost savings 
 should be considered.
 
-\figure[medium]{assets/image28.jpeg}{Not paving the center of the busway, like this example in Eugene, USA, 
+\figure[medium]{assets/image28.jpg}{Not paving the center of the busway, like this example in Eugene, USA, 
 may produce infrastructure cost savings as well as reduce operational noise.}{Lane District Transit.}
 
 In operating a vehicle along a guided busway, the driver does not actually have to steer the vehicle. 
@@ -283,10 +283,10 @@ vehicle leaves the guideway. If for some reason the driver does not re-engage ph
 may occur. Thus, in the case of Nagoya, a forced stop is made at the exit from the guideway in order 
 to remind the driver to use physical steering once again (Figure 22.25).
 
-\figure[medium]{assets/image29.jpeg}{The guideway allows for hands-free driving on the Nagoya-Yutorito Line. 
+\figure[medium]{assets/image29.jpg}{The guideway allows for hands-free driving on the Nagoya-Yutorito Line. 
 }{ Lloyd Wright.}
 
-\figure{assets/image30.jpeg}{A stopping device at the end of the guideway ensures that the driver re-engages 
+\figure{assets/image30.jpg}{A stopping device at the end of the guideway ensures that the driver re-engages 
 physical steering.}{ Lloyd Wright.}
 
 \subsection{ Grade-Separated Busways}
@@ -300,10 +300,10 @@ of a corridor, like Expresso Tiradentes in São Paulo, which runs on an elevated
 busway receives maximum points under the “Busway Alignment” metric of *The BRT Standard, *since it is 
 a fully exclusive right-of-way, completely separated from mixed traffic.
 
-\figure{assets/image31.jpeg}{An elevated busway in Brisbane, Australia, allows the system to maneuver 
+\figure{assets/image31.jpg}{An elevated busway in Brisbane, Australia, allows the system to maneuver 
 through a sensitive greenway.}{ Queensland Transport.}
 
-\figure[medium]{assets/image32.png}{The elevated track of São Paolo’s Expresso Tiradentes.}{ ITDP.}
+\figure[medium]{assets/image32.jpg}{The elevated track of São Paolo’s Expresso Tiradentes.}{ ITDP.}
 
 In all cases, the physical terrain and base materials must be considered for their engineering appropriateness 
 for tunnels or elevated structures. High water tables or hard bedrock can make underpasses and tunnels 
@@ -356,23 +356,23 @@ Cities such as Bogotá and Quito, employ bus-only corridors in selected location
 Australia; Ottawa, Canada; and Pittsburgh, Pennsylvania, USA, also have developed bus-only corridors 
 over certain roadway segments (Figure 22.28). 
 
-\figure[medium]{assets/image33.jpeg}{An exclusive busway runs under the Mater Hill Hospital in Brisbane.}
+\figure[medium]{assets/image33.jpg}{An exclusive busway runs under the Mater Hill Hospital in Brisbane.}
 {Queensland Transport.}
 
-\figure{assets/image34.jpeg}{Examples of successful transit malls include central Zurich, where the 
+\figure{assets/image34.jpg}{Examples of successful transit malls include central Zurich, where the 
 tram system provides easy access to shops, offices, and restaurants.}
 { Lloyd Wright.}
 
-\figure{assets/image35.jpeg}{The Avenida Jiménez corridor of Bogotá’s TransMilenio system represents 
+\figure{assets/image35.jpg}{The Avenida Jiménez corridor of Bogotá’s TransMilenio system represents 
 a high-quality example of merging urban regeneration with a BRT system.}{ Lloyd Wright.}
 
-\figure{assets/image36.jpeg}{A transit mall in the central district of Pereira, Colombia.}
+\figure{assets/image36.jpg}{A transit mall in the central district of Pereira, Colombia.}
 {Municipality of Pereira.}
 
-\figure{assets/image37.jpeg}{Painted information employing a bus-only approach is also an option, as 
+\figure{assets/image37.jpg}{Painted information employing a bus-only approach is also an option, as 
 shown here from an example in Jakarta, Indonesia.}{ Lloyd Wright.}  
 
-\figure[medium]{assets/image38.png}{Transit mall in Utrecht, Netherlands. Deliveries are made very early in 
+\figure[medium]{assets/image38.jpg}{Transit mall in Utrecht, Netherlands. Deliveries are made very early in 
 the morning, or via side streets.}{ ITDP.}
 
 Transit-only corridors, though, are not just restricted to central business and shopping districts. 
@@ -382,7 +382,7 @@ in Pittsburgh, Pennsylvania, USA, moves through a bus-only corridor in largely r
 space. Thus, there are no residential driveways entering directly onto the corridor. Otherwise, these 
 schemes would likely be less viable.
 
-\figure{assets/image39.jpeg}{In Pittsburgh, Pennsylvania, USA, entire roadways are devoted exclusively to BRT operation. }{Lloyd Wright.}
+\figure{assets/image39.jpg}{In Pittsburgh, Pennsylvania, USA, entire roadways are devoted exclusively to BRT operation. }{Lloyd Wright.}
 
 Perhaps the greatest challenge in making transit malls and other transit-only corridors work is access 
 for delivery vehicles and local residents. Some merchants desire round-the-clock delivery access, which 
@@ -402,7 +402,7 @@ be delivered at any time by carts and delivery services operating from the pedes
 This may, however, pose a safety challenge for nighttime freight deliveries in some areas and should 
 be addressed properly.
 
-\figure[medium]{assets/image40.jpeg}{Non-motorized delivery systems, as shown here in Santiago, Chile, can 
+\figure[medium]{assets/image40.jpg}{Non-motorized delivery systems, as shown here in Santiago, Chile, can 
 help make transit malls viable for local shop owners.}{ Lloyd Wright.}
 
 If the area is largely residential, then conflicts are usually with individuals seeking private-vehicle 
@@ -427,7 +427,7 @@ also has a similar configuration of median-aligned, one-way pairs in the downtow
 city center, both directions of the BRT system are recombined in a more conventional two-directional 
 configuration.
 
-\figure[medium]{assets/image41.jpeg}{Through the denser city center area, the Guayaquil Metrovía system utilizes 
+\figure[medium]{assets/image41.jpg}{Through the denser city center area, the Guayaquil Metrovía system utilizes 
 a split-route configuration, with each direction of travel being provided on parallel streets.}
 {Carlos González.}
 
@@ -444,7 +444,7 @@ basis. To ensure that two vehicles do not try to use the one-lane segment at the
 traffic control system is usually employed.                                                          
                                                  
 
-\figure{assets/image42.jpeg}{Eugene, Oregon, USA, employs single lane operation for portions of its 
+\figure{assets/image42.jpg}{Eugene, Oregon, USA, employs single lane operation for portions of its 
 corridor.}{ ITDP.}
 
 Single-lane operation is used most notably in Eugene, Oregon, USA (Figure 22.37). This option works 
@@ -473,7 +473,7 @@ but before the rest of the traffic is allowed to go, so that the lane is relativ
 bus proceeds in the general traffic lane until the virtual lane is once again dedicated to its direction 
 of travel, usually upon approaching the intersection.
 
-\figure{assets/image43.jpeg}{The virtual lane concept in Rouen, France, where a single centrally located 
+\figure{assets/image43.jpg}{The virtual lane concept in Rouen, France, where a single centrally located 
 bus lane is used to provide bus priority in both directions of travel.}{ Andre Frieslaar.}
 
 Rouen, France, has successfully implemented a virtual busway. The route has a three-lane cross section 
@@ -483,7 +483,7 @@ intersection, thereby allowing the public-transport vehicle unimpeded access to 
 and a bypass or queue-jump lane. The stops are located prior to the signalized intersection stop line, 
 by locating an island stop in the vicinity of the intersection (refer to Figure 22.37).
 
-\figure{assets/image44.jpeg}{A virtual busway stop located in the middle of the roadway.}{ Andre 
+\figure{assets/image44.jpg}{A virtual busway stop located in the middle of the roadway.}{ Andre 
 Frieslaar.}
 
 The degree to which the direction of dedication is allocated to each direction of travel along the 
@@ -516,7 +516,7 @@ safety. Quito briefly utilized counter-flow movements for its Ecovía corridor s
 vehicles possessed doorways on the wrong side. However, once the new vehicles arrived from the manufacturer, 
 Quito converted the corridor back to “with flow” movements.
 
-\figure[medium]{assets/image45.jpeg}{Bangkok employs contra-flow design.}{ ITDP.} 
+\figure[medium]{assets/image45.jpg}{Bangkok employs contra-flow design.}{ ITDP.} 
 
 \subsection{ Mixed-Traffic Operation}
 
@@ -544,7 +544,7 @@ and experience has indicated that, in particular, bus-motorcycle accidents are m
 By contrast in Changzhou, China the BRT corridor passes through a mixed-traffic section in the city 
 center. This, combined with multiple four-phase intersections, has a major negative impact on BRT speeds.
 
-\figure[medium]{assets/image46.jpeg}{Changzhou, China, operates its BRT system along mixed-traffic lanes at 
+\figure[medium]{assets/image46.jpg}{Changzhou, China, operates its BRT system along mixed-traffic lanes at 
 a crucial segment of the corridor, and thus travel times and system control are negatively affected.}
 { ITDP.}
 
@@ -567,7 +567,7 @@ the metro-like nature of BRT, and makes it far less attractive to discretionary 
 An option for mixed-traffic operations is to include queue-jump lanes, which help give some form of 
 priority during peak periods to avoid vehicles being trapped in congestion.
 
-\figure[medium]{assets/image47.png}{A section of median queue-jump lane in Cape Town, South Africa.}
+\figure[medium]{assets/image47.jpg}{A section of median queue-jump lane in Cape Town, South Africa.}
 {Andre Frieslaar.}
 
 Queue-jump lanes can be located on the curbside or in the middle of the corridor (Figures 22.42 and 
@@ -576,7 +576,7 @@ of a median, median break, turn lanes, etc. Issues associated with queue-jump la
 with encroachment by general traffic vehicles, and difficulty with enforcement due to the need to cross 
 the dedicated lane to access driveways, turn lanes, and median breaks.
 
-\figure[medium]{assets/image48.png}{A section of curbside queue-jump lane in Cape Town, South Africa.}
+\figure[medium]{assets/image48.jpg}{A section of curbside queue-jump lane in Cape Town, South Africa.}
 {Andre Frieslaar.}
 
 In some instances, access to the queue-jump lanes by general traffic is only restricted during peak 
