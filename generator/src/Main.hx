@@ -57,12 +57,16 @@ class Main {
 						if (err.fatal)
 							abort = true;
 						var hl = err.pos.highlight(80).renderHighlight(Context.hlmode).split("\n");
-						println('${ANSI.set(Bold,Red)}ERROR: $err${ANSI.set(Off)}');
+						print(ANSI.set(Bold,Red));
+						if (Context.debug) print("Validation ");
+						println('ERROR: $err');
+						print(ANSI.set(Off));
 						println('  at ${err.pos.toString()}:');
 						println("    " + hl.join("\n    "));
 					}
 					if (abort) {
 						println("Validation has failed, aborting");
+						printTimers();
 						exit(4);
 					}
 				}
@@ -180,6 +184,7 @@ class Main {
 			println('  at ${cpos.toString()}');
 			println("    " + hl.join("\n    "));
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
+			printTimers();
 			exit(2);
 		} catch (e:parser.ParserError) {
 			print(ANSI.set(Bold,Red));
