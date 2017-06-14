@@ -76,8 +76,25 @@ In general, the possibility exists of using larger vehicles with more doors in L
 systems than in BRT systems, though in most operational conditions this distinction does not matter for 
 reasons that will be explained. 
 
-Table 2.5 Standard Vehicle Types and Capacities
-//TODO: MAKE TABLE!
+\begintable{Table 2.5 Standard Vehicle Types and Capacities}
+\header \col Vehicle Types\col \col Vehicle Lengths\col Doors\col Vehicle Capacities
+\row \col Heavy Rail Large 8 car train\col \col 176\col 24\col 1408
+\row \col Heavy Rail Small 6 car train\col \col 90\col 18\col 720
+\row \col Heavy Rail Car Large\col \col 22\col 3\col 176
+\row \col Heavy Rail Car Small\col \col 15\col 3\col 120
+\row \col LRT Siemens Avino 8 module\col \col 79\col 10\col 632
+\row \col LRT Alstom Citadis Large\col \col 49\col 8\col 392
+\row \col LRT Siemens S70 Large\col \col 36\col 4\col 288
+\row \col LRT Alstom Citadis Small\col \col 29\col 4\col 232
+\row \col LRT Siemens small\col \col 28\col 4\col 224
+\row \col BRT Largest Bi-articulated\col \col 25\col 5\col 220
+\row \col BRT Volvo Bi-Articulated\col \col 22\col 5\col 190
+\row \col BRT Articulated\col \col 18\col 4\col 150
+\row \col BRT Standard \col \col 12\col 2\col 90
+\endtable
+
+\' LRT and HRT vehicles assume 8 passengers per 1 meter in length.  For BRT vehicles, it is assumed that there are 10 passengers per meter length less 3 meters for the driver. This approach of using vehicle length is fine for larger vehicles, but introduces distortions in smaller vehicles where the space consumed by the driver and boarding area constitute a greater share of total vehicle space.   '\
+
 
 The typical long HRT vehicle will have three doors per car and eight cars, so twenty-four doors, though 
 eighteen doors or even fewer is also common. The longest LRT vehicles will have as many as ten doors, 
@@ -88,26 +105,23 @@ have five doors, but most BRTs use articulated buses with four doors, though som
 The highest capacity transit vehicles have a door greater than 1 meter wide for every 5 meters of vehicle 
 length. 
 
-\beginbox{For estimating the capacity of LRT vehicles, the *TCSQM* recommends:}
+For estimating the capacity of LRT vehicles, the *TCSQM* recommends:
 
-When the specific vehicle type has not yet been selected (e.g., when planning a new rail system), vehicle 
+\quotation{When the specific vehicle type has not yet been selected (e.g., when planning a new rail system), vehicle 
 length can be used as a proxy for the passenger capacity of a rail car. Passenger loadings for typical 
 North American light rail cars range from 1.5 to 2.4 passengers per foot of car length (5.0 to 8.0 *p/m 
 *length). The lower level of 1.5 passengers per foot length (5.0 *p/m *length)-with a standing space 
-per passenger of 4.3 ft2 (0.4 m2)-corresponds to a standing load without body contact, while the upper 
-level provides 3.2 ft2 (0.3 m2), corresponding to a standing load with some body contact. 
-\endbox
-
-\beginbox{Table 2.5 uses eight passengers per meter of length to estimate the passenger capacity of a rail car.}
+per passenger of 4.3 ft\sup{2} (0.4 m\sup{2})-corresponds to a standing load without body contact, while the upper 
+level provides 3.2 ft2 (0.3 m2), corresponding to a standing load with some body contact.
 
 For heavy rail, the 75-ft (23-m) cars used in more than twelve U.S. and Canadian cities range from 
 2.1 to 3.5 passengers per foot of car length (7.0 to 11.5 p/m of car length). The higher end of this 
 range approaches crush-loaded conditions. 
 
-(TCQSM, p. 8-66) a reduction by 0.3 p/ft length (1.0 p/m length) should be used for smaller, narrower 
-cars *(1).* 
+A reduction by 0.3 p/ft length (1.0 p/m length) should be used for smaller, narrower 
+cars *(1).*}{TCSQM, p. 8-66)}
 
-\endbox
+Table 2.5 uses eight passengers per meter of length to estimate the passenger capacity of a rail car.
 
 The metro systems with the longest trains have eight-car trains, with six being more typical (for BRT 
 systems, then, this guide uses (L-3) \* 10, or 10 passengers per meter, (within the range of the TCSQM 

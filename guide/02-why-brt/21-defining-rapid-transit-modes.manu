@@ -1,5 +1,3 @@
-
-
 \section{ Defining Rapid Transit Modes }
 
 \quotation{The technologies which have had the most profound effects on human life are usually simple.}
@@ -12,15 +10,13 @@ features that dramatically improve the speed, capacity, reliability, and quality
 
 \subsection{ Defining BRT}
 
-\beginbox{BRT is:}
+BRT is:
 
-. . . a bus-based rapid transit system that can achieve high capacity and speed at relatively low cost 
+\quotation {... a bus-based rapid transit system that can achieve high capacity and speed at relatively low cost 
 by combining segregated bus lanes that are typically median aligned, off-board fare collection, level 
 boarding, bus priority at intersections, and other quality-of-service elements (such as information technology 
-and strong branding).
-
-—*BRT Standard*, 2015
-\endbox
+and strong branding).}
+{ *BRT Standard*, 2015}
 
 Five essential elements put the “rapid” in bus rapid transit: 
 
@@ -36,11 +32,11 @@ signals.
 BRT corridors consist of dedicated, physically demarcated bus lanes that are aligned to the center 
 of a street or a functionally equivalent configuration for the majority of the corridor. They also include 
 one or more of the other three essential elements described above. A more detailed discussion of what 
-constitutes a BRT corridor can be found in the *BRT Standard* ().
+constitutes a BRT corridor can be found in the *BRT Standard* (\url{www.brtstandard.org}).
 
 \subsection{ Defining Other Rapid Transit Modes }
 
-Light-Rail Transit (LRT) is a rail-based rapid transit system that uses predominantly exclusive, 
+*Light-Rail Transit (LRT)*: a rail-based rapid transit system that uses predominantly exclusive, 
 but not grade-separated, rights-of-way. Like BRT systems, LRTs can have a wide range of passenger capacities 
 and performance characteristics. These capacities and performance characteristics are for the most part 
 driven by the same essential elements that are critical to BRT system performance. These essential elements 
@@ -54,13 +50,8 @@ Gold Standard BRT, is likely to provide better service and operate more as a rap
 such, the BRT Standard technical committee has approved the limited use of the BRT standard to also rate 
 LRT systems, with certain specific caveats (* BRT Standard*, p. 55). 
 
-For the purposes of this Planning Guide, what distinguishes LRT from HRT is that it operates for at 
-least part of the transit corridor on normal streets and uses shorter train sets with lower capacities. 
-As such, LRT tends to have flexible bodies capable of tighter turning radii than HRT systems and tends 
-to have floors closer to street level than HRT vehicles. This guide includes in the definition of LRT 
-both systems that are generally referred to as “LRTs” as well as some streetcars and trams. 
 
-Heavy Rail Transit (HRT): an electric rail-based public transport system, often referred to as “Metro,” 
+*Heavy Rail Transit (HRT):* an electric rail-based public transport system, often referred to as “Metro,” 
 with high-passenger-capacity rail cars that generally preclude sharp turning movements and require a 
 high platform to board. As such, they cannot generally be operated in normal street conditions, and hence 
 require grade-separated rights-of-way. HRT systems have off-board fare collection, operate within a single 
@@ -71,7 +62,13 @@ many elements recognized as critical to BRT systems do not apply to HRT systems.
 would probably rank “Gold” under the BRT Standard, the BRT Standard Technical Committee has not authorized 
 the use of the BRT Standard for rating HRT systems. 
 
-Monorail: a rail-based public transport system composed of a single rail, usually elevated and thus 
+For the purposes of this Planning Guide, what distinguishes LRT from HRT is that it operates for at 
+least part of the transit corridor on normal streets and uses shorter train sets with lower capacities. 
+As such, LRT tends to have flexible bodies capable of tighter turning radii than HRT systems and tends 
+to have floors closer to street level than HRT vehicles. This guide includes in the definition of LRT 
+both systems that are generally referred to as “LRTs” as well as some streetcars and trams. 
+
+*Monorail:* a rail-based public transport system composed of a single rail, usually elevated and thus 
 grade separated. What differentiates the monorail from LRT of HRT is that monorail trains are wider than 
 the guideways that support and guide them. Monorails are only mentioned in passing in this guide, as 
 they are very expensive to build given their carrying capacity. Monorail is not a viable mass transit 

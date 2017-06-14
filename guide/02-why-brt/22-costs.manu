@@ -45,7 +45,7 @@ track was US$38.6 million a kilometer, though the range was wide, from US$17.0 m
 million. 
 
 A reasonable estimate of the cost of an LRT vehicle is US$3.6 million in the United States (\url{http://onlinepubs.trb.org/onlinepubs/tcrp/tcrp_rpt_165ch-08.pdf}, p. 8-1), 
-though the range is from US$1.9 million to US$4.5 million (\url{http://onlinepubs.trb.org/onlinepubs/tcrp/tcrp_rpt_165ch-08.pdf}).
+though the range is from US$1.9 million to US$4.5 million (\url{(http://www.apta.com/resources/aboutpt/Documents/table22_vehvosttransitlength.pdf}).
 
 The number of vehicles needed will vary greatly with the passenger demand. Normally, an LRT vehicle 
 will have a capacity of around 150 people, similar to that of an articulated bus. An articulated LRT 
@@ -66,8 +66,17 @@ buses utilized the BRT corridor, while for new LRT systems a new yard or depot i
 For the two LRT systems for which disaggregated data was available, the cost of the LRT depot ranged 
 from US$10.4 million to US$65.7 million. 
 
-Table 2.1 Average Cost per Kilometer by Mode, Developed Versus Developing Country
-//TODO: MAKE TABLE
+\begintable{Average Cost per Kilometer by Mode(BRT, LRT, HRT), Developed Versus Developing Country }
+\header \col Type\col Lower Income Countries 
+(2013 $/Km)\col Higher Income Countries
+(2013 $/Km)
+\row \col BRT Average\col  $11,504,575 \col  $10,054,824 
+\row \col BRT Gold\col  $16,312,504 \col  n.a. 
+\row \col BRT Silver\col  $9,528,467 \col  $9,729,605 
+\row \col BRT Bronze\col  $9,612,943 \col  $10,380,042 
+\row \col LRT\col  $25,373,992 \col  $37,496,032 
+\row \col HRT\col  $87,429,209 \col  $433,660,969 
+\endtable
 
 Out of a database of forty-two BRT projects, nineteen LRT projects, and twenty-six HRT projects, the 
 average cost per kilometer in constant 2013 dollars was derived and shown in Table 2.1. The number of 
@@ -100,8 +109,63 @@ The cost of an LRT in higher income countries was 50 percent more than an LRT in
 and the cost of an HRT project in higher income countries costs five times as much as an HRT project 
 in lower income countries, probably due to the higher cost of labor in construction. 
 
-Table 2.2 BRT Project Capital Costs by Country and Quality
-//TODO: MAKE TABLE
+
+\begintable{BRT Project Capital Costs by Country and Quality}
+\header \col Country\col City\col Project\col Length (km)\col Cost/Km (2013 USD/km)\col Quality (BRT Classification)
+\row \col *BRT Lower Income Economies*\col \col \col \col \col 
+\row \col Brazil\col Belo Horizonte\col Cristiano Machado\col 7\col $4,040,571 \col Gold
+\row \col Brazil\col Curitiba\col BRT "Linha Verde"\col 33.8\col $7,146,213 \col Gold
+\row \col Brazil\col Rio de Janeiro\col TransCarioca\col 39\col $14,716,462 \col Gold
+\row \col China\col Guangzhou\col Guangzhou BRT\col 22.9\col $7,672,668 \col Gold
+\row \col China\col Yichang\col Yichang BRT\col 22.9\col $6,812,169 \col Gold
+\row \col Colombia\col Bogotá\col TransMilenio Phase 1\col 41\col $18,574,652 \col Gold
+\row \col Colombia\col Bogotá\col TransMilenio Phase 2\col 42\col $33,036,852 \col Gold
+\row \col Colombia\col Bogotá\col TransMilenio Phase 3\col 37\col $24,582,229 \col Gold
+\row \col Colombia\col Medellín\col Metroplus\col 13\col $30,230,724 \col Gold
+\row \col \col \col \col \col *$16,312,504* \col *Gold Average*
+\row \col Brazil\col Belo Horizonte\col Antônio Carlos-Pedro 1\col 15\col $24,124,667 \col Silver
+\row \col Brazil\col Rio de Janeiro\col TransOeste\col 55\col $15,268,816 \col Silver
+\row \col China\col Lanzhou\col Lanzhou BRT\col 9\col $7,805,467 \col Silver
+\row \col Colombia\col Barranquilla\col Transmetro\col 14\col $19,295,428 \col Silver
+\row \col Colombia\col Cali\col Mio\col 49\col $17,046,807 \col Silver
+\row \col Colombia\col Pereira\col Megabús\col 27\col $5,326,363 \col Silver
+\row \col India\col Ahmedabad\col Janmarg BRT Phase 1 + 2\col 88\col $3,003,560 \col Silver/Bronze
+\row \col Mexico\col Chihuahua\col Vivebús\col 20\col $3,856,908 \col \[likely Silver\]
+\row \col Mexico\col León\col Optibús Etapa 1\col 25\col $2,678,309 \col \[likey Silver\]
+\row \col Mexico\col Estado de Mexico\col Mexíbus Línea 1 - Cd Azteca - Tecamac\col 16\col $7,861,951 \col Silver
+\row \col Mexico\col Estado de Mexico\col Mexíbus Línea 3 Chimalhuacán - Pantitlán\col 15\col $8,934,935 \col Silver
+\row \col Meixco\col Mexico City\col Metrobús Líneas 1-4\col 93\col $6,216,923 \col Silver
+\row \col Mexico\col Mexico City\col Metrobús Línea 5\col 10\col $6,352,388 \col Silver
+\row \col Mexico\col Monterrey\col Ecovía Line 1\col 30\col $4,274,341 \col Silver
+\row \col South Africa\col Johannesburg\col Rea Vaya 1a\col 30\col $10,387,801 \col Silver 
+\row \col \col \col \col \col *$9,495,644* \col *Silver Average*
+\row \col China\col Beijing\col BRT Line 1\col 79\col $1,064,030 \col Bronze
+\row \col India\col Indore\col Indore iBus BRT\col 11\col $4,920,486 \col \[likely Bronze\]
+\row \col India\col Pimpri Chinchwad\col Primpri Chinchwad BRTS\col 45\col $5,482,658 \col Bronze
+\row \col India\col Surat\col Surat BRTS\col 11\col $12,461,951 \col Bronze
+\row \col Mexico\col Puebla\col RUTA, Line 1\col 19\col $6,526,254 \col Bronze
+\row \col South Africa\col Cape Town\col MyCiTi Phase IA as of 2010\col 17\col $23,794,946 \col Bronze
+\row \col South Afria\col Johannesburg\col Rea Vaya Phase 1b\col 18\col $13,040,278 \col Bronze
+\row \col \col \col \col \col *$9,612,943* \col *Bronze Average*
+\row \col India\col Delhi\col Delhi High Capacity Bus System (HCBS) Pilot\col 6\col $3,909,769 \col Basic BRT
+\row \col Indonesia\col Jakarta\col Transjakarta - Line 2 & 3\col 14\col $5,812,720 \col Basic BRT
+\row \col Indonesia\col Jakarta\col Transjakarta - Line 11\col 11\col $3,366,204 \col Basic BRT
+\row \col Indonesia\col Jakarta\col Transjakarta - Line 12\col 24\col $1,429,598 \col Basic BRT
+\row \col Brazil\col Fortaleza\col Avenida Alberto Craveiro\col 3\col $5,041,467 \col Rating pending
+\row \col Colombia\col Cartagena\col Transcaribe\col 13\col $42,452,618 \col Silver pending
+\row \col Colombia\col Bucaramanga\col Metrolínea\col 50\col $6,917,539 \col Rating pending
+\row \col Mexico\col Puebla\col RUTA, Line 2\col 20\col $12,433,272 \col Rating pending
+\row \col South Africa\col Tshwane\col A Re Yeng Phase IA\col 7\col $13,834,400 \col Rating pending
+\row \col \col \col \col \col *$10,577,510* \col *Other Average*
+\row \col *BRT Higher Income Economies* \col \col \col \col \col 
+\row \col France\col Paris\col TVM Rungis - Croix de Berny RER\col 22\col $4,898,500 \col Silver
+\row \col France\col Rouen\col TEOR (Phase 1)\col 38\col $5,410,316 \col Silver
+\row \col USA\col Cleveland, OH\col HealthLine\col 11\col $18,880,000 \col Silver
+\row \col \col \col \col \col *$9,729,605* \col *Silver Average*
+\row \col USA\col Eugene, OR\col Franklin Corridor (Green Line)\col 6\col $4,427,910 \col Bronze
+\row \col USA\col Los Angeles, CA\col Orange Line (Original)\col 23\col $16,332,174 \col Bronze
+\row \col \col \col \col \col *$10,380,042* \col *Bronze Average*
+\endtable
 
 Note: Systems referred to as “likely” Gold, Silver, or Bronze means that they have been evaluated but 
 their rating is pending final approval from the technical committee.
@@ -127,8 +191,32 @@ some roadways during Phase II in order to maintain the number of mixed traffic l
 For Phase III, costs came down again to around US$24.6 million per kilometer (“Applicability of Bogotá’s 
 TransMilenio BRT System to the United States.” USDOT: FTA. May 2006 \url{http://www.fta.dot.gov/documents/Bogota_Report_Final_Report_May_2006.pdf}).
 
-Table 2.3 LRT Project Capital Costs (in US Dollars)
-//TODO: MAKE TABLE
+\begintable{Table 2.3 LRT Project Capital Costs}
+\header \col Country\col City\col Project\col Length (km)\col Cost/Km (2013 USD/km)
+\row \col *LRT Lower Income Economies*\col \col \col \col 
+\row \col Algeria\col Constantine\col Constantine Tram\col 8\col $50,000,000 
+\row \col Algeria\col Oran\col Oran Tramway\col 19\col $22,664,211 
+\row \col Brazil\col Rio de Janeiro\col PPP|Port Maravilha Light Rail\col 28\col $16,071,429 
+\row \col China\col Shenyang\col Shenyang Tram\col 60\col $12,900,000 
+\row \col Mexico\col Guadalajara\col Tren Ligero Linea 3\col 16\col $31,890,625 
+\row \col Morocco\col Casablanca\col Casablanca Tramway\col 31\col $19,354,839 
+\row \col Morocco\col Rabat-Salé\col Rabat-Salé Tramway\col 19\col $24,736,842 
+\row \col *Average* \col \col \col \col *$25,373,992*
+\row \col *LRT Higher Income Economies*\col \col \col \col 
+\row \col France\col Paris\col  \col 14\col $60,714,286 
+\row \col France\col Rouen\col  \col 15\col $45,333,333 
+\row \col France\col Besançon\col Line 1 Tramway\col 15\col $19,278,333 
+\row \col France\col Dijon\col Line 1+2 Tramway\col 19\col $26,634,737 
+\row \col France\col Le Havre\col Line 1+2 Tramway\col 13\col $41,653,077 
+\row \col France\col Reims\col Line 1 Tramway\col 11\col $44,188,182 
+\row \col France\col Lyon\col Line 4 Tramway\col 16\col $19,397,500 
+\row \col USA\col Charlotte\col LYNX Blue Line\col 16\col $31,445,625 
+\row \col USA\col Charlotte\col LYNX Blue Line Extension\col 16\col $66,856,250 
+\row \col USA\col Minneapolis\col METRO Blue Line\col 20\col $45,145,730 
+\row \col USA\col Sacramento\col RT Blue Line extension\col 7\col $32,321,429 
+\row \col USA\col Houston\col Purple Line/SW Corridor\col 10\col $16,983,900 
+\row \col *Average* \col \col \col \col *$37,496,032* 
+\endtable
 
 The costs of at-grade LRT systems in countries with both developed and emerging economies, shown in 
 Table 2.3, range from US$19.3 million per kilometer for tramways in France to US$66.9 million for the 
@@ -155,13 +243,44 @@ with traditional cut and cover methods, requiring land acquisition in a very hig
 high water table is another factor when estimating construction costs, as construction below the water 
 table adds additional expense. 
 
-Table 2.4 HRT Project Capital Costs, Emerging and Developed Economies
-//TODO: MAKE TABLE!
+\begintable{Table 2.4 HRT Project Capital Costs, Emerging and Developed Economies}
+\header \col Country\col City\col Project\col Length (km)\col Cost/Km (2013 USD/km)
+\row \col HRT Lower Income Economies\col \col \col \col 
+\row \col Brazil\col Rio de Janeiro\col Line 4 metro\col 16\col $233,750,000 
+\row \col Brazil\col São Paulo\col Line IV metro\col 14\col $101,992,857 
+\row \col China\col Lanzhou\col Lanzhou Metro Line 1\col 34\col $93,176,471 
+\row \col China\col Guangzhou\col Guangzhou Metro Line 1\col 18.5\col $87,729,730 
+\row \col China\col Shenzhen\col Shenzhen Metro Line3\col 33\col $56,224,491 
+\row \col China\col Guangzhou\col Guangzhou Metro Line 2\col 18\col $79,259,480 
+\row \col China\col Guangzhou\col Guangzhou Metro Line 3\col 36\col $68,288,974 
+\row \col China\col Shanghai\col Metro Line 2\col 19\col $81,104,400 
+\row \col China\col Beijing\col Metro Line 4\col 29\col $88,750,707 
+\row \col Colombia\col Medellín\col Tranvía de ayacucho\col 4\col $81,149,750 
+\row \col Colombia\col Bogotá\col Metro de Bogotá\col 35\col $98,571,429 
+\row \col India\col Delhi\col Delhi Metro Phase 1 + 2\col 167\col $43,699,867 
+\row \col India\col Mumbai\col Mumbai Metro Line 1\col 11\col $71,149,762 
+\row \col India\col Hyderabad\col Hyderabad Metro Phase I\col 72\col $54,166,667 
+\row \col India\col Bangalore\col Bangalore Namma Metro Phase 1\col 42\col $104,659,325 
+\row \col India\col Kochi\col Kochi Metro Phase 1\col 25\col $36,491,914 
+\row \col Indonesia\col Jakarta\col MRT\col 14\col $109,929,275 
+\row \col Mexico\col Mexico City\col Metro Línea 12 Extension\col 4\col $158,769,459 
+\row \col Mexico\col Mexico City\col Línea 12 Metro Ciudad de México\col 25\col $86,715,346 
+\row \col Mexico\col Zona Metropolitana/Valle de Mexico\col Suburban Rail Line 1\col 27\col $78,131,686 
+\row \col Mexico\col Monterrey\col Línea 3 Tren subterráneo de Monterrey\col 7.5\col $58,473,896 
+\row \col South Africa\col Johannesburg\col Gautrain\col 80\col $51,257,110 
+\row \col Average\col \col \col \col $87,429,209 
+\row \col HRT Higher Income Economies\col \col \col \col 
+\row \col United Kingdom\col London\col Jubilee Extension\col 16\col $501,264,813 
+\row \col USA\col DC Metro Area\col Silver Line Phase 1\col 19\col $165,393,158 
+\row \col USA\col Washington DC\col 0\col 19\col $152,930,789 
+\row \col USA\col New York City\col 0\col 17\col $982,658,960 
+\row \col Average\col \col \col \col $433,660,969 
+\endtable
 
 These ranges, divided between developed and emerging economy contexts, should provide a reasonable 
 set of benchmarks when performing back of the envelope alternative cost appraisals. 
 
-\subsection{ Operating Costs}
+\subsection{Operating Costs}
 
 To date there have been no systematic comparisons of operating costs and the fare-box cost recovery 
 ratios between BRT, LRT, and HRT due to the numerous methodological problems involved. In many higher 
@@ -319,7 +438,7 @@ rail vehicles also provide more resilient options combining fuel technologies. I
 efforts to bring CNG-powered rail transit vehicles to market, but these are not yet widely available. 
 
 
-\url{Cost of Capital}
+\title{Cost of Capital}
 
 If a transit operator has to borrow money to pay for either the infrastructure or the rolling stock, 
 or both, the cost of paying this debt becomes an operating cost. If a national or state government is 
