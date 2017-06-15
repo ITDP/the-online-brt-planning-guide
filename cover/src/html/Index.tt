@@ -429,7 +429,7 @@
 
 		<footer class="ui vertical footer segment">
 			<div class="ui center aligned container">
-				<img src="https://www.itdp.org/wp-content/themes/itdp-responsive/images/logo.png" class="ui centered small image">
+				<img src="https://www.itdp.org/wp-content/themes/itdp-responsive/images/logo.png" class="ui centered medium image">
 				<div class="ui horizontal small divided link list">
 					<a class="item" href="https://www.itdp.org/">www.itdp.org</a>
 					<a class="item" href="mailto:mobility@itdp.org">mobility@itdp.org</a>
