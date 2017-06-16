@@ -94,7 +94,7 @@ enum VDef {
 	Figure(size:BlobSize, path:PElem, caption:HElem, copyright:HElem);
 	Table(size:BlobSize, caption:HElem, header:TableRow, rows:Array<TableRow>);  // copyright/source?
 	ImgTable(size:BlobSize, caption:HElem, path:PElem);  // copyright/source?
-	Quotation(text:HElem, by:HElem);
+	Quotation(text:VElem, by:HElem);
 	List(numered:Bool, items:Array<VElem>);
 	Box(name:HElem, contents:VElem);
 	CodeBlock(c:String);

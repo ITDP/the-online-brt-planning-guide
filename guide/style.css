@@ -370,7 +370,6 @@ blockquote {
 blockquote .by {
 	display: block;
 	text-align: right;
-	margin-top: 8px;
 }
 blockquote .by::before {
 	content: "— ";
@@ -380,10 +379,15 @@ blockquote.md {
 	padding: 16px;
 	margin: 32px 0;
 }
-q {
+blockquote q {
 	quotes: "“" "”" "‘" "’";
 	font-style: italic;
+	display: block;
+	margin-bottom: 8px;
 }
+blockquote q::before, blockquote q::after { content: ""; }
+blockquote q:first-of-type::before { content: open-quote; }
+blockquote q:last-of-type::after { content: close-quote; }
 
 /* boxes */
 

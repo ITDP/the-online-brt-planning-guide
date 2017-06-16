@@ -359,7 +359,7 @@ class Parser {
 	function quotation(cmd:Token)
 	{
 		assert(cmd.def.match(TCommand("quotation")), cmd);
-		var text = arg(hlist, cmd, "text");
+		var text = arg(vlist.bind(_, true), cmd, "text");
 		var author = arg(hlist, cmd, "author");
 		return mk(Quotation(text.val, author.val), cmd.pos.span(author.pos));
 	}

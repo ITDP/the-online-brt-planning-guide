@@ -353,8 +353,8 @@ class Test_05_Transform {
 			transform(expand(List(true, [Paragraph(Word("a")), Paragraph(Word("b"))]))));
 		Assert.same(expand(DCodeBlock("a")),
 			transform(expand(CodeBlock("a"))));
-		Assert.same(expand(DQuotation(Word("a"), Word("b"))),
-			transform(expand(Quotation(Word("a"), Word("b")))));
+		Assert.same(expand(DQuotation(DParagraph(Word("a")), Word("b"))),
+			transform(expand(Quotation(Paragraph(Word("a")), Word("b")))));
 		Assert.same(expand(DParagraph(HElemList([Word("a")]))),
 			transform(expand(Paragraph(HElemList([Word("a")])))));
 		// TODO improve when expand begins to support DElems

@@ -269,10 +269,10 @@ class Test_03_Parser {
 	public function test_011_quotations()
 	{
 		Assert.same(
-			expand(@wrap(11,1)Quotation(@len(1)Word("a"),@skip(2)@len(1)Word("b"))),  // FIXME @skip
+			expand(@wrap(11,1)Quotation(Paragraph(@len(1)Word("a")),@skip(2)@len(1)Word("b"))),  // FIXME @skip
 			parse("\\quotation{a}{b}"));
 		Assert.same(
-			expand(@wrap(12,1)Quotation(@len(1)Word("a"),@skip(3)@len(1)Word("b"))),  // FIXME @skip
+			expand(@wrap(12,1)Quotation(Paragraph(@len(1)Word("a")),@skip(3)@len(1)Word("b"))),  // FIXME @skip
 			parse("\\quotation\n{a}\n{b}"));
 
 		fails("\\quotation", MissingArgument(TCommand("quotation"), "text"), mkPos(10, 10));

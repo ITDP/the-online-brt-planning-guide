@@ -441,7 +441,16 @@ class Generator {
 		case DCodeBlock(code):
 			return '<pre><code>${gent(code)}</code></pre>\n';
 		case DQuotation(text, by):
-			return '<blockquote class="md"><q>${genh(text)}</q><span class="by">${genh(by)}</span></blockquote>\n';
+			return
+				switch text.def {
+				case DParagraph(htext):
+					'<blockquote class="md"><q>${genh(htext)}</q><span class="by">${genh(by)}</span></blockquote>\n';
+				case DElemList(li) if (Lambda.foreach(li, function (i) return i.def.match(DParagraph(_)))):
+					var pars = [for (i in li) switch i.def { case DParagraph(text): genh(text); case _: assert(false); null; }];
+					'<blockquote class="md"><q>${pars.join("</q><q>")}</q><span class="by">${genh(by)}</span></blockquote>\n';
+				case _:
+					assert(false, "TODO: can't generate quotations with arbitrary vertical elements yet"); "";
+				}
 		case DParagraph({pos:p, def:Math(tex)}):
 			return '<p${genp(v.pos)}><span class="mathjax equation"${genp(p)}>\\[${gent(tex)}\\]</span></p>\n';
 		case DParagraph(h):

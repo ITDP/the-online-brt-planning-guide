@@ -181,6 +181,15 @@ class Validator {
 		return true;
 	}
 
+	function notDEmpty(h:DElem, parent:DElem, name:String)
+	{
+		if (h.def.match(DEmpty)) {
+			errors.push(new ValidationError(h.pos, BlankValue(elemDesc(parent), name)));
+			return false;
+		}
+		return true;
+	}
+
 	/*
 	Validate document elements.
 
@@ -219,8 +228,8 @@ class Validator {
 				hiter(caption);
 			push(validateSrcPath(path, [Jpeg, Png]));
 		case DQuotation(text, by):
-			if (notHEmpty(text, d, "text"))
-				hiter(text);
+			if (notDEmpty(text, d, "text"))
+				diter(text);
 			if (notHEmpty(by, d, "author"))
 				hiter(by);
 		case DParagraph(text):

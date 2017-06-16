@@ -29,7 +29,7 @@ enum DDef {
 	DImgTable(no:Int, size:BlobSize, caption:HElem, path:PElem);
 	DList(numbered:Bool, li:Array<DElem>);
 	DCodeBlock(cte:String);
-	DQuotation(text:HElem, by:HElem);
+	DQuotation(text:DElem, by:HElem);
 	DParagraph(text:HElem);
 
 	DElemList(li:Array<DElem>);  // TODO rename avoiding confusion with (un)numbered lists
