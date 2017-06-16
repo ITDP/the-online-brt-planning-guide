@@ -214,7 +214,7 @@ class NewTransform {
 		case CodeBlock(cte):
 			return mkd(DCodeBlock(cte), v.pos);
 		case Quotation(text, by):
-			return mkd(DQuotation(horizontal(text), horizontal(by)), v.pos);
+			return mkd(DQuotation(vertical(text, siblings, idc, noc), horizontal(by)), v.pos);
 		case Paragraph(text):
 			return mkd(DParagraph(horizontal(text)), v.pos);
 		case VElemList(li):
