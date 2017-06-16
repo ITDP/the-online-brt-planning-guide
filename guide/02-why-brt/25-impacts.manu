@@ -1,6 +1,6 @@
 \section{Impacts}
 
-\quotation{ “The only limit to your impact is your imagination and commitment.”}
+\quotation{The only limit to your impact is your imagination and commitment.}
 {Tony Robbins, motivational speaker, 1960–}
 
 The characteristics of different public transport technologies can result in different impacts as measured 
@@ -21,17 +21,40 @@ project is implemented successfully, the creation of dense urban corridors can h
 values as well as shop sales levels. 
 
 \begintable{Transit Corridors Typology: TOD Investment in North America and Determining Factors}
-\useimage{assets/image31.jpg}
+\header \col Corridor\col \col Mode\col The BRT Standard Score\col Land Potential\col Government TOD Support\col Total TOD Investments (in millions)\col Investment per Dollar of Transit Investment
+\row \col *Weak TOD Investmenti* \col \col \col \col \col \col \col 
+\row \col Ottawa O-TrainWeak\col \col HRT\col bronze\col Limited\col Weak\col nominal\col nominal
+\row \col Pittsburgh ""The T"" Weak\col \col HRT\col bronze\col Limited\col Weak\col nominal\col nominal
+\row \col Las Vegas Metropolitan Area Express (MAX) Moderate\col \col busway\col bellow basic\col Limited\col Weak\col nominal\col nominal
+\row \col Pittsburgh West BuswayWeak\col \col BRT\col basic\col Limited\col Weak\col nominal\col nominal
+\row \col Pittsburgh South BuswayWeak\col \col BRT\col basic\col Limited\col Weak\col nominal\col nominal
+\row \col *Moderate TOD Investment* \col \col \col \col \col \col \col 
+\row \col Denver Southwest CorridorModerate\col \col LRT\col bronze\col Limited\col Moderate\col  $ 160\col 0.71
+\row \col Eugene Emerald Express Green Line (EmX) Moderate\col \col BRT\col bronze\col Emerging\col Moderate\col $ 100\col 3.96
+\row \col Los Angeles Orange LineModerate\col \col BRT\col bronze\col Emerging\col Moderate\col $ 300\col 0.83
+\row \col Boston Washington Street Silver LineModerate\col \col busway\col bellow basic\col Emerging\col Moderate\col $ 650\col 20.97
+\row \col Charlotte LynxModerate\col \col LRT\col bronze\col Emerging\col Moderate\col $ 810\col 1.66
+\row \col Pittsburgh Martin Luther King, Jr. East BuswayModerate\col \col BRT\col bronze\col Emerging\col Moderate\col $ 903\col 3.59
+\row \col Ottawa TransitwayModerate\col \col BRT\col bronze\col Emerging\col Moderate\col $ 1,000\col 1.71
+\row \col Boston Waterfront Silver Line\col \col busway\col bellow basic\col Strong\col Moderate\col $ 1,000\col 1.39
+\row \col Las Vegas Strip & Downtown Express (SDX)\col \col BRT\col bronze\col Strong\col Moderate\col $ 2,000\col 42.28
+\row \col Denver Central CorridorModerate\col \col LRT\col bronze\col Strong\col Moderate\col $ 2,550\col 14.88
+\row \col Phoenix MetroModerate\col \col LRT\col bronze\col Emerging\col Moderate\col $ 2,821\col 1.99
+\row \col *Strong TOD Investment* \col \col \col \col \col \col \col 
+\row \col Seattle South Lake Union (SLU) Streetcar Strong\col \col LRT\col bellow basic\col Strong\col Strong\col $ 3,000\col 53.57
+\row \col Portland StreetcarStrong\col \col LRT\col bellow basic\col Strong\col Strong\col $ 4,500\col 41.48
+\row \col Kansas City Main Street Metro Area Express (MAX)\col \col busway\col bellow basic\col Strong\col Strong\col $ 5,200\col 101.96
+\row \col Cleveland HealthLine\col \col BRT\col silver\col Emerging\col Strong\col $ 5,800\col 114.54
+\row \col Portland MAX Blue Line\col \col LRT\col silver\col Emerging\col Strong\col $ 6,600\col 3.68
 \endtable
 
 Source: Hook, Walter, Annie Weinstock, and Stephanie Lotshaw, More Development 
-for Your Transit Dollar, ITDP, 2013) 
-(\url{https://www.itdp.org/more-development-for-your-transit-dollar-an-analysis-of-21-north-american-transit-corridors/})
+for Your Transit Dollar, ITDP, 2013 
 
 There is little debate that in the right conditions HRT investments can leverage significant investment 
 in transit-oriented development (TOD). 
 
-*More Development for Your Transit Dollar,* a recently completed study of the likelihood of both LRT 
+*More Development for Your Transit Dollar,* a study of the likelihood of both LRT 
 and BRT investments in the United States and their impact on stimulating economic development concluded 
 that both LRT and BRT had a similar chance of stimulating or not stimulating economic development, so 
 long as they are of similar quality, as measured by *the BRT Standard*. (Hook, Walter, Annie Weinstock, 
@@ -64,7 +87,10 @@ the BRT corridors.
 ability of public transport to focus city development.}{City of Curitiba.}
 
 A recent study by the World Bank of the development impacts of BRT systems in Guangzhou, Bogotá, and 
-Ahmedabad indicated that densification at levels higher than observable in other parts of the city did 
+Ahmedabad
+(*Transforming Cities with Transit: Transit and Land Use Integration Towards 
+Sustainable Urban Development*, 2012)
+indicated that densification at levels higher than observable in other parts of the city did 
 occur in Bogotá, but only in Phase II corridors, where there was more land available for development. 
 Unlike in Curitiba, there was no particular zoning incentive in place in Bogotá to channel new development 
 to the BRT corridors. In Ahmedabad, the system was still too new to determine the degree of land development 
@@ -78,9 +104,6 @@ farthest from the CBD.
 
 \figure[medium]{assets/image33.jpeg}{BRT corridor in Guangzhou, China.}{ Karl Fjellstrom, ITDP.}
 
-(Source: World Bank, 2012: *Transforming Cities with Transit: Transit and Land Use Integration Towards 
-Sustainable Urban Development*)
-
 In Guangzhou, there was no specific zoning incentive to build along the BRT system or the metro system, 
 so the high-density development that occurred was largely the result of market forces. 
 
@@ -88,8 +111,8 @@ In all cases, then, supportive zoning and the availability of developable land a
 factors. These factors would affect all transit modes equally. In conclusion, there is a growing body 
 of evidence to suggest that BRT and LRT will result in a similar level of new economic development if 
 all other variables are equal, and these other variables are much stronger determinants of economic impacts 
-than the selection of transit mode. Because BRT is generally cheaper to build, however, the economic 
-development impacts \highlight{of BRT are superior to those of LRT and probably those of HRT} \highlight{per 
+than the selection of transit mode. Because BRT is generally cheaper to build, however,  \highlight{the economic 
+development impacts of BRT are superior to those of LRT and probably those of HRT} \highlight{per 
 dollar of transit investment. }
 
 \title{Employment}

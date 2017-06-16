@@ -88,8 +88,8 @@ reasons that will be explained.
 \row \col LRT Alstom Citadis Small\col \col 29\col 4\col 232
 \row \col LRT Siemens small\col \col 28\col 4\col 224
 \row \col BRT Largest Bi-articulated\col \col 25\col 5\col 220
-\row \col BRT Volvo Bi-Articulated\col \col 22\col 5\col 190
-\row \col BRT Articulated\col \col 18\col 4\col 150
+\row \col BRT Volvo Bi-Articulated\col \col 22\col 5\col 190 
+\row \col BRT Articulated\col \col 18\col 4\col 150 
 \row \col BRT Standard \col \col 12\col 2\col 90
 \endtable
 
@@ -112,20 +112,23 @@ length can be used as a proxy for the passenger capacity of a rail car. Passenge
 North American light rail cars range from 1.5 to 2.4 passengers per foot of car length (5.0 to 8.0 *p/m 
 *length). The lower level of 1.5 passengers per foot length (5.0 *p/m *length)-with a standing space 
 per passenger of 4.3 ft\sup{2} (0.4 m\sup{2})-corresponds to a standing load without body contact, while the upper 
-level provides 3.2 ft2 (0.3 m2), corresponding to a standing load with some body contact.
+level provides 3.2 ft2 (0.3 m\sup{2}), corresponding to a standing load with some body contact.}{TCSQM, p. 8-66}
 
+\quotation{
 For heavy rail, the 75-ft (23-m) cars used in more than twelve U.S. and Canadian cities range from 
 2.1 to 3.5 passengers per foot of car length (7.0 to 11.5 p/m of car length). The higher end of this 
-range approaches crush-loaded conditions. 
+range approaches crush-loaded conditions.
+}{\emph{continued}}
 
+\quotation{
 A reduction by 0.3 p/ft length (1.0 p/m length) should be used for smaller, narrower 
-cars *(1).*}{TCSQM, p. 8-66)}
+cars *(1).*}{\emph{continued}}
 
 Table 2.5 uses eight passengers per meter of length to estimate the passenger capacity of a rail car.
 
 The metro systems with the longest trains have eight-car trains, with six being more typical (for BRT 
-systems, then, this guide uses (L-3) \* 10, or 10 passengers per meter, (within the range of the TCSQM 
-recommendation) discounted by the 3 meters needed for the driver). These vehicles can all carry more 
+systems, then, this guide uses $$(L-3) * 10 $$, or 10 passengers per meter, within the range of the TCSQM 
+recommendation discounted by the 3 meters needed for the driver). These vehicles can all carry more 
 passengers but they would be at crush loads and above the design capacity. 
 
 Where there are no cross streets to contend with, there is no definite limit on the length of the vehicle 
@@ -194,9 +197,15 @@ saturate, so the greater the capacity of the system.
 There is no inherent advantage between BRT, LRT, or HRT for these measures: they can equally be applied 
 to any of these modes. 
 
-Table 2.6 Variable Dwell Times
-//TODO:MAKE TABLE!
-
+\begintable{Variable Dwell Times}
+\header \col Mode\col \col Seconds per passenger per door
+\row \col HRT & LRT Alighting at level\col \col 1.39 - 2.0
+\row \col HRT & LRT Alighting with Steps\col \col 3.36 - 3.97
+\row \col HRT & LRT Boarding at level\col \col 1.11 - 2.61
+\row \col HRT & LRT Boarding with Steps\col \col 2.91 - 4.21
+\row \col BRT Boarding TransMilenio\col \col 1.2
+\row \col Standard at - level  BRT boarding\col \col 1.6
+\endtable
 Source: *TCQSM*, 3rd Edition, pp. 8–25, BRT Planning Guide
 
 BRT systems, LRT systems, and HRT systems have very similar boarding and alighting times per passenger 
@@ -292,7 +301,7 @@ process takes longer than normal, and the station is immediately adjacent to the
 time the boarding and alighting process is completed, the signal may have changed to red, and the transit 
 vehicle will be unable to clear the intersection. This then obstructs access to the transit station for 
 the vehicles behind it. This problem is best avoided in the case of both BRT and LRT systems by separating 
-the bus stop from the intersection by several vehicle lengths (*The BRT Standard*, , p. 34). The greater 
+the bus stop from the intersection by several vehicle lengths (*The BRT Standard*, \url{www.brtstandard.org} , p. 34). The greater 
 the frequency, the more vehicle lengths that will be necessary. In the case of close downtown streets, 
 it may be necessary to eliminate intersections all together, as was done on Caracas Avenue in downtown 
 Bogotá.
@@ -316,8 +325,8 @@ is fully protected from encroachment from turning vehicles of mixed traffic, and
 between the boarding and alighting process and the signal phase. However, these conditions are rarely 
 fully achieved in most LRT systems. For this reason, *TCQSM* states the following: 
 
-*Therefore, a common rule of thumb is that the minimum sustainable headway is double the longest traffic 
-signal cycle on the on-street portions of the line.” (pp. 8–57)*
+\quotation{Therefore, a common rule of thumb is that the minimum sustainable headway is double the longest traffic 
+signal cycle on the on-street portions of the line.}{TCQSM pp. 8–57}
 
 As this problem does not manifest itself in BRT systems, they are not considered in Chapter 7. For 
 this reason, the *TCQSM* is a better manual for calculating the likely capacity of an LRT system. It 
@@ -349,8 +358,19 @@ greater than design capacity, or below design capacity as is often the case in t
 they could face constraints unanticipated by theoretical design capacity calculations, like a demand 
 profile with heavy boarding and alighting concentrated at a few critical stops.  
 
-Table 2.7 Theoretical Capacities of Different Rapid Transit Alternatives
-//TODO: MAKE TABLE
+\begintable{Table 2.7 Theoretical Capacities of Different Rapid Transit Alternatives}
+\header \col \col \col Vehicle capacity \col Load Factor\col Frequency\col Capacity
+\row \col HRT 8 car single track, best signaling system\col \col 1408\col 0.85\col 30\col 35904
+\row \col HRT 8 car double track \col \col 1408\col 0.85\col 60\col 71808
+\row \col LRT 8 module, no turning restrictions, 2-minute signal \col \col 632\col 0.85\col 15\col 8058
+\row \col LRT 8 module, no turns allowed, 90 second signal\* \col \col 632\col 0.85\col 20\col 10744
+\row \col LRT 8 module double track\col \col 632\col 0.85\col 40\col 21488
+\row \col BRT largest bi-articulated\col \col 220\col 0.85\col 60\col 11220
+\row \col BRT with passing lanes \col \col 220\col 0.85\col 193\col 36000
+\row \col BRT with passing lanes & limited stops bypassing bottleneck station\col \col 220\col 0.85\col 241\col 45000
+\endtable
+
+\*TCQSM 3rd Edition p 8-87 provides 20 as the number of trains that can be processed at grade with a 90 second signal.  They reach a capacity of 12,000 pphpd by assuming trains with larger capacity than is commercially available or operable in most on-street contexts.  
 
 The theoretical values used above are illustrative only, and local circumstances will cause significant 
 deviations from these values. 
@@ -367,9 +387,9 @@ The frequency of HRT systems was set based on the *TCQSM* recommendation that no
 per hour are possible even in fully grade-separated systems with state-of-the-art signaling systems due 
 to extended dwell times at high-demand stations. It reads:  
 
-*It is apparent from the observed operating experience in New York and Washington that higher dwell 
+\quotation{It is apparent from the observed operating experience in New York and Washington that higher dwell 
 times at critical stations prevent the achieving of capacities significantly greater than 30 trains per 
-hour (TCQSM, pp. 8–83).*
+hour}{TCQSM, pp. 8–83}
 
 The frequency of LRT systems is similarly set by *TCQSM* guidelines for on-street systems, which recommends 
 that twenty train sets per hour is the maximum achievable frequency for systems with a signal phase maximum 
@@ -398,8 +418,75 @@ for 2018), that design capacities of over 45,000 will be achieved, due to limite
 unique demand profile, which allows for an unprecedented majority of services to run very limited stops. 
 
 
-Table 2.8 Passengers per Hour per Peak Direction Observed: BRT
-//TODO: Make table!
+\begintable{Passengers per Hour per Peak Direction Observed: BRT}
+\header \col Corridor\col Type\col Daily Weekday Ridership\col PPHPD\col Level\col Tracks/ Lanes\col Source 
+\row \col BRT\col \col \col \col \col \col 
+\row \col Bogotá\col BRT\col 1200000\col  37,700 \col Surface\col 2\col #
+\row \col Guangzhou\col BRT\col 850000\col  27,400 \col Surface\col 2\col #
+\row \col Brisbane\col BRT\col \col  19,900 \col Surface\col 2\col @
+\row \col Istanbul\col BRT\col 600000\col  18,900 \col Highway\col 1\col #
+\row \col Porto Alegre\col BRT\col \col  15,800 \col Surface\col 2\col @
+\row \col Guayaquil, EC\col BRT\col \col  15,000 \col Surface\col 2\col @
+\row \col Rio de Janeiro TransOeste\col BRT\col \col  14,000 \col surface\col 2\col @
+\row \col Lima\col BRT\col 350000\col  13,950 \col Highway\col 2\col #
+\row \col Guatemala City, Eje Sur\col BRT\col \col  13,500 \col Surface\col 2\col @
+\row \col Curitiba- Eixo Sul\col BRT\col \col  12,500 \col Surface\col 1\col @
+\row \col Quito\col BRT\col \col  11,700 \col Surface\col 2\col @
+\row \col Cali\col BRT\col \col  11,100 \col Surface\col 2\col #
+\row \col Ottawa West Transitway\col BRT\col \col  10,000 \col Surface\col 1\col @
+\row \col Merida\col BRT\col \col  9,000 \col Surface\col 2\col @
+\row \col Guadalajara\col BRT\col \col  9,000 \col Surface\col 1\col @
+\row \col Xiamen\col BRT\col \col  8,360 \col Elevated\col 1\col #
+\row \col Brisbane\col BRT \col \col  7,700 \col Surface\col 2\col #
+\row \col Mexico City \col BRT\col \col  7,550 \col Surface\col 1\col #
+\row \col Zhengzhou\col BRT\col \col  7,230 \col Surface\col 1\col #
+\row \col Urumqi\col BRT\col \col  6,230 \col Surface\col 1\col #
+\row \col Chengdu\col BRT\col \col  6,650 \col Elevated\col 1\col #
+\row \col Lanzhou\col BRT\col 290000\col  6,550 \col Surface\col 2\col #
+\row \col Dalian\col BRT\col \col  6,430 \col Surface\col 1\col #
+\row \col Hangzhou\col BRT\col \col  6,300 \col Surface\col 1\col #
+\row \col São Paulo - Espresso Tiradentes\col BRT\col \col  6,100 \col Elevated\col 1\col @
+\row \col Quito\col BRT\col \col  6,000 \col Surface\col 1.5\col #
+\row \col Baranquilla\col BRT\col \col  5,900 \col Surface\col 2\col @
+\row \col Delhi\col BRT\col \col  5,500 \col Surface\col 2\col @
+\row \col Johannesburg\col BRT\col \col  4,510 \col Surface\col 2\col #
+\row \col Bucaramanga, Co\col BRT\col \col  4,525 \col Surface\col 1\col @
+\row \col TransSantiago\col BRT \col \col  4,400 \col Surface\col 1\col @
+\row \col Pereira, Co\col BRT\col \col  4,073 \col Surace\col 1\col @
+\row \col Hefei\col BRT\col \col  3,600 \col Surface\col 1\col #
+\row \col Yinchuan\col BRT\col \col  3,600 \col Surface\col 1\col #
+\row \col Buenos Aires Juan B. Justo\col BRT\col \col  3,450 \col Surface\col 1\col @
+\row \col Jakarta\col BRT\col \col  3,400 \col Surface\col 1\col #
+\row \col Paris Val de Marn\col BRT\col \col  3,000 \col Surface\col 1\col @
+\row \col Beijing\col BRT\col \col  2,750 \col Surface\col 1\col #
+\row \col Changzhou\col BRT\col \col  2,650 \col Surface\col 1\col #
+\row \col Medellin, CO\col BRT\col \col  2,450 \col Surface\col 1\col @
+\row \col Los Angeles Orange Line\col BRT\col  33,000 \col  2,357 \col Surface\col 2\col \*
+\row \col Jinan\col BRT\col \col  2,050 \col Surface\col 1\col #
+\row \col Nantes, France\col BRT\col \col  2,000 \col Surface\col 1\col @
+\row \col Leon, MX\col BRT\col \col  1,950 \col Surface\col 1\col #
+\row \col Ahmedabad\col BRT\col \col  1,780 \col Surface\col 1\col @
+\row \col Pittsburgh Martin Luther King, Jr. East Busway \col BRT\col  24,000 \col  1,714 \col Surface\col 2\col \* 
+\row \col Lianyungang\col BRT\col \col  1,650 \col Surface\col 1\col #
+\row \col Zaozhuang\col BRT\col \col  1,400 \col Surface\col 1\col #
+\row \col Yancheng\col BRT\col \col  1,300 \col Surface\col 1\col #
+\row \col Bangkok\col BRT\col \col  1,200 \col Surface\col 1\col #
+\row \col Nantes\col BRT\col \col  1,200 \col Surface\col 1\col #
+\row \col Las Vegas Strip & Downtown Express (SDX) BRT\col BRT\col  16,789 \col  1,199 \col Surface\col 1\col \*
+\row \col Cleveland HealthLine BRT\col BRT\col  15,800 \col  1,129 \col Surface\col 1\col \*
+\row \col Eugene Emerald Express Green Line (EmX) BRT\col BRT\col  10,000 \col  714 \col Surface\col 1\col \*
+\row \col Pittsburgh South Busway BRT\col BRT\col  9,262 \col  662 \col Surface\col 1\col \*
+\row \col Pittsburgh West Busway BRT\col BRT\col  8,419 \col  601 \col Surface\col 1\col \*
+\row \col Las Vegas Metropolitan Area Express (MAX) \col BRT\col  7,400 \col  529 \col Surface\col 1\col \*
+\endtable
+
+Sources:
+\item + Taken from TCQSM 2nd Ed, Annex.  \url{http://onlinepubs.trb.org/onlinepubs/tcrp/tcrp100/part%205.pdf}, p. 5 - 123
+\item \* Extrapolated from daily demand collected by ITDP for \url{https://www.itdp.org/more-development-for-your-transit-dollar-an-analysis-of-21-north-american-transit-corridors/} using a ratio of 1/14 derived from TCQSM 2nd Ed data
+\item # Counted by ITDP China staff, from: \url{http://www.chinabrt.org/en/cities/param-quan.aspx?param=2}
+\item & Taken from TCQSM 2nd Ed. Part 2: Transit in North America, p. 2-13
+\item @  \url{http://brtdata.org/indicators/corridors/peak_load_corridor_passengers_per_hour_per_direction}
+\item ? BRT Planning Guide, 2007
 
 The other way to compare the relative capacities of BRT, LRT, and HRT systems is to look at observed 
 actual ridership per hour per direction on the highest demand link. The tables above and below are compilations 
@@ -407,7 +494,51 @@ of the most reliable data that the authors could collect.
 
 The observed pphpd on two BRT systems now exceeds 20,000 (Bogotá, Guangzhou). 
 
-Table 2.9 Passengers per Hour per Peak Direction Observed: LRT and HRT
+\begintable{Passengers per Hour per Peak Direction Observed: LRT and HRT}
+
+\header \col Corridor\col Type\col Daily Weekday Ridership\col PPHPD\col Level\col Tracks/ Lanes\col Source 
+\row \col LRT\col \col \col \col \col \col 
+\row \col Tunis- LRT\col LRT\col \col  13,400 \col Underground Junctions\col 1\col ? 
+\row \col Calgary\col LRT\col 60200\col  5,900 \col Surface\col 1\col +
+\row \col Portland MAX Blue Line LRT\col LRT\col  66,370 \col  4,741 \col Surface\col 1\col \*
+\row \col Denver Central Corridor LRT\col LRT\col  62,782 \col  4,484 \col Surface\col 1\col \*
+\row \col Edmonton\col LRT\col 38000\col  3,800 \col Surface\col 1\col +
+\row \col Phoenix Metro LRT\col LRT\col  41,784 \col  2,985 \col Surface\col 1\col \*
+\row \col Pittsburgh "The T" LRT\col LRT\col  28,232 \col  2,017 \col Surface\col 1\col \*
+\row \col Toronto Spadina\col LRT\col 40200\col  2,000 \col Surface\col 1\col +
+\row \col Newark  \col LRT\col 16900\col  1,800 \col Surface\col 1\col +
+\row \col Sacramento\col LRT\col 29000\col  1,500 \col Surface\col 1\col +
+\row \col Charlotte Lynx LRT\col LRT\col  14,000 \col  1,000 \col Surface\col 1\col \*
+\row \col Denver Southwest Corridor LRT\col LRT\col  17,746 \col  1,268 \col Surface\col 1\col \*
+\row \col Seattle South Lake Union (SLU) Streetcar\col LRT \col  3,000 \col  214 \col Surface\col 1\col \*
+\row \col Portland Streetcar\col LRT\col  11,400 \col  814 \col Surface\col 1\col \*
+\row \col HRT\col \col \col \col \col \col 
+\row \col Hong Kong- Subway\col HRT\col \col  84,000 \col Underground\col 2\col ?
+\row \col São Paulo - Line 1\col HRT\col \col  60,000 \col Underground\col 2\col ?
+\row \col NYC Green Lines Combined\col HRT\col \col  56,100 \col Underground\col 2\col +
+\row \col Santiago- La Moneda\col HRT\col \col  36,000 \col Underground\col 1\col ? 
+\row \col NYC 4,5, express trains\col HRT\col \col  30,200 \col Underground\col 1\col +
+\row \col Toronto Spadina\col HRT\col 614000\col  26,200 \col Underground\col 1\col +
+\row \col Manila- MRT-3\col HRT\col \col  26,000 \col Elevated\col 1\col ?
+\row \col NYC 6 train\col HRT\col \col  25,900 \col Underground\col 1\col +
+\row \col London- Victoria Line\col HRT\col \col  25,000 \col Underground\col 1\col ?
+\row \col Montreal\col HRT\col 407700\col  24,400 \col Underground\col 1\col +
+\row \col Bangkok- SkyTrain\col HRT\col \col  22,000 \col Elevated\col 1\col ?
+\row \col Buenos Aires- Line D\col HRT\col \col  20,000 \col Underground\col 1\col ?
+\row \col Newark Path\col HRT\col 126800\col  17,800 \col Underground\col 1\col +
+\row \col Washington DC Red\col HRT \col \col  12,700 \col Underground\col 1\col +
+\row \col Chicago Red\col HRT\col 200200\col  11,900 \col Elevated\col 1\col +
+\row \col San Fran BART\col HRT\col 124300\col  6,200 \col Underground\col 1\col +
+\row \col Atlanta \col HRT\col 117,000\col  5,100 \col Underground\col 1\col +
+\endtable
+
+Sources:
+\item + Taken from TCQSM 2nd Ed, Annex.  \url{http://onlinepubs.trb.org/onlinepubs/tcrp/tcrp100/part%205.pdf}, p. 5 - 123
+\item \* Extrapolated from daily demand collected by ITDP for \url{https://www.itdp.org/more-development-for-your-transit-dollar-an-analysis-of-21-north-american-transit-corridors/} using a ratio of 1/14 derived from TCQSM 2nd Ed data
+\item # Counted by ITDP China staff, from: \url{http://www.chinabrt.org/en/cities/param-quan.aspx?param=2}
+\item & Taken from TCQSM 2nd Ed. Part 2: Transit in North America, p. 2-13
+\item @  \url{http://brtdata.org/indicators/corridors/peak_load_corridor_passengers_per_hour_per_direction}
+\item ? BRT Planning Guide, 2007
 
 In fact, the highest observed capacity on TransMilenio exceeds all but the highest capacity HRT systems, 
 and it far exceeds the highest LRT system. The highest observed capacity BRT systems all have passing 
@@ -512,8 +643,55 @@ from the table that BRT and LRT operate at very similar speeds, and the variance
 by corridor characteristics, with the existence of express services and grade separation in Ottawa, Pittsburgh, 
 and Bogotá giving BRT a slight advantage in a like-to-like comparison. 
 
-Table 2.10 Comparative Observed Speeds, BRT, LRT, and HRT
-//TODO: Make table!
+\begintable{Comparative Observed Speeds, BRT, LRT, and HRT}
+\header \col Corridor\col Type\col Speed (km/hr)\col Source
+\row \col BRT\col \col \col 
+\row \col Pittsburgh West Busway Pennsylvania,\col BRT\col 54\col \[ii\]
+\row \col Pittsburgh Martin Luther King, Jr. East Busway \col BRT \col 54\col \[x\]
+\row \col Pittsburgh South Busway, Pennsylvania,\col BRT\col 54\col \[iii\]
+\row \col Ottawa Transitway, Canada\col BRT\col 52\col \[i\]
+\row \col Orange Line, Los Angeles\col BRT\col 32\col \[v\]
+\row \col Bogotá, Colombia, TransMilenio \col BRT\col 27\col \[x\]
+\row \col Curitiba, Brazil, Linha Verde \col BRT\col 25\col \[x\]
+\row \col Beijing  (Lines 1, 2, 3, 4)\col BRT\col 24\col \[iv\]
+\row \col Ahmedabad, India, Janmarg \col BRT\col 24\col \[x\]
+\row \col Guangzhou, China, GBRT\col BRT\col 23\col \[x\]
+\row \col Las Vegas Metropolitan Area Express (MAX)\col BRT\col 22\col \[x\]
+\row \col Curitiba, Brazil, RIT corridors\col BRT\col 18\col \[x\]
+\row \col Los Angeles OrangeLine\col BRT\col 18\col \[x\]
+\row \col Cleveland HealthLine\col BRT\col 18\col \[x\]
+\row \col Mexico City, Mexico, Insurgentes\col BRT\col 17\col \[x\]
+\row \col Eugene Emerald Express Green Line (EmX) \col BRT\col 17\col \[x\]
+\row \col LRT\col \col \col 
+\row \col Sound Transit Central Link, Seattle, Washington, USA\col LRT\col 40\col \[vi\]
+\row \col Ottawa O-Train\col LRT\col 40\col \[x\]
+\row \col LYNX Blue Line, Charlotte, North Carolina, USA\col LRT\col 37\col \[vi\]
+\row \col Portland MAX Blue Line LRT\col LRT\col 30\col \[x\]
+\row \col Denver Central Corridor LRT\col LRT\col 23\col \[x\]
+\row \col Denver Southwest Corridor LRT\col LRT\col 23\col \[x\]
+\row \col Phoenix Metro LRT\col LRT\col 19\col \[x\]
+\row \col Budapest, Hungary, Grand Boulevard LRT\col LRT\col 18\col \[x\]
+\row \col Portland Streetcar\col LRT\col 16\col \[x\]
+\row \col Seattle South Lake Union (SLU) Streetcar\col LRT\col 8\col \[x\]
+\row \col HRT\col \col \col 
+\row \col Manila MRT 3 (Metrostar Express), Philippines\col HRT\col 48\col \[viii\]
+\row \col Expo/Millennium Lines, Vancouver, Canada\col HRT\col 43.5\col \[vii\]
+\row \col Tren Urbano, San Juan, Puerto Rico\col HRT\col 33.2\col \[ix\]
+\endtable
+
+
+  Sources:   
+
+\item  \[i\]Ottawa Ontario BRT Case Study." Transportation Research Board. \url{http://onlinepubs.trb.org/onlinepubs/tcrp/tcrp90v1_cs/Ottawa.pdf.}   
+\item  \[ii\] US Department of Transportation. Evaluation of Port Authority of Allegheny County's West Busway Bus Rapid Transit Project. Washington DC, 2003. Report No. FTA-PA-26-7010-03.1 \url{http://www.fta.dot.gov/documents/Pittsburgh_West_Busway_BRT_Evaluation-April_2003.pdf}   
+\item  \[iii\] "Pittsburgh, Pensylvania South, East, and West Busways." Transportation Research Board. \url{http://onlinepubs.trb.org/onlinepubs/tcrp/tcrp90v1_cs/Pittsburgh.pdf}   
+\item  \[iv\] National BRT Institute. "Perspectives on Bus Rapid Transit (BRT) Developments in China." Presentation. National BRT Institute. May 1, 2006. \url{http://www.nbrti.org/docs/pdf/Darido_China BRT_051106_presentation.pdf}   
+\item  \[v\] Flynn, Jennifer, Cheryl Thole, Victoria Perk, Joseph Samus, Caleb Van Nostrand, National Bus Rapid Transit Institute, and Center for Urban Transportation Research. Metro Orange Line BRT Project Evaluation. Vol. 0004. Washington DC: Federal Transit Administration, 2011. \url{http://www.fta.dot.gov/documents/FTA_Research_Report_0004_FINAL_2.pdf}   
+\item  \[vi\] Speeds for Charlotte Lynx, Central Link, and WMATA Silver line calculated from posted schedules.   
+\item  \[vii\] "Vancouver SkyTrain—A Proven Success Story."Japan Railway & Transport Review, no. 16 (1998): 44-45. \url{http://www.jrtr.net/jrtr16/pdf/f44_vancouver.pdf}   
+\item  \[viii\] Antiporda, Jefferson. "DOTC Promises Better MRT Service next Year." Manila Times, August 15, 2014.\url{http://www.manilatimes.net/dotc-promises-better-mrt-service-next-year/119302/}.   
+\item  \[ix\] "Subways of Puerto Rico." My Transit Guide. \url{http://mapa-metro.com/en/Puerto Rico/San Juan/San Juan-Tren-Urbano-map.htm}.   
+\item  \[x\] "More Development for your transit dollar", 2013 ITDP. \url{https://www.itdp.org/more-development-for-your-transit-dollar-an-analysis-of-21-north-american-transit-corridors/}, derived from interviews with transit authority staff.   
 
 \subsection{ Reliability}
 
@@ -575,10 +753,9 @@ systems may also evoke images that are not entirely favorable to attracting cust
 residents to the underground subway system. 
 
 \figure[medium]{assets/image28.jpg}{Rail-based systems do not always offer superior
-aesthetic qualities. The system in Cairo, Egypt show problems of neglect and vandalism.}{Karl Fjellstrom}
+aesthetic qualities like this system in Cairo.}{Karl Fjellstrom}
 
-\figure{assets/image29.JPG}{Rail-based systems do not always offer superior
-aesthetic qualities. The system in Bucharest, Romania show problems of neglect and vandalism.}{Lloyd Wright.}
+\figure{assets/image29.JPG}{Rail-based system in Bucharest, Romania show problems of neglect and vandalism.}{Lloyd Wright.}
 
 Image is mostly determined by the quality of the stations, and secondarily by the quality and the look 
 and the feel of the vehicles. BRT systems have done much to create a modern and unique identity, mainly 
