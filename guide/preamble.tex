@@ -255,7 +255,9 @@
 \fi
 
 %quotation {quote}{name, about, 1900 - 2000}
-\renewcommand{\quotation}[2]{\begingroup\leftskip=14mm\rightskip=14mm {\small\color{gray50} \noindent\textit{``#1''} \\\hbox{}\hfill --- #2} \par\endgroup \smallskip }
+%FIXME incorrect placement of closing quotations; #1 already ends in \par
+%FIXME incorrect indentation if more than one element in #1
+\renewcommand{\quotation}[2]{\begingroup\leftskip=14mm\rightskip=14mm {\small\color{gray50} \noindent\itshape``#1'' \\\hbox{}\hfill --- #2} \par\endgroup \smallskip }
 
 %tables
 %note: \tablemodule*46*2 must match \textwidth+\marginparsep+\marginparwidth
