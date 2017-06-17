@@ -22,9 +22,10 @@ Station: 5 meters
 Barrier/curb separator: 0.5 meter
 
 Mixed-traffic lanes: 3 meters
-\endbox
 
 \figure[medium]{assets/image2.jpg}{A conceptual design of a BRT corridor.}{ITDP.}
+
+\endbox
 
 The best BRT systems have used the opportunity of reconstructing the corridor for exclusive busways 
 to invest in upgrading the environment for pedestrians and cyclists. This is partly to support sustainable 

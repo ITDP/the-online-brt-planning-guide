@@ -67,13 +67,13 @@ at this midblock station area.}{ ITDP.}
 \subsection{ Station Types}
 
 There are three main station types that are based on the function or role they play in the system:
-\item Standard: the configuration and structure of a standard station depends on the capacity needed 
+\number Standard: the configuration and structure of a standard station depends on the capacity needed 
 for both customer and vehicle volumes expected at that station;
-\item Transfer: a structure that fulfills the role of a standard station and facilities transfers either 
+\number Transfer: a structure that fulfills the role of a standard station and facilities transfers either 
 within the system to another trunk route or a feeder route or to another system, like metro. Ideally 
 this happens without leaving the structure—physical integration—but may not be possible due to space 
 constraints;
-\item Terminal: a structure that represents the endpoint of a corridor. Usually space is available for 
+\number Terminal: a structure that represents the endpoint of a corridor. Usually space is available for 
 a larger facility that can easily accommodate physical integration of feeder and trunk lines. With direct 
 services becoming more popular, large terminal structures may not be as necessary.
 

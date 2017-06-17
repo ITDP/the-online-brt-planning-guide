@@ -1,12 +1,8 @@
 \chapter{Roadway and Station Configurations}
 
-
-
 \quotation{We will either find a way, or make one.}{Hannibal, military commander and politician, 247 BC–183 BC}
 
-
 \title{Overview}
-
 
 \figure[medium]{assets/image1.jpg}{Guangzhou, China, is a median-aligned busway configuration with split stations 
 located along the outside of the busway.}{ ITDP.} 
@@ -63,4 +59,4 @@ docking bay at the sub-stop. It is also the place where customers wait for the n
 \include{221-cross-section-design.manu}
 \include{222-roadway-configurations.manu}
 \include{223-station-configurations.manu}
-\include{references.manu}
+\include{bibliography.manu}
