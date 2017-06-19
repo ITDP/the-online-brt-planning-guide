@@ -29,8 +29,8 @@
   },
   "homepage": "https://github.com/ITDP/the-online-brt-planning-guide/tree/master/generator",
   "dependencies": {
+    "katex": "^0.7.1",
     "mathjax-node": "0.*.*",
     "source-map-support": ""
   }
 }
-

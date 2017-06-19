@@ -54,37 +54,17 @@ class Validator {
 
 #if nodejs
 	/*
-	Initialize and configure MathJax, but only once.
-	*/
-	dynamic function initMathJax()
-	{
-		mathjax.Single.config({
-			displayMessages : false,
-			displayErrors : false,
-			undefinedCharError : true
-		});
-		this.initMathJax = function () {};
-	}
-
-	/*
 	Validate TeX math.
 	*/
 	function validateMath(tex:String, pos:Position)
 	{
 		if (Context.noMathValidation) return;
 
-		wait++;
-		initMathJax();
-		mathjax.Single.typeset({
-			math:tex,
-			format:mathjax.Single.SingleTypesetFormat.TEX,
-			mml:true
-		}, function (res) {
-			if (res.errors != null)
-				errors.push(new ValidationError(pos, BadMath(tex, res.errors)));
-			wait--;
-			tick();
-		});
+		try {
+			katex.Katex.renderToString(tex);
+		} catch (err:Dynamic) {
+			push(new ValidationError(pos, BadMath(tex, [err])));
+		}
 	}
 #else
 	/*
