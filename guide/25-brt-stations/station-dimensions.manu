@@ -1,0 +1,368 @@
+\section{Station Dimensions}
+
+\quotation{ “I refuse to accept other people’s ideas of happiness for me. As if there’s a ‘one-size fits all’ standard for happiness.”}
+{Kanye West, musician, 1977-}
+
+\subsection{Station Width}
+
+The platform must be wide enough to accommodate all projected waiting passengers, provide enough space 
+for passengers to enter and exit the area, and enough space for the infrastructure itself.
+
+\beginbox{Platform width formulas}
+
+\highlight{Equation 1: Calculation of platform width}
+
+\' TODO: Math: Wp = 1 + Wu + Wc + Wopp  '\
+
+Where:
+
+*Wp* = Total platform width 
+
+*1 meter* = Estimated or average width required for basic station infrastructure; Wu = Width required for waiting passengers in one direction
+
+*Wc* = Width required for circulating passengers; 
+
+*Wopp* = Width required for passengers waiting for vehicles going in the other direction (value = 0 when the station serve only one direction or are staggered)
+
+\highlight{Equation 2: Width required for circulating passengers}
+
+\' TODO: Math:  Wc = PPH / 2,000 people per hour '\ 
+
+Where:
+
+*PPH* = Number of circulating passengers expected per hour using peak hour numbers.
+*2,000* pedestrians can walk along a 1m wide path per hour and still provide a reasonable level of service. This is used as the basis for determining width needed for circulating passengers.
+
+\highlight{Equation 3: Area required for waiting passengers}
+\' TODO: Math:  Wu = Qp / DwMax; or; Wopp = Qp / DwMax '\;
+
+Where:
+
+*Wu or Wopp* = Minimum area required for waiting passengers. This is a function of the maximum number of passengers projected to queue divided by the capacity of a square meter to hold waiting passengers.
+
+*Op* = Maximum number of passengers projected to queue; DwMax = Capacity of a square meter to hold waiting passengers.  The maximum is 3 people per square meter.; 
+
+\highlight{Equation 4: Estimate of total boarding passengers at a sub-stop}
+
+\'TODO : Math  Qp =  Summation( PBi/Fi ) =  Summation(Pbbi) '\
+
+Where:
+
+*Qp* = Maximum passenger queue expected; represents the sum of all boarding passengers, i.e. how full the bus is when it gets to the station
+
+*PBi* = Passengers boarding per hour on BRT route i
+
+*Fi* = Frequency (BRT vehicles / hour) of line i 
+
+*Pbbi* = Average number of passengers boarding per BRT vehicle on line i
+
+\highlight{Example:} 
+
+*Given*
+
+station infrastructure consumes 0.5 meters on each side for a total of 1 meter
+
+waiting areas for the two directions are offset (Wopp = 0)
+
+18m long BRT vehicle (L = 18m)
+
+average number of waiting passengers during the peak = 150 (Qp = 150)
+
+6,000 passengers pass through station every hour (PPH = 6000)
+
+*Order of Operations*
+
+Wu = Qp / DwMax (equation 3)
+
+150 waiting passengers divided by 3 passengers per square meter equals 50 square meters. Thus, 50m\sup{2} of platform area is required to accommodate the waiting passengers.
+
+The BRT vehicle is 18 meters long, so 50m\sup{2} divided by 18m equals 2.8m. Thus, the waiting area needs to be 2.8m wide (Wu = 2.8m).
+
+Wc = PPH / 2,000 PPH (equation 2)
+
+6,000 passengers per hour divided by 2,000 passengers per hour per meter equals 3 meters (Wc = 3m).
+
+Wp = 1 + Wu + Wc + Wopp (equation 1)
+
+1m + 2.8m + 3m + 0m = 6.8m; Add 0.5m shy distance = 7.3m
+
+Round up to 8.0m
+
+\figure{assets/image53.png}{Platform width example}{ITDP}
+ 
+\endbox
+
+
+\subsection{Station Length}
+
+In order for multiple sub-stops to function properly, vehicles must be able to overtake buses stopped 
+at sub-stops. In general, the absolute minimum distance required for one vehicle to pass another is one-half 
+the bus length. For example, an 18-meter articulated vehicle requires at least nine meters of separation 
+between docking bays. This minimum distance should only be used at stations with fairly low frequency, 
+or where right of way constraint is a significant issue.  Normally,  systems require more space because:
+
+\item Entering and exiting docking bays with such limited space increases the time it takes to pull 
+into the docking bay, which reduces speeds and adds to saturation levels;
+\item If a vehicle using the same docking bay is directly behind another, the waiting vehicle should 
+be able to wait behind the first vehicle without blocking the docking bay behind it. 
+
+Based upon this criteria, the minimum spacing should be approximately 1.7 times the length of the vehicle. 
+In the case of an 18-meter articulated vehicle, this distance would be approximately 30 metres.
+
+If the vehicle to platform interface does not utilise a boarding bridge, then greater precision is 
+required to align the vehicle to the platform.
+
+As stated in Chapter 7, section 7.6, while boarding bridges allow buses greater room for error in docking 
+to the station and allow passengers greater confidence when boarding and alighting, there are a few disadvantages. 
+The added cost of the boarding plate and the pneumatic system to operate it entails a modest increase 
+in vehicle costs, as well as an increase in maintenance costs. As a moving part, the boarding bridge 
+also introduces additional maintenance issues and the potential for malfunction. The deployment of the 
+bridge itself takes about 1.5 seconds. Likewise, the retrieval of the boarding bridge at departure also 
+requires about 1.5 seconds. While this deployment and retrieval roughly coincide with the opening and 
+closing of the doors, they introduce a slight delay to the boarding and alighting process. 
+
+Unless saturation is very low, room should be left for a second vehicle to stop at each sub-stop, both 
+to avoid queues interfering with the operation of the adjacent sub-stop and also to help disperse waiting 
+passengers within the sub-stop. Generally, it is optimal to provide two boarding and alighting spaces, 
+though in a few exceptional circumstances three queuing spaces maybe be optimal. Table 25.2 outlines 
+the conditions favouring one or two bus docking bays.
+
+\begintable{Sub-stops and queuing spaces required}
+\header
+\col \highlight{Saturation level (X) From}
+\col \highlight{Saturation level (X) To}
+\col \highlight{No. of sub-stops}
+\col \highlight{No. of lanes}
+\col \highlight{Bus docking bays (vehicle lengths)}
+\col \highlight{Extra queuing positions (vehicle lengths)}
+\col \highlight{Total station length (metres)}
+\row
+\col 0
+\col 20%
+\col 1
+\col 1
+\col 1
+\col 0
+\col 19
+\row
+\col 20
+\col 40%
+\col 1
+\col 1
+\col 2
+\col 0
+\col 19
+\row
+\col 40%
+\col 70%
+\col 2
+\col 2
+\col 2
+\col 0
+\col 104
+\row
+\col 70%
+\col 80%
+\col 2
+\col 2
+\col 2
+\col 1
+\col 142
+\row
+\col 80%
+\col 100%
+\col 3
+\col 2
+\col 2
+\col 0
+\col 156
+\row
+\col 100%
+\col 140%
+\col 4
+\col 2
+\col 2
+\col 0
+\col 208
+\row
+\col 140%
+\col 180%
+\col 5
+\col 2
+\col 2
+\col 0
+\col 260
+\row
+\col 180%
+\col 200%
+\col 5
+\col 2
+\col 2
+\col 1
+\col 355
+\endtable
+
+*Notes:Saturation refers to the percentage of time that the station is occupied by BRT buses entering 
+the stopping area, opening doors, passengers boarding and alighting, doors closing, and leaving the stopping 
+area.The total station length is based on 18m BRT buses. 12m or smaller buses will be correspondingly 
+smallerTotal length = (19 m * number of docking bays) + 33 m19 m = space for extra vehicle in queue33 
+m = 19 m + 14 m (space for docking bay + passing distance)Station length excludes fare collection, typically 
+10 meters per entrance\*
+
+As can be seen in Table 25.2, multiple sub-stops add considerable overall length to a station.
+
+\figure[medium]{assets/image54.png}{TransMilenio stations}{TransMilenio, SA}
+
+\beginbox{TransMilenio stations}
+
+198 metres (3 sub-stops, 
+5 docking bays)
+
+124 metres (2 sub-stops, 4 docking bays)
+
+112 metres (2 sub-stops, 4 docking bays)
+
+94 metres (2 sub-stops, 2 docking bays)
+
+53 metres (1 sub-stop, 2 docking bays)
+
+62 metres (1 sub-stop, 
+2 docking bays)
+
+\endbox
+
+\subsection{Station Height}
+
+Station height from floor to ceiling should be at least 3.5m in a partially enclosed station, and at 
+least 4m in a fully enclosed station. Beyond these minimum dimensions, station heights can vary according 
+to the particular design. An example of BRT station dimensions provided by architect Derek Trusler with 
+ITDP for a study in Malaysia is provided in Figure xxxxx.
+
+\figure[medium]{assets/image55.jpeg}{Proposed station dimensions for a BRT conceptual design 
+by ITDP in Malaysia. The BRT door height is 1.1 meters. For fully enclosed stations an extra height of 
+at least 0.5 meters is recommended.}{ITDP and created by Derek Trusler.}
+
+\figure[medium]{assets/image56.jpg}{BRT station interior and exterior in Chengdu, which features 
+stations with several different architectural styles. The skylight helps to ensure a bright interior 
+and the walls curve downward.}{Karl Fjellstrom, ITDP}
+
+\subsection{Station and Road Cross-sections}
+
+Station and road cross-sections will vary according to the conditions of each urban corridor and the 
+demand and operational characteristics of the system. However, the following general guidelines can be 
+applied:
+
+\item BRT stations can be as narrow as 4 meters but should preferably be at least 5 meters wide, and preferably 
+at least 6m wide where passengers are boarding and alighting on both sides of the platform.
+\item Space is often most constrained at the station area. Since the station area is the critical point for 
+BRT operation, this may mean that other modes are partially “sacrificed” in order to allow for excellent 
+BRT operation. Mixed traffic lanes can be as narrow as 2.8 meters at the station area. Walkways can be 
+narrowed to 2 meters or even 1.5 meters (if the walkway is unobstructed). Bike lanes can be narrowed 
+to 1.5 meters or even 1 meter in low volume locations.
+\item Where the BRT has passing lanes, the stopping lane can be narrowed to 3 meters if necessary.
+
+ITDP’s station section for Wangzhougang Station in Yichang, illustrated in Figure xxxx, is an example 
+of the need to reduce the width of non-BRT lanes at the BRT station in order to retain in this case a 
+minimum 5-meter BRT station width. Between stations, where space is less constrained, mixed traffic lanes 
+are 3.5 meter, the bike lane 1.5 meter (plus a 0.5-meter divider), and the walkway 3.5 meter. At the 
+station the mixed traffic lanes are reduced to 3.2 meter, the bike lane to 1 meter (without a divider), 
+and the walkway to 3 meter. Yichang is a high-capacity BRT system. Reducing space for pedestrians should 
+be the last resort as with customers going to and from the station, pedestrian traffic may be higher 
+in these station areas.
+
+\figure[medium]{assets/image57.jpeg}{ Cross-section at and between stations at Wangzhougang BRT 
+station in Yichang.}{ ITDP}
+
+\' TODO: Fix '\
+Figure xxxx provides an example of a cross-section for a medium capacity BRT system: the design in 
+Vientiane, Lao PDR. Note that in the proposed cross-section between stations, mixed traffic has 7 meter 
+of space per direction, which at the BRT station is reduced to 6 meter. Since BRT vehicles are stopping 
+on both sides of the platform, the BRT lane width is also reduced to 3 meter at the station. A rendering 
+of the same station is provided in Figure xxxx.
+
+\figure[medium]{assets/image58.png}{ Proposed road cross-sections at Talat Sao station in Vientiane.}
+{ ITDP}
+
+\figure[medium]{assets/image59.jpeg}{Rendering of Talat Sao BRT station in Vientiane.}{ITDP}
+
+The following table lists typical cross section widths at BRT stations. It is organized from the outside-in 
+(from the building line to the center line). Priority is shown for each element. Use the prioritization 
+scheme to guide the assemblage of the cross-section.
+
+\begintable{Typical elements in a cross-section at a BRT station}
+\header
+\col --
+\col Pedestrian Zone
+\col 2 - 5.0m
+\col \item Includes Paved Accessible Route\item Includes landscaping, sidewalk furniture, sidewalk cafes, bicycle parking\item Can be wider if incorporated into building, plaza or other urban design elements
+\row
+\col 1
+\col Paved Accessible Pedestrian Route
+\col 2 - 3.0m
+\col \item Clear and free route for people walking or using wheelchairs\item Wider based on level or service
+\row
+\col 3
+\col Bicycle parking
+\col 2.0m
+\col \item Locate in pedestrian zone or on median at BRT station
+\row
+\col 2
+\col Trees and landscaping
+\col 1.0m or wider
+\col \item Narrower tree pits must be longer to provide sufficient arable soil.\item Combine with buffers, parking, sidewalk furniture, etc.
+\row
+\col 3
+\col Pedestrian-bicycle buffer
+\col 0.0 - 1.0m
+\col \item Can be landscaped\item Narrower if fenced
+\row
+\col 2
+\col Bicycle lane
+\col 1.5 - 5.0m
+\col \item 2.5m for cycle rickshaws\item 3.0m for two-way\item 0.5m shoulders\item Wider based on level or service
+\row
+\col 3
+\col Bicycle-auto buffer
+\col 0.3 - 1.5m
+\col \item Can be landscaped\item Narrower if fenced
+\row
+\col --
+\col Auto parking
+\col n/a
+\col \item Typically not located at station or along BRT corridor
+\row
+\col 4
+\col Auto lane
+\col 2.7 - 3.3m
+\col \item Narrower inside lanes\item Wider outside lanes for trucks\item Narrow lane width at the station\item Minimize number of lanes\item Provide intermediate pedestrian refuge islands if greater than three lanes per direction
+\row
+\col --
+\col Auto turn lane
+\col n/a
+\col \item Typically not located at station
+\row
+\col --
+\col Auto lane shoulder
+\col n/a
+\col \item Typically not located at station
+\row
+\col 2
+\col Auto-BRT buffer
+\col 0.2 - 0.5m
+\col \item Narrower if fenced\item 1.5m minimum as pedestrian refuge (wider based on level or service)
+\row
+\col 2
+\col BRT passing lane
+\col 3.5m
+\col \item May be used by emergency vehicles
+\row
+\col 1
+\col BRT lane
+\col 3.0 - 3.5m
+\col \item Based on vehicle type and station interface\item Narrow lane width at the station where the bus is stopping
+\row
+\col 1
+\col BRT station
+\col 5.0 - 10.0m
+\col \item Width based on space availability, BRT operation, and construction techniques
+\endtable
