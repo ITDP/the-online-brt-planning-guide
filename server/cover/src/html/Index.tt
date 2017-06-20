@@ -1,0 +1,448 @@
+(:static function render(toc:Contents, ctx:Context):)
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+	<title>The Online BRT Planning Guide</title>
+
+	<!--jquery-->
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+	<!--semantic-ui-->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js"></script>
+
+	<!--semantic-ui - font and color adjustments-->
+	<style type="text/css">
+
+		@import "https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i|PT+Serif:400,400i,700,700i";
+		body{font-family:'PT Sans',Arial,Helvetica,sans-serif}
+		h1,h2,h3,h4,h5{font-family:'PT Sans',Arial,Helvetica,sans-serif}
+		.ui.text.container{font-family:'PT Sans',Arial,Helvetica,sans-serif}
+		.ui.header{font-family:'PT Sans',Arial,Helvetica,sans-serif}
+		.ui.input input{font-family:'PT Sans',Arial,Helvetica,sans-serif}
+		.ui.list .list>.item .header,.ui.list>.item .header{font-family:'PT Sans',Arial,Helvetica,sans-serif}
+		.ui.steps .step .title{font-family:'PT Sans',Arial,Helvetica,sans-serif}
+		.ui.form input:not([type]),.ui.form input[type="date"],.ui.form input[type="datetime-local"],.ui.form input[type="email"],.ui.form input[type="number"],.ui.form input[type="password"],.ui.form input[type="search"],.ui.form input[type="tel"],.ui.form input[type="time"],.ui.form input[type="text"],.ui.form input[type="file"],.ui.form input[type="url"]{font-family:'PT Sans',Arial,Helvetica,sans-serif}
+		.ui.menu{font-family:'PT Sans',Arial,Helvetica,sans-serif}
+		.ui.message .header{font-family:'PT Sans',Arial,Helvetica,sans-serif}
+		.ui.cards>.card>.content>.header,.ui.card>.content>.header{font-family:'PT Sans',Arial,Helvetica,sans-serif}
+		.ui.items>.item>.content>.header{font-family:'PT Sans',Arial,Helvetica,sans-serif}
+		.ui.statistics .statistic>.value,.ui.statistic>.value{font-family:'PT Sans',Arial,Helvetica,sans-serif}
+		.ui.statistics .statistic>.label,.ui.statistic>.label{font-family:'PT Sans',Arial,Helvetica,sans-serif}
+		.ui.accordion .title:not(.ui){font-family:'PT Sans',Arial,Helvetica,sans-serif}
+		.ui.modal>.header{font-family:'PT Sans',Arial,Helvetica,sans-serif}
+		.ui.popup>.header{font-family:'PT Sans',Arial,Helvetica,sans-serif}
+		.ui.search>.results .result .title{font-family:'PT Sans',Arial,Helvetica,sans-serif}
+		.ui.search>.results>.message .header{font-family:'PT Sans',Arial,Helvetica,sans-serif}
+		.ui.category.search>.results .category>.name{font-family:'PT Sans',Arial,Helvetica,sans-serif}
+
+		a{color:#00a95e}
+		a:hover{color:#666}
+		::-webkit-selection{background-color:#00a95e;color:#FFF}
+		::-moz-selection{background-color:#00a95e;color:#FFF}
+		::selection{background-color:#00a95e;color:#FFF}
+		textarea::-webkit-selection,input::-webkit-selection{background-color:#00a95e;color:#FFF}
+		textarea::-moz-selection,input::-moz-selection{background-color:#00a95e;color:#FFF}
+		textarea::selection,input::selection{background-color:#00a95e;color:#FFF}
+
+		.ui.footer.segment{margin:56px 0}
+		.ui.menu .item{color:#00a95e}
+
+	</style>
+
+	<!--style-->
+	<style type="text/css">
+
+		.itdpcolor{color:#00a95e!important}
+		.volume1{color:#c32063!important}
+		.volume2{color:#532a64!important}
+		.volume3{color:#12507f!important}
+		.volume4{color:#1e7ba6!important}
+		.volume5{color:#6b9531!important}
+		.volume6{color:#b36c14!important}
+		.volume7{color:#a8151b!important}
+		.volume8{color:#333!important}
+
+		p{font-family:'PT Serif',serif;text-align:justify}
+		li{font-family:'PT Serif',serif;text-align:justify}
+
+		/* scrollbar */
+		::-webkit-scrollbar {width: 8px;}
+		::-webkit-scrollbar-button {width: 8px;height: 0;}
+		::-webkit-scrollbar-thumb {background: #CCC;border: 0px;border-radius: 0px;}
+		::-webkit-scrollbar-thumb:hover {background: #00a95e;}
+		::-webkit-scrollbar-thumb:active {background: #00a95e;}
+		::-webkit-scrollbar-track {background: #fff;border: 0px;}
+		::-webkit-scrollbar-corner {background: transparent;}
+
+		.toc {display: none;}
+
+		@media only screen and (max-width: 700px) {
+			.notinmobile {display: none !important;}
+			.toc {display: block;}
+		}
+
+	</style>
+
+	<script>
+		$(document).ready(function() {$('.ui.sidebar').sidebar('attach events', '.toc');});
+	</script>
+</head>
+
+<body>
+
+	<!-- sidebar -->
+	<div class="ui vertical right sidebar menu">
+		<a class="item"><img class="ui image fluid" src="https://www.itdp.org/wp-content/themes/itdp-responsive/images/logo.png"></a>
+		<a class="item" href="#welcome">Welcome</a>
+		<a class="item" href="#about">About</a>
+		<a class="item" href="#volumes">Volumes</a>
+		<a class="item" href="#download">Download</a>
+	</div>
+
+	<div class="pusher">
+
+		<header>
+
+			<div class="toc" style="position: fixed;top: 34px;right: 16px;z-index: 999;background-color:#CCC; padding: 13px 15px;border-radius: .3125em;font-size: 21px;color: #FFF ">
+				<i class="sidebar fitted icon"></i>
+			</div>
+
+			<!--menu #1-->
+			<div class="ui container" style="margin: 20px 0 0 0;">
+				<div class="ui secondary massive menu">
+					<div class="item">
+						<img class="ui image" src="https://www.itdp.org/wp-content/themes/itdp-responsive/images/logo.png">
+					</div>
+					<div class="right menu">
+						<a class="item notinmobile" href="#welcome">
+							Welcome
+						</a>
+						<a class="item notinmobile" href="#about">
+							About
+						</a>
+						<a class="item notinmobile" href="#volumes">
+							Volumes
+						</a>
+						<a class="item notinmobile" href="#download">
+							Download
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!--menu #2 (search)-->
+			<div class="ui container" style="margin: 0 0 20px 0;">
+				<div class="ui secondary massive menu stackable">
+					<div class="right menu">
+						<div class="item" style="margin: 0;">
+							<div class="ui icon input">
+								<input type="text" placeholder="Search...">
+								<i class="search link icon"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--main banner-->
+			<div class="ui container">
+				<div class="" style="height: 420px; background-image: url(img/brt_img_banner.jpg); border-radius: .3125em; background-size: cover; background-position: center;">
+					<div style="background-color: #00a95e; display: inline-block; margin-top: 280px; opacity: 0.9; border-radius: 0 .3125em .3125em 0;">
+						<h1 style="line-height: 42px; padding: 14px 28px; color: #FFF; font-size: 35px;">The Online BRT Planning Guide</h1>
+					</div>
+				</div>
+			</div>
+
+		</header>
+
+		<main>
+
+			<!--welcome section-->
+			<section class="ui container text" style="margin: 56px 0;" id="welcome">
+				<h1 class="ui header itdpcolor">
+					Welcome!
+					<div class="sub header">Welcome to the BRT Planning Guide, 4th Edition.</div>
+				</h1>
+				<p>
+					The Bus Rapid Transit Planning Guide is the most comprehensive resource for planning a bus rapid transit (BRT) system, beginning with project preparation all the way through to implementation.
+				</p>
+				<p>
+					Beginning with an overview of BRT, the Planning Guide proceeds to give a step-by-step description of the planning process, including operational design, financial modeling, physical design, multi-modal and land use integration, business plan development,
+					communications and marketing, contracting, vehicle and fare collection technology, evaluation, and implementation.
+				</p>
+				<p>
+					The BRT Planning Guide is intended as a guidance document mainly for planning and engineering professionals. However, others, such as non-governmental organizations, national and regional policymakers, and business groups, will find it a valuable resource
+					as well, when advocating for their issues and finding solutions to the problems that they are addressing.
+				</p>
+			</section>
+
+			<div class="ui container divider"></div>
+
+			<section class="ui container text" style="margin: 56px 0;" id="about">
+				<h1 class="ui header itdpcolor">
+					 About
+					 <div class="sub header">The Online BRT Planning Guide</div>
+				</h1>
+				<img src="img/brt_img_cover.jpg" class="ui right floated image small rounded">
+				<p>
+					It is the culmination of years of efforts to document and improve the state of the art in cost-effective public transport solutions for cities. This edition includes contributions from a wide range of professionals and practitioners with direct experience in designing and implementing BRT systems all over the world.
+				</p>
+				<p>
+					BRT systems have proven to be catalysts in transforming cities into more livable and human-friendly environments. The appeal of BRT is the ability to deliver a high-quality mass transit system within the budgets of most municipalities, even in low-income cities. Planning and implementing a good BRT system is not easy. This guide aims to make the task a little easier.
+				</p>
+				<p>
+					The Bus Rapid Transit Planning Guide is copyrighted by the Institute for Transportation and Development Policy (ITDP). It is intended for technical and educational use only and may not be used for commercial purposes. It may not be reprinted or modified without the explicit authorization of ITDP.
+				</p>
+			</section>
+
+			<div class="ui container divider"></div>
+
+			<section class="ui container text" style="margin: 56px 0;" id="volumes">
+				<h1 class="ui header itdpcolor">
+					 Volumes
+					 <div class="sub header">The chapters of the guide</div>
+				</h1>
+				<p>
+					The chapters of the guide are grouped in volumes. Within these volumes are 35 chapters that touch on a variety of topics essential to the planning of a BRT system. Content has been
+					expanded based on recent projects, which have deepened the base of knowledge for this guide.
+				</p>
+			</section>
+
+			<section class="ui container text" style="margin: 56px 0;">
+				<div class="" style="height: 140px; background-image: url(img/brt_img_volume1.jpg); margin: 14px 0; border-radius: .3125em; background-size: cover; background-position: center;">
+					<div style=" background-color: #c32063; display: inline-block; margin-top: 70px; opacity: 0.9; border-radius: 0 .3125em .3125em 0;">
+						<h2 style="line-height: 21px; padding: 7px 14px; color: #FFF; ">1&emsp;Project Preparation</h2>
+					</div>
+				</div>
+				<p>
+					Volume 1 lays the groundwork for initiating a Bus Rapid Transit (BRT) system from the initiation of a project to sparking real momentum that will bring the project into reality.
+				</p>
+				<div class="ui segment" style="border-bottom: 2px solid #c32063;">
+					<div class="ui link list">
+						<a class="item volume1" href="https://brtguide.itdp.org/branch/master/guide/volume/project-preparation" style="font-size: 16px;"><b>Overview</b></a>
+						<div class="item">
+							<div class="ui link list">
+								<a class="item volume1" href="https://brtguide.itdp.org/branch/master/guide/project-initiation/"><b>Chapter 1&emsp;</b> Project Initiation</a>
+								<a class="item volume1" href="https://brtguide.itdp.org/branch/master/guide/project-set-up/"><b>Chapter 3&emsp;</b> Project Set-up</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="ui container text" style="margin: 56px 0;">
+				<div class="" style="height: 140px; background-image: url(img/brt_img_volume2.jpg); margin: 14px 0; border-radius: .3125em; background-size: cover; background-position: center;">
+					<div style=" background-color: #532a64; display: inline-block; margin-top: 70px; opacity: 0.9; border-radius: 0 .3125em .3125em 0;">
+						<h2 style="line-height: 21px; padding: 7px 14px; color: #FFF; ">2&emsp;Operations</h2>
+					</div>
+				</div>
+				<p>
+					Volume 2 runs through the necessary preparations and calculations needed to plan out the operations of the BRT project in order to optimize its service frequency, capacity, and ridership.
+				</p>
+				<div class="ui segment" style="border-bottom: 2px solid #532a64;">
+					<div class="ui link list">
+						<a class="item volume2" href="https://brtguide.itdp.org/branch/master/guide/volume/operations" style="font-size: 16px;"><b>Overview</b></a>
+						<div class="item">
+							<div class="ui link list">
+								<a class="item volume2" href="https://brtguide.itdp.org/branch/master/guide/demand-analysis/"><b>Chapter &ensp;4&emsp;</b> Demand Analysis</a>
+								<a class="item volume2" href="https://brtguide.itdp.org/branch/master/guide/corridor-and-network-development/"><b>Chapter &ensp;5&emsp;</b> Corridor and Network Development</a>
+								<a class="item volume2" href="https://brtguide.itdp.org/branch/master/guide/service-planning/"><b>Chapter &ensp;6&emsp;</b> Service Planning</a>
+								<a class="item volume2" href="https://brtguide.itdp.org/branch/master/guide/system-speed-and-capacity/"><b>Chapter &ensp;7&emsp;</b> System Speed and Capacity</a>
+								<a class="item volume2" href="https://brtguide.itdp.org/branch/master/guide/traffic-impact-assessment/"><b>Chapter &ensp;8&emsp;</b> Traffic-Impact Assessment</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="ui container text" style="margin: 56px 0;">
+				<div class="" style="height: 140px; background-image: url(img/brt_img_volume3.jpg); margin: 14px 0; border-radius: .3125em; background-size: cover; background-position: center;">
+					<div style=" background-color: #12507f; display: inline-block; margin-top: 70px; opacity: 0.9; border-radius: 0 .3125em .3125em 0;">
+						<h2 style="line-height: 21px; padding: 7px 14px; color: #FFF; ">3&emsp;Communications and Marketing</h2>
+					</div>
+				</div>
+				<p>
+					Volume 3 details the necessary steps to building a communications strategy to be used for engaging the public with the BRT project, educating customers on how to use the system, and marketing the project to a wide array of potential users.
+				</p>
+				<div class="ui segment" style="border-bottom: 2px solid #12507f;">
+					<div class="ui link list">
+						<a class="item volume3" href="https://brtguide.itdp.org/branch/master/guide/volume/communications-and-marketing" style="font-size: 16px;"><b>Overview</b></a>
+						<div class="item">
+							<div class="ui link list">
+								<a class="item volume3" href="https://brtguide.itdp.org/branch/master/guide/strategic-planning-for-communications/"><b>Chapter &ensp;9&emsp;</b> Strategic Planning for Communications</a>
+								<a class="item volume3" href="https://brtguide.itdp.org/branch/master/guide/public-participation/"><b>Chapter 10&emsp;</b> Public Participation</a>
+								<a class="item volume3" href="https://brtguide.itdp.org/branch/master/guide/the-case-for-marketing-and-customer-service/"><b>Chapter 11&emsp;</b> The Case for Marketing and Customer Service</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="ui container text" style="margin: 56px 0;">
+				<div class="" style="height: 140px; background-image: url(img/brt_img_volume4.jpg); margin: 14px 0; border-radius: .3125em; background-size: cover; background-position: center;">
+					<div style=" background-color: #1e7ba6; display: inline-block; margin-top: 70px; opacity: 0.9; border-radius: 0 .3125em .3125em 0;">
+						<h2 style="line-height: 21px; padding: 7px 14px; color: #FFF; ">4&emsp;Business Plan</h2>
+					</div>
+				</div>
+				<p>
+					Volume 4 looks at the necessary planning required to ensure the financial stability and success of the business of running a BRT system.
+				</p>
+				<div class="ui segment" style="border-bottom: 2px solid #1e7ba6;">
+					<div class="ui link list">
+						<a class="item volume4" href="https://brtguide.itdp.org/branch/master/guide/volume/business-plan" style="font-size: 16px;"><b>Overview</b></a>
+						<div class="item">
+							<div class="ui link list">
+								<a class="item volume4" href="https://brtguide.itdp.org/branch/master/guide/institutional-planning/"><b>Chapter 12&emsp;</b> Institutional Planning</a>
+								<a class="item volume4" href="https://brtguide.itdp.org/branch/master/guide/business-structure/"><b>Chapter 13&emsp;</b> Business Structure</a>
+								<a class="item volume4" href="https://brtguide.itdp.org/branch/master/guide/financial-modeling/"><b>Chapter 14&emsp;</b> Financial Modeling</a>
+								<a class="item volume4" href="https://brtguide.itdp.org/branch/master/guide/fare-policy-and-structure/"><b>Chapter 15&emsp;</b> Fare Policy and Structure</a>
+								<a class="item volume4" href="https://brtguide.itdp.org/branch/master/guide/informal-transit-transition-to-brt/"><b>Chapter 16&emsp;</b> Informal Transit Transition to BRT</a>
+								<a class="item volume4" href="https://brtguide.itdp.org/branch/master/guide/funding-and-financing/"><b>Chapter 17&emsp;</b> Funding and Financing</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="ui container text" style="margin: 56px 0;">
+				<div class="" style="height: 140px; background-image: url(img/brt_img_volume5.jpg); margin: 14px 0; border-radius: .3125em; background-size: cover; background-position: center;">
+					<div style=" background-color: #6b9531; display: inline-block; margin-top: 70px; opacity: 0.9; border-radius: 0 .3125em .3125em 0;">
+						<h2 style="line-height: 21px; padding: 7px 14px; color: #FFF; ">5&emsp;Technology</h2>
+					</div>
+				</div>
+				<p>
+					Volume 5 provides details on a number of technological systems that are required to all work together in synchronization for a BRT systems to run smoothly.
+				</p>
+				<div class="ui segment" style="border-bottom: 2px solid #6b9531;">
+					<div class="ui link list">
+						<a class="item volume5" href="https://brtguide.itdp.org/branch/master/guide/volume/technology" style="font-size: 16px;"><b>Overview</b></a>
+						<div class="item">
+							<div class="ui link list">
+								<a class="item volume5" href="https://brtguide.itdp.org/branch/master/guide/fare-systems/"><b>Chapter 18&emsp;</b> Fare Systems</a>
+								<a class="item volume5" href="https://brtguide.itdp.org/branch/master/guide/technology/"><b>Chapter 19&emsp;</b> Technology</a>
+								<a class="item volume5" href="https://brtguide.itdp.org/branch/master/guide/vehicles/"><b>Chapter 20&emsp;</b> Vehicles</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="ui container text" style="margin: 56px 0;">
+				<div class="" style="height: 140px; background-image: url(img/brt_img_volume6.jpg); margin: 14px 0; border-radius: .3125em; background-size: cover; background-position: center;">
+					<div style=" background-color: #b36c14; display: inline-block; margin-top: 70px; opacity: 0.9; border-radius: 0 .3125em .3125em 0;">
+						<h2 style="line-height: 21px; padding: 7px 14px; color: #FFF; ">6&emsp;Infrastructure</h2>
+					</div>
+				</div>
+				<p>
+					Volume 6 provides detailed guidance on the physical infrastructure that are required of a BRT system as well as their management and costs.
+				</p>
+				<div class="ui segment" style="border-bottom: 2px solid #b36c14;">
+					<div class="ui link list">
+						<a class="item volume6" href="https://brtguide.itdp.org/branch/master/guide/volume/infrastructure" style="font-size: 16px;"><b>Overview</b></a>
+						<div class="item">
+							<div class="ui link list">
+								<a class="item volume6" href="https://brtguide.itdp.org/branch/master/guide/infrastructure-management-and-costing/"><b>Chapter 21&emsp;</b> Infrastructure Management and Costing</a>
+								<a class="item volume6" href="https://brtguide.itdp.org/branch/master/guide/roadway-design/"><b>Chapter 23&emsp;</b> Roadway Design</a>
+								<a class="item volume6" href="https://brtguide.itdp.org/branch/master/guide/intersections-and-signal-control/"><b>Chapter 24&emsp;</b> Intersections and Signal Control</a>
+								<a class="item volume6" href="https://brtguide.itdp.org/branch/master/guide/depots/"><b>Chapter 26&emsp;</b> Depots</a>
+								<a class="item volume6" href="https://brtguide.itdp.org/branch/master/guide/control-center/"><b>Chapter 27&emsp;</b> Control Center</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="ui container text" style="margin: 56px 0;">
+				<div class="" style="height: 140px; background-image: url(img/brt_img_volume7.jpg); margin: 14px 0; border-radius: .3125em; background-size: cover; background-position: center;">
+					<div style=" background-color: #a8151b; display: inline-block; margin-top: 70px; opacity: 0.9; border-radius: 0 .3125em .3125em 0;">
+						<h2 style="line-height: 21px; padding: 7px 14px; color: #FFF; ">7&emsp;Integration</h2>
+					</div>
+				</div>
+				<p>
+					Volume 7 goes into the potential for BRT to extend beyond its stations, vehicles, and corridors, and compound its environmental, social, and economic benefits to the greater transport network of non-motorized transit, while encouraging effective transportation
+					demand management and transit-oriented development.
+				</p>
+				<div class="ui segment" style="border-bottom: 2px solid #a8151b;">
+					<div class="ui link list">
+						<a class="item volume7" href="https://brtguide.itdp.org/branch/master/guide/volume/integration" style="font-size: 16px;"><b>Overview</b></a>
+						<div class="item">
+							<div class="link list">
+								<a class="item volume7" href="https://brtguide.itdp.org/branch/master/guide/pedestrian-access/"><b>Chapter 29&emsp;</b> Pedestrian Access</a>
+								<a class="item volume7" href="https://brtguide.itdp.org/branch/master/guide/universal-access/"><b>Chapter 30&emsp;</b> Universal Access</a>
+								<a class="item volume7" href="https://brtguide.itdp.org/branch/master/guide/bicycle-and-predicab-integration/"><b>Chapter 31&emsp;</b> Bicycle and Predicab Integration</a>
+								<a class="item volume7" href="https://brtguide.itdp.org/branch/master/guide/transportation-demand-management-tdm/"><b>Chapter 32&emsp;</b> Transportation Demand Management (TDM)</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="ui container text" style="margin: 56px 0;">
+				<div class="" style="height: 140px; background-image: url(img/brt_img_volume8.jpg); margin: 14px 0; border-radius: .3125em; background-size: cover; background-position: center;">
+					<div style=" background-color: #333; display: inline-block; margin-top: 70px; opacity: 0.9; border-radius: 0 .3125em .3125em 0;">
+						<h2 style="line-height: 21px; padding: 7px 14px; color: #FFF; ">8&emsp;About the Guide</h2>
+					</div>
+				</div>
+				<p>
+					The Bus Rapid Transit Planning Guide is the most comprehensive resource for planning a bus rapid transit (BRT) system, beginning with project preparation all the way through to implementation.
+				</p>
+				<div class="ui segment" style="border-bottom: 2px solid #333;">
+					<div class="ui link list">
+						<a class="item volume8" href="https://brtguide.itdp.org/branch/master/guide/volume/about-the-guide" style="font-size: 16px;"><b>Overview</b></a>
+						<div class="item">
+							<div class="ui link list">
+								<a class="item volume8" href="https://brtguide.itdp.org/branch/master/guide/understanding-how-it-works/"><b>Chapter 34&emsp;</b> Understanding How it Works</a>
+								<a class="item volume8" href="https://brtguide.itdp.org/branch/master/guide/manual-to-collaboration/"><b>Chapter 35&emsp;</b> Manual to Collaboration</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<div class="ui container divider"></div>
+
+			<section class="ui container text" style="margin: 56px 0;" id="download">
+				<h1 class="ui header itdpcolor">
+					 Download
+					 <div class="sub header">PDF version</div>
+				</h1>
+				<p>
+					We are excited to have this version online. This will allow for more dynamic updating and more involvement from the community. We are also developing a PDF version for download and use offline.
+				</p>
+				<div class="ui center aligned container" style="margin: 56px 0;">
+					<a class="ui massive button green" href="https://brtguide.itdp.org/branch/master/guide/pdf/the-brt-planning-guide.pdf" target="_blank" style="background-color: #00a95e;">
+						<i class="download icon"></i>
+						Download
+					</a>
+				</div>
+			</section>
+
+			<div class="ui container divider"></div>
+
+		</main>
+
+		<footer class="ui vertical footer segment">
+			<div class="ui center aligned container">
+				<img src="img/itdp-bug-logo.png" class="ui centered small image">
+				<div class="ui horizontal small divided link list">
+					<a class="item" href="https://www.itdp.org/">www.itdp.org</a>
+					<a class="item" href="mailto:mobility@itdp.org">mobility@itdp.org</a>
+					<a class="item" href="#">9 East 19th Street, 7th Floor, New York, NY 10003 USA</a>
+					<a class="item" href="#">phone +1-212-629-8001</a>
+				</div>
+			</div>
+		</footer>
+
+	</div>
+
+</body>
+
+</html>
+(:end:)
+

@@ -1,0 +1,9 @@
+-js bin/cover-generator.js
+-lib hxnodejs
+-lib tink_template
+-lib assertion
+-lib ansi
+-main Main
+-cp src
+-debug
+

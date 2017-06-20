@@ -58,39 +58,53 @@ class Main {
 						if (err.fatal)
 							abort = true;
 						var hl = err.pos.highlight(80).renderHighlight(Context.hlmode).split("\n");
-						println('${ANSI.set(Bold,Red)}ERROR: $err${ANSI.set(Off)}');
+						print(ANSI.set(Bold,Red));
+						if (Context.debug) print("Validation ");
+						println('ERROR: $err');
+						print(ANSI.set(Off));
 						println('  at ${err.pos.toString()}:');
 						println("    " + hl.join("\n    "));
 					}
 					if (abort) {
 						println("Validation has failed, aborting");
+						printTimers();
 						exit(4);
 					}
 				}
 
-				var tgen = Sys.time();
-				Context.manualTime("validation", tgen - tval);
+				try {
+					var tgen = Sys.time();
+					Context.manualTime("validation", tgen - tval);
 
-				println(ANSI.set(Green) + "=> Generating the document" + ANSI.set(Off));
+					println(ANSI.set(Green) + "=> Generating the document" + ANSI.set(Off));
 
-				if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
-				if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
+					if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
+					if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
 
-				var hasher = new AssetHasher();
+					var hasher = new AssetHasher();
 
-				println(ANSI.set(Green) + " --> HTML generation" + ANSI.set(Off));
-				Context.time("html generation", function () {
-					var hgen = new html.Generator(hasher, Path.join([opath, "html"]), true);
-					hgen.writeDocument(doc);
-				});
+					println(ANSI.set(Green) + " --> HTML generation" + ANSI.set(Off));
+					Context.time("html generation", function () {
+						var hgen = new html.Generator(hasher, Path.join([opath, "html"]), true);
+						hgen.writeDocument(doc);
+					});
 
-				println(ANSI.set(Green) + " --> PDF preparation (TeX generation)" + ANSI.set(Off));
-				Context.time("tex generation", function () {
-					var tgen = new tex.Generator(hasher, Path.join([opath, "pdf"]));
-					tgen.writeDocument(doc);
-				});
+					println(ANSI.set(Green) + " --> PDF preparation (TeX generation)" + ANSI.set(Off));
+					Context.time("tex generation", function () {
+						var tgen = new tex.Generator(hasher, Path.join([opath, "pdf"]));
+						tgen.writeDocument(doc);
+					});
 
-				printTimers();
+					printTimers();
+				} catch (e:Dynamic) {
+					print(ANSI.set(Bold,Red));
+					if (Context.debug) print("Generation ");
+					println('ERROR: $e');
+					print(ANSI.set(Off));
+					if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
+					printTimers();
+					exit(8);
+				}
 			});
 	}
 
@@ -171,6 +185,7 @@ class Main {
 			println('  at ${cpos.toString()}');
 			println("    " + hl.join("\n    "));
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
+			printTimers();
 			exit(2);
 		} catch (e:parser.ParserError) {
 			print(ANSI.set(Bold,Red));

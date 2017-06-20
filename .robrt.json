@@ -47,11 +47,22 @@
 			"manu generate guide/index.manu .generated",
 			"find guide -type f -iname '*.manu' -print0 | xargs -0 manu stat tokens",
 
+			"cd $ROBRT_REPOSITORY_DIR",
 			"if [ -z ${ASSET_URL_PREFIX+x} ]; then echo Skipped; else manu asset-server store $DOCKER_HOST_IP 6668 .generated/html/assets; fi",
 			"if [ -z ${ASSET_URL_PREFIX+x} ]; then echo Skipped; else rm -rf .generated/html/assets; fi",
 			"cp -r .generated/html $ROBRT_OUTPUT_DIR/guide",
 			"unset DEBUG",
 
+			"cd $ROBRT_REPOSITORY_DIR/server/cover",
+			"hmm install",
+			"haxelib list",
+			"haxe build.hxml",
+
+			"cd $ROBRT_REPOSITORY_DIR",
+			"node server/cover/bin/cover-generator.js .generated/html/table-of-contents.html server/cover/data server/cover/ready/html",
+			"cp -r server/cover/ready/html $ROBRT_OUTPUT_DIR/cover",
+
+			"cd $ROBRT_REPOSITORY_DIR",
 			"ls -l .generated/pdf/fonts",
 			"cd .generated/pdf/",
 			"find assets/mw -type f \\( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \\) -exec convert '{}' -resize '236>' '{}' \\;",
