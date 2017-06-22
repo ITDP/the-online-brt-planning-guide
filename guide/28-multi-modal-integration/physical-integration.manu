@@ -1,5 +1,7 @@
 \section{Physical Integration}
 
+\quotation{Art has to move you and design does not, unless it's a good design for a bus.}{David Hockney, English artist associated with the `pop art' movement, 1749 -- 1827}
+
 Physical (or spatial) integration describes efforts to co-locate the various parts of a transport system. 
 This generally occurs at stations, but also happens elsewhere in the network. Examples include taxi stands 
 outside bus terminals, walkways connecting stations directly to adjacent buildings, 
@@ -184,10 +186,10 @@ during off-peak hours.}{ITDP.}
 \figure[medium]{assets/image19.jpeg}{Right-of-way reserved for future BRT in Arlington, Virginia, 
 USA. Photo by Michael King.}{ITDP.}
 
-\figure[medium]{assets/image20.jpeg}{The noticeable differnet pannel is removable to provide additional access to a BRT station 
+\figure{assets/image20.jpeg}{The noticeable differnet pannel is removable to provide additional access to a BRT station 
 during high volume events such as New Year's Eve. Brisbane, Australia.}{ ITDP.}
 
-\figure{assets/image21.jpeg}{During special events, the removed pannel allows an entrance from the street, which is exclusive for pedestrians during events.}{ITPD}
+\figure[medium]{assets/image21.jpeg}{During special events, the removed pannel allows an entrance from the street, which is exclusive for pedestrians during events.}{ITPD}
 
 \title{Urban Design and Land Use}
 
@@ -258,7 +260,8 @@ come in, for example because they have to negotiate a narrow stairwell or an exi
 The balanced sizing of all station elements against such “worst case scenarios”, including some redundancy 
 provisions, will ensure such situations are avoided. 
 
-\highlight{Sidebar:} A specific study comparing the ‘technical operating envelops,’ or the design parameters 
+\beginbox{Technical Operating Envelops} 
+A specific study comparing the ‘technical operating envelops,’ or the design parameters 
 and space needed for different modes and vehicles, of one vehicle to another within the BRT network and 
 between vehicles of different modes is useful to determine the compatibility and consistency of customers 
 accessing vehicles. This is particularly important that platform-boarding heights are consistent along 
@@ -270,7 +273,8 @@ a consistent boarding and alighting location on platforms will assist in the ass
 vehicle integration. Consistent standards for the protection of customers from vehicles and from the 
 different power sources those vehicles use should also be examined. Invariably the differences in the 
 operating envelops of vehicles will determine the physical proximity of one vehicle to another defining 
-the minimum distance customers have to negotiate between modes. \highlight{End sidebar}
+the minimum distance customers have to negotiate between modes. 
+\endbox
 
 \title{Building Design and Facilities}
 
@@ -330,7 +334,7 @@ Seattle, Washington, USA.}{Michael King.}
 }{Michael King.}
 
 \figure[medium]{assets/image28.jpeg}{A railway station with integrated bike path in Zoetermeer, 
-Netherlands.}{“Wandelen in beeld (\url{http://www.nlwandel.nl/Album/NS-Buytenpark%20%28Zoetermeer%29/slides/01%20Station%20Zoetermeer.html})}
+Netherlands.}{“Wandelen in beeld" (\url{http://www.nlwandel.nl/Album/NS-Buytenpark%20%28Zoetermeer%29/slides/01%20Station%20Zoetermeer.html}).}
 
 \title{Pedestrian Facilities}
 
@@ -437,13 +441,15 @@ and London. Pedicabs can make for an almost ideal feeder service to BRT stations
 four kilometers or fewer.  Pedicabs are low-cost vehicles that provide high levels of employment while 
 producing zero emissions. See Chapter 31 for more information.
 
-\highlight{Sidebar}: In many cities of the world, and especially in developing-nation cities, taxis 
+\beginbox{Taxis without passengers may add to congestion} 
+In many cities of the world, and especially in developing-nation cities, taxis 
 represent a large proportion of the vehicles on the road at any given time. However, taxis spend much 
 of their time in search of customers rather than providing actual customer trips. Prior to the introduction 
 of improved taxi ranks and dispatch systems, taxis in Shanghai were estimated to spend eighty percent 
 of their travel time without customers. Thus, these non-customer trips can add greatly to congestion 
 levels without serving any real purpose. This, however, may be changing with taxi-ordering apps such 
 as Uber, EasyTaxi, and others, but it is unclear if this is the case or if these will increase congestion.
+\endbox
 
 \figure[medium]{assets/image44.jpeg}{A taxi stand at a BRT station in Quito, Ecuador. 
 }{Lloyd Wright.}
@@ -507,8 +513,8 @@ in areas with significant land costs. Thus it can be necessary to establish a fe
 facilities at public transport stations. The challenge is to develop a fee structure that still provides 
 a strong incentive for using the public transport system. 
 
-\highlight{Sidebar:} Locating a parking garage or lot immediately adjacent to a transport station can 
-be problematic. 
+\beginbox{Locating a parking garage or lot immediately adjacent to a transport station can 
+be problematic} 
 
 \item The land may be more suitably integrated with other active uses such as civic places or public 
 amenities;
@@ -520,10 +526,11 @@ which makes the journey longer;
 
 The preferred solution is to build a parking garage and integrate it into the surrounding building 
 context so that it does not call attention to itself. 
+\endbox
 
 \figure[medium]{assets/image46.jpeg}{The park-and-ride facility at the Mo Chit station of the Bangkok 
 Skytrain brings customers who would normally drive in private vehicles.}{Thirayoot Limanond.}
 
 \figure[medium]{assets/image47.jpeg}{The parking facility at the Eight Mile Plains station of 
 the Brisbane BRT system provides convenient access for drivers. People arriving by foot or bike must 
-walk through the lot.}{ Queensland Transport.}
+walk through the lot.}{ Queensland Transport}
