@@ -8,10 +8,7 @@
 	"build" : {
 		"cmds" : [
 			"export DOCKER_HOST_IP=$(route -n | awk '/UG[ \t]/{print $2}')",
-			"echo $GL_ANALYTICS_UA_ID",
-			"echo $ASSET_URL_PREFIX",
-			"echo $DOCKER_HOST_IP",
-			"echo $FORCE_GREY_FAVICON",
+			"env",
 
 			"dpkg -s haxe",
 			"node --version",
