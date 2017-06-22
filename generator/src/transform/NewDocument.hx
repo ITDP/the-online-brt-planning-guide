@@ -12,7 +12,8 @@ typedef BlobSize = parser.BlobSize;
 A document level definition.
 */
 enum DDef {
-	DHtmlApply(path:PElem);
+	DHtmlStore(path:PElem);
+	DHtmlToHead(template:String);
 	DLaTeXPreamble(path:PElem);
 	DLaTeXExport(src:PElem, dest:PElem);
 
@@ -22,6 +23,7 @@ enum DDef {
 	DSubSection(no:Int, name:HElem, children:DElem);
 	DSubSubSection(no:Int, name:HElem, children:DElem);
 	DBox(no:Int, name:HElem, children:DElem);
+	DTitle(name:HElem);  // differently than a (sub)*section, titles have no contents and aren't numbered
 	DFigure(no:Int, size:BlobSize, path:PElem, caption:HElem, copyright:HElem);
 	DTable(no:Int, size:BlobSize, caption:HElem, header:Array<DElem>, rows:Array<Array<DElem>>);
 	DImgTable(no:Int, size:BlobSize, caption:HElem, path:PElem);

@@ -1,8 +1,26 @@
 import PositionTools;
 
 class Context {
-	public static var debug = false;
-	public static var draft = false;
+	static var env = Sys.environment();
+	static function enabled(name) {
+		var val = env[name];
+		return val != null && !~/^[ ]*(0|false)[ ]*$/i.match(val);
+	}
+
+	public static var googleAnalyticsId = env["GL_ANALYTICS_UA_ID"];
+	public static var assetUrlPrefix = env["ASSET_URL_PREFIX"];
+	public static var assetServer = env["ASSET_SERVER"];
+
+	public static var debug = enabled("DEBUG");
+	public static var draft = enabled("DRAFT");
+	@:isVar public static var noMathValidation(get,set) = enabled("DRAFT_NO_MATH_VALIDATION");
+		static function get_noMathValidation() return draft || noMathValidation;
+		static function set_noMathValidation(flag) return noMathValidation = flag;
+	@:isVar public static var dinossaurFigures(get,set) = enabled("DRAFT_DINOSSAUR_FIGURES");
+		static function get_dinossaurFigures() return draft || dinossaurFigures;
+		static function set_dinossaurFigures(flag) return dinossaurFigures = flag;
+	public static var texNoPositions = enabled("TEX_NO_POSITIONS");
+
 	public static var timer = new Map<String,Float>();
 	public static var timerOrder = [];
 	public static var hlmode = AsciiUnderscore();

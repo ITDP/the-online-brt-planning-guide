@@ -1,0 +1,44 @@
+
+
+\section{ Level of Analysis}
+
+\quotation{The analysis of the thing is not the thing itself.}
+{Aaron Allston, novelist, 1960–2014}
+
+The impact analysis can be done at various levels of detail. This will depend on the specific needs 
+of the planning and design team and on the requirements of the responsible authorities. The level of 
+analysis can vary from a course *Planning Level*, to an *Operational Analysis*, and down to a very detailed 
+*Microscopic Simulation* level. The purpose of the analysis should be to get a thorough understanding 
+of the current traffic volumes and the current operations during all the critical time periods of a typical 
+weekday. These will include at least the normal morning and afternoon/evening commuter peaks, but if 
+necessary the midday commercial and possible weekend peak hours should also be evaluated. The three levels 
+of analysis are not mutually exclusive but can be performed in steps or phases and can be described as 
+follows:
+
+\item *Planning and Preliminary Analysis:* The first phase of analysis is normally a Planning Level 
+analysis, which should be conducted during the planning phase of the project, but can also be applied 
+during the detailed analysis phase of the project. The planning analysis allows for the use of default 
+input values instead of using more relevant field-measured values. The results of the planning level 
+analysis should be sufficient to clearly indicate which elements of the transportation network are currently, 
+or with the future BRT system, at or over capacity and require mitigation, or which elements will be 
+operating well below capacity and require no mitigation. Based on the results of the planning analysis, 
+the project team and/or the relevant authority can then decide on doing a more detailed operational analysis 
+of the network elements where the desired operational outcomes will not be met, i.e., those elements 
+where the transport demand will exceed the capacity of the element; 
+\item *Operational Analysis**:* Following the planning analysis, the next level of analysis will be 
+at an operational level. This is similar to the planning analysis, except the analysis of the critical 
+elements is done in more detail, specifically refining the input assumptions, ensuring that the analysis 
+is based on field-measured variables such as lane-widths, signal timings, gradients, etc. This level 
+of analysis should also include a sensitivity analysis specifically to quantify variation in future operations 
+based on the possible variation in input assumptions. For example, the future traffic demand will depend 
+on the modal shift from private to public transport, and this could vary depending on the modal shift. 
+The results of the operational analysis should, in most cases, provide sufficient detail to satisfy the 
+project team and/or the relevant authorities. However, where additional detail is required for complex 
+intersections or networks, a Microscopic Simulation will be necessary; 
+\item *Microscopic Simulation:* This involves the computer simulation of the behavior and movement 
+of individual vehicles, bicycles, and/or pedestrians on the transportation network. At this level, every 
+detail of the operations based on the predicted demand and the simulated geometric conditions can be 
+assessed. For this analysis to be accurate it needs to include actual field-measured inputs. There are 
+several challenges with microsimulation, of which the most important is the validation of the model against 
+field data. Without validation of the simulation model, the results should be questioned and interpreted 
+with care.

@@ -7,38 +7,68 @@
 	},
 	"build" : {
 		"cmds" : [
-			"nodejs --version",
+			"export DOCKER_HOST_IP=$(route -n | awk '/UG[ \t]/{print $2}')",
+			"env",
+
+			"dpkg -s haxe",
+			"node --version",
 
 			"cd $ROBRT_REPOSITORY_DIR",
-			"git lfs pull",
-			"npm install",
+			"if [ -z ${NO_CAP_GH_TOKEN+x} ]; then echo Skipped; else git remote set-url origin https://$NO_CAP_GH_TOKEN:$NO_CAP_GH_TOKEN@github.com/ITDP/the-online-brt-planning-guide; fi",
+			"git lfs pull 2>&1 | tee .lfs-pull.log || echo \"error exit code: $?\" >> .lfs-pull.log",
+			"git lfs logs last 2>&1 | tee .lfs-logs-last.log",
+			"grep -qi 'no logs to show' .lfs-logs-last.log",
+			"! grep -qi 'error\\|\\(batch response\\)' .lfs-pull.log",
 
 			"cd $ROBRT_REPOSITORY_DIR/generator",
+			"cp docs/fakesudo.sh /usr/bin/sudo",
+			"haxelib --global install hmm",
+			"haxelib --global run hmm setup",
+			"haxelib --global list",
+			"hmm install",
+			"haxelib list",
 			"haxe -D travis build.hxml",
-			"nodejs bin/manu.js unit-tests",
+			"npm pack",
+			"npm install -g manu*.tgz",
+			"manu unit-tests",
+			"mkdir -p $ROBRT_OUTPUT_DIR/bin",
+			"cp manu*.tgz $ROBRT_OUTPUT_DIR/bin/",
 
 			"cd $ROBRT_REPOSITORY_DIR",
 			"cp LICENSE.md $ROBRT_OUTPUT_DIR/",
-			"mkdir -p $ROBRT_OUTPUT_DIR/bin",
-			"cp generator/bin/manu.js $ROBRT_OUTPUT_DIR/bin/",
-			"cp -r generator/docs/design/web/mockup $ROBRT_OUTPUT_DIR/web-mockup",
-
-			"export GL_ANALYTICS_UA_ID=UA-77667300-5",
 			"export DEBUG=1",
-			"nodejs generator/bin/manu.js generate guide/the-guide.src .generated-js",
+			"export TEX_NO_POSITIONS=1",
+			"favicon=grey",
+			"if [ \"${FORCE_GREY_FAVICON}\" -eq 1 ]; then echo Skipped; elif [ \"${ROBRT_IS_PR}\" -eq 1 ]; then favicon=red; elif [ \"${ROBRT_HEAD}\" = master ]; then favicon=green; fi",
+			"cp guide/{itdp_$favicon,favicon}.ico",
+			"manu generate guide/index.manu .generated",
+			"find guide -type f -iname '*.manu' -print0 | xargs -0 manu stat tokens",
+
+			"cd $ROBRT_REPOSITORY_DIR",
+			"if [ -z ${ASSET_URL_PREFIX+x} ]; then echo Skipped; else manu asset-server store $DOCKER_HOST_IP 6668 .generated/html/assets; fi",
+			"if [ -z ${ASSET_URL_PREFIX+x} ]; then echo Skipped; else rm -rf .generated/html/assets; fi",
+			"cp -r .generated/html $ROBRT_OUTPUT_DIR/guide",
 			"unset DEBUG",
 
-			"ls -l .generated-js/pdf/fonts",
+			"cd $ROBRT_REPOSITORY_DIR/server/cover",
+			"hmm install",
+			"haxelib list",
+			"haxe build.hxml",
 
-			"cp -r .generated-js/html $ROBRT_OUTPUT_DIR/guide",
+			"cd $ROBRT_REPOSITORY_DIR",
+			"node server/cover/bin/cover-generator.js .generated/html/table-of-contents.html server/cover/data server/cover/ready/html",
+			"cp -r server/cover/ready/html $ROBRT_OUTPUT_DIR/cover",
 
-			"cd .generated-js/pdf/",
-			"mkdir -p $ROBRT_OUTPUT_DIR/pdf $ROBRT_OUTPUT_DIR/guide/pdf",
-
+			"cd $ROBRT_REPOSITORY_DIR",
+			"ls -l .generated/pdf/fonts",
+			"cd .generated/pdf/",
+			"find assets/mw -type f \\( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \\) -exec convert '{}' -resize '236>' '{}' \\;",
+			"find assets/tw -type f \\( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \\) -exec convert '{}' -resize '608>' '{}' \\;",
+			"find assets/fw -type f \\( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \\) -exec convert '{}' -resize '903>' '{}' \\;",
 			"latexmk -lualatex -pdflatex='lualatex -interaction=nonstopmode' book.tex",
+			"mkdir -p $ROBRT_OUTPUT_DIR/pdf $ROBRT_OUTPUT_DIR/guide/pdf",
 			"cp book.pdf $ROBRT_OUTPUT_DIR/guide/pdf/the-brt-planning-guide.pdf",
-			"cp book.log $ROBRT_OUTPUT_DIR/pdf/guide_lualatex.log",
-			"latexmk -C book.tex"
+			"cp book.log $ROBRT_OUTPUT_DIR/pdf/guide_lualatex.log"
 		]
 	}
 }

@@ -1,4 +1,4 @@
-import Ansi;
+import ANSI;
 import haxe.CallStack;
 import haxe.io.Path;
 import parser.Token;
@@ -24,6 +24,7 @@ class Main {
 		Usage:
 		  manu generate <input file> <output dir>
 		  manu statistics ... (run `manu statistics --help` for more)
+		  manu asset-server ... (run `manu asset-server --help` for more)
 		  manu unit-tests
 		  manu --version
 		  manu --help".doctrim();
@@ -40,13 +41,13 @@ class Main {
 		if (pcheck != null)
 			throw pcheck.toString();
 
-		println(Ansi.set(Green) + "=> Parsing" + Ansi.set(Off));
+		println(ANSI.set(Green) + "=> Parsing" + ANSI.set(Off));
 		var ast = Context.time("parsing", parser.Parser.parse.bind(p.toInputPath()));
 
-		println(Ansi.set(Green) + "=> Structuring" + Ansi.set(Off));
+		println(ANSI.set(Green) + "=> Structuring" + ANSI.set(Off));
 		var doc = Context.time("structuring", transform.NewTransform.transform.bind(ast));
 
-		println(Ansi.set(Green) + "=> Validating" + Ansi.set(Off));
+		println(ANSI.set(Green) + "=> Validating" + ANSI.set(Off));
 		var tval = Sys.time();
 		transform.Validator.validate(doc,
 			function (errors) {
@@ -56,37 +57,53 @@ class Main {
 						if (err.fatal)
 							abort = true;
 						var hl = err.pos.highlight(80).renderHighlight(Context.hlmode).split("\n");
-						println('${Ansi.setm([Bold,Red])}ERROR: $err${Ansi.set(Off)}');
+						print(ANSI.set(Bold,Red));
+						if (Context.debug) print("Validation ");
+						println('ERROR: $err');
+						print(ANSI.set(Off));
 						println('  at ${err.pos.toString()}:');
 						println("    " + hl.join("\n    "));
 					}
 					if (abort) {
 						println("Validation has failed, aborting");
+						printTimers();
 						exit(4);
 					}
 				}
 
-				var tgen = Sys.time();
-				Context.manualTime("validation", tgen - tval);
+				try {
+					var tgen = Sys.time();
+					Context.manualTime("validation", tgen - tval);
 
-				println(Ansi.set(Green) + "=> Generating the document" + Ansi.set(Off));
+					println(ANSI.set(Green) + "=> Generating the document" + ANSI.set(Off));
 
-				if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
-				if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
+					if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
+					if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
 
-				println(Ansi.set(Green) + " --> HTML generation" + Ansi.set(Off));
-				Context.time("html generation", function () {
-					var hgen = new html.Generator(Path.join([opath, "html"]), true);
-					hgen.writeDocument(doc);
-				});
+					var hasher = new AssetHasher();
 
-				println(Ansi.set(Green) + " --> PDF preparation (TeX generation)" + Ansi.set(Off));
-				Context.time("tex generation", function () {
-					var tgen = new tex.Generator(Path.join([opath, "pdf"]));
-					tgen.writeDocument(doc);
-				});
+					println(ANSI.set(Green) + " --> HTML generation" + ANSI.set(Off));
+					Context.time("html generation", function () {
+						var hgen = new html.Generator(hasher, Path.join([opath, "html"]), true);
+						hgen.writeDocument(doc);
+					});
 
-				printTimers();
+					println(ANSI.set(Green) + " --> PDF preparation (TeX generation)" + ANSI.set(Off));
+					Context.time("tex generation", function () {
+						var tgen = new tex.Generator(hasher, Path.join([opath, "pdf"]));
+						tgen.writeDocument(doc);
+					});
+
+					printTimers();
+				} catch (e:Dynamic) {
+					print(ANSI.set(Bold,Red));
+					if (Context.debug) print("Generation ");
+					println('ERROR: $e');
+					print(ANSI.set(Off));
+					if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
+					printTimers();
+					exit(8);
+				}
 			});
 	}
 
@@ -97,18 +114,41 @@ class Main {
 			println('  $k: ${Math.round(Context.timer[k]*1e3)} ms');
 	}
 
+	static function customTrace(msg, ?pos:haxe.PosInfos)
+	{
+		var buf = new StringBuf();
+		buf.add(" --> ");
+		buf.add(msg);
+		if (pos.customParams != null) {
+			buf.add(" {{ ");
+			buf.add(pos.customParams.join(", "));
+			buf.add(" }}");
+		}
+		buf.add("  // in ");
+		buf.add(pos.methodName);
+		buf.add(" (");
+		buf.add(pos.fileName);
+		buf.add(":");
+		buf.add(pos.lineNumber);
+		buf.add(")\n");
+		js.Node.process.stderr.write(buf.toString());
+	}
+
 	static function main()
 	{
-		print(Ansi.setm([Bold]) + BANNER + "\n\n" + Ansi.set(Off));
-		if (Context.debug) println('Ansi escape codes are ${Ansi.available ? "enabled" : "disabled"}');
+		haxe.Log.trace = customTrace;
+		print(ANSI.set(Bold) + BANNER + "\n\n" + ANSI.set(Off));
 
-		Context.debug = Sys.getEnv("DEBUG") == "1";
-		Context.draft = Sys.getEnv("DRAFT") == "1";
-		if (Ansi.available)
-			Context.hlmode = AnsiEscapes(Ansi.setm([Bold,Red]), Ansi.set(Off));
+		Context.debug = Context.debug;
+		Context.draft = Context.draft;
+		if (Context.debug)
+			println('ANSI escape codes are ${ANSI.available ? "enabled" : "disabled"}');
+		if (ANSI.available)
+			Context.hlmode = AnsiEscapes(ANSI.set(Bold,Red), ANSI.set(Off));
+
 		Context.prepareSourceMaps();
 		Assertion.enableShow = Context.debug;
-		Assertion.enableWeakAssert = Context.debug;
+		Assertion.enableWeakAssert = true;
 		Assertion.enableAssert = true;
 
 		try {
@@ -119,6 +159,8 @@ class Main {
 				generate(ipath, opath);
 			case _[0] => cmd if (cmd != null && StringTools.startsWith("statistics", cmd)):
 				tools.Stats.run(args.slice(1));
+			case _[0] => cmd if (cmd != null && StringTools.startsWith("asset-server", cmd)):
+				tools.AssetServer.run(args.slice(1));
 			case [cmd] if (StringTools.startsWith("unit-tests", cmd)):
 				tests.RunAll.runAll();
 			case ["--version"]:
@@ -130,30 +172,36 @@ class Main {
 				exit(1);
 			}
 		} catch (e:hxparse.UnexpectedChar) {
-			print(Ansi.setm([Bold,Red]));
+			print(ANSI.set(Bold,Red));
 			if (Context.debug) print("Lexer ");
+			var cpos = e.pos.toPosition();
+			// hxparse generates errors with 0-length positions; we don't
+			if (cpos.max == cpos.min)
+				cpos.max = cpos.min + e.char.length;
+			var hl = cpos.highlight(80).renderHighlight(Context.hlmode).split("\n");
 			println('ERROR: Unexpected character `${e.char}`');
-			print(Ansi.set(Off));
-			println('  at ${e.pos.toPosition().toString()}');
+			print(ANSI.set(Off));
+			println('  at ${cpos.toString()}');
+			println("    " + hl.join("\n    "));
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
 			printTimers();
 			exit(2);
 		} catch (e:parser.ParserError) {
-			print(Ansi.setm([Bold,Red]));
+			print(ANSI.set(Bold,Red));
 			if (Context.debug) print("Parser ");
 			var hl = e.pos.highlight(80).renderHighlight(Context.hlmode).split("\n");
 			println('ERROR: $e');
-			print(Ansi.set(Off));
+			print(ANSI.set(Off));
 			println('  at ${e.pos.toString()}:');
 			println("    " + hl.join("\n    "));
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
 			printTimers();
 			exit(3);
 		} catch (e:Dynamic) {
-			print(Ansi.setm([Bold,Red]));
+			print(ANSI.set(Bold,Red));
 			if (Context.debug) print("Untyped ");
 			println('ERROR: $e');
-			print(Ansi.set(Off));
+			print(ANSI.set(Off));
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
 			printTimers();
 			exit(9);

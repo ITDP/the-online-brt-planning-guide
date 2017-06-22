@@ -12,8 +12,8 @@ using PositionTools;
 class Stats {
 	static var USAGE = "
 		Usage:
-		  manu stats tokens <input file> [...]
-		  manu stats --help".doctrim();
+		  manu statistics tokens <input file> [...]
+		  manu statistics --help".doctrim();
 
 	static function tokenStats(paths:Array<String>)
 	{

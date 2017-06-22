@@ -84,12 +84,17 @@ class Test_04_Validation {
 				}_{ 2^{\\mathrm{nd}}\\mathrm{\\;term} }
 				\\right]$$".doctrim(), timeout);
 
+		// more basic tests
 		passes("$$a\\ne b$$", timeout);
 		passes("$$a_{ij}$$", timeout);
 
+		// make sure newlines work
+		passes("$$foo\nbar$$", timeout);
+		// passes("$$\\textrm{foo\nbar}$$", timeout);  // fails due to MathJax#1694
+
 #if nodejs
-		fails("$$a\\neb$$", true, BadMath("a\\neb"), timeout);
-		fails("$$a_{ij$$", true, BadMath("a_{ij"), timeout);
+		fails("$$a\\neb$$", true, BadMath("a\\neb", ["TeX parse error: Undefined control sequence \\neb"]), timeout);
+		fails("$$a_{ij$$", true, BadMath("a_{ij", ["TeX parse error: Extra open brace or missing close brace"]), timeout);
 #elseif js
 #error "no JS platforms expected other than Node.js"
 #end
@@ -107,7 +112,8 @@ class Test_04_Validation {
 
 		passes('\\tex\\export{$file}{nothing}');
 		passes('\\tex\\export{$dir}{nothing}');
-		passes('\\html\\apply{$css}');
+		passes('\\html\\store{$css}');
+		passes('\\html\\store{$png}');
 		passes('\\tex\\preamble{$tex}');
 		passes('\\figure{$jpeg}{foo}{bar}');
 		passes('\\figure{$jpg}{foo}{bar}');
@@ -119,7 +125,7 @@ class Test_04_Validation {
 		fails('\\tex\\export{$file.noexists}{nothing}', true, FileNotFound('$file.noexists'), ~/file not found or not accessible/i);
 		fails('\\tex\\export{$dir.noexists}{nothing}', true, FileNotFound('$dir.noexists'));
 		fails('\\tex\\preamble{$dir}', true, FileIsDirectory(dir), ~/expected file, not directory/i);
-		fails('\\html\\apply{$png}', true, WrongFileType([Css], png), ~/file does not match expected types.+expected.+css/i);
+		fails('\\html\\store{$dir}', true, FileIsDirectory(dir), ~/expected file, not directory/i);
 		fails('\\figure{$css}{foo}{bar}', true, WrongFileType([Jpeg, Png], css));
 		fails('\\begintable{foo}\\useimage{$tex}\\endtable', true, WrongFileType([Jpeg, Png], tex));
 
@@ -138,11 +144,8 @@ class Test_04_Validation {
 		fails("\\volume{}", true, BlankValue("volume", "name"));
 		fails("\\chapter{}", true, BlankValue("chapter", "name"));
 		fails("\\section{}", true, BlankValue("section", "name"));
-		fails("# ", true, BlankValue("section", "name"));
 		fails("\\subsection{}", true, BlankValue("sub-section", "name"));
-		fails("## ", true, BlankValue("sub-section", "name"));
 		fails("\\subsubsection{}", true, BlankValue("sub-sub-section", "name"));
-		fails("### ", true, BlankValue("sub-sub-section", "name"));
 		fails("\\beginbox{}\\endbox", true, BlankValue("box", "name"));
 		fails("\\begintable{}\\header\\col a\\col b\\row\\col 1\\col b\\endtable", true, BlankValue("table", "caption"));
 		fails('\\begintable{}\\useimage{$png}\\endtable', true, BlankValue("table", "caption"));
@@ -150,8 +153,6 @@ class Test_04_Validation {
 		fails('\\figure{$png}{caption}{}', true, BlankValue("figure", "copyright"));
 		fails("\\quotation{a}{}", true, BlankValue("quotation", "author"));
 		fails("\\quotation{}{b}", true, BlankValue("quotation", "text"));
-		fails(">a@\n\nb", true, BlankValue("quotation", "author"));
-		fails(">@a\n\nb", true, BlankValue("quotation", "text"));
 
 		// TODO test empty path errors
 

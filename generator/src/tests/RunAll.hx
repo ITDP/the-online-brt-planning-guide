@@ -5,6 +5,9 @@ class RunAll {
 	{
 		Context.debug = true;
 		Context.draft = false;
+		Context.noMathValidation = false;
+		Context.dinossaurFigures = false;
+
 		Assertion.enableShow = true;
 		Assertion.enableWeakAssert = true;
 		Assertion.enableAssert = true;

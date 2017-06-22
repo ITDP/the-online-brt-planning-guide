@@ -15,7 +15,7 @@ private class DocumentContext<T> {
 	public var volume(default,set):T;
 		function set_volume(v)
 		{
-			var lc = chapter;
+			var lc = lastChapter;
 			chapter = zero;
 			if (lc != null)  // requires chapter:Null<T>
 				lastChapter = lc;

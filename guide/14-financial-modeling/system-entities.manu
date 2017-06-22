@@ -1,0 +1,107 @@
+
+
+\section{System Entities}
+
+All the different entities in the system may be financially modelled to compose the total yearly system cost. 
+However, the most significant entity, and the focus of this chapter, is the vehicle operating company.
+
+\subsection{Vehicle Operating Company}
+
+The vehicle operating company is the main player in a transportation system. Not only that, but the 
+vehicle operating company is composed of the greatest investments made throughout the concession before 
+the system even starts operating, and it consists of 70 to 90 percent of the total system yearly cost. 
+By thoroughly analyzing the vehicle operating company, it is possible to shed light on the levels of 
+profitability and sustainability of the system and to address the following:
+
+\item If the system will require subsidy and if so, the size of the possible subsidy;
+\item If the fleet should be purchased or partially purchased by the vehicle operating company or the 
+government;
+\item The concession length, in years;
+\item If the BRT agency should be funded by the system itself or by the government;
+\item If the station/terminal security and maintenance should be incorporated or funded through the 
+system;
+\item If there is to be a trust fund provision through the system surplus or if this should be topped 
+off by the government.
+
+\subsection{ Fare System/Technological Component}
+
+The fare or technological component of the system can be conceived in many different sizes and specifications. 
+Depending on the size of the system and the sophistication of the design, the number of components, their 
+specification, unit value, and quantities may vary greatly. Hence, the fare system model is trickier 
+to standardize; however, the system must contain the following items below:
+
+\item [Capital expenditures (Capex), including year zero investments, in order to set the fare system 
+up, comprised of:
+\item Equipment (station, external point-of-sale, vehicles, and depots);
+\item Control center (main office, data center hardware, data center software, and smart cards);
+\item Other (customer service, start-up costs);
+\item Equipment and control center renovations.]
+\item [Operational expenditures (Opex), including yearly system operating costs for the following:
+\item Operational personnel (collection, customer service, and administrative);
+\item System upkeep and equipment replacements;
+\item Administrative costs.]
+
+Depending on the system, the fare system could be run by a private operator as a profit generator, 
+or have its expenses funded by the system itself. As a rule of thumb, the fare solution for the BRT system 
+should consume 5 to 10 percent of system revenue, or about 15 percent of total vehicle operator company 
+payment. Hence, for modelling purposes, it is possible to assume a percent cost for the fare system, 
+without compromising the total system cost appraisal or conclusions.
+
+\subsection{ BRT Agency with a Secretary of Transportation}
+
+The BRT agency with a secretary of transportation is also a simpler model to develop because it is 
+mostly personnel driven. Issues such as the CCTV and fleet control may lie within the agency, or perhaps 
+be bundled in a single technological component for the system. In any case, the BRT agency’s cost structure 
+is composed of the following items:
+\item [Capital Expenditures (Capex): 
+\item Control center (hardware, software);
+\item Bus software (fleet control, planning);
+\item CCTV (stations and terminals, control center, garage depots).]
+\item [Operational Expenditures (Opex):
+\item Personnel;
+\item Voice/data costs for fleet control;
+\item Administrative costs;
+\item Maintenance and equipment replacement costs;
+\item Station/terminal security and maintenance personnel (service contract outsourcing).]
+
+Unlike the fare system, the agency should not be run as a profit generator, and rather it should have 
+its cost structure funded by the BRT system itself. Depending on the size of the system, responsibilities 
+of the agency and, also, organogram and salary structure, the agency may vary greatly in size. However, 
+the agency costs should lie within the range of 3 to 8 percent of total system revenue. Albeit simpler 
+to model, if one were to adopt a percent representation for the agency, similar to the fare system simplification, 
+the total system cost appraisal would not be compromised.
+
+\subsection{ System Cost Consolidation}
+
+Having developed the separate models for financing and operating costs, they should all be integrated 
+into a system appraisal, in order to determine system surplus/deficit. The system appraisal should possess 
+the following items/and considerations:
+
+\item [(+) Potential system revenue:
+\item Tariff revenues;
+\item Other revenues.]
+\item (–) Discounts/gratuities;
+\item (=) System net income;
+\item [(–) Payment/funding do system entities:
+\item Vehicle operators;
+\item Fare system;
+\item Agency.]
+\item [(=) System surplus/deficit:
+\item Trust fund.]
+
+The potential system revenue is obtained from the projected annual customer ridership estimates by 
+the corresponding tariff scheme. Other revenues may be obtained from publicity or other ventures, but 
+they usually correspond to a very small percentage of the total potential revenue. As a conservative 
+approach, one should model the system limiting the other revenues to 3 percent, or disregard it altogether. 
+System discounts for elderly citizens, children, or special groups may be present in the current system. 
+In this case, it is important to properly identify which parcel of which ridership category is affected 
+by these discounts and plan accordingly. 
+
+Once the system cash flow is appraised, it is recommended that the percent representation of every 
+item be calculated, in order to understand the relationship between each entity and validate for possible 
+under-/overestimations. If the system produces a surplus, then that surplus amount should be destined 
+to the trust fund. In case the system has a deficit, it is recommended to add an additional provision 
+to the trust fund so that the system operation/budget may be more independent from the government. As 
+an index, one may look at the vehicle operating company’s costs in relation to the system’s net revenue. 
+In case the vehicle operating cost is well over 50 percent, then the system will probably require a subsidy 
+(continuous or onetime).

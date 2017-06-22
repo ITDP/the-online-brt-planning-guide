@@ -1,0 +1,15 @@
+# --times
+# -D macro-times
+# -D dump=pretty
+-D macro_debug
+
+.libs_main.hxml
+.cp.hxml
+
+# The main tool, to run on Node
+# use --debug for source-map generation
+-main Main
+-js bin/manu.js
+-resource bin/bundle/html.js@html.js
+-debug
+

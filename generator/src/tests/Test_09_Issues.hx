@@ -16,6 +16,7 @@ import parser.AstTools.*;
 
 class Test_09_Issues {
 	static inline var SRC = "Test_09_Issues.hx";
+	var h = new AssetHasher();
 
 	function parse(str:String)
 	{
@@ -44,25 +45,37 @@ class Test_09_Issues {
 
 	public function test_issue_0008()
 	{
-		var g = new TexGen("/a/b/c/d");
+		var g = new TexGen(h, "/a/b/c/d");
 		Assert.equals("\\}\\}", g.gent("}}"));
 	}
 
 	public function test_possible_issue_with_unexpected_hashes()
 	{
-		Assert.raises(parse.bind("a#b"));
-		Assert.raises(parse.bind("a # b"));
+		parse("a#b");
+		parse("a # b");
+		Assert.pass();
 	}
 
-	public function test_issue_43()
+	public function test_issue_0043()
 	{
-		Assert.raises(parse.bind("a@b"));
+		parse("a@b");
+		Assert.pass();
 	}
 
-	public function test_issue_44()
+	public function test_issue_0044()
 	{
 		parse("\\item [a\n\nb]");
 		Assert.pass();
+	}
+
+	public function test_internal_0001()
+		Assert.raises(parse.bind("\\beginbox{foo}\\section{bar}\\endbox"));
+
+	public function test_internal_0002()
+	{
+		var g = new HtmlGen(h, "/a/b/c/d", false);
+		Assert.equals("<a class=\"url\" href=\"http://foo/bar\">http://foo/bar</a>",
+				@:privateAccess g.genh(expand(Url("http://foo/bar"))));
 	}
 
 	public function new() {}

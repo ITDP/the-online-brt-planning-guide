@@ -1,5 +1,5 @@
 (:if vno != null:)
-<a href="(:url:)" class="volume(:vno:)">Volume (:lno:) (:name:)</a>
+<a href="(:url:)" class="volume(:vno:)">(:lno:) (:name:)</a>
 (:else if lno != null:)
 <a href="(:url:)">(:lno:) (:name:)</a>
 (:else:)

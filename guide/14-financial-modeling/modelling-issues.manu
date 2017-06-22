@@ -1,0 +1,215 @@
+
+
+\section{Modelling Issues}
+
+When modelling a concession, there are a couple of specific issues that arise which must be dealt with appropriately. Some of these issues affect the general model construction, but others are more specific to the beginning or end of the concession terms.
+
+\subsection{Year-End Modelling and Year Zero Until Year One Consideration}
+
+Financial modelling is usually conducted on a yearly basis, or what we call a year-end model. In other 
+words, all that “happens” in the year is grouped at the “end” of the year, or December 31. This approach 
+is convenient since the concession has many years, and it is possible to track all the yearly information 
+in a column and compare and see the yearly evolutions side by side. In addition to that, a couple of 
+system information inputs, such as revenue and subsidy, are also known and dealt with as yearly totals.
+
+When one refers to year-end models, it is important to clarify exactly what is meant by year zero and 
+year one. Given that it is a year-end approach, the year refers to the end of the year (end of the period). 
+In other words, if a system becomes operational at the beginning of 2017, then year zero would equal 
+the entirety of 2016. Given this, the year before year 0, or year -1, would refer to the entirety of 
+2015. In other words:
+
+\item Year 0 = Year -1 until year 0; or January 1 of year 0 (2016) until December 31 of year 0 (2016);
+\item Year 1 = Year 0 until year 1; or January 1 of year 1 (2017) until December 31 of year 1 (2017).
+
+An important point here is how to consider initial capital expenditures and operational setup. In case 
+one, when modelling the concession on a month-to-month basis, appropriating the investments on one month 
+or the subsequent month is almost of no difference, since the “month” change will bear little impact 
+on the results. However, when we are considering a year-end approach, these “month” differences may result 
+in considering these expenditures for one year or another. Given that most appraisals consider a discounted 
+cash-flow method, considering capital expenditures a year apart may impact the results significantly, 
+especially in the beginning of the concession. 
+
+In order to address this, it is recommended that relevant expenditures that may occur at the beginning 
+of the year be grouped in the year before. For instance, if relevant capital expenditures happen in January, 
+they should be considered in December of the year before, since December of the year before (-1 month) 
+is closer than December of the current year (11 months).
+
+That being said, vehicles, garage depots, and other equipment that is acquired before a concession 
+begins, be it three to four months before the start of the concession or even at the beginning of the 
+concession, must be allocated in year zero. Once again, the reason for this is that year 0 considers 
+the period between year -1 (preoperational) until “moment” 0, when the concession begins.
+
+\subsection{ Inflation/Inflation-Free Implications}
+
+The consideration of inflation is another specific issue that must be treated appropriately while modelling. 
+First of all, inflation rates relate to the rate of change that a particular cost or item might have 
+suffered from one year to another. Given that each item behaves differently, each will be subject to 
+a different inflation rate, which will also be different from year to year. As a result, it is difficult 
+to assess the behavior of each item and especially difficult to project this trend accurately for the 
+coming years.
+
+Just as an example, fuel prices are driven by international market fuel prices, as well as specific 
+governmental policies that affect how this international “price change” is relayed to the consumers. 
+On the other hand, labor cost inflation is a result of a weighted price of goods-index analysis, which 
+attempts to correct a loss of acquisition power by the employee. Both items will suffer inflation, but 
+the rates will be different and will evolve differently over time.
+
+In the financial model, the consideration of inflation affects the following aspects:
+
+\item Depreciation, which is not subject to inflation;
+\item Fiscal credits, which are not subject to inflation;
+\item Financing rates, which consider an “embedded” inflation rate in its rate;
+\item Operational expenditure (Opex) parameters, which are prone to different inflation rates;
+\item Capital expenditure (Capex) parameters, which are prone to different inflation rates;
+\item Appraisal index references, such as the IRR (internal rate of return) and NPV (net present value) 
+discount, which are different in the case that the model considers inflation.
+
+In case one were to consider an inflation-free model, the impact of inflation on the above items would 
+still have to be considered, but differently. Just to straighten out terminology, for an inflation-free 
+model, one would refer to it as being a model in “real” or “constant,” whereas a model with inflation 
+would be referred to as being in “nominal” or “current” terms.
+
+For an inflation-free model, the Opex and Capex parameters, whose base value prices are already in 
+real terms (which would have to be adjusted yearly by inflation in a nominal term model), would simply 
+not be adjusted. In other words, one would not have to project different inflation rates, nor assume 
+any simplified single inflation index for all cost items, no matter how diverse.
+
+Items that are not subject to inflation in a nominal model, such as depreciation and fiscal credits 
+(such as tax shields), would have their yearly calculation base value constant over time. For instance, 
+if a car is acquired for a specific amount, its yearly depreciation value is the result of its acquisition 
+value multiplied by its depreciation rate. This acquisition value does not change over the years; it 
+is constant. Similarly, in case one has fiscal credits, the fiscal credits are carried forward in constant 
+terms, not being “adjusted” in value. In other words, these values already are in nominal terms. As a 
+result, since all the other items are subject to inflation, with the exception of these items, it is 
+equivalent to saying that these items lose “respective” value over time as compared to the other items 
+subject to inflation. Hence, in an inflation-free model, which is in real base terms, it is necessary 
+to deflate these items over time, in order to keep all values in the correct perspective.
+
+Financing rates are a bit trickier, since they already consider an inflation rate “embedded” in their 
+nominal rate value. When a bank presents a rate of X percent, this rate considers roughly the national 
+interest rate and the bank spread; however, both components already assume an inflation expectation. 
+Thus, if one were to appreciate financing options in “real terms,” then it is necessary to deflate the 
+financing rate.
+
+An advantage for the financing rates, depreciation, and fiscal credits is that the inflation assumption 
+to “deflate” the terms may be the same, since it relates to a national inflation index and not product-specific 
+inflation indexes. In other words, we have the following comparison:
+\item [Inflation model/nominal terms model:
+\item Different inflation rates for all the Opex and Capex items;
+\item Financing rate, depreciation, and fiscal credit values already in nominal terms.]
+\item [Inflation mode/real terms model: 
+\item Constant terms for all the Opex and Capex items;
+\item Single inflation index to deflate financing rate, depreciation, and fiscal credit value.]
+
+All things considered, there are three main reasons as to why it is recommended that the model be developed 
+inflation free, in real terms:
+
+\item It is simpler and more correct, since there are fewer inflation assumptions made;
+\item All year-by-year values are in real terms and thus comparable, making it easy to identify trends 
+and errors;
+\item Another specific point is that most commonly used appraisal indexes, such as IRR and discount 
+rates for NPV, are in real terms. Hence, by developing an inflation-free model, one is in the same base 
+of comparison, avoiding possible misinterpretations.
+
+An important point to clear up is that tariff/payment adjustment formulas due to inflation must be 
+considered in the contract, not in the model. Although both items pertain to inflation, projecting different 
+inflation indexes and measuring different inflation indexes are independent actions. 
+
+\subsection{ IRR, Leveraged/Unleveraged Scenarios, and EBITDA Margins}
+
+The IRR (internal rate of return) of a project is the “rate” that makes the net present value (NPV) 
+of all cash flows equal to zero. In other words, it is the discount rate at which the NPV of costs (negative 
+cash flows) of the investment equals the NPV of the benefits (positive cash flows) of the investment. 
+Because the IRR is a rate, it is an indicator of the efficiency or yield of an investment. The NPV, in 
+contrast, is an indicator of value or magnitude.
+
+For BRT projects, the IRR is generally used as a target value or reference value, in order to assess 
+concessionary yearly payment amounts. Alternatively, given a specific set of conditions, one may appraise 
+the variation of the IRR according to operational premise changes, as well as different financing options. 
+
+
+To properly assess each scenario, it is recommended that an unleveraged scenario be appraised first. 
+In an unleveraged scenario, all capital expenditures are paid by equity. In other words, this is the 
+true appraisal of the concession, considering solely the concession’s earnings and expenditures, without 
+any external influence such as financing, for instance. 
+
+In addition to the unleveraged scenario, one must also appraise the leveraged scenario, considering 
+the financing options that are available to the concessionary. It is through the leveraged analysis that 
+one may assess the funding period of the concession, which is always critical, as well as the funding 
+gap. In case the system has special financing options or, depending on the nature of the soon to be vehicle 
+operating company, there might be maximum year funding periods of maximum funding gap analysis to be 
+made. For instance, for smaller systems without established vehicle operating companies, the transition 
+may be tough, and perhaps the funding gap must not surpass the current vehicles scrap values. In this 
+case, certain restrictions may be applied in this leveraged/shareholder’s appraisal. It is possible that 
+the IRR for the leveraged scenario may become excessively high, which leads to special considerations 
+to be taken into account when analyzing high IRR values. 
+
+The problem with high IRR values is that the IRR assumes that yearly positive cash flows will be invested 
+in projects that yield the same rate of return as the concession. This means that not only is this cash 
+flow probably going to be invested in projects with other lower IRRs, but that reinvesting the values 
+at the same IRR propels the IRR to even higher levels. As a result, the IRR may produce an unrealistically 
+optimistic picture of the project that is being analyzed. Another issue with the IRR is that for projects 
+with alternating positive and negative cash flows, which may be the case in a year of fleet renovations, 
+sometimes more than one IRR may be found.
+
+To address the issues above, a modified IRR should be calculated as well. In the modified IRR calculation, 
+one assumes a financing rate and a reinvestment rate beforehand. That way, negative cash flows will be 
+financed at a predetermined rate, and so will reinvestment rates. The modified IRR is then calculated 
+as the nth square root of the future value of all the positive cash flows over all the negative cash 
+flows. Thus, one obtains a more reasonable IRR, which corrects distortions of high IRRs or alternating 
+positive negative yearly cash flows.
+
+Another way around assessing the concession’s profitability is to check the concession’s EBITDA (earnings 
+before interest, tax, depreciation, and amortization) margin index. The EBITDA margin index equals the 
+EBITDA value, divided by the revenue. Since the EBITDA is a measure for “operational profit,” one will 
+be looking at the “operational margin” for the concession. Usually, a healthy, stable concession will 
+not only produce a stable EBITDA margin over the concession term (no effects of financing, acquisitions, 
+etc.), but produce a value inside acceptable ranges. If the IRR is such that it is producing higher EBITDA 
+margins, then perhaps the financing conditions or total operator payments may be excessive. Likewise, 
+if the IRR is satisfactory but produces low EBITDA margins, then perhaps the Capex is underestimated.
+
+\subsection{ End of the Concession}
+
+While modelling the depreciation, financing, and even fixed-asset sales, special considerations must 
+be made at the end of the concession term. First and foremost, it is recommended that the concession 
+term length be set in an attempt to match the end of the useful life of relevant capital expenditures. 
+The reason for this is that it is not ideal to acquire items at the end of the concession, since there 
+will not be enough time to have a return on the investment.
+
+Regarding depreciation, it is sometimes allowed, depending on the country or concession type, to match 
+the depreciation of all acquisitions and improvements to, at most, end with the concession term. For 
+instance, in case there are some garage improvements made close to the end of the concession, some countries 
+allow for an adjustment of depreciation rates in order to meet the concession end. As a result of this, 
+aside from considering different depreciation rates per type of fixed asset in the model, it might be 
+important to have a provision for being able to change these values depending on the year of acquisition 
+and the time remaining until the end of the concession. This refinement is in the direction of “anticipating”/increasing 
+tax shields and, thus, increasing IRR.
+
+Similarly, the financing options must be adjusted in order to match the concession term. For instance, 
+in case a ten-year loan is underwritten in the beginning of a ten-year concession, it is compatible. 
+But let us consider that a loan for fleet renovation is to be underwritten in year seven of a ten-year 
+concession. In this case, obviously, a ten-year tenor of the loan will not be available. The tenor of 
+the loan needs to be adjusted to the remaining life in the concession, which would be three years. As 
+a result, it may not make sense to underwrite a loan at the end of the concession term. Further, the 
+financing rates and grace period for such a loan will probably be different than in the beginning of 
+the concession, when acquisition numbers were also larger. That being the case, it may be important to 
+consider two financing options, one for initial acquisitions and another for replacements.
+
+In addition to this, it is important to understand how to consider fixed assets at the concession end. 
+Items such as land acquisition, which are not depreciated, should be considered as being sold at the 
+end of the concession for the same acquisition value. Vehicle sales, on the other hand, may be sold for 
+a value different than their remaining accounting value. 
+
+Regarding vehicle sales, there are two different depreciation strings:
+\item Linear method, for determining accounting value, according to fiscal regulations;
+\item [Nonlinear method, for determining vehicle market value: 
+\item As a suggestion, a sum-of-the-years-digits method may be utilized;
+\item Usually, the bus market value follows an inverse function, which tends to be the residual value 
+or scrap value of the bus.]
+
+At the end of the concession, it is necessary to calculate the difference between the sales value and 
+the remaining accounting value for each vehicle. The reason for this is that this vehicle may have already 
+been depreciated, having already generated a tax shield. If this vehicle is then sold for a higher value, 
+it constitutes a capital gain, which is taxed. In any case, the situation is always favorable for the 
+vehicle operating company, since the tax shield was probably utilized in a year or years before the moment 
+where the capital gain, because of the vehicle sale, is due.

@@ -1,0 +1,76 @@
+
+
+\section{Fare Collection}
+
+\quotation{When you buy a ticket, you're basically voting for whatever you see.}
+{David A. R. White, actor, screenwriter, and producer, 1970–}
+
+IT systems for fare collection handle revenue management, financial management systems, and automatic 
+fare collection (AFC). BRT systems function well with off-board, automatic fare collection systems, which 
+reduce vehicle boarding times, allow the rapid introduction of new tariffs and services, reduce revenue 
+leakage, provide data to support system optimization, and support integrated ticketing across multiple 
+modes. Fare collection consists essentially of revenue management processes. The income received by the 
+BRT agency and its expenses are managed by IT systems. 
+
+BRT stations have fare collection cabins where passengers may recharge electronic fare-payment media 
+or purchase single-ride media. Passengers are able to use smart cards or other payment media at access 
+control barriers inside the stations. These devices read the payment medium, determine if the medium 
+has sufficient value, and then deduct the appropriate fare. The fare payment data are transmitted to 
+the CCC via the station server. 
+
+The AFC system may be integrated with payment mechanisms on feeder buses and other non-BRT buses. Passengers 
+use electronic media or buy tickets from conductors using handheld ticketing machines. At the end of 
+a shift, the information is downloaded to a terminal server, where it is transmitted to CCC. 
+
+\figure[medium]{assets/image4.png}{Electronic Ticketing and Smart Card Recharge Overview.}{Prodigy 
+Electronics.}
+
+Data from all AFC transactions are stored at the CCC. Authorized BRT agency staff can view the financial 
+transaction data through a secure dashboard developed by the IT service provider. The BRT agency can 
+use the output from the AFC system to monitor financial performance on a continual basis. The BRT agency 
+and an IT service provider may jointly staff the CCC. Cash collection from stations and terminals can 
+be the responsibility of a service provider or bank. The service provider issues a daily report on total 
+cash collection, and the bank issues a daily deposit report to the BRT agency. 
+
+\figure{assets/image5.png}{Handheld Ticket Machine.}{ITDP}
+\figure{assets/image6.jpeg}{Handheld smartcard reader.}{ITDP}
+\figure{assets/image7.jpeg}{Onboard smartcard reader.}{ITDP}
+
+
+\begintable{AFC Devices Required in Different Parts of the System}
+\header
+\col Device
+\col Place of Deployment
+\col Function
+\row
+\col Handheld Ticket Machine
+\col
+\col
+\row
+\col Fig 19.5 \'TODO: Ref. to image5 '\
+\col Onboard
+\col Issue paper tickets
+\row
+\col Fig 19.5 \'TODO: Ref. to image5 '\
+\col Off board
+\col For use in emergency situations, like power failure at stations
+\row
+\col Smart Card Reader
+\col
+\col
+\row
+\col Fig 19.6 \' TODO: Ref. to image6 '\
+\col On the handheld ticketing device
+\col Read the smart card and deduct appropriate fare
+\row
+\col Fig 19.7 \' TODO: Ref. to image7 '\
+\col Onboard
+\col 
+\row
+\col Fig 19.8 \'TODO: Ref to image8 '\
+\col Off-board
+\col 
+\endtable
+
+\figure[medium]{assets/image8.jpeg}{Off-board smartcard reader}{ITDP}
+

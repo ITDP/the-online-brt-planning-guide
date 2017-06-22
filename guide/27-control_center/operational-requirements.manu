@@ -1,0 +1,176 @@
+
+
+\section{Operational Requirements}
+
+\quotation{The world is not to be put in order. The world is order. It is for us to put ourselves in unison with this order.}
+{Henry Miller, writer, 1891–1980}
+
+For a BRT system that operates for a longer period than normal office hours, it might be required to 
+implement a shift system. In this case there would, however, still be some groups in the BRTMC that would 
+not be required to work outside normal office hours.
+
+\subsection{Shift Systems}
+
+As discussed earlier, to comply with local labor laws—that is, maximum hours an employee may work per 
+month, etc.—it might be required in the case of a BRT system that operates from say 06:00 to 21:00 (i.e., 
+for sixteen hours per day) to have staff for three shifts. One team will be off while two teams each 
+work a shift. Also, for critical shift functions where a full-time human presence is required, at least 
+two staff would be required per shift to perform these functions, because time should be allowed for 
+a shift worker to take breaks and to eat.
+
+It is recommended that the following staff should perform shift work (two shifts per day should be 
+adequate for a BRT system that operates for sixteen hours per day as mentioned above, i.e., 05:30 to 
+13:30 and 13:30 to 21:30):
+
+\number Operations Control: Driver and Vehicle Scheduling Officer; Monitoring and Schedule Adherence Operators 
+and Supervisor;
+\number Automatic Fare Collection: AFC Monitoring, Scheduling, and Schedule Adherence Operators and Supervisor;
+\number Safety and Security: Surveillance Operators and Supervisor, plus Police and Traffic Police Liaison 
+Officers;
+\number Call Center: Call Center Agents, Supervisors, and Web Administrator.
+
+It is recommended that the managers of these groups work standard office hours.
+
+Additionally, it is proposed that the outsourced security service should provide the required on-site 
+security personnel on a 24 x 7 x 365 basis.
+
+\subsection{Operational Procedures}
+
+For the BRTMC to function optimally, it is imperative to not only provide the staff with the necessary 
+equipment, but also clear instruction on what to do, when, where, and why. Clear operational procedures 
+that empower the staff to perform their jobs are therefore vital to the success of the BRTMC. 
+
+The BRTMC workflow specification should detail the collective flow of actions over four main functions. 
+
+The four main functions of the BRTMC are:
+
+\item Collect data/info;
+\item Configure the data/info;
+\item Share data/info with all the relevant stakeholders;
+\item Monitor performance, safety, and security.
+
+Operational procedures are required to explain how events would trigger specific actions by certain 
+stakeholders to enable the flow of data and information through the system. It would also specify how 
+reports are to be generated. Operational procedures and protocol would provide instructions on how the 
+operator would act when receiving calls, where to find information, and what to do with it. From a management 
+perspective, workflow would detail how informational meaning may be derived from certain views of data 
+and what options could be followed to ensure it flows through the communication system to its proper 
+destination(s).
+
+The general Standard Operating Procedures (SOPs) that should be developed include:
+
+\item Incident detection;
+\item Incident response management;
+\item Incident confirmation;
+\item Maintenance request generation;
+\item Performance management monitoring;
+\item Station monitoring;
+\item Vehicle monitoring;
+\item Safety and security monitoring;
+\item AFC monitoring;
+\item Power failure;
+\item Smoke/fire in TMC actions;
+\item Security in TMC;
+\item Request for video footage;
+\item BRTMC evacuation plan;
+\item BRTMC disaster recovery and business continuity.
+
+\subsection{Operational Scenarios}
+
+Three operational scenarios of how the BRT system should work once operational are sketched below to 
+provide a better understanding of the role that the BRTMC plays in the operations of the BRT system. 
+
+\subsubsection{Customer Scenario}
+
+\figure{assets/image12.jpeg}{A customer uses the fare system at a BRT station in Bangkok, Thailand.}{ITDP.}
+
+Sipho needs to use the BRT system, because he has a meeting in town A’s central business district (CBD) 
+at 09:00. Sipho logs on to the Internet and views the BRT website, which is administered by the BRTMC’s 
+call center, to determine if the vehicle schedule is on time. The website indicates that all vehicles 
+are running on time. 
+
+Sipho uses a feeder bus to trunk station Alpha. Arriving at the trunk station, Sipho realizes that 
+his BRT smart card does not have enough money in order for him to make a trip. At the ticket kiosk, Sipho 
+reloads his smart card with enough credit to travel the rest of the week. At the gate, Sipho touches 
+his card and gains access to the station.
+
+\figure{assets/image13.jpeg}{A message board shows departure times of vehicles in Chengdu, China.}{
+ITDP.}
+
+Sipho looks at the time and sees that the Verbal Message Sign (VMS), which is also administered from 
+the BRTMC, indicates that the next express vehicle traveling to town A’s CBD will arrive in five minutes. 
+Sipho decides to buy a newspaper at the newsstand while waiting for the vehicle. 
+
+The Automatic Voice Annunciator (AVA), again administered from the BRTMC, announces that the vehicle 
+has arrived. Sipho boards and finds a comfortable seat. The VMS on the vehicle and the AVA announcing 
+each station provide Sipho with the comfort to read his newspaper. The vehicle priority allows the vehicle 
+to clear slow-moving traffic at the intersection. The VMS display and the AVA annunciator warn Sipho 
+that his station is up next. Sipho gathers all his belongings and disembarks the vehicle at the station. 
+
+\figure[medium]{assets/image14.jpeg}{Customers leave a BRT station in Bogotá, Colombia.}{Karl Fjellstrom, 
+Far East BRT.}
+
+Sipho exits the station again through the gate and walks the two blocks to where his meeting is scheduled. 
+Sipho arrives at his meeting on time, relaxed, and without the morning stress of traffic. Figure 27.15 
+illustrates the movement of the customer scenario as sketched above.
+
+\figure[medium]{assets/image15.jpeg}{Customer scenario.}{TECHSO.}
+
+\subsubsection{Maintenance Scenario}
+
+\figure{assets/image16.jpeg}{Station officer at the card readers in a Bogotá, Colombia, BRT station. 
+}{Karl Fjellstrom, Far East BRT.}
+
+Vuzi is the station officer at one of the trunk stations. One of Vuzi’s duties is to check all equipment 
+at the station before operations start and determine if anything is broken and needs to be repaired.
+
+Vuzi arrives at the station and starts to check the equipment. Vuzi first assesses the gates and finds 
+that one of the card readers at the gates is faulty. Vuzi makes a note and continues the inspection. 
+Vuzi checks the Passenger Display Units (PDUs) and AVA and all of them are functioning correctly. Vuzi 
+continues with the assessment of the ticketing kiosks and finds that all is in order as well. Vuzi checks 
+the automatic doors that allow access to the vehicles and finds that they are faulty. All the other equipment 
+is in order.
+
+Vuzi then contacts the BRTMC immediately and reports to the call center agent that one of the card 
+readers at the gate is not working and that the automatic doors are faulty.
+
+Gareth is the call center agent on duty and logs the call received from Vuzi. Gareth immediately dispatches 
+the card reader and automatic door maintenance teams. They indicate that the problem will be fixed within 
+the hour. 
+
+The respective maintenance personnel arrive at the station where Vuzi shows them the problems. They 
+fix the problems and report to Vuzi who goes to inspect the card reader and automatic doors and finds 
+them fixed. 
+
+The maintenance staff and Vuzi report back to Gareth at the BRTMC that all faulty equipment has been 
+fixed, and Gareth completes the logged call with a short report.
+
+Figure 27.17 illustrates the maintenance scenario as described above.
+
+\figure[medium]{assets/image17.jpeg}{Maintenance process.}{TECHSO.}
+
+\subsubsection{Emergency Scenario}
+
+Dillon and Cynthia are operators working for the Safety and Security group in the BRTMC’s control room. 
+Both of them have been on duty for only two hours, and they are comfortably watching the monitors. 
+
+Dillon sees on one of the monitors that something has happened that is out of the ordinary. There is 
+an accident at an intersection involving one of the BRT vehicles and a car. Dillon immediately logs a 
+call to fire and rescue stating that an accident has occurred at the Nelson and Main Street intersection 
+and that it involves a BRT vehicle and a car. While Dillon is logging the call to the fire and rescue, 
+Cynthia logs a call to the police in case there are any fatalities. The fire and rescue department and 
+the police immediately dispatch vehicles to the accident scene. 
+
+Once Dillon has completed his call to fire and rescue, he contacts the Traffic Department to dispatch 
+personnel to manage the other traffic. Cynthia has the responsibility to inform the Operations Control 
+group in the BRTMC to reschedule/relocate vehicles and update all VMS at stations. Operations Control 
+informs all station officers and the depot manager of the current standings and contacts the web administrator 
+at the call center to update the information on the website.
+
+The entire time that the accident cleaning process is under way, Dillon and Cynthia review the CCTV 
+cameras. Once the clean-up operation is complete, the vehicles are rescheduled, and operations can continue 
+normally.
+
+Figure 27.18 illustrates the emergency scenario as described above.
+
+\figure[medium]{assets/image18.jpeg}{Emergency process.}{TECHSO.}

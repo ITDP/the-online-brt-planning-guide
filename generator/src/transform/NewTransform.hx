@@ -32,7 +32,7 @@ class NewTransform {
 			h = mk(Emphasis(htrim(i, ctx)), h.pos);
 		case Highlight(i):
 			h = mk(Highlight(htrim(i, ctx)), h.pos);
-		case Word(_), InlineCode(_), Math(_):
+		case Word(_), InlineCode(_), Math(_), Url(_):
 			ctx.prevSpace = false;
 		case HElemList(li):
 			if (ctx.reverse) {
@@ -55,7 +55,7 @@ class NewTransform {
 	static function hclean(h:HElem)
 	{
 		var def = switch h.def {
-		case Wordspace, Word(_), InlineCode(_), Math(_), HEmpty:
+		case Wordspace, Word(_), InlineCode(_), Math(_), Url(_), HEmpty:
 			h.def;
 		case Superscript(i):
 			i = hclean(i);
@@ -106,7 +106,7 @@ class NewTransform {
 			buf.add("-");
 		case Superscript(i), Subscript(i), Emphasis(i), Highlight(i):
 			buf.add(genId(i));
-		case Word(cte), InlineCode(cte), Math(cte):
+		case Word(cte), InlineCode(cte), Math(cte), Url(cte):
 			buf.add(~/[^a-z0-9\-]/ig.replace(cte, "").toLowerCase());
 		case HElemList(li):
 			for (i in li)
@@ -146,8 +146,10 @@ class NewTransform {
 		assert(v != null);
 		assert(v.def != null);
 		switch v.def {
-		case HtmlApply(path):
-			return mkd(DHtmlApply(path), v.pos);
+		case HtmlStore(path):
+			return mkd(DHtmlStore(path), v.pos);
+		case HtmlToHead(template):
+			return mkd(DHtmlToHead(template), v.pos);
 		case LaTeXPreamble(path):
 			return mkd(DLaTeXPreamble(path), v.pos);
 		case LaTeXExport(src, dst):
@@ -187,18 +189,21 @@ class NewTransform {
 		case Box(name, contents):
 			var id = idc.box = genId(name);
 			var no = ++noc.box;
-			return mkd(DBox(no, name, vertical(contents, null, idc, noc)), v.pos, id);  // FIXME resolve null and not allowing hierarchy elements inside boxes
+			return mkd(DBox(no, name, vertical(contents, [], idc, noc)), v.pos, id);  // TODO assert that restricted vertical mode has been respected
+		case Title(name):
+			return mkd(DTitle(name), v.pos);
 		case Figure(size, path, horizontal(_) => caption, horizontal(_) => copyright):
-			// figure id could be generated from paths, but let's keep things uniform across elements
-			var id = idc.figure = genId(caption);
+			// prefer path for id generation, but fallback to caption if a generic file name is recognized
+			var fname = new haxe.io.Path(path.internal()).file;
+			var id = idc.figure = genId(~/^(image|figure)/i.match(fname) ? caption : mk(Word(fname), path.pos));
 			var no = ++noc.figure;
 			return mkd(DFigure(no, size, path, caption, copyright), v.pos, id);
 		case Table(size, horizontal(_) => caption, header, rows):
 			var id = idc.table = genId(caption);
 			var no = ++noc.table;
-			// FIXME resolve null and forbid hierarchy elements inside tables
-			var dheader = header.map(vertical.bind(_, null, idc, noc));
-			var drows = rows.map(function (r) return r.map(vertical.bind(_, null, idc, noc)));
+			// TODO assert that restricted vertical mode has been respected
+			var dheader = header.map(vertical.bind(_, [], idc, noc));
+			var drows = rows.map(function (r) return r.map(vertical.bind(_, [], idc, noc)));
 			return mkd(DTable(no, size, caption, dheader, drows), v.pos, id);
 		case ImgTable(size, horizontal(_) => caption, path):
 			var id = idc.table = genId(caption);
@@ -224,8 +229,6 @@ class NewTransform {
 			}
 		case VEmpty:
 			return mkd(DEmpty, v.pos);
-		case _:  // TODO remove
-			return mkd(DEmpty, v.pos);
 		}
 	}
 
@@ -239,7 +242,8 @@ class NewTransform {
 		assert(d != null);
 		assert(d.def != null);
 		var def = switch d.def {
-		case DHtmlApply(_), DLaTeXPreamble(_), DLaTeXExport(_), DFigure(_), DImgTable(_), DCodeBlock(_), DQuotation(_), DEmpty:
+		case DHtmlStore(_), DHtmlToHead(_), DLaTeXPreamble(_), DLaTeXExport(_),
+				DTitle(_), DFigure(_), DImgTable(_), DCodeBlock(_), DQuotation(_), DEmpty:
 			d.def;
 		case DVolume(no, name, children):
 			DVolume(no, name, clean(children));

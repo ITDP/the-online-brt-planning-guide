@@ -1,0 +1,30 @@
+\chapter{Understanding How it Works}
+
+The publication system used in this online guide is based on version
+controlling all the content – text, tables and figures – and on automatically
+generating from each version – in parallel – both website and PDF renderings of
+the guide.
+
+This \[work in progress\] chapter gives an overview of the project and the role
+of each tool.
+
+Essentially, the project is divided in two top-level folders: the
+\code`/guide` and the \code`/generator`.
+
+The first has the files for the entire contents of the guide (text, images,
+tables, etc).  The text is written in a simple but powerful format, that at the
+same allows ease of use, independence of content from style and is compatible
+with version control.
+
+The second contains the source-code for the special purpose generation tool –
+*manu* – that takes the text for the guide and the assets and builds the PDF
+and the complete website.
+
+All content is versioned in *Git*, a powerful and proved distributed version
+control system used extensively in software development, and the project lives
+in GitHub, a platform for collaboration on projects using *git*.
+
+A robot that lives in our server constantly monitors GitHub for events in this
+project – such as new commits or changes in pull requests – and automatically
+runs *manu* for each new version.
+

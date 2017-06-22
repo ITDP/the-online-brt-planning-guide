@@ -1,0 +1,121 @@
+
+
+\section{Floor Space Requirements}
+
+\quotation{Are you really sure that a floor can't also be a ceiling?}
+{M.C. Escher, graphic artist, 1898–1972}
+
+The BRTMC area itself requires specific spatial features. Sufficient space should be allowed for the 
+following areas: control room; open-plan environments; offices; meeting rooms; rest and recreation areas 
+and a cafeteria; ablution facilities, storage space; server and telecommunications room, staging area, 
+vault space, UPS and generator rooms, and walkway space.
+
+\subsection{Control Room}
+
+This area should accommodate the following groups:
+\item Operations control operators and supervisor;
+\item Surveillance operators and supervisor;
+\item Call center agents and supervisor.
+
+The size of the area depends on the number of workstations required. As a BRT system is likely to be 
+developed in phases, the control room will most likely be only partially utilized during the initial 
+years. However, it is imperative to plan for future requirements where applicable.
+
+Each BRTMC operator will require space for a computer terminal, voice communications equipment, and 
+additional work space. The number of operator workstations required for the total system is a factor 
+of the size of the system and the number of vehicles each operator can safely control. The nature of 
+the controller software package will also play an important role in determining the number of vehicles 
+a BRTMC staff member can effectively oversee. However, under normal conditions each operator should be 
+able to manage an average of eighty to one hundred vehicles. Additionally, since the Operators should 
+be able to clearly communicate with the drivers, the acoustic arrangement of the workstations should 
+be considered. If noise from one workstation interferes with the communications in another workstation, 
+there could be a potential for lost or misinterpreted communications, which might be problematic. 
+
+By using a video wall displaying critical junctures in the system and the positions of the various 
+vehicles, these staff members would be provided with a visual understanding and assessment of the system’s 
+operations. A video wall would also help in circumstances where multiple staff members need to resolve 
+a complex issue together.
+
+\figure{assets/image8.png}{A large-screen display and vehicle tracking board can help staff and supervisors 
+quickly assess the situation.}{Los Angeles County Metropolitan Transportation Authority.}
+
+\figure[medium]{assets/image9.png}{Multiple small-screen displays of each critical juncture in the system give 
+the control team a visual understanding of the system’s operation.}{Queensland Transport.}
+
+\subsection{Open-Plan Environments}
+
+Open-plan work spaces, separate from one another, are recommended for the following areas: 
+\number AFC Operators and Supervisor;
+\number Safety and Security Officers and Supervisor, plus Law Enforcement Representatives;
+\number BRT IS&T Contactor;
+\number Facility Management.
+
+\subsection{Offices}
+
+A separate office for each manager is recommended.
+
+\subsection{Meeting Rooms}
+
+There should be at least two meeting rooms that can accommodate approximately ten people and one that 
+can accommodate twenty people. Furthermore, to assist with public relations as well as interactions with 
+the Media, it is recommended to have a visitor viewing area—that is, an auditorium, overlooking the control 
+room environment with a clear view of the video wall. Additionally, it is suggested to allow space for 
+a Joint Operations Center (JOC) where in the event of an emergency situation key personnel from the BRT 
+team can meet with key staff from various other disciplines, like traffic, police, and emergency service, 
+to plan and direct emergency operations and recovery. Additionally, this can be a space where any required 
+media interaction can be conducted to assist in keeping the public informed about the state of affairs 
+with respect to the emergency situation.
+
+\subsection{Rest and Recreation Areas and a Cafeteria}
+
+Control room operators can become fatigued by long hours of looking at monitors and tracking vehicles. 
+Holding focused concentration for long periods of time can be mentally exhausting. Typically, operators 
+should have frequently scheduled breaks in order to maintain their alertness. It is therefore recommended 
+that there should be a relaxation area or break area that allows operators to refresh themselves. Furthermore, 
+it is recommended that space be allowed for a cafeteria environment.
+
+\subsection{Ablution Facilities}
+
+It is recommended to not only provide toilets but also shower facilities.
+
+\subsection{Storage Space}
+
+It is recommended to provide a secure room for the storing of equipment and materials.
+
+\subsection{Server and Telecommunications Room}
+
+It is suggested that two environments should be provided for, separate from one another, to accommodate 
+the following:
+\number IT data processing equipment, e.g., servers, Storage Area Network (SAN) equipment, data backup 
+devices, etc.;
+\number Local Area Network (LAN) and PABX equipment.
+
+It is further recommended that these two server rooms should comply with international standards such 
+as the TIA 942 Data Center Standard.
+
+\subsection{Staging Area}
+
+An environment should be provided where computer and telecommunications equipment can be configured 
+and set up before they are placed into production.
+
+\subsection{Vault Space}
+
+It is recommended to make allowance for vault space where high-value items and computer/data backup 
+media can be stored.
+
+\subsection{UPS and Generator Rooms}
+
+Separate areas for housing the Uninterruptable Power Supply (UPS) and generator equipment, respectively, 
+are recommended.
+
+\subsection{Other Utility Rooms}
+
+It is proposed that separate areas for the following might also be required:
+\number Municipal power connection to the building’s high-voltage plant;
+\number Telecommunication service provider’s equipment—Wide Area Network (WAN) connection point;
+\number Fire suppression room to house gas bottles (e.g., FM 200 gas cylinders) and related equipment;
+\number Air-conditioning plant.
+
+\subsection{Walkway Space}
+
+Walkway space should constitute approximately 25 percent of utilized space.

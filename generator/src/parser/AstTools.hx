@@ -136,55 +136,50 @@ class AstTools {
 		return { def:def, pos:pos };
 #end
 	/*
-	Build a compatible list of `ind` individual processing calls.
+	Build a compatible list from `ind` individual processing calls.
 
 	This is suitable to automagically make HLists and VLists.  According to
-	the number of found elements, this macro will either result in an empty
-	element, a single (unwraped) element, or a list of elements.
+	the number of found elements, this macro will generate code that will
+	either result in an empty element, a single (unwraped) element, or a
+	list of elements.
+
+	The `ind` expression looks like `vertical(stop, true)` or
+	`horizontal(stop)`.
 	*/
-	public static macro function mkList(ind:Expr, stop:Expr)
+	public static macro function mkList(ind:Expr)
 	{
-		switch ind.expr {
-		case EConst(CIdent(c)):
-			var compat = false;
-			var c = switch typeof(ind) {  // TODO strict type check, but also support Elem<?Def>
-			case TFun(_,TType(_.get()=>{name:"Null"},[TType(_.get()=>{name:name},[])])) if (name.endsWith("Elem")):
-				compat = true;
-				name.charAt(0);
-			case TFun(_,TAbstract(_.get()=>{name:"Nullable"},[TType(_.get()=>{name:name},[])])) if (name.endsWith("Elem")):
-				name.charAt(0);
-			case other:
-				error('Unexpected type for mkList argument: $other', ind.pos);
+		var c = switch typeof(ind) {  // TODO strict type check, but also support Elem<?Def>
+		case TAbstract(_.get()=>{name:"Nullable"},[TType(_.get()=>{name:name},[])]) if (name.endsWith("Elem")):
+			name.charAt(0);
+		case other:
+			error('Unexpected type for mkList argument: $other', ind.pos);
+		}
+		var list = macro $i{c + "ElemList"};
+		var empty = macro $i{c + "Empty"};
+		var nullCheck = macro i.isNull();
+		var valAccess = macro i.sure();
+		return macro {
+			var start = peek().pos;
+			var li = [];
+			while (true) {
+				var i = $ind;
+				if ($nullCheck) break;
+				li.push($valAccess);
 			}
-			var list = macro $i{c + "ElemList"};
-			var empty = macro $i{c + "Empty"};
-			var nullCheck = compat ? (macro i == null) : (macro i.isNull());
-			var valAccess = compat ? (macro i) : (macro i.sure());
-			return macro {
-				var start = peek().pos;
-				var li = [];
-				while (true) {
-					var i = $ind($stop);
-					if ($nullCheck) break;
-					li.push($valAccess);
-				}
-				switch (li) {
-				case []:
-					var at = peek().pos;
-					// hack to get the usual empty <=> length == 0 (when possible);
-					// don't eliminate the implicit copy with .offset, since we'll be changing the
-					// position of a token used elsewhere
-					at = at.offset(0, at.min - at.max);
-					start = start.offset(0, start.min - start.max);
-					parser.AstTools.mk($empty, PositionTools.span(start, at));
-				case [single]:
-					single;
-				case _:
-					parser.AstTools.mk($list(li), PositionTools.span(li[0].pos, li[li.length - 1].pos));
-				}
+			switch (li) {
+			case []:
+				var at = peek().pos;
+				// hack to get the usual empty <=> length == 0 (when possible);
+				// don't eliminate the implicit copy with .offset, since we'll be changing the
+				// position of a token used elsewhere
+				at = at.offset(0, at.min - at.max);
+				start = start.offset(0, start.min - start.max);
+				parser.AstTools.mk($empty, PositionTools.span(start, at));
+			case [single]:
+				single;
+			case _:
+				parser.AstTools.mk($list(li), PositionTools.span(li[0].pos, li[li.length - 1].pos));
 			}
-		case _:
-			return error('Unexpected argument for mkList: ${ind.toString}', ind.pos);
 		}
 	}
 

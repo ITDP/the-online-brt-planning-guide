@@ -1,0 +1,617 @@
+\section{Estimating Demand Using a Full-Transport Model}
+
+\quotation{Those who have knowledge, don’t predict. Those who predict, don’t have knowledge.}
+{Lao Tzu, philosopher, 6th century BC}
+
+Most BRT systems in the world have been planned using only a public transport model, without having
+the full transportation system modeled. The lack of full modeling occurs because such modeling is only
+in its infancy in most developing countries, and it takes time to build up the data, the skills, and
+resources to develop a full transport-system demand model. Nonetheless, the tools provided by the full
+transport-demand model are very useful to BRT planning, and if time and resources allow, developing a
+full transport demand model is worthwhile.
+
+\subsection{Overview}
+
+By including all possible modes and replicating the decision process of all citizens to travel, in
+a full-transport model, there will be a much better sense of “potential” customers for the BRT system
+who may currently be taking motorcycles, private cars, bicycles, or walking. This model better captures
+the effects of congestion on different points of the network.
+
+Guidelines for how to build and operate a full-transport demand model are beyond the scope of this
+guide. However, some basic information on transport modeling is included here to give BRT planners a
+general overview of how these models work, as they are likely to have output of these sorts of strategic
+models. Full transport models are normally constructed upon variations of the “classic four-stage models”
+discussed next.
+
+While complex mathematical relationships underpin these full transportation models, the basic premise
+behind the modeling analysis can be presented in an understandable form to a wide audience. Figure 4.31
+outlines the classic transport model. This model still serves as the basis for the various software products
+that today enable effective transport modeling. There are two distinct moments regarding four-stage models:
+the model development and the model application. The first is about understanding what factors influence
+people’s decisions about what trips they make and how they make them; this is done by observing people’s
+decisions and splitting them into groups that made similar decisions when faced with the same parameters.
+The second is about proposing new conditions (city growth, transport projects) and simulating the decisions
+people make under this new condition.
+
+In short, the application of the model consists of the following:
+\item Defining inputs:
+\item Land use (existing or future) that points where activities are developed;
+\item Transport network (existing or future): road network with its features (eventual bicycle network included here), public transport network (modes, itineraries, frequencies). This changes throughout the day (even road directions can change), so typical moments of the day are to be considered.
+\item Calculating the travel matrix (there are usually several “market segment” matrices for each typical moment of the day);
+\item Simulating the matrix (demand) with the network (supply) to evaluate how each part of the system will be effectively used.
+
+The third step alone is iterative, because as parts of the system get congested, people will try alternative
+paths.
+
+The second and third steps together are also iterative (less iterations are required) as the travel
+matrix is a function of the travel times, and congestion will affect the decision to travel.
+
+In the context of planning, the process is iterative, since it is based on the results that one will
+propose (or foresee) modifications both in land use and in the transport network.
+
+The four-stage model is useful for the development of a strategic plan, because it makes it possible
+to consider new modes of transport to be created and to evaluate long-term land use changes. It is more
+useful to use a full transport model when faced with a lack of data from comparable services or services
+that do not exist yet, as it will allow for multiple scenarios and an iterative process that looks at
+the potential shifts in demand that result from new or additional services.. According to a survey on
+fixed-route public transport ridership forecasting and service planning methods appearing in a TCRP,
+47 percent of US transport agencies reported using the four-stage model for the purpose of implementing
+a new system. The remainder of agencies use different means of estimation, or hire consultants to conduct
+a ridership forecast. Of the agencies surveyed, 11 percent use elasticities to determine the impact of
+implementing each planned bus rapid transit improvement. Another 11 percent considers the impact of improving
+existing travel times. Seventeen percent of agencies would hire an analyst to forecast ridership. The
+remaining 19 percent of agencies indicated that they would not analyze ridership impacts, but many were
+not currently considering implementing a new mode of public transport service.
+
+The TCRP survey found that 44 percent of agencies used the four-stage model to determine long-term
+ridership. Thirty-three percent used trend lines, 22 percent considered service level changes, and 14
+percent would not conduct such analysis.
+
+\figure[medium]{assets/image39.png}{Inputs and activities example for the development and application of a
+classic four-stage model for the Rio de Janeiro Master Plan city.}{Protocubo.} \' Used to be Elebeta '\
+
+\subsection{Sub-Models}
+
+Market segmentation can be a key issue in deriving good modeling results. Different people react in
+different ways to changes in the transport system. Even the same person may behave in different ways
+when travelling to work, on business, or during leisure time. These differences affect design when considering
+the service during peak (mostly journeys to work and school) and off-peak periods (mostly shopping, social,
+and recreational trips). The proper segmentation of data can be costly since it requires more carefully
+collected data and greater detail in the modeling process. However, the benefits of segmentation can
+be a system well-tailored to the needs of the customers.
+
+*Trip Generation*
+
+When applying this model the *input* is the land use for a given area (zone), which may be expressed,
+for example, as:
+\item Number of households per income level and per number of residents;
+\item Number of residents per age;
+\item Level of education;
+\item Employment by activity sector.
+
+These are usually projected numbers, based on trending projections considering development projects,
+in a table such as Table 4.13.
+
+\figure[large]{assets/image40.png}{Table}{FixMe}
+
+The “borders several OD matrices” are the output of this model; by borders
+we mean the total number of trips with origin and destination in each zone, as in the following:
+
+\figure{assets/image41.png}{Table}{FixMe}
+
+For one future scenario, the number of matrices’ borders generated can
+easily be over thirty by combining:
+\item *Moments of the day:* usually at least morning peak, afternoon peak and off-peak, but sometimes midday and night (this are usually proportionally divided based on traffic and public transport volumes if dynamic allocation will be made);
+\item *Trip purpose:* At least work, education, and others, but sometimes this may include: shopping, social, and recreational; health and personal business; and escorting other people;
+\item *Income level:* Splitting population into three to five income groups, depending on evidence of behavioral gaps observed in the model development.
+
+Additional classification by person type can be included, typically focusing on personal characteristics
+that may include car ownership levels, household size, and household structure along with other factors
+such as residential density that play a role in determining the number of trips produced per household.
+
+The development of the model consists in analyzing the mobility rate for trip purpose, including employment
+sector and school level for each market segment, normally on data from household and/or workplace surveys.
+
+This analysis is complemented by land use census data (population, employment, education, and specific
+activity sectors from commerce, industry, and health agencies and unions) and crossed with current trip
+estimates based on traffic and public transport surveys and transportation sector operation reports.
+
+The trip generation model is usually is divided into two other models: *production model* and *attraction
+model*.
+
+*Trip Distribution*
+
+The next stage in the application of the model is to fill the interior of the matrices, “the borders”
+of which were determined in the previous stage.
+
+This can be seen as a dispute for the places where people will do their daily activities: work, study,
+shopping, others. At this point we know where people live and when and what activities they participate
+in based on their personal characteristics (income level, at least); we also know where these activities
+happen, but not everyone can do them in the same place, and we must assign each person to a location.
+
+This dispute will be based on how people perceive the need to travel as a deterrent to their activities.
+In the extreme case of a small town where there is no congestion and the longest possible trip is five
+minutes, trips would be proportionally distributed from every origin to every destination. In a larger
+city, there will be more trips between closer zones.
+
+Current or future travel times and costs between zones are a function of the existing or proposed transport
+network supply for the given time of day (public transport frequencies, road network, etc.) and subject
+to congestion, which is a function of the matrix we are trying to determine (one of many matrices we
+are trying to    determine). Usually a simulation considering a past distribution or simply the distance
+as cost is used as the start of an iterative process; no more than two reiterations are typically required
+for reaching a stable solution.
+
+Trips will be distributed with respect to the total cost of travelling from each origin and destination
+zone, in an attempt to be proportional to users’ perception of the cost of travelling between the zones.
+
+
+The perception of cost, including the time to wait and transfer, is discussed in Box 4.2. Those perceptions
+are cultural specific and affects the willingness of a given market segment to travel farther and how
+they travel. This can be calibrated from the survey data, normally home interviews, as they capture trips
+of all possible lengths.
+
+This procedure is commonly referred to as the “Gravity Model,” with its mathematical expression to
+satisfy the fulfillment of the matrix in the above condition given by trips between $$i$$ and $$j$$ ($$T_{ij}$$):
+
+Eq. 4.1\' TODO Math:
+
+Tij=Ai*Oi*Bj* Dj*e^(-β*cij)  '\
+
+Where “*Oi” *and* “Dj” *are total trips generated and attracted to zone* i *and* j *respectively, “*cij*”
+is the cost of travelling between *i *and *j *(generally a combination of time and fares) and “*ß” *is
+a parameter that defines how cost deters travel. The component  is usually called a deterrence function,
+as it expresses the way in which distance (costs) prevents longer trips. As shown in the next figure,
+where the Y axis indicates how frequently a given trip would be seen for the travel time given in X:
+the lower the beta calibrated for a given market segment, the less the travel time (or travel generalized
+cost) is affecting the willingness of that market segment to travel farther to do its activity. The other
+two parameters, “*Ai” *and* “Bj” *are required to ensure the final trip matrix matches the total number
+of trips generated and attracted at each zone; these are estimated iteratively.
+
+\figure{assets/image42.png}{How the value of ß affects the deterrent effect of travel costs.}{Luis Willumsen.}
+
+\beginbox{Generalized Costs}
+
+The “costs” of using a car or public transport in the transportation models are usually expressed as
+“generalized costs” that combine time and money elements. A usual formulation for this generalized cost
+is shown below:
+
+\highlight{For public transportation:}
+
+Eq. 4.2\' TODO Math:
+
+CPT = a * IVT + b * WTM + c * WAT + d * TTM + e * NTR + f * FAR '\
+
+Where:
+
+CPT = Costs of using public transport;
+
+a, b, c, d, e, and f = parameters representing the weight attached to each of these elements in the
+journey;
+
+IVT = Time in minutes spent on the bus;
+
+WTM = Total waiting time to board the bus;
+
+WAT = Total walking time to and from the bus stop;
+
+TTM = Time spent transferring from one service to another, if any;
+
+NTR = Total number of transfers required for the journey, if any;
+
+FAR = Total fare paid for the whole journey.
+
+The factors* a*,* b*,* c*,* d*,* e*, and *f *are parameters representing the weight attached to each
+of these elements in the journey. This generalized cost can be represented in time or monetary units.
+For example, by dividing the whole formulation by *f*, the generalized cost would be measured in money
+units. It is more advantageous to divide the formulation by *a *and then measure generalized costs in
+(in-vehicle) time units.
+
+Research results agree that walking, waiting, and transfer times are between 1.5 and 3 times more onerous
+than in-bus times, with the precise values depending on cultural and local conditions like the weather.
+Similarly, the need to transfer is perceived by customers as adding a notional three to six minutes to
+their journey. A good starting point is to assume that *b*,* c*,* *and *d* to be twice as big as *a*,
+and that *e/a* is about five minutes.
+
+This provisional formulation could then be written as:
+
+Eq. 4.3\' TODO Math:
+
+CPT = IVT + 2 WTM + 2 WAT + 2 TTM + 5 NTR + f/α * FAR '\
+
+Where:CPT = Costs of public transport;
+
+f/a = Inverse of the value of time savings;
+
+IVT = Time in minutes spent on the bus;
+
+WTM = Total waiting time to board the bus;
+
+WAT = Total walking time to and from the bus stop;
+
+TTM = Time spent transferring from one service to another, if any;
+
+NTR = Total number of transfers required for the journey, if any;
+
+FAR = Total fare paid for the whole journey.
+
+In this case, α is equal to *f/a* and is often interpreted as the inverse of the Value of Time (savings).
+
+
+An initial estimate could be the length of working time required to earn one unit of currency, for
+example how many minutes it takes for the average earner to earn US$1. The average earner in question
+is the type of user the new BRT is trying to benefit most. For example, if the average wage rate per
+hour for the population of interest is US$2, then *α* is thirty minutes per dollar. The generalized
+costs in this case would be measures in generalized in-bus minutes.
+
+\highlight{For private transport:}
+
+The formulation would be similar for cars (or motorcycles), but in general it will be assumed that
+the waiting time is zero, walking is minimal (usually assumed to be zero as well), there will be no transfers,
+and instead of fares one must consider a combination of fuel and parking costs plus any toll payment.
+
+Eq. 4.4\' TODO Math:
+
+Ccar = IVT + α * FUEL + b* Park + c * TOLL '\
+
+Where:
+
+Ccar = Costs of using a car;
+
+IVT = Time in minutes spent on the bus;
+
+FUEL = Cost of fuel;
+
+Park = Cost of parking;
+
+a, b, c, d, e, and f = parameters representing the weight attached to each of these elements in the
+journey;
+
+TOLL = Cost of tolls.
+
+This implies that car users are only reasonably aware of fuel costs, but ignore maintenance and depreciation
+costs; there is some evidence that this is the case. For parking, the value of *b *is usually assumed
+to be half of *a*,* *implying that the parking costs are shared by the onward and return trips. The coefficient
+*c* for toll should be the same as *a*, except that paying cash for tolls is usually seen as more onerous
+than filling up the tank; nevertheless, the default value would be *c = a*.
+
+Both expressions for generalized cost (public transport and car) ignore the fact that a car is usually
+more comfortable and convenient for many journeys. To accommodate this influence, it is customary to
+add a “penalty” to the less convenient mode, in this case public transport. This penalty is in the range
+of five to fifteen (generalized) minutes and this extends the generalized cost as:
+
+Eq. 4.5\' TODO Math:
+
+CPT = IVT + 2 WTM + 2 WAT + 2 TTM + 3 NTR + f/α * FAR + PENALTY '\
+
+Where:CPT = Costs of public transport;
+
+IVT = Time in minutes spent on the bus;
+
+WTM = Total waiting time to board the bus;
+
+WAT = Total walking time to and from the bus stop;
+
+NTR = Total number of transfers required for the journey, if any;
+
+f/a = Inverse of the value of time savings;
+
+FAR = Total fare paid for the whole journey.
+
+PENALTY = Cost of public transport being less comfortable and convenient than using a car.
+
+The last two are the versions of generalized costs used in Logit mode choice and Gravity models.
+\endbox
+
+\highlight{Modal Split}
+
+A complexity not previously mentioned is that costs need to consider private and public transport altogether.
+When new services are added or taken away, people may shift from one mode to another and some may decide
+on the least costly as the car.
+
+In summary, the application of this stage consists in further splitting the previous (eventually fifty
+matrices) in two (adding up to a hundred), one for public transport and one for private transport. A
+model that includes “Park and Ride” splits the trip into two parts here, including one part in each matrix.
+
+This would entail presenting travellers of a given “market segment” for each OD pair with the times
+and costs of several possible modes (under the proposed transport network) to see which mode of travel
+they would choose.
+
+Even inside the same “market segment” the changing decision point is not clear—that is, it is not the
+same for everyone in that segment. The “answer” of the model is given in proportions, like this: “confronted
+with the proposed network costs, people travelling from O to D in the given market segment X percent
+will use public transport (eventually specifying which one), Y percent will use private transport (eventually
+which one), Z percent will use bicycles.” X, Y, and Z will add up to 100 percent and eventually one (or
+more) of them will be zero.
+
+The model development consists of analyzing how people make decisions when confronted with various
+alternatives.
+
+From a policy point of view, perhaps the most important stage in the transport-modeling process is
+the selection of mode choice for different trips. Determining the number of trips to be made by public
+transport, nonmotorized options, and private motorized options will have a profound impact on future
+municipal investments. The factors that affect mode choice can be summarized in three groupings :
+
+\number[Characteristics of the trip maker:
+\item Car availability and car ownership;
+\item Possession of driver’s license;
+\item Household structure (young couple, couple with children, retired, single, etc.);
+\item Income;
+\item Residential density.]
+\number[Characteristics of the journey:
+\item Trip purpose (work, school, shopping, etc.);
+\item Time of day when the journey is taken.]
+\number[Characteristics of the transport facility:
+\item[Quantitative:
+\item Relative travel time (in-vehicle, waiting, and walking times by each mode);
+\item Relative monetary costs (fares, fuel, and direct costs);
+\item Availability and cost of parking.]
+\item[Qualitative:
+\item Comfort and convenience;
+\item Reliability and regularity;
+\item Protection and security.]]
+
+The mode-choice model will typically include these factors in estimating levels of usage between different
+modes. Segmentation will of course be very important. One should only include choices that are readily
+available to each type of user. For instance, driving a car is only an option for those in households
+that own a car. In some cases, travellers with a car provided by their company are in effect captive
+to that mode, as they have no choice.
+
+If it has been decided that the BRT design must consider customers attracted from other modes, mode-choice
+modeling will be essential. However, this is a specialized undertaking that usually requires good modeling
+techniques and trained specialists. If it is not possible to conduct a full modeling process, then it
+may be appropriate to make a simplified assumption about potential demand increases due to mode shift.
+This shift is unlikely to represent more than 5 to 20 percent of the demand in the new system.
+
+The most common type of model used to represent mode choice is a logit model (and its similar generalization
+for multi-class called logit multinomial). The Logit model is a probability distribution for a discrete
+choice, where the outcome is related to the characteristics of the user that makes a choice. A higher-income
+transport user, then, will have a higher probability of choosing a private car for his or her trip than
+a lower income user. This expresses the probability or proportion of trips that would use public transport
+(Pbus) below instead of cars as:\' TODO Math:
+
+Pbus=e-λ Cbuse-λ Cbus+ e-λ Ccar=11+e-λ Ccar-Cbus   '\
+
+Here, the only new element is the parameter "λ." Cbus is the generalized
+cost for public transportation and Ccar is the generalized cost for a car (this would be calculated for
+each OD pair). Figure 4.33 shows the influence of this parameter in making choices very dependent on
+(generalized) cost or less so:
+
+\figure[medium]{assets/image44.png}{The influence of λ on mode choice proportions.}{Luis Willumsen.}
+
+As can be seen, a high value for λ (0.25) produces a very sharp mode shift for a small difference in
+costs; a small value (0.02) produces a gentler transition between modes. Both predict a 50/50 split when
+the car and bus costs are equal. The value of this parameter must be estimated locally to represent not
+only local behavior but also the size and nature of zones and networks.
+
+*Assignment*
+
+The previous stages in the modeling process focused primarily on the demand side of public transport
+services or generating OD matrices. The “assignment” stage is where the supply of public transport services
+is matched with these demand conditions in a *simulation*. This is done by calculating the times and
+costs required at every path segment of the network, combining it for all the possible paths for all
+OD pairs to define which will be taken (in which proportion) for each “market segment” (for that given
+moment of the day).
+
+Within a BRT system, the assignment stage also helps identify usage levels among different routing
+and service options. For instance, it is quite useful to know the number of customers who will be utilizing
+express routes versus local routes.
+
+In order to accurately model public transport route choice, it is necessary to represent the network
+with a good degree of realism. Near the corridor, many centroids and centroid connectors should be used
+to better represent access times to stations. Moreover, there is always an additional time to reach the
+right platform in a BRT or metro system. Transfer times and waiting times for the next available service
+should also be represented in the generalized cost of travelling along a particular route. People dislike
+transferring services because of the uncertainty involved, so there is usually a transfer penalty to
+consider, in addition to the time spent changing services.
+
+Fares should also be accurately represented, and this may prove very tricky in some cases. If there
+is no fare integration, each change of service will involve paying a new fare. This additional cost may
+be represented as a “boarding charge.” If the fare has an element proportional to distance, this amount
+must be added to the journey. For integrated and zonal fares, the issues may be more complex to handle,
+but most modern software can cope if skillfully used.
+
+It is important to adopt a realistic assignment model for public transport. This is particularly important
+when dealing with corridors where many bus routes converge. If all bus services have similar operating
+speeds (a common occurrence on a corridor), earlier models will tend to allocate all trips to the service
+with the highest frequency. In reality, people will probably choose the first bus that comes along, and
+thus it is probably best to allocate trips to services based on frequency rather than on an “all-or-nothing”
+assignment to the highest frequency service. Contemporary software packages, especially those developed
+and tested for high public transport usage like Emme/2, Cube/Trips, VISUM, and TRANUS, perform better
+in this respect.
+
+Congestion in the system is defined by users’ route choice, and users’ route choice is decided based
+on the congestion of the system. Equilibrium conditions within assignment are achieved when each customer
+has been assigned the most efficient route considering the congestion of the system. Equilibrium is very
+important in dealing with private vehicle assignment, but has an equivalent representation in public
+transport. Congestion effects may take place because buses are very crowded and users will experience
+losses in time and comfort (increases in generalized costs), similar to driving under congested conditions.
+Stopping times increase and customers cannot board a bus (or metro or light-rail vehicle) because it
+is full, and they must then wait for the next service. Replicating these conditions is important.
+
+For the purpose of designing a new BRT system, excessive crowding and delays to customers because they
+cannot board a bus should be avoided. Therefore, congested public transport assignment should be less
+of an issue for design purposes. In any case, congested public transport assignment is tricky and requires
+good use of a suitable software platform; it should not be attempted without at least a minimum of assisted
+experience.
+
+*Calibration *
+
+Calibration is the process of, after choosing the (sub) model (i.e., defining how input and output
+mathematically relate), quantifying (adjust) the parameters that better explain what is observed from
+the surveys. Calibration is an activity that happens with the development of the model itself. For example,
+in the models discussed in the previous section, calibration is finding the βs that promote the best
+fit in the distribution model for each “market segment” or the best λs in the mode selection model.
+
+Usually, when modelers say they are “calibrating the model” they are, in fact, adding detail to the
+public transport network (eventually calibrating parameters or creating sub-models to generate congestion),
+so that when they run the full model with present conditions, resulting flows reflect what is seen on
+the ground (traffic counts and occupancy surveys at that moment of the day). When they calibrate the
+matrix models, they usually say they are “making the models.”
+
+*Validation*
+
+Models are developed to represent the reality, based on the isolated observation of several parts in
+the travel decision-making process. Each simplification is related to an assumption (i.e., everyone in
+a given market-segment behaves the same). Given the complexity of the travel decision-making process,
+the simpler the model, the more likely it will not be able to explain and generate details. On the other
+hand, the higher the aggregation (less detail), the more reliable (the aggregated) results are.
+
+An additional problem is the fact that, in many cases, we do not know the full extent of the reality
+we are trying to model and cannot obtain that data. For instance, we often do not have the real OD matrix,
+but the ability to sample the public transport OD is cheaper and is one of the reasons for the reliability
+of public-transport-only O/Ds).
+
+Further, the model is constructed to provide answers (in our case the demand on the BRT system, present
+and future), the error of the model to forecast answers, and its input requirements and the maintenance
+of its assumptions define the validity of the model.
+
+A model that does not provide the required accuracy for business proposals may be valid for corridor
+selection (it can certainly point where more benefit will be generated) and valid for feasibility decisions
+(it indicates that demand will be above a certain level).
+
+Validation is then a further requirement in which results from the model are compared with data that
+has not been used in its construction—for example, a subset of traffic and person counts set aside for
+this purpose.
+
+Validation further requires that the responses of the model to changes in some inputs, like prices
+or the introduction of new roads and services, are reasonable and consistent with observations and model
+results elsewhere.
+
+No model is without errors, but a good calibration and validation process ensures that any significant
+error is tackled and eliminated and that the model represents the reality of the base-year situation
+in the best possible way.
+
+A common procedure is to adjust the matrices to match the traffic counts and occupancy surveys; such
+a procedure, although useful to validate other models for the present, completely undermines the reasoning
+of the classic four-stage model and severely limits the validity of the generation, distribution, and
+mode selection models.
+
+*Conversion of Demand into Revenue*
+
+The levels of demand estimated by the models will have to be converted via fares into revenues for
+the system. This financial modeling will require consideration of the proposed fare system (see Chapter
+15: Fare Policy and Structure), the need to share revenue between trunk and feeder services, the existence
+of certain discounted fares, such as for students and the elderly, and the fact that there will be levels
+of leakage through fare avoidance and collection loses. For that reason, creating a financial model outside
+the demand model exercise is needed to understand what the fare should be (see Chapter 14: Financial
+Modeling). Once the fare is set, though, the demand model should be tested with that determined cost
+to see how it affects the demand.
+
+*Evaluation*
+
+The previous modeling stages have combined supply and demand factors to develop an overall simulation
+of a city’s public transport services. The final stage of the process is to evaluate the robustness of
+the particular solution being proposed by the model. The model (and each sub-model) must be plausible,
+i.e., the proposed relations and parameters that relate input (independent variables) and output (results)
+make sense (*physical sense* in modeler jargon) by changing the output as expected.
+
+Hopefully, the iterations inside the model and in the planning process will converge into a single,
+identifiable solution for the problem (reducing travel time). If several scenarios produce such a convergence,
+then the proposed solution is considered to be sufficiently robust. The lack of a convergence may imply
+that changes in the model structure are necessary before proceeding.
+
+\highlight{Assessment of the Feasibility of the System}
+
+Once some sort of public transport or full transport model has been developed, and a clear scenario
+for the BRT system has been defined, it should be possible to make a preliminary assessment of the feasibility
+of the system.
+
+As a proxy for cost savings, the value of time savings can be utilized. However, it should be recognized
+that time savings is just one of the many reasons for encouraging public transport usage. Other factors
+include environmental benefits, fuel cost savings, urban design benefits, and social benefits. A more
+complete feasibility cost analysis would thus include these other factors. Further, time savings may
+be realized not just by public transport users but by private vehicle users as well.
+
+A good litmus test of whether a new BRT system makes sense is to compare the existing generalized cost
+of an array of different trips (origin-destination pairs) as they exist before the BRT system, and what
+the cost might be with the new BRT system serving those trips.
+
+It is important to consider this relationship and to sketch out how a new BRT system would reduce the
+generalized cost of travel for a set of relevant origin-destination pairs. This calculation can be done
+using information already available on existing services, fares, frequencies, and travel times, and compared
+to a new system that may have faster travel times on a trunk corridor, but require transfers and perhaps
+longer walking times. This would give an idea of how much faster the buses should operate on the trunk
+corridor to compensate most travellers for the need to add one or more transfers.
+
+For example, consider the introduction of a trunk-and-feeder system that would replace a number of
+direct services. The following estimates should be made to check whether this scenario is going to improve
+travel for public transport users. It can be assumed that feeder services will have a similar performance
+to the current services, but perhaps a higher frequency for the relevant OD pair. It can also be assumed
+that waiting time will be reduced by two minutes each way, and that walking time will remain the same.
+The trunk-and-feeder service may require an average of, for example, 1.5 transfers per trip, whereas
+beforehand there was no transfer. Each transfer will require additional waiting time for the new service
+(say, two minutes each), so the original savings in waiting time will be lost. The trunk road will have
+to provide an overall time savings of three times two minutes (six minutes) to be better than the old
+system, provided that fares remain the same. Therefore, unless one can provide an average time savings
+on the trunk route of five minutes, it will not be worthwhile to introduce a trunk-and-feeder service.
+These calculations would have to be repeated for a number of representative journeys to support a decision
+one way or another.
+
+The existing public transport system may be used to identify some key corridors where significant elements
+of demand will concentrate. Direct observations of the number of buses, with a reasonable estimation
+of their customers at peak periods, would enable an initial sizing of the new system. This determination
+can be achieved in a short period of time and without detailed information on Origin-Destination patterns.
+
+\subsection{Additional Data Needs}
+
+Much of the data required for the full transport demand model will have already been collected during
+the initial analysis period. It is fairly common for transport departments to do traffic counts, and
+if recent traffic counts exist in reasonable locations, this data should be usable. If counts for all
+vehicles were not done earlier, they need to be done now to calibrate the transport model.
+
+Secondly, when the road network is coded into the transport model, it is no longer enough to simply
+identify existing road links, but the definitions of these links (lanes, width, hierarchy class \[ local,
+arterial\], regulated speed, etc.) becomes important. Furthermore, all existing alternative modes such
+as commuter rail lines, subway lines, bike lanes, and so forth must be coded into the model.
+
+Also, at this point, the demographic and economic activity data for each zone defined earlier becomes
+important, such as population by zone, employment by zone, average income by zone, vehicle ownership
+by zone, etc. This information is usually obtained from census data. Historical growth rates in population
+and employment by zone are the best first indicator of the likely growth rate of future trips in specific
+locations. Knowing household incomes and motor vehicle ownership levels will help indicate whether most
+people will take the bus, regardless of the price, or whether they will switch to a car or motorcycle.
+Mapping the income levels throughout the city will also help define price elasticities and target lower-income
+beneficiaries, both important to developing the fare structure. Thus, transport models are usually built
+up from demographic data on population, employment, and vehicle ownership.
+
+Finally, for full transport-demand modeling, the planning team will need to conduct a household and/or
+workplace origin-destination survey. This survey is necessary since the team will only have estimates
+of origins and destinations for public transport trips initially. By contrast, the full-transportation
+model will require OD matrices for all modes, including walking trips and private-vehicle trips.
+
+Surveying all members of a household regarding individual travel practices (destinations, mode choice,
+reasons for mode choice, travel expenditures, etc.) provides a very complete picture of where people
+are going, when, and why.  Likewise, workplace surveys can also be an effective mechanism. Unfortunately,
+household and workplace surveys are probably the costliest of the OD survey techniques. As a result,
+careful sample sizing is required; knowledge about the variables that will feed the model, their variation,
+and how they will affect the model output are paramount to the surveys.
+
+Many cities have been led to waste valuable resources with huge samples, in an attempt to obtain a
+detailed OD matrix
+
+Even with very large sampling, it is certain that the resulting matrix will be very sparse; in other
+words, most cells will have no trips in them. As a rule of thumb one must have a sample size of 300 to
+assure that 95 percent of the surveys made will capture events that happen 1 percent of the time. In
+a 200 zone division, very few OD pairs (out of 40,000 possible OD pairs) would concentrate more than
+1 percent of the trips and this means already surveying 60,000 trips \[300 hundred for each possible origin
+zone\]). The generation and distribution models are often the best method for matrix estimation with a
+much smaller sample.
+
+Ortúzar and Willumsen (2011, 80) are quite incisive on this point:
+
+“*The first requirement *\[knowledge about the variables to be estimated for sample size estimation\]*,
+although both obvious and fundamental, has been ignored many times in the past. The majority of household
+O–D surveys have been designed on the basis of vague objectives, such as ‘to reproduce the travel patterns
+in the area’. What is the meaning of this? Is it the elements of the O–D matrix which are required, and
+if this is the case, are they required by purpose mode and time of day, or is it just the flow trends
+between large zones which are of interest?”*
+
+A good indication that home base OD surveys are being requested without understanding of the basic
+statistical concepts can be found in many government contracts stating that “the sample for each zone
+should be enough to guarantee a 5 percent error with 95 percent confidence,” without further stating
+in relation to what.
+
+In general terms, if no household survey has already been conducted, one would like to collect at least
+some one thousand home interview surveys, and preferably three thousand, in order to produce a rough
+four-stage model in the study area. The trip data from these interviews will then be combined with that
+from intercept surveys to obtain a more accurate trip pattern in the study area.

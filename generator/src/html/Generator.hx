@@ -8,7 +8,6 @@ import sys.io.File;
 import tink.template.Html;
 import transform.Context;
 import transform.NewDocument;
-import util.sys.FsUtil;
 
 import Assertion.*;
 import generator.tex.*;
@@ -30,16 +29,30 @@ typedef Breadcrumbs = {
 	?section:BreadcrumbItem
 }
 
+/*
+Generate a static website
+
+Assumes that the server will:
+
+ - serve `<foo>.html` to a `<foo>` request if it doesn't already match an
+   existing file
+ - serve `<foo>/index.html` to a `<foo>/` request
+
+(e.g. Nginx configured to `try_files $uri $uri/ $uri.html 404`)
+*/
 @:hasTemplates
 class Generator {
-	static var assetCache = new Map<String,String>();
 	static inline var ASSET_SUBDIR = "assets";
 	@:template static var FILE_BANNER;
-	
+	static inline var ROOT_URL = "./";
+	static inline var TOC_URL = "table-of-contents";
+
+	var assets:Map<String,String>;
+	var hasher:AssetHasher;
 	var destDir:String;
 	var godOn:Bool;
 	var bufs:Map<String,StringBuf>;
-	var stylesheets:Array<String>;
+	var customHead:Array<Html>;
 	var srcCache:Map<String,Int>;
 	var lastSrcId:Int;
 	var toc:StringBuf;
@@ -79,6 +92,8 @@ class Generator {
 			return '<code${genp(h.pos)}>${gent(code)}</code>';
 		case Math(tex):
 			return '<span class="mathjax"${genp(h.pos)}>\\(${gent(tex)}\\)</span>';
+		case Url(address):
+			return '<a class="url" href="${gent(address)}">${gent(address)}</a>';
 		case HElemList(li):
 			var buf = new StringBuf();
 			if (godOn)
@@ -100,8 +115,8 @@ class Generator {
 			return " ";
 		case Superscript(h), Subscript(h), Emphasis(h), Highlight(h):
 			return genn(h);
-		case Word(cte), InlineCode(cte), Math(cte):
-			return cte;
+		case Word(cte), InlineCode(cte), Math(cte), Url(cte):
+			return gent(cte);
 		case HElemList(li):
 			var buf = new StringBuf();
 			for (i in li)
@@ -114,8 +129,8 @@ class Generator {
 
 	function _saveAsset(src:String, ?content:Bytes)
 	{
-		if (assetCache.exists(src))
-			return assetCache[src];
+		if (assets.exists(src))
+			return assets[src];
 
 		var dir = ASSET_SUBDIR;
 		var ldir = Path.join([destDir, ASSET_SUBDIR]);
@@ -125,37 +140,66 @@ class Generator {
 		var ext = Path.extension(src).toLowerCase();
 		weakAssert(ext != "", src, "web server might expect an extension for automatic content-type headers");
 		var data = content != null ? content : File.getBytes(src);
-#if nodejs
-		var hash = js.node.Crypto.createHash("sha1").update(js.node.buffer.Buffer.hxFromBytes(data)).digest("hex");
-#else
-		var hash = haxe.crypto.Sha1.make(data).toHex();
-#end
+		var hash = hasher.hash(src, data, content == null);  // don't use a cache if content doesn't depend on src
 
 		var name = ext != "" ? hash + "." + ext : hash;
 		var dst = Path.join([dir, name]);
 		var lpath = Path.join([ldir, name]);
 		File.saveBytes(lpath, data);
-		assetCache[src] = dst;
+
+		var prefix = Context.assetUrlPrefix;
+		if (prefix != null)
+			dst = prefix + dst;
+		assets[src] = dst;
 		return dst;
 	}
 
 	function saveAsset(src, ?content)
 		return Context.time("html generation (saveAsset)", _saveAsset.bind(src, content));
 
-	@:template function renderHead(title:String, base:String);
-	@:template function renderBreadcrumbs(bcs:Breadcrumbs);  // FIXME
+	@:template function renderHead(title:String, base:String, relPath:String);
+	@:template function renderBreadcrumbs(bcs:Breadcrumbs, relPath:String);  // FIXME
 
-	function openBuffer(title:String, base:String, bcs:Breadcrumbs)
+	var reserved = new StringBuf();
+
+	function urlToPath(url:String)
 	{
-		// TODO get normalize and google fonts with \html\apply or \html\link
+		assert(Path.removeTrailingSlashes(url) == Path.normalize(url) || url == ROOT_URL, url);
+		return Path.normalize(url.endsWith("/") ? Path.join([url, "index.html"]) : Path.withExtension(url, "html"));
+	}
+
+	function reserveBuffer(url:String)
+	{
+		var path = urlToPath(url);
+		assert(!bufs.exists(path) || bufs[path] == reserved, bufs[path].toString());
+		bufs[path] = reserved;
+	}
+	
+	function unreserveBuffer(url:String)
+	{
+		var path = urlToPath(url);
+		assert(bufs[path] == reserved, bufs[path].toString());
+		assert(bufs[path].toString().length == 0, bufs[path].toString());
+		bufs.remove(path);
+	}
+
+	function openBuffer(title:String, bcs:Breadcrumbs, url:String)
+	{
+		var path = urlToPath(url);
+		var depth = path.split("/").length - 1;
+		var computedBase = depth > 0 ? [ for (i in 0...depth) ".." ].join("/") : ".";
+		// TODO get normalize and google fonts with \html\head
 		// TODO get jquery and mathjax with \html\run
 		var buf = new StringBuf();
 		buf.add("<!DOCTYPE html>");
 		buf.add(FILE_BANNER);
 		buf.add("<html>\n");
-		buf.add(renderHead(title, base));
-		buf.add(renderBreadcrumbs(bcs));  // FIXME
-		buf.add('<body>\n<div class="container"><nav><span id="toc-loading">Loading the table of contents...</span><a id="toc-menu" class="disabled" href="">Table of Contents</a></nav>\n<div class="col-text">\n');
+		buf.add(renderHead(title, computedBase, url));
+		buf.add("<body>\n");
+		buf.add(renderBreadcrumbs(bcs, url));  // FIXME
+		buf.add('<div class="container">\n<div class="col-text">\n');
+		assert(!bufs.exists(path), path, "reserved or already used path");
+		bufs[path] = buf;
 		return buf;
 	}
 
@@ -175,19 +219,35 @@ class Generator {
 	function genv(v:DElem, idc:IdCtx, noc:NoCtx, bcs:Breadcrumbs)
 	{
 		switch v.def {
-		case DHtmlApply(_.toInputPath() => path):
-			stylesheets.push(saveAsset(path));
+		case DHtmlStore(_.toInputPath() => path):
+			saveAsset(path);
+			return "";
+		case DHtmlToHead(template):
+			var t = new haxe.Template(template);
+			var err = null;
+			var tmacros = {
+				assetPath : function (resolve, src)
+				{
+					// treat the `src` path as if it was a PEelem
+					var path = ({ def:src, pos:v.pos }:PElem);
+					err = transform.Validator.validateSrcPath(path, [File]);
+					return assets[path.toInputPath()];
+				}
+			};
+			var html = t.execute({}, tmacros);
+			assert(err == null, err, v.pos.toString());
+			customHead.push(new Html(html));
 			return "";
 		case DLaTeXPreamble(_), DLaTeXExport(_):
 			return "";
 		case DVolume(no, name, children):
 			idc.volume = v.id.sure();
 			noc.volume = no;
-			var path = Path.join(["volume", idc.volume+".html"]);
-			bcs.volume = { no:no, name:new Html(genh(name)), url:path };  // FIXME raw html
+			var url = Path.join(["volume", idc.volume]);
+			bcs.volume = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = 'Volume $no: ${genn(name)}';
-			var buf = bufs[path] = openBuffer(title, "..", bcs);
-			toc.add('<li class="volume">\n${renderToc(no, Std.string(no), new Html(genh(name)), path)}\n<ul>\n');
+			var buf = openBuffer(title, bcs, url);
+			toc.add('<li class="volume">\n${renderToc(no, "Volume " + no, new Html(genh(name)), url)}\n<ul>\n');
 			buf.add('
 				<section>
 				<h1 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h1>
@@ -200,11 +260,11 @@ class Generator {
 		case DChapter(no, name, children):
 			idc.chapter = v.id.sure();
 			noc.chapter = no;
-			var path = Path.join([idc.chapter, "index.html"]);
-			bcs.chapter = { no:no, name:new Html(genh(name)), url:path };  // FIXME raw html
+			var url = Path.addTrailingSlash(idc.chapter);
+			bcs.chapter = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = 'Chapter $no: ${genn(name)}';
-			var buf = bufs[path] = openBuffer(title, "..", bcs);
-			toc.add('<li class="chapter">${renderToc(null, Std.string(noc.chapter), new Html(genh(name)), path)}<ul>\n');
+			var buf = openBuffer(title, bcs, url);
+			toc.add('<li class="chapter">${renderToc(null, "Chapter " + noc.chapter, new Html(genh(name)), url)}<ul>\n');
 			buf.add('
 				<section>
 				<h2 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h2>
@@ -219,11 +279,11 @@ class Generator {
 			idc.section = v.id.sure();
 			noc.section = no;
 			var lno = noc.join(false, ".", chapter, section);
-			var path = Path.join([idc.chapter, idc.section+".html"]);
-			bcs.section = { no:no, name:new Html(genh(name)), url:path };  // FIXME raw html
+			var url = Path.join([idc.chapter, idc.section]);
+			bcs.section = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = '$lno ${genn(name)}';  // TODO chapter name
-			var buf = bufs[path] = openBuffer(title, "..", bcs);
-			toc.add('<li class="section">${renderToc(null, lno, new Html(genh(name)), path)}<ul>\n');
+			var buf = openBuffer(title, bcs, url);
+			toc.add('<li class="section">${renderToc(null, lno, new Html(genh(name)), url)}<ul>\n');
 			buf.add('
 				<section>
 				<h3 id="heading" class="volume${noc.volume}">$lno$QUAD${genh(name)}</h3>
@@ -238,7 +298,7 @@ class Generator {
 			idc.subSection = v.id.sure();
 			noc.subSection = no;
 			var lno = noc.join(false, ".", chapter, section, subSection);
-			var id = idc.join(true, ".", subSection);
+			var id = idc.join(false, "/", subSection);
 			toc.add('<li>${renderToc(null, lno, new Html(genh(name)), bcs.section.url+"#"+id)}<ul>\n');
 			var html = '
 				<section>
@@ -252,7 +312,7 @@ class Generator {
 			idc.subSubSection = v.id.sure();
 			noc.subSubSection = no;
 			var lno = noc.join(false, ".", chapter, section, subSection, subSubSection);
-			var id = idc.join(true, ".", subSection, subSubSection);
+			var id = idc.join(false, "/", subSection, subSubSection);
 			var html = '
 				<section>
 				<h5 id="$id" class="volume${noc.volume}">$lno$QUAD${genh(name)}</h5>
@@ -265,7 +325,7 @@ class Generator {
 			idc.box = v.id.sure();
 			noc.box = no;
 			var no = noc.join(false, ".", chapter, box);
-			var id = idc.join(true, ".", box);
+			var id = idc.join(true, ":", box);
 			var sz = TextWidth;
 			function autoSize(d:DElem) {
 				if (d.def.match(DTable(_, FullWidth|MarginWidth, _) | DFigure(_, FullWidth|MarginWidth, _)))
@@ -280,12 +340,15 @@ class Generator {
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim() + "\n";
+		case DTitle(name):
+			// FIXME
+			return genv({ def:DParagraph({ def:Highlight(name), pos:v.pos }), pos:v.pos, id:v.id }, idc, noc, bcs);
 		case DFigure(no, size, _.toInputPath() => path, caption, cright):
 			idc.figure = v.id.sure();
 			noc.figure = no;
 			var no = noc.join(false, ".", chapter, figure);
-			var id = idc.join(true, ".", figure);
-			if (Context.draft) {
+			var id = idc.join(true, ":", figure);
+			if (Context.dinossaurFigures) {
 				return '
 					<section class="img-block ${sizeToClass(size)}">
 					<a><img src="$DRAFT_IMG_PLACEHOLDER" class="overlay-trigger"/></a>
@@ -305,7 +368,7 @@ class Generator {
 			idc.table = v.id.sure();
 			noc.table = no;
 			var no = noc.join(false, ".", chapter, table);
-			var id = idc.join(true, ".", table);
+			var id = idc.join(true, ":", table);
 			var buf = new StringBuf();
 			function writeCell(cell:DElem, header:Bool)
 			{
@@ -342,8 +405,8 @@ class Generator {
 			idc.table = v.id.sure();
 			noc.table = no;
 			var no = noc.join(false, ".", chapter, table);
-			var id = idc.join(true, ".", table);
-			if (Context.draft) {
+			var id = idc.join(true, ":", table);
+			if (Context.dinossaurFigures) {
 				return '
 					<section class="img-block ${sizeToClass(size)}">
 					<h5 id="$id">Table $no$QUAD${genh(caption)} <em>$DRAFT_IMG_PLACEHOLDER_COPYRIGHT</em></h5>
@@ -379,6 +442,8 @@ class Generator {
 			return '<pre><code>${gent(code)}</code></pre>\n';
 		case DQuotation(text, by):
 			return '<blockquote class="md"><q>${genh(text)}</q><span class="by">${genh(by)}</span></blockquote>\n';
+		case DParagraph({pos:p, def:Math(tex)}):
+			return '<p${genp(v.pos)}><span class="mathjax equation"${genp(p)}>\\[${gent(tex)}\\]</span></p>\n';
 		case DParagraph(h):
 			return '<p${genp(v.pos)}>${genh(h)}</p>\n';
 		case DElemList(li):
@@ -405,30 +470,53 @@ class Generator {
 	{
 		// FIXME get the document name elsewhere
 
+		assets = new Map();
 		bufs = new Map();
-		stylesheets = [];  // FIXME unique stylesheet collection
+		customHead = [];  // FIXME unique stylesheet collection
 		srcCache = new Map();  // TODO abstract
 		lastSrcId = 0;
-		toc = new StringBuf();
-		toc.add('<ul><li class="volume">${renderToc(null, null, "BRT Planning Guide", "index.html")}</li>');
 
-		var contents = genv(doc, new IdCtx(), new NoCtx(), {});  // TODO here for a hack
-		var root = bufs["index.html"] = openBuffer("The Online BRT Planning Guide", ".", {});
+
+		for (keyword in ["assets", "volume"])
+			reserveBuffer(keyword);
+		reserveBuffer(ROOT_URL);  // temporary due to ordering constraints
+		reserveBuffer(TOC_URL);  // temporary due to ordering constraints
+
+		// `toc.add` and `genv` ordering is relevant
+		// it's necessary to process all `\html\head` before actually opening buffers and writing heads
+		toc = new StringBuf();
+		toc.add(
+				'<div id="toc" class="tocfull">
+					<ul><li class="index">${renderToc(null, null, "BRT Planning Guide", ROOT_URL)}</li>
+				'.doctrim());
+		var contents = genv(doc, new IdCtx(), new NoCtx(), {});
+
+		// remove temporary constraints
+		for (url in [ROOT_URL, TOC_URL])
+			unreserveBuffer(url);
+
+		// now we're ready to open toc as a proper buffer
+		var tmp = toc.toString();
+		toc = openBuffer("Table of contents", {}, TOC_URL);
+		toc.add(tmp);
+
+		var root = openBuffer("The Online BRT Planning Guide", {}, ROOT_URL);
 		root.add('<section>\n<h1 id="heading" class="brtcolor">${gent("The Online BRT Planning Guide")}</h1>\n');
 		root.add(contents);
 		root.add('</section>\n');
 		// TODO tt, commit in downloads, chapter download
 		toc.add('
-			<li class="keep">
-			<a href="#nav-options">More options</a>
-			<ul class="target" id="nav-options">
-			<li><a href="pdf/the-brt-planning-guide.pdf">Download the guide as PDF</a></li>
-			<!--<li>Chapter: Corridor And Network Development</li>-->
-			<li><a href="../">Server debug</a></li>
-			</ul>
+			<li class="nav toc-link"><a href="$TOC_URL">View all content</a></li>
+			<li class="nav"><a href="pdf/the-brt-planning-guide.pdf">Download in PDF</a></li>
+			<li class="nav"><a href="https://github.com/ITDP/the-online-brt-planning-guide" target="_blank">Contribute now</a></li>
+			<li class="nav">
+			<a href="#action:more-options">Other options</a>
+				<ul class="target" id="action:more-options">
+				<li><a href="../" target="_blank">Extra files</a></li>
+				</ul>
 			</li>
 		'.doctrim());
-		toc.add("\n</ul>");
+		toc.add("\n</ul></div>");
 
 		var srcMap = [
 			for (p in srcCache.keys())
@@ -439,21 +527,23 @@ class Generator {
 		s.useEnumIndex = true;
 		s.serialize(srcMap);
 
-		var glId = Sys.getEnv("GL_ANALYTICS_UA_ID");
+		var glId = Context.googleAnalyticsId;
 
-		var toc = saveData(TocData, toc.toString());
 		var script = saveAsset("manu.js", haxe.Resource.getBytes("html.js"));
 		var srcMapPath = saveAsset("src.haxedata", Bytes.ofString(s.toString()));
 
 		for (p in bufs.keys()) {
 			var b = bufs[p];
+			if (b == reserved)
+				continue;
+
 			if (p.endsWith(".html")) {
 				b.add("</div>\n");
+				b.add('<nav id="action:navigate"><span id="toc-loading">Loading the table of contents...</span></nav>\n');
 				b.add("</div>\n");
-				b.add('<script src="$toc"></script>');
 				b.add('<script src="$script"></script>');
 				b.add('<div class="data-src-map" data-href="$srcMapPath"></div>\n');
-				if (glId != null) {
+				if (glId != null && glId != "") {
 					b.add('
 						<script>
 							(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
@@ -475,8 +565,9 @@ class Generator {
 		}
 	}
 
-	public function new(destDir, godOn)
+	public function new(hasher, destDir, godOn)
 	{
+		this.hasher = hasher;
 		// TODO validate destDir
 		this.destDir = destDir;
 		this.godOn = godOn;

@@ -5,8 +5,14 @@
 *.log
 *.out
 *.pdf
-.generated
-generator/bin/
+*/.haxelib/
+*/node_modules/
+.generated/
+generator/*.tgz
+generator/bin/*
 generator/dump/
-node_modules
+server/cover/bin/
+server/cover/ready/html/
+
+!generator/bin/manu
 

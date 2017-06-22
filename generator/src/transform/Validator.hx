@@ -14,6 +14,8 @@ using StringTools;
 	public var File = "Generic file";
 	public var Jpeg = "JPEG/JPG image file";
 	public var Png = "PNG image file";
+	public var Gif = "GIF image file";
+	public var Ico = "ICO icon file";
 	public var Js = "Javascript source file";
 	public var Css = "Cascading style sheet (CSS) file";
 	public var Tex = "TeX source file";
@@ -23,6 +25,7 @@ using StringTools;
 		return switch this {
 		case Jpeg: ["jpeg", "jpg"];
 		case Png: ["png"];
+		case Ico: ["ico"];
 		case Js: ["js"];
 		case Css: ["css"];
 		case Tex: ["tex"];
@@ -49,26 +52,44 @@ class Validator {
 			cback(errors.length > 0 ? errors : null);
 	}
 
+#if nodejs
+	/*
+	Initialize and configure MathJax, but only once.
+	*/
+	dynamic function initMathJax()
+	{
+		mathjax.Single.config({
+			displayMessages : false,
+			displayErrors : false,
+			undefinedCharError : true
+		});
+		this.initMathJax = function () {};
+	}
+
 	/*
 	Validate TeX math.
 	*/
-#if nodejs
 	function validateMath(tex:String, pos:Position)
 	{
-		// FIXME this completly ignores that the return is async ; )
+		if (Context.noMathValidation) return;
+
 		wait++;
+		initMathJax();
 		mathjax.Single.typeset({
 			math:tex,
 			format:mathjax.Single.SingleTypesetFormat.TEX,
 			mml:true
 		}, function (res) {
 			if (res.errors != null)
-				errors.push(new ValidationError(pos, BadMath(tex)));
+				errors.push(new ValidationError(pos, BadMath(tex, res.errors)));
 			wait--;
 			tick();
 		});
 	}
 #else
+	/*
+	Skip TeX math validation unavailable in this platform.
+	*/
 	static dynamic function validateMath(tex:String, pos:Position)
 	{
 		show("WARNING will skip all math validation, no tex implementation available");
@@ -121,7 +142,7 @@ class Validator {
 		case HElemList(li):
 			for (i in li)
 				hiter(i);
-		case Wordspace, Word(_), InlineCode(_), HEmpty:
+		case Wordspace, Word(_), InlineCode(_), Url(_), HEmpty:
 			// nothing to do
 		}
 	}
@@ -135,6 +156,7 @@ class Validator {
 		case DSubSection(_): "sub-section";
 		case DSubSubSection(_): "sub-sub-section";
 		case DBox(_): "box";
+		case DTitle(_): "title";
 		case DList(_): "list";
 		case DTable(_), DImgTable(_): "table";
 		case DFigure(_): "figure";
@@ -145,7 +167,8 @@ class Validator {
 		case DElemList(_): "[list of elements]";
 		case DLaTeXPreamble(_): "LaTeX preamble configuration";
 		case DLaTeXExport(_): "LaTeX export call";
-		case DHtmlApply(_): "CSS inclusion";
+		case DHtmlStore(_): "Asset inclusion";
+		case DHtmlToHead(_): "Append to <head>";
 		}
 	}
 	
@@ -170,6 +193,9 @@ class Validator {
 			if (notHEmpty(name, d, "name"))
 				hiter(name);
 			diter(children);
+		case DTitle(name):
+			if (notHEmpty(name, d, "name"))
+				hiter(name);
 		case DElemList(items), DList(_, items):
 			for (i in items)
 				diter(i);
@@ -208,9 +234,9 @@ class Validator {
 			var ndest = Path.normalize(dest);
 			if (ndest.startsWith(".."))
 				errors.push(new ValidationError(d.pos, EscapingOutputPath(dest)));
-		case DHtmlApply(path):
-			push(validateSrcPath(path, [Css]));
-		case DCodeBlock(_), DEmpty:
+		case DHtmlStore(path):
+			push(validateSrcPath(path, [File]));
+		case DHtmlToHead(_), DCodeBlock(_), DEmpty:
 			// nothing to do
 		}
 	}
