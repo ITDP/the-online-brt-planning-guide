@@ -1,4 +1,4 @@
-\section{Information Integration "TODO: Fix ME!!!"}
+\section{Real Time Information}
 
 Advances in technology are helping to make information integration easier and making traveling through 
 the city easier. Having static information about how to connect to other modes at a station helps customers 
@@ -10,7 +10,7 @@ customers plan and make better decisions about how to reach their destinations.
 \figure[medium]{assets/image61.jpg}{Conceived out of collaboration between Kenyan and American universities 
 and the technology sector in Nairobi, the Digital Matatu project captured transit data for Nairobi, developed 
 mobile routing applications and designed a new (and first) transit map for the city.}{The Digital 
-Matatu Project (www.digitalmatatus.com)}
+Matatu Project (\url{www.digitalmatatus.com})}
 
 \figure[medium]{assets/image62.png}{New platforms that aggregate transport service information is 
 making it easier for customers to plan and make trips.}{Where Is My Transport website.}

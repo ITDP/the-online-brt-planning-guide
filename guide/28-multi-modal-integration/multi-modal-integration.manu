@@ -56,7 +56,7 @@ be explained because there are no transfers, there is one payment (gas), and one
 any time. For transport to effectively compete, it must cater to the same demands – be as convenient. 
 Integrating across modes helps achieve this.
 
-\include{282physical-integration.manu}
-\include{283information-integration.manu}
-\include{284fare-integration.manu}
-\include{285-information-integration.manu}
+\include{physical-integration.manu}
+\include{integration-information.manu}
+\include{fare-integration.manu}
+\include{real-time-information.manu}

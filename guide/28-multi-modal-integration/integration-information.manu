@@ -1,6 +1,4 @@
-
-
-\section{Information Integration}
+\section{Integration Information}
 
 \quotation{Any sign is an admission of architectural failure}
 {Massimo Vignelli (author of the 1972 NYC Subway Map) as retold by Michael Bierut of Pentagram and quoted in Metropolis Magazine, April 2007.}
@@ -15,17 +13,17 @@ the level of transfer and the success of an intermodal station.
 \subsection{Wayfinding}
 
 Four principles of wayfinding for intermodal hubs:
-\item \highlight{Easy and Intuitive.} Station should be designed so that customers 
+\number \highlight{Easy and Intuitive.} Station should be designed so that customers 
 can intuitively find their way and see their destination. Direct lines of movement and sight are key;
-\item \highlight{Consistent, Clear and Legible.} Signage should be consistent, clear, and 
+\number \highlight{Consistent, Clear and Legible.} Signage should be consistent, clear, and 
 easily legible from a distance. Ingress and egress signs should be clearly differentiated;
-\item \highlight{Extensive.} Information boards providing route information, station layouts, 
+\number \highlight{Extensive.} Information boards providing route information, station layouts, 
 and local destinations should be located all around the station and the surrounding area. This allows 
 people to orient themselves before they exit the station, and to know how to get to the station;
-\item \highlight{Standardized.} The use of standard station layouts, signage, and information 
+\number \highlight{Standardized.} The use of standard station layouts, signage, and information 
 systems within a transport network significantly improves the wayfinding experience. 
 
-\subsubsection{Internal Circulation}
+\title{Internal Circulation}
 
 Information germane to the multimodal terminal, station, or stop includes route identification (line 
 number), directions to the various modes contained within the station (Metro, ferry, BRT, bike parking), 
@@ -52,7 +50,7 @@ of New York and New Jersey.}
 \figure[medium]{assets/image53.jpeg}{BRT arrival information at the top of the stairs in the pedestrian mall 
 to access the underground BRT station, Brisbane, Australia.}{ ITDP.}
 
-\subsubsection{External Circulation}
+\title{External Circulation}
 
 Information about access to and from the station and the surrounding neighborhoods is integral to intermodal 
 integration. This "last-leg" of a journey completes the system. Often this is a walking trip, so much 
@@ -62,7 +60,7 @@ Signage is not limited to the station proper; signs giving directions to station
 from the station.  
 
 \figure[medium]{assets/image54.jpeg}{A wayfinding map with walking distances and intermodal connections 
-(ferry, bus, train) inVancouver, Canada.}{Michael King.}
+(ferry, bus, train) in Vancouver, Canada.}{Michael King.}
 
 \figure{assets/image55.jpeg}{A wayfinding map with walking distances around a train station 
 in Dubai, United Arab Emirates.}{Michael King.}
