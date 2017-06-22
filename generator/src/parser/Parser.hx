@@ -342,9 +342,10 @@ class Parser {
 			while (true) {
 				discardVerticalNoise();
 				if (!peek().def.match(TCommand("row"))) break;
-				var row = tableRow(pop());
+				var beginRow = pop();
+				var row = tableRow(beginRow);
 				rows.push(row);
-				assert(row.length == header.length, row.length, header.length, rows.length, begin.pos.toString());
+				assert(row.length == header.length, row.length, header.length, beginRow.pos.toString());
 			}
 			var end = pop();  // should have already discarted any vnoise before
 			if (end.def.match(TEof)) unclosed(begin);

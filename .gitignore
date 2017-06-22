@@ -8,11 +8,11 @@
 */.haxelib/
 */node_modules/
 .generated/
-cover/bin/
-cover/ready/html/
 generator/*.tgz
 generator/bin/*
 generator/dump/
+server/cover/bin/
+server/cover/ready/html/
 
 !generator/bin/manu
 

@@ -97,7 +97,7 @@
 <body>
 
 	<!-- sidebar -->
-	<div class="ui vertical sidebar menu">
+	<div class="ui vertical right sidebar menu">
 		<a class="item"><img class="ui image fluid" src="https://www.itdp.org/wp-content/themes/itdp-responsive/images/logo.png"></a>
 		<a class="item" href="#welcome">Welcome</a>
 		<a class="item" href="#about">About</a>
@@ -429,7 +429,7 @@
 
 		<footer class="ui vertical footer segment">
 			<div class="ui center aligned container">
-				<img src="https://www.itdp.org/wp-content/themes/itdp-responsive/images/logo.png" class="ui centered small image">
+				<img src="img/itdp-bug-logo.png" class="ui centered small image">
 				<div class="ui horizontal small divided link list">
 					<a class="item" href="https://www.itdp.org/">www.itdp.org</a>
 					<a class="item" href="mailto:mobility@itdp.org">mobility@itdp.org</a>
