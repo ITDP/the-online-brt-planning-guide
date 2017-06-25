@@ -1,17 +1,10 @@
-The Bus Rapid Transit Planning Guide is the most comprehensive resource for
-planning a bus rapid transit (BRT) system, beginning with project preparation
-all the way through to implementation.
+The Bus Rapid Transit Planning Guide is the most comprehensive resource for planning a BRT system, beginning with project preparation all the way through to implementation.  It is a huge effort by the Institute of Transportation and Development Policy, and dozens of authors and reviewers.
 
-It is a huge effort by the Institute of Transportation and Development Policy
-(ITDP), and dozens of authors and reviewers.
-
-This \[work in progress\] chapter describes the project's goals.
-
-Essentially, it aims to make the guide more accessible and keep it up-to-date:
+This \[work in progress\] volume focuses on the goals and functionality of the *Online* edition on the BRT Planning Guide, a project that, essentially, aims to make the guide more accessible and constantly up-to-date:
 
 \item the guide is now available online in a website format that is easy to navigate
 \item PDFs are also available to those that need to print them
 \item the online publication of updates is automatic
-\item the entire history of the guide is kept with Git
+\item the entire history of the guide is with Git
 \item revisions and contributions are easier with GitHub
 
