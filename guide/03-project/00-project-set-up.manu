@@ -16,19 +16,7 @@ The resulting budgetary and legislative support provides the kick start for the 
 of the project team, and the commitment to a project program. Giving the structuring and management of
 the planning phase due consideration at the outset significantly strengthens the BRT project.
 
-
-This chapter deals with the following topics related to the planning of a BRT project:
-
-\'FIXME: This is the table of contents - a standard for all chapters is required'\
-
-\item Setup Process;
-\item Legal Basis;
-\item Procurement;
-\item Planning Team Structure;
-\item Timeline and Phasing;
-\item Planning Budget and Financing;
-\item Probity and Risk Management;
-\item Avoiding Common Planning Mistakes.
+\highlight{Contributors:} Susan Smitt, *HHO Africa*
 
 \include{setup-process.manu}
 \include{legal-basis.manu}
@@ -38,5 +26,3 @@ This chapter deals with the following topics related to the planning of a BRT pr
 \include{planning-budget-and-financing.manu}
 \include{probity-and-risk-management.manu}
 \include{avoiding-common-planning-mistakes.manu}
-
-\highlight{Contributors:} Susan Smitt, *HHO Africa*

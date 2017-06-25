@@ -93,6 +93,8 @@ thus requiring more infrastructure and fleet than necessary and exaggerating rev
 of demand, thus limiting the performance and success of the BRT system. Section 4.6 discusses these issues
 and suggests a few ways to handle them.
 
+\highlight{Contributors:} Walter Hook, *BRT Planning International*; Karl Fjellstrom, *Far East BRT*; Luis (Pilo) Willumsen, *consultant*; Arthur Szász, *Protocubo*; Ulises Navarro, *ITDP Latin America*; Pranjali Deshpande, *ITDP India*
+
 \include{01-overview-of-demand-analysis.manu}
 \include{02-data-collection.manu}
 \include{03-basic-methods-for-estimating-public-transport-demand.manu}
@@ -101,5 +103,3 @@ and suggests a few ways to handle them.
 \include{06-risk-and-uncertainty.manu}
 \include{07-conclusion.manu}
 \include{08-bibliography.manu}
-
-\highlight{Contributors:} Walter Hook, *BRT Planning International*; Karl Fjellstrom, *Far East BRT*; Luis (Pilo) Willumsen, *consultant*; Arthur Szász, *Protocubo*; Ulises Navarro, *ITDP Latin America*; Pranjali Deshpande, *ITDP India*
