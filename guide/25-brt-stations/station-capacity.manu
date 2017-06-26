@@ -1,16 +1,29 @@
-
-
 \section{Station Capacity}
 
-\quotation{ “Strength does not come from physical capacity. It comes from indomitable will.”}
-{Mahatma Gandhi, leader, 1869-1948}
+\quotation{Strength does not come from physical capacity. It comes from indomitable will.}
+{Mahatma Gandhi, leader of the sucessful Indian independence movement against British rule, 1869--1948}
 
 BRT station saturation is discussed in more detail in *Chapter 7: System Speed and Capacity*. The discussion 
 of capacity in this section should be considered as a supplement to that chapter. This section introduces 
 some specific concepts of capacity related to the configuration of BRT stations, whereas *Chapter 7* 
 provides a more detailed and comprehensive coverage of BRT routes and overall operational capacity.
 
-BRT stations can be broadly divided according to capacity by whether or not they have passing lanes 
+Stations have two nominal capacities that are dependant of each other:
+\item *Station Local Capacity:* it relates to the number of passengers that use the station (as transfer point, or
+initial or fina destination in the system; it can be referred as *Boarding Capacity (at Station)* and it could be defined 
+by the maximum number of passengers that can possibly enter the system thru that station during one hour and not allow queue formation.
+\item *Station Global Capacity:* it relates to the: number of passengers that enters or exits the station, regardless 
+of boarding and alighting there (i.e. we are also counting passengers that are entering and exiting inside the BRT vehicle
+; it can be referred as *System Capacity (at the Station)* and it could be defined by the maximum number of passengers that can possibly
+leave (or arrive) at the station inside a BRT vehicle during one hour, without queue formation.
+
+The *no queue formation* part is important, because if queue formation was allowed, the number of passengers would increase, but the speed of service
+for all users would decrease. When the context is not defined by "boarding passengers per hour" or "passengers per direction per hour" one
+
+Once the station is the bottleneck of the system, the lowr global capacity station in a corridor defines
+the corridor (system) capacity. 
+
+BRT stations can be broadly divided according to global capacity by whether or not they have passing lanes 
 and sub-stops, and whether the stations have more than one bus docking bay in each direction and sub-stop. 
 High capacity systems feature BRT stations with passing lanes and multiple sub-stops. Medium capacity 
 systems do not have passing lanes, but have multiple docking bays. Low capacity BRT systems have stations 
@@ -46,7 +59,7 @@ having passing lanes, has BRT stations predominantly with neither multiple sub-s
 bays. For this reason despite having passing lanes, the design capacity is classified as low. 
 
 \figure[medium]{assets/image12.jpeg}{Crowding in a Bogotá station impedes peak hour circulation and is exacerbated 
-by the presence of just one docking bay at each sub-stop, in many stations.}{Karl Fjellstrom}
+by the presence of just one docking bay at each sub-stop, in many stations.}{Karl Fjellstrom.}
 
 With regard to Table 25.1, the design capacity of the station is only one factor in the system performance 
 and overall capacity. Other key factors include the use of larger buses, express services, the number 
@@ -281,8 +294,7 @@ be divided into multiple sub-stops. In order to function, sub-stops require pass
 equivalent such as in the directional BRT stations used in Lanzhou and Yichang, China. Calculation of 
 the capacity of station sub-stops is covered in more detail in *Chapter* 7.
 
-/' TODO: Fix this '/
-Figure xxxx shows an example of Dongpu BRT station in Guangzhou, China, which has three sub-stops in 
+Figure 25.13 shows an example of Dongpu BRT station in Guangzhou, China, which has three sub-stops in 
 each direction. Each sub-stop is forty meters long, with docking bays for two 18-meter buses or three 
 12-meter buses. Fare collection space is 15 meters, though in more recent designs ITDP uses a more compressed 
 10-meter space for fare collection. 
@@ -292,14 +304,14 @@ including the access and arrival areas, the entrance area including the space fo
 the three sub-stops, which can be identified by the different roof material and variation in elevation. 
 At each sub-stop, multiple docking bays are seen and the station includes passing lanes. Between sub-stops 
 is space for buses to pull into or out of the station around other buses already docked.}{Karl 
-Fjellstrom}
+Fjellstrom.}
 
 \figure[medium]{assets/image14.jpeg}{Dongpu BRT station in Guangzhou in plan view shows more clearly 
 the parts of the station, which consists of 3 sub-stops in each direction, with a total length of 180m. 
 Each sub-stop consists of 2 docking bays for 18m BRT buses, or 3 sub-stops for 12m BRT buses. A = fare 
 collection and B = passing area. The platform is 5m wide.}{ITDP China and GMEDRI.}
 
-\subsection{High-capacity Stations}
+\subsection{High-capacity System Stations}
 
 High-capacity BRT stations are those with functioning passing lanes and multiple sub-stops. There are, 
 however, exceptions. Istanbul’s BRT is one of the world’s highest capacity BRT systems, with nearly 20,000 
@@ -311,60 +323,60 @@ and particular demand and road network conditions that are difficult or impossib
 High-capacity BRT – with the exception of Istanbul’s particular circumstances, which like Brisbane 
 does not clearly define bus docking bays – requires passing lanes with sub-stops. 
 
-\figure[medium]{assets/image15.jpeg}{High-capacity station: Bogotá, Colombia.}{Karl Fjellstrom}
+\figure[medium]{assets/image15.jpeg}{High-capacity station: Bogotá, Colombia.}{Karl Fjellstrom.}
 
-\figure{assets/image16.jpeg}{High capacity station: Guangzhou, China.}{ITDP}
+\figure{assets/image16.jpeg}{High capacity station: Guangzhou, China.}{ITDP.}
 
-\figure[medium]{assets/image17.jpeg}{High-capacity station: Lima, Peru.}{Karl Fjellstrom}
+\figure[medium]{assets/image17.jpeg}{High-capacity station: Lima, Peru.}{Karl Fjellstrom.}
 
-\figure{assets/image18.jpeg}{High-capacity station: Cali, Colombia.}{Karl Fjellstrom}
+\figure{assets/image18.jpeg}{High-capacity station: Cali, Colombia.}{Karl Fjellstrom.}
 
-\figure[medium]{assets/image19.png}{High-capacity station: Brisbane, Australia.}{Karl Fjellstrom}
+\figure[medium]{assets/image19.png}{High-capacity station: Brisbane, Australia.}{Karl Fjellstrom.}
 
-\figure[medium]{assets/image20.jpeg}{High-capacity station: Lanzhou, China.}{ITDP}
+\figure[medium]{assets/image20.jpeg}{High-capacity station: Lanzhou, China.}{ITDP.}
 
-\figure{assets/image21.jpeg}{High-capacity station: Belo Horizonte, Brazil.}{Cristiano Machado}
+\figure{assets/image21.jpeg}{High-capacity station: Belo Horizonte, Brazil.}{Cristiano Machado.}
 
-\figure[medium]{assets/image22.jpeg}{High-capacity station: Yichang, China.}{Aimee Gauthier}
+\figure[medium]{assets/image22.jpeg}{High-capacity station: Yichang, China.}{Aimee Gauthier.}
 
-\subsection{Medium-capacity Stations}
+\subsection{Medium-capacity System Stations}
 
 Medium-capacity BRT stations are those without passing lanes, but with more than one bus docking bay 
 in each direction.
 
 \figure[medium]{assets/image23.png}{Medium-capacity station with high-capacity operation due to 
-large buses, no defined stopping berths in Istanbul, Turkey.}{Fjellstrom}
+large buses, no defined stopping berths in Istanbul, Turkey.}{Karl Fjellstrom.}
 
 \figure{assets/image24.jpeg}{Medium-capacity station: Zhengzhou, China.}{Karl 
-Fjellstrom}
+Fjellstrom.}
 
-\figure[medium]{assets/image25.jpeg}{Medium-capacity station: Urumqi, China.}{Karl Fjellstrom}
+\figure[medium]{assets/image25.jpeg}{Medium-capacity station: Urumqi, China.}{Karl Fjellstrom.}
 
 \figure{assets/image26.jpeg}{Medium-capacity station: Pontal station in the TransOeste 
-corridor in Rio de Janeiro, Brazil.}{ITDP}
+corridor in Rio de Janeiro, Brazil.}{ITDP.}
 
-\figure[medium]{assets/image27.jpeg}{Medium-capacity station: Mexico City.}{Karl Fjellstrom}
+\figure[medium]{assets/image27.jpeg}{Medium-capacity station: Mexico City.}{Karl Fjellstrom.}
 
-\subsection{Low-capacity Stations}
+\subsection{Low-capacity System Stations}
 
 Low-capacity stations have neither passing lanes nor sub-stops, and have only one docking bay for BRT 
 vehicles.
 
 \figure[medium]{assets/image28.jpeg}{Low-capacity station: Chengdu, China.}{Xianyuan Zhu, 
-ITDP}
+ITDP.}
 
-\figure{assets/image29.jpeg}{Low-capacity station: Quito, Ecuador.}{Karl Fjellstrom}
+\figure{assets/image29.jpeg}{Low-capacity station: Quito, Ecuador.}{Karl Fjellstrom.}
 
-\figure[medium]{assets/image30.jpeg}{Low-capacity station: Jakarta, Indonesia.}{Karl Fjellstrom}
+\figure[medium]{assets/image30.jpeg}{Low-capacity station: Jakarta, Indonesia.}{Karl Fjellstrom.}
 
-\figure{assets/image31.jpeg}{Low-capacity station: Ahmedabad, India.}{ITDP}
+\figure{assets/image31.jpeg}{Low-capacity station: Ahmedabad, India.}{ITDP.}
 
-\figure{assets/image32.jpeg}{Low-capacity station: Leon, Mexico.}{Karl Fjellstrom}
+\figure{assets/image32.jpeg}{Low-capacity station: Leon, Mexico.}{Karl Fjellstrom.}
 
-\figure[medium]{assets/image33.jpeg}{Low-capacity station: Nantes, France.}{Karl Fjellstrom}
+\figure[medium]{assets/image33.jpeg}{Low-capacity station: Nantes, France.}{Karl Fjellstrom.}
 
 \figure[medium]{assets/image34.jpeg}{ Low-capacity station: Rio de Janeiro’s Transcarioca Station 
-in Galeão International Airport.}{Luc Nadal, ITDP}
+in Galeão International Airport.}{Luc Nadal, ITDP.}
 
 \subsection{Modularity and Scalability}
 
@@ -376,7 +388,7 @@ so that by 2013, the station had three sub-stops.
 
 \figure[medium]{assets/image35.jpg}{The image on the left is the Calle 100 station in 2005 with 
 just two sub-stops, but space for more. The image on the right is the same station in 2013 with an additional 
-sub-stopn having been added due to increased demand.}{ Google Earth}
+sub-stopn having been added due to increased demand.}{ Google Earth.}
 
 Cali has also added station modules at some crowded stations. The Chiminangos BRT station originally 
 has only one sub-stop, but again space for expansion was left, so that another sub-stop could be added, 
@@ -390,8 +402,8 @@ Modularity also may help with fabrication and construction costs and impacts. By
 the station off-site, it hopefully can reduce the construction impacts of the corridor, as the station 
 can have the foundation laid directly in the corridor and then then station can be placed on that.
 
-\figure[medium]{assets/image36.jpg}{Figure xx: Chiminangos station in Cali in 2008 with one sub-stop (left) 
-and the station in 2013 with two sub-stops.}{Google Earth}
+\figure[medium]{assets/image36.jpg}{Chiminangos station in Cali in 2008 with one sub-stop (left) 
+and the station in 2013 with two sub-stops.}{Google Earth.}
 
 \figure[medium]{assets/image37.jpeg}{Prefabricated Bogotá BRT station module at the roadside, 
-ready to be placed in position.}{Karl Fjellstrom}
+ready to be placed in position.}{Karl Fjellstrom.}

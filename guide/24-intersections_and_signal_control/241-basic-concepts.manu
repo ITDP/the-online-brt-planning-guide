@@ -248,8 +248,8 @@ $$ \text{SaturationFlow}=\text{CapFlow}_\text{away-from-intersectioni} = \text{s
 
 Where:
 \item $$ \text{SaturationFlow} $$: Maximum flow a section can handle under prevailing use;
-\item $$ \text{CapFlow}_\text{away-from-intersection} $$: Maximum flow of a section away from an intersection;saturationflowperlane 
-= Maximum flow a given lane can handle;
+\item $$ \text{CapFlow}_\text{away-from-intersection} $$: Maximum flow of a section away from an intersection;
+\item $$ \text{saturationflowperlane} $$: Maximum flow a given lane can handle;
 \item $$ \text{NLanes} $$: Number of lanes.
 
 \subsubsection{Continuity}

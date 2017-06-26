@@ -1,28 +1,30 @@
 \chapter{BRT Stations}
 
 
-
-\quotation{“Art has to move you and design does not, unless it’s a good design for a bus.”}
-{David Hockney, artist, 1937 -}
+\quotation{In the dime stores and bus stations, people talk of situations, read books, repeat quotations, draw conclusions on the wall.}
+{in `Love Minus Zero' by  Bob Dylan, American singer-songwriter, 1941 --}
 
 
 While mixed traffic capacity and performance is determined primarily by intersections, BRT capacity 
 and performance is determined primarily by BRT stations. BRT stations are also the most visible and visceral 
 part of the system - the main way passengers experience the BRT system. Stations are where the BRT system 
 interacts with the city and its people.  By virtue of repetition, it often becomes the symbol of the 
-system. Between stations, BRT systems are mostly internal and self-contained. But at stations, passengers 
+system. Between stations, BRT systems are perceived almost statical by passengers, but at stations, they 
 board and alight, buy tickets, validate them and enter to wait. Passengers look for information. Buses 
 have to approach and align with the correct place in the station.  Stations are where everything comes 
 together in the system and the efficiency of the station design and the technologies built into the stations 
-is of primary importance to success of the system. 
+are of primary importance to success of the system. 
 
+The primary purpose of a station is to allow passengers to board and alight BRT vehicles, so it must be designed to:
+\number promote access to the system;
+\number facilitate bus movement and minimizes bus delays, as it is the main bottleneck of the system.
 
-Stations serve primary purposes in the transit network:
+The first means to serve as the main interface of the system for the users; to promote integration with the city transport system --
+ mostly with the walking system but convencional bus, bycicle, taxi and car and eventually rail too. It also means promote
+ integration between BRT services.
 
-\number To facilitate bus movement and minimize delays
-\number To be the main interface for the passengers
-\number To facilitate integration and transfer from one service or mode to another
-
+The second can be thought as `never allow BRT vehicles to congest in a station'. 
+It will be bad for the users of that station and for the users that don't use that station as well.
 
 Stations are integral to the efficiency and the experience of the BRT system. As such, two components 
 of the BRT basics – the most essential characteristics needed to qualify as a BRT according to the BRT 

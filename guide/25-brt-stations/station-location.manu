@@ -4,8 +4,8 @@
 
 \'TODO: New Quote (Can't verify this one) '\
 
-\quotation{ “So much difference between a triumph and a flop is determined by choice of venue.”}
-{Anatoly Belilovsky}
+\quotation{To get the right word in the right place is a rare achievement.}
+{Mark Twain, American writer, 1835--1910}
 
 This section covers the location of a station along a BRT corridor.  BRT stations are generally spaced 
 300 meters to 800 meters apart.  In an urban area, spacing optimizes at around 450 meters.  Beyond this, 
@@ -50,20 +50,19 @@ more than 800 meters apart. Yichang’s BRT in the map below shows one particula
 of 1.7 kilometers between Pinghu and Sanxia Chacheng, due to a cliff alongside a riverfront that has 
 no passenger demand or space for a station, yet still achieves an average station spacing of less than 
 650m. In the lower capacity system designed by ITDP in Vientiane, stations are smaller and this is reflected 
-in an average station spacing of 500m (Figure xxxx).
+in an average station spacing of 500m (Figure 25.49).
 
 \figure[medium]{assets/image49.png}{The proposed medium capacity BRT system in Vientiane averages 
-one station every 500 meters.}{ ITDP-China}
+one station every 500 meters.}{ ITDP-China.}
 
 \figure[medium]{assets/image50.png}{The high capacity BRT system in Yichang, with larger stations, 
-averages 645 meters between stations.}{ ITDP-China}
+averages 645 meters between stations.}{ ITDP-China.}
 
 The best guide to BRT station location is the location of existing bus stops. Usually, though, especially 
 where high capacity BRT stations are being implemented, placement is heavily constrained by local physical 
 conditions of the corridor including the locations of intersections. 
 
-\' TODO: Fix this '\
-Figure xxxx shows how existing bus stop locations were used to guide the BRT station locations in Lanzhou 
+Figure 25.51 top locations were used to guide the BRT station locations in Lanzhou 
 and Yichang. In the case of Lanzhou, the BRT stations largely corresponded with the current bus stop 
 locations, though with selected variations. In Yichang, station planning also took into account existing 
 bus stops for most of the corridor, but for the central area the BRT station coverage is much denser 
@@ -74,4 +73,4 @@ to the BRT system implementation was inadequate, with stations spaced too far ap
 in Lanzhou.}{ITDP-China}
 
 \figure[medium]{assets/image52.png}{Current bus stops and proposed BRT stations by ITDP-China 
-in the Yichang center area.}{ITDP-China}
+in the Yichang center area.}{ITDP-China.}

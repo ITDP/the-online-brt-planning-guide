@@ -1,97 +1,9 @@
 \section{Station Dimensions}
 
-\quotation{ “I refuse to accept other people’s ideas of happiness for me. As if there’s a ‘one-size fits all’ standard for happiness.”}
+\quotation{ I refuse to accept other people’s ideas of happiness for me. As if there’s a ‘one-size fits all’ standard for happiness.}
 {Kanye West, musician, 1977-}
 
-\subsection{Station Width}
-
-The platform must be wide enough to accommodate all projected waiting passengers, provide enough space 
-for passengers to enter and exit the area, and enough space for the infrastructure itself.
-
-\beginbox{Platform width formulas}
-
-\highlight{Equation 1: Calculation of platform width}
-
-\' TODO: Math: Wp = 1 + Wu + Wc + Wopp  '\
-
-Where:
-
-*Wp* = Total platform width 
-
-*1 meter* = Estimated or average width required for basic station infrastructure; Wu = Width required for waiting passengers in one direction
-
-*Wc* = Width required for circulating passengers; 
-
-*Wopp* = Width required for passengers waiting for vehicles going in the other direction (value = 0 when the station serve only one direction or are staggered)
-
-\highlight{Equation 2: Width required for circulating passengers}
-
-\' TODO: Math:  Wc = PPH / 2,000 people per hour '\ 
-
-Where:
-
-*PPH* = Number of circulating passengers expected per hour using peak hour numbers.
-*2,000* pedestrians can walk along a 1m wide path per hour and still provide a reasonable level of service. This is used as the basis for determining width needed for circulating passengers.
-
-\highlight{Equation 3: Area required for waiting passengers}
-\' TODO: Math:  Wu = Qp / DwMax; or; Wopp = Qp / DwMax '\;
-
-Where:
-
-*Wu or Wopp* = Minimum area required for waiting passengers. This is a function of the maximum number of passengers projected to queue divided by the capacity of a square meter to hold waiting passengers.
-
-*Op* = Maximum number of passengers projected to queue; DwMax = Capacity of a square meter to hold waiting passengers.  The maximum is 3 people per square meter.; 
-
-\highlight{Equation 4: Estimate of total boarding passengers at a sub-stop}
-
-\'TODO : Math  Qp =  Summation( PBi/Fi ) =  Summation(Pbbi) '\
-
-Where:
-
-*Qp* = Maximum passenger queue expected; represents the sum of all boarding passengers, i.e. how full the bus is when it gets to the station
-
-*PBi* = Passengers boarding per hour on BRT route i
-
-*Fi* = Frequency (BRT vehicles / hour) of line i 
-
-*Pbbi* = Average number of passengers boarding per BRT vehicle on line i
-
-\highlight{Example:} 
-
-*Given*
-
-station infrastructure consumes 0.5 meters on each side for a total of 1 meter
-
-waiting areas for the two directions are offset (Wopp = 0)
-
-18m long BRT vehicle (L = 18m)
-
-average number of waiting passengers during the peak = 150 (Qp = 150)
-
-6,000 passengers pass through station every hour (PPH = 6000)
-
-*Order of Operations*
-
-Wu = Qp / DwMax (equation 3)
-
-150 waiting passengers divided by 3 passengers per square meter equals 50 square meters. Thus, 50m\sup{2} of platform area is required to accommodate the waiting passengers.
-
-The BRT vehicle is 18 meters long, so 50m\sup{2} divided by 18m equals 2.8m. Thus, the waiting area needs to be 2.8m wide (Wu = 2.8m).
-
-Wc = PPH / 2,000 PPH (equation 2)
-
-6,000 passengers per hour divided by 2,000 passengers per hour per meter equals 3 meters (Wc = 3m).
-
-Wp = 1 + Wu + Wc + Wopp (equation 1)
-
-1m + 2.8m + 3m + 0m = 6.8m; Add 0.5m shy distance = 7.3m
-
-Round up to 8.0m
-
-\figure{assets/image53.png}{Platform width example}{ITDP}
- 
-\endbox
-
+Station length and width have minimuns to work well; the influential factors are discussed in the following sections but in order to create proper circulation and wait area, one may compensate for the other, as usually right-of-way is an imposing restriction.
 
 \subsection{Station Length}
 
@@ -202,18 +114,22 @@ the conditions favouring one or two bus docking bays.
 \col 355
 \endtable
 
-*Notes:Saturation refers to the percentage of time that the station is occupied by BRT buses entering 
+*Notes:*
+\item Saturation refers to the percentage of time that the station is occupied by BRT buses entering 
 the stopping area, opening doors, passengers boarding and alighting, doors closing, and leaving the stopping 
-area.The total station length is based on 18m BRT buses. 12m or smaller buses will be correspondingly 
-smallerTotal length = (19 m * number of docking bays) + 33 m19 m = space for extra vehicle in queue33 
+area.
+\item The total station length is based on 18m BRT buses. 12m or smaller buses will be correspondingly 
+smaller 
+\item Total length = (19 m * number of docking bays) + 33 m 19 m = space for extra vehicle in queue33 
 m = 19 m + 14 m (space for docking bay + passing distance)Station length excludes fare collection, typically 
-10 meters per entrance\*
+10 meters per entrance *
 
 As can be seen in Table 25.2, multiple sub-stops add considerable overall length to a station.
 
+\beginbox{TransMilenio stations}
+
 \figure[medium]{assets/image54.png}{TransMilenio stations}{TransMilenio, SA}
 
-\beginbox{TransMilenio stations}
 
 198 metres (3 sub-stops, 
 5 docking bays)
@@ -231,12 +147,129 @@ As can be seen in Table 25.2, multiple sub-stops add considerable overall length
 
 \endbox
 
+
+\subsection{Station Width}
+
+for passengers to enter and exit the area, and enough space for the infrastructure itself.
+If length is determined, and access is made by the extremes of the stations, which is a good idea for easy of access, one must leave a width
+for circulation and a with for the waiting area, lateral infrastructure may demand some width as well.
+
+\item People avoid walking too close to walls, fences and the curb. Thus a 0.3-0.5 meter shy distance is included in any width calculation.
+
+This reasonaing can be transformed in the following formulas (the concepts of vehicles flow on chapter 24 may assist).
+
+\highlight{Equation 1: Calculation of platform width}
+
+$$ W_p = W_i + W_u + W_c + W_{opp}  $$
+
+Where:
+
+\item $$ W_p $$: Total platform width;
+\item $$ W_i $$: Width required for basic station infrastructure, usually equal to *1 meter*
+\item $$ W_u $$: Width required for waiting passengers in one direction;
+\item $$ W_c $$: Width required for circulating passengers; 
+\item $$W_opp $$: Width required for passengers waiting for vehicles going in the other direction (value = 0 when the station serve only one direction or are staggered);
+
+\highlight{Equation 2: Width required for circulating passengers}
+
+$$ W_c = {\text{Flow}_\text{pax} \over \text{saturationflowperwidthunit}} $$ 
+
+Where:
+\item $$ W_c $$: Width required for circulating passengers; 
+\item $$ \text{Flow}_\text{pax} $$: Number of circulating passengers expected per hour using peak hour numbers.
+\item $$ \text{saturationflowperwidthunit}$$: Number of pedestrians that can walk along a unit of width (for instance, 1 meter) path per hour and still provide a reasonable level of service. Usually 2,000 pedestrians crossing a meter wide section in one hour is used as the basis for determining width needed for circulating passengers.
+
+\highlight{Equation 3: Area required for waiting passengers}
+
+$$ S_u = {Q_{u\text{pax}} \over Dw_\text{max}} $$;
+
+$$ S_{opp} = {Q_{opp\text{pax}} \over Dw_\text{max}} $$;
+
+Where:
+\item $$ S_u$$ and $$S_{opp} $$: Minimum area required for waiting passengers. This is a function of the maximum number of passengers projected to queue divided by the capacity of an area (for instance, a square meter) to hold waiting passengers.
+\item $$ Q_{u\text{pax}} $$: Maximum number of passengers projected to queue in one direction of a substop;
+\item $$ Q_{opp\text{pax}} $$: Maximum number of passengers projected to queue in opposite direction of a substop;
+\item $$ Dw_\text{max} $$ Acceptable number of passengers waiting per area unit (the maximum is 3 people per square meter). 
+
+
+\highlight{Equation 4: Width required for waiting passengers}
+
+$$ W_{opp} = {S_{opp} \over L_{opp}} $$;
+
+$$ W_{u} = {S_{u} \over L_{u}} $$;
+
+Where:
+\item $$ S_u$$ and $$S_{opp} $$: Minimum area required for waiting passengers
+\item $$ L_u$$ and $$L_{opp} $$: Platform lenght (usually corresponding to the extension of the vehicle on the outside plus length the vehicle has to maneuver. It can be longer if required in narrow stations, by increasing distannce between platformas, but if much longer will require operators to organize the queues in peak hours.
+\item $$ S_u$$ and $$_{opp} $$: Minimum width required for the area of  waiting passengers in the platform. It's calculation derives from area formula $$ S = L * W $$
+
+\highlight{Equation 5: Estimate of total boarding passengers at a sub-stop}
+
+$$ Q_\text{pax} =  \sum_{i=1}^{N_\text{routes}}{Pb_i \over F_i}  = \sum_{i=1}^{N_\text{routes}} {pbv_i} $$
+
+Where:
+\item $$ Q_\text{pax} $$: Maximum passenger queue expected; represents the sum of all boarding passengers in the given direction, i.e. how many passenger will board the bus is when it gets to the station (this is used for calculating $$ Q_u $$ and $$ Q_p $$ above).
+\item $$ Pb_i $$: Passengers boarding on BRT route i (per hour. during peak);
+\item $$ F_i $$: Frequency of line i (BRT vehicles per hour, during peak); 
+\item $$ pbv_i $$: Average number of passengers boarding per BRT line i vehicle (during peak)
+
+\beginbox{Example of station width requirement calculation}
+
+A simplified application of this formulas, would be as follows, assuming an off-set station, given:
+
+\item station infrastructure consumes 0.5 meters on each side for a total of 1 meter
+\item waiting areas for the two directions are offset ($$W_opp = 0$$)
+\item 18m long BRT vehicle ($$L = 18m$$)
+\item 4 routes will stop at this platform, serving  1000 passenger altogether in the peak ($$\sum Pb_i = 1000 $$) in a balanced way
+\item Each route has a headway of 12 minutes, which means in average one vehicle arriving every 3 minutes, or 20 vehicles/hour at the platform.
+\item number of passengers expected to cross this platform in the peak to reach exit or other platforms is 4,000/hour 
+
+If we assume boarding passengers arrive at a constant rate at the platform, and the proportion of passengers boarding in each route being similar, as proposed:
+\item each route would have 250 pax/hour
+\item with one vehicle every 12 minutes there are 5 vehicles arriving per hour
+\item in average 50 passengers would board each vehicle of each route
+\item if all 4 routes arrive close to each other, 200 people might add up waiting to borad the vehicles ($$ Qp_U=200$$)
+
+$$ Q_\text{pax} =  \sum_{i=1}^{N_\text{routes}}{Pb_i \over F_i}  = \sum_{i=1}^{N_\text{routes}} {pbv_i} $$
+
+$$ Q_\text{pax} =  {250 \over 5} + {250 \over 5} + {250 \over 5}+{250 \over 5}  = 200 $$
+
+200 waiting passengers divided by 3 the maximum accepted occupancy of space: three passengers per square meter ($$ Dw_max = 3 pax/m^2 $$) implies 66.6 square meters are required as waiting area. 
+
+$$ S _u = {Q_u\text{pax} \over Dw_\text{max}} $$;
+
+$$ S_u = {200 pax  \over 3 pax/m^2} = 66.6 m^2 $$;
+
+The BRT vehicle is 18 meters long, if we consider 2 extra meter of lenght for the internal side of the station, corresponding to the space a BRT vehicle uses outside: To total 66.6m\sup{2} in 20 m of extention, the waiting area needs to be 3.33 8m wide (Wu = 3.33m).
+
+$$ W_{u} = {S_{u} \over L_{u}} $$;
+
+$$ 3.33 {66_{u} \over 20_{u}} $$;
+
+The width for circulation of passengers coming and going from and to other platforms will be 2 meters
+
+$$ W_c = {\text{Flow}_\text{pax} \over \text{basicpax saturationflowperwidthunit}} $$ 
+
+$$ W_c = {4000 \over 2000}  = 2m $$ 
+
+And finally to total width of the station results in 6.33 metres.
+
+$$ W_p = W_i + W_u + W_c + W_opp  $$
+
+$$ 1m + 3.33m + 2m + 0m = 6.33m $$; Add 0.5m shy distance = 6.83m
+
+Round up to 7.0m
+
+\figure[medium]{assets/image53.png}{Platform width example}{ITDP}
+
+\endbox
+ 
 \subsection{Station Height}
 
 Station height from floor to ceiling should be at least 3.5m in a partially enclosed station, and at 
 least 4m in a fully enclosed station. Beyond these minimum dimensions, station heights can vary according 
 to the particular design. An example of BRT station dimensions provided by architect Derek Trusler with 
-ITDP for a study in Malaysia is provided in Figure xxxxx.
+ITDP for a study in Malaysia is provided in Figure 25.55.
 
 \figure[medium]{assets/image55.jpeg}{Proposed station dimensions for a BRT conceptual design 
 by ITDP in Malaysia. The BRT door height is 1.1 meters. For fully enclosed stations an extra height of 
@@ -245,6 +278,8 @@ at least 0.5 meters is recommended.}{ITDP and created by Derek Trusler.}
 \figure[medium]{assets/image56.jpg}{BRT station interior and exterior in Chengdu, which features 
 stations with several different architectural styles. The skylight helps to ensure a bright interior 
 and the walls curve downward.}{Karl Fjellstrom, ITDP}
+
+
 
 \subsection{Station and Road Cross-sections}
 
@@ -261,7 +296,7 @@ narrowed to 2 meters or even 1.5 meters (if the walkway is unobstructed). Bike l
 to 1.5 meters or even 1 meter in low volume locations.
 \item Where the BRT has passing lanes, the stopping lane can be narrowed to 3 meters if necessary.
 
-ITDP’s station section for Wangzhougang Station in Yichang, illustrated in Figure xxxx, is an example 
+ITDP’s station section for Wangzhougang Station in Yichang, illustrated in Figure 25.57, is an example 
 of the need to reduce the width of non-BRT lanes at the BRT station in order to retain in this case a 
 minimum 5-meter BRT station width. Between stations, where space is less constrained, mixed traffic lanes 
 are 3.5 meter, the bike lane 1.5 meter (plus a 0.5-meter divider), and the walkway 3.5 meter. At the 
@@ -273,15 +308,14 @@ in these station areas.
 \figure[medium]{assets/image57.jpeg}{ Cross-section at and between stations at Wangzhougang BRT 
 station in Yichang.}{ ITDP}
 
-\' TODO: Fix '\
-Figure xxxx provides an example of a cross-section for a medium capacity BRT system: the design in 
+Figure 27,58 provides an example of a cross-section for a medium capacity BRT system: the design in 
 Vientiane, Lao PDR. Note that in the proposed cross-section between stations, mixed traffic has 7 meter 
 of space per direction, which at the BRT station is reduced to 6 meter. Since BRT vehicles are stopping 
 on both sides of the platform, the BRT lane width is also reduced to 3 meter at the station. A rendering 
-of the same station is provided in Figure xxxx.
+of the same station is provided in Figure 25.59.
 
 \figure[medium]{assets/image58.png}{ Proposed road cross-sections at Talat Sao station in Vientiane.}
-{ ITDP}
+{ITDP}
 
 \figure[medium]{assets/image59.jpeg}{Rendering of Talat Sao BRT station in Vientiane.}{ITDP}
 

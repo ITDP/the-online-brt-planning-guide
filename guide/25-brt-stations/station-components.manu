@@ -1,8 +1,6 @@
-
-
 \section{Station Components}
 
-\' TODO:  NEED A QUOTE '\
+\quotation{Oh, here it is. The instructions to fit in, have everybody like you, and always be happy! Step one; Breathe... Okay, got that one down. Step two; Greet today’s smile and say: Good Morning City!} {Emmet Brickowisk, as voiced by Chris Pratt in *The Lego Movie*, 2014}
 
 \subsection{Access & Arrival Area}
 
@@ -17,7 +15,7 @@ Access*, and *Chapter 31 Bicycle and Pedicab Integration* for more detail.
 The key priority in planning and designing the access and arrival areas to the BRT station is to ensure 
 as direct and convenient access as possible.
 
-In the Urumqi station  pictured in Figure 25.XXX, the poor station access design means that passengers 
+In the Urumqi station  pictured in Figure 25.60, the poor station access design means that passengers 
 can only access the station from one side of the road, leading to large unnecessary additional walking 
 trips for many passengers. In this figure, a passenger traveling between points A and B would first need 
 to walk to the intersection (C), then cross the street-level crossing to D, then go through the pedestrian 
@@ -27,39 +25,16 @@ line distance between A and B is twenty-three meters. Although since this photo 
 has been built which reduces the walking distance from A to B to a mere severnty-five meters, this still 
 compares poorly to the twenty-three meters straight line distance.
 
-
-\' TODO: FIX THIS: (These are boxes INSIDE the Picture - Check DOCX)
-\beginbox
-E
-\endbox
-
-\beginbox
-D
-\endbox
-
-\beginbox
-C
-\endbox
-
-\beginbox
-B
-\endbox
-
-\beginbox
-A
-\endbox
-'\
-
-
 \figure{assets/image60.jpeg}{Station access in Urumqi.}{Karl Fjellstrom, ITDP, www.transportphoto.net}
+\' TODO: FIX THIS: (There are boxes INSIDE the Picture - Check DOCX)
 
 Similarly BRT expert Pedro Szasz’s analysis of the Transjakarta Busway and how to improve various problems 
 showed that the measure which would have the single biggest benefit in terms of passenger time savings 
 was to add stairs or ramps to reduce the unnecessarily long walking distance to access the BRT stations 
-(Figure xxxx, and Table xxxx). Poorly designed station access can impose a penalty of hundreds of meters 
+(Figure 25.61). Poorly designed station access can impose a penalty of hundreds of meters 
 of extra walking distance for BRT passengers, and this ‘access penalty’ will deter many passengers from 
 using the BRT system. In the case of Jakarta, pedestrian access was the worst deficiency of the system 
-according to the summary in Table xxxx, because it occurs at most of the stations and during all eighteen 
+according to the summary in Table 25.4, because it occurs at most of the stations and during all eighteen 
 operational hours.
 
  \figure{assets/image61.jpeg}{Passengers are forced to double back and walk up to 200 
@@ -184,60 +159,80 @@ tickets or fares at once, or if you have to buy a ticket from a person.
 Space on station is precious and every function that can be done in other places should be avoided 
 and removed, including rest rooms, ticket selling, and equipment that is not directly related to operation.
 
-\title{Gates, ticket machines, ticket selling places: general equations}
+\title{Genreal equation for determind number of gates, ticket machines or boots}
 
-N = integer(Q/C+1.5)+ RN = number of units neededQ = quantity of peak hour operations C =  average 
-capacity per unit (operations/hour)
+$$ N = integer( {Q \over C} + 1.5) +  R $$
 
-1.5:      0.5 = spare capacity to  avoid random queues             1 = rounding up, to never have less 
-than 0.5 of spare capacity
-
-R= reserve for failure, minimum of 1. If reversible gates are used, r can be added after adding entry 
+\item $$ N $$: Number of units needed
+\item $$ Q $$: Quantity of required peak hour operations
+\item $$ C $$: Average Capacity per unit (operations/hour)
+\item {$$ 1.5 $$:    
+                 \item $$ 0.5 $$: Spare capacity to  avoid random queues         
+                 \item $$ 1.0 $$: Rounding up, to never have less than 0.5 of spare capacity}
+\item $$ R$$ : Reserve for failure, minimum of 1. If reversible gates are used, R can be added after adding entry 
 and exit gates.
 
 In case of two entries and no information about flows adopt 0.70 of total for each side.
 
+\title{Parameter for number of operations and capacity for gates, ticket machines}
+
 Ticket machine:
+\item { $$ Q = {Max(Pb,Pa) \over Nt} $$, where
+    \item $$ Nt $$: average number of ticket trips bought per sale operation. In absence of data adopt 4
+    \item $$ Pa $$: total alighting passengers on peak
+    \item $$ Pb $$: total boarding passengers on peak
+}
+\item C = 180
 
-Q = (maximum of total boarding or total alighting)/Nt
+Ticket boot:
+\item same as ticket machine
+\item but $$ C = 400 $$
 
-Where Nt = average trips bought each time. In absence of data adopt = 4
+Entrance gate: turnstile with contactless card
+\item $$ Q $$: total boarding
+\item $$ C = 900 $$
 
-C = 180
+Exit gate: turnstile with contacless card
+\item $$ Q $$:  total alight
+\item $$ C = 900 $$
 
-Ticket vendor= same as ticket machine, but
+Exit gate: turnstile without card (free exit)
+\item $$ Q $$:  total alight
+\item $$ C =  1800 $$
 
-C = 400
+Exit without turnstyle
+\item $$ Q $$:  total alight
+\item $$ C = 3000 / m^2 $$
 
-\highlight{Entrance gate }(turnstile + contactless card)
+Exit gate without turnstile but with contact point to discount
+\item $$ Q $$:  total alight
 
-     Q = boarding     C = 900
-
-\highlight{Exit}:  Q = alighting
-\item turnstile = contactless card
-
-C = 900
-
-2 = turnstile = free exitC = 1800
-
-3 - free exit (no obstacle)C = 3000/m2
-
-4 - contact point to discount fareC = 1400
+\item $$ C = 1400 $$
 
 Compute separately morning and evening peak and adopt maximum for each.
 
-However, in case of reversible gates,
+However, in case of reversible gates (which may provide economy of space and equipment), compute the maximum required gates for each period without considering reserves for failure:
 
-Compute
+$$ G_\text{TOTAL} = max(\text{G}_\text{ENTER MORNING} + \text{G}_\text{EXIT MORNING},
+\text{G}_\text{ENTER AFTERNOON} + \text{G}_\text{EXIT AFTERNOON}) $$
 
-Gt = total gates Maximum of (alighting gates + boarding gates) of all periods except reserve for failure 
-R)Ma = Maximum of alighting (exit) gates of all periods (except reserve for failure R)Mb = Maximum of 
-boarding (entrance) gates of all periods except reserve for failure R)
+Then, compute the maximum of entrance gates ($$M_{EXIT}$$) of all periods (without reserve for failure 
+$$ R $$) and the maximum of exit gates (of all periods except reserve for failure $$ R $$):
 
-Reversible gates = Gr = Ma+Mb-MtAlighting gates = Ga = Ma-GrBoarding gates = Gb = Mb-GrR = Reserve 
-gates, compute over Gt, should be reversible
+$$ M_\text{ENTER} = max(\text{G}_\text{ENTER MORNING} + \text{G}_\text{ENTER AFTERNOON}) $$
+$$ M_\text{EXIT} = max(\text{G}_\text{EXIT AFTERNOON} + \text{G}_\text{EXIT AFTERNOON}) $$
 
-\begintable{Example}
+Then, the number of entrance, exit and , will be as follows:
+
+$$ (G_\text{REVERSIBLE} = \text{M}_\text{ENTER} + \text{M}_\text{EXIT} - G_\text{TOTAL} ) $$ 
+$$ (G_\text{ENTER} = \text{M}_\text{ENTER} - \text{G}_\text{REVERSIBLE}) $$ 
+$$ (G_\text{EXIT} = \text{M}_\text{EXIT} - \text{G}_\text{REVERSIBLE}) $$ 
+
+Reserve gates, computed over total, should be reversible
+
+\beginbox{Finding out how many gates are required}
+
+\begintable{Example of number of required gates computation }
 \header
 \col period and number of gates needed
 \col 
@@ -265,14 +260,28 @@ gates, compute over Gt, should be reversible
 \col 10
 \endtable
 
-Gt = 10Ma = 7Mb = 5
+$$ (G_\text{REVERSIBLE} = \text{M}_\text{ENTER} + \text{M}_\text{EXIT} - G_\text{TOTAL} ) $$ 
+$$ (G_\text{ENTER} = \text{M}_\text{ENTER} - \text{G}_\text{REVERSIBLE}) $$ 
+$$ (G_\text{EXIT} = \text{M}_\text{EXIT} - \text{G}_\text{REVERSIBLE}) $$ 
 
-Gr = 7+5-10=2Ga = 7-2=5Gb = 5-2=3Reserve = 1 (reversible) Total = 10+1=11
+$$ G_\text{TOTAL} = 10 $$
+$$ M_\text{ENTER} = 7 $$
+$$ M_\text{EXIT} = 5 $$ 
+$$ (G_\text{REVERSIBLE} = 7 + 5 - 10 =2 $$
+$$ (G_\text{ENTER} = 7-2 = 5 $$ 
+$$ (G_\text{EXIT} = 5-2 = 3 $$ 
+
+Ten operating gates are required, with one resversible as reserve
+
+$$ Total = 10 + 1 = 11  $$
+
+\endbox
+
 
 \title{Layout and Placement of Turnstiles}
 
 Turnstiles can be offset or placed directly across the entry of the station. Offsetting the turnstiles 
-allows for more turnstiles but requires more station length. Figure xxxx provides examples of various 
+allows for more turnstiles but requires more station length. Figure 25.62 provides examples of various 
 turnstile/gate configurations.
 
 \figure{assets/image62.jpeg}{Straight row of turnstiles in a Zhongshan BRT station.}{ITDP}
@@ -288,7 +297,7 @@ Fjellstrom}
 \figure[medium]{assets/image66.png}{Offset turnstiles in a Bogotá BRT station.}{Karl Fjellstrom}
 
 Since space inside the station is limited, fare collection can sometimes take place outside the BRT 
-platform. Examples of off-platform fare collection and POS location are provided in Figure xxxx. \'TODO: fix '\
+platform. Examples of off-platform fare collection and POS location are provided in Figure 25.67.
 
 \figure[medium]{assets/image67.png}{Fare collection on bridge: Bogotá.}{Karl Fjellstrom}
 
