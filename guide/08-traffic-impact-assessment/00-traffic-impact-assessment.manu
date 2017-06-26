@@ -41,6 +41,8 @@ and roadways, both capacity and speed of the road for mixed traffic and buses im
 Conditions for pedestrians were also greatly improved, with customers waiting in the station rather than
 on the side of the road.}{ Duan Xiaomei, GMEDRI}
 
+\highlight{Contributors:} Chrsitoff Krogscheepers, *ITS Engineers*; Ulises Navarro, *ITDP Latin America*; Pedro Szász, *consultant*; Carlos Pardo, *Despacio*; Annie Weinstock, *BRT Planning International*
+
 \include{81-requirements-for-a-traffic-impact-assessment.manu}
 \include{82-data-needs.manu}
 \include{83-study-area-and-extent-of-assessment.manu}
@@ -48,5 +50,3 @@ on the side of the road.}{ Duan Xiaomei, GMEDRI}
 \include{85-estimating-traffic-volumes.manu}
 \include{86-methodologies-and-performance-measures.manu}
 \include{87-mitigation.manu}
-
-\highlight{Contributors:} Chrsitoff Krogscheepers, *ITS Engineers*; Ulises Navarro, *ITDP Latin America*; Pedro Szász, *consultant*; Carlos Pardo, *Despacio*; Annie Weinstock, *BRT Planning International*

@@ -34,6 +34,9 @@ to the World Bank Toolkit on Intelligent Transport Systems.
 \col *Surveillance Systems*
 \col \item Ensures station security.
 \endtable
+
+\highlight{Contributors:} Giorgio Ambrosino, *consultant*; Brendan Finn, *consultant*; Christoff Krogskeepers, *ITS Engineers*; Pratik Dave, *consultant*
+
 \include{191-vehicle-tracking.manu}
 \include{192-customer-information.manu}
 \include{fare-collection.manu}
@@ -43,5 +46,3 @@ to the World Bank Toolkit on Intelligent Transport Systems.
 \include{197-planning-and-implementation-for-it-systems.manu}
 \include{198-implementation-phasing.manu}
 \include{199-monitoring-and-evaluation.manu}
-
-\highlight{Contributors:} Giorgio Ambrosino, *consultant*; Brendan Finn, *consultant*; Christoff Krogskeepers, *ITS Engineers*; Pratik Dave, *consultant*
