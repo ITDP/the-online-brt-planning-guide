@@ -136,6 +136,7 @@
 				</div>
 			</div>
 
+			(:*
 			<!--menu #2 (search)-->
 			<div class="ui container" style="margin: 0 0 20px 0;">
 				<div class="ui secondary massive menu stackable">
@@ -149,6 +150,7 @@
 					</div>
 				</div>
 			</div>
+			*:)
 
 			<!--main banner-->
 			<div class="ui container">
