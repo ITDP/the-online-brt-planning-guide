@@ -30,9 +30,9 @@ be and allow them to start considering possible financing sources, such as priva
 In the following sections, we will discuss objectives, techniques, and points to consider when deciding
 on a fare policy for a BRT system.
 
+\highlight{Contributors:} Fabio Gordillo, *GSD+*
+
 \include{01-fare-structure-options.manu}
 \include{02-fare-parameters.manu}
 \include{03-technical-fare-and-customer-fare.manu}
-
-\highlight{Contributors:} Fabio Gordillo, *GSD+*
 

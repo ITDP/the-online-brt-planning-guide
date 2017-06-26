@@ -1,5 +1,5 @@
 language: generic
 
 script:
-  - ./.enforce_lfs.sh
+  - ./server/enforce_lfs.sh
 

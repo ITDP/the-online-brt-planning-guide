@@ -256,6 +256,7 @@ nav ul hr {
 	float: left;
 	width: 928px;
 	margin-top: 33px;
+	padding-bottom: 96px;
 }
 .col-text p {
 	margin-right: 288px;
@@ -376,7 +377,7 @@ blockquote .by::before {
 	content: "— ";
 }
 blockquote.md {
-	width: 600px;
+	width: 608px;
 	padding: 16px;
 	margin: 32px 0;
 }

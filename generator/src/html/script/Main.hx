@@ -78,7 +78,7 @@ class Main {
 	static function drawOverview(internals:JQuery)
 	{
 		var oview = J(JQuery.parseHTML('<div id="toc" class="toccompact"><ul></ul></div>'));
-		oview.append(internals);
+		oview.children("ul").append(internals);
 		J("div.col-text").append(oview);
 	}
 
