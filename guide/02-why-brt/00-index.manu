@@ -50,9 +50,9 @@ development impact, this would also affect investment decisions. Many cities are
 investments to help stimulate economic development in particular locations to guide urban growth to strategic 
 locations. This chapter reviews how BRT, LRT, and HRT options vary with respect to each of these issues. 
 
-\include{21-defining-rapid-transit-modes.manu}
-\include{22-costs.manu}
-\include{23-planning-and-development.manu}
-\include{24-performance.manu}
-\include{25-impacts.manu}
-\include{26-why-brt.manu}
+\include{01-defining-rapid-transit-modes.manu}
+\include{02-costs.manu}
+\include{03-planning-and-development.manu}
+\include{04-performance.manu}
+\include{05-impacts.manu}
+\include{06-why-brt.manu}
