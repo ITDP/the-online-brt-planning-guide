@@ -100,7 +100,7 @@ Fortunately for cities, the technology for providing high-quality public transpo
 \meta\reset{chapter}{22}  \' TODO missing chapter 22, skip to chapter 23 '\
 \include{23-roadway-design/roadway-design.manu}
 \include{24-intersections_and_signal_control/intersections-and-signal-control.manu}
-\include{25-brt-stations/brt-stations.manu}
+\include{25-brt-stations/00-index.manu}
 \include{26-depots\depots.manu}
 \include{27-control_center\control-center.manu}
 

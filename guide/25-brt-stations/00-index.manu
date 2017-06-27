@@ -49,14 +49,14 @@ from the elements and prevent fare evasion \[1 point\].
 All these issues are addressed in this chapter. Facilitating seamless and efficient customer movements 
 directly affects travel times, convenience, and ultimately customer satisfaction. This chapter provides 
 an overview of key aspects of the planning and design of BRT stations. 
-\include{principles-of-station-design.manu}
-\include{basic-station-concepts.manu}
-\include{station-capacity.manu}
-\include{types-of-stations.manu}
-\include{station-location.manu}
-\include{station-dimensions.manu}
-\include{station-components.manu}
-\include{platform-design-and-components.manu}
-\include{station-architecture.manu}
-\include{station-amenities.manu}
-\include{station-operation.manu}
+\include{01-principles-of-station-design.manu}
+\include{02-basic-station-concepts.manu}
+\include{03-station-capacity.manu}
+\include{04-types-of-stations.manu}
+\include{05-station-location.manu}
+\include{06-station-dimensions.manu}
+\include{07-station-components.manu}
+\include{08-platform-design-and-components.manu}
+\include{09-station-architecture.manu}
+\'include{10-station-amenities.manu} <--All the content of this file was moved to the 09-station-architecture.manu  '\
+\include{11-station-operation.manu}

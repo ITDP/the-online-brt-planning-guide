@@ -1,11 +1,26 @@
+\' THIS CONTENT LIKE THIS IS NOT COMPILING  
 
+Generation ERROR: TypeError: Cannot read property 'url' of null
 
-\section{Station Amenities}
+nerator/src/html/Generator.hx line 302
+nerator/src/html/Generator.hx line 452
+nerator/src/html/Generator.hx line 452
+nerator/src/html/Generator.hx line 271
+nerator/src/html/Generator.hx line 452
+nerator/src/html/Generator.hx line 452
+nerator/src/html/Generator.hx line 254
+nerator/src/html/Generator.hx line 452
+nerator/src/html/Generator.hx line 492
+ng-guide/generator/src/Main.hx line 88
 
-\quotation{ “A river is more than an amenity, it is treasure.”}
+'\
+
+\subsection{Station Amenities}
+
+\quotation{A river is more than an amenity, it is treasure.}
 {Oliver Wendell Holmes, author, physician, poet, humourist, 1809-1894}
 
-\subsection{Toilets}
+\title{Toilets}
 
 In general, BRT systems rarely provide toilets at stations because it requires additional space, cost, 
 utilities (electricity and plumbing), and maintenance. Larger stations and terminals are often equipped 
@@ -20,7 +35,7 @@ As noted, toilets need to be provided for station staff, though not necessarily 
 toilet every few stations can suffice, allowing staff to access toilets during breaks. Toilets for station 
 staff should preferably be located near rather than in BRT stations.
 
-\subsection{Commercial Space}
+\title{Commercial Space}
 
 BRT stations provide commercial opportunities to generate revenue and provide passengers services. 
 Proximity to destinations, such as shopping centers, sports arenas, or entertainment districts, may provide 
@@ -48,7 +63,7 @@ and/or terminal sites. The availability of space is the prime determinant, along
 design the shop to avoid conflicts with passenger movements. If a  system has an underground tunnel connecting 
 interchange stations, then an underground shop location could be feasible. 
 
-\figure[medium]{assets/image108.jpeg}{Lanzhou’s Fifth Avenue shopping mall connects two BRT stations 
+\figure{assets/image107.jpeg}{Lanzhou’s Fifth Avenue shopping mall connects two BRT stations 
 and is pictured here in May 2013, a few months before opening. The mall has proven very successful.}{Karl Fjellstrom}
 
 The Lanzhou BRT includes elements of transit-oriented development and public-private partnership financing 
@@ -63,5 +78,3 @@ Gansu Dacheng Investment Ltd. invested in and will operate this shopping mall fo
 to the original fee which was used to offset the BRT corridor construction cost, the company builds and 
 maintains the public facilities, including BRT passenger tunnels and escalators.
 
-\figure{assets/image107.jpeg}{Lanzhou’s Fifth Avenue shopping mall connects two BRT stations 
-and is pictured here in May 2013, a few months before opening. The mall has proven very successful.}{Karl Fjellstrom}

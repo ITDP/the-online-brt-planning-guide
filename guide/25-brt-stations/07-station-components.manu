@@ -26,7 +26,7 @@ has been built which reduces the walking distance from A to B to a mere severnty
 compares poorly to the twenty-three meters straight line distance.
 
 \figure{assets/image60.jpeg}{Station access in Urumqi.}{Karl Fjellstrom, ITDP, www.transportphoto.net}
-\' TODO: FIX THIS: (There are boxes INSIDE the Picture - Check DOCX)
+\' TODO: FIX THIS: (There are boxes INSIDE the Picture - Check DOCX)'\
 
 Similarly BRT expert Pedro Szasz’s analysis of the Transjakarta Busway and how to improve various problems 
 showed that the measure which would have the single biggest benefit in terms of passenger time savings 
@@ -159,16 +159,19 @@ tickets or fares at once, or if you have to buy a ticket from a person.
 Space on station is precious and every function that can be done in other places should be avoided 
 and removed, including rest rooms, ticket selling, and equipment that is not directly related to operation.
 
-\title{Genreal equation for determind number of gates, ticket machines or boots}
+\subsection {Number of Gates, ticket machines or boots}
+
+The equation bellow is general for detemine the required number of units of boots, turnstiles, gates without queue formation:
 
 $$ N = integer( {Q \over C} + 1.5) +  R $$
 
 \item $$ N $$: Number of units needed
 \item $$ Q $$: Quantity of required peak hour operations
 \item $$ C $$: Average Capacity per unit (operations/hour)
-\item {$$ 1.5 $$:    
+\item [$$ 1.5 $$:    
                  \item $$ 0.5 $$: Spare capacity to  avoid random queues         
-                 \item $$ 1.0 $$: Rounding up, to never have less than 0.5 of spare capacity}
+                 \item $$ 1.0 $$: Rounding up, to never have less than 0.5 of spare capacity
+      ]
 \item $$ R$$ : Reserve for failure, minimum of 1. If reversible gates are used, R can be added after adding entry 
 and exit gates.
 
@@ -177,11 +180,11 @@ In case of two entries and no information about flows adopt 0.70 of total for ea
 \title{Parameter for number of operations and capacity for gates, ticket machines}
 
 Ticket machine:
-\item { $$ Q = {Max(Pb,Pa) \over Nt} $$, where
+\item [ $$ Q = {Max(Pb,Pa) \over Nt} $$, where
     \item $$ Nt $$: average number of ticket trips bought per sale operation. In absence of data adopt 4
     \item $$ Pa $$: total alighting passengers on peak
     \item $$ Pb $$: total boarding passengers on peak
-}
+]
 \item C = 180
 
 Ticket boot:
@@ -224,9 +227,9 @@ $$ M_\text{EXIT} = max(\text{G}_\text{EXIT AFTERNOON} + \text{G}_\text{EXIT AFTE
 
 Then, the number of entrance, exit and , will be as follows:
 
-$$ (G_\text{REVERSIBLE} = \text{M}_\text{ENTER} + \text{M}_\text{EXIT} - G_\text{TOTAL} ) $$ 
-$$ (G_\text{ENTER} = \text{M}_\text{ENTER} - \text{G}_\text{REVERSIBLE}) $$ 
-$$ (G_\text{EXIT} = \text{M}_\text{EXIT} - \text{G}_\text{REVERSIBLE}) $$ 
+$$ G_\text{REVERSIBLE} = \text{M}_\text{ENTER} + \text{M}_\text{EXIT} - G_\text{TOTAL}  $$ 
+$$ G_\text{ENTER} = \text{M}_\text{ENTER} - \text{G}_\text{REVERSIBLE} $$ 
+$$ G_\text{EXIT} = \text{M}_\text{EXIT} - \text{G}_\text{REVERSIBLE} $$ 
 
 Reserve gates, computed over total, should be reversible
 
@@ -260,16 +263,16 @@ Reserve gates, computed over total, should be reversible
 \col 10
 \endtable
 
-$$ (G_\text{REVERSIBLE} = \text{M}_\text{ENTER} + \text{M}_\text{EXIT} - G_\text{TOTAL} ) $$ 
-$$ (G_\text{ENTER} = \text{M}_\text{ENTER} - \text{G}_\text{REVERSIBLE}) $$ 
-$$ (G_\text{EXIT} = \text{M}_\text{EXIT} - \text{G}_\text{REVERSIBLE}) $$ 
+$$ G_\text{REVERSIBLE} = \text{M}_\text{ENTER} + \text{M}_\text{EXIT} - G_\text{TOTAL}  $$ 
+$$ G_\text{ENTER} = \text{M}_\text{ENTER} - \text{G}_\text{REVERSIBLE} $$ 
+$$ G_\text{EXIT} = \text{M}_\text{EXIT} - \text{G}_\text{REVERSIBLE} $$ 
 
 $$ G_\text{TOTAL} = 10 $$
 $$ M_\text{ENTER} = 7 $$
 $$ M_\text{EXIT} = 5 $$ 
-$$ (G_\text{REVERSIBLE} = 7 + 5 - 10 =2 $$
-$$ (G_\text{ENTER} = 7-2 = 5 $$ 
-$$ (G_\text{EXIT} = 5-2 = 3 $$ 
+$$ G_\text{REVERSIBLE} = 7 + 5 - 10 =2 $$
+$$ G_\text{ENTER} = 7-2 = 5 $$ 
+$$ G_\text{EXIT} = 5-2 = 3 $$ 
 
 Ten operating gates are required, with one resversible as reserve
 
@@ -278,7 +281,7 @@ $$ Total = 10 + 1 = 11  $$
 \endbox
 
 
-\title{Layout and Placement of Turnstiles}
+\subsection{Layout and Placement of Turnstiles}
 
 Turnstiles can be offset or placed directly across the entry of the station. Offsetting the turnstiles 
 allows for more turnstiles but requires more station length. Figure 25.62 provides examples of various 

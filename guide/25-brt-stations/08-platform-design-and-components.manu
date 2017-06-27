@@ -1,8 +1,6 @@
+\section{Vehicle Interface}
 
-
-\section{Platform Design and Components}
-
-\quotation{ “Even if you’re on the right track, you’ll get run over if you just sit there”}
+\quotation{Even if you’re on the right track, you’ll get run over if you just sit there}
 {Will Rogers, actor, 1879-1935}
 
 Having the platform level with the vehicle floor is one of the most important ways of reducing boarding 
@@ -27,7 +25,7 @@ Sliding doors can provide a more professional impression and improve safety by d
 through station doorways (Figure 11.60). Station doors can also help protect the customers from the weather 
 – whether it be rain or hot or cold. If a station is heated or air conditioned, doors keep in the conditioned 
 air. These doors may be controlled electronically from the vehicle or station, but should have a manual 
-override, in case like in Figure xxxx the door does not function. As mentioned above, this introduces 
+override, in case like in Figure 25.87 the door does not function. As mentioned above, this introduces 
 a maintenance challenge and can lead to the doors not functioning and the system not having the capacity 
 or resources to fix them.
 
@@ -44,8 +42,7 @@ to the space available on the BRT station structure. Where boarding and alightin
 sides of the station, the doors should ideally be offset, so that waiting passengers in one direction 
 do not impede boarding & alighting passengers in the other direction.
 
-\' TODO '\
-Figure xxxx shows the proposed BRT station configuration in Vientiane. Note:
+Figure 25.88 shows the proposed BRT station configuration in Vientiane. Note:
 
 \item The stations have been designed to accommodate a variety of vehicle types; namely 9-meter, 12-meter, 
 \item and 18-meter BRT buses. In the short to medium term the 18-meter buses are not needed and are not recommended. 
@@ -105,8 +102,8 @@ To ensure close docking without the use of boarding bridges, a combination of th
 \item Kassel curbs or sloping curbs that enable buses to stop close to the platform without actually striking 
 the platform; and
 \item Especially for high floor systems where closer docking is more critical, some form of padding is often 
-utilized (see Figure xxxx).
-\item Visual aids to drivers so they know exactly where to stop the bus (Figure xxxx).
+utilized (see Figure 25.89).
+\item Visual aids to drivers so they know exactly where to stop the bus (Figure 25.90).
 
 \figure{assets/image89.png}{Cali’s BRT stations feature padding to allow drivers to dock 
 closely to the station.}{Shanshan Li, ITDP} 
@@ -118,14 +115,14 @@ dashboard to the yellow line on the pavement to dock closely to the station.}{IT
 of Johannesburg’s BRT system. The curbs here are rounded and made of steel so that buses can pull up 
 to them without damaging their tires. }{Aimee Gauthier, ITDP}
 
-\figure[medium]{assets/image92.jpeg}{Cape Town uses Kassel curbs, a sloped curb that minimizes 
-the wear and tear on the tires of the bus by curving up. }{ITDP}
-
 \figure{assets/image93.jpeg}{Smooth, hard, bevelled curb in Nantes to reduce tire wear. 
 }{Karl Fjellstrom}
 
  \figure{assets/image94.jpeg}{Smooth, hard, bevelled curb in Amsterdam to reduce tire 
 wear. }{Karl Fjellstrom}
+
+\figure[medium]{assets/image92.jpeg}{Cape Town uses Kassel curbs, a sloped curb that minimizes 
+the wear and tear on the tires of the bus by curving up. }{ITDP}
 
 \beginbox{Solutions to Minimizing the Gap: A case study}
 
@@ -135,14 +132,19 @@ even if those curbs are bevelled or smoothed. To compensate for this that result
 wall wear, many tires are reinforced with thicker rubber, which increases the weight of the tires by 
 a third more. This added weight means more fuel consumption. 
 
+\figure{assets/image95.jpeg}{Image of the precision docking curb that shows the slope 
+downward to the station, the rounded curb, and the idea of the stepping back the top of the curb.}
+{Bridgestone.}
+
 In an effort to address this, Bridgestone has been experimenting with both the curb and the tire to 
 reduce the wear and tear of the tire, as well as its weight, while helping getting a closer alignment. 
 It is a mix of redesigning the idea of a beveled curb to better work with buses and drivers to get closer 
 to the station, while redesigning the tire for that type of approach.
 
-\figure{assets/image95.jpeg}{Image of the precision docking curb that shows the slope 
-downward to the station, the rounded curb, and the idea of the stepping back the top of the curb.}
-{Bridgestone.}
+
+\figure{assets/image97.jpeg}{The tire reside technology reinforces the side of the tire 
+that rubs against the curb without adding extra weight to the tire and making the tire last 25 percent 
+longer than a conventional tire. No color on the tire – color in image is for illustration.}{ Bridgestone.}
 
 In what they are calling the “Precision Docking Curb,” Bridgestone builds on the idea of the beveled 
 curb with two additional features which help buses align to the station better. The first is the gently 
@@ -151,19 +153,14 @@ steering. This serves as a means of controlling the angle of approach to the cur
 the driver's skills. The second big change this introduces is to step back the curb to avoid the curb 
 hitting the body of the buses when approaching the station. In a study testing the performance between 
 existing beveled curbs and the precision docking curb, the precision docking curb performed significantly 
-better with less variation (see Figure 25.xxxx)
-
-\figure{assets/image96.png}{The gap improvement from using the precision docking curb 
-method.}{ Bridgestone}
-
+better with less variation (see Figure 25.97)
 To address the wear and tear to the tire, Bridgestone has developed the tire reside technology. This 
 allows the tire casing to be replaced, but the internal tube can be reused over and over again. This 
 technology also slows down the speed with which the tire sides wear, meaning these tires last 25 percent 
 longer than a conventional tire.
 
-\figure{assets/image97.jpeg}{The tire reside technology reinforces the side of the tire 
-that rubs against the curb without adding extra weight to the tire and making the tire last 25 percent 
-longer than a conventional tire. No color on the tire – color in image is for illustration.}{ Bridgestone.}
+\figure[medium]{assets/image96.png}{The gap improvement from using the precision docking curb 
+method.}{ Bridgestone}
 
 These both improve the platform-vehicle interface with narrower gap and less variances, which significantly 
 affect accessibility for a variety of users. 

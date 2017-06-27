@@ -1,8 +1,6 @@
-
-
 \section{Station architecture}
 
-\quotation{ “It is not the beauty of a building you should look at; it’s the construction of the foundation that will stand the test of time.”}
+\quotation{It is not the beauty of a building you should look at; it’s the construction of the foundation that will stand the test of time.}
 {David Allen Coe, musician, 1939-}
 
 \subsection{Architectural Style}
@@ -123,7 +121,7 @@ station first, before the remaining stations are built. This initial demonstrati
 to test and make adjustments for all aspects of the station architecture, as well as for components such 
 as road pavement coloring. It can also help build excitement and buy-in to the new system.
 
-Figure xxxx shows the demonstration station completed in Yichang in late 2013. This station, Wuyi Guangchang, 
+Figure 25.101 shows the demonstration station completed in Yichang in late 2013. This station, Wuyi Guangchang, 
 was thoroughly reviewed by ITDP-China working with the Guangzhou Municipal Engineering Design and Research 
 Institute (GMEDRI) in late 2013, and a number of adjustments were made for application to the station 
 architecture and construction of subsequent stations.
@@ -236,3 +234,80 @@ Fjellstrom}
 
 \figure[medium]{assets/image106.jpeg}{Cape Town planted trees in the station on the walkway connecting 
 sub-stops.}{ITDP}
+
+
+
+\'
+
+The content bellow is pasted from station-amenities.manu
+because it was not compiling as this on that file (log copied there)
+
+Originaly this was a section... but it is too short and quite incomplete to be one, so the
+\section was renamed \subsection and the \subsections renamed \tittes
+
+'\
+
+
+\subsection{Station Amenities}
+
+\quotation{A river is more than an amenity, it is treasure.}
+{Oliver Wendell Holmes, author, physician, poet, humourist, 1809-1894}
+
+\title{Toilets}
+
+In general, BRT systems rarely provide toilets at stations because it requires additional space, cost, 
+utilities (electricity and plumbing), and maintenance. Larger stations and terminals are often equipped 
+with restrooms for customers, which staff can use, with proper security. It is essential to have restrooms 
+for drivers at terminal facilities, so they can be comfortable while driving during their shifts. These 
+facilities may be separate from customer restrooms. Toilets are essential for staff located at stations 
+full time for maintenance and/or customer service; however, it may be sufficient to establish a relationship 
+with nearby businesses to use their facilities. Another option is paid, self-cleaning toilets located 
+nearby the station.
+
+As noted, toilets need to be provided for station staff, though not necessarily at every station. A 
+toilet every few stations can suffice, allowing staff to access toilets during breaks. Toilets for station 
+staff should preferably be located near rather than in BRT stations.
+
+\title{Commercial Space}
+
+BRT stations provide commercial opportunities to generate revenue and provide passengers services. 
+Proximity to destinations, such as shopping centers, sports arenas, or entertainment districts, may provide 
+opportunities for joint development with adjacent retail. This may not only lead to opportunities for 
+on-site retail and passenger amenities, it may also help seamlessly integrate the station into the surrounding 
+environment. 
+
+Different station configurations may determine the commercial potential. Larger intermodal and terminal 
+stations may be destinations in themselves, providing gateways to grocery stores and shopping malls. 
+These stations may also host smaller vendors, such as newspaper stands or retail kiosks. Stations may 
+have similar types of development, but these stations typically have smaller footprints and therefore 
+less space for commercial development. The smaller retail shops could be planned in coordination with 
+ticket sales outlets or information centers. Regardless of configuration, stations have opportunities 
+to generate on-site revenue through advertising, vending machines, and newspaper boxes.
+
+Public transport stations also represent great value from the perspective of vendors and shop owners. 
+The high volume of public-transport customers through stations and terminals provides vendors with a 
+concentration of potential clientele. The value of commercial property near stations often is representative 
+of the high value that merchants place upon potential customer volumes. The needs of the commuters are 
+met both by the services provided by the street vendors and the formal establishments like kiosks, shops, 
+and large commercial centers. 
+
+From an infrastructure standpoint, it is possible to integrate commercial enterprises into the station 
+and/or terminal sites. The availability of space is the prime determinant, along with the ability to 
+design the shop to avoid conflicts with passenger movements. If a  system has an underground tunnel connecting 
+interchange stations, then an underground shop location could be feasible. 
+
+\figure{assets/image107.jpeg}{Lanzhou’s Fifth Avenue shopping mall connects two BRT stations 
+and is pictured here in May 2013, a few months before opening. The mall has proven very successful.}{Karl Fjellstrom}
+
+The Lanzhou BRT includes elements of transit-oriented development and public-private partnership financing 
+in the form of six underground shopping malls underneath the BRT corridor, constructed as part of the 
+BRT project. The largest, called Fifth Avenue, connects with two BRT stations, Feijiaying and Taohai 
+Shichang. These shopping malls were implemented by the government in the form of the Lanzhou ADB loan 
+Project Management Office, with one sold to a private company and the other five rented to tenants. The 
+Fifth Avenue mall is 496 meters long with a 16,000 square meter operational area, which includes shopping 
+areas, public space and pedestrian passageways. It has eight entrances and 16 escalators, along with 
+24-hour camera monitors, three public plazas and exhibition spaces, and its own system control center. 
+Gansu Dacheng Investment Ltd. invested in and will operate this shopping mall for 50 years. In addition 
+to the original fee which was used to offset the BRT corridor construction cost, the company builds and 
+maintains the public facilities, including BRT passenger tunnels and escalators.
+
