@@ -90,7 +90,7 @@ Fortunately for cities, the technology for providing high-quality public transpo
 \volume{Technology}
 \include{volume-5-landing-page.manu}
 \include{18-fare_systems/fare-systems.manu}
-\include{19-technology\technology.manu}
+\include{19-technology/technology.manu}
 \include{20-vehicles/vehicles.manu}
 
 
@@ -101,8 +101,8 @@ Fortunately for cities, the technology for providing high-quality public transpo
 \include{23-roadway-design/roadway-design.manu}
 \include{24-intersections_and_signal_control/intersections-and-signal-control.manu}
 \meta\reset{chapter}{25} \' TODO missing chapter 25, skip to chapter 26 '\
-\include{26-depots\depots.manu}
-\include{27-control_center\control-center.manu}
+\include{26-depots/depots.manu}
+\include{27-control_center/control-center.manu}
 
 
 \volume{Integration}
