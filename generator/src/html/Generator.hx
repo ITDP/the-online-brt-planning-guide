@@ -262,7 +262,6 @@ class Generator {
 			noc.chapter = no;
 			var url = Path.addTrailingSlash(idc.chapter);
 			bcs.chapter = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
-			show("\n" + v.hierarchyTree());
 			var title = 'Chapter $no: ${genn(name)}';
 			var buf = openBuffer(title, bcs, url);
 			toc.add('<li class="chapter">${renderToc(null, "Chapter " + noc.chapter, new Html(genh(name)), url)}<ul>\n');

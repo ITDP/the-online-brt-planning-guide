@@ -7,7 +7,6 @@ import parser.Lexer;
 import parser.Parser;
 import tex.Generator in TexGen;
 import transform.Context;
-import transform.DocumentTools;
 import transform.NewDocument;
 import transform.NewTransform;
 import utest.Assert;
@@ -67,27 +66,6 @@ class Test_09_Issues {
 	{
 		parse("\\item [a\n\nb]");
 		Assert.pass();
-	}
-
-	public function test_issue_0186()
-	{
-		var exp = transform(expand(
-				VElemList([
-					VElemList([
-						Section(Word("foo")),
-						SubSection(Word("bar"))
-					])
-				])));
-		var got = transform(expand(
-				VElemList([
-					VElemList([
-						Section(Word("foo"))
-					]),
-					VElemList([
-						SubSection(Word("bar"))
-					])
-				])));
-		Assert.same(exp, got);
 	}
 
 	public function test_internal_0001()
