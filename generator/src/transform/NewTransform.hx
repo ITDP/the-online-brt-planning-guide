@@ -120,18 +120,29 @@ class NewTransform {
 	static function consume(parent:VElem, pool:Array<VElem>, idc:IdCtx, noc:NoCtx):DElem
 	{
 		var li = [];
-		while (pool.length > 0) {
-			switch [parent.def, pool[0].def] {
-			case [Volume(_), Volume(_)]: break;
-			case [Chapter(_), Chapter(_)|Volume(_)]: break;
-			case [Section(_), Section(_)|Chapter(_)|Volume(_)]: break;
-			case [SubSection(_), SubSection(_)|Section(_)|Chapter(_)|Volume(_)]: break;
-			case [SubSubSection(_), SubSubSection(_)|SubSection(_)|Section(_)|Chapter(_)|Volume(_)]: break;
+
+		function eatTillBoundary(sub:Array<VElem>):Bool {
+			switch [parent.def, sub[0].def] {
+			case [Volume(_), Volume(_)]: return true;
+			case [Chapter(_), Chapter(_)|Volume(_)]: return true;
+			case [Section(_), Section(_)|Chapter(_)|Volume(_)]: return true;
+			case [SubSection(_), SubSection(_)|Section(_)|Chapter(_)|Volume(_)]: return true;
+			case [SubSubSection(_), SubSubSection(_)|SubSection(_)|Section(_)|Chapter(_)|Volume(_)]: return true;
+			case [_, VElemList(more)]:
+				// do a depth-first-search for next boundary
+				var w = sub.shift();
+				if (eatTillBoundary(more)) {
+					sub.unshift(mk(VElemList(more), w.pos));
+					return true;
+				}
 			case _:
-				var v = pool.shift();
-				li.push(vertical(v, pool, idc, noc));
+				var v = sub.shift();
+				li.push(vertical(v, sub, idc, noc));
 			}
+			return false;
 		}
+
+		while (pool.length > 0 && !eatTillBoundary(pool)) {}
 		return switch li {
 		case []: mkd(DEmpty, parent.pos.offset(parent.pos.max - parent.pos.min, 0));
 		case [single]: single;
@@ -218,7 +229,11 @@ class NewTransform {
 		case Paragraph(text):
 			return mkd(DParagraph(horizontal(text)), v.pos);
 		case VElemList(li):
-			var li = [ while (li.length > 0) vertical(li.shift(), li, idc, noc) ];
+			// `siblings` is the stack of remaining neighbors from the depth-first-search
+			// to update: shift the entire `li` in front of the current `siblings`
+			while (li.length > 0)
+				siblings.unshift(li.pop());
+			var li = [ while (siblings.length > 0) vertical(siblings.shift(), siblings, idc, noc) ];
 			// don't collapse one-element lists because that would
 			// destroy position information that came from trimmed children;
 			// also, even thought the end of the list might have
