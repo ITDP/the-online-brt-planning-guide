@@ -93,6 +93,7 @@ header a {
 }
 header ul {
 	line-height: 32px;
+	font-weight: bold;
 	width: 1216px;
 	margin: 0 auto;
 	padding: 0 0 0 0 ;
@@ -573,8 +574,6 @@ pre {
 	}
 	header ul {
 		width: auto;
-		line-height: 24px;
-		font-size: 12px;
 	}
 	header ul li {
     display: block;
@@ -586,25 +585,31 @@ pre {
 		padding: 38px 8px 0 0;
 	}
 	header ul li.jump-to-nav {
-		display: none;
+		display: block;
+		position: absolute;
+		top: 0px;
+		right: 0;
+		font-size: 25px;
+		padding: 0;
 	}
 
 	/* nav */
 
 	nav {
-		padding: 0 0 8px 0;
-		margin: 16px 0;
+		padding: 8px 0 16px 0;
+		margin: 32px 0;
 		width: 100%;
 		position: relative;
-		top: 0;
-		background-color: #EEE;
 		border-radius: 2px;
+    border-color: #EEE;
+    border-style: solid;
+    border-width: 1px;
 	}
 	nav li {
-		font-size: 16px;
-		padding: 8px 0 0 8px;
+		padding: 8px 0 0 16px;
 	}
-	nav ul {
+	nav ul ul {
+		padding: 0;
 	}
 
 
