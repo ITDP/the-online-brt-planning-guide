@@ -251,6 +251,10 @@ nav ul hr {
   text-decoration-skip: ink;
   color: #333;
 }
+.index a {
+    font-weight: bold;
+    color: #00a95e;
+}
 
 /* col-text */
 
