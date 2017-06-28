@@ -2,15 +2,15 @@
 <ul>
 <li><a class="brtcolor" href="(:ROOT_URL:)"><strong>BRT Planning Guide</strong></a></li>
 (:if bcs.volume != null:)
-<li>/</li>
+<li class="slash">/</li>
 <li><a class="volume(:bcs.volume.no:)" href="(:bcs.volume.url:)"><strong>(:bcs.volume.name:)</strong></a></li>
 (:end:)
 (:if bcs.chapter != null:)
-<li>/</li>
+<li class="slash">/</li>
 <li><a href="(:bcs.chapter.url:)"><strong>(:bcs.chapter.name:)</strong></a></li>
 (:end:)
 (:if bcs.section != null:)
-<li>/</li>
+<li class="slash">/</li>
 <li><a href="(:bcs.section.url:)"><strong>(:bcs.section.name:)</strong></a></li>
 (:end:)
 <li class="jump-to-nav">/</li>

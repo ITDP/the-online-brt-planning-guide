@@ -244,9 +244,11 @@ nav ul hr {
 	height: 1px;
 	background: #EEE;
 }
-.active {
-	font-weight: bold;
-	color: #333;
+.active a {
+  text-decoration: underline;
+  text-decoration-color: #999;
+  text-decoration-skip: ink;
+  color: #333;
 }
 
 /* col-text */
@@ -565,18 +567,26 @@ pre {
 	/* header */
 
 	header {
-		border-bottom: 0px;
+		padding-bottom: 32px;
 		position: relative;
 		height: auto;
 	}
 	header ul {
 		width: auto;
+		line-height: 24px;
+		font-size: 12px;
+	}
+	header ul li {
+    display: block;
+	}
+	header ul li.slash {
+		display: none;
 	}
 	header ul li:first-child {
-		padding: 0 8px 0 88px;
+		padding: 38px 8px 0 0;
 	}
 	header ul li.jump-to-nav {
-		display: inline;
+		display: none;
 	}
 
 	/* nav */
