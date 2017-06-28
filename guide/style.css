@@ -245,7 +245,7 @@ nav ul hr {
 	height: 1px;
 	background: #EEE;
 }
-.active a {
+.active > a {
   text-decoration: underline;
   text-decoration-color: #999;
   text-decoration-skip: ink;
@@ -600,14 +600,17 @@ pre {
 	/* nav */
 
 	nav {
-		padding: 8px 0 16px 0;
 		margin: 32px 0;
+		top: 0;
 		width: 100%;
 		position: relative;
+	}
+	nav > ul {
+		padding: 8px 0 16px 0;
 		border-radius: 2px;
-    border-color: #EEE;
-    border-style: solid;
-    border-width: 1px;
+		border-color: #EEE;
+		border-style: solid;
+		border-width: 1px;
 	}
 	nav li {
 		padding: 8px 0 0 16px;
