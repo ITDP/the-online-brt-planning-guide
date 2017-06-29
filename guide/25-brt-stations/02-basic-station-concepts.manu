@@ -31,6 +31,8 @@ the station footprint to be considered.
 
 BRT stations also serve different purposes, that affect design, including size of the station: 
 
+\figure[small]{assets/image1.png}{Graphic of BRT station types.}{ Nelson\\Nygaard.}
+
 \number \highlight{Standard -} typical station along BRT corridor. It is the workhorse of 
 the system, and by virtue of repetition, it often becomes the symbol of the system. The macro-location 
 will be determined by the operations plan. The exact location will be determined by a site analysis with 
@@ -43,9 +45,6 @@ destinations. They are usually considered anchors of the system. They serve as i
 various modes and will become important destinations in their own right.  Hence, there are opportunities 
 to construct a significant building, similar to city's main train station or airport.  Space is can be 
 made available for busses to park (layover) for driver breaks, minor servicing, and schedule adjustments. 
-
-
-\figure[medium]{assets/image1.png}{Graphic of BRT station types.}{ Nelson\\Nygaard.}
 
 \figure[large]{assets/image2.png}{Corridors, terminals, transfer stations (at all locations where 
 feeder routes or ‘Rutas alimentadora’ are indicated), and regular stations in TransMilenio as of September 
@@ -82,23 +81,25 @@ paid customers only, a segregated tunnel or pedestrian bridge is required; and
 \item Interchange facility (multi-bay or multi-story facility): when different services are located in the 
 same space, but at different levels. These facilities often take a lot of space.
 
+\figure[small]{assets/image7.jpeg}{Customers transfer from trunk services to feeder services 
+by crossing a platform in Quito, Ecuador.}{Lloyd Wright.}
+
+\figure[small]{assets/image8.jpeg}{Customers arriving by the green feeder vehicles transfer over 
+a pedestrian bridge to enter the trunk service in Bogotá, Colombia.}{TransMilenio SA.} 
+
 \figure[medium]{assets/image4.jpeg}{BRT station in Cleveland, Ohio, USA.}{Michael King.}
+
+\figure[small]{assets/image9.jpeg}{The architectural design of terminal facilities in Quito, 
+Ecuador.}{Lloyd Wright.}
+
+\figure[small]{assets/image10.jpeg}{The terminal facility of Bogotá, Colombia.}{Lloyd 
+Wright.}
+
+\figure[medium]{assets/image6.jpeg}{Station in Guadalajara, Mexico.}{Michael King.}
+
+\figure[small]{assets/image11.jpeg}{The terminal facility in Guayaquil, Ecuador.}{Lloyd 
+Wright.}
 
 \figure[medium]{assets/image5.jpeg}{Station in Buenos Aires, Argentina.}{Michael King.}
 
-\figure{assets/image6.jpeg}{Station in Guadalajara, Mexico.}{Michael King.}
 
-\figure[medium]{assets/image7.jpeg}{Customers transfer from trunk services to feeder services 
-by crossing a platform in Quito, Ecuador.}{Lloyd Wright.}
-
-\figure{assets/image8.jpeg}{Customers arriving by the green feeder vehicles transfer over 
-a pedestrian bridge to enter the trunk service in Bogotá, Colombia.}{TransMilenio SA.} 
-
-\figure[medium]{assets/image9.jpeg}{The architectural design of terminal facilities in Quito, 
-Ecuador.}{Lloyd Wright.}
-
- \figure{assets/image10.jpeg}{The terminal facility of Bogotá, Colombia.}{Lloyd 
-Wright.}
-
-\figure[medium]{assets/image11.jpeg}{The terminal facility in Guayaquil, Ecuador.}{Lloyd 
-Wright.}
