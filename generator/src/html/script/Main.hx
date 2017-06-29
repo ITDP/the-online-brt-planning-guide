@@ -72,6 +72,7 @@ class Main {
 		// draw the nav toc
 		J("#toc-loading").remove();
 		J("nav").append(toc);
+		me.addClass("active");
 	}
 
 	static function drawOverview(internals:JQuery)

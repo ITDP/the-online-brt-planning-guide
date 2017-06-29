@@ -281,9 +281,11 @@ nav ul hr {
 	height: 1px;
 	background: #EEE;
 }
-.active {
-	font-weight: bold;
-	color: #333;
+.active>a {
+  text-decoration: underline;
+  text-decoration-color: #999;
+  text-decoration-skip: ink;
+  color: #333;
 }
 
 /* col-text */
