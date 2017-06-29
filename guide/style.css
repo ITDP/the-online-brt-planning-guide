@@ -681,6 +681,9 @@ figcaption.share:hover:after {
     padding: 16px;
     font-size: 20px;
 	}
+	.tocfull .close {
+		display: none;
+	}
 	nav > ul {
 		padding: 8px 0 16px 0;
 		border-radius: 2px;
