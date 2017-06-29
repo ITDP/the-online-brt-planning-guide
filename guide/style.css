@@ -351,7 +351,7 @@ div#toc li.chapter li li li { display: none; }
 }
 .img-block figcaption {
 	width: 100%;
-	margin: 8px 0px 32px;
+	margin: 8px 0px 16px;
 	font-size: 12px;
 	font-family: 'PT Sans', sans-serif;
 	color: #666;
@@ -361,8 +361,7 @@ div#toc li.chapter li li li { display: none; }
 	content:".";
 }
 .img-block.sm {
-	margin: 0;
-	margin-top: -32px;
+	margin: -32px 0 32px 0;
 	padding-top: 32px;
 }
 
@@ -415,7 +414,7 @@ blockquote .by {
 	margin-top: 8px;
 }
 blockquote .by::before {
-	content: "— ";
+	content: "\2015\0020";
 }
 blockquote.md {
 	width: 608px;
@@ -423,8 +422,13 @@ blockquote.md {
 	margin: 32px 0;
 }
 q {
-	quotes: "“" "”" "‘" "’";
 	font-style: italic;
+}
+q::before {
+    content: "\201C";
+}
+q::after {
+    content: "\201D";
 }
 
 /* boxes */
@@ -441,7 +445,7 @@ q {
 	margin-right: 0px;
 	width: 640px;
 }
-.box > h1 {
+.box > h3 {
 	font-size: 16px;
 	color: #666;
 	margin-top: 0;
@@ -512,7 +516,7 @@ pre {
 	text-align: center;
 	top: 0;
 	left: 0;
-	background: rgba(127,127,127,0.75);
+	background: rgba(0,0,0,0.5);
 	cursor: pointer;
 	cursor: zoom-out;
 }
@@ -520,6 +524,8 @@ pre {
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-position: center center;
+	background-color: #FFF;
+	border: 16px #FFF solid;
 	height: 80%;
 	width: 80%;
 	margin: auto;
