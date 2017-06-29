@@ -351,7 +351,7 @@ div#toc li.chapter li li li { display: none; }
 }
 .img-block figcaption {
 	width: 100%;
-	margin: 8px 0px 32px;
+	margin: 8px 0px 16px;
 	font-size: 12px;
 	font-family: 'PT Sans', sans-serif;
 	color: #666;
@@ -361,8 +361,7 @@ div#toc li.chapter li li li { display: none; }
 	content:".";
 }
 .img-block.sm {
-	margin: 0;
-	margin-top: -32px;
+	margin: -32px 0 32px 0;
 	padding-top: 32px;
 }
 
@@ -441,7 +440,7 @@ q {
 	margin-right: 0px;
 	width: 640px;
 }
-.box > h1 {
+.box > h3 {
 	font-size: 16px;
 	color: #666;
 	margin-top: 0;
@@ -520,6 +519,7 @@ pre {
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-position: center center;
+	background-color: #FFF;
 	height: 80%;
 	width: 80%;
 	margin: auto;
