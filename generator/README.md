@@ -1,5 +1,6 @@
-# manu  
-_– processor for the manuscript markup language_
+![╲ ╱╲╱╲ ╱╲ ╱╲╱ ╲╱](https://cdn.rawgit.com/ITDP/the-online-brt-planning-guide/master/generator/docs/logo.svg)
 
-_Documentation yet to come..._
+# manu
+_manuscript markup language processor_
 
+Documentation to come...
