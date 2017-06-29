@@ -16,6 +16,8 @@ the infrastructure surrounding the station, although this is covered in more det
 Integration. This chapter also describes driver and staff training, as well as customer communication.
 Finally, there is a BRT accessibility checklist and references.
 
+\highlight{Contributors:} Tom Rickert, *Access Exchange International*; Michael King, *BuroHappold Engineering*
+
 \include{01-introduction.manu}
 \include{02-consultation-with-customers-with-special-needs.manu}
 \include{03-station-access.manu}
@@ -26,5 +28,3 @@ Finally, there is a BRT accessibility checklist and references.
 \include{08-orientation,-information,-and-evaluation.manu}
 \include{09-brt-accessibility-check-list.manu}
 \include{10-bibliography.manu}
-
-\highlight{Contributors:} Tom Rickert, *Access Exchange International*; Michael King, *BuroHappold Engineering*

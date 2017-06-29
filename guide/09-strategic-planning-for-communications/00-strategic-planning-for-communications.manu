@@ -8,14 +8,9 @@ launch, and operations phases is essential. Every communications plan will be di
 tailored to address local concerns and challenges. The plan is not a static document; various elements
 may need to be tested and refined over time. This chapter aims to provide a roadmap for communications
 planning that outlines key steps for developing and delivering a comprehensive strategic communications
-plan:
-\item Define goals and objectives of the project and use those to drive your communications planning;
-\item Identify stakeholders and target audiences and take the time to understand their perceptions and concerns;
-\item Develop messages that resonate with your stakeholders;
-\item Design strategies and tactics for meeting objectives (including crisis communications planning);
-\item Design ways to engage target audiences and stakeholders;
-\item Budget for success;
-\item Measure your success.
+plan.
+
+\highlight{Contributors:} Carlos Pardo, *Despacio*; Lake Sagaris, *Pontificia Universidad Católica de Chile*; Jemilah Magnusson, *ITDP*; Liz London, *consultant*
 
 \include{define-goals-and-objectives.manu}
 \include{stakeholders-and-target-group-identification-and-analysis.manu}
@@ -27,5 +22,3 @@ plan:
 \include{measuring-success.manu}
 \include{promoting-brt-system-progress.manu}
 \include{conclusion.manu}
-
-\highlight{Contributors:} Carlos Pardo, *Despacio*; Lake Sagaris, *Pontificia Universidad Católica de Chile*; Jemilah Magnusson, *ITDP*; Liz London, *consultant*

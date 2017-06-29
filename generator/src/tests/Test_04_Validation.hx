@@ -130,7 +130,6 @@ class Test_04_Validation {
 		fails('\\begintable{foo}\\useimage{$tex}\\endtable', true, WrongFileType([Jpeg, Png], tex));
 
 		fails('\\tex\\export{$jpg}{/home}', true, AbsoluteOutputPath("/home"), ~/path cannot be absolute/i);
-		fails('\\tex\\export{$jpg}{C:\\Windows}', true, AbsoluteOutputPath("C:\\Windows"), ~/path cannot be absolute/i);
 		fails('\\tex\\export{$jpg}{C:/Windows}', true, AbsoluteOutputPath("C:/Windows"), ~/path cannot be absolute/i);
 		fails('\\tex\\export{$png}{..}', true, EscapingOutputPath(".."), ~/output path cannot escape the destination directory/i);
 		fails('\\tex\\export{$tex}{b/../..}', true, EscapingOutputPath("b/../.."));

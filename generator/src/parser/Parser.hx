@@ -238,11 +238,10 @@ class Parser {
 	the exceptions bellow:
 	 - escapes are processed and, thus, retained their interpreted value
 	 - comments are discarded
+	 - commands are not allowed (the backslash should be escaped)
 	
-	Note: because of this, in raw mode is perfectly valid to write
-	`\windows`, even though we don't have such command; this is
-	intentional, so that it's possible – although not encouraged – to pass
-	Windows-style paths with backslashes.
+	Note: `\windows` used to be valid in raw mode; however, this caused non
+	uniform behavior, since `\03-windows` would fail during lexing.
 	*/
 	function rawHorizontal(stop:Stop):String
 	{
@@ -255,6 +254,8 @@ class Parser {
 				break;
 			case { def:TEof }:
 				break;
+			case { def:TCommand(_) }:
+				unexpected(peek());
 			case { def:TComment(_) }:
 				pop();
 			case { def:TEscaped(w) }:
@@ -342,9 +343,10 @@ class Parser {
 			while (true) {
 				discardVerticalNoise();
 				if (!peek().def.match(TCommand("row"))) break;
-				var row = tableRow(pop());
+				var beginRow = pop();
+				var row = tableRow(beginRow);
 				rows.push(row);
-				assert(row.length == header.length, row.length, header.length, rows.length, begin.pos.toString());
+				assert(row.length == header.length, row.length, header.length, beginRow.pos.toString());
 			}
 			var end = pop();  // should have already discarted any vnoise before
 			if (end.def.match(TEof)) unclosed(begin);

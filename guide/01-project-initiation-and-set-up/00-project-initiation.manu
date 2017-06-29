@@ -28,15 +28,9 @@ and public support and participation, success is much more likely.
 This chapter outlines a few mechanisms to help groups interested in initiating a project to improve
 a city’s urban transport system. This chapter also cites examples of how some cities have achieved political
 commitment for a project and how that support has been translated into a wider vision for a transformation
-of public transport operations. The topics discussed in this chapter are:
+of public transport operations.
 
-\'FIXME: This is the table of contents - a standard for all chapters is required'\
-
-\item Project Catalyst;
-\item Political Commitment;
-\item Statement of Vision;
-\item Barriers to Project Development;
-\item Understanding and Presenting the Benefits.
+\highlight{Contributors:} Carlos Pardo, *Despacio*; Annie Weinstock, *BRT Planning International*
 
 \include{11project-catalyst.manu}
 \include{12political-commitment.manu}
@@ -44,4 +38,3 @@ of public transport operations. The topics discussed in this chapter are:
 \include{14-barriers-to-project-development.manu}
 \include{15-understanding-and-presenting-the-benefits.manu}
 
-\highlight{Contributors:} Carlos Pardo, *Despacio*; Annie Weinstock, *BRT Planning International*

@@ -38,6 +38,8 @@ Definitions that pervade the whole chapter are laid out in the first section; th
 the general approach to intersection problem solving; and the subsequent sections discuss different tools
 to improve intersection efficiency, particularly when grade separation is available.
 
+\highlight{Contributors:} John Jones, *HHO Africa*; Karl Fjellstrom, *Far East BRT*; Annie Weinstock, *BRT Planning International*; Elkin Bello, *consultant*; Ulises Navarro, *ITDP Latin America*; Carlos Pardo, *Despacio*; Pedro Szász, *consultant*; Arthur Szász, *Protocubo*
+
 \include{241-basic-concepts.manu}
 \include{approach-to-intersection-design.manu}
 \include{traffic-signal-priority.manu}
@@ -48,5 +50,3 @@ to improve intersection efficiency, particularly when grade separation is availa
 \include{248-brt-lanes-at-roundabouts.manu}
 \include{249-integrating-pedestrian-and-cyclist-movements.manu}
 \include{2410-grade-separation.manu}
-
-\highlight{Contributors:} John Jones, *HHO Africa*; Karl Fjellstrom, *Far East BRT*; Annie Weinstock, *BRT Planning International*; Elkin Bello, *consultant*; Ulises Navarro, *ITDP Latin America*; Carlos Pardo, *Despacio*; Pedro Szász, *consultant*; Arthur Szász, *Protocubo*
