@@ -520,6 +520,7 @@ pre {
 	background-size: contain;
 	background-position: center center;
 	background-color: #FFF;
+	border: 16px #FFF solid;
 	height: 80%;
 	width: 80%;
 	margin: auto;
