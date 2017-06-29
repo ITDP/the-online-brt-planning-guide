@@ -197,7 +197,9 @@ class Generator {
 		buf.add(renderHead(title, computedBase, url));
 		buf.add("<body>\n");
 		buf.add(renderBreadcrumbs(bcs, url));  // FIXME
-		buf.add('<div class="container">\n<div class="col-text">\n');
+		buf.add('<div class="container">\n');
+		buf.add('<nav id="action:navigate"><span id="toc-loading">Loading the table of contents...</span></nav>\n');
+		buf.add('<div class="col-text">\n');
 		assert(!bufs.exists(path), path, "reserved or already used path");
 		bufs[path] = buf;
 		return buf;
@@ -535,7 +537,6 @@ class Generator {
 
 			if (p.endsWith(".html")) {
 				b.add("</div>\n");
-				b.add('<nav id="action:navigate"><span id="toc-loading">Loading the table of contents...</span></nav>\n');
 				b.add("</div>\n");
 				b.add('<script src="$script"></script>');
 				b.add('<div class="data-src-map" data-href="$srcMapPath"></div>\n');
