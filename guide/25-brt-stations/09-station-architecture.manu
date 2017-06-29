@@ -1,7 +1,7 @@
 \section{Station architecture}
 
 \quotation{It is not the beauty of a building you should look at; it’s the construction of the foundation that will stand the test of time.}
-{David Allen Coe, musician, 1939-}
+{David Allen Coe, musician, 1939--}
 
 \subsection{Architectural Style}
 
@@ -235,19 +235,10 @@ Fjellstrom}
 \figure[medium]{assets/image106.jpeg}{Cape Town planted trees in the station on the walkway connecting 
 sub-stops.}{ITDP}
 
-
-
 \'
-
-The content bellow is pasted from station-amenities.manu
-because it was not compiling as this on that file (log copied there)
-
-Originaly this was a section... but it is too short and quite incomplete to be one, so the
+Note: originaly this was a section... but it is too short and quite incomplete to be one, so the
 \section was renamed \subsection and the \subsections renamed \tittes
-
 '\
-
-
 \subsection{Station Amenities}
 
 \quotation{A river is more than an amenity, it is treasure.}

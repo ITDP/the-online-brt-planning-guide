@@ -1,7 +1,7 @@
 \section{Principles of Station Design}
 
 \quotation{I am going to design in a great hurry, and I believe to build, a Station after my own fancy; that is, with engineering roofs, etc. It is at Paddington...}
-{Isambard Kingdom Brunel, English mechanical and civil engineer,  1806 -- 1859}
+{Isambard Kingdom Brunel, English mechanical and civil engineer,  1806--1859}
 
 Main general principles of station design are:
 \item *Design for people:* It is easy to think of stations as part of an infrastructure project and focus 
@@ -26,7 +26,7 @@ The guidelines to approach a particular station design (station sizing) are:
 
 \item *Gather data:* the design must be done over usage requirements, this must come from real data.
 \item *Design for time horizon:*  Stations should be designed within a 10 – 20 year planning horizon, given that infrastructure will be assumed to have that lifespan.
-\'TODO transform in \footnote{Transportation Research Board. 2003. TCRP Report 90 Bus Rapid Transit Volume 2: Implementation Guidelines.}'\
+\' TODO future? \footnote{Transportation Research Board. 2003. TCRP Report 90 Bus Rapid Transit Volume 2: Implementation Guidelines.} '\
 \item *Size for peak conditions*: size for the peak, consider expansion in phases for the near/far future: Pedestrian crowded stations lead to an uncomfortable 
 and potentially dangerous situation. Bus crowded stations lead to the ruin of the system.
 \item *Understand the passengers movements:* inside and outside the station, understand the estimated demand over the day,

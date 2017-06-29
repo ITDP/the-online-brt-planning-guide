@@ -1,9 +1,7 @@
 \chapter{BRT Stations}
 
-
 \quotation{In the dime stores and bus stations, people talk of situations, read books, repeat quotations, draw conclusions on the wall.}
-{in `Love Minus Zero' by  Bob Dylan, American singer-songwriter, 1941 --}
-
+{in `Love Minus Zero' by  Bob Dylan, American singer-songwriter, 1941--}
 
 While mixed traffic capacity and performance is determined primarily by intersections, BRT capacity 
 and performance is determined primarily by BRT stations. BRT stations are also the most visible and visceral 
@@ -38,13 +36,11 @@ bus floor is one of the most important ways of reducing boarding and alighting t
 climbing even relatively minor steps can mean significant delay and an increase in safety hazards, particularly 
 for the elderly, disabled, or people with suitcases or strollers.
 
-
 The BRT Standard also has a subsection devoted to stations that totals 10 points and includes the distance 
 between stations \[2 points\], having safe and comfortable stations \[3 points\], number of doors on 
 the bus that facilitate rapid boarding and alighting at stations \[3 points\], the number of docking 
 bays and sub-stops at the stations \[1 point\], and having sliding doors at the station to protect passengers 
 from the elements and prevent fare evasion \[1 point\].
-
 
 All these issues are addressed in this chapter. Facilitating seamless and efficient customer movements 
 directly affects travel times, convenience, and ultimately customer satisfaction. This chapter provides 
@@ -58,5 +54,5 @@ an overview of key aspects of the planning and design of BRT stations.
 \include{07-station-components.manu}
 \include{08-platform-design-and-components.manu}
 \include{09-station-architecture.manu}
-\'include{10-station-amenities.manu} <--All the content of this file was moved to the 09-station-architecture.manu  '\
 \include{11-station-operation.manu}
+
