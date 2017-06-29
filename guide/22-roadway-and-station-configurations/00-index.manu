@@ -5,8 +5,7 @@
 \title{Overview}
 
 \figure[medium]{assets/image1.jpg}{Guangzhou, China, is a median-aligned busway configuration with split stations 
-located along the outside of the busway.}{ ITDP.} 
-
+located along the outside of the busway.}{ITDP.} 
 
 Creating optimal use of the available road reserve, or right-of-way, within a defined BRT corridor 
 is the chief purpose of the design engineer (Figure 22.1). The first step to doing that is to create 
@@ -16,7 +15,6 @@ HOV, and finally the private car/motorcycle. While the rest of the chapter is ab
 it is grounded upon the idea that pedestrian and cyclist access is paramount to a successful system. 
 For more information about pedestrian and cyclist infrastructure design and integration, see Chapter 
 29: Pedestrian Integration and Chapter 31: Bicycle and Pedicab Integration. 
-
 
 To create the conceptual design, three frameworks need to be decided on:
 
@@ -30,7 +28,6 @@ protect the busway?
 This decision will affect or be a result of the decision about the bus. Center stations require doors 
 on the opposite side from the curb. Will there be passing lanes at the stations? This is a function of 
 availability of space on the road and the needs of the service plan.
-
 
 Other things to consider include the placement and design of the depot(s) (see Chapter 26), intermediate 
 parking terminals, where buses can park during the times when frequency is not as high, the control center 
@@ -60,3 +57,4 @@ docking bay at the sub-stop. It is also the place where customers wait for the n
 \include{02-roadway-configurations.manu}
 \include{03-station-configurations.manu}
 \include{04-bibliography.manu}
+
