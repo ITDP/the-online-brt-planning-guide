@@ -181,9 +181,9 @@ Where:
 
 \highlight{Equation 3: Area required for waiting passengers}
 
-$$ S_u = {Q_{u\text{pax}} \over Dw_\text{max}} $$;
+$$ S_u = {Q_{u\text{pax}} \over Dw_\text{max}} $$
 
-$$ S_{opp} = {Q_{opp\text{pax}} \over Dw_\text{max}} $$;
+$$ S_{opp} = {Q_{opp\text{pax}} \over Dw_\text{max}} $$
 
 Where:
 \item $$ S_u$$ and $$S_{opp} $$: Minimum area required for waiting passengers. This is a function of the maximum number of passengers projected to queue divided by the capacity of an area (for instance, a square meter) to hold waiting passengers.
@@ -194,9 +194,9 @@ Where:
 
 \highlight{Equation 4: Width required for waiting passengers}
 
-$$ W_{opp} = {S_{opp} \over L_{opp}} $$;
+$$ W_{opp} = {S_{opp} \over L_{opp}} $$
 
-$$ W_{u} = {S_{u} \over L_{u}} $$;
+$$ W_{u} = {S_{u} \over L_{u}} $$
 
 Where:
 \item $$ S_u$$ and $$S_{opp} $$: Minimum area required for waiting passengers
@@ -236,19 +236,19 @@ $$ Q_\text{pax} =  {250 \over 5} + {250 \over 5} + {250 \over 5}+{250 \over 5}  
 
 200 waiting passengers divided by 3 the maximum accepted occupancy of space: three passengers per square meter ($$ Dw_max = 3 pax/m^2 $$) implies 66.6 square meters are required as waiting area. 
 
-$$ S _u = {Q_u\text{pax} \over Dw_\text{max}} $$;
+$$ S _u = {Q_u\text{pax} \over Dw_\text{max}} $$
 
-$$ S_u = {200 pax  \over 3 pax/m^2} = 66.6 m^2 $$;
+$$ S_u = {200 pax  \over 3 pax/m^2} = 66.6 m^2 $$
 
 The BRT vehicle is 18 meters long, if we consider 2 extra meter of lenght for the internal side of the station, corresponding to the space a BRT vehicle uses outside: To total 66.6m\sup{2} in 20 m of extention, the waiting area needs to be 3.33 8m wide (Wu = 3.33m).
 
-$$ W_{u} = {S_{u} \over L_{u}} $$;
+$$ W_{u} = {S_{u} \over L_{u}} $$
 
-$$ 3.33 {66_{u} \over 20_{u}} $$;
+$$ 3.33 {66_{u} \over 20_{u}} $$
 
 The width for circulation of passengers coming and going from and to other platforms will be 2 meters
 
-$$ W_c = {\text{Flow}_\text{pax} \over \text{basicpax saturationflowperwidthunit}} $$ 
+$$ W_c = {\text{Flow}_\text{pax} \over \text{basicpax saturationflowperwidthunit}} $$
 
 $$ W_c = {4000 \over 2000}  = 2m $$ 
 
@@ -256,7 +256,7 @@ And finally to total width of the station results in 6.33 metres.
 
 $$ W_p = W_i + W_u + W_c + W_opp  $$
 
-$$ 1m + 3.33m + 2m + 0m = 6.33m $$; Add 0.5m shy distance = 6.83m
+$$ 1m + 3.33m + 2m + 0m = 6.33m \text{; add}\ 0.5m\ \text{shy distance} = 6.83m $$
 
 Round up to 7.0m
 
