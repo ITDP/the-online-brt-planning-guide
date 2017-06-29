@@ -1,0 +1,58 @@
+\chapter{BRT Stations}
+
+\quotation{In the dime stores and bus stations, people talk of situations, read books, repeat quotations, draw conclusions on the wall.}
+{in `Love Minus Zero' by  Bob Dylan, American singer-songwriter, 1941--}
+
+While mixed traffic capacity and performance is determined primarily by intersections, BRT capacity 
+and performance is determined primarily by BRT stations. BRT stations are also the most visible and visceral 
+part of the system - the main way passengers experience the BRT system. Stations are where the BRT system 
+interacts with the city and its people.  By virtue of repetition, it often becomes the symbol of the 
+system. Between stations, BRT systems are perceived almost statical by passengers, but at stations, they 
+board and alight, buy tickets, validate them and enter to wait. Passengers look for information. Buses 
+have to approach and align with the correct place in the station.  Stations are where everything comes 
+together in the system and the efficiency of the station design and the technologies built into the stations 
+are of primary importance to success of the system. 
+
+The primary purpose of a station is to allow passengers to board and alight BRT vehicles, so it must be designed to:
+\number promote access to the system;
+\number facilitate bus movement and minimizes bus delays, as it is the main bottleneck of the system.
+
+The first means to serve as the main interface of the system for the users; to promote integration with the city transport system --
+ mostly with the walking system but convencional bus, bycicle, taxi and car and eventually rail too. It also means promote
+ integration between BRT services.
+
+The second can be thought as `never allow BRT vehicles to congest in a station'. 
+It will be bad for the users of that station and for the users that don't use that station as well.
+
+Stations are integral to the efficiency and the experience of the BRT system. As such, two components 
+of the BRT basics – the most essential characteristics needed to qualify as a BRT according to the BRT 
+Standard – focus on the station:
+
+\number Off-board fare collection \[8 points\]: This is a BRT basic. Off-board fare collection is one 
+the most important factors in reducing dwell time at the station and improving the customer experience. 
+It also reduces potential conflict on the bus as people negotiate payment with conductor or driver.
+\number Level boarding \[7 points\]: This is a BRT basic. Having the bus-station platform level with the 
+bus floor is one of the most important ways of reducing boarding and alighting times per passenger. Passengers 
+climbing even relatively minor steps can mean significant delay and an increase in safety hazards, particularly 
+for the elderly, disabled, or people with suitcases or strollers.
+
+The BRT Standard also has a subsection devoted to stations that totals 10 points and includes the distance 
+between stations \[2 points\], having safe and comfortable stations \[3 points\], number of doors on 
+the bus that facilitate rapid boarding and alighting at stations \[3 points\], the number of docking 
+bays and sub-stops at the stations \[1 point\], and having sliding doors at the station to protect passengers 
+from the elements and prevent fare evasion \[1 point\].
+
+All these issues are addressed in this chapter. Facilitating seamless and efficient customer movements 
+directly affects travel times, convenience, and ultimately customer satisfaction. This chapter provides 
+an overview of key aspects of the planning and design of BRT stations. 
+\include{01-principles-of-station-design.manu}
+\include{02-basic-station-concepts.manu}
+\include{03-station-capacity.manu}
+\include{04-types-of-stations.manu}
+\include{05-station-location.manu}
+\include{06-station-dimensions.manu}
+\include{07-station-components.manu}
+\include{08-platform-design-and-components.manu}
+\include{09-station-architecture.manu}
+\include{11-station-operation.manu}
+
