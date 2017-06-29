@@ -249,6 +249,18 @@ nav ul hr {
 	color: #333;
 }
 
+/* link to the next section at the bottom of the page*/
+.next {
+  text-align: right;
+  margin: 32px 0;
+  padding: 16px;
+  background-color: #bbb;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+  display: block;
+  max-width: 608px;
+}
+
 /* col-text */
 
 .col-text {
