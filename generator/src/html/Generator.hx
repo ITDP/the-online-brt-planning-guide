@@ -506,15 +506,11 @@ class Generator {
 		root.add('</section>\n');
 		// TODO tt, commit in downloads, chapter download
 		toc.add('
+			<a class="close" href="#">&#x2715;</a>
 			<li class="nav toc-link"><a href="$TOC_URL">View all content</a></li>
 			<li class="nav"><a href="pdf/the-brt-planning-guide.pdf">Download in PDF</a></li>
 			<li class="nav"><a href="https://github.com/ITDP/the-online-brt-planning-guide" target="_blank">Contribute now</a></li>
-			<li class="nav">
-			<a href="#action:more-options">Other options</a>
-				<ul class="target" id="action:more-options">
-				<li><a href="../" target="_blank">Extra files</a></li>
-				</ul>
-			</li>
+			<li class="nav"><a href="../" target="_blank">Extra files</a></li>
 		'.doctrim());
 		toc.add("\n</ul></div>");
 

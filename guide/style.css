@@ -448,15 +448,6 @@ pre {
 	border: 1px solid #ccc;
 }
 
-/* target */
-
-.target {
-	display: none;
-}
-:target {
-	display: block;
-}
-
 /* selection */
 
 ::selection {
@@ -604,6 +595,20 @@ pre {
 		top: 0;
 		width: 100%;
 		position: relative;
+		display: none;
+	}
+	nav:target {
+		display: block;
+	}
+	nav:target + .close {
+	  display: block;
+	}
+	.close {
+    position: absolute;
+    right: 0;
+    top: 32px;
+    padding: 16px;
+    font-size: 20px;
 	}
 	nav > ul {
 		padding: 8px 0 16px 0;
