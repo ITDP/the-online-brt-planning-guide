@@ -414,7 +414,7 @@ blockquote .by {
 	margin-top: 8px;
 }
 blockquote .by::before {
-	content: "&#8213; ";
+	content: "\2015\0020";
 }
 blockquote.md {
 	width: 608px;
@@ -425,10 +425,10 @@ q {
 	font-style: italic;
 }
 q::before {
-    content: "&#8220;";
+    content: "\201C";
 }
 q::after {
-    content: "&#8221;";
+    content: "\201D";
 }
 
 /* boxes */
