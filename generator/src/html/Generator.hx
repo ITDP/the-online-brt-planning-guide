@@ -267,7 +267,7 @@ class Generator {
 			toc.add('<li class="chapter">${renderToc(null, "Chapter " + noc.chapter, new Html(genh(name)), url)}<ul>\n');
 			buf.add('
 				<section>
-				<h1 id="heading" class="volume${noc.volume} share">$no$QUAD${genh(name)}</h1>
+				<h1 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h1>
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim());
@@ -286,7 +286,7 @@ class Generator {
 			toc.add('<li class="section">${renderToc(null, lno, new Html(genh(name)), url)}<ul>\n');
 			buf.add('
 				<section>
-				<h1 id="heading" class="volume${noc.volume} share">$lno$QUAD${genh(name)}</h1>
+				<h1 id="heading" class="volume${noc.volume}">$lno$QUAD${genh(name)}</h1>
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim());
