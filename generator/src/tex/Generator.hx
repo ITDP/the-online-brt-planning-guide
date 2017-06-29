@@ -24,6 +24,8 @@ class Generator {
 	%  haxe version: ${Main.version.haxe}
 	%  runtime: ${Main.version.runtime}
 	%  platform: ${Main.version.platform}
+	%
+	% ${Main.LOGO}   ${Main.LOGO_TEXT}
 	'.doctrim();  // TODO runtime version, sources version
 
 	var hasher:AssetHasher;

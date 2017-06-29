@@ -7,4 +7,6 @@
 		haxe version: (:Main.version.haxe:)
 		runtime: (:Main.version.runtime:)
 		platform: (:Main.version.platform:)
+	
+	(:Main.LOGO:)   (:Main.LOGO_TEXT:)
 -->
