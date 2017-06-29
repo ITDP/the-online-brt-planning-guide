@@ -511,7 +511,7 @@ pre {
 	text-align: center;
 	top: 0;
 	left: 0;
-	background: rgba(127,127,127,0.75);
+	background: rgba(0,0,0,0.5);
 	cursor: pointer;
 	cursor: zoom-out;
 }
