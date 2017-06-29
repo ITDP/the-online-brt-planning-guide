@@ -50,6 +50,9 @@ a {
 	text-decoration: none;
 	cursor: pointer;
 }
+a:hover {
+    color: #00a95e;
+}
 img {
 	border-radius: 2px;
 }
