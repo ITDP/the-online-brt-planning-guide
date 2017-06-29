@@ -89,8 +89,18 @@
 
 	</style>
 
-	<script>
-		$(document).ready(function() {$('.ui.sidebar').sidebar('attach events', '.toc');});
+  <script type="text/javascript">
+		$(function() {
+			$('.toc').click(function() {
+				$('.toc').hide();
+				$('.menu.sidebar').sidebar('toggle');
+			});
+
+			$('.sidebar').click(function() {
+				$('.toc').show();
+				$('.menu.sidebar').sidebar('toggle');
+			});
+		});
 	</script>
 </head>
 
