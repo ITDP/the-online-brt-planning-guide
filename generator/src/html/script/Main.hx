@@ -11,7 +11,6 @@ import js.jquery.Helper.*;
 using StringTools;
 
 class Main {
-
 	static function getToc()
 	{
 		var req = new haxe.Http("table-of-contents");
@@ -30,7 +29,7 @@ class Main {
 		// parse and locate myselft
 		assert(tocData != null, "toc data is missing");
 		var toc = J(JQuery.parseHTML(tocData)).find("div#toc>ul");
-		var myUrl = J("base").attr("x-rel-path");
+		var myUrl =  J("base").attr("x-rel-path");
 		assert(myUrl != null);
 		var me = toc.find('a[href="$myUrl"]').not("#toc-menu").parent();
 		assert(me.length > 0, myUrl);
@@ -73,6 +72,7 @@ class Main {
 		// draw the nav toc
 		J("#toc-loading").remove();
 		J("nav").append(toc);
+		me.addClass("active");
 	}
 
 	static function drawOverview(internals:JQuery)
@@ -85,7 +85,7 @@ class Main {
 	static function figClick(e:Event)
 	{
 		var b = J("body");
-		var t  = J(e.target);
+		var t = J(e.target);
 		if (!t.is("img.overlay-trigger"))
 			return;
 
@@ -101,10 +101,24 @@ class Main {
 		e.stopPropagation();
 	}
 
+	static function shareClick(e:Event)
+	{
+		var t = J(e.target).parents(".share");
+		if (t.length == 0 || ((untyped document.getSelection().toString()):String) != "")
+			return;
+
+		var id = ( t.is("figcaption") ? t.parent("figure") : t ).attr("id");
+		window.location.hash = id;
+
+		e.preventDefault();
+		e.stopPropagation();
+	}
+
 	static function main()
 	{
 		getToc();
 		JTHIS.click(figClick);
+		JTHIS.click(shareClick);
 	}
 }
 

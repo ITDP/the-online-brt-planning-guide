@@ -250,7 +250,7 @@ class Generator {
 			toc.add('<li class="volume">\n${renderToc(no, "Volume " + no, new Html(genh(name)), url)}\n<ul>\n');
 			buf.add('
 				<section>
-				<h1 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h1>
+				<div class="volumehead v${noc.volume}"><h1 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h1></div>
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim());
@@ -267,7 +267,7 @@ class Generator {
 			toc.add('<li class="chapter">${renderToc(null, "Chapter " + noc.chapter, new Html(genh(name)), url)}<ul>\n');
 			buf.add('
 				<section>
-				<h2 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h2>
+				<h1 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h1>
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim());
@@ -286,7 +286,7 @@ class Generator {
 			toc.add('<li class="section">${renderToc(null, lno, new Html(genh(name)), url)}<ul>\n');
 			buf.add('
 				<section>
-				<h3 id="heading" class="volume${noc.volume}">$lno$QUAD${genh(name)}</h3>
+				<h1 id="heading" class="volume${noc.volume}">$lno$QUAD${genh(name)}</h1>
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim());
@@ -302,7 +302,7 @@ class Generator {
 			toc.add('<li>${renderToc(null, lno, new Html(genh(name)), bcs.section.url+"#"+id)}<ul>\n');
 			var html = '
 				<section>
-				<h4 id="$id" class="volume${noc.volume}">$lno$QUAD${genh(name)}</h4>
+				<h2 id="$id" class="volume${noc.volume} share">$lno$QUAD${genh(name)}</h2>
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim() + "\n";
@@ -315,7 +315,7 @@ class Generator {
 			var id = idc.join(false, "/", subSection, subSubSection);
 			var html = '
 				<section>
-				<h5 id="$id" class="volume${noc.volume}">$lno$QUAD${genh(name)}</h5>
+				<h3 id="$id" class="volume${noc.volume} share">$lno$QUAD${genh(name)}</h3>
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim() + "\n";
@@ -336,7 +336,7 @@ class Generator {
 			var size = sizeToClass(sz);
 			return '
 				<section class="box $size">
-				<h1 id="$id" class="volume${noc.volume}">Box $no <em>${genh(name)}</em></h1>
+				<h3 id="$id" class="volume${noc.volume} share">Box $no <em>${genh(name)}</em></h3>
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim() + "\n";
@@ -350,18 +350,18 @@ class Generator {
 			var id = idc.join(true, ":", figure);
 			if (Context.dinossaurFigures) {
 				return '
-					<section class="img-block ${sizeToClass(size)}">
+					<figure class="img-block ${sizeToClass(size)}" id="$id">
 					<a><img src="$DRAFT_IMG_PLACEHOLDER" class="overlay-trigger"/></a>
-					<p id="$id"><strong>Fig. $no</strong>$QUAD${genh(caption)} <em>$DRAFT_IMG_PLACEHOLDER_COPYRIGHT</em></p>
-					</section>
+					<figcaption class="share"><strong>Fig. $no</strong>$QUAD${genh(caption)} <em>$DRAFT_IMG_PLACEHOLDER_COPYRIGHT</em></figcaption>
+					</figure>
 				'.doctrim() + "\n";
 			} else {
 				var p = saveAsset(path);
 				return '
-					<section class="img-block ${sizeToClass(size)}">
+					<figure class="img-block ${sizeToClass(size)}" id="$id">
 					<a><img src="$p" class="overlay-trigger"/></a>
-					<p id="$id"><strong>Fig. $no</strong>$QUAD${genh(caption)} <em>${genh(cright)}</em></p>
-					</section>
+					<figcaption class="share"><strong>Fig. $no</strong>$QUAD${genh(caption)} <em>${genh(cright)}</em></figcaption>
+					</figure>
 				'.doctrim() + "\n";
 			}
 		case DTable(no, size, caption, header, rows):
@@ -391,7 +391,7 @@ class Generator {
 			}
 			buf.add('
 				<section class="${sizeToClass(size)}">
-				<h5 id="$id">Table $no$QUAD${genh(caption)}</h5>
+				<h3 id="$id" class="share">Table $no$QUAD${genh(caption)}</h3>
 				<table>
 			'.doctrim());
 			buf.add("\n<thead>");
@@ -408,18 +408,18 @@ class Generator {
 			var id = idc.join(true, ":", table);
 			if (Context.dinossaurFigures) {
 				return '
-					<section class="img-block ${sizeToClass(size)}">
-					<h5 id="$id">Table $no$QUAD${genh(caption)} <em>$DRAFT_IMG_PLACEHOLDER_COPYRIGHT</em></h5>
+					<figure class="img-block ${sizeToClass(size)}">
+					<h3 id="$id" class="share">Table $no$QUAD${genh(caption)} <em>$DRAFT_IMG_PLACEHOLDER_COPYRIGHT</em></h3>
 					<a><img src="$DRAFT_IMG_PLACEHOLDER" class="overlay-trigger"/></a>
-					</section>
+					</figure>
 				'.doctrim() + "\n";
 			} else {
 				var p = saveAsset(path);
 				return '
-					<section class="img-block ${sizeToClass(size)}">
-					<h5 id="$id">Table $no$QUAD${genh(caption)}</h5>
+					<figure class="img-block ${sizeToClass(size)}">
+					<h3 id="$id" class="share">Table $no$QUAD${genh(caption)}</h3>
 					<a><img src="$p" class="overlay-trigger"/></a>
-					</section>
+					</figure>
 				'.doctrim() + "\n";
 			}
 		case DList(numbered, li):
