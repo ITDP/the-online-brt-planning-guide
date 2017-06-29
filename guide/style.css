@@ -414,7 +414,7 @@ blockquote .by {
 	margin-top: 8px;
 }
 blockquote .by::before {
-	content: "— ";
+	content: "&#8213; ";
 }
 blockquote.md {
 	width: 608px;
@@ -422,8 +422,13 @@ blockquote.md {
 	margin: 32px 0;
 }
 q {
-	quotes: "“" "”" "‘" "’";
 	font-style: italic;
+}
+q::before {
+    content: "&#8220;";
+}
+q::after {
+    content: "&#8221;";
 }
 
 /* boxes */
