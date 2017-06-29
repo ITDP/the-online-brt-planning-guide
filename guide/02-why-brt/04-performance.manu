@@ -299,7 +299,7 @@ process takes longer than normal, and the station is immediately adjacent to the
 time the boarding and alighting process is completed, the signal may have changed to red, and the transit 
 vehicle will be unable to clear the intersection. This then obstructs access to the transit station for 
 the vehicles behind it. This problem is best avoided in the case of both BRT and LRT systems by separating 
-the bus stop from the intersection by several vehicle lengths (*The BRT Standard*, \url{www.brtstandard.org} , p. 34). The greater 
+the bus stop from the intersection by several vehicle lengths (*The BRT Standard*, \url{http://brtstandard.org} , p. 34). The greater 
 the frequency, the more vehicle lengths that will be necessary. In the case of close downtown streets, 
 it may be necessary to eliminate intersections all together, as was done on Caracas Avenue in downtown 
 Bogotá.
