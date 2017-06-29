@@ -4,6 +4,7 @@ import haxe.io.Path;
 import parser.Token;
 import sys.FileSystem;
 
+import ANSI.set in ansi;
 import Assertion.*;
 import Sys.*;
 using Literals;
@@ -18,8 +19,8 @@ class Main {
 		runtime : #if neko "Neko" #elseif js "JS" #elseif cpp "C++" #end,
 		platform : Sys.systemName()
 	}
-
-	static inline var BANNER = "manu – manuscript markup language processor";
+	public static inline var LOGO = "╲ ╱╲╱╲ ╱╲ ╱╲╱ ╲╱";
+	public static inline var LOGO_TEXT = "manuscript markup language processor";
 	static var USAGE = "
 		Usage:
 		  manu generate <input file> <output dir>
@@ -41,13 +42,13 @@ class Main {
 		if (pcheck != null)
 			throw pcheck.toString();
 
-		println(ANSI.set(Green) + "=> Parsing" + ANSI.set(Off));
+		println(ansi(Green) + "=> Parsing" + ansi(Off));
 		var ast = Context.time("parsing", parser.Parser.parse.bind(p.toInputPath()));
 
-		println(ANSI.set(Green) + "=> Structuring" + ANSI.set(Off));
+		println(ansi(Green) + "=> Structuring" + ansi(Off));
 		var doc = Context.time("structuring", transform.NewTransform.transform.bind(ast));
 
-		println(ANSI.set(Green) + "=> Validating" + ANSI.set(Off));
+		println(ansi(Green) + "=> Validating" + ansi(Off));
 		var tval = Sys.time();
 		transform.Validator.validate(doc,
 			function (errors) {
@@ -57,10 +58,10 @@ class Main {
 						if (err.fatal)
 							abort = true;
 						var hl = err.pos.highlight(80).renderHighlight(Context.hlmode).split("\n");
-						print(ANSI.set(Bold,Red));
+						print(ansi(Bold,Red));
 						if (Context.debug) print("Validation ");
 						println('ERROR: $err');
-						print(ANSI.set(Off));
+						print(ansi(Off));
 						println('  at ${err.pos.toString()}:');
 						println("    " + hl.join("\n    "));
 					}
@@ -75,20 +76,20 @@ class Main {
 					var tgen = Sys.time();
 					Context.manualTime("validation", tgen - tval);
 
-					println(ANSI.set(Green) + "=> Generating the document" + ANSI.set(Off));
+					println(ansi(Green) + "=> Generating the document" + ansi(Off));
 
 					if (!FileSystem.exists(opath)) FileSystem.createDirectory(opath);
 					if (!FileSystem.isDirectory(opath)) throw 'Not a directory: $opath';
 
 					var hasher = new AssetHasher();
 
-					println(ANSI.set(Green) + " --> HTML generation" + ANSI.set(Off));
+					println(ansi(Green) + " --> HTML generation" + ansi(Off));
 					Context.time("html generation", function () {
 						var hgen = new html.Generator(hasher, Path.join([opath, "html"]), true);
 						hgen.writeDocument(doc);
 					});
 
-					println(ANSI.set(Green) + " --> PDF preparation (TeX generation)" + ANSI.set(Off));
+					println(ansi(Green) + " --> PDF preparation (TeX generation)" + ansi(Off));
 					Context.time("tex generation", function () {
 						var tgen = new tex.Generator(hasher, Path.join([opath, "pdf"]));
 						tgen.writeDocument(doc);
@@ -96,10 +97,10 @@ class Main {
 
 					printTimers();
 				} catch (e:Dynamic) {
-					print(ANSI.set(Bold,Red));
+					print(ansi(Bold,Red));
 					if (Context.debug) print("Generation ");
 					println('ERROR: $e');
-					print(ANSI.set(Off));
+					print(ansi(Off));
 					if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
 					printTimers();
 					exit(8);
@@ -137,14 +138,14 @@ class Main {
 	static function main()
 	{
 		haxe.Log.trace = customTrace;
-		print(ANSI.set(Bold) + BANNER + "\n\n" + ANSI.set(Off));
+		print('\n${ansi(Blue)}$LOGO${ansi(Off,Bold)}   $LOGO_TEXT${ansi(Off)}   \n\n');
 
 		Context.debug = Context.debug;
 		Context.draft = Context.draft;
 		if (Context.debug)
 			println('ANSI escape codes are ${ANSI.available ? "enabled" : "disabled"}');
 		if (ANSI.available)
-			Context.hlmode = AnsiEscapes(ANSI.set(Bold,Red), ANSI.set(Off));
+			Context.hlmode = AnsiEscapes(ansi(Bold,Red), ansi(Off));
 
 		Context.prepareSourceMaps();
 		Assertion.enableShow = Context.debug;
@@ -172,7 +173,7 @@ class Main {
 				exit(1);
 			}
 		} catch (e:hxparse.UnexpectedChar) {
-			print(ANSI.set(Bold,Red));
+			print(ansi(Bold,Red));
 			if (Context.debug) print("Lexer ");
 			var cpos = e.pos.toPosition();
 			// hxparse generates errors with 0-length positions; we don't
@@ -180,28 +181,28 @@ class Main {
 				cpos.max = cpos.min + e.char.length;
 			var hl = cpos.highlight(80).renderHighlight(Context.hlmode).split("\n");
 			println('ERROR: Unexpected character `${e.char}`');
-			print(ANSI.set(Off));
+			print(ansi(Off));
 			println('  at ${cpos.toString()}');
 			println("    " + hl.join("\n    "));
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
 			printTimers();
 			exit(2);
 		} catch (e:parser.ParserError) {
-			print(ANSI.set(Bold,Red));
+			print(ansi(Bold,Red));
 			if (Context.debug) print("Parser ");
 			var hl = e.pos.highlight(80).renderHighlight(Context.hlmode).split("\n");
 			println('ERROR: $e');
-			print(ANSI.set(Off));
+			print(ansi(Off));
 			println('  at ${e.pos.toString()}:');
 			println("    " + hl.join("\n    "));
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
 			printTimers();
 			exit(3);
 		} catch (e:Dynamic) {
-			print(ANSI.set(Bold,Red));
+			print(ansi(Bold,Red));
 			if (Context.debug) print("Untyped ");
 			println('ERROR: $e');
-			print(ANSI.set(Off));
+			print(ansi(Off));
 			if (Context.debug) println(CallStack.toString(CallStack.exceptionStack()));
 			printTimers();
 			exit(9);

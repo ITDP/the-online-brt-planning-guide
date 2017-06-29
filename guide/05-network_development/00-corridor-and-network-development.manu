@@ -26,17 +26,7 @@ harder to quantify, harder to determine factors should be discussed as part of t
 but should not necessarily be included in the data collection process. This chapter provides a basic
 approach to defining a BRT network and prioritizing the corridors within that network for phased implementation.
 
-\'FIXME: The bellow is the table of contents'\
-The contents of this subchapter on corridor and network development are:
-
-\item Demand Analysis for Corridor Selection;
-\item Transit System Speed and Delay Analysis;
-\item Corridor Prioritization Based on Existing Demand;
-\item Additional Corridors Based on Future Demand;
-\item Framework for Comparing Corridors;
-\item Corridor Length;
-\item Other Considerations in Corridor Selection.
-
+\highlight{Contributors:} Karl Fjellstrom, *Far East BRT*; Walter Hook, *BRT Planning International*
 
 \include{51-demand-analysis-for-corridor-selection.manu}
 \include{52-transit-system-speed-and-delay-analysis.manu}
@@ -45,5 +35,3 @@ The contents of this subchapter on corridor and network development are:
 \include{55framework-for-comparing-corridors.manu}
 \include{56corridor-length.manu}
 \include{57-other-considerations-in-corridor-selection.manu}
-
-\highlight{Contributors:} Karl Fjellstrom, *Far East BRT*; Walter Hook, *BRT Planning International*

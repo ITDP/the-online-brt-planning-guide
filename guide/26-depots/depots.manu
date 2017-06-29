@@ -12,6 +12,8 @@ operational requirements of a BRT system. The chapter deals with where to locate
 corridor or system, how many depots are required, and their size and layout. Various design considerations
 are discussed and, finally, the need for intermediate parking facilities within the system is discussed.
 
+\highlight{Contributors:} Andre Frieslaar, **HHO Africa**; Ulises Navarro, **ITDP Latin America**; Karina Licea, **consultant**
+
 \include{261-depot-location-considerations.manu}
 \include{262-number-of-depot-facilities-and-ownership.manu}
 \include{263-depot-sizing.manu}
@@ -19,5 +21,3 @@ are discussed and, finally, the need for intermediate parking facilities within 
 \include{265-design-considerations.manu}
 \include{266-intermediate-parking-facilities.manu}
 \include{267-cost.manu}
-
-\highlight{Contributors:} Andre Frieslaar, **HHO Africa**; Ulises Navarro, **ITDP Latin America**; Karina Licea, **consultant**

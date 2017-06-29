@@ -16,8 +16,10 @@ and minimize costs:
 In the case of many conventional bus service operators, vehicle fleets are often depleted, old, and
 not adequately adapted to existing infrastructure and operational needs, like accommodating the disabled.
 
-
 \figure[medium]{assets/image1.jpeg}{Control Center in Lanzhou, China.}{ Karl Fjellstrom, Far East BRT.}
+
+\highlight{Contributors:} Johann Andersen, *Techso*
+
 \include{development-of-the-traffic-management-center-concept.manu}
 \include{the-brtmc.manu}
 \include{273brt-stakeholders.manu}
@@ -28,5 +30,3 @@ not adequately adapted to existing infrastructure and operational needs, like ac
 \include{building-requirements.manu}
 \include{costing.manu}
 \include{operational-requirements.manu}
-
-\highlight{Contributors:} Johann Andersen, *Techso*

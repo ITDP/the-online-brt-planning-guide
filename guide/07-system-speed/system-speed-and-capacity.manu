@@ -23,6 +23,8 @@ the concept of station saturation; and the fourth section provides the equation 
 and capacity for a proposed solution. The last two sections consider the effects of basic features on
 system capacity and speed.
 
+\highlight{Contributors:} Walter Hook, *BRT Planning International*; Pedro Szász, *consultant*; Arthur Szász, *Protocubo*; Annie Weinstock, *BRT Planning International*; Ulises Navarro, *ITDP Latin America*; Karl Fjellstrom, *Far East BRT*
+
 \include{design-objectives.manu}
 \include{the-process-of-designing-high-capacity-and-high-speed-brt-corridors.manu}
 \include{understanding-station-saturation.manu}
@@ -30,5 +32,3 @@ system capacity and speed.
 \include{expanding-corridor-capacity.manu}
 \include{optimizing-the-station-to-vehicle-interface.manu}
 \include{route-distribution-among-multiple-sub-stops.manu}
-
-\highlight{Contributors:} Walter Hook, *BRT Planning International*; Pedro Szász, *consultant*; Arthur Szász, *Protocubo*; Annie Weinstock, *BRT Planning International*; Ulises Navarro, *ITDP Latin America*; Karl Fjellstrom, *Far East BRT*

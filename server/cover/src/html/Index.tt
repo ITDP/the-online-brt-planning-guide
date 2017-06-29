@@ -136,6 +136,7 @@
 				</div>
 			</div>
 
+			(:*
 			<!--menu #2 (search)-->
 			<div class="ui container" style="margin: 0 0 20px 0;">
 				<div class="ui secondary massive menu stackable">
@@ -149,6 +150,7 @@
 					</div>
 				</div>
 			</div>
+			*:)
 
 			<!--main banner-->
 			<div class="ui container">
@@ -167,18 +169,16 @@
 			<section class="ui container text" style="margin: 56px 0;" id="welcome">
 				<h1 class="ui header itdpcolor">
 					Welcome!
-					<div class="sub header">Welcome to the BRT Planning Guide, 4th Edition.</div>
+					<div class="sub header">The BRT Planning Guide, 4th Edition</div>
 				</h1>
 				<p>
 					The Bus Rapid Transit Planning Guide is the most comprehensive resource for planning a bus rapid transit (BRT) system, beginning with project preparation all the way through to implementation.
 				</p>
 				<p>
-					Beginning with an overview of BRT, the Planning Guide proceeds to give a step-by-step description of the planning process, including operational design, financial modeling, physical design, multi-modal and land use integration, business plan development,
-					communications and marketing, contracting, vehicle and fare collection technology, evaluation, and implementation.
+					Beginning with an overview of BRT, the Planning Guide proceeds to give a step-by-step description of the planning process, including operational design, financial modeling, physical design, multi-modal and land use integration, business plan development, communications and marketing, contracting, vehicle and fare collection technology, evaluation, and implementation.
 				</p>
 				<p>
-					The BRT Planning Guide is intended as a guidance document mainly for planning and engineering professionals. However, others, such as non-governmental organizations, national and regional policymakers, and business groups, will find it a valuable resource
-					as well, when advocating for their issues and finding solutions to the problems that they are addressing.
+					The BRT Planning Guide is intended as a guidance document mainly for planning and engineering professionals. However, others, such as non-governmental organizations, national and regional policymakers, and business groups, will find it a valuable resource as well, when advocating for their issues and finding solutions to the problems that they are addressing.
 				</p>
 			</section>
 
@@ -189,16 +189,18 @@
 					 About
 					 <div class="sub header">The Online BRT Planning Guide</div>
 				</h1>
-				<img src="img/brt_img_cover.jpg" class="ui right floated image small rounded">
+				<a href="https://brtguide.itdp.org/branch/master/guide/"><img src="img/brt_img_cover.jpg" class="ui right floated image small rounded"></a>
 				<p>
-					It is the culmination of years of efforts to document and improve the state of the art in cost-effective public transport solutions for cities. This edition includes contributions from a wide range of professionals and practitioners with direct experience in designing and implementing BRT systems all over the world.
+					This edition is the culmination of years of efforts to document and improve the state of the art in cost-effective public transport solutions for cities. It includes contributions from a wide range of professionals and practitioners with direct experience in designing and implementing BRT systems all over the world.
 				</p>
 				<p>
 					BRT systems have proven to be catalysts in transforming cities into more livable and human-friendly environments. The appeal of BRT is the ability to deliver a high-quality mass transit system within the budgets of most municipalities, even in low-income cities. Planning and implementing a good BRT system is not easy. This guide aims to make the task a little easier.
 				</p>
-				<p>
-					The Bus Rapid Transit Planning Guide is copyrighted by the Institute for Transportation and Development Policy (ITDP). It is intended for technical and educational use only and may not be used for commercial purposes. It may not be reprinted or modified without the explicit authorization of ITDP.
-				</p>
+				<div class="ui segment" style="border-bottom: 2px solid #00a95e;">
+					<div class="ui link list">
+						<a class="item itdpcolor" href="https://brtguide.itdp.org/branch/master/guide/" style="font-size: 16px;"><b>Jump right in</b></a>
+					</div>
+				</div>
 			</section>
 
 			<div class="ui container divider"></div>
@@ -209,8 +211,7 @@
 					 <div class="sub header">The chapters of the guide</div>
 				</h1>
 				<p>
-					The chapters of the guide are grouped in volumes. Within these volumes are 35 chapters that touch on a variety of topics essential to the planning of a BRT system. Content has been
-					expanded based on recent projects, which have deepened the base of knowledge for this guide.
+					The chapters of the guide are grouped in volumes. Within these volumes are 33 chapters that touch on a variety of topics essential to the planning of a BRT system. Content has been expanded based on recent projects, which have deepened the base of knowledge for this guide.
 				</p>
 			</section>
 
@@ -228,8 +229,9 @@
 						<a class="item volume1" href="https://brtguide.itdp.org/branch/master/guide/volume/project-preparation" style="font-size: 16px;"><b>Overview</b></a>
 						<div class="item">
 							<div class="ui link list">
-								<a class="item volume1" href="https://brtguide.itdp.org/branch/master/guide/project-initiation/"><b>Chapter 1&emsp;</b> Project Initiation</a>
-								<a class="item volume1" href="https://brtguide.itdp.org/branch/master/guide/project-set-up/"><b>Chapter 3&emsp;</b> Project Set-up</a>
+								<a class="item volume1" href="https://brtguide.itdp.org/branch/master/guide/project-initiation/"><b>Chapter&ensp;1&emsp;</b> Project Initiation</a>
+								<a class="item volume1" href="https://brtguide.itdp.org/branch/master/guide/why-brt/"><b>Chapter&ensp;2&emsp;</b> Why BRT?</a>
+								<a class="item volume1" href="https://brtguide.itdp.org/branch/master/guide/project-set-up/"><b>Chapter&ensp;3&emsp;</b> Project Set-up</a>
 							</div>
 						</div>
 					</div>
@@ -348,6 +350,7 @@
 						<div class="item">
 							<div class="ui link list">
 								<a class="item volume6" href="https://brtguide.itdp.org/branch/master/guide/infrastructure-management-and-costing/"><b>Chapter 21&emsp;</b> Infrastructure Management and Costing</a>
+								<a class="item volume6" href="https://brtguide.itdp.org/branch/master/guide/roadway-and-station-configurations/"><b>Chapter 22&emsp;</b> Roadway and Station Configurations</a>
 								<a class="item volume6" href="https://brtguide.itdp.org/branch/master/guide/roadway-design/"><b>Chapter 23&emsp;</b> Roadway Design</a>
 								<a class="item volume6" href="https://brtguide.itdp.org/branch/master/guide/intersections-and-signal-control/"><b>Chapter 24&emsp;</b> Intersections and Signal Control</a>
 								<a class="item volume6" href="https://brtguide.itdp.org/branch/master/guide/depots/"><b>Chapter 26&emsp;</b> Depots</a>
@@ -390,7 +393,7 @@
 					</div>
 				</div>
 				<p>
-					The Bus Rapid Transit Planning Guide is the most comprehensive resource for planning a bus rapid transit (BRT) system, beginning with project preparation all the way through to implementation.
+					Volume 8 presents the goals and functionality of <i>Online</i> BRT Planning Guide.
 				</p>
 				<div class="ui segment" style="border-bottom: 2px solid #333;">
 					<div class="ui link list">
@@ -413,7 +416,10 @@
 					 <div class="sub header">PDF version</div>
 				</h1>
 				<p>
-					We are excited to have this version online. This will allow for more dynamic updating and more involvement from the community. We are also developing a PDF version for download and use offline.
+					We are excited to have this version online. This will allow for more dynamic updating and more involvement from the community.
+				</p>
+				<p>
+					We are also developing a PDF version for download and use offline.
 				</p>
 				<div class="ui center aligned container" style="margin: 56px 0;">
 					<a class="ui massive button green" href="https://brtguide.itdp.org/branch/master/guide/pdf/the-brt-planning-guide.pdf" target="_blank" style="background-color: #00a95e;">

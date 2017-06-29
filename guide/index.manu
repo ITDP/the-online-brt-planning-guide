@@ -15,7 +15,7 @@ matter (a brief introduction) and the inclusion of volumes and chapters.
 
 Welcome to the BRT Planning Guide, 4th Edition.
 
-This is the first major update of the guide since the 3rd edition in 2006. It has been reorganized and expanded to 33 chapters with much more information and depth on certain topics, including:
+This is the first major update of the guide since the 3rd edition in 2006. It has been reorganized and expanded with much more information and depth on certain topics, including:
 
 \item more detailed and enhanced chapters on service planning, demand analysis, and speed and capacity
 \item consolidated and expanded information on communications,
@@ -23,21 +23,21 @@ This is the first major update of the guide since the 3rd edition in 2006. It ha
 \item more information on physical design – expanded to seven chapters, and
 \item more complete chapters of different types of integration, from walking and cycling to multimodal integration.
 
-This is still a work in progress and is in the process of being finalized. If a chapter is here, it means it is final. If a chapter is missing, it means that it is being prepared for uploading and will be here shortly. That said, we are still working out some technical issues with the online version of the guide, such as sizing and placement of images, tables, etc. If you see something wrong, please let us know.
+This is still a work in progress and is in the process of being finalized.  If you see something wrong, please let us know.  That said, we are excited to have this version online. This will allow for more dynamic updating and more involvement from the community. We are also developing a PDF version for download and use offline.
 
-We are excited to have this version online. This will allow for more dynamic updating and more involvement from the community. We are also developing a PDF version for download and use offline.
+If you have found a problem, would like to make a suggestion or are interested in contributing to the guide, please email us at \code!brtguide@itdp.org!.
 
-If you have found a issue, would like to make a suggestion or are interested in contributing to the guide, please email us at brtguide@itdp.org.
+You can browse the repository where all the content is stored and managed; it's also possible to report an issue or propose a change there.  To simplify collaboration, the project is hosted on GitHub:
 
-\title{Table of contents}
+\url{https://github.com/ITDP/the-online-brt-planning-guide}
+
+\title{To navigate through the guide...}
 
 Whether you are browsing the guide online or viewing the PDF, you can find the Table of Contents essentially on the left - in the left-side menu.  Click on a volume title and it will expand with the chapters beneath it, while taking you to the landing page for that volume. To go to a particular chapter, click on the chapter name in the left-side menu. And to get to the different subsections, you click on those as well.
 
-\title{Breadcrumbs}
-
 Additionally, you can also use the "breadcrumbs" at the top – but only available online – to see at a glance the path you have taken within the guide.
 
-\title{Finally, a brief introduction...}
+\title{And finally, a brief introduction...}
 
 Cities are faced with the tremendous challenge of providing residents access to jobs, education, and public services, all while not exhausting the finite environmental, social, and economic resources available to them. At the same time, just over half of all people currently live in cities, and that proportion is projected to grow to two thirds of the global population by 2050. Further, the challenges of providing access and mobility to a growing population are only compounded more by the ramifications of climate change, which are not distributed equitably, as well as growing disparity and inequity globally. Fortunately, leaders at international, national, and city levels have turned a corner, as seen with the Paris Climate Agreement and Habitat III, to not just strive towards sustainable and equitable transport, but actively set goals, take action, and hold themselves accountable.
 
@@ -57,7 +57,7 @@ Fortunately for cities, the technology for providing high-quality public transpo
 \volume{Project Preparation}
 \include{volume-1-landing-page.manu}
 \include{01-project-initiation-and-set-up/00-project-initiation.manu}
-\meta\reset{chapter}{2}  \' TODO missing chapter 2, skip to chapter 3 '\
+\include{02-why-brt/00-index.manu}
 \include{03-project/00-project-set-up.manu}
 
 
@@ -90,19 +90,19 @@ Fortunately for cities, the technology for providing high-quality public transpo
 \volume{Technology}
 \include{volume-5-landing-page.manu}
 \include{18-fare_systems/fare-systems.manu}
-\include{19-technology\technology.manu}
+\include{19-technology/technology.manu}
 \include{20-vehicles/vehicles.manu}
 
 
 \volume{Infrastructure}
 \include{volume-6-landing-page.manu}
 \include{21-infrastructure_management_costing/infrastructure-management-and-costing.manu}
-\meta\reset{chapter}{22}  \' TODO missing chapter 22, skip to chapter 23 '\
+\include{22-roadway-and-station-configurations/00-index.manu}
 \include{23-roadway-design/roadway-design.manu}
 \include{24-intersections_and_signal_control/intersections-and-signal-control.manu}
 \include{25-brt-stations/00-index.manu}
-\include{26-depots\depots.manu}
-\include{27-control_center\control-center.manu}
+\include{26-depots/depots.manu}
+\include{27-control_center/control-center.manu}
 
 
 \volume{Integration}

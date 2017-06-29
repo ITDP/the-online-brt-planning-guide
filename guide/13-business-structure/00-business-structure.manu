@@ -58,10 +58,10 @@ information, these services can then be parcelled out into separate tenders.
 
 Ideally, the business structure of a BRT system should (roughly in order of priority):
 
-\item Maximize the quality of the service over the long term;
-\item Minimize the cost of the service over the long term;
-\item Maximize the level of private sector investment over the long term;
-\item Maximize the public benefit from the public investment.
+\number Maximize the quality of the service over the long term;
+\number Minimize the cost of the service over the long term;
+\number Maximize the level of private sector investment over the long term;
+\number Maximize the public benefit from the public investment.
 
 In examples around the world, the clever application of well-placed incentives has persuaded operators
 to concentrate more on customer service and less on battles between competing vehicles. From the BRT
@@ -76,6 +76,8 @@ The principal components of this consensus are each discussed in turn in this ch
 \number Multiple vehicle operators on each BRT corridor;
 \number Quality of service contracting.
 
+\highlight{Contributors:} Walter Hook, *BRT Planning International*; Gabriel Oliveira, *ITDP Brasil*; Iuri Moura, *ITDP Brasil*; Yoga Adiwinarto, *ITDP Indonesia*
+
 \include{01-private-brt-operations.manu}
 \include{02-brt-operating-contract-types.manu}
 \include{03-competitive-tendering.manu}
@@ -84,6 +86,4 @@ The principal components of this consensus are each discussed in turn in this ch
 \include{06-duration-of-concession-contracts.manu}
 \include{07-the-tendering-process.manu}
 \include{08-bibliography.manu}
-
-\highlight{Contributors:} Walter Hook, *BRT Planning International*; Gabriel Oliveira, *ITDP Brasil*; Iuri Moura, *ITDP Brasil*; Yoga Adiwinarto, *ITDP Indonesia*
 
