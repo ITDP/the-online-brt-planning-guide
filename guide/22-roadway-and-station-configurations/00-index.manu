@@ -56,7 +56,7 @@ can transfer from one service or route to another within the BRT system.
 \item Platform: the raised area where customers board or alight the buses after they pull up to the 
 docking bay at the sub-stop. It is also the place where customers wait for the next bus.
 
-\include{221-cross-section-design.manu}
-\include{222-roadway-configurations.manu}
-\include{223-station-configurations.manu}
-\include{bibliography.manu}
+\include{01-cross-section-design.manu}
+\include{02-roadway-configurations.manu}
+\include{03-station-configurations.manu}
+\include{04-bibliography.manu}
