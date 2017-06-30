@@ -18,14 +18,14 @@ class Main {
 		req.onData =
 			function (tocData:String)
 			{
-				JTHIS.ready(function (_) drawNav(tocData));
+				JTHIS.ready(function (_) drawNavNext(tocData));
 			}
 		req.onStatus = function (status) weakAssert(status == 200, status);
 		req.onError = function (msg) assert(false, msg);
 		req.request();
 	}
 
-	static function drawNav(tocData:String)
+	static function drawNavNext(tocData:String)
 	{
 		// parse and locate myselft
 		assert(tocData != null, "toc data is missing");
@@ -35,6 +35,15 @@ class Main {
 		var me = toc.find('a[href="$myUrl"]').not("#toc-menu").parent();
 		assert(me.length > 0, myUrl);
 		assert(me.is("li"));
+
+		//get next button content
+		var next = me.find("li.chapter, li.section");
+		if (!next.is("li")) next = me.next();
+		if (!next.is("li")) next = me.parents("li").next();
+
+		// draw the next buttonm set class to volume, chapter section (nav)	
+		J("#next-loading").remove();
+		J(".next").append(next.clone().find("a")[0]);
 
 		// if we're the ToC, just remove the placeholder
 		if (me.hasClass("toc-link")) {
@@ -73,6 +82,9 @@ class Main {
 		// draw the nav toc
 		J("#toc-loading").remove();
 		J("nav").append(toc);
+
+
+
 	}
 
 	static function drawOverview(internals:JQuery)

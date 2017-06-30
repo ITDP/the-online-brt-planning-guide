@@ -538,7 +538,7 @@ class Generator {
 				continue;
 
 			if (p.endsWith(".html")) {
-                b.add('<div class="next"><span id="next-loading">Loading the next section...</span>whose next section</div>\n'); // FIXME BEFORE MERGE:NEEDS TO FIND OUT WHO IS NEXT...
+                b.add('<div class="next"><span id="next-loading">Loading the next section...</span></div>\n'); 
 				b.add("</div>\n");
 				b.add('<nav id="action:navigate"><span id="toc-loading">Loading the table of contents...</span></nav>\n');
 				b.add("</div>\n");
