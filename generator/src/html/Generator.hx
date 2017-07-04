@@ -174,7 +174,7 @@ class Generator {
 		assert(!bufs.exists(path) || bufs[path] == reserved, bufs[path].toString());
 		bufs[path] = reserved;
 	}
-	
+
 	function unreserveBuffer(url:String)
 	{
 		var path = urlToPath(url);
@@ -536,9 +536,10 @@ class Generator {
 				continue;
 
 			if (p.endsWith(".html")) {
-                b.add('<div class="prev"><span id="prev-loading">previous page...</span></div>\n'); 
-                b.add('<div class="next"><span id="next-loading">next page...</span></div>\n'); 
 				b.add("<div class="navigation">\n");
+                b.add('<div class="prev"><span id="prev-loading">previous page...</span></div>\n');
+                b.add('<div class="next"><span id="next-loading">next page...</span></div>\n');
+				b.add("</div>\n");
 				b.add("</div>\n");
 				b.add("</div>\n");
 				b.add('<script src="$script"></script>');
