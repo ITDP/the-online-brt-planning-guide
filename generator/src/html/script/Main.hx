@@ -18,14 +18,14 @@ class Main {
 		req.onData =
 			function (tocData:String)
 			{
-				JTHIS.ready(function (_) drawNavNext(tocData));
+				JTHIS.ready(function (_) drawNavNextPrev(tocData));
 			}
 		req.onStatus = function (status) weakAssert(status == 200, status);
 		req.onError = function (msg) assert(false, msg);
 		req.request();
 	}
 
-	static function drawNavNext(tocData:String)
+	static function drawNavNextPrev(tocData:String)
 	{
 		// parse and locate myselft
 		assert(tocData != null, "toc data is missing");
@@ -36,10 +36,24 @@ class Main {
 		assert(me.length > 0, myUrl);
 		assert(me.is("li"));
 
+		//get previous button content
+		var prev = me.prev("li");
+		if (!prev.is("li")) {
+			prev = me.parents("li");
+		} else if (prev.find("li.chapter, li.section").last().is("li")) {
+			prev = prev.find("li.chapter, li.section").last();
+		}
+		assert(prev.is("li"));
+
+		// draw the prev button set class to volume, chapter section (nav)	
+		J("#prev-loading").remove();
+		J(".prev").append(prev.clone().find("a")[0]);
+
 		//get next button content
 		var next = me.find("li.chapter, li.section");
-		if (!next.is("li")) next = me.next();
+		if (!next.is("li")) next = me.next("li");
 		if (!next.is("li")) next = me.parents("li").next();
+		assert(next.is("li"));
 
 		// draw the next buttonm set class to volume, chapter section (nav)	
 		J("#next-loading").remove();

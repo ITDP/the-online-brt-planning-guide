@@ -538,7 +538,8 @@ class Generator {
 				continue;
 
 			if (p.endsWith(".html")) {
-                b.add('<div class="next"><span id="next-loading">Loading the next section...</span></div>\n'); 
+                b.add('<div class="prev"><span id="prev-loading">previous page...</span></div>\n'); 
+                b.add('<div class="next"><span id="next-loading">next page...</span></div>\n'); 
 				b.add("</div>\n");
 				b.add('<nav id="action:navigate"><span id="toc-loading">Loading the table of contents...</span></nav>\n');
 				b.add("</div>\n");
