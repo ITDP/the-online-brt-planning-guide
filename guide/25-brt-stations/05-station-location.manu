@@ -1,0 +1,73 @@
+\section{Station Location}
+
+\' TODO replace, can't verify this one '\
+\quotation{To get the right word in the right place is a rare achievement.}
+{Mark Twain, American writer, 1835--1910}
+
+This section covers the location of a station along a BRT corridor.  BRT stations are generally spaced 
+300 meters to 800 meters apart.  In an urban area, spacing optimizes at around 450 meters.  Beyond this, 
+more time is imposed on customers walking to stations than is saved from higher bus speeds.  Below this 
+distance, bus speeds will be reduced by more than the time saved with shorter walking distances.  See 
+*Chapter 6: Service Planning* for more details.
+
+Outside of overall system requirements, the exact location of a station is highly site-specific.  The 
+goal is to make the station as easy to access as possible and as close to nearby origins and destinations 
+as possible.  No one wants to see a station and not be able to get to it.  Following are general consideration 
+for locating stations.
+
+\item Existing bus stops may be prime locations and already ingrained in the public's mental map of 
+the area.
+\item Locate traffic signals, pedestrian crossings, bridges and tunnels to facilitate direct pedestrian 
+access.
+\item Where possible, place the station at least 26 meters (85 feet) but ideally 40 meters (130 feet) 
+from the intersections to minimize delays to the bus.
+\item Where the bus operates in mixed traffic, locate stations to ensure that the bus maintains its 
+place in the traffic queue, can depart when ready, and does not have to re-merge into traffic.
+\item Map nearby origins and destinations, walking and cycling network, then adjust the station location 
+to facilitate direct pedestrian access.
+\item Integrate stations into nearby buildings, plazas and commercial streets.
+\item Modular station units can be arranged to fit various sites.
+\item Stations may be separated by direction or serve both direction depending on space available and 
+operation requirements.  Transfer stations should serve both directions simultaneously.
+\item At signalized intersections, stations should be *near-side* so that boarding and alighting time 
+can overlap with the traffic signal red phase.  Provide traffic signal priority for the BRT.
+\item At unsignalized locations, stations should be *far-side* (in the direction of travel) so that 
+passengers exit and cross behind the bus.
+\item Where blocks lengths are short, the station can be placed mid-block and accessed from both ends.
+\item Allow for additional platforms within a 20 year horizon.  It is better to plan for and reserve 
+the space before additional development occurs.
+\item Avoid placing stations simply where land is available.  In the long run, these locations may not 
+be optimal and will just frustrate passengers.  Stations should not be located in the places of least 
+resistance, but close to the places where people want to go.
+
+One of the most common mistakes made during BRT planning is to place stations too far apart. As a rule 
+of thumb, BRT stations should be spaced around 450 meters apart in urban areas; or 600m-700m for stations 
+with multiple sub-stops. Outside built-up areas stations may be further apart, though should rarely be 
+more than 800 meters apart. Yichang’s BRT in the map below shows one particularly long gap between stations, 
+of 1.7 kilometers between Pinghu and Sanxia Chacheng, due to a cliff alongside a riverfront that has 
+no passenger demand or space for a station, yet still achieves an average station spacing of less than 
+650m. In the lower capacity system designed by ITDP in Vientiane, stations are smaller and this is reflected 
+in an average station spacing of 500m (Figure 25.49).
+
+\figure[medium]{assets/image49.png}{The proposed medium capacity BRT system in Vientiane averages 
+one station every 500 meters.}{ ITDP-China.}
+
+\figure[medium]{assets/image50.png}{The high capacity BRT system in Yichang, with larger stations, 
+averages 645 meters between stations.}{ ITDP-China.}
+
+The best guide to BRT station location is the location of existing bus stops. Usually, though, especially 
+where high capacity BRT stations are being implemented, placement is heavily constrained by local physical 
+conditions of the corridor including the locations of intersections. 
+
+Figure 25.51 top locations were used to guide the BRT station locations in Lanzhou 
+and Yichang. In the case of Lanzhou, the BRT stations largely corresponded with the current bus stop 
+locations, though with selected variations. In Yichang, station planning also took into account existing 
+bus stops for most of the corridor, but for the central area the BRT station coverage is much denser 
+than the bus stops. This is due to the fact that the central area bus stop coverage in Yichang prior 
+to the BRT system implementation was inadequate, with stations spaced too far apart.
+
+\figure[medium]{assets/image51.png}{Bus stop and BRT station locations during the BRT planning 
+in Lanzhou.}{ITDP-China}
+
+\figure[medium]{assets/image52.png}{Current bus stops and proposed BRT stations by ITDP-China 
+in the Yichang center area.}{ITDP-China.}

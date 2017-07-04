@@ -1,0 +1,19 @@
+\section{Real Time Information}
+
+\quotation{I feel more comfortable in a place like Brighton - a town, with one centre, one bus station, one train station. And there are so many arty, creative people, and things are less rushed, less stressed.}{Gabrielle Aplin,  English utube-singer-songwriter,  1992 --}
+
+
+Advances in technology are helping to make information integration easier and making traveling through 
+the city easier. Having static information about how to connect to other modes at a station helps customers 
+finish their trip. Even just mapping the existing services can be revolutionary in terms of helping customers 
+know how to make and plan for trips. Having digital information available to the customer, where it be 
+through Google maps using data standards like GTFS, or through apps like Where Is My Transport, helps 
+customers plan and make better decisions about how to reach their destinations. 
+
+\figure[medium]{assets/image61.jpg}{Conceived out of collaboration between Kenyan and American universities 
+and the technology sector in Nairobi, the Digital Matatu project captured transit data for Nairobi, developed 
+mobile routing applications and designed a new (and first) transit map for the city.}{The Digital 
+Matatu Project (\url{www.digitalmatatus.com})}
+
+\figure[medium]{assets/image62.png}{New platforms that aggregate transport service information is 
+making it easier for customers to plan and make trips.}{Where Is My Transport website.}

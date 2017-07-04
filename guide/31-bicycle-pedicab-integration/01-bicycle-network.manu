@@ -1,0 +1,236 @@
+\section{Bicycle Network}
+
+\quotation{Every time I see an adult on a bicycle, I no longer despair for the future of the human race.}
+{H. G. Wells, novelist, 1866–1946}
+
+This section discusses the general planning elements for a bicycle network, and how it fits within 
+the overall public transport network. 
+
+\subsection{Trip Chains}
+
+Virtually all trips can be analyzed as a “chain of trips.” The simplest chain has three links: a walking 
+trip to a vehicle, a vehicle ride, and a walking trip to one’s final destination. For those lucky enough 
+to be able to store their bikes in their homes and offices, the journey may consist entirely of one mode: 
+the bike.
+
+The trip-chain concept is of utmost importance when thinking about public transport. All public transport 
+users have to travel from their origin to the public transport stop, and at the end of the trip from 
+the public transport stop to their destination. This means that “access” and “egress” trips are an integral 
+part of public transport travel. These “feed” the transport system, and are referred to as feeder trips. 
+Given its complementary characteristics, cycling is an excellent feeder mode.
+
+An integrated public transport system allows users to ride their bicycles from their home to the nearest 
+public transport station, and then take public transport to their final destination (by leaving their 
+bicycle at the station or taking it with them on the public transport vehicle). When multi-modal connections 
+are well implemented, travel times become similar to or better than those of a private car, especially 
+in big cities with congestion and less provision for parked cars. Above all, travel times improve when 
+public transport enjoys segregated express routes (e.g., in BRT or rail systems), and can travel congestion 
+free. A transport policy that includes as wide a range of multimodal (or intermodal) trip opportunities 
+as possible can increase public transport ridership, while increasing access for all transport users.
+
+\begintable{Possible Trip-Chain Combinations}
+\header
+\col 
+\col Walk
+\col Bike
+\col Public transport
+\col Drive
+\col Transfer
+\row
+\col Entire distance
+\col X
+\col X
+\col 
+\col X
+\col 
+\row
+\col Partial distance
+\col X
+\col 
+\col X
+\col X
+\col 
+\row
+\col To the stop/station/parking
+\col X
+\col X
+\col X
+\col X
+\col 
+\row
+\col At the stop/station/parking
+\col X
+\col 
+\col 
+\col 
+\col X
+\row
+\col From the stop/station/parking
+\col X
+\col X
+\col X
+\col X
+\col 
+\row
+\col Finding parking
+\col 
+\col X
+\col 
+\col X
+\col 
+\endtable
+
+\subsubsection{Integrating Bicycles into the Trip Chain}
+
+The following lists precise points in the trip chain that benefit most from bicycle integration:
+\item To/from the public transport station: Bicycles should be available to serve people whose point 
+of origin or final destination is too far from the public transport station for them to complete their 
+trip on foot. In some cities, users keep a second bicycle parked at the egress station, but this is not 
+normally the case, particularly in developing cities. Three services to meet this need include:
+\item Rental bicycles: Bicycles that are managed by a specific company and are rented and returned to 
+the same location, mostly for tourist purposes;
+\item Shared bicycles: An important form of public transport, shared bicycles allow for trips linked 
+to public transport and increased public transport range and are similar to rental bicycles, but organized 
+on a larger scale. Kiosks or stations are located throughout the city to allow users to circulate shared 
+bicycles. Often rented for short periods of time through a membership system, bike-share serves both 
+tourists and commuters;
+\item Bicycle taxis (pedicabs): Three-wheeled human-powered vehicles that operate as feeders to public 
+transport; 
+\item At the public transport station:
+\item Bike parking: The provision of ample, secure bicycle parking facilities near or in public transport 
+stations;
+\item Bike stations: Enhanced bicycle facilities in key locations with various services, used as a multimodal 
+transfer station. Services may include key card access bike parking, locker rooms, showers, rental, and 
+retail facilities;
+\item During the public transport ride:
+\item Bikes on buses: Provision of bicycle racks on the front of or within buses, where public transport 
+relies mostly on bus-based systems;
+\item Bikes on rail systems: Provision of space and permission to enter rail vehicles in specific times 
+and locations, for large cities with rail-based systems.
+
+\subsubsection{Minimizing Delay and Transfers}
+
+When deciding whether and how to make a trip, people make a number of calculations based on time, ease, 
+price, and familiarity. Delays and transfers increase trip time. Predicting and calculating these points 
+of delay is an important part of structuring an overall journey, whether by the consumer or public transport 
+operator. The critical element usually is the amount of delay at each transfer. If the public transport 
+service is very frequent, wait time will be minimized. If finding bike parking is time-consuming, then 
+the transfer can be longer. As shown in the graphic below, the time to ride a bike from origin to destination 
+might be equal to the same journey involving transfers, especially for short trips. 
+
+\figure[medium]{assets/image1.jpeg}{Comparison of various trip chains involving the bicycle, public transport, 
+and walking.}{TransLink}
+
+\subsubsection{The Bicycle’s Part in Modal Integration}
+
+The success of any public transport system depends on modal integration. A driving network extends 
+from one’s origin (garage) to one’s destination (parking) with an entire complement of integrated roadways: 
+driveways, access lanes, highways, and so on. Likewise, a public transport network should extend from 
+origin to destination. The bicycle can be an integral part in this network as it extends and augments 
+the public transport network; the ability to use a bicycle can be the deciding factor in whether one 
+takes public transport or chooses to drive alone.
+
+\subsection{Catchment Area}
+
+\figure{assets/image2.jpeg}{Cycling catchment area compared to walking catchment area.}{TransLink}
+
+\figure{assets/image3.jpeg}{Bicycle (larger circle) and pedestrian (smaller circle) catchment areas 
+overlaid on stations along the Insurgentes BRT line in Mexico City.}{ Google Earth.}
+
+Cycling exponentially increases the catchment area of a BRT station. As shown in Figure 31.4, one can 
+walk about 800 meters in 10 minutes, assuming a 4.8-kph pace. Ten minutes is generally used as the amount 
+of time that one will travel to access high-quality public transport (BRT, metro, ferry). Cycling at 
+15 kilometers per hour (kph) yields a range of 2.5 kilometers in the same amount of time. Fifteen kph 
+is known as a “no sweat” pace—a speed that will allow you to arrive dry. While the cycling distance is 
+just over three times that of walking, the catchment area is twenty-five times greater. Figure 31.2 applies 
+these catchment areas to the Insurgentes BRT line in Mexico City. 
+
+The bicycle-catchment area expands the longer patrons are willing to ride to the BRT station. This 
+is important in lower-density areas, or in areas constrained by geography. A catchment area based on 
+a 60-minute ride is 15 kilometers in radius. This could cover a large part of an urban area. Thirty minutes 
+(7.5-kilometer radius) is the general limit for a normal catchment area.
+
+\subsubsection{Integrating Bicycles with BRT}
+
+The benefits of integrating bicycles into the BRT system include:
+\item Door-to-door service, competitive with private vehicles;
+\item Larger station-catchment areas (see Section 31.1.2), which increase ridership potential;
+\item Low-cost system expansion (bicycles used instead of feeder buses);
+\item Reduced pressure on congested roads and auto parking (trips shift to bicycle);
+\item Less delay, because patrons do not need to wait for feeder buses.
+
+Key initiatives to improve cycling-BRT integration include:
+\item Seamless bicycle-route connections to BRT stations;
+\item Smooth transfers between bicycles and the BRT system;
+\item Secure parking facilities for bicycles at BRT stations;
+\item Bike rentals or public bicycle services;
+\item Pedicabs (bicycle taxis).
+
+\subsection{Using Bikes to Augment BRT}
+
+Typically, bicycles have been used to expand the reach of BRT; however, bicycles can also be used to 
+augment service. For example, if BRT station spacing is based on a cycling catchment area (2.5 kilometers) 
+instead of a walking catchment area (800 meters), fewer stations or skip-stop service are required. With 
+fewer stops, travel time on the vehicle is reduced. Those fewer stations can be more highly developed, 
+with bike parking and so forth. This scenario has been proposed in the Netherlands, where the highly 
+developed bicycle infrastructure makes it feasible. 
+
+Bicycles can augment BRT via recreational trips on the weekends and during off-peak hours. Often the 
+system will have excess capacity during these times, which can be used to travel to the outskirts of 
+the city and ride a bike in the country, for example.
+
+Bicycles can help distribute journeys more evenly throughout the system. For instance, patrons arriving 
+by foot typically walk to the nearest station, even though it may be small, crowded, or not an express 
+stop. By bike, one has a greater choice of stations. Thus, one can choose an express stop, a station 
+on a different line (thereby avoiding a transfer), or a station that is less crowded. This may relieve 
+pressure on overloaded segments and add customers on underused stretches. 
+
+\subsection{ Complementary BRT and Bicycle Networks}
+
+\figure{assets/image4.jpeg}{A protected bike lane—which provides physical separation from the roadway—along 
+the BRT in Delhi, India, located between the roadway and trees.}{Michael King.}
+
+\figure{assets/image5.jpeg}{A bike lane along the BRT in Guangzhou, China, located between the roadway 
+and trees.}{Michael King.}
+
+Traditionally, public transport and bicycle networks have been developed and operated separately. In 
+many cases, they were seen as competitors; public transport operators feared that cycling would steal 
+patrons, and vice versa. This is parallel to the animosity between public transport and driving systems. 
+
+Some of the more recently successful BRT systems have taken a different approach. They see cycling 
+as complementary and have sought to develop complementary systems. The basic idea is: It is not possible 
+to provide high-quality public transport service to every part of the city, so bicycles fill in the gaps. 
+Thus, the combination of a BRT system with a bike-lane network can do much to provide citywide mobility 
+and improved access for users. For example, Bogotá is home to Latin America’s largest bicycle network 
+with some 320 kilometers of dedicated bike lanes. Ultimately, if one can move throughout a city without 
+a car, then one will not need a car.
+
+Techniques to merge BRT and bicycle systems include:
+\item Place bicycle facilities on higher-volume, higher-speed roads that lead to the BRT corridor. This 
+will “collect” cyclists and deposit them at the BRT stations;
+\item Locate BRT stations along existing high-usage bicycle routes, such as greenways. This will allow 
+cyclists to ride to the stations, or ride to a different BRT line;
+\item Upgrade the cycling infrastructure within 2.5 kilometers of BRT stations (discussed in Section 
+31.3.1 of this chapter).
+
+\figure[medium]{assets/image6.jpeg}{A design for a bicycle network in tandem with a BRT network in Harbin, 
+China. Bicycle routes are denoted by dotted blue lines.}{ Nelson\\Nygaard.}
+
+\subsection{ Bicycles Onboard BRT}
+
+The viability of permitting bicycles to be brought on board the BRT vehicle depends on the level of 
+crowding in the system, which is discussed in more detail in Chapter 7: Capacity and Speed. In general, 
+folding bikes should be allowed on board at all times, in much the same way that luggage is. It may be 
+prudent to require a bag, or that the bike be placed in a luggage hold. Some BRT systems, such as AC 
+Transit serving the East Bay of California, USA, and C-TRAN in Vancouver, Canada, permit bicycles to 
+be brought on board during nonpeak hours. There might be a requirement to board only certain cars (the 
+first or last) or through certain doors. Some systems require a permit or extra fee; however, if the 
+intention is to encourage cycling this might be counter-productive. Most important, the requirements 
+for bikes on board need to be clear and consistent. For example, if the number of bikes on each vehicle 
+is limited, a cyclist runs the risk of being denied entry, which leads to travel delays. Uncertainty 
+tempers use.
+
+\figure[medium]{assets/image7.jpeg}{The Las Vegas, Nevada, USA, MAX BRT system offers special entry points 
+for customers with bicycles.}{ NBRTI.}
+
+\figure[medium]{assets/image8.jpeg}{Bikes on Swift BRT vehicle in Seattle, Washington, USA.}{ Nelson\\Nygaard.}

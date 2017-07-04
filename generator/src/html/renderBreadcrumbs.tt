@@ -1,20 +1,19 @@
 <header>
 <ul>
-<li><a class="brtcolor" href="(:ROOT_URL:)"><strong>BRT Planning Guide</strong></a></li>
+<li><a class="brtcolor" href="(:ROOT_URL:)">BRT Planning Guide</a></li>
 (:if bcs.volume != null:)
-<li>/</li>
-<li><a class="volume(:bcs.volume.no:)" href="(:bcs.volume.url:)"><strong>(:bcs.volume.name:)</strong></a></li>
+<li class="slash">/</li>
+<li><a class="volume(:bcs.volume.no:)" href="(:bcs.volume.url:)">(:bcs.volume.name:)</a></li>
 (:end:)
 (:if bcs.chapter != null:)
-<li>/</li>
-<li><a href="(:bcs.chapter.url:)"><strong>(:bcs.chapter.name:)</strong></a></li>
+<li class="slash">/</li>
+<li><a href="(:bcs.chapter.url:)">(:bcs.chapter.name:)</a></li>
 (:end:)
 (:if bcs.section != null:)
-<li>/</li>
-<li><a href="(:bcs.section.url:)"><strong>(:bcs.section.name:)</strong></a></li>
+<li class="slash">/</li>
+<li><a href="(:bcs.section.url:)">(:bcs.section.name:)</a></li>
 (:end:)
-<li class="jump-to-nav">/</li>
-<li class="jump-to-nav"><a href="(:relPath:)#action:navigate"><strong>...</strong></a></li>
+<li class="jump-to-nav"><a href="(:relPath:)#action:navigate">...</a></li>
 </ul>
 <noscript>
 <div class="js-required-banner">

@@ -1,0 +1,304 @@
+\section{Station architecture}
+
+\quotation{It is not the beauty of a building you should look at; it’s the construction of the foundation that will stand the test of time.}
+{David Allen Coe, musician, 1939--}
+
+\subsection{Architectural Style}
+
+Modern architectural styles often deliver relatively clean look within a sort of minimalistic framework 
+(Figures 11.47 and 11.48). The station designs in Brisbane epitomize this type of approach. The excellence 
+of the  design has resulted in the designers receiving various architectural awards. Likewise, stations 
+in cities such as  and  have likewise utilised simple, clean designs to evoke a modern appearance.
+
+\figure{assets/image98.jpeg}{Clean and simple design in Brisbane gives the system a look of modernity and sophistication.}
+{Queensland Transport.}
+
+\subsection{Weather and Enclosure}
+
+BRT stations need to protect passengers from adverse weather including rain, wind, and sun. A comfortable 
+customer will be more likely to use the system. Comfort is also related to efficiency, as passengers 
+will tend to wait where they are out of the elements. As such, the design and location of waiting areas 
+can enhance efficiency of space utilization and passenger flows.
+
+Any area where passengers are queued or stationary (ticket vending, turnstiles, waiting area) needs 
+to be roofed. Areas with equipment are to be enclosed. Transfer locations, such as ramps and bridges 
+should also be roofed, if not enclosed. Apart from comfort, enclosure assists with security and access 
+(keeping out fare dodgers).
+
+In general, stations in areas with warm and humid weather are preferably designed with more open structures, 
+which usually means partially open walls and door heights of 1.1 meters, to enable air circulation. Stations 
+in cold climates may be fully enclosed.
+
+\subsection{Lighting and Power Supply}
+
+Based on specifications used in Guangzhou and Yichang, suggested minimum design illuminance levels 
+are 75 lux in stations and 300 lux in control and machine rooms. Stations should use more energy-efficient 
+fluorescent lighting or electronic energy-saving lamps with energy-saving inductance ballasts or electronic 
+ballasts, and a single lamp power factor not less than 0.9.
+
+Platform security doors, turnstiles, ticketing system and emergency lighting is based on secondary 
+load, with general lighting, advertising lighting, fans, air-conditioning and others based on tertiary 
+load. The secondary load is eleven kilowatts, and tertiary eight kilowatts. Primary and secondary loads 
+use a dual power supply to ensure supply security. Main power supply is provided by the platform box, 
+with backup power from the adjacent platform dedicated box. Particularly important electrical equipment 
+such as the fare system has an extra accessory set UPS, and emergency lighting comes with batteries.
+
+\subsection{Signature and Iconic Stations}
+
+Memorable BRT stations can have iconic value. Prominently located in the median and repeated multiple 
+times along a corridor, BRT stations can redefine that corridor.
+
+A city’s investment in a BRT system is a major investment, and many BRT corridors are the most prominent 
+urban transport projects that cities have ever undertaken. Such commitments are not made lightly, and 
+are expected to significantly better the lives of its citizens and visitors.
+
+Signature stations are a useful concept in BRT station planning. Signature stations can be selected 
+based on usage or prominence within the city, and can include additional elements. For example, signature 
+stations may include escalators instead of stairs, and may be wider, or have trees and plantings and 
+public art, or other special characteristics not present in most stations in the system.
+
+\figure[medium]{assets/image99.jpeg}{The Johannesburg station design was meant to be iconic and 
+indicative of a quality public space, visible in the neighborhood.}{ITDP}
+
+\figure[medium]{assets/image100.jpeg}{Each station in the Rea Vaya system has a unique character 
+in the locally produced artwork that is on the glass of the station as the customers enter.}{ITDP}
+
+\subsection{Supervision During Construction}
+
+Many key decisions are made during the detailed engineering design and construction of a BRT system. 
+Both stages require supervision and technical input by BRT experts experienced with high-quality BRT 
+implementation. Changes to system features such as any aspects of the station design or configuration, 
+any aspect of the intersection design, and aspects of the physical design or the corridor can have potentially 
+disastrous implications for the later operation. Operational decisions are also extremely important, 
+but provided the physical design is correct, can be fixed after the system starts operation. Physical 
+mistakes, on the other hand, are usually either difficult or impossible to fix, short of demolition.
+
+Institutional and contracting decisions made during the construction period are also important, and 
+should not be taken without input by BRT experts with experience with high-quality BRT implementation. 
+While theoretically the institutional and regulatory matters should be well advanced even during the 
+period before construction starts, in reality it is the appearance of the corridor and physical station 
+structures that often spurs the relevant regulatory authorities to take action.
+
+Experts with experience with BRT implementation should be hired separately to supervise key technical 
+aspects of the implementation, especially during the construction period. This does not refer to the 
+typical procedures regarding supervision of matters like administration, contracting, bidding, and auditing. 
+Rather, this refers to the need for an additional contract for supervising the technical aspects of the 
+BRT implementation, in order to ensure that the designs are properly implemented. Without this supervision, 
+there is a substantial risk that local contractors and engineers, inexperienced with BRT implementation, 
+will make errors that will undermine the later project operation.
+
+\subsection{Ensuring High Quality Construction }
+
+Poor workmanship can result in unresolved building details, causing misaligned station parts, unfortunate 
+junction of materials and components and substandard finishing off of the BRT station works.
+
+A qualified, independent architect should be engaged to provide detailed design information, including 
+working drawings and technical specifications. Because of the scale of BRT projects and the number of 
+stations, it is recommended that during the critical construction period weekly inspections are undertaken 
+and monthly reporting on the quality and the progress of the works be made to the project management 
+team. 
+
+Station construction requires the care and workmanship of a skilled contractor for such important BRT 
+infrastructure, especially considering the high levels of financial investment in BRT stations. Inadequate 
+construction supervision with limited architectural information and below-average workmanship will adversely 
+impact on the overall functional and visual quality of the stations. Substandard workmanship reduces 
+the life expectancy of the station works and may require later remedial work to improve the stations.
+
+New station designs should be coordinated with other supporting building design professionals, including 
+structural and civil engineers, electrical engineer, hydraulic engineers, landscape architects and signage 
+designers. This must be undertaken to reduce the risk of poor workmanship, less than satisfactory quality, 
+and the possibility of budget overruns for BRT stations.
+
+The planning and design of new stations requires the engagement of a qualified architect to lead the 
+station architectural design process. This standard building industry practice is needed for the production 
+of architectural design information that accurately indicates the technical detail needed by a building 
+contractor to construct new BRT stations.
+
+\subsection{Demonstration Stations}
+
+An approach successfully used in Johannesburg, Guangzhou, and Yichang is to build a single demonstration 
+station first, before the remaining stations are built. This initial demonstration station can be used 
+to test and make adjustments for all aspects of the station architecture, as well as for components such 
+as road pavement coloring. It can also help build excitement and buy-in to the new system.
+
+Figure 25.101 shows the demonstration station completed in Yichang in late 2013. This station, Wuyi Guangchang, 
+was thoroughly reviewed by ITDP-China working with the Guangzhou Municipal Engineering Design and Research 
+Institute (GMEDRI) in late 2013, and a number of adjustments were made for application to the station 
+architecture and construction of subsequent stations.
+
+\figure[medium]{assets/image101.jpeg}{Yichang BRT demonstration station (Wuyi Guangchang station) 
+under construction in December 2013. Wuyi Guangchang is in a wide, relatively lower demand section of 
+the BRT corridor, far to the south of the highest demand city-center stations.}{Shanshan Li, ITDP}
+
+In Guangzhou, a demonstration station was finalized in 2009 before the other stations at Huangcun, 
+in a relatively lower demand location along the corridor. Various pavement colorings were also tested 
+at this station prior to application throughout the entire BRT corridor later in 2009. The system opened 
+in February 2010.
+
+\subsection{Materials}
+
+The best BRT stations are constructed with materials that are highly durable, weather-resistant, vandalism-resistant, 
+and easily maintained.
+
+\item \highlight{Steel} is commonly used for shelters, ramps, bridges, benches, bicycle racks, and trash 
+receptacles. It resists everyday wear, tear, and graffiti;
+\item \highlight{Concrete}, an excellent non-slip surface, is commonly used for the station base, ramps, 
+and walkways. Concrete panels can be used for walls;
+\item \highlight{Tempered glass} is primarily used for side panels on station shelters. Visually, the material 
+is more pleasing that plastic and withstands environmental demands better than plastic. Unlike plastic, 
+the material is not damaged by repeated cleaning;
+\item \highlight{Plastic} is used for paneling and roofing on stations. The material is lightweight and can 
+be installed with minimal effort. Clear plastic permits the interior of the shelter to be visible from 
+a distance, which enhances security. Depending on the desired effect, plastic can be frosted to reduce 
+the amount of sun entering the station or left clear to allow for exposure to the sun;
+\item \highlight{Aluminum}, although fairly inexpensive and easy to work with, is easily scratched. Its high 
+recyclable value makes it a target for theft; and
+\item \highlight{Wood}, oftentimes used for benches, is rarely used to construct other elements because it 
+weathers poorly and is easily vandalized. 
+
+A BRT station needs to be designed to counteract wind loads, snow loads, seismic activity, and storm 
+water. Wind loads are especially problematic for stations surrounded by tall buildings. It is also advisable 
+to include as much sound-absorptive material as possible to make the station quieter (given that it exists 
+in the middle of the road).
+
+Stations need to withstand occasional scrapes from buses or other vehicles without suffering visible 
+damage. For this reason, the sides of the platform are often designed similar to highway barriers. 
+
+The station and its passengers must be protected from vehicles crashing into the station. This can 
+be accomplished using a series of perimeter barriers. The first would be the verge and merge areas, which 
+can be designed so that any errant BRT vehicle is shunted away from the station. The second is a barrier 
+between the regular vehicle lanes and BRT lanes. This would deflect errant vehicles approaching from 
+the side, for example swerving cars and trucks or those approaching from side streets. Bollards and other 
+structural material atop the platform provide a third layer of protection, stopping any vehicles or vehicle 
+parts that pass over the barriers. Through the use of perimeter barriers, the station does not have to 
+look like a fortress.
+
+\subsubsection{Passive Heating and Cooling}
+
+To be consistent with sustainability principles, BRT stations should be passively heated and cooled 
+as much as possible. This also reduces operating expenses. Passive design techniques include:
+
+\item Roof overhangs to block the sun (must be high enough to not interfere with bus traffic);
+\item Horizontal louvers to shade the sun (can be mechanized to adjust to the sun angle);
+\item Horizontal or vertical louvers which allow prevailing breezes to pass through (but do not obstruct 
+visibility);
+\item Performance glasses to reduce heat gain;
+\item Reflective colors that absorb less heat;
+\item Ventilation systems where hot air is vented out the top of the station and fresh air is drawn in at 
+the bottom;
+\item Cross ventilation; and
+\item Green roofs (vegetated to absorb radiant heat and reduce heat-island effect).
+
+\subsubsection{Mechanical Heating and Cooling}
+
+Some locations are simply too hot, humid, cold, or windy to passively heat and cool. Here mechanical 
+systems are required, but efforts should be made to utilize passive techniques as much as possible. For 
+example, a BRT station can have a passive ventilation system in the summer and heaters in the winter. 
+With high bus frequency, wait times are low, and the need to heat and cool less. Some mechanical heating 
+and cooling options are:
+
+\item Ceiling and high-speed fans;
+\item Exhaust fans;
+\item Water-fans and misters;
+\item Area heaters;
+\item Ground source heat pumps; and
+\item Air-conditioning - recommended only where the station is fully enclosed and connects to the vehicles 
+via doors. Alternatively, certain sections of the station can be enclosed and either air-conditioned 
+or heated. Attendant booths/kiosks, offices, and electrical equipment should be air-conditioned.
+
+\subsubsection{Electricity}
+
+BRT stations require electricity for lighting, ticketing, fare collection, surveillance, and other 
+ITS elements. Utilize energy-conserving devices such as LED lights and automatic switches. Power is typically 
+obtained from the same lines that power traffic signals and street lighting. Underground cables are preferred. 
+Include additional power for future services. Where the power grid is unstable, it is necessary to install 
+a generator or backup power supply.
+
+A station may be fully solar powered, especially one with an open-fare system and passive ventilation. 
+The station roof is a prime place for solar panels.
+
+\subsection{Greenery}
+
+Addition of greenery can alleviate the concrete jungle impression imparted by large expanses of road 
+and station infrastructure. 
+
+\figure[medium]{assets/image102.jpeg}{Yichang BRT station landscaping plan.}{ITDP-China}
+
+\figure[medium]{assets/image103.jpeg}{Yichang BRT station landscaping in reality.}{ ITDP-China}
+
+\figure{assets/image104.jpeg}{Trees retained in a BRT station in Mexico City. }{
+Bernardo Baranda, ITDP} 
+
+\figure{assets/image105.jpeg}{Greenery at a BRT station in Mexico City. }{Karl 
+Fjellstrom}
+
+\figure[medium]{assets/image106.jpeg}{Cape Town planted trees in the station on the walkway connecting 
+sub-stops.}{ITDP}
+
+\'
+Note: originaly this was a section... but it is too short and quite incomplete to be one, so the
+\section was renamed \subsection and the \subsections renamed \tittes
+'\
+\subsection{Station Amenities}
+
+\quotation{A river is more than an amenity, it is treasure.}
+{Oliver Wendell Holmes, author, physician, poet, humourist, 1809-1894}
+
+\title{Toilets}
+
+In general, BRT systems rarely provide toilets at stations because it requires additional space, cost, 
+utilities (electricity and plumbing), and maintenance. Larger stations and terminals are often equipped 
+with restrooms for customers, which staff can use, with proper security. It is essential to have restrooms 
+for drivers at terminal facilities, so they can be comfortable while driving during their shifts. These 
+facilities may be separate from customer restrooms. Toilets are essential for staff located at stations 
+full time for maintenance and/or customer service; however, it may be sufficient to establish a relationship 
+with nearby businesses to use their facilities. Another option is paid, self-cleaning toilets located 
+nearby the station.
+
+As noted, toilets need to be provided for station staff, though not necessarily at every station. A 
+toilet every few stations can suffice, allowing staff to access toilets during breaks. Toilets for station 
+staff should preferably be located near rather than in BRT stations.
+
+\title{Commercial Space}
+
+BRT stations provide commercial opportunities to generate revenue and provide passengers services. 
+Proximity to destinations, such as shopping centers, sports arenas, or entertainment districts, may provide 
+opportunities for joint development with adjacent retail. This may not only lead to opportunities for 
+on-site retail and passenger amenities, it may also help seamlessly integrate the station into the surrounding 
+environment. 
+
+Different station configurations may determine the commercial potential. Larger intermodal and terminal 
+stations may be destinations in themselves, providing gateways to grocery stores and shopping malls. 
+These stations may also host smaller vendors, such as newspaper stands or retail kiosks. Stations may 
+have similar types of development, but these stations typically have smaller footprints and therefore 
+less space for commercial development. The smaller retail shops could be planned in coordination with 
+ticket sales outlets or information centers. Regardless of configuration, stations have opportunities 
+to generate on-site revenue through advertising, vending machines, and newspaper boxes.
+
+Public transport stations also represent great value from the perspective of vendors and shop owners. 
+The high volume of public-transport customers through stations and terminals provides vendors with a 
+concentration of potential clientele. The value of commercial property near stations often is representative 
+of the high value that merchants place upon potential customer volumes. The needs of the commuters are 
+met both by the services provided by the street vendors and the formal establishments like kiosks, shops, 
+and large commercial centers. 
+
+From an infrastructure standpoint, it is possible to integrate commercial enterprises into the station 
+and/or terminal sites. The availability of space is the prime determinant, along with the ability to 
+design the shop to avoid conflicts with passenger movements. If a  system has an underground tunnel connecting 
+interchange stations, then an underground shop location could be feasible. 
+
+\figure{assets/image107.jpeg}{Lanzhou’s Fifth Avenue shopping mall connects two BRT stations 
+and is pictured here in May 2013, a few months before opening. The mall has proven very successful.}{Karl Fjellstrom}
+
+The Lanzhou BRT includes elements of transit-oriented development and public-private partnership financing 
+in the form of six underground shopping malls underneath the BRT corridor, constructed as part of the 
+BRT project. The largest, called Fifth Avenue, connects with two BRT stations, Feijiaying and Taohai 
+Shichang. These shopping malls were implemented by the government in the form of the Lanzhou ADB loan 
+Project Management Office, with one sold to a private company and the other five rented to tenants. The 
+Fifth Avenue mall is 496 meters long with a 16,000 square meter operational area, which includes shopping 
+areas, public space and pedestrian passageways. It has eight entrances and 16 escalators, along with 
+24-hour camera monitors, three public plazas and exhibition spaces, and its own system control center. 
+Gansu Dacheng Investment Ltd. invested in and will operate this shopping mall for 50 years. In addition 
+to the original fee which was used to offset the BRT corridor construction cost, the company builds and 
+maintains the public facilities, including BRT passenger tunnels and escalators.
+
