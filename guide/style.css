@@ -298,28 +298,37 @@ nav .index a {
 .close {
 	display: none;
 }
-/* link to the  previouss html-page at the bottom of the page*/
-.prev {
-  text-align: left;
-  margin: 32px 0;
-  padding: 16px;
-  background-color: #ccc;
-  font-family: 'PT Sans', sans-serif;
-  font-size: 14px;
-  display: block;
-  max-width: 608px;
-}
 
-/* link to the next html-page at the bottom of the page*/
-.next {
-  text-align: right;
+/* navigation */
+
+.navigation {
+  width: 640px;
   margin: 32px 0;
-  padding: 16px;
-  background-color: #bbb;
+	padding-bottom: 32px;
+}
+.navigation div {
   font-family: 'PT Sans', sans-serif;
-  font-size: 14px;
-  display: block;
-  max-width: 608px;
+  font-size: 12px;
+}
+.navigation div a span {
+  max-width: 260px;
+  display: inline-flex;
+}
+.navigation div.prev {
+  float: left;
+  text-align: left;
+}
+.navigation div.prev:before {
+  content: "\25c4\0020";
+  color: #CCC;
+}
+.navigation div.next {
+  float: right;
+  text-align: right;
+}
+.navigation div.next:after {
+  content: "\0020\25ba";
+  color: #CCC;
 }
 
 /* col-text */
@@ -780,6 +789,18 @@ figcaption.share:hover:after {
 
 	.volumehead {
 		width: auto;
+	}
+
+	/* navigation */
+
+	.navigation {
+		width: auto;
+	}
+	.navigation div {
+			font-size: 16px;
+	}
+	.navigation div a span {
+		display: none;
 	}
 
 }
