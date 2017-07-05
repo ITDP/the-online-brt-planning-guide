@@ -386,7 +386,6 @@ table {
 	border-collapse: collapse;
 	overflow: scroll;
 	margin: 16px auto;
-	display: block;
 }
 th {
 	padding: 8px;
@@ -738,6 +737,7 @@ figcaption.share:hover:after {
 
 	table {
 		font-size: 10px;
+		display: block;
 	}
 
 	/* menu */
