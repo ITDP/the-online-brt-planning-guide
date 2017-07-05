@@ -35,28 +35,25 @@ class Main {
 		assert(me.length > 0, myUrl);
 		assert(me.is("li"));
 
-		//get previous button content
+		//get previous button content 
 		var prev = me.prev("li");
 		if (!prev.is("li")) {
 			prev = me.parents("li");
 		} else if (prev.find("li.chapter, li.section").last().is("li")) {
 			prev = prev.find("li.chapter, li.section").last();
 		}
-		assert(prev.is("li"));
-
-		// draw the prev button set class to volume, chapter section (nav)	
-		J("#prev-loading").remove();
-		J(".prev").append(prev.clone().find("a")[0]);
+        var prevContent:Null<js.html.Element> = null;
+		if (prev.is("li")) prevContent = prev.clone().find("a")[0];
 
 		//get next button content
 		var next = me.find("li.chapter, li.section");
 		if (!next.is("li")) next = me.next("li");
 		if (!next.is("li")) next = me.parents("li").next();
-		assert(next.is("li"));
+        var nextContent:Null<js.html.Element>  = null;
+		if (next.is("li")) nextContent = next.clone().find("a")[0];
 
-		// draw the next buttonm set class to volume, chapter section (nav)	
-		J("#next-loading").remove();
-		J(".next").append(next.clone().find("a")[0]);
+		// draw the next buttons	
+		drawBottomButtons(prevContent,nextContent);
 
 		// if we're the ToC, just remove the placeholder
 		if (me.hasClass("toc-link")) {
@@ -103,6 +100,20 @@ class Main {
 		var oview = J(JQuery.parseHTML('<div id="toc" class="toccompact"><ul></ul></div>'));
 		oview.children("ul").append(internals);
 		J("div.col-text").append(oview);
+	}
+
+	static function drawBottomButtons(prevContent:Null<js.html.Element>, nextContent:Null<js.html.Element>)
+	{
+        if (prevContent  != null) {
+            var prev = J(JQuery.parseHTML('<div class="prev"></div>'));
+            prev.append(prevContent);
+            J("div.navigation").append(prev);
+        }
+        if (nextContent != null) {
+            var next = J(JQuery.parseHTML('<div class="next"></div>'));
+            next.append(nextContent);
+            J("div.navigation").append(next);
+        }
 	}
 
 	static function figClick(e:Event)
