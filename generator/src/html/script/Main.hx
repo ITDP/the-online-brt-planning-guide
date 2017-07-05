@@ -35,23 +35,24 @@ class Main {
 		assert(me.length > 0, myUrl);
 		assert(me.is("li"));
 
-		//get previous button content 
-		var prev = me.prev("li");
-		if (!prev.is("li")) {
-			prev = me.parents("li");
-		} else if (prev.find("li.chapter, li.section").last().is("li")) {
-			prev = prev.find("li.chapter, li.section").last();
-		}
+        //nav buttons content 
         var prevContent:Null<js.html.Element> = null;
-		if (prev.is("li")) prevContent = prev.clone().find("a")[0];
-
-		//get next button content
-		var next = me.find("li.chapter, li.section");
-		if (!next.is("li")) next = me.next("li");
-		if (!next.is("li")) next = me.parents("li").next();
         var nextContent:Null<js.html.Element>  = null;
-		if (next.is("li")) nextContent = next.clone().find("a")[0];
+	
+        if (!me.is("nav")) {
+            var prev = me.prev("li");
+            if (!prev.is("li")) {
+                prev = me.parents("li");
+            } else if (prev.find("li.chapter, li.section").last().is("li")) {
+                prev = prev.find("li.chapter, li.section").last();
+            }
+            if (prev.is("li")) prevContent = prev.clone().find("a")[0];
 
+            var next = me.find("li.chapter, li.section");
+            if (!next.is("li")) next = me.next("li");
+            if (!next.is("li")) next = me.parents("li").next();
+            if (next.is("li")) nextContent = next.clone().find("a")[0];
+        }
 
 
 		// if we're the ToC, just remove the placeholder
@@ -110,13 +111,11 @@ class Main {
             var prev = J(JQuery.parseHTML('<div class="prev"></div>'));
             prev.append(prevContent);
             navDiv.append(prev);
-            //J("div.navigation").append(prev);
         }
         if (nextContent != null) {
             var next = J(JQuery.parseHTML('<div class="next"></div>'));
             next.append(nextContent);
             navDiv.append(next);
-            //J("div.navigation").append(next);
         }
 		J("div.col-text").append(navDiv);
 	}
