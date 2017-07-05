@@ -386,6 +386,7 @@ table {
 	border-collapse: collapse;
 	overflow: scroll;
 	margin: 16px auto;
+	display: block;
 }
 th {
 	padding: 8px;
@@ -547,10 +548,11 @@ pre {
 
 ::-webkit-scrollbar {
 	width: 8px;
+	height: 8px;
 }
 ::-webkit-scrollbar-button {
 	width: 8px;
-	height: 0;
+	height: 8px;
 }
 ::-webkit-scrollbar-thumb {
 	background: #CCC;
@@ -756,6 +758,14 @@ figcaption.share:hover:after {
 	/* volume heading */
 
 	.volumehead {
+		width: auto;
+	}
+
+	/* overlay */
+
+	.overlay div {
+		border: 8px #FFF solid;
+		height: 100%;
 		width: auto;
 	}
 
