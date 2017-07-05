@@ -52,8 +52,7 @@ class Main {
         var nextContent:Null<js.html.Element>  = null;
 		if (next.is("li")) nextContent = next.clone().find("a")[0];
 
-		// draw the next buttons	
-		drawBottomButtons(prevContent,nextContent);
+
 
 		// if we're the ToC, just remove the placeholder
 		if (me.hasClass("toc-link")) {
@@ -93,6 +92,8 @@ class Main {
 		J("#toc-loading").remove();
 		J("nav").append(toc);
 		me.addClass("active");
+		
+        drawBottomButtons(prevContent,nextContent);
 	}
 
 	static function drawOverview(internals:JQuery)
@@ -104,16 +105,20 @@ class Main {
 
 	static function drawBottomButtons(prevContent:Null<js.html.Element>, nextContent:Null<js.html.Element>)
 	{
+        var navDiv = J(JQuery.parseHTML('<div class="navigation"></div>'));
         if (prevContent  != null) {
             var prev = J(JQuery.parseHTML('<div class="prev"></div>'));
             prev.append(prevContent);
-            J("div.navigation").append(prev);
+            navDiv.append(prev);
+            //J("div.navigation").append(prev);
         }
         if (nextContent != null) {
             var next = J(JQuery.parseHTML('<div class="next"></div>'));
             next.append(nextContent);
-            J("div.navigation").append(next);
+            navDiv.append(next);
+            //J("div.navigation").append(next);
         }
+		J("div.col-text").append(navDiv);
 	}
 
 	static function figClick(e:Event)

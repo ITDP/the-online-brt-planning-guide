@@ -536,12 +536,12 @@ class Generator {
 				continue;
 
 			if (p.endsWith(".html")) {
-				b.add('<div class="navigation">\n');
+//				b.add('<div class="navigation">\n');
 //              b.add('<div class="prev"><span id="prev-loading">previous page...</span></div>\n');
 //              b.add('<div class="next"><span id="next-loading">next page...</span></div>\n');
 //				b.add("</div>\n");
 //				b.add("</div>\n");
-				b.add("</div>\n");
+//              b.add("</div>\n");
 				b.add('<script src="$script"></script>');
 				b.add('<div class="data-src-map" data-href="$srcMapPath"></div>\n');
 				if (glId != null && glId != "") {
