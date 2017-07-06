@@ -299,6 +299,38 @@ nav .index a {
 	display: none;
 }
 
+/* navigation */
+
+.navigation {
+  width: 640px;
+  margin: 32px 0;
+	padding-bottom: 32px;
+}
+.navigation div {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 12px;
+}
+.navigation div a span {
+  max-width: 260px;
+  display: inline-flex;
+}
+.navigation div.prev {
+  float: left;
+  text-align: left;
+}
+.navigation div.prev:before {
+  content: "\25c4\0020";
+  color: #CCC;
+}
+.navigation div.next {
+  float: right;
+  text-align: right;
+}
+.navigation div.next:after {
+  content: "\0020\25ba";
+  color: #CCC;
+}
+
 /* col-text */
 
 .col-text {
@@ -767,6 +799,18 @@ figcaption.share:hover:after {
 		border: 8px #FFF solid;
 		height: 100%;
 		width: auto;
+	}
+
+	/* navigation */
+
+	.navigation {
+		width: auto;
+	}
+	.navigation div {
+			font-size: 16px;
+	}
+	.navigation div a span {
+		display: none;
 	}
 
 }
