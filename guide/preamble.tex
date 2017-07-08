@@ -225,21 +225,27 @@
 \newcommand\tabletitletext[2]{{\bfseries\color{volume\thepart}\sffamily Table \thechapter.#1. #2}}
 \newcommand{\manusmallimgtable}[4]{
 	\marginpar{
-		\noindent\raggedright\tabletitletext{#2}{#3}\par
+		\noindent\raggedright\footnotesize\bfseries\color{volume\thepart}\sffamily Table \thechapter.#2. #3\par
 		\noindent\includegraphics[width=49mm]{#1}
 	}
 }
 \newcommand{\manumediumimgtable}[4]{
 	{
-		\noindent\tabletitletext{#2}{#3}\vskip 2.25mm plus 2.25mm
+		\vskip 2.25mm plus 2.25mm
+		\noindent\tabletitletext{#2}{#3}
+		\vskip 2.25mm plus 2.25mm
 		\noindent\includegraphics[width=105mm]{#1}
+		\vskip 2.25mm plus 2.25mm
 	}
 }
 \newcommand{\manulargeimgtable}[4]{
 	\blockmargin
 	{
+		\vskip 2.25mm plus 2.25mm
 		\vbox{\hsize=161mm\noindent\tabletitletext{#2}{#3}}
+		\vskip 2.25mm plus 2.25mm
 		\noindent\includegraphics[width=161mm]{#1}
+		\vskip 2.25mm plus 2.25mm
 	}
 	\unblockmargin
 }
@@ -267,7 +273,7 @@
 %note: \tablemodule*46*2 must match \textwidth+\marginparsep+\marginparwidth
 \usepackage{ifoddpage}
 \newdimen\tablemodule \tablemodule=\textwidth \divide\tablemodule by 60
-\newcommand{\tabletitle}[2]{{\noindent\bfseries\color{volume\thepart}\sffamily Table \thechapter.#1. #2} \vskip 2.25mm plus 2.25mm }
+\newcommand{\tabletitle}[2]{{\vskip 2.25mm plus 2.25mm\noindent\bfseries\color{volume\thepart}\sffamily Table \thechapter.#1. #2} \vskip 2.25mm plus 2.25mm }
 \newcommand{\tablesource}[1]{\noindent\raggedright\footnotesize\sffamily\color{gray50}{\bfseries Source:} #1 \par \smallskip}
 
 \AtBeginDocument{
