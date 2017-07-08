@@ -16,7 +16,8 @@ to a municipality. For example, public transport projects can lead to reduced co
 with vehicle emissions and accidents. Such impacts include costs borne by the health care system, the 
 police force, and the judicial system. By reducing these costs, municipal resources can be directed toward 
 other areas such as preventive health care, education, and nutrition.
-\begintable{The benefits of public transport initiatives}
+
+\begintable[large]{The benefits of public transport initiatives}
 \header
 \col \highlight{Factor} 
 \col \highlight{Impacts/}\highlight{I}\highlight{ndicators}
