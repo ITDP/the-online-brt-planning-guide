@@ -83,7 +83,6 @@ class NewTransform {
 		return mk(def, h.pos);
 	}
 
-	@:allow(transform.Transform)  // TODO remove
 	static function horizontal(h:HElem):HElem
 	{
 		h = htrim(h, { prevSpace:true, reverse:false });
@@ -151,7 +150,6 @@ class NewTransform {
 		}
 	}
 
-	@:allow(transform.Transform)  // TODO remove
 	static function vertical(v:VElem, siblings:Array<VElem>, idc:IdCtx, noc:NoCtx):DElem  // MAYBE rename idc/noc to id/no
 	{
 		// the parser should not output any nulls
@@ -251,7 +249,6 @@ class NewTransform {
 	/*
 	Remove DEmpty elements.
 	*/
-	@:allow(transform.Transform)  // TODO remove
 	static function clean(d:DElem)
 	{
 		// we shouldn't generate nulls either
