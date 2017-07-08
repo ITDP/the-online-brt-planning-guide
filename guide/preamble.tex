@@ -225,7 +225,7 @@
 \newcommand\tabletitletext[2]{{\bfseries\color{volume\thepart}\sffamily Table \thechapter.#1. #2}}
 \newcommand{\manusmallimgtable}[4]{
 	\marginpar{
-		\noindent\raggedright\footnotesize\bfseries\color{volume\thepart}\sffamily Table \thechapter.#2. #3\par
+		\noindent\raggedright\footnotesize\tabletitletext{#2}{#3}\par
 		\noindent\includegraphics[width=49mm]{#1}
 	}
 }
@@ -273,7 +273,7 @@
 %note: \tablemodule*46*2 must match \textwidth+\marginparsep+\marginparwidth
 \usepackage{ifoddpage}
 \newdimen\tablemodule \tablemodule=\textwidth \divide\tablemodule by 60
-\newcommand{\tabletitle}[2]{{\vskip 2.25mm plus 2.25mm\noindent\bfseries\color{volume\thepart}\sffamily Table \thechapter.#1. #2} \vskip 2.25mm plus 2.25mm }
+\newcommand{\tabletitle}[2]{{\vskip 2.25mm plus 2.25mm\noindent\tabletitletext{#1}{#2}} \vskip 2.25mm plus 2.25mm }
 \newcommand{\tablesource}[1]{\noindent\raggedright\footnotesize\sffamily\color{gray50}{\bfseries Source:} #1 \par \smallskip}
 
 \AtBeginDocument{
@@ -303,10 +303,10 @@
     breaklinks=true
 ]{hyperref}  % TODO reuse infos
 
-%url
+% url
 \usepackage{relsize}
 \renewcommand*{\UrlFont}{\ttfamily\smaller\relax}
-
+% allow urls to break in more places than the default behaviour
 \expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks
   \do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j
   \do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t
