@@ -228,19 +228,12 @@ class NewTransform {
 		case Paragraph(text):
 			return mkd(DParagraph(horizontal(text)), v.pos);
 		case VElemList(li):
-			// `siblings` is the stack of remaining neighbors from the depth-first-search;
-			// `li` is cloned since it might be modified by `consume`
+			// `siblings`: shared stack of remaining neighbors from depth-first searches;
+			// we first clone `li` since it gets modified by us and by `consume`
 			var li = li.copy();
 			siblings.unshift(mk(VElemList(li), v.pos));
 			var li = [ while (li.length > 0) vertical(li.shift(), siblings, idc, noc) ];
-			// don't collapse one-element lists because that would destroy position
-			// information that came from trimmed children;
-			// also, even thought the end of the list might have changed, make sure
-			// to keep the original list start
-			return switch li {
-			case []: mkd(DEmpty, v.pos);
-			case _: mkd(DElemList(li), v.pos.span(li[li.length -1 ].pos));
-			}
+			return mkd(DElemList(li), v.pos.span(li[li.length -1 ].pos));
 		case VEmpty:
 			return mkd(DEmpty, v.pos);
 		}
@@ -283,9 +276,11 @@ class NewTransform {
 				if (!i.def.match(DEmpty))
 					cli.push(i);
 			}
-			// don't collapse one-element lists because that would
-			// destroy position information that came from trimmed children
-			cli.length != 0 ? DElemList(cli) : DEmpty;
+			switch cli {
+			case []: DEmpty;
+			case [one]: return one;
+			case _: DElemList(cli);
+			}
 		}
 		return mkd(def, d.pos, d.id);
 	}
