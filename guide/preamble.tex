@@ -231,7 +231,7 @@
 }
 \newcommand{\manumediumimgtable}[4]{
 	{
-		\noindent\tabletitletext{#2}{#3}\par
+		\noindent\tabletitletext{#2}{#3}\vskip 2.25mm plus 2.25mm
 		\noindent\includegraphics[width=105mm]{#1}
 	}
 }
@@ -267,7 +267,7 @@
 %note: \tablemodule*46*2 must match \textwidth+\marginparsep+\marginparwidth
 \usepackage{ifoddpage}
 \newdimen\tablemodule \tablemodule=\textwidth \divide\tablemodule by 60
-\newcommand{\tabletitle}[2]{{\noindent\bfseries\color{volume\thepart}\sffamily Table \thechapter.#1. #2} \par }
+\newcommand{\tabletitle}[2]{{\noindent\bfseries\color{volume\thepart}\sffamily Table \thechapter.#1. #2} \vskip 2.25mm plus 2.25mm }
 \newcommand{\tablesource}[1]{\noindent\raggedright\footnotesize\sffamily\color{gray50}{\bfseries Source:} #1 \par \smallskip}
 
 \AtBeginDocument{
