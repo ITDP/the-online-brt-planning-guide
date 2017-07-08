@@ -117,21 +117,33 @@ class NewTransform {
 		return buf.toString();
 	}
 
-	static function consume(parent:VElem, pool:Array<VElem>, idc:IdCtx, noc:NoCtx):DElem
+	static function consume(parent:VElem, mainPool:Array<VElem>, idc:IdCtx, noc:NoCtx):DElem
 	{
 		var li = [];
-		while (pool.length > 0) {
-			switch [parent.def, pool[0].def] {
-			case [Volume(_), Volume(_)]: break;
-			case [Chapter(_), Chapter(_)|Volume(_)]: break;
-			case [Section(_), Section(_)|Chapter(_)|Volume(_)]: break;
-			case [SubSection(_), SubSection(_)|Section(_)|Chapter(_)|Volume(_)]: break;
-			case [SubSubSection(_), SubSubSection(_)|SubSection(_)|Section(_)|Chapter(_)|Volume(_)]: break;
+
+		// keep the `mainPool` (shared with `vertical`) and the `subPool`s separate;
+		// the `subPool` is only used to recurse into `VElemLists` to test their
+		// first element
+		function eatTillBoundary(subPool:Array<VElem>):Bool {
+			switch [parent.def, subPool[0].def] {
+			case [Volume(_), Volume(_)]: return true;
+			case [Chapter(_), Chapter(_)|Volume(_)]: return true;
+			case [Section(_), Section(_)|Chapter(_)|Volume(_)]: return true;
+			case [SubSection(_), SubSection(_)|Section(_)|Chapter(_)|Volume(_)]: return true;
+			case [SubSubSection(_), SubSubSection(_)|SubSection(_)|Section(_)|Chapter(_)|Volume(_)]: return true;
+			case [_, VElemList([])]:
+				subPool.shift();
+				return false;
+			case [_, VElemList(more)]:
+				return eatTillBoundary(more);
 			case _:
-				var v = pool.shift();
-				li.push(vertical(v, pool, idc, noc));
+				var v = subPool.shift();
+				li.push(vertical(v, mainPool, idc, noc));
+				return false;
 			}
 		}
+
+		while (mainPool.length > 0 && !eatTillBoundary(mainPool)) {}
 		return switch li {
 		case []: mkd(DEmpty, parent.pos.offset(parent.pos.max - parent.pos.min, 0));
 		case [single]: single;
@@ -218,11 +230,15 @@ class NewTransform {
 		case Paragraph(text):
 			return mkd(DParagraph(horizontal(text)), v.pos);
 		case VElemList(li):
-			var li = [ while (li.length > 0) vertical(li.shift(), li, idc, noc) ];
-			// don't collapse one-element lists because that would
-			// destroy position information that came from trimmed children;
-			// also, even thought the end of the list might have
-			// changed, make sure to keep the original list start
+			// `siblings` is the stack of remaining neighbors from the depth-first-search;
+			// `li` is cloned since it might be modified by `consume`
+			var li = li.copy();
+			siblings.unshift(mk(VElemList(li), v.pos));
+			var li = [ while (li.length > 0) vertical(li.shift(), siblings, idc, noc) ];
+			// don't collapse one-element lists because that would destroy position
+			// information that came from trimmed children;
+			// also, even thought the end of the list might have changed, make sure
+			// to keep the original list start
 			return switch li {
 			case []: mkd(DEmpty, v.pos);
 			case _: mkd(DElemList(li), v.pos.span(li[li.length -1 ].pos));
