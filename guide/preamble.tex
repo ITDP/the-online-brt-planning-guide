@@ -202,15 +202,21 @@
 }
 \newcommand{\manumediumfigure}[4]{
 	{
-		\noindent\includegraphics[width=105mm]{#1} \\
-		\noindent\figcaption{#2}{#3}{#4}\par
+		\vskip 2.25mm plus 2.25mm
+		\noindent\includegraphics[width=105mm]{#1}
+		\vskip 2.25mm
+		\noindent\figcaption{#2}{#3}{#4}
+		\vskip 2.25mm plus 2.25mm
 	}
 }
 \newcommand{\manulargefigure}[4]{
 	\blockmargin
 	{
-		\noindent\includegraphics[width=161mm]{#1} \\
+		\vskip 2.25mm plus 2.25mm
+		\noindent\includegraphics[width=161mm]{#1}
+		\vskip 2.25mm
 		\vbox{\hsize=161mm\noindent\figcaption{#2}{#3}{#4}}
+		\vskip 2.25mm plus 2.25mm
 	}
 	\unblockmargin
 }
