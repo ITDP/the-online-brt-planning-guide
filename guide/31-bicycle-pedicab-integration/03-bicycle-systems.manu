@@ -6,7 +6,7 @@
 This section provides an overview of bike-share (public bikes) and pedicab systems. These systems allow 
 people to derive the benefits of cycling without bike ownership or maintenance. 
 
-\subsubsection{Bike-Share}
+\subsection{Bike-Share}
 
 \figure{assets/image47.jpeg}{The Hubway bike-share station outside South Station in Boston is prominently 
 positioned at the entrance to this bus and train terminal.}{ Will Sherman.}
