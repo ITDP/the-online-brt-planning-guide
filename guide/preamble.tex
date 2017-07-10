@@ -202,15 +202,21 @@
 }
 \newcommand{\manumediumfigure}[4]{
 	{
-		\noindent\includegraphics[width=105mm]{#1} \\
-		\noindent\figcaption{#2}{#3}{#4}\par
+		\vskip 2.25mm plus 2.25mm
+		\noindent\includegraphics[width=105mm]{#1}
+		\vskip 2.25mm
+		\noindent\figcaption{#2}{#3}{#4}
+		\vskip 2.25mm plus 2.25mm
 	}
 }
 \newcommand{\manulargefigure}[4]{
 	\blockmargin
 	{
-		\noindent\includegraphics[width=161mm]{#1} \\
+		\vskip 2.25mm plus 2.25mm
+		\noindent\includegraphics[width=161mm]{#1}
+		\vskip 2.25mm
 		\vbox{\hsize=161mm\noindent\figcaption{#2}{#3}{#4}}
+		\vskip 2.25mm plus 2.25mm
 	}
 	\unblockmargin
 }
@@ -219,21 +225,27 @@
 \newcommand\tabletitletext[2]{{\bfseries\color{volume\thepart}\sffamily Table \thechapter.#1. #2}}
 \newcommand{\manusmallimgtable}[4]{
 	\marginpar{
-		\noindent\raggedright\tabletitletext{#2}{#3}\par
+		\noindent\raggedright\footnotesize\tabletitletext{#2}{#3}\par
 		\noindent\includegraphics[width=49mm]{#1}
 	}
 }
 \newcommand{\manumediumimgtable}[4]{
 	{
-		\noindent\tabletitletext{#2}{#3}\par
+		\vskip 2.25mm plus 2.25mm
+		\noindent\tabletitletext{#2}{#3}
+		\vskip 2.25mm plus 2.25mm
 		\noindent\includegraphics[width=105mm]{#1}
+		\vskip 2.25mm plus 2.25mm
 	}
 }
 \newcommand{\manulargeimgtable}[4]{
 	\blockmargin
 	{
+		\vskip 2.25mm plus 2.25mm
 		\vbox{\hsize=161mm\noindent\tabletitletext{#2}{#3}}
+		\vskip 2.25mm plus 2.25mm
 		\noindent\includegraphics[width=161mm]{#1}
+		\vskip 2.25mm plus 2.25mm
 	}
 	\unblockmargin
 }
@@ -255,13 +267,13 @@
 \fi
 
 %quotation {quote}{name, about, 1900 - 2000}
-\renewcommand{\quotation}[2]{\begingroup\leftskip=14mm\rightskip=14mm {\small\color{gray50} \noindent\textit{``#1''} \\\hbox{}\hfill --- #2} \par\endgroup \smallskip }
+\renewcommand{\quotation}[2]{\begingroup\leftskip=14mm\rightskip=14mm {\small\color{gray50} \noindent\textit{``#1''} \\\hbox{}\hfill --- #2} \par\endgroup \vskip 2.25mm plus 2.25mm }
 
 %tables
 %note: \tablemodule*46*2 must match \textwidth+\marginparsep+\marginparwidth
 \usepackage{ifoddpage}
 \newdimen\tablemodule \tablemodule=\textwidth \divide\tablemodule by 60
-\newcommand{\tabletitle}[2]{{\noindent\bfseries\color{volume\thepart}\sffamily Table \thechapter.#1. #2} \par }
+\newcommand{\tabletitle}[2]{{\vskip 2.25mm plus 2.25mm\noindent\tabletitletext{#1}{#2}} \vskip 2.25mm plus 2.25mm }
 \newcommand{\tablesource}[1]{\noindent\raggedright\footnotesize\sffamily\color{gray50}{\bfseries Source:} #1 \par \smallskip}
 
 \AtBeginDocument{
@@ -290,6 +302,17 @@
     allcolors=greenbrt,
     breaklinks=true
 ]{hyperref}  % TODO reuse infos
+
+% url
+\renewcommand*{\UrlFont}{\rmfamily\relax}
+% allow urls to break in more places than the default behaviour
+\expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks
+  \do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j
+  \do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t
+  \do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D
+  \do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N
+  \do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X
+  \do\Y\do\Z}
 
 % better bookmarks than with just hyperref (replaces them)
 \usepackage{bookmark}
