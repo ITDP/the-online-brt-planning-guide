@@ -643,7 +643,7 @@ figcaption.share:hover:after {
 
 /* responsive */
 
-@media (max-width: 1239px) {
+@media screen and (max-width: 1239px) {
 	body {
 		margin: 20px;
 	}
@@ -813,4 +813,16 @@ figcaption.share:hover:after {
 		display: none;
 	}
 
+}
+
+/* print */
+@media print {
+	header, nav, #toc, .navigation { display: none !important; }
+	.tocfull { display: block; }
+	.col-text {
+		margin: 0 auto;
+		float: left;
+		width: 928px;
+		padding-bottom: 0;
+	}
 }
