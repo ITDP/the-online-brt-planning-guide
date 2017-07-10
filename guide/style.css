@@ -553,6 +553,10 @@ pre {
 	background: rgba(0,0,0,0.5);
 	cursor: pointer;
 	cursor: zoom-out;
+	animation: fadein 0.5s;
+	-moz-animation: fadein 0.5s; /* Firefox */
+	-webkit-animation: fadein 0.5s; /* Safari and Chrome */
+	-o-animation: fadein 0.5s; /* Opera */
 }
 .overlay div {
 	background-repeat: no-repeat;
@@ -574,6 +578,8 @@ pre {
 .blur {
 	filter: blur(3px) grayscale(.5);
 }
+
+@keyframes fadein { from { opacity:0; } to { opacity:1; } }
 
 /* scrollbar */
 
