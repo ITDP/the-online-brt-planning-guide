@@ -366,10 +366,10 @@ div.tocfull .chapter { margin: 16px 0; font-size: 15px; }
 div.tocfull .section { margin:  8px 0; font-size: 14px; }
 div.tocfull .section  ul { font-size: 13px; }
 
-div.toccompact { border-radius: 2px; margin: 32px 0; border: 1px solid #CCC; margin-right: 288px; padding: 8px 16px;}
+div.toccompact { border-radius: 2px; margin: 32px 0; border: 1px solid #CCC; margin-right: 288px; }
 div.toccompact li { margin: 3px 0; }
 div.toccompact ul { margin-left: 16px; }
-div.toccompact .volume  { margin: 24px 0; font-size: 14px; }
+div.toccompact .volume  { font-size: 14px; }
 div.toccompact .chapter { margin: 12px 0; font-size: 13px; }
 div.toccompact .section { margin:  6px 0; font-size: 12px; }
 div.toccompact .section  ul { font-size: 11px; }
