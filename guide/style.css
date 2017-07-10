@@ -588,13 +588,13 @@ pre {
 	height: 8px;
 }
 ::-webkit-scrollbar-button {
-	width: 8px;
-	height: 8px;
+	width: 0;
+	height: 0;
 }
 ::-webkit-scrollbar-thumb {
 	background: #CCC;
 	border: 0px;
-	border-radius: 0px;
+	border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
 	background: #00a95e;
