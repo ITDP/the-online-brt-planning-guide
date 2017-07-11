@@ -61,10 +61,8 @@
 
 			"cd $ROBRT_REPOSITORY_DIR",
 			"ls -l .generated/pdf/fonts",
+			"server/compress-pdf-assets.sh .generated/pdf 150",
 			"cd .generated/pdf/",
-			"find assets/mw -type f \\( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \\) -exec convert '{}' -resize '236>' '{}' \\;",
-			"find assets/tw -type f \\( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \\) -exec convert '{}' -resize '608>' '{}' \\;",
-			"find assets/fw -type f \\( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \\) -exec convert '{}' -resize '903>' '{}' \\;",
 			"latexmk -lualatex -pdflatex='lualatex -interaction=nonstopmode' book.tex",
 			"mkdir -p $ROBRT_OUTPUT_DIR/pdf $ROBRT_OUTPUT_DIR/guide/pdf",
 			"cp book.pdf $ROBRT_OUTPUT_DIR/guide/pdf/the-brt-planning-guide.pdf",
