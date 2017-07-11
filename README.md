@@ -18,17 +18,18 @@ This project aims to make the guide more accessible and keep it up-to-date:
 
 ## File structure
 
-Essentially, the project is divided in two top-level folders: the
-[`/guide`](guide) and the [`/generator`](generator).
+Essentially, the project is divided in three top-level folders:
 
-The first has the files for the entire contents of the guide (text, images,
-tables, etc).  The text is written in a simple but powerful format, that at the
-same allows ease of use, independence of content from style and is compatible
-with version control.
+ - [`/guide`](guide): the entire content of the guide (text, images, tables, etc.);
+ - [`/generator`](generator): the source-code for **manu**;
+ - and auxiliary files for the [`/server`](server)
 
-The second contains the source-code for the generator tool, that takes the text
-for the guide and the assets and builds, in a single run, both the full website
-and the PDF.
+The text is written in a simple but powerful _manu_-script format that, at the
+same time, allows ease of use, independence of content from style and is
+compatible with version control.
+
+The generator tool – **manu** – takes the text and assets for the guide and
+builds , in a single run, both the full website and the PDF.
 
 
 ## Contributing
@@ -57,10 +58,10 @@ git remote set-url origin https://<your-github-username-here>@github.com/ITDP/th
 git remote set-url origin git@github.com:/ITDP/the-online-brt-planning-guide
 ```
 
-#### 2. How to locally run _manu_ and generate the guide?
+#### 2. How to run **manu** and generate the guide locally?
 
 First, you need to [clone](https://help.github.com/articles/cloning-a-repository/) the project's repository.
-Then, install [Node.js](https://nodejs.org), get an [up-to-date _manu_ package](https://brtguide.itdp.org/branch/master/bin/) and install it with `npm install -g <path-to-downloaded-tgz-file>` (`npm` is automatically installed with Node.js).
+Then, install [Node.js](https://nodejs.org), get an [up-to-date **manu** package](https://brtguide.itdp.org/branch/master/bin/) and install it with `npm install -g <path-to-downloaded-tgz-file>` (`npm` is automatically installed with Node.js).
 
 _(You can also build **manu** locally from the sources; see [`.robrt.Dockerfile`](.robrt.Dockerfile)/[`.robrt.json`](.robrt.json) for how it's done in the server)_
 
@@ -70,14 +71,19 @@ Try `manu --help` to query the available commands and options.
 You can generate the guide with `manu generate guide/index.manu .generated` in a command line at the root of local copy of the project.
 This will populate a `.generated` directory with `.html` and `.tex` files.
 
-At this point, the website is already functional, it's just a matter of starting a server _(configuring it to automatically try adding `.html` extensions)_.
-Since we already have Node.js installed for _manu_, the easiest way to do this is with [`http-server`](https://www.npmjs.com/package/http-server) (you can install it with `npm install -g http-server`):
-also at the root folder of the project, run `http-server .generated/html --ext html -o`.
+#### 3. How to test the generated website locally?
 
-To create the PDF you'll need a working LaTeX installation with `lualatex` and `latexmk`:
-navigate to `.generated/pdf` and run `latexmk -lualatex book.tex`.
+After running **manu**, the website is already functional, it's just a matter of starting a server _(configuring it to automatically try adding `.html` extensions)_.
+
+Since we already have Node.js installed for _manu_, the easiest way to do this is with [`http-server`](https://www.npmjs.com/package/http-server) (you can install it with `npm install -g http-server`).
+
+Then, also at the root folder of the project, simply run `http-server .generated/html --ext html -o`.
+
+#### 4. How to build the PDF locally?
+
+To create the PDF you'll need a working LaTeX installation with `lualatex` and `latexmk`.
+After running **manu**, navigate to `.generated/pdf` and run `latexmk -lualatex book.tex`.
 
 You may notice that the PDF you generate locally is huge is huge in comparison to the one we provide.
 That's because our server automatically compacts all images before running LaTeX, according to their resulting physical size and reasonable assumptions on printer limitations.
-You can experiment with that as well by running the [`compress-pdf-assets.sh`](server/compress-pdf-assets.sh) script (note: you'll need a Bash shell and ImageMagick).
-
+You can experiment with that as well by running the [`compress-pdf-assets.sh`](server/compress-pdf-assets.sh) script (note: for this you'll need `bash`, `bc` and ImageMagick).
