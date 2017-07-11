@@ -9,8 +9,6 @@
 		"cmds" : [
 			"export DOCKER_HOST_IP=$(route -n | awk '/UG[ \t]/{print $2}')",
 			"env",
-
-			"dpkg -s haxe",
 			"node --version",
 
 			"cd $ROBRT_REPOSITORY_DIR",
@@ -22,6 +20,10 @@
 
 			"cd $ROBRT_REPOSITORY_DIR/generator",
 			"cp docs/fakesudo.sh /usr/bin/sudo",
+			"add-apt-repository -y ppa:haxe/snapshots",
+			"apt-get update",
+			"apt-get install -y haxe neko",
+			"haxelib setup /usr/share/haxe/lib",
 			"haxelib --global install hmm",
 			"haxelib --global run hmm setup",
 			"haxelib --global list",
