@@ -10,6 +10,4 @@ RUN apt-get install -y software-properties-common git time net-tools
 RUN apt-get install -y nodejs npm nodejs-legacy
 RUN apt-get install -y bc imagemagick
 RUN apt-get install -y curl && curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash && apt-get install -y git-lfs && git-lfs install --skip-smudge
-RUN add-apt-repository -y ppa:haxe/snapshots && apt-get update && apt-get install -y haxe neko
-RUN haxelib setup /usr/share/haxe/lib
 
