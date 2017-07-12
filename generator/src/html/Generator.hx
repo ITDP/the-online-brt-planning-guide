@@ -518,6 +518,7 @@ class Generator {
 				continue;
 
 			if (p.endsWith(".html")) {
+				b.add("</div>\n</div>\n");  // div.col-text & div.container
 				b.add('<script src="$script"></script>');
 				b.add('<div class="data-src-map" data-href="$srcMapPath"></div>\n');
 				if (glId != null && glId != "") {
@@ -533,7 +534,7 @@ class Generator {
 					'.doctrim());
 					b.add("\n");
 				}
-				b.add("</div>\n</body>\n</html>\n");
+				b.add("</body>\n</html>\n");
 			}
 
 			var path = Path.join([destDir, p]);
