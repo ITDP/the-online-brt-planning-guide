@@ -533,7 +533,7 @@ class Generator {
 					'.doctrim());
 					b.add("\n");
 				}
-				b.add("</body>\n</html>\n");
+				b.add("</div>\n</body>\n</html>\n");
 			}
 
 			var path = Path.join([destDir, p]);
