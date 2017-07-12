@@ -16,9 +16,6 @@ class Context {
 	@:isVar public static var noMathValidation(get,set) = enabled("DRAFT_NO_MATH_VALIDATION");
 		static function get_noMathValidation() return draft || noMathValidation;
 		static function set_noMathValidation(flag) return noMathValidation = flag;
-	@:isVar public static var dinossaurFigures(get,set) = enabled("DRAFT_DINOSSAUR_FIGURES");
-		static function get_dinossaurFigures() return draft || dinossaurFigures;
-		static function set_dinossaurFigures(flag) return dinossaurFigures = flag;
 	public static var texNoPositions = enabled("TEX_NO_POSITIONS");
 
 	public static var timer = new Map<String,Float>();

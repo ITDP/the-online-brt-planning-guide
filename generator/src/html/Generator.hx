@@ -350,22 +350,13 @@ class Generator {
 			noc.figure = no;
 			var no = noc.join(false, ".", chapter, figure);
 			var id = idc.join(true, ":", figure);
-			if (Context.dinossaurFigures) {
-				return '
-					<figure class="img-block ${sizeToClass(size)}" id="$id">
-					<a><img src="$DRAFT_IMG_PLACEHOLDER" class="overlay-trigger"/></a>
-					<figcaption class="share"><strong>Fig. $no</strong>$QUAD${genh(caption)} <em>$DRAFT_IMG_PLACEHOLDER_COPYRIGHT</em></figcaption>
-					</figure>
-				'.doctrim() + "\n";
-			} else {
-				var p = saveAsset(path);
-				return '
-					<figure class="img-block ${sizeToClass(size)}" id="$id">
-					<a><img src="$p" class="overlay-trigger"/></a>
-					<figcaption class="share"><strong>Fig. $no</strong>$QUAD${genh(caption)} <em>${genh(cright)}</em></figcaption>
-					</figure>
-				'.doctrim() + "\n";
-			}
+			var p = saveAsset(path);
+			return '
+				<figure class="img-block ${sizeToClass(size)}" id="$id">
+				<a><img src="$p" class="overlay-trigger" alt="Fig. $no ${genn(caption)}"/></a>
+				<figcaption class="share"><strong>Fig. $no</strong>$QUAD${genh(caption)} <em>${genh(cright)}</em></figcaption>
+				</figure>
+			'.doctrim() + "\n";
 		case DTable(no, size, caption, header, rows):
 			idc.table = v.id.sure();
 			noc.table = no;
@@ -408,22 +399,13 @@ class Generator {
 			noc.table = no;
 			var no = noc.join(false, ".", chapter, table);
 			var id = idc.join(true, ":", table);
-			if (Context.dinossaurFigures) {
-				return '
-					<figure class="img-block ${sizeToClass(size)}">
-					<h3 id="$id" class="share">Table $no$QUAD${genh(caption)} <em>$DRAFT_IMG_PLACEHOLDER_COPYRIGHT</em></h3>
-					<a><img src="$DRAFT_IMG_PLACEHOLDER" class="overlay-trigger"/></a>
-					</figure>
-				'.doctrim() + "\n";
-			} else {
-				var p = saveAsset(path);
-				return '
-					<figure class="img-block ${sizeToClass(size)}">
-					<h3 id="$id" class="share">Table $no$QUAD${genh(caption)}</h3>
-					<a><img src="$p" class="overlay-trigger"/></a>
-					</figure>
-				'.doctrim() + "\n";
-			}
+			var p = saveAsset(path);
+			return '
+				<figure class="img-block ${sizeToClass(size)}">
+				<h3 id="$id" class="share">Table $no$QUAD${genh(caption)}</h3>
+				<a><img src="$p" class="overlay-trigger" alt="Table $no ${genn(caption)}/></a>
+				</figure>
+			'.doctrim() + "\n";
 		case DList(numbered, li):
 			var buf = new StringBuf();
 			var tag = numbered ? "ol" : "ul";
