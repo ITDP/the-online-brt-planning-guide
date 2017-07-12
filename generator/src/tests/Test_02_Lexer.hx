@@ -189,7 +189,7 @@ class Test_02_Lexer {
 		var win1252 = Bytes.alloc(1);
 			win1252.set(0, 0x92);
 		Assert.raises(defs.bind(null, brokenutf8));
-		// FIXME Assert.raises(defs.bind(null, win1252));
+		Assert.raises(defs.bind(null, win1252));
 	}
 
 	/*

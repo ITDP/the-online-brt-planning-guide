@@ -218,7 +218,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 
 	public function new(bytes:haxe.io.Bytes, sourceName)
 	{
-		if (!haxe.Utf8.validate(bytes.toString())) throw new ParserError({ src:sourceName, min:0, max:bytes.length }, InvalidUtf8);
+		if (!Utf8Validate.isValidUTF8(js.node.Buffer.hxFromBytes(bytes))) throw new ParserError({ src:sourceName, min:0, max:bytes.length }, InvalidUtf8);
 		super(byte.ByteData.ofBytes(bytes), sourceName);
 	}
 }
