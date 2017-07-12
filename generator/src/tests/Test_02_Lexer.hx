@@ -213,6 +213,11 @@ class Test_02_Lexer {
 	{
 		// non-breaking spaces
 		Assert.raises(defs.bind(" "));
+		// C0 control codes
+		Assert.raises(defs.bind(""));
+		Assert.raises(defs.bind("\r"));  // isolated \r are forbidden as well
+		// C1 control codes
+		Assert.raises(defs.bind(""));
 	}
 
 	public function test_991_position()
