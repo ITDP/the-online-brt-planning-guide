@@ -29,7 +29,7 @@ class Main {
 		// parse and locate myselft
 		assert(tocData != null, "toc data is missing");
 		var toc = J(JQuery.parseHTML(tocData)).find("div#toc>ul");
-		var myUrl =  J("base").attr("x-rel-path");
+		var myUrl =  J("link[rel=canonical]").attr("href");
 		assert(myUrl != null);
 		var me = toc.find('a[href="$myUrl"]').not("#toc-menu").parent();
 		assert(me.length > 0, myUrl);
