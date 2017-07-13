@@ -199,6 +199,8 @@ class Generator {
 		buf.add(renderBreadcrumbs(bcs, url));  // FIXME
 		buf.add('<div class="container">\n');
 		buf.add('<nav id="action:navigate"><span id="toc-loading">Loading the table of contents...</span></nav>\n');
+		buf.add('<div class="search"><input type="text" placeholder="Search..." name="search" id="input-search"></div>\n');
+		buf.add('<script type="text/javascript"> $(document).ready(function() { $("#input-search").keyup(function (e) { var kc = e.keyCode || e.which; if (kc == 13) { $("#input-search").addClass("button-search"); window.location.href = "search.html?search=" + this.value; } }); });</script>\n');
 		buf.add('<div class="col-text">\n');
 		assert(!bufs.exists(path), path, "reserved or already used path");
 		bufs[path] = buf;
