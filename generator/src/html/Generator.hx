@@ -403,7 +403,7 @@ class Generator {
 			return '
 				<figure class="img-block ${sizeToClass(size)}">
 				<h3 id="$id" class="share">Table $no$QUAD${genh(caption)}</h3>
-				<a><img src="$p" class="overlay-trigger" alt="Table $no ${genn(caption)}/></a>
+				<a><img src="$p" class="overlay-trigger" alt="Table $no ${genn(caption)}"/></a>
 				</figure>
 			'.doctrim() + "\n";
 		case DList(numbered, li):
