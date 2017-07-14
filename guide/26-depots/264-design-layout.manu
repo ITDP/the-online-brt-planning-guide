@@ -6,27 +6,33 @@ that drive on the right-hand side of the road, hence allowing for an anticlockwi
 for the vehicles and minimizing vehicle conflicts inside the depot. For countries that drive on the left, 
 the circulation should be in a clockwise direction to obtain the same benefit.
 
-\figure[medium]{assets/image3.png}{Standard layout for a depot area, with legend below}{.}
+\begintable[small]{Legend for Figure 26.3}
+\header \col Legend \col Description
+\row \col 1 \col Gate and visual inspection area
+\row \col 2, 3, 6 \col Administrative offices for the concessioned operators
+\row \col 4 \col Refueling area
+\row \col 5 \col Vehicle washing and cleaning area
+\row \col 7, 10 \col Major repairs
+\row \col 8, 9 \col Minor repairs and maintenance
+\row \col 11 \col BRT vehicle parking
+\row \col 12 \col Private vehicle parking
+\row \col Green \col Operational vehicles
+\row \col Yellow \col Vehicles requiring minor or routine maintenance
+\row \col Red \col Vehicles requiring major repairs
+\endtable
 
-\item 1. Gate and visual inspection area
-\item 2, 3, and 6. Administrative offices for the concessioned operators
-\item 4. Refueling area
-\item 5. Vehicle washing and cleaning area
-\item 7, 10. Major repairs
-\item 8, 9. Minor repairs and maintenance
-\item 11. BRT vehicle parking
-\item 12. Private vehicle parking
-\item Area occupied by a vehicle, VA: \item Articulated bus: 45 m2 \item 12 m long bus: 30 m2 \item 10 m long bus: 25 m2
-\item Access area (AP) = 2,5 to 4,0 
-VA
-\item Visual inspection, fueling, and cleaning (VI) = 6,0 to 8,0 VA
-\item Parking (PAR) = 2\* VA\*N (number of 
-vehicles)
-\item Maintenance area: (AM) = 0.2\*PAR
+\figure[medium]{assets/image3.png}{Standard layout for a depot area, with legend in Table 26.2.}{ITDP.}
 
-\item Green: Operational vehicles
-\item Yellow: Vehicles requiring minor or routine maintenance
-\item Red: Vehicles requiring major repairs
+The following expressions hold:
+
+\item [Area occupied by a vehicle, VA:
+	\item Articulated bus: 45 m\sup{2}
+	\item 12 m long bus: 30 m\sup{2}
+	\item 10 m long bus: 25 m\sup{2}]
+\item Access area $$\text{AP} = (2.5 \text{ to } 4.0)\,\text{VA}$$
+\item Area for visual inspection, fueling, and cleaning $$\text{VI} = (6.0 \text{ to } 8.0)\,\text{VA}$$
+\item Parking area $$\text{PAR} = 2\cdot\text{VA}\cdot{}N$$, where $$N$$ is the number of vehicles
+\item Maintenance area $$\text{MA} = 0.2\;\text{PAR}$$
 
 Vehicles will enter the depot area as they are instructed to temporarily come out of service by the 
 control center. As BRT vehicles enter the depot, they are visually inspected at point 1 in Figure 26.3. 
