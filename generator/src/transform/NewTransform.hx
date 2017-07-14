@@ -273,8 +273,11 @@ class NewTransform {
 			var cli = [];
 			for (i in li) {
 				i = clean(i);
-				if (!i.def.match(DEmpty))
+				if (!i.def.match(DEmpty)) {
 					cli.push(i);
+					weakAssert(cli.length < 2 || !i.def.match(DList(_)) || !cli[cli.length - 2].def.match(DList(_)),
+							"possible split list", i.pos.toString());
+				}
 			}
 			switch cli {
 			case []: DEmpty;
