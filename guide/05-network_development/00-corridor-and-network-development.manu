@@ -28,10 +28,10 @@ approach to defining a BRT network and prioritizing the corridors within that ne
 
 \highlight{Contributors:} Karl Fjellstrom, *Far East BRT*; Walter Hook, *BRT Planning International*
 
-\include{51-demand-analysis-for-corridor-selection.manu}
-\include{52-transit-system-speed-and-delay-analysis.manu}
-\include{53-corridor-prioritization-based-on-existing-demand.manu}
-\include{54-additional-corridors-based-on-future-demand.manu}
-\include{55framework-for-comparing-corridors.manu}
-\include{56corridor-length.manu}
-\include{57-other-considerations-in-corridor-selection.manu}
+\include{01-demand-analysis-for-corridor-selection.manu}
+\include{02-transit-system-speed-and-delay-analysis.manu}
+\include{03-corridor-prioritization-based-on-existing-demand.manu}
+\include{04-additional-corridors-based-on-future-demand.manu}
+\include{05-framework-for-comparing-corridors.manu}
+\include{06-corridor-length.manu}
+\include{07-other-considerations-in-corridor-selection.manu}
