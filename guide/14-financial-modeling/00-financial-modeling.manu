@@ -1,0 +1,11 @@
+\chapter{Financial Modeling}
+
+\highlight{Contributor:} Diogo Barreto, *LOGIT - Transportation Engineers*
+
+\include{01-importance-of-financial-modelling.manu}
+\include{02-system-entities.manu}
+\include{03-model-structure.manu}
+\include{04-information-organization.manu}
+\include{05-modelling-issues.manu}
+\include{06-vehicle-operating-company-input-parameters.manu}
+\include{07-regional-parameters.manu}
