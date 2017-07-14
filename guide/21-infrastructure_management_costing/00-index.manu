@@ -10,10 +10,10 @@ costing of infrastructure elements or materials can be evaluated.
 
 \highlight{Contributors:} Andre Frieslaar, *HHO Africa*; Susan Smit, *HHO Africa*; Karl Fjellstrom, *Far East BRT*; Annie Weinstock, *BRT Planning International*; Ulises Navarro, *ITDP Latin America*; Carlos Pardo, *Despacio*
 
-\include{infrastructure-components.manu}
-\include{infrastructure-design-process.manu}
-\include{213-project-management-of-the-design-process.manu}
-\include{214-infrastructure-costing.manu}
-\include{appendix-a-bogotas-land-acquisition-process.manu}
-\include{appendix-b-brt-infrastructure-maintenance-cost-calculator.manu}
-\include{appendix-c-yichang-brt-project-investment-cost-estimates.manu}
+\include{01-infrastructure-components.manu}
+\include{02-infrastructure-design-process.manu}
+\include{03-project-management-of-the-design-process.manu}
+\include{04-infrastructure-costing.manu}
+\include{05-appendix-a-bogotas-land-acquisition-process.manu}
+\include{06-appendix-b-brt-infrastructure-maintenance-cost-calculator.manu}
+\include{07-appendix-c-yichang-brt-project-investment-cost-estimates.manu}
