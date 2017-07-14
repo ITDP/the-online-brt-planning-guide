@@ -46,14 +46,14 @@ The topics discussed in this chapter are:
 \item Creating New Routes and Combining Old Routes;
 \item Pulling Services onto a BRT Trunk Corridor from a Parallel Corridor.
 
-\include{61-introduction.manu}
-\include{62-basic-data-collection.manu}
-\include{63-basic-service-planning-concepts.manu}
-\include{64-optimizing-vehicle-size-and-fleet-size.manu}
-\include{65-determining-which-routes-to-include-inside-brt-infrastructure.manu}
-\include{66-direct-services,-trunk-and-feeder-services,-or-hybrids.manu}
-\include{67-deciding-on-stop-elimination-and-express-services.manu}
-\include{68-creating-new-routes-and-combining-old-routes.manu}
-\include{69-pulling-services-onto-a-brt-trunk-corridor-from-a-parallel-corridor.manu}
+\include{01-introduction.manu}
+\include{02-basic-data-collection.manu}
+\include{03-basic-service-planning-concepts.manu}
+\include{04-optimizing-vehicle-size-and-fleet-size.manu}
+\include{05-determining-which-routes-to-include-inside-brt-infrastructure.manu}
+\include{06-direct-services,-trunk-and-feeder-services,-or-hybrids.manu}
+\include{07-deciding-on-stop-elimination-and-express-services.manu}
+\include{08-creating-new-routes-and-combining-old-routes.manu}
+\include{09-pulling-services-onto-a-brt-trunk-corridor-from-a-parallel-corridor.manu}
 
 \highlight{Contributors:} Walter Hook , *BRT Planning International*;  Pedro Szász , *consultant*;  Arthur Szász , *Protocubo*;  Annie Weinstock , *BRT Planning International*;  Ulises Navarro , *ITDP Latin America*;  Chris Kost , *ITDP Africa*;  Karl Fjellstrom, *Far East BRT*
