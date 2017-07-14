@@ -436,6 +436,16 @@ td ul, th ul, td ol, th ol {
 	margin: 0;
 }
 
+/* img table heading .sm */
+
+figure.sm h3 {
+	font-size: 12px;
+	margin: 0 0 8px;
+}
+figure.sm h3 span {
+	font-weight: initial;
+}
+
 /* equation */
 
 .equation {
@@ -640,7 +650,7 @@ h3.share:hover:after {
   left: 5px;
   position: relative;
 }
-figcaption.share:hover:after {
+figcaption.share:hover:after, .sm h3.share:hover:after {
   content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJBJREFUeNpi+f//PwMymDVrlgCQWgDEIPoDECcwYVFwAIgdkOgFTGgKDIB4AhAHpKWlNUDZAowg65BMUIBaAeInQK09wCwlJYWsYANUUgOIC4D4AchUFqhqBSSdDlCTQAocgNZ+YIIKTAByQKYEAHEDlAYrALmXBeqGAqC7GJCsgCsAASaoNSjeRlYAAgABBgB8JzP7jDc9KwAAAABJRU5ErkJggg==');
 	top: 0;
 	left: 5px;
