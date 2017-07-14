@@ -32,9 +32,8 @@ of public transport operations.
 
 \highlight{Contributors:} Carlos Pardo, *Despacio*; Annie Weinstock, *BRT Planning International*
 
-\include{11project-catalyst.manu}
-\include{12political-commitment.manu}
-\include{13statement-of-vision.manu}
-\include{14-barriers-to-project-development.manu}
-\include{15-understanding-and-presenting-the-benefits.manu}
-
+\include{01-project-catalyst.manu}
+\include{02-political-commitment.manu}
+\include{03-statement-of-vision.manu}
+\include{04-barriers-to-project-development.manu}
+\include{05-understanding-and-presenting-the-benefits.manu}
