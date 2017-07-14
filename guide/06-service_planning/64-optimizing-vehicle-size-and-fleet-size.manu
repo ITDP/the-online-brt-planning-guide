@@ -104,13 +104,12 @@ $$ \text{Freq} *  \text{V}_\text{Size} * \text{LoadFactor} = \text{MaxLoad} $$
 As examples of capacity:
 
 \item[To serve 4,500 passengers (per hour per direction) on the critical link, a corridor may have:
-\item 50 buses (per hour) capable of carrying 90 passengers each; or
-\item 30 buses (per hour) capable of carrying 150 passengers each; or
-\item 18 buses (per hour) capable of carrying 250 passengers each.]
-
+	\item 50 buses (per hour) capable of carrying 90 passengers each; or
+	\item 30 buses (per hour) capable of carrying 150 passengers each; or
+	\item 18 buses (per hour) capable of carrying 250 passengers each.]
 \item[To serve 900 passengers (per hour), a corridor may have: 
-\item 10 buses (per hour) serving 90 passengers each;
-\item 6 buses (per hour) serving 150 passengers each.]
+	\item 10 buses (per hour) serving 90 passengers each;
+	\item 6 buses (per hour) serving 150 passengers each.]
 
 \subsection{ Vehicle Sizing, Initial Iteration }
 
@@ -478,11 +477,8 @@ duration of one hour, here is assumed constant;
 To provide an example, assume the following: 
 
 \item $$ \text{MaxLoad}_\text{route} = 224 $$;
-
 \item $$ TC= 2 \text{hours} $$
-
 \item $$ \text{VSize} = 72 $$;
-
 \item $$\text{Load Factor} = 0.85 $$;
 
 $$ Fleet = {224 * 2 \over 72 * 0.85}   = 7.32 $$
@@ -511,11 +507,8 @@ link each hour (and in this scenario, the demand is the same each hour). Thus, c
 to one cuts the needed fleet in half:
 
 \item $$ \text{MaxLoad}_\text{route} = 224 $$;
-
 \item $$ TC= 1 \text{hour} $$
-
 \item $$ \text{VSize} = 72 $$;
-
 \item $$\text{Load Factor} = 0.85 $$;
 
 $$ Fleet = {224 * 1 \over 72 * 0.85}   = 3.66  $$ 
@@ -530,11 +523,8 @@ with a smaller fleet. In the example above with a cycle time of two hours, if an
 is used that can hold 180 customers, only three vehicles are needed:
 
 \item $$ \text{MaxLoad}_\text{route} = 224 $$;
-
 \item $$ TC= 2 \text{hours} $$
-
 \item $$ \text{VSize} = 180 $$;
-
 \item $$\text{Load Factor} = 0.85 $$;
 
 $$ Fleet = {224 * 2 \over 180 * 0.85}   = 2.923 $$ 

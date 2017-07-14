@@ -138,13 +138,9 @@ The pedestrian LOS presented below is a function of both density of pedestrians 
 is based on several factors such as:
 
 \item Widths of the traffic lane, bike lane, shoulders, and sidewalk;
-
 \item Buffer presence of open space, on-street parking, and street trees;
-
 \item Volumes and speeds of general traffic and permitted turns on red at signals;
-
 \item Crossing distance and distance to the nearest cross walk;
-
 \item Pedestrian delay.
 
 \begintable{Pedestrian LOS Criteria} \' MAYBE include src? src := Highway Capacity Manual, 2010 '\

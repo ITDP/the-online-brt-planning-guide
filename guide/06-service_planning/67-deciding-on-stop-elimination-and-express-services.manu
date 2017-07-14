@@ -359,7 +359,6 @@ on each link where a station k is skipped. This should be multiplied by the valu
 ($$C_\text{travel}$$), which is usually treated as half their cost of waiting, or $$ C_\text{travel} = Cw/2$$. In the above examples, 
 a constant value of waiting of US$12 per hour has been used so that in the examples in this section 
 a constant value of travel time will be $6 per hour. It is usually set at one-third of the average wage. 
-
 \item *B* The reduction in the travel time for the BRT vehicles, which would need less time to deliver the 
 same service. The value of the operational cost reduction per bus resulting from the faster bus speeds 
 is equal to the bus operational cost per hour ($$\text{Cost}_\text{bus}$$) multiplied by the number of buses that benefit 

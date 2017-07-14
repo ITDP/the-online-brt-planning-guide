@@ -15,39 +15,43 @@ to cycling and walking infrastructure, and to rail public transport services (â€
 \figure[large]{assets/image1.jpg}{Basic functions of a full BRT system.}{Walter Hook, BRT Planning
 International, LLC.}
 
-\item [BRT Services
+\title{BRT Services}
+
 \item [BRT system planning:
 
-At the inception of any new BRT system, there is a team assigned to plann and implement the new BRT.
-Once the first phase of the system is built, the BRT planning function is still needed for later stages
-of the system. At the inception of a BRT project, it is often the case that there is not a lot of local
-knowledge about how to design and implement a BRT system. As such, many of these initial planning functions
-are generally done by outside consulting experts. However, it is strategic for the implementing agency
-to learn these tasks so that future phases can be managed in-house with less dependence on outside consultants;]
-
+	At the inception of any new BRT system, there is a team assigned to plann and implement the new BRT.
+	Once the first phase of the system is built, the BRT planning function is still needed for later stages
+	of the system. At the inception of a BRT project, it is often the case that there is not a lot of local
+	knowledge about how to design and implement a BRT system. As such, many of these initial planning functions
+	are generally done by outside consulting experts. However, it is strategic for the implementing agency
+	to learn these tasks so that future phases can be managed in-house with less dependence on outside consultants;
+]
 \item [BRT system operations:
-Every BRT system has to operate BRT vehicles. Someone needs to first set the technical specification
-for the vehicles, then someone needs to buy the vehicles, and then someone needs to operate and maintain
-the vehicles;
+	Every BRT system has to operate BRT vehicles. Someone needs to first set the technical specification
+	for the vehicles, then someone needs to buy the vehicles, and then someone needs to operate and maintain
+	the vehicles;
 
-In addition, every BRT system needs to collect fare revenues from its customers. First someone needs
-to establish the fare, then someone needs to select an appropriate fare system technology and procure
-it, then someone needs to operate the fare system;
+	In addition, every BRT system needs to collect fare revenues from its customers. First someone needs
+	to establish the fare, then someone needs to select an appropriate fare system technology and procure
+	it, then someone needs to operate the fare system;
 
-From time to time, every BRT system needs to update schedules and bus routings to better match demand;
+	From time to time, every BRT system needs to update schedules and bus routings to better match demand;
 
-Most BRT systems have special BRT stations that need to be cleaned, maintained, and made secure. Most
-BRT systems deposit the fare revenue into a separate bank account that is managed by a fund manager.
-Most BRT systems have an operational control center that is used to keep vehicles running on time and
-monitor the behavior of the vehicle operators;]
+	Most BRT systems have special BRT stations that need to be cleaned, maintained, and made secure. Most
+	BRT systems deposit the fare revenue into a separate bank account that is managed by a fund manager.
+	Most BRT systems have an operational control center that is used to keep vehicles running on time and
+	monitor the behavior of the vehicle operators;
+]
 \item [BRT system communications:
 
-Communications is important to a BRT system. In the early stages of BRT planning and throughout the
-life of the system, information about the BRT system needs to be strategically released to key stakeholders
-and the general public, and these relationships need to be carefully managed. The system needs to develop
-a clear brand. Finally, customers and the general public need to be kept informed about services on an
-ongoing basis.]]
-\item [BRT Infrastructure
+	Communications is important to a BRT system. In the early stages of BRT planning and throughout the
+	life of the system, information about the BRT system needs to be strategically released to key stakeholders
+	and the general public, and these relationships need to be carefully managed. The system needs to develop
+	a clear brand. Finally, customers and the general public need to be kept informed about services on an
+	ongoing basis.
+]
+
+\title{BRT Infrastructure}
 
 A BRT system has special infrastructure designed to ensure an optimal bus service. This infrastructure
 nearly always includes redesigning the road right-of-way to create an exclusive bus lane, or in some
@@ -58,42 +62,48 @@ to include transfer facilities. Most BRT systems also build special depots for B
 must be compatible with the type of BRT vehicle being procured for vehicle operations, and it must provide
 the appropriate power and telecommunications technology required by the fare collection system, and the
 operational control system. As such, the design and construction of the infrastructure needs to be carefully
-coordinated with BRT operating companies;]
-\item [BRT Integration
+coordinated with BRT operating companies;
+
+\title{BRT Integration}
+
 \item [Integration with normal traffic:
 
-As BRT systems generally operate on normal city streets, they have a big impact on traffic patterns
-in the BRT corridors. Normally, BRT systems require making changes to traffic signals, and often changing
-the location of turning bays and in the turning movements that are allowed. The systems also require
-the designation of one or more lanes of traffic for exclusive use by the BRT. Each of these changes will
-have some effect on normal traffic operations and as such will need to be managed;]
+	As BRT systems generally operate on normal city streets, they have a big impact on traffic patterns
+	in the BRT corridors. Normally, BRT systems require making changes to traffic signals, and often changing
+	the location of turning bays and in the turning movements that are allowed. The systems also require
+	the designation of one or more lanes of traffic for exclusive use by the BRT. Each of these changes will
+	have some effect on normal traffic operations and as such will need to be managed;
+]
 \item [Integration with other road-based public transport:
 
-Most BRT services are modelled on bus and minibus services that operated on the same corridors prior
-to the implementation of the BRT system. Usually, these services are modified and then incorporated into
-the BRT services in some form, and the old services are modified or cancelled. What happens to these
-former bus and minibus services has a big impact on the profitability of the BRT system, on the amount
-of congestion in the mixed traffic lanes, and on the social impact of the project. Within a BRT institutional
-structure, someone first has to plan any changes to existing bus and minibus operations, and then to
-supervise the necessary licensing and regulatory changes to make these changes possible;]
+	Most BRT services are modelled on bus and minibus services that operated on the same corridors prior
+	to the implementation of the BRT system. Usually, these services are modified and then incorporated into
+	the BRT services in some form, and the old services are modified or cancelled. What happens to these
+	former bus and minibus services has a big impact on the profitability of the BRT system, on the amount
+	of congestion in the mixed traffic lanes, and on the social impact of the project. Within a BRT institutional
+	structure, someone first has to plan any changes to existing bus and minibus operations, and then to
+	supervise the necessary licensing and regulatory changes to make these changes possible;
+]
 \item [Integration with urban rail:
 
-Some cities that are designing and building BRT systems also have urban rail public transport systems.
-It is generally in the interest of both the BRT system and the urban rail system to have smooth, fast,
-and comfortable integration between urban rail systems and the BRT systems. For this to happen, someone
-needs to take responsibility for ensuring this seamless integration. Integration can happen through physical
-connections and/or through the fare system. Integration is also likely to involve longer term planning
-to ensure that the two systems are complementary, rather than competitive, with one another; ]
+	Some cities that are designing and building BRT systems also have urban rail public transport systems.
+	It is generally in the interest of both the BRT system and the urban rail system to have smooth, fast,
+	and comfortable integration between urban rail systems and the BRT systems. For this to happen, someone
+	needs to take responsibility for ensuring this seamless integration. Integration can happen through physical
+	connections and/or through the fare system. Integration is also likely to involve longer term planning
+	to ensure that the two systems are complementary, rather than competitive, with one another; 
+]
 \item [Integration with cycling and walking infrastructure:
 
-By designing connections to cycling and walking infrastructure from the BRT stations and along the
-corridor, cities can maximize the effectiveness and efficiency of their multimodal networks while increasing
-accessibility and equity for those without other options of reaching the BRT. Planning for non-motorized
-transportation can also leverage dense and mixed-use development that further increase the ridership
-of the BRT system. Physical integration can be achieved between the BRT system and biking and walking
-infrastructure through the provision of bicycle parking, crosswalks with refuge islands to shorten walking
-distances across traffic for pedestrians, and adequate space for protected bike lanes and sidewalks alike.
-Meanwhile, informational integration also plays an important role, such as the incorporation of clear
-and consistent way-finding signage to help customers navigate the connections between the BRT system
-and the area. More details are provided in Chapter 28: Multimodal Integration.]]
+	By designing connections to cycling and walking infrastructure from the BRT stations and along the
+	corridor, cities can maximize the effectiveness and efficiency of their multimodal networks while increasing
+	accessibility and equity for those without other options of reaching the BRT. Planning for non-motorized
+	transportation can also leverage dense and mixed-use development that further increase the ridership
+	of the BRT system. Physical integration can be achieved between the BRT system and biking and walking
+	infrastructure through the provision of bicycle parking, crosswalks with refuge islands to shorten walking
+	distances across traffic for pedestrians, and adequate space for protected bike lanes and sidewalks alike.
+	Meanwhile, informational integration also plays an important role, such as the incorporation of clear
+	and consistent way-finding signage to help customers navigate the connections between the BRT system
+	and the area. More details are provided in Chapter 28: Multimodal Integration.
+]
 

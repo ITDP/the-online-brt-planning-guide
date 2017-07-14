@@ -20,6 +20,7 @@ clear to both the system planners and the general public.
 
 In most cases, there are significant efficiencies to be gained by optimizing services as part of a 
 BRT project. The following would be indications that the existing services are poorly designed: 
+
 \item Large numbers of buses running partially empty for all or part of their route;  
 \item Significant overcrowding on buses on all or part of a route; 
 \item Significant overcrowding at some stations; 
@@ -30,16 +31,16 @@ transport;
 
 The construction of specialized BRT infrastructure along a corridor will introduce three changes to 
 existing public transport operations that will affect the optimization of services: 
+
 \item Speeds within the BRT infrastructure along the trunk corridor should increase significantly in 
 comparison to speeds outside the BRT infrastructure and on parallel corridors;  
 \item The new BRT trunk corridor may require vehicles to operate most efficiently at the greatest speed; 
- 
 \item Vehicles will need to be able to enter and exit specialized BRT infrastructure, which is often 
 in the central median of the roadway.  
 
-\'FIXME:ref'\ Chapter 4: Demand Analysis describes the process used to estimate the baseline public transport demand 
+\'FIXME:ref'\ Chapter 4 (Demand Analysis) describes the process used to estimate the baseline public transport demand 
 on the system, and how to model the demand of a proposed service plan under a given infrastructure. So 
-we have at our disposal tools to evaluate future situations. However, \'FIXME:ref'\Chapter 4: Demand Analysis gives 
+we have at our disposal tools to evaluate future situations. However, that chapter gives 
 no guidance as to how to decide which service scenarios to model. This chapter provides more guidance 
 on how to decide what sort of services should be proposed and modeled.
 

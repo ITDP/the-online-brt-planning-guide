@@ -568,9 +568,7 @@ $$ \text{Average Queue Size}=\text{Average Waiting Time}*\text{Frequency of Arri
 
 Where:
 \item $$ \text{Average Queue Size} $$: Number of vehicles on average in queue;
-
 \item $$ \text{Average Waiting Time} $$: Average waiting time in a queue;
-
 \item $$ \text{Frequency of Arrivals} $$: Number of customers arriving per a given amount of time.
 
 In our example, the average queue is known as 0.2667 vehicles (= 4/15 vehicle) and there are an average 
