@@ -12,13 +12,13 @@ plan.
 
 \highlight{Contributors:} Carlos Pardo, *Despacio*; Lake Sagaris, *Pontificia Universidad Católica de Chile*; Jemilah Magnusson, *ITDP*; Liz London, *consultant*
 
-\include{define-goals-and-objectives.manu}
-\include{stakeholders-and-target-group-identification-and-analysis.manu}
-\include{stakeholder-analysis.manu}
-\include{engaging-stakeholders.manu}
-\include{message-development.manu}
-\include{targeting-your-message.manu}
-\include{dissemination-tactics.manu}
-\include{measuring-success.manu}
-\include{promoting-brt-system-progress.manu}
-\include{conclusion.manu}
+\include{01-define-goals-and-objectives.manu}
+\include{02-stakeholders-and-target-group-identification-and-analysis.manu}
+\include{03-stakeholder-analysis.manu}
+\include{04-engaging-stakeholders.manu}
+\include{05-message-development.manu}
+\include{06-targeting-your-message.manu}
+\include{07-dissemination-tactics.manu}
+\include{08-measuring-success.manu}
+\include{09-promoting-brt-system-progress.manu}
+\include{10-conclusion.manu}

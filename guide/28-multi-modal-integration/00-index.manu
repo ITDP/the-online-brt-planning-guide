@@ -1,0 +1,62 @@
+\chapter{Multi-Modal Integration}
+
+\title{Introduction}
+
+\quotation{I waited and waited on the platform, but the train never came and it seemed odd that no one else was
+waiting with me…Finally, I went and asked a porter and he indicated to me that I had to take a bus and,
+when pressed as to where I might find this bus, motioned vaguely with the back of his hand in the direction
+of the rest of the world.}{From “African Diary” by Bill Bryson, Anglo-American writer, 1951 --}
+
+
+The ideal BRT system is fully integrated within the larger circulation network, from airports and intercity
+rail, to public bikes and neighborhood walkways. Taken as a whole, this is referred to as multi-modal
+integration, also known as intermodal, implying the actual use of multiple modes as opposed to co-location
+of those modes. As BRT systems are usually being planned and implemented into existing urban frameworks
+and transportation systems, the onus is on BRT to integrate with those systems, especially at key nodes.
+In fast growing cities, where multiple systems are being planned and implemented at the same time, these
+systems will need to be coordinated in order to reduce redundancies and maximize the synergies between
+modes.  At those key nodes and where those systems intersect and it makes sense to link systems and modes,
+a multimodal facility may be needed.  These facilities, however, typically have a large footprint for
+the urban context, creating a design challenge.
+
+
+Integration should be logical from a system-wide perspective. The goal of integration is 1) to improve
+access and coverage, while avoiding duplication of service, and 2) to make trips as short as possible,
+in both time and distance, while minimizing the number of transfers. The convenience of the transfer
+will impact the customer’s decision on whether to take a particular mode or trip.  This convenience depends
+on two main things – the wait time for the next service and the physical connection, including level
+changes, walking distance, and ambiance of the transfer (such as protected from rain, climate controlled,
+etc.).  Customers are willing to transfer if the frequency of the connecting service is high so the customer
+is guaranteed a short wait time, and if the transfer process is easy.  Intermodal facility design is,
+thus, critical in successfully achieving integration.
+
+
+Three main forms of integration include:
+
+\number Physical Integration
+\number Information Integration
+\number Fare Integration
+
+
+*The BRT Standard* awards 15 points in total for access and integration, with points for integration
+with public transport, cycling, walking and universal access, and bike share. Ideally, this leads to
+operational integration which maximizes transfer possibilities and minimizes idle and wait times.
+
+
+This chapter provides an overview of these three types of integration, with a focus on facility design.
+Chapter 25: Station Design provides details on station design that will not be reiterated here. The following
+chapters (Chapters 29: Pedestrian Access, 30: Universal Access, 31: Bicycle and Pedicab Integration,
+32: Transportation Demand Management) provide more detail on those modes and will not be reiterated here.
+
+
+
+From a customer point of view, the various types of transport are meaningless. They are primarily interested
+in ease-of-use, from transfers to payment to destinations. The rise of private automobile use can partially
+be explained because there are no transfers, there is one payment (gas), and one can drive anywhere at
+any time. For transport to effectively compete, it must cater to the same demands – be as convenient.
+Integrating across modes helps achieve this.
+
+\include{01-physical-integration.manu}
+\include{02-integration-information.manu}
+\include{03-fare-integration.manu}
+\include{04-real-time-information.manu}

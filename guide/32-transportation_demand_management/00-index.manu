@@ -53,7 +53,7 @@ and similar public transport investments.
 
 \highlight{Contributors:} Michael Kodransky, *ITDP Global*
 
-\include{cost-based-strategies.manu}
-\include{supply-based-strategies.manu}
-\include{supportive-strategies.manu}
-\include{case-studies.manu}
+\include{01-cost-based-strategies.manu}
+\include{02-supply-based-strategies.manu}
+\include{03-supportive-strategies.manu}
+\include{04-case-studies.manu}

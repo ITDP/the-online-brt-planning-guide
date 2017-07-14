@@ -40,13 +40,13 @@ to improve intersection efficiency, particularly when grade separation is availa
 
 \highlight{Contributors:} John Jones, *HHO Africa*; Karl Fjellstrom, *Far East BRT*; Annie Weinstock, *BRT Planning International*; Elkin Bello, *consultant*; Ulises Navarro, *ITDP Latin America*; Carlos Pardo, *Despacio*; Pedro Szász, *consultant*; Arthur Szász, *Protocubo*
 
-\include{241-basic-concepts.manu}
-\include{approach-to-intersection-design.manu}
-\include{traffic-signal-priority.manu}
-\include{station-location-relative-to-the-intersection.manu}
-\include{245-restricting-general-traffic-turning-movements.manu}
-\include{246-allowing-brt-turns.manu}
-\include{247-merging-with-mixed-traffic-in-narrow-sections.manu}
-\include{248-brt-lanes-at-roundabouts.manu}
-\include{249-integrating-pedestrian-and-cyclist-movements.manu}
-\include{2410-grade-separation.manu}
+\include{01-basic-concepts.manu}
+\include{02-approach-to-intersection-design.manu}
+\include{03-traffic-signal-priority.manu}
+\include{04-station-location-relative-to-the-intersection.manu}
+\include{05-restricting-general-traffic-turning-movements.manu}
+\include{06-allowing-brt-turns.manu}
+\include{07-merging-with-mixed-traffic-in-narrow-sections.manu}
+\include{08-brt-lanes-at-roundabouts.manu}
+\include{09-integrating-pedestrian-and-cyclist-movements.manu}
+\include{10-grade-separation.manu}

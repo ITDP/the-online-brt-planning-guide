@@ -9,10 +9,10 @@ This chapter will review some basic components of branding, marketing, and custo
 
 \highlight{Contributors:} Peter Trickett, *consultant*; Carlos Pardo, *Despacio*; Jemilah Magnusson, *ITDP*; Liz London, *consultant*
 
-\include{branding.manu}
-\include{the-branding-brief.manu}
-\include{concept-and-research.manu}
-\include{design-development-feedback-and-adjustments.manu}
-\include{consolidating-the-brand-architecture.manu}
-\include{implementation.manu}
-\include{customer-service.manu}
+\include{01-branding.manu}
+\include{02-the-branding-brief.manu}
+\include{03-concept-and-research.manu}
+\include{04-design-development-feedback-and-adjustments.manu}
+\include{05-consolidating-the-brand-architecture.manu}
+\include{06-implementation.manu}
+\include{07-customer-service.manu}

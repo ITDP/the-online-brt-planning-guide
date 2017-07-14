@@ -56,67 +56,66 @@ Fortunately for cities, the technology for providing high-quality public transpo
 
 \volume{Project Preparation}
 \include{volume-1-landing-page.manu}
-\include{01-project-initiation-and-set-up/00-project-initiation.manu}
+\include{01-project-initiation-and-set-up/00-index.manu}
 \include{02-why-brt/00-index.manu}
-\include{03-project/00-project-set-up.manu}
+\include{03-project/00-index.manu}
 
 
 \volume{Operations}
 \include{volume-2-landing-page.manu}
-\include{04-demand-analysis/00-demand-analysis.manu}
-\include{05-network_development/00-corridor-and-network-development.manu}
-\include{06-service_planning/service-planning.manu}
-\include{07-system-speed/system-speed-and-capacity.manu}
-\include{08-traffic-impact-assessment/00-traffic-impact-assessment.manu}
+\include{04-demand-analysis/00-index.manu}
+\include{05-network_development/00-index.manu}
+\include{06-service_planning/00-index.manu}
+\include{07-system-speed/00-index.manu}
+\include{08-traffic-impact-assessment/00-index.manu}
 
 
 \volume{Communications and Marketing}
 \include{volume-3-landing-page.manu}
-\include{09-strategic-planning-for-communications/00-strategic-planning-for-communications.manu}
-\include{10-public-participation/00-public-participation.manu}
-\include{11-the-case-for-marketing-and-customer-service/00-the-case-for-marketing-and-customer-service.manu}
+\include{09-strategic-planning-for-communications/00-index.manu}
+\include{10-public-participation/00-index.manu}
+\include{11-the-case-for-marketing-and-customer-service/00-index.manu}
 
 
 \volume{Business Plan}
 \include{volume-4-landing-page.manu}
-\include{12-institutional-planning/00-institutional-planning.manu}
-\include{13-business-structure/00-business-structure.manu}
-\include{14-financial-modeling/financial-modeling.manu}
-\include{15-fare-policy-and-structure/00-fare-policy-and-structure.manu}
-\include{16-informal-transit-transition-to-brt/00-informal-transit-transition-to-brt.manu}
+\include{12-institutional-planning/00-index.manu}
+\include{13-business-structure/00-index.manu}
+\include{14-financial-modeling/00-index.manu}
+\include{15-fare-policy-and-structure/00-index.manu}
+\include{16-informal-transit-transition-to-brt/00-index.manu}
 \include{17-funding-and-financing/00-index.manu}
 
 
 \volume{Technology}
 \include{volume-5-landing-page.manu}
-\include{18-fare_systems/fare-systems.manu}
-\include{19-technology/technology.manu}
-\include{20-vehicles/vehicles.manu}
+\include{18-fare_systems/00-index.manu}
+\include{19-technology/00-index.manu}
+\include{20-vehicles/00-index.manu}
 
 
 \volume{Infrastructure}
 \include{volume-6-landing-page.manu}
-\include{21-infrastructure_management_costing/infrastructure-management-and-costing.manu}
+\include{21-infrastructure_management_costing/00-index.manu}
 \include{22-roadway-and-station-configurations/00-index.manu}
-\include{23-roadway-design/roadway-design.manu}
-\include{24-intersections_and_signal_control/intersections-and-signal-control.manu}
+\include{23-roadway-design/00-index.manu}
+\include{24-intersections_and_signal_control/00-index.manu}
 \include{25-brt-stations/00-index.manu}
-\include{26-depots/depots.manu}
-\include{27-control_center/control-center.manu}
+\include{26-depots/00-index.manu}
+\include{27-control_center/00-index.manu}
 
 
 \volume{Integration}
 \include{volume-7-landing-page.manu}
-\include{28-multi-modal-integration/multi-modal-integration.manu}
-\include{29-pedestrian-access/pedestrian-access.manu}
+\include{28-multi-modal-integration/00-index.manu}
+\include{29-pedestrian-access/00-index.manu}
 \include{30-universal_access/00-index.manu}
 \include{31-bicycle-pedicab-integration/00-index.manu}
-\include{32-transportation_demand_management/transportation-demand-management-tdm.manu}
-\include{33-transit-oriented-development/transit-oriented-development.manu}
+\include{32-transportation_demand_management/00-index.manu}
+\include{33-transit-oriented-development/00-index.manu}
 
 
 \volume{About the Guide}
 \include{volume-8-landing-page.manu}
-\include{34-how-it-works/content.manu}
-\include{35-manual-to-collaboration/content.manu}
-
+\include{34-how-it-works/00-index.manu}
+\include{35-manual-to-collaboration/00-index.manu}

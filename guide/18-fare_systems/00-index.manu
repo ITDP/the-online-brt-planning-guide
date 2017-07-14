@@ -40,11 +40,11 @@ system components;
 \highlight{Contributors:} Christoff Krogscheepers, *ITS Engineers*; Fabio Gordillo, *GSD PLUS*; Chris Kost, *ITDP Africa*
 
 The sections below discuss each of these components in more detail.
-\include{181-fare-system-functionality.manu}
-\include{182-fare-collection-media.manu}
-\include{183-gates-and-turnstiles.manu}
-\include{184-back-end-components.manu}
-\include{185-institutional-structure.manu}
-\include{186-tendering-process.manu}
-\include{187-costs.manu}
-\include{188-case-studies.manu}
+\include{01-fare-system-functionality.manu}
+\include{02-fare-collection-media.manu}
+\include{03-gates-and-turnstiles.manu}
+\include{04-back-end-components.manu}
+\include{05-institutional-structure.manu}
+\include{06-tendering-process.manu}
+\include{07-costs.manu}
+\include{08-case-studies.manu}

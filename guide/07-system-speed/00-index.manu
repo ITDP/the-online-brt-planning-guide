@@ -25,10 +25,10 @@ system capacity and speed.
 
 \highlight{Contributors:} Walter Hook, *BRT Planning International*; Pedro Szász, *consultant*; Arthur Szász, *Protocubo*; Annie Weinstock, *BRT Planning International*; Ulises Navarro, *ITDP Latin America*; Karl Fjellstrom, *Far East BRT*
 
-\include{design-objectives.manu}
-\include{the-process-of-designing-high-capacity-and-high-speed-brt-corridors.manu}
-\include{understanding-station-saturation.manu}
-\include{calculating-corridor-capacity.manu}
-\include{expanding-corridor-capacity.manu}
-\include{optimizing-the-station-to-vehicle-interface.manu}
-\include{route-distribution-among-multiple-sub-stops.manu}
+\include{01-design-objectives.manu}
+\include{02-the-process-of-designing-high-capacity-and-high-speed-brt-corridors.manu}
+\include{03-understanding-station-saturation.manu}
+\include{04-calculating-corridor-capacity.manu}
+\include{05-expanding-corridor-capacity.manu}
+\include{06-optimizing-the-station-to-vehicle-interface.manu}
+\include{07-route-distribution-among-multiple-sub-stops.manu}

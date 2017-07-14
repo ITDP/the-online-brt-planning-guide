@@ -20,13 +20,13 @@ not adequately adapted to existing infrastructure and operational needs, like ac
 
 \highlight{Contributors:} Johann Andersen, *Techso*
 
-\include{development-of-the-traffic-management-center-concept.manu}
-\include{the-brtmc.manu}
-\include{273brt-stakeholders.manu}
-\include{location-of-brtmc.manu}
-\include{staffing-of-the-brtmc.manu}
-\include{floor-space-requirements.manu}
-\include{layout-and-site-planning.manu}
-\include{building-requirements.manu}
-\include{costing.manu}
-\include{operational-requirements.manu}
+\include{01-development-of-the-traffic-management-center-concept.manu}
+\include{02-the-brtmc.manu}
+\include{03-brt-stakeholders.manu}
+\include{04-location-of-brtmc.manu}
+\include{05-staffing-of-the-brtmc.manu}
+\include{06-floor-space-requirements.manu}
+\include{07-layout-and-site-planning.manu}
+\include{08-building-requirements.manu}
+\include{09-costing.manu}
+\include{10-operational-requirements.manu}
