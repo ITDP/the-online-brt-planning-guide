@@ -89,13 +89,17 @@ class PositionTools {
 
 	public static function toString(p:Position):String
 	{
-		var lpos = toLinePosition(p);
-		if (lpos.lines.min != lpos.lines.max - 1)
-			return '${p.src}, from (line=${lpos.lines.min+1}, column=${lpos.codes.min+1}) to (line=${lpos.lines.max}, column=${lpos.codes.max})';
-		else if (lpos.codes.min < lpos.codes.max - 1)
-			return '${p.src}, line=${lpos.lines.min+1}, columns=(${lpos.codes.min+1} to ${lpos.codes.max})';
-		else
-			return '${p.src}, line=${lpos.lines.min+1}, column=${lpos.codes.min+1}';
+		try {
+			var lpos = toLinePosition(p);
+			if (lpos.lines.min != lpos.lines.max - 1)
+				return '${p.src}, from (line=${lpos.lines.min+1}, column=${lpos.codes.min+1}) to (line=${lpos.lines.max}, column=${lpos.codes.max})';
+			else if (lpos.codes.min < lpos.codes.max - 1)
+				return '${p.src}, line=${lpos.lines.min+1}, columns=(${lpos.codes.min+1} to ${lpos.codes.max})';
+			else
+				return '${p.src}, line=${lpos.lines.min+1}, column=${lpos.codes.min+1}';
+		} catch (e:Dynamic) {
+			return Std.string(p);
+		}
 	}
 
 	public static function getBytesAt(p:Position):Bytes
