@@ -83,7 +83,6 @@ class NewTransform {
 		return mk(def, h.pos);
 	}
 
-	@:allow(transform.Transform)  // TODO remove
 	static function horizontal(h:HElem):HElem
 	{
 		h = htrim(h, { prevSpace:true, reverse:false });
@@ -117,21 +116,33 @@ class NewTransform {
 		return buf.toString();
 	}
 
-	static function consume(parent:VElem, pool:Array<VElem>, idc:IdCtx, noc:NoCtx):DElem
+	static function consume(parent:VElem, mainPool:Array<VElem>, idc:IdCtx, noc:NoCtx):DElem
 	{
 		var li = [];
-		while (pool.length > 0) {
-			switch [parent.def, pool[0].def] {
-			case [Volume(_), Volume(_)]: break;
-			case [Chapter(_), Chapter(_)|Volume(_)]: break;
-			case [Section(_), Section(_)|Chapter(_)|Volume(_)]: break;
-			case [SubSection(_), SubSection(_)|Section(_)|Chapter(_)|Volume(_)]: break;
-			case [SubSubSection(_), SubSubSection(_)|SubSection(_)|Section(_)|Chapter(_)|Volume(_)]: break;
+
+		// keep the `mainPool` (shared with `vertical`) and the `subPool`s separate;
+		// the `subPool` is only used to recurse into `VElemLists` to test their
+		// first element
+		function eatTillBoundary(subPool:Array<VElem>):Bool {
+			switch [parent.def, subPool[0].def] {
+			case [Volume(_), Volume(_)]: return true;
+			case [Chapter(_), Chapter(_)|Volume(_)]: return true;
+			case [Section(_), Section(_)|Chapter(_)|Volume(_)]: return true;
+			case [SubSection(_), SubSection(_)|Section(_)|Chapter(_)|Volume(_)]: return true;
+			case [SubSubSection(_), SubSubSection(_)|SubSection(_)|Section(_)|Chapter(_)|Volume(_)]: return true;
+			case [_, VElemList([])]:
+				subPool.shift();
+				return false;
+			case [_, VElemList(more)]:
+				return eatTillBoundary(more);
 			case _:
-				var v = pool.shift();
-				li.push(vertical(v, pool, idc, noc));
+				var v = subPool.shift();
+				li.push(vertical(v, mainPool, idc, noc));
+				return false;
 			}
 		}
+
+		while (mainPool.length > 0 && !eatTillBoundary(mainPool)) {}
 		return switch li {
 		case []: mkd(DEmpty, parent.pos.offset(parent.pos.max - parent.pos.min, 0));
 		case [single]: single;
@@ -139,7 +150,6 @@ class NewTransform {
 		}
 	}
 
-	@:allow(transform.Transform)  // TODO remove
 	static function vertical(v:VElem, siblings:Array<VElem>, idc:IdCtx, noc:NoCtx):DElem  // MAYBE rename idc/noc to id/no
 	{
 		// the parser should not output any nulls
@@ -218,15 +228,12 @@ class NewTransform {
 		case Paragraph(text):
 			return mkd(DParagraph(horizontal(text)), v.pos);
 		case VElemList(li):
-			var li = [ while (li.length > 0) vertical(li.shift(), li, idc, noc) ];
-			// don't collapse one-element lists because that would
-			// destroy position information that came from trimmed children;
-			// also, even thought the end of the list might have
-			// changed, make sure to keep the original list start
-			return switch li {
-			case []: mkd(DEmpty, v.pos);
-			case _: mkd(DElemList(li), v.pos.span(li[li.length -1 ].pos));
-			}
+			// `siblings`: shared stack of remaining neighbors from depth-first searches;
+			// we first clone `li` since it gets modified by us and by `consume`
+			var li = li.copy();
+			siblings.unshift(mk(VElemList(li), v.pos));
+			var li = [ while (li.length > 0) vertical(li.shift(), siblings, idc, noc) ];
+			return mkd(DElemList(li), v.pos.span(li[li.length -1 ].pos));
 		case VEmpty:
 			return mkd(DEmpty, v.pos);
 		}
@@ -235,7 +242,6 @@ class NewTransform {
 	/*
 	Remove DEmpty elements.
 	*/
-	@:allow(transform.Transform)  // TODO remove
 	static function clean(d:DElem)
 	{
 		// we shouldn't generate nulls either
@@ -267,12 +273,17 @@ class NewTransform {
 			var cli = [];
 			for (i in li) {
 				i = clean(i);
-				if (!i.def.match(DEmpty))
+				if (!i.def.match(DEmpty)) {
 					cli.push(i);
+					weakAssert(cli.length < 2 || !i.def.match(DList(_)) || !cli[cli.length - 2].def.match(DList(_)),
+							"possible split list", i.pos.toString());
+				}
 			}
-			// don't collapse one-element lists because that would
-			// destroy position information that came from trimmed children
-			cli.length != 0 ? DElemList(cli) : DEmpty;
+			switch cli {
+			case []: DEmpty;
+			case [one]: return one;
+			case _: DElemList(cli);
+			}
 		}
 		return mkd(def, d.pos, d.id);
 	}

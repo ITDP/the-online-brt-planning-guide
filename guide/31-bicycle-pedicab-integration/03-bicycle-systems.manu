@@ -1,0 +1,342 @@
+\section{Bicycle Systems}
+
+\quotation{Riding a race bike is an art—a thing that you do because you feel something inside}
+{Valentino Rossi, athlete, 1979–}
+
+This section provides an overview of bike-share (public bikes) and pedicab systems. These systems allow 
+people to derive the benefits of cycling without bike ownership or maintenance. 
+
+\subsection{Bike-Share}
+
+\figure{assets/image47.jpeg}{The Hubway bike-share station outside South Station in Boston is prominently 
+positioned at the entrance to this bus and train terminal.}{ Will Sherman.}
+
+Bike-share systems consist of a fleet of bicycles available on demand at a network of stations throughout 
+a designated service area. Users pick up and drop off bicycles at their convenience. When integrated 
+into public transport, bike-share extends the reach of public transport and provides a “last-mile” solution 
+to and from destinations that are beyond walking distance of the station. ITDP’s *Bike-Share Planning 
+Guide*, released in 2013, provides detailed guidance on how to plan and implement a successful bike-share 
+system.
+
+Cities throughout the world are investing in bike-share as a relatively inexpensive and quickly implemented 
+urban transportation option. Modern bike-share systems are characterized by providing subscription-based 
+service, to ensure user identification and accountability against theft and vandalism. Subscribers unlock 
+bicycles using smart cards or RFID keys, while walk-up users sign up with a credit card at a station 
+or kiosk. To encourage short trips, users are charged a flat rate for thirty to sixty minutes of use, 
+after which progressively higher fees are charged. Technology integration with bike-share systems often 
+provides access to wayfinding information and station maps, including currently available bicycles and 
+docks. 
+
+\subsection{System Type}
+
+There are two basic bike-share system models: fixed and flexible programs. Fixed programs include docking 
+stations where users can check out a bicycle at a known, fixed location. Flexible programs rely on existing 
+bicycle racks throughout the service area. 
+
+\subsubsection{Fixed Programs}
+
+\figure{assets/image48.jpeg}{A bicycle is unlocked by touching an RFID keycard to a dock in the Shanghai 
+bike-share system.}{ ITDP.}
+
+\figure{assets/image49.jpeg}{A bike-share station in Nantes, France, is permanently installed in pavement 
+along the BRT corridor.}{ ITDP.}
+
+\figure{assets/image50.jpeg}{A bike-share station in Montreal is modular, allowing for seasonal removal 
+during winter.}{ Will Sherman.}
+
+Stations may be fully automated, allowing users to unlock a bicycle with a RFID card or key, linking 
+the bicycle to the user’s account and recording when the bicycle was taken and returned. A kiosk at the 
+station transmits data between the dock and control center to: 
+\item Report the number of bicycles at the station;
+\item Record users taking out bicycles and returning them;
+\item Provide information to users about their subscription account;
+\item Process credit cards for walk-up users;
+\item Provide the location and capacity of nearby stations.
+
+Stationary docking stations can be permanent or modular. Permanent stations are installed into the 
+ground, hardwired to utilities, and not movable. Modular stations are less expensive to install because 
+they require little or no excavation. Modular stations can be adjusted more easily, adding or removing 
+docks to accommodate user demand, events, and construction sites. The Bixi system in Montreal uses modular 
+bike-share stations to allow the system to be removed during winter months, when demand is lower. Modular 
+stations often rely on a combination of solar power and batteries, which increases the flexibility of 
+station siting, as placement is not dependent on utility connections.
+
+In some scenarios, station attendants are warranted. Large stations that have capacity or high turnover, 
+and stations near tourist destinations that attract many casual and unfamiliar users, can warrant having 
+attendants to assist with redistribution and customer service. At high-demand bike-share stations at 
+BRT stations in Guangzhou, China, an overflow corral is managed by an attendant, who moves bicycles from 
+docks to the corral, or replenishes the docks with the corralled bicycles. 
+
+\figure[medium]{assets/image51.jpeg}{An overflow corral at a Guangzhou, China, bike-share station is managed 
+by an attendant, to ensure that empty docks and bicycles are available at peak periods. }{ ITDP.}
+
+\subsubsection{Flexible Programs}
+
+\figure{assets/image52.jpeg}{Social Bicycles’ lock system is integrated into the bicycle frame 
+and uses available bike racks.}{ Social Bicycles.}
+
+\figure{assets/image53.jpeg}{Social Bicycles’ lock system is integrated into the bicycle frame 
+and uses available bike racks.}{ Social Bicycles.}
+
+Flexible bike-share systems do not use stations, instead relying on a smart-lock system that utilizes 
+GPS and wireless communications to communicate with the system control center. The security and checkout 
+infrastructure is located on each bicycle, eliminating the need for kiosks or docking stations. The smart-lock 
+handles check-in and check-out functions, transmits the usage and location of each bicycle as needed, 
+and monitors maintenance needs and unauthorized use. Users typically preregister online, use a system 
+map to locate a nearby bicycle, and check it out using a text message or mobile phone app. Without docking 
+stations, the cost of a flexible bike-share system is greatly reduced. Compared to fixed systems, flexible 
+systems can make bike-share travel between public transport and lower-demand destinations affordable 
+and feasible, because docking stations are not required near every destination. 
+
+\subsection{Service Area and Phasing}
+
+The coverage, or service area, of a bike-share system is typically determined based on areas that will 
+generate the most users or serve a need for improved mobility. Factors in the development of the service 
+area typically include the locations where people live, work, shop, play, and access public transport. 
+In addition, social and geographic equity concerns are often considered on the basis of serving areas 
+with low household income, low mobility, and poor access to public transport, among other factors. 
+
+To maximize success, bike-share systems often launch in phases, starting in areas with the highest 
+demand to accelerate success of the system. The decision to expand beyond the first phase (and subsequent 
+phases) will depend on available funding and the success of the system. System success is typically measured 
+in terms of visible achievements, such as high ridership, positive public response, neighborhood and 
+corporate requests for service-area expansion, and ongoing financial performance. Essentially, the system 
+will grow if the expansion can be sustained through existing funding or an additional influx of user 
+fees, private sponsorship, grants, and/or public funding.
+
+Rollout should occur in manageable stages that match funding and organizational capacity. Later phases 
+may introduce service to communities that are discontinuous from earlier phases, but will generate their 
+own demand and provide a connection to public transport for longer trips. The Guangzhou, China, bike-share 
+system opened in June 2010 with 18 stations and 1,000 bicycles along the Zhongshan Avenue BRT corridor. 
+Over three phases, the system grew to include 15,000 bicycles around BRT stations and connect nearby 
+residential and commercial areas. 
+
+\subsubsection{Service Levels}
+
+The operator of a bike-share system should adhere to service levels that ensure an efficient and quality 
+experience for the user, including:
+\item Maximum time periods the system or any part of it can be out of operation;
+\item Constant availability of bicycles and open docks to return bicycles to stations;
+\item Cleaning and maintenance schedule of the various aspects of the system; 
+\item Longest time period faults are accepted and repairs can take.
+
+Service levels can be enforced by both monetary penalties and rewards, with monitoring of service levels 
+through the IT system. Both the operator and the government-oversight body should have access to the 
+information database. If properly designed, this access by both parties allows for the service-level 
+standards to become shared knowledge, so there are no discrepancies between the two organizations about 
+the payment.
+
+\subsubsection{Station Density}
+
+The size of a bike-share system is a function of its service area and the desired spacing of stations. 
+Successful bike-share systems rely on a high density of stations within the service area, to minimize 
+the distances users must walk to pick up or drop off a bicycle near their final destination. The Vélib 
+system in Paris places approximately ten stations per square kilometer, or approximately one station 
+every 300 meters. On average, station spacing in European and North American bike-share systems is typically 
+between 300 and 400 meters, with a station density of approximately six to ten stations per square kilometer. 
+This range provides access to a bike within a short walk of anywhere in the service area, and provides 
+a nearby alternative to return a bike if the destination station is full.
+
+\subsubsection{Station Size}
+
+\figure{assets/image54.jpeg}{A bike-share station at Huajing Xincheng BRT station in Guangzhou, China, 
+can accommodate hundreds of bicycles.}{ Karl Fjellstrom, Far East BRT.}
+
+Station size is a function of demand. It is important that there be sufficient empty docks for riders 
+to return bikes. Bike-share systems in Europe and North America typically use a ratio of 1.5 to 2 docks 
+per bicycle to allow high-demand areas to accommodate peak period travel patterns. In an optimized system, 
+the bicycles are used six to nine times a day. Higher ratios of docks increase capital costs, while lower 
+ratios of docks to bicycles generally result in higher rebalancing costs. Redistribution vehicles and 
+associated personnel can help balance full destination stations by restocking empty stations with high 
+checkouts. Redistribution is one of the greatest challenges in operating a bike-share system. Using electric 
+vehicles to transport bicycles and offering free time and incentives to return the bicycles to low-demand 
+stations are two ways that Vyste, in Paris, optimized its redistribution process to reduce costs and 
+minimize environmental impacts. 
+
+\subsubsection{Station Placement}
+
+\figure{assets/image55.jpeg}{Bike-share station in Guangzhou, China, located adjacent to a BRT station.}{ ITDP.}
+
+Based on the target density or distance a user must walk, stations are sited throughout the service 
+area near bicycle infrastructure, public transport, and other key destinations. Bike-share stations should 
+be placed in safe, convenient, and highly visible locations. If stations are intended to serve a public 
+transport station or hub, there should be clear sight lines between the entrance of the public transport 
+station and the bike-share station. Bike-share stations should ideally be located a short distance from 
+BRT stations, without obstructing pedestrian and vehicle circulation, or forcing users to cross streets. 
+This creates seamless transfers for the user from one mode of public transport to another. BRT station 
+design can facilitate unique integration of bike-share stations. Unused space under pedestrian overpasses 
+and on medians created by the station platforms can offer good areas for a bike-share station. 
+
+\subsection{Bicycle Design}
+
+\figure{assets/image56.jpeg}{Barcelona’s bike-share system features sturdy bicycles with internal gearing, 
+fenders, chain guards, and front baskets.}{ Nelson\\Nygaard.}
+
+The physical design of the bicycle will depend on environmental and social norms of bicycling in the 
+service area. Common attributes of successful bike-share systems include: 
+
+\item Bicycle-frame design that accommodates users of varying sizes, such as a step-through design, 
+which can be easily mounted. Adjustable seats that can be raised or lowered for different-sized users; 
+\item Concealed drive trains and cables to minimize wear and tampering;
+\item A front basket or rack to carry a bag, rather than a rear rack, which can be overloaded or improperly 
+used to carry passengers. Front and rear reflectors and lights, usually powered by a dynamo attached 
+to the wheel, for visibility and compliance with local laws;
+\item Fenders to keep users dry in the rain. Bicycles that are identical and constructed of customized 
+components to limit their appeal to theft and vandalism. The availability of those spares should be written 
+into the procurement contracts with suppliers.
+
+\figure[medium]{assets/image57.jpeg}{Mexico City’s sturdy bicycles with internal gearing, fenders, chain guards, 
+and front baskets. }{ ITDP.}
+
+\subsection{Integration with BRT}
+
+\subsubsection{Information Integration}
+
+Signage that shows transfers from bike-share to BRT expands the reach of the public transport network. 
+Real-time information, including timetables, station location, capacity, and operating hours can be available 
+to the user through information management systems (website, on-screen display, and smartphone apps), 
+signage, and user service personnel. Maps and routing applications, which help plot origin and destination 
+trips using BRT, bike-share, and other modes of public transport, allow users to plan multimodal trips 
+effectively. 
+
+\subsubsection{Payment Integration}
+
+Payment integration is an important means of creating an integrated public transport system. The same 
+smart card that is used for BRT should also be used for the bike-share system and other forms of public 
+transport. A single, integrated payment system that allows users to access BRT for longer distances and 
+bike sharing for the “last mile” provides the experience of a unified public-transport system, even if 
+payments are dispersed to various operators from a control center. The Navigo pass in Paris allows users 
+access to Vélib bike-share, subway, and regional trains. 
+
+\subsubsection{Case Study: Guangzhou, China}
+
+\figure{assets/image58.jpeg}{Guangzhou’s bike-share is integrated into the BRT station and allows for 
+increased capacity and catchment.}{ ITDP.}
+
+In Guangzhou the bike-share system was implemented and opened as part of the BRT project. Launched 
+in June 2010, the Chinese city of Guangzhou inaugurated a bike-share system with 5,000 bicycles and 110 
+stations in the Tianhe District to complement the BRT, as well as the bicycle and pedestrian infrastructure 
+along the corridor. A portion of the BRT trunk line acted as a backbone for the identified coverage area 
+for Phase 1 of the system (Tianhe District), and the capital costs of the Phase 1 system were included 
+in the overall BRT budget. The company operating the public bike system is owned by the same government 
+agency that owns the company regulating the BRT operations, which is also in charge of regulating bus 
+stops and bus terminals throughout Guangzhou. The Guangzhou Public Bicycle System has approximately 35,000 
+users and 21,000 rides per day, with one-third of users making trips by bike-share more than seven times 
+per week. 
+
+\subsubsection{Pedicabs (Bicycle Taxis)}
+
+\figure{assets/image59.png}{Pedicabs can help form part of a seamless package 
+of integration options for BRT customers. 
+Shown here are pedicabs queuing at a TransMilenio BRT station in Bogo-tá.}
+{INSSA.}
+
+A pedicab (also known as a *cycle rickshaw*, *becak*, *velotaxi*, *trisikad*, *sanlunche*, or *trishaw*) 
+provides low-cost, nonpolluting mobility while serving as an important source of employment in cities 
+around the world. Pedicabs generally have three wheels and are manually powered. They are an ideal feeder 
+service to BRT stations, especially for trips of 4 kilometers or less, and on streets that are too narrow 
+for buses. They can be organized as a formal component of the BRT system, or encouraged informally through 
+incentives. Finally, a system of pedicabs is an ideal tool to encourage entrepreneurship. 
+
+\figure[medium]{assets/image60.png}{Pedicabs can help form part of a seamless package 
+of integration options for BRT customers. 
+Shown here are pedicabs queuing at a TransMilenio BRT station in Bogo-tá.}
+{INSSA.}
+
+\subsection{Pedicab Design}
+
+\figure{assets/image61.jpeg}{Velotaxi in Berlin.}{ Michael King.}
+
+Similar to the regular bicycle, the design of pedicabs has advanced in recent years. Newer models are 
+lighter, stronger, faster, and more comfortable than their earlier counterparts. In selecting a standard 
+pedicab to complement a BRT system, every effort should be made to choose the most recent model and continue 
+to update the models annually. This includes features such as customer shading systems, aerodynamic profiles, 
+and advanced suspension, braking, and gearing systems.
+
+\figure[medium]{assets/image62.jpeg}{Modern cycle rickshaw in Jaipur, India.}{ ITDP.}
+
+\subsubsection{Case Study: Agra, India}
+
+\figure{assets/image64.jpeg}{The redesigned Indonesian becak is lighter and more stable than traditional 
+models.}{ ITDP.}
+
+In the late 1990s, ITDP and several local partners initiated a program to develop a modernized cycle 
+rickshaw for the Indian market. The initiative was launched in Agra, India, and quickly spread to other 
+cities, including Delhi. The project produced a rickshaw that weighs 30 percent less than traditional 
+rickshaws, at roughly the same cost (Figure 31.60). Drivers reported a 50 percent increase in earnings, 
+because they could ply the modern rickshaw for a longer period of time and also due to superior comfort 
+for customers. Today, over 300,000 modern pedicabs operate on the streets of Indian cities. In Indonesia, 
+cities such as Yogyakarta are following the lead of the Indian cities and producing a modernized pedicab 
+(Figure 31.63).
+
+\figure[medium]{assets/image63.png}{The modernized cycle rickshaw in India has revitalized the pedicab marketplace.}{ ITDP.}
+
+\subsection{ Facilities}
+
+\subsubsection{Additional Width}
+
+\figure{assets/image65.jpeg}{Cycle rickshaw (freight) on a narrow street in Bangkok, Thailand.}{ 
+Michael King.}
+
+Because they are wider than a bicycle, there are special concerns for pedicabs in facility design. 
+Ideally they should use the non-motorized roadway network, such as greenways, bike lanes, low-speed streets, 
+or alleys. These facilities should be designed accordingly. A more spacious design also accommodates 
+bike trailers, wagons, adult tricycles, and other nonstandard bikes. Note that there are varying vehicle 
+widths, thus the dimensions below need to be verified for each country. Some general guidelines for pedicab 
+facilities are:
+\item Pedicabs generally fit in a 1.5-meter-wide bike lane, but not narrower; 1.8 meters is preferred;
+\item Bicycles and pedicabs need to pass each other. In a striped lane this is accomplished by moving 
+into the adjacent auto lane. A bike lane should be at least 2 meters wide, if not 2.5 meters;
+\item Bollards and other obstacles that allow a bicycle to pass through may restrict a pedicab. A 1.7-meter 
+clearance generally does not restrict a pedicab;
+\item Ramps designed for bicycles need to be wider for pedicabs;
+\item Parking facilities need to be larger to accommodate pedicabs.
+
+\subsubsection{Waiting Stands at BRT Stations}
+
+Whether formal or informal, waiting stands at BRT stations are integral to integrating pedicabs and 
+BRT. It is here that drivers wait for customers, rest, and service their vehicles. These facilities are 
+not unlike the bike stations described above and may be operated as a concession. Fundamental features 
+include:
+\item Waiting areas for drivers;
+\item Toilet and washroom facilities;
+\item Bike washing;
+\item Basic maintenance, such as minor adjustments and air for tires.
+
+The waiting stands should be situated near customer egress points, but not so close as to cause congestion. 
+They should be within eyesight of patrons. Ideally they would be located closer than the MV taxi stand. 
+It is best to separate them from bicycle parking and lockers.
+
+\subsection{Regulations}
+
+Unfortunately, many countries and cities took steps to reduce pedicabs during the latter part of the 
+twentieth century. As such, there may be regulations that need to be altered as well as a lack of safety, 
+pricing, and other standards. In any for-hire service, standardization is a good business practice. Key 
+regulations to consider include:
+\item Posted fare information;
+\item Regular pricing schemes, either via a meter or zone. Licensing and registration of pedicabs to 
+ensure a minimum vehicle condition, tire quality, and functional brakes; 
+\item Permission for pedicabs to use both motorized and non-motorized facilities.
+
+\subsection{Operations}
+
+Formal operating structures can deliver enhanced customer service while improving working conditions 
+for pedicab drivers. The experience in many places is of a hectic, informal pedicab queue at public transport 
+stations. Should the drivers be organized, this disorderly system can be regularized, which makes for 
+a more pleasant customer experience. A formal system includes driver training, uniforms, and unionization.
+
+New technologies that improve the user experience and increase the efficiency of the service can be 
+encouraged. As smartphone use spreads throughout the world, it is possible to integrate a smartphone 
+app that connects to pedicab operators. 
+
+\subsubsection{Case Study: Fazilka, India}
+
+In the town of Fazilka in northern India, the Ecocabs system provides a dial-a-rickshaw service for 
+local residents. After a customer places a call, a cycle rickshaw is dispatched to the customer’s address 
+within minutes. The system features a network of driver facilities with food service, restrooms, and 
+other amenities. Participating drivers can avail themselves of low-cost loans for vehicle purchase, medical 
+and accident insurance, educational allowances for their children, and other benefits. The system also 
+has a mechanism for handling customer grievances. 
+
+\figure[medium]{assets/image66.png}{The Ecocabs system in Fazilka, India, features modern vehicles, phone-based 
+dispatch, and financial benefits for participating drivers.}{ Ecocabs.}

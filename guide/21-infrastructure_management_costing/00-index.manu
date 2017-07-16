@@ -1,0 +1,19 @@
+\chapter{Infrastructure Management and Costing}
+
+The objective of this chapter is to provide an overview of the infrastructure design process required
+to deliver a BRT corridor and its associated infrastructure components. The chapter first describes the
+infrastructure components that make up a BRT system, and then describes the infrastructure design process.
+Finally, the chapter deals with the calculation of design and construction costs for the various infrastructure
+elements using an infrastructure cost calculator. The cost of maintaining the infrastructure can be assessed
+by means of an infrastructure maintenance cost calculator (as detailed in Section 21.4.2), whereby life-cycle
+costing of infrastructure elements or materials can be evaluated.
+
+\highlight{Contributors:} Andre Frieslaar, *HHO Africa*; Susan Smit, *HHO Africa*; Karl Fjellstrom, *Far East BRT*; Annie Weinstock, *BRT Planning International*; Ulises Navarro, *ITDP Latin America*; Carlos Pardo, *Despacio*
+
+\include{01-infrastructure-components.manu}
+\include{02-infrastructure-design-process.manu}
+\include{03-project-management-of-the-design-process.manu}
+\include{04-infrastructure-costing.manu}
+\include{05-appendix-a-bogotas-land-acquisition-process.manu}
+\include{06-appendix-b-brt-infrastructure-maintenance-cost-calculator.manu}
+\include{07-appendix-c-yichang-brt-project-investment-cost-estimates.manu}

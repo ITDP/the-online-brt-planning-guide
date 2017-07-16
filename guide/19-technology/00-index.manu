@@ -1,0 +1,48 @@
+\chapter{Technology}
+
+\quotation{Any sufficiently advanced technology is indistinguishable from magic.}
+{Arthur C. Clarke, author and inventor, 1917–}
+
+
+Information technology (IT) systems are an important component of high-quality BRT systems. BRT services
+are designed to cater to large passenger volumes and must deliver fast, accurate, and reliable services
+in the form of financial transactions, customer information, and operations systems. IT systems address
+the complexities of day-to-day operations management, reducing manpower and contributing to sizable cost
+savings. Over the years, the level of integration has increased so that IT now takes a system-oriented
+approach. IT can be leveraged to foster cooperation among the various transport modes and coordinate
+management of mobility systems. This chapter provides broad guidance on the planning, implementation,
+and operations of IT systems. For a more comprehensive guide to IT systems for BRT and bus systems, refer
+to the World Bank Toolkit on Intelligent Transport Systems.
+
+\begintable{Key IT System Functions}
+\header \' TODO: Fix this '\
+\col *Operations Monitoring*
+\col \item Ensures on-time performance by facilitating information sharing among the control center, stations, and buses;\item Documents system operations for determining compensation for the bus operator.\item Generates data that can be used to improve service efficiency and system performance.
+\row
+\col *Customer Information*
+\col \item In stations, the IT system informs passengers of upcoming departure times and destinations;\item On buses, electronic displays indicate the destination;\item In buses, the IT system informs passengers of upcoming stop names and transfer opportunities;\item Emergency notifications.
+\row
+\col *Fare Collection*
+\col \item Records sales, payment collection, and system usage;\item Provides opportunities to integrate fare payment mechanism across multiple transport modes.
+\row
+\col *Signal Control*
+\col \item Facilitates efficient junction management and signal priority for buses.
+\row
+\col *Fleet Management*
+\col \item Manages manpower and allocates duties;\item Schedules maintenance.;
+\row
+\col *Surveillance Systems*
+\col \item Ensures station security.
+\endtable
+
+\highlight{Contributors:} Giorgio Ambrosino, *consultant*; Brendan Finn, *consultant*; Christoff Krogskeepers, *ITS Engineers*; Pratik Dave, *consultant*
+
+\include{01-vehicle-tracking.manu}
+\include{02-customer-information.manu}
+\include{03-fare-collection.manu}
+\include{04-signal-control.manu}
+\include{05-surveillance.manu}
+\include{06-management-information-system.manu}
+\include{07-planning-and-implementation-for-it-systems.manu}
+\include{08-implementation-phasing.manu}
+\include{09-monitoring-and-evaluation.manu}

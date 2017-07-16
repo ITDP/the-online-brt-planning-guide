@@ -1,0 +1,55 @@
+\chapter{Vehicles}
+
+\quotation{Don’t worry, sweetie, don’t worry! Nobody in New York notices a bus until it’s about to hit them!  (Samantha in “Sex and the City”)}
+{Kim Cattrall, actress, 1956--}
+
+
+*Overview*
+
+
+Few decisions in the development of a BRT system invoke more debate than the choice of vehicle-propulsion
+technology and vehicle manufacturer. Even though BRT is far more than just a bus, the choice of vehicle
+technology is important, as it will strongly influence the system’s performance.
+
+
+Regardless of whether the vehicle procurement is public or private, the technical specifications of
+the vehicle selected will mostly have to be set by the system’s designers, so that they interface properly
+with the infrastructure. The current common practice is for the public agency to set vehicle standards
+while the private sector actually purchases and operates the vehicles. Thus, while a standard set of
+basic requirements must be met, many decisions, such as vehicle manufacturer, are actually left to the
+operating companies. The public agency will likely develop a detailed set of vehicle specifications that
+each operator will be required to fulfill. However, it is up to the vehicle operator, who is paying for
+the vehicles, to determine how to best meet the specifications. For example, within Bogotá’s TransMilenio
+system, different operating companies have selected different vehicle manufacturers. However, thanks
+to the detailed specifications, from the perspective of the customer, all of the vehicles look and operate
+identically. This commonality is important to creating and preserving a clear system identity.
+
+
+\figure{assets/image1.jpeg}{The sophistication and attractiveness of a technology are factors to consider,
+but so are basic issues such as maintenance and operational-cost efficiency.}{ Advanced Public
+Transport Systems (APTS).}
+
+
+Operators purchasing BRT vehicles must weigh many factors in choosing a fuel and propulsion-system
+technology. Beyond basic vehicle prices, a host of issues must be considered. Will the vehicle technology
+meet required emission standards? Will the size and design of the vehicle fulfill capacity requirements?
+Does the technology have a history of operating consistently in developing-city conditions? Does the
+technology require maintenance personnel with highly specialized skills? Are spare parts for the technology
+expensive and difficult to obtain in a developing city? Are special refueling stations required for the
+technology? Is the technology selected financially viable? An attractive, sophisticated vehicle technology
+may entice decision-makers to make an instinctive choice, but nevertheless, basic questions about maintenance,
+spare parts, and operational costs should be an integral part of the decision-making process (Figure
+20.2).
+\include{01-decision-making-matrix.manu}
+\include{02-vehicle-size.manu}
+\include{03-vehicle-floor-height.manu}
+\include{04-vehicle-interior-design.manu}
+\include{05-environmental-performance.manu}
+\include{06-other-physical-characteristics.manu}
+\include{07-vehicle-aesthetics.manu}
+\include{08-strategic-considerations.manu}
+\include{09-docking-systems.manu}
+\include{10-vehicle-costs.manu}
+\include{11-bibliography.manu}
+
+\highlight{Contributors:} Anne Krassner, **Citi Bike NYC**; Carlos Pardo, **Despacio**; Chris Kost, **ITDP Africa**

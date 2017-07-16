@@ -1,0 +1,34 @@
+\section{Fare integration }
+
+\quotation{Growing up in New York City, my car culture is minimal. I rode on the train, the bus. I walked; I rode my bike, and when I was younger, I rode my skateboard.}{Ramón Rogdríguez -- American actor, 1979 --}
+
+Integrating fare payments across various transport systems benefits the patron and system. 
+For the customer, it makes it easier to use the entire transport system by simplifying the way 
+the customer pays to use those services or allows easy switching or transfer between modes. 
+It could help with regional integration, too, as fare integration can help bridge jurisdictional boundaries.
+
+Integration allows both to benefit from economies of scale. See Chapters 15: Fare Policy and 
+Structure and 19: Information Technology Systems for more information.
+
+Examples of fare integration include:
+
+\item \highlight{Common fare card}. When all services use the same fare media, such as the Oyster Card 
+in London. This allows a customer to use any service without having to buy a new ticket or purchase a 
+different card. Ideally, these can be purchased within any of the participating systems, at independent 
+outlets, or on-line. Computerized fare cards direct payment to each system based on ridership;
+\item \highlight{Common transfers}. Discounted or free transfers between various systems. This is made 
+even easier with technology that recognizes the transfer for the customer;
+\item \highlight{Integrated tickets}. This allows one fare to cover multiple modes for one journey. 
+Purchasing a fare on one system provides a free ride on another. Examples include a free ride on the 
+airport shuttle connect the train to the plane, a free ride on the regional rail from the inter-city 
+rail terminal, use of the campus shuttles with paid parking, etc.
+
+The easiest to start with is using a common fare media, like a smart card. It is harder to tackle the 
+institutional issues behind that though, including coordinating multiple agencies or operators, as well 
+as the accounting and accountability needed behind that (Jorge Rebelo, Nine Suggestions for Designing and Implementing Integrated Fare Systems at \url{http://blogs.worldbank.org/transport/nine-suggestions-designing-and-implementing-integrated-fare-systems}).
+
+\figure[medium]{assets/image59.JPG}{In Buenos Aires, Argentina, a customer can use the SUBE fare 
+for the bus, metro, train, and BRT system pictured above.}{ITDP.}
+
+\figure[medium]{assets/image60.jpg}{In Guangzhou, the 'Yang Cheng Tong' card can be used for the 
+bike share system, the bus, the BRT, and the Metro.}{Karl Fjellstrom.}

@@ -134,6 +134,56 @@ class AstTools {
 	*/
 	public static function mk<T>(def:T, pos:Position):Elem<T>
 		return { def:def, pos:pos };
+
+	/*
+	Generate a text representation of a particular AST
+	*/
+	public static function showTree<T:EnumValue>(e:Elem<T>, jumpElemTypes=false)
+	{
+		var elemType = Type.getEnum(e.def);
+		var buf = new StringBuf();
+		function addOffset(offset:Int)
+		{
+			if (offset > 0) {
+				for (i in 1...offset)
+					buf.add("│ ");
+				buf.add("├ ");
+			}
+		}
+		function f(offset:Int, e:Elem<T>) {
+			if (!jumpElemTypes && Type.getEnum(e.def) != elemType)
+				return;
+			addOffset(offset);
+			buf.add(Type.enumConstructor(e.def));
+			buf.add("\n");
+			for (i in Type.enumParameters(e.def)) {
+				switch Type.typeof(i) {
+				case TObject if (i.def != null):
+					f(offset + 1, i);
+				case TClass(cl) if (Type.getClassName(cl) == "Array" && i[0] != null):
+					switch Type.typeof(i[0]) {
+					case TObject if (i[0].def != null):
+						for (j in (i:Iterable<Dynamic>))
+							f(offset + 1, j);
+					case TClass(cl) if (Type.getClassName(cl) == "Array" && i[0] != null):
+						switch Type.typeof(i[0]) {
+						case TObject if (i[0].def != null):
+							for (j in (i:Iterable<Dynamic>))
+								f(offset + 1, j);
+						case _:
+						}
+					case _:
+					}
+				case _:
+					addOffset(offset + 1);
+					buf.add(Std.string(i).split("\n").join("\\n"));
+					buf.add("\n");
+				}
+			}
+		}
+		f(0, e);
+		return buf.toString();
+	}
 #end
 	/*
 	Build a compatible list from `ind` individual processing calls.

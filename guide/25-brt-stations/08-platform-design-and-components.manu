@@ -1,0 +1,180 @@
+\section{Vehicle Interface}
+
+\quotation{Even if you’re on the right track, you’ll get run over if you just sit there}
+{Will Rogers, actor, 1879--1935}
+
+Having the platform level with the vehicle floor is one of the most important ways of reducing boarding 
+and alighting times per passenger. Customers climbing even relatively minor steps can mean significant 
+delay and an increase in safety hazards, particularly for the elderly, disabled, or people with walking 
+aids, suitcases, or strollers. This is also true with horizontal and vertical gaps between the station 
+and the bus. As mentioned previously, *the BRT Standard* includes level boarding as one of the BRT Basics, 
+the essential elements of BRT.   Having one of the highest points awarded to this indicates how important 
+this element is to both operational efficiency and passenger experience. 
+
+Having the platform and vehicle at the same level speeds up alighting and boarding, and with it, reducing 
+dwell time and improving overall performance.
+
+\item Level boarding is 0.2 to 0.7 seconds faster per passenger and alighting times 0.3 to 2.7 seconds 
+faster per passenger compared to a buses where you have to go up steps.
+\item Stepping up or down to the vehicle renders the system unusable for persons in wheelchairs and 
+problematic for others (using walking aids, persons carrying packages, children, etc.). 
+
+\subsection{Doors and Boarding Area}
+
+Sliding doors can provide a more professional impression and improve safety by deterring fare evasion 
+through station doorways (Figure 11.60). Station doors can also help protect the customers from the weather 
+– whether it be rain or hot or cold. If a station is heated or air conditioned, doors keep in the conditioned 
+air. These doors may be controlled electronically from the vehicle or station, but should have a manual 
+override, in case like in Figure 25.87 the door does not function. As mentioned above, this introduces 
+a maintenance challenge and can lead to the doors not functioning and the system not having the capacity 
+or resources to fix them.
+
+\figure{assets/image86.jpeg}{In Johannesburg, the sliding door malfunctioned and did not 
+open as the bus pulled up, leaving the passenger stranded between the bus and station. The station attendant 
+quickly came to manually open the doors with a remote control. }{ITDP}
+
+\figure[medium]{assets/image87.jpeg}{Without sliding doorways, customers may evade fare payment 
+and endanger their safety by entering and exiting through the platform doorway. In Quito, station doors 
+are left open. }{Lloyd Wright.}
+
+Station doors need to be aligned with the vehicle types using the station, and within the station according 
+to the space available on the BRT station structure. Where boarding and alighting takes place on both 
+sides of the station, the doors should ideally be offset, so that waiting passengers in one direction 
+do not impede boarding & alighting passengers in the other direction.
+
+Figure 25.88 shows the proposed BRT station configuration in Vientiane. Note:
+
+\item The stations have been designed to accommodate a variety of vehicle types; namely 9-meter, 12-meter, 
+\item and 18-meter BRT buses. In the short to medium term the 18-meter buses are not needed and are not recommended. 
+\item The 18-meter BRT bus option is included only so that if needed capacity can be added in future.
+\item The doors of the vehicles align with the doors in the stations.
+\item The boarding and alighting areas for the two directions are offset, except for the middle set of doors. 
+In the case of the middle doors, since this is the second docking bay and is not used at all for the 
+initially proposed fleet of 9-meter buses, the likelihood of passengers in different directions impeding 
+each other is low.
+\item Each direction has two docking bays for each direction.
+\item A ‘reserved’ space has been identified allowing the future installation of additional sliding doors, 
+in case in the long term there is a need to use many 18-meter buses.
+\item The preferred station width is 5-meter or 6-meter, not 4-meter.
+\item A manned ticket selling booth is provided at one end of the station. The other end will have either 
+exit-only functionality or provision only for smart-card entry.
+
+\figure[medium]{assets/image88.png}{Location and alignment of sliding doors in proposed BRT stations 
+in Vientiane. There are other types of stations; this 55-meter station is the standard one.}
+{ITDP-China}
+
+\subsection{Platform-vehicle Alignment}
+
+The goal is to create a level boarding experience so that people using wheelchairs or walking aids, 
+pushing strollers or carts, or jut carrying packages can easily and safely board and alight. To do that, 
+the gap between the bus and station needs to be 10 centimeters or less, especially at the front of the 
+bus where it is easier to bring the bus closer to the station. Below are some of the more common ways 
+systems have used to minimize the gap:
+
+\item Boarding bridges: These are mechanical bridges that extend from either the bus or the station (such 
+as in Yichang) to cover the gap between the bus and the station;
+\item Alignment Markers: Most BRT systems use alignment markers on the busway surface, in combination with 
+markers on the vehicle windscreen, to assist drivers to dock with a minimal vehicle-to-platform gap. 
+Some BRT systems also utilize a painted “guide strip” that lines up with a guide line on the bus’s windshield 
+that aids drivers in docking the bus closely to the station;
+\item Platform Edge Treatment: It is a common practice to provide a protective edge on the platform, typically 
+matched by a protective strip opposite the platform edge that runs along the length of the vehicle; and
+\item Beveled Curbs: The BRT in Nantes uses beveled curbs to assist vehicles in docking near the edge of 
+the platform. The curb is hardened and smoothed to reduce wear on vehicle tires. The Cape Town BRT uses 
+special curbs to assure that the vehicles can dock near the platform without risk of damage to the vehicle. 
+This increases confidence in drivers that they may safely reduce the gap for boarding passengers. The 
+Kassel curb allows the wheel of the vehicle to make contact with the curb so the driver can “feel” where 
+to position the vehicle correctly through the steering system. It helps the driver and vehicle align 
+with the curb for seamless boarding and alighting. See Figure xxxx.
+
+If the vehicle to platform interface does not utilise a boarding bridge, then greater precision is 
+required to align the vehicle to the platform. While a boarding bridge only requires a vehicle to be 
+within 40 centimetres of the platform, the lack of a boarding bridge requires that the vehicle be aligned 
+within 10 centimetres or less, if the station is to be wheelchair accessible, especially at the front 
+of the bus where it is easier to closer to the platform. This degree of precision will require a longer 
+approach distance in order to maintain an effective speed. Ahmedabad has door sensors and the door cannot 
+be opened if the gap exceeds an allowable width.  The driver then has to re-align the vehicle.   
+
+To ensure close docking without the use of boarding bridges, a combination of the following are needed:
+
+\item Driver training, as well as monitoring of driver performance in this regard;
+\item Adequate approach distances, especially where stations have passing lanes;
+\item Kassel curbs or sloping curbs that enable buses to stop close to the platform without actually striking 
+the platform; and
+\item Especially for high floor systems where closer docking is more critical, some form of padding is often 
+utilized (see Figure 25.89).
+\item Visual aids to drivers so they know exactly where to stop the bus (Figure 25.90).
+
+\figure{assets/image89.png}{Cali’s BRT stations feature padding to allow drivers to dock 
+closely to the station.}{Shanshan Li, ITDP} 
+
+\figure[medium]{assets/image90.jpeg}{In Johannesburg, bus drivers line up the yellow line on the 
+dashboard to the yellow line on the pavement to dock closely to the station.}{ITDP}
+
+\figure[medium]{assets/image91.jpeg}{Pauline Froschauer standing next to Phase 1B construction 
+of Johannesburg’s BRT system. The curbs here are rounded and made of steel so that buses can pull up 
+to them without damaging their tires. }{Aimee Gauthier, ITDP}
+
+\figure{assets/image93.jpeg}{Smooth, hard, bevelled curb in Nantes to reduce tire wear. 
+}{Karl Fjellstrom}
+
+ \figure{assets/image94.jpeg}{Smooth, hard, bevelled curb in Amsterdam to reduce tire 
+wear. }{Karl Fjellstrom}
+
+\figure[medium]{assets/image92.jpeg}{Cape Town uses Kassel curbs, a sloped curb that minimizes 
+the wear and tear on the tires of the bus by curving up. }{ITDP}
+
+\beginbox{Solutions to Minimizing the Gap: A case study}
+
+Using a beveled curb allows drivers to pull up close to the station by using the curb to guide the 
+bus. This means added wear and tear to the tires as they rub against typically the concrete curb surface, 
+even if those curbs are bevelled or smoothed. To compensate for this that results in excessive tire side 
+wall wear, many tires are reinforced with thicker rubber, which increases the weight of the tires by 
+a third more. This added weight means more fuel consumption. 
+
+\figure{assets/image95.jpeg}{Image of the precision docking curb that shows the slope 
+downward to the station, the rounded curb, and the idea of the stepping back the top of the curb.}
+{Bridgestone.}
+
+In an effort to address this, Bridgestone has been experimenting with both the curb and the tire to 
+reduce the wear and tear of the tire, as well as its weight, while helping getting a closer alignment. 
+It is a mix of redesigning the idea of a beveled curb to better work with buses and drivers to get closer 
+to the station, while redesigning the tire for that type of approach.
+
+
+\figure{assets/image97.jpeg}{The tire reside technology reinforces the side of the tire 
+that rubs against the curb without adding extra weight to the tire and making the tire last 25 percent 
+longer than a conventional tire. No color on the tire – color in image is for illustration.}{ Bridgestone.}
+
+In what they are calling the “Precision Docking Curb,” Bridgestone builds on the idea of the beveled 
+curb with two additional features which help buses align to the station better. The first is the gently 
+slope the roadway toward to the station curb, which enables buses to naturally approach curbs with minimal 
+steering. This serves as a means of controlling the angle of approach to the curb without rely on to 
+the driver's skills. The second big change this introduces is to step back the curb to avoid the curb 
+hitting the body of the buses when approaching the station. In a study testing the performance between 
+existing beveled curbs and the precision docking curb, the precision docking curb performed significantly 
+better with less variation (see Figure 25.97)
+To address the wear and tear to the tire, Bridgestone has developed the tire reside technology. This 
+allows the tire casing to be replaced, but the internal tube can be reused over and over again. This 
+technology also slows down the speed with which the tire sides wear, meaning these tires last 25 percent 
+longer than a conventional tire.
+
+\figure[medium]{assets/image96.png}{The gap improvement from using the precision docking curb 
+method.}{ Bridgestone}
+
+These both improve the platform-vehicle interface with narrower gap and less variances, which significantly 
+affect accessibility for a variety of users. 
+
+\endbox
+
+Various electronic systems are used to ensure proper platform-vehicle alignment, though these are much 
+more expensive than visual alignment markers guiding the drivers at a fairly marginal additional benefit, 
+especially in cases where capacity issues mean that rapid docking is more important to overall system 
+performance than precision docking.
+
+\item Optical Guidance - a video camera detects the position of the bus relative to the station and helps 
+guide the vehicle. Optical guidance systems are used in Rouen, France, Castellón, Spain, and Bologna, 
+Italy; and
+\item Magnetic Alignment - a path is laid magnetically using a loop, wire, or permanent magnetic studs that 
+are read by sensors underneath the bus to guide the vehicle. Magnetic alignment technology is employed 
+in Eindhoven, The Netherlands.  

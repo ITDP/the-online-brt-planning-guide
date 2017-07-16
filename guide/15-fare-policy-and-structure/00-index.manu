@@ -1,0 +1,38 @@
+\chapter{Fare Policy and Structure}
+
+\quotation{Price is what you pay. Value is what you get.}
+{Warren Buffett, businessman, 1930--}
+
+Defining fare policies can be a tricky subject. There must be an adequate balance between the technical
+and political aspects that may come into play when defining them. It is often the case that mayors have
+the authority to define public transport fares but do not necessarily consider all the technical aspects
+related to such an important decision.
+
+The fare policies must take into account issues such as:
+
+\item Will the system receive subsidies or will it generate profit?
+\item If the system is profitable, what will be done with this profit?
+\item Will there be discounted fares for population groups (seniors, students, etc.), either now or
+in the future?
+\item How will the system be affected by political climate change in the future?
+\item Who are the system’s stakeholders, and which of those will receive payment and how (i.e., vehicle
+operating companies, feeder operators, security and maintenance providers, fare collection operator,
+BRT authority, trust fund manager, others)?
+
+Since each case is different, every city should develop its own set of questions before implementing
+a fare policy, always taking into account that this is the decision that will probably affect users the
+most.
+
+Once the questions are answered, implementers must do an analysis of all the possible costs and revenue
+sources of the system. This will allow cities to have a more precise idea of what the “fair fare” should
+be and allow them to start considering possible financing sources, such as private or public investment.
+
+In the following sections, we will discuss objectives, techniques, and points to consider when deciding
+on a fare policy for a BRT system.
+
+\highlight{Contributors:} Fabio Gordillo, *GSD+*
+
+\include{01-fare-structure-options.manu}
+\include{02-fare-parameters.manu}
+\include{03-technical-fare-and-customer-fare.manu}
+

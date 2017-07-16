@@ -899,27 +899,23 @@ will have some OD pairs with actual values, and some OD pairs with zero trips (T
 \col
 \endtable
 
-To develop the full OD matrix for public transport trips in Dar es Salaam,
-a simple estimate would be to take the maximum value for any OD Pair in any observed survey.
-Strictly speaking, the correct value for each cell where multiple observations are expected depends on \' TODO: Math: p_ij^a '\ ,
-the proportion of trips between origin i and destination
+To develop the full OD matrix for public transport trips in Dar es Salaam, a simple estimate would be to take the maximum value for any OD Pair in any observed survey.
+Strictly speaking, the correct value for each cell where multiple observations are expected depends
+	on $$p_{ij}^a$$, the proportion of trips between origin $$i$$ and destination $$j$$ that pass through each intercept point $$a$$,
+	on $$r_a$$, the sampling ratio at each point $$a$$ (a number between $$0$$ and $$1$$),
+	and on $$s_{ij}^a$$, the number of trips between $$i$$ and $$j$$ observed at point $$a$$.
+Then, the correct estimator for the number of trips when there are $$n_{ij}$$ points that would have intercepted trips from $$i$$ to $$j$$, is:
 
-*j* that pass through each intercept point a, on  the sampling ratio at each point a (a number between 0 and 1),
-and on \' TODO MATH: s_ij^a '\, the number of trips between *i* and *j* observed at point a.
-Then, the correct estimator for the number of trips when there are nij points that would have intercepted trips from i to j,
-is:
+$$T_{ij} = \frac{\displaystyle\sum_{n_{ij}} \frac{s_{ij}^a}{r^a}}{\displaystyle\sum_{n_{ij}} p_{ij}^a}$$
 
-\figure[small]{assets/image32.png}{FIXME}{TODO} \' TODO: Math '\
-
-Of course, if there is only one intercept point for that OD pair (*nij* =1) and there is only one useful
-route from *i *to* j *(\' TODO: Math: p_ij^a '\ =1), then the formula reverts to the familiar sample
+Of course, if there is only one intercept point for that OD pair ($$n_{ij} = 1$$) and there is only one useful
+route from $$i$$ to $$j$$ ($$p_{ij}^a =1$$), then the formula reverts to the familiar sample
 expansion:
 
-\figure{assets/image34.png}{TODO: math}{ FixMe}
+$$T_{ij} = \frac{s_{ij}^a}{r^a}$$
 
 For illustration purposes in Table 4.12, the values from the previous two
 tables have been combined to form a complete OD matrix (assuming that only two points are surveyed).
-
 
 \begintable{OD Matrix Dar es Salaam}
 \header

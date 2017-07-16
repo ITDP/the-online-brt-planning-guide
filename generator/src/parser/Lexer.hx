@@ -88,6 +88,10 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 			var hex = haxe.io.Bytes.ofString(lexer.current).toHex();
 			throw new hxparse.UnexpectedChar('non-breaking space (0x$hex)', lexer.curPos());
 		},
+		"[\\x7F\\x00\\x01-\\x08\\x0B-\\x1F]|(\\xC2[\\x80-\\x9F])|(\\xE2\\x80[\\xA8\\xA9])" => {
+			var hex = haxe.io.Bytes.ofString(lexer.current).toHex();
+			throw new hxparse.UnexpectedChar('control character (0x$hex)', lexer.curPos());
+		},
 		"" => {
 			// TODO remove hack to fix eof min position
 			var pos = mkPos(lexer.curPos());
@@ -213,12 +217,21 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		// note 2:
 		// > 0xEF is used to exclude the BOM; other utf-8 chars
 		// > beginning with 0xEF are restored later
-		"([^ \t\r\n{}\\[\\]\\\\\\*$\\-`'\\xE2\\xEF\\xC2]|(\\xE2[^\\x80])|(\\xE2\\x80[^\\x90-\\x95])|(\\xEF[^\\xBB])|(\\xEF\\xBB[^\\xBF])|(\\xC2[^\\xA0]))+" => mk(lexer, TWord(lexer.current))
+		// note 3/control or forbidden characters:
+		// > non-breaking space U+A0 (0xC2A0)
+		// 	 delete U+7F
+		// 	 unicode line/paragraph separators U+2028/U+2029 (0xE280A8, 0xE280A9)
+		// > C0 controls U+00–U+1F (that already include \t, \r and \n)
+		// > C1 controls U+80–U+9F (0xC280–0xC29F)
+		// note 4:
+		// 	 \\x00-\\x1F is not working because of some unknown bug
+		// 	 the workaround is to match \\x00 separately from the rest of the range
+		"([^ {}\\[\\]\\\\\\*$\\-`'\\xE2\\xEF\\xC2\\x7F\\x00\\x01-\\x1F]|(\\xE2[^\\x80])|(\\xE2\\x80[^\\x90-\\x95\\xA8\\xA9])|(\\xEF[^\\xBB])|(\\xEF\\xBB[^\\xBF])|(\\xC2[^\\xA0\\x80-\\x9F]))+" => mk(lexer, TWord(lexer.current))
 	];
 
 	public function new(bytes:haxe.io.Bytes, sourceName)
 	{
-		if (!haxe.Utf8.validate(bytes.toString())) throw new ParserError({ src:sourceName, min:0, max:bytes.length }, InvalidUtf8);
+		if (!Utf8Validate.isValidUTF8(js.node.Buffer.hxFromBytes(bytes))) throw new ParserError({ src:sourceName, min:0, max:bytes.length }, InvalidUtf8);
 		super(byte.ByteData.ofBytes(bytes), sourceName);
 	}
 }

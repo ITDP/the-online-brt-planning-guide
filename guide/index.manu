@@ -15,7 +15,7 @@ matter (a brief introduction) and the inclusion of volumes and chapters.
 
 Welcome to the BRT Planning Guide, 4th Edition.
 
-This is the first major update of the guide since the 3rd edition in 2006. It has been reorganized and expanded to 33 chapters with much more information and depth on certain topics, including:
+This is the first major update of the guide since the 3rd edition in 2006. It has been reorganized and expanded with much more information and depth on certain topics, including:
 
 \item more detailed and enhanced chapters on service planning, demand analysis, and speed and capacity
 \item consolidated and expanded information on communications,
@@ -23,21 +23,21 @@ This is the first major update of the guide since the 3rd edition in 2006. It ha
 \item more information on physical design – expanded to seven chapters, and
 \item more complete chapters of different types of integration, from walking and cycling to multimodal integration.
 
-This is still a work in progress and is in the process of being finalized. If a chapter is here, it means it is final. If a chapter is missing, it means that it is being prepared for uploading and will be here shortly. That said, we are still working out some technical issues with the online version of the guide, such as sizing and placement of images, tables, etc. If you see something wrong, please let us know.
+This is still a work in progress and is in the process of being finalized.  If you see something wrong, please let us know.  That said, we are excited to have this version online. This will allow for more dynamic updating and more involvement from the community. We are also developing a PDF version for download and use offline.
 
-We are excited to have this version online. This will allow for more dynamic updating and more involvement from the community. We are also developing a PDF version for download and use offline.
+If you have found a problem, would like to make a suggestion or are interested in contributing to the guide, please email us at \code!brtguide@itdp.org!.
 
-If you have found a issue, would like to make a suggestion or are interested in contributing to the guide, please email us at brtguide@itdp.org.
+You can browse the repository where all the content is stored and managed; it's also possible to report an issue or propose a change there.  To simplify collaboration, the project is hosted on GitHub:
 
-\title{Table of contents}
+\url{https://github.com/ITDP/the-online-brt-planning-guide}
+
+\title{To navigate through the guide...}
 
 Whether you are browsing the guide online or viewing the PDF, you can find the Table of Contents essentially on the left - in the left-side menu.  Click on a volume title and it will expand with the chapters beneath it, while taking you to the landing page for that volume. To go to a particular chapter, click on the chapter name in the left-side menu. And to get to the different subsections, you click on those as well.
 
-\title{Breadcrumbs}
-
 Additionally, you can also use the "breadcrumbs" at the top – but only available online – to see at a glance the path you have taken within the guide.
 
-\title{Finally, a brief introduction...}
+\title{And finally, a brief introduction...}
 
 Cities are faced with the tremendous challenge of providing residents access to jobs, education, and public services, all while not exhausting the finite environmental, social, and economic resources available to them. At the same time, just over half of all people currently live in cities, and that proportion is projected to grow to two thirds of the global population by 2050. Further, the challenges of providing access and mobility to a growing population are only compounded more by the ramifications of climate change, which are not distributed equitably, as well as growing disparity and inequity globally. Fortunately, leaders at international, national, and city levels have turned a corner, as seen with the Paris Climate Agreement and Habitat III, to not just strive towards sustainable and equitable transport, but actively set goals, take action, and hold themselves accountable.
 
@@ -56,67 +56,66 @@ Fortunately for cities, the technology for providing high-quality public transpo
 
 \volume{Project Preparation}
 \include{volume-1-landing-page.manu}
-\include{01-project-initiation-and-set-up/00-project-initiation.manu}
-\meta\reset{chapter}{2}  \' TODO missing chapter 2, skip to chapter 3 '\
-\include{03-project/00-project-set-up.manu}
+\include{01-project-initiation-and-set-up/00-index.manu}
+\include{02-why-brt/00-index.manu}
+\include{03-project/00-index.manu}
 
 
 \volume{Operations}
 \include{volume-2-landing-page.manu}
-\include{04-demand-analysis/00-demand-analysis.manu}
-\include{05-network_development/00-corridor-and-network-development.manu}
-\include{06-service_planning/service-planning.manu}
-\include{07-system-speed/system-speed-and-capacity.manu}
-\include{08-traffic-impact-assessment/00-traffic-impact-assessment.manu}
+\include{04-demand-analysis/00-index.manu}
+\include{05-network_development/00-index.manu}
+\include{06-service_planning/00-index.manu}
+\include{07-system-speed/00-index.manu}
+\include{08-traffic-impact-assessment/00-index.manu}
 
 
 \volume{Communications and Marketing}
 \include{volume-3-landing-page.manu}
-\include{09-strategic-planning-for-communications/00-strategic-planning-for-communications.manu}
-\include{10-public-participation/00-public-participation.manu}
-\include{11-the-case-for-marketing-and-customer-service/00-the-case-for-marketing-and-customer-service.manu}
+\include{09-strategic-planning-for-communications/00-index.manu}
+\include{10-public-participation/00-index.manu}
+\include{11-the-case-for-marketing-and-customer-service/00-index.manu}
 
 
 \volume{Business Plan}
 \include{volume-4-landing-page.manu}
-\include{12-institutional-planning/00-institutional-planning.manu}
-\include{13-business-structure/00-business-structure.manu}
-\include{14-financial-modeling/financial-modeling.manu}
-\include{15-fare-policy-and-structure/00-fare-policy-and-structure.manu}
-\include{16-informal-transit-transition-to-brt/00-informal-transit-transition-to-brt.manu}
+\include{12-institutional-planning/00-index.manu}
+\include{13-business-structure/00-index.manu}
+\include{14-financial-modeling/00-index.manu}
+\include{15-fare-policy-and-structure/00-index.manu}
+\include{16-informal-transit-transition-to-brt/00-index.manu}
 \include{17-funding-and-financing/00-index.manu}
 
 
 \volume{Technology}
 \include{volume-5-landing-page.manu}
-\include{18-fare_systems/fare-systems.manu}
-\include{19-technology\technology.manu}
-\include{20-vehicles/vehicles.manu}
+\include{18-fare_systems/00-index.manu}
+\include{19-technology/00-index.manu}
+\include{20-vehicles/00-index.manu}
 
 
 \volume{Infrastructure}
 \include{volume-6-landing-page.manu}
-\include{21-infrastructure_management_costing/infrastructure-management-and-costing.manu}
-\meta\reset{chapter}{22}  \' TODO missing chapter 22, skip to chapter 23 '\
-\include{23-roadway-design/roadway-design.manu}
-\include{24-intersections_and_signal_control/intersections-and-signal-control.manu}
-\meta\reset{chapter}{25} \' TODO missing chapter 25, skip to chapter 26 '\
-\include{26-depots\depots.manu}
-\include{27-control_center\control-center.manu}
+\include{21-infrastructure_management_costing/00-index.manu}
+\include{22-roadway-and-station-configurations/00-index.manu}
+\include{23-roadway-design/00-index.manu}
+\include{24-intersections_and_signal_control/00-index.manu}
+\include{25-brt-stations/00-index.manu}
+\include{26-depots/00-index.manu}
+\include{27-control_center/00-index.manu}
 
 
 \volume{Integration}
 \include{volume-7-landing-page.manu}
-\meta\reset{chapter}{28}  \' TODO missing chapter 28, skip to chapter 29 '\
-\include{29-pedestrian-access/pedestrian-access.manu}
+\include{28-multi-modal-integration/00-index.manu}
+\include{29-pedestrian-access/00-index.manu}
 \include{30-universal_access/00-index.manu}
-\include{31-bicycle_predicab_integration/bicycle-and-predicab-integration.manu}
-\include{32-transportation_demand_management/transportation-demand-management-tdm.manu}
-\meta\reset{chapter}{33}  \' TODO missing chapter 33, skip to chapter 34 '\
+\include{31-bicycle-pedicab-integration/00-index.manu}
+\include{32-transportation_demand_management/00-index.manu}
+\include{33-transit-oriented-development/00-index.manu}
 
 
 \volume{About the Guide}
 \include{volume-8-landing-page.manu}
-\include{34-how-it-works/content.manu}
-\include{35-manual-to-collaboration/content.manu}
-
+\include{34-how-it-works/00-index.manu}
+\include{35-manual-to-collaboration/00-index.manu}

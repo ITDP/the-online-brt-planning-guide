@@ -1,0 +1,52 @@
+\chapter{Intersections and Signal Control}
+
+\quotation{A bland smile is like a green light at an intersection, it feels good when you get one, but you forget it the moment you’re past it.}
+{Douglas Coupland, novelist, 1961–}
+
+The objective of this chapter is to equip the reader with tested practical knowledge to design and
+evaluate the layout and operation of intersections along BRT corridors. Intersections can cause significant
+delays in BRT operations, particularly by hindering station access, and they are the points where the
+BRT project has the largest perceived impact on mixed traffic and walking.
+
+An important strategy to improve the performance of intersections to better accommodate public transport,
+pedestrians, and other vehicles is to restrict general-traffic turning movements at intersections. *The*
+*BRT* *Standard* awards up to 7 points for good handling of BRT movements through intersections, with
+the most points given to systems that prohibit all turns across the busway.
+
+\begintable{BRT Standard: Intersection Treatments}
+\header
+\col \highlight{Treatment}
+\col \highlight{POINTS}
+\row
+\col Turns prohibited across the busway
+\col 7
+\row
+\col Signal priority at intersections
+\col 2
+\row
+\col No intersection treatments
+\col 0
+\endtable
+
+This chapter also discusses the placement of stations relative to intersections along the corridor
+and the treatment of public transport vehicle turning movements, which are desirable to have but can
+also harm an intersection’s performance. Other elements of intersection treatments that are discussed
+include: signal prioritization technology for public transport vehicles, priority in roundabouts, narrow
+sections with mixed traffic, and techniques for keeping pedestrians and cyclists safe.
+
+Definitions that pervade the whole chapter are laid out in the first section; the second section covers
+the general approach to intersection problem solving; and the subsequent sections discuss different tools
+to improve intersection efficiency, particularly when grade separation is available.
+
+\highlight{Contributors:} John Jones, *HHO Africa*; Karl Fjellstrom, *Far East BRT*; Annie Weinstock, *BRT Planning International*; Elkin Bello, *consultant*; Ulises Navarro, *ITDP Latin America*; Carlos Pardo, *Despacio*; Pedro Szász, *consultant*; Arthur Szász, *Protocubo*
+
+\include{01-basic-concepts.manu}
+\include{02-approach-to-intersection-design.manu}
+\include{03-traffic-signal-priority.manu}
+\include{04-station-location-relative-to-the-intersection.manu}
+\include{05-restricting-general-traffic-turning-movements.manu}
+\include{06-allowing-brt-turns.manu}
+\include{07-merging-with-mixed-traffic-in-narrow-sections.manu}
+\include{08-brt-lanes-at-roundabouts.manu}
+\include{09-integrating-pedestrian-and-cyclist-movements.manu}
+\include{10-grade-separation.manu}

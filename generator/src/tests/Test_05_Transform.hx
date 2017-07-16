@@ -170,10 +170,9 @@ class Test_05_Transform {
 
 	public function test_old_002_hierarchy_content_binding()
 	{
-		// FIXME no lists with length == 1
 		Assert.same(
-			expand(DElemList([
-				@id("a")@wrap(8,0)DVolume(1,@len(1)Word("a"),@skip(1)DParagraph(@len(1)Word("b")))])),
+			expand(
+				@id("a")@wrap(8,0)DVolume(1,@len(1)Word("a"),@skip(1)DParagraph(@len(1)Word("b")))),
 			parse("\\volume{a}b"));
 
 		Assert.same(
@@ -183,30 +182,30 @@ class Test_05_Transform {
 			parse("\\volume{a}b\\volume{c}d"));
 
 		Assert.same(
-			expand(DElemList([
+			expand(
 				@id("a")@wrap(8,0)DVolume(1,@len(1)Word("a"),@skip(1)DElemList([DParagraph(@len(1)Word("b")),
 				@id("c")@wrap(9,0)DChapter(1,@len(1)Word("c"),@skip(1)DParagraph(@len(1)Word("d")))
-			]))])),
+			]))),
 			parse('\\volume{a}b\\chapter{c}d'));
 
 		Assert.same(
-			expand(DElemList([
+			expand(
 				@id("a")@wrap(8,0)DVolume(1,@len(1)Word("a"),@skip(1)DElemList([DParagraph(@len(1)Word("b")),
 				@id("c")@wrap(9,0)DChapter(1,@len(1)Word("c"),@skip(1)DElemList([DParagraph(@len(1)Word("d")),
 				@id("e")@wrap(9,0)DSection(1,@len(1)Word("e"),@skip(1)DElemList([DParagraph(@len(1)Word("f")),
 				@id("g")@wrap(12,0)DSubSection(1,@len(1)Word("g"),@skip(1)DElemList([DParagraph(@len(1)Word("h")),
 				@id("i")@wrap(15,0)DSubSubSection(1,@len(1)Word("i"),@skip(1)DParagraph(@len(1)Word("j")))
-				]))]))]))]))]))
+				]))]))]))])))
 			,
 			parse("\\volume{a}b\\chapter{c}d\\section{e}f\\subsection{g}h\\subsubsection{i}j"));
 
 		Assert.same(
-			expand(DElemList([
+			expand(
 				@id("a")@wrap(8,0)DVolume(1,@len(1)Word("a"),@skip(1)DElemList([DParagraph(@len(1)Word("b")),
 				@id("c")@wrap(9,0)DChapter(1,@len(1)Word("c"),@skip(1)DParagraph(@len(1)Word("d"))),
 				@id("e")@wrap(9,0)DChapter(2,@len(1)Word("e"),@skip(1)DElemList([DParagraph(@len(1)Word("f")),
 				@id("g")@wrap(9,0)DSection(1,@len(1)Word("g"),@skip(1)DParagraph(@len(1)Word("h")))
-				]))]))]))
+				]))])))
 			,
 			parse("\\volume{a}b\\chapter{c}d\\chapter{e}f\\section{g}h"));
 
@@ -233,9 +232,9 @@ class Test_05_Transform {
 	public function test_003_element_counting()
 	{
 		Assert.same(
-			expand(DElemList([
+			expand(
 				@id("a")@wrap(8,0)DVolume(1,@len(1)Word("a"),@skip(1)DParagraph(@len(1)Word("b")))
-			])),
+			),
 			parse("\\volume{a}b"));
 
 		Assert.same(
@@ -256,7 +255,7 @@ class Test_05_Transform {
 			parse("\\volume{a}b\\chapter{c}d\\volume{e}f\\chapter{g}h"));
 
 		Assert.same(
-			expand(DElemList([
+			expand(
 				@id("a")@wrap(8,0)DVolume(1,@len(1)Word("a"),@skip(1)DElemList([DParagraph(@len(1)Word("b")),
 				@id("c")@wrap(9,0)DChapter(1,@len(1)Word("c"),@skip(1)DParagraph(@len(1)Word("d"))),
 				@id("e")@wrap(9,0)DChapter(2,@len(1)Word("e"),@skip(1)DElemList([DParagraph(@len(1)Word("f")),
@@ -267,20 +266,20 @@ class Test_05_Transform {
 				@id("o")@wrap(12,0)DSubSection(1,@len(1)Word("o"),@skip(1)DElemList([DParagraph(@len(1)Word("p")),
 				@id("f")@wrap(8,1)DFigure(1,MarginWidth,@elem@len(1)"f",@skip(2)@len(1)Word("c"),@skip(2)@len(2)Word("cp"))])),  // 3-1 -> Chapter3,Fig1
 				@id("q")@wrap(12,0) DSubSection(2,@len(1) Word("q"),@skip(1) DParagraph(@len(1) Word("r")))]))]))]))
-			])),
+			),
 		parse("\\volume{a}b\\chapter{c}d\\chapter{e}f\\section{g}h\\section{i}j\\chapter{k}l\\section{m}n\\subsection{o}p\\figure{f}{c}{cp}\\subsection{q}r"));
 	}
 
 	public function test_old_004_reset_counters()
 	{
 		Assert.same(
-			expand(DElemList([
+			expand(
 				@skip(23)@id("a")@wrap(8,0)DVolume(42,@len(1)Word("a"),@skip(1)DParagraph(@len(1)Word("b")))
-			])),
+			),
 			parse("\\meta\\reset{volume}{41}\\volume{a}b"));
 		Assert.same(
 			expand(DElemList([
-				@id("a")@wrap(8,0)DVolume(1, @len(1)Word("a"),@skip(1)@wrap(0,22)DElemList([DParagraph(@len(1)Word("b"))])),
+				@id("a")@wrap(8,22)DVolume(1, @len(1)Word("a"),@skip(1)DParagraph(@len(1)Word("b"))),
 				@id("c")@wrap(8,0)DVolume(1, @len(1)Word("c"),@skip(1)DParagraph(@len(1)Word("d")))
 			])),
 			parse("\\volume{a}b\\meta\\reset{volume}{0}\\volume{c}d"));

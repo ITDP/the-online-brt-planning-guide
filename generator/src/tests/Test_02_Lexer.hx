@@ -165,15 +165,22 @@ class Test_02_Lexer {
 		Assert.same([TWord("”"), TEof], defs("”"));
 	}
 
+	function makeBytes(hex:String):Bytes
+	{
+		hex = hex.toLowerCase();
+		if (hex.indexOf("0x") == 0)
+			hex = hex.substr(2);
+		var base16 = new haxe.crypto.BaseCode(Bytes.ofString("0123456789abcdef"));
+		return base16.decodeBytes(Bytes.ofString(hex.toLowerCase()));
+	}
+
 	public function test_010_strict_utf8()
 	{
 		var ascii = Bytes.ofString("a");
 		var latin1 = Bytes.ofString("ç");
 		var utf8 = Bytes.ofString("–");
 		var utf8bom = Bytes.alloc(3 + utf8.length);
-			utf8bom.set(0, 0xef);
-			utf8bom.set(1, 0xbb);
-			utf8bom.set(2, 0xbf);
+			utf8bom.blit(0, makeBytes("0xefbbbf"), 0, 3);
 			utf8bom.blit(3, utf8, 0, utf8.length);
 		var utf8notbom1 = Bytes.ofString("ﺰ");
 		var utf8notbom2 = Bytes.ofString("ﻒ");
@@ -186,10 +193,9 @@ class Test_02_Lexer {
 		Assert.same([TWord("ﻒ"), TEof], defs(utf8notbom2));
 
 		var brokenutf8 = utf8.sub(0, 1);
-		var win1252 = Bytes.alloc(1);
-			win1252.set(0, 0x92);
+		var win1252 = makeBytes("0x92");
 		Assert.raises(defs.bind(null, brokenutf8));
-		// FIXME Assert.raises(defs.bind(null, win1252));
+		Assert.raises(defs.bind(null, win1252));
 	}
 
 	/*
@@ -213,6 +219,17 @@ class Test_02_Lexer {
 	{
 		// non-breaking spaces
 		Assert.raises(defs.bind(" "));
+		// delete
+		Assert.raises(defs.bind(null, makeBytes("0x7f")));
+		// unicode line/paragraph separators
+		Assert.raises(defs.bind(null, makeBytes("0xe280a8")));
+		Assert.raises(defs.bind(null, makeBytes("0xe280a9")));
+		// C0 control codes
+		Assert.raises(defs.bind(null, makeBytes("0x00")));
+		Assert.raises(defs.bind(null, makeBytes("0x0c")));
+		Assert.raises(defs.bind("\r"));  // isolated \r are forbidden as well
+		// C1 control codes
+		Assert.raises(defs.bind(null, makeBytes("0xc282")));
 	}
 
 	public function test_991_position()

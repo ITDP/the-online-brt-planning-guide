@@ -1,0 +1,76 @@
+\section{Defining Rapid Transit Modes}
+
+\quotation{The technologies which have had the most profound effects on human life are usually simple.}
+{Freeman Dyson, physicist, 1923–}
+
+Public transportation includes all publically accessible transportation services that convey people 
+in common vehicles from one place to another. These services generally run on fixed routes at regularly 
+scheduled intervals. Rapid transit is a form of public transportation on a fixed route that includes 
+features that dramatically improve the speed, capacity, reliability, and quality of the service.
+
+\subsection{Defining BRT}
+
+BRT is:
+
+\quotation{... a bus-based rapid transit system that can achieve high capacity and speed at relatively low cost 
+by combining segregated bus lanes that are typically median aligned, off-board fare collection, level 
+boarding, bus priority at intersections, and other quality-of-service elements (such as information technology 
+and strong branding).}
+{*BRT Standard*, 2015}
+
+Five essential elements put the “rapid” in bus rapid transit: 
+
+\item Physically separated bus lanes allow buses to avoid congestion;
+\item Stations and bus lanes aligned to the center of the street to avoid being delayed by turning vehicles 
+and vehicles dropping off passengers or goods;
+\item Fares collected off the bus, to avoid delays caused by passengers paying on board;
+\item Boarding from a platform level with the bus floor to make boarding faster, and so that people 
+in wheelchairs or with strollers can roll directly onto the vehicle;
+\item Turn restrictions and bus priority at intersections to reduce delay at intersections from red 
+signals.
+
+BRT corridors consist of dedicated, physically demarcated bus lanes that are aligned to the center 
+of a street or a functionally equivalent configuration for the majority of the corridor. They also include 
+one or more of the other three essential elements described above. A more detailed discussion of what 
+constitutes a BRT corridor can be found in the *BRT Standard* (\url{http://brtstandard.org}).
+
+\subsection{ Defining Other Rapid Transit Modes }
+
+*Light-Rail Transit (LRT)*: a rail-based rapid transit system that uses predominantly exclusive, 
+but not grade-separated, rights-of-way. Like BRT systems, LRTs can have a wide range of passenger capacities 
+and performance characteristics. These capacities and performance characteristics are for the most part 
+driven by the same essential elements that are critical to BRT system performance. These essential elements 
+are defined in the *BRT Standard* (\url{http://brtstandard.org}) and will be discussed in this guide at length. If a rail system 
+were to operate (as some do) in mixed traffic, on the curb lane, with turning movements allowed across 
+it, where passengers have to pay the driver, and passengers need to step up into the vehicle rather than 
+boarding at level, the operating characteristics of the system would be similar to those of a normal 
+bus service, as opposed to an LRT. Conversely, an LRT that operates with prepaid boarding, has a dedicated 
+right-of-way, operates in the central median of the right-of-way, and has all of the other elements of 
+Gold Standard BRT, is likely to provide better service and operate more as a rapid transit system. As 
+such, the BRT Standard technical committee has approved the limited use of the BRT standard to also rate 
+LRT systems, with certain specific caveats (* BRT Standard*, p. 55). 
+
+
+*Heavy Rail Transit (HRT):* an electric rail-based public transport system, often referred to as “Metro,” 
+with high-passenger-capacity rail cars that generally preclude sharp turning movements and require a 
+high platform to board. As such, they cannot generally be operated in normal street conditions, and hence 
+require grade-separated rights-of-way. HRT systems have off-board fare collection, operate within a single 
+built-up urban area with regular station spacing, and provide all-day bidirectional service with regular 
+frequencies. For the purposes of the BRT Planning Guide, HRT will include systems described as commuter 
+rail and metros that align with the above definition. As the vehicles cannot operate on normal streets, 
+many elements recognized as critical to BRT systems do not apply to HRT systems. Though most HRT systems 
+would probably rank “Gold” under the BRT Standard, the BRT Standard Technical Committee has not authorized 
+the use of the BRT Standard for rating HRT systems. 
+
+For the purposes of this Planning Guide, what distinguishes LRT from HRT is that it operates for at 
+least part of the transit corridor on normal streets and uses shorter train sets with lower capacities. 
+As such, LRT tends to have flexible bodies capable of tighter turning radii than HRT systems and tends 
+to have floors closer to street level than HRT vehicles. This guide includes in the definition of LRT 
+both systems that are generally referred to as “LRTs” as well as some streetcars and trams. 
+
+*Monorail:* a rail-based public transport system composed of a single rail, usually elevated and thus 
+grade separated. What differentiates the monorail from LRT of HRT is that monorail trains are wider than 
+the guideways that support and guide them. Monorails are only mentioned in passing in this guide, as 
+they are very expensive to build given their carrying capacity. Monorail is not a viable mass transit 
+solution. Note that the definitions above were adapted from the Transportation Research Board and the 
+American Public Transportation Association.\highlight{ }

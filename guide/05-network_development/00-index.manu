@@ -1,0 +1,37 @@
+\chapter{Corridor and Network Development}
+
+\quotation{Look at every path closely and deliberately, then ask ourselves this crucial question: Does this path have a heart? If it does, then the path is good. If it doesn't, it is of no use.}
+{Carlos Castaneda, author, 1925–1998}
+
+*The BRT Standard* (2014) currently provides a definition of a corridor that can be evaluated as "a section of road or
+contiguous roads served by a bus route or multiple bus routes with a minimum
+length of 3 kilometers (1.9 miles) that has dedicated bus lanes."
+
+It then uses a minimum definition of BRT, defined as a minimum score in the “BRT basics,” to determine
+whether the investments in that corridor constitute BRT or simple bus lanes.
+
+The choice of BRT corridors is critical. Not only will the selection of a good corridor increase the
+number of beneficiaries for the BRT investments, but a strategically located corridor can also, under
+certain circumstances, stimulate transit-oriented development with profound impacts on the future development
+of the city.
+
+Ultimately, the selection of a BRT network and the prioritization of BRT corridors for implementation
+is both technical and political. Political decisions around corridor selection are necessary, as it is
+much more likely that a BRT project will get built where there is political support for the project.
+However, such a political decision should be made only after a detailed technical analysis recommends
+a set of corridors that makes sense.
+
+Information should be grounded in empirical reality, quantifiable, and independently verifiable. Those
+harder to quantify, harder to determine factors should be discussed as part of the political process,
+but should not necessarily be included in the data collection process. This chapter provides a basic
+approach to defining a BRT network and prioritizing the corridors within that network for phased implementation.
+
+\highlight{Contributors:} Karl Fjellstrom, *Far East BRT*; Walter Hook, *BRT Planning International*
+
+\include{01-demand-analysis-for-corridor-selection.manu}
+\include{02-transit-system-speed-and-delay-analysis.manu}
+\include{03-corridor-prioritization-based-on-existing-demand.manu}
+\include{04-additional-corridors-based-on-future-demand.manu}
+\include{05-framework-for-comparing-corridors.manu}
+\include{06-corridor-length.manu}
+\include{07-other-considerations-in-corridor-selection.manu}

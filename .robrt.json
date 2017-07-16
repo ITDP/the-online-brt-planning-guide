@@ -8,23 +8,15 @@
 	"build" : {
 		"cmds" : [
 			"export DOCKER_HOST_IP=$(route -n | awk '/UG[ \t]/{print $2}')",
-			"echo $GL_ANALYTICS_UA_ID",
-			"echo $ASSET_URL_PREFIX",
-			"echo $DOCKER_HOST_IP",
-			"echo $FORCE_GREY_FAVICON",
-
-			"dpkg -s haxe",
+			"env",
 			"node --version",
-
-			"cd $ROBRT_REPOSITORY_DIR",
-			"if [ -z ${NO_CAP_GH_TOKEN+x} ]; then echo Skipped; else git remote set-url origin https://$NO_CAP_GH_TOKEN:$NO_CAP_GH_TOKEN@github.com/ITDP/the-online-brt-planning-guide; fi",
-			"git lfs pull 2>&1 | tee .lfs-pull.log || echo \"error exit code: $?\" >> .lfs-pull.log",
-			"git lfs logs last 2>&1 | tee .lfs-logs-last.log",
-			"grep -qi 'no logs to show' .lfs-logs-last.log",
-			"! grep -qi 'error\\|\\(batch response\\)' .lfs-pull.log",
 
 			"cd $ROBRT_REPOSITORY_DIR/generator",
 			"cp docs/fakesudo.sh /usr/bin/sudo",
+			"add-apt-repository -y ppa:haxe/snapshots",
+			"apt-get update",
+			"apt-get install -y haxe neko",
+			"haxelib setup /usr/share/haxe/lib",
 			"haxelib --global install hmm",
 			"haxelib --global run hmm setup",
 			"haxelib --global list",
@@ -36,6 +28,13 @@
 			"manu unit-tests",
 			"mkdir -p $ROBRT_OUTPUT_DIR/bin",
 			"cp manu*.tgz $ROBRT_OUTPUT_DIR/bin/",
+
+			"cd $ROBRT_REPOSITORY_DIR",
+			"if [ -z ${NO_CAP_GH_TOKEN+x} ]; then echo Skipped; else git remote set-url origin https://$NO_CAP_GH_TOKEN:$NO_CAP_GH_TOKEN@github.com/ITDP/the-online-brt-planning-guide; fi",
+			"git lfs pull 2>&1 | tee .lfs-pull.log || echo \"error exit code: $?\" >> .lfs-pull.log",
+			"git lfs logs last 2>&1 | tee .lfs-logs-last.log",
+			"grep -qi 'no logs to show' .lfs-logs-last.log",
+			"! grep -qi 'error\\|\\(batch response\\)' .lfs-pull.log",
 
 			"cd $ROBRT_REPOSITORY_DIR",
 			"cp LICENSE.md $ROBRT_OUTPUT_DIR/",
@@ -64,10 +63,8 @@
 
 			"cd $ROBRT_REPOSITORY_DIR",
 			"ls -l .generated/pdf/fonts",
+			"server/compress-pdf-assets.sh .generated/pdf 150",
 			"cd .generated/pdf/",
-			"find assets/mw -type f \\( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \\) -exec convert '{}' -resize '236>' '{}' \\;",
-			"find assets/tw -type f \\( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \\) -exec convert '{}' -resize '608>' '{}' \\;",
-			"find assets/fw -type f \\( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \\) -exec convert '{}' -resize '903>' '{}' \\;",
 			"latexmk -lualatex -pdflatex='lualatex -interaction=nonstopmode' book.tex",
 			"mkdir -p $ROBRT_OUTPUT_DIR/pdf $ROBRT_OUTPUT_DIR/guide/pdf",
 			"cp book.pdf $ROBRT_OUTPUT_DIR/guide/pdf/the-brt-planning-guide.pdf",

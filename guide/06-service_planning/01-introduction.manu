@@ -1,0 +1,62 @@
+\section{ Introduction}
+
+\quotation{Sometimes we stare so long at a door that is closing that we see too late the one that is open.}
+{Alexander Graham Bell, inventor, 1847–1922}
+
+As BRT systems are generally built on busy corridors where there are already many bus or minibus services 
+operating, BRT service planning should start with a detailed understanding of the existing public transport 
+services on the corridor. Sometimes these existing services are already well designed to meet the travel 
+needs of most customers and there may be only minor changes needed to existing bus services to take advantage 
+of the higher speeds along the BRT corridor. At other times the public transport services are poorly 
+matched with the travel needs of customers, and a BRT project creates an opportunity to improve on any 
+preexisting service plan. Modifying these services as part of the BRT project can result in significant 
+benefits to customers.
+
+In order to determine whether existing services are already well designed to serve customer needs, 
+or whether significant improvements could be made, BRT service planning should start with a careful evaluation 
+and understanding of all the bus and minibus services currently using the corridor. The Basic Data Collection 
+section of this chapter outlines how information should be processed and displayed in order to make this 
+clear to both the system planners and the general public. 
+
+In most cases, there are significant efficiencies to be gained by optimizing services as part of a 
+BRT project. The following would be indications that the existing services are poorly designed: 
+
+\item Large numbers of buses running partially empty for all or part of their route;  
+\item Significant overcrowding on buses on all or part of a route; 
+\item Significant overcrowding at some stations; 
+\item Large numbers of customers transferring at locations that are not their final destination;
+\item Large numbers of people walking or taking shared taxis from an area currently underserved by public 
+transport;  
+\item Large numbers of buses stopping where few customers get on or off. 
+
+The construction of specialized BRT infrastructure along a corridor will introduce three changes to 
+existing public transport operations that will affect the optimization of services: 
+
+\item Speeds within the BRT infrastructure along the trunk corridor should increase significantly in 
+comparison to speeds outside the BRT infrastructure and on parallel corridors;  
+\item The new BRT trunk corridor may require vehicles to operate most efficiently at the greatest speed; 
+\item Vehicles will need to be able to enter and exit specialized BRT infrastructure, which is often 
+in the central median of the roadway.  
+
+\'FIXME:ref'\ Chapter 4 (Demand Analysis) describes the process used to estimate the baseline public transport demand 
+on the system, and how to model the demand of a proposed service plan under a given infrastructure. So 
+we have at our disposal tools to evaluate future situations. However, that chapter gives 
+no guidance as to how to decide which service scenarios to model. This chapter provides more guidance 
+on how to decide what sort of services should be proposed and modeled.
+
+If a public transport system demand model has already been created (as proposed in Chapter 4: Demand 
+Analysis), it can be extremely useful in performing the necessary route-by-route analysis and testing 
+the benefits of various service planning alternatives. Running alternative service plan scenarios in 
+the demand model is cumbersome, and creating too many scenarios is very confusing for the public and 
+decision makers alike, so this chapter attempts to help craft better service plan scenarios that can 
+later be tested in the model.
+
+The construction of alternative service plan scenarios is generally done incrementally by first making 
+broad assumptions about the best solution. For this chapter, it will be assumed that the selected corridor 
+has enough demand travelling at slow enough existing speeds that BRT infrastructure is justified. As 
+such, it is reasonable to assume that when planning the services, the bus speeds on the BRT corridor 
+would be BRT speeds, either 20 kph for a standard corridor with stations about 450 meters apart, or the 
+speed of an existing service on the same itinerary late at night or “off-off peak.” Further detailing 
+of the infrastructure can thus be left aside while we consider alternative service planning scenarios. 
+Once basic service planning decisions have been made, Chapter 7: Capacity and Speed provides the tools 
+to refine infrastructure decisions in light of these service planning decisions.  

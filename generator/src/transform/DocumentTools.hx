@@ -58,4 +58,38 @@ class DocumentTools {
 			}
 		}
 	}
+
+	/*
+	Generate a hierarchy tree of the current DElem
+	*/
+	public static function hierarchyTree(v:DElem, complete=false)
+	{
+		var buf = new StringBuf();
+		function f(offset:Int, v:DElem) {
+			var sectioning = v.def.match(DVolume(_)|DChapter(_)|DSection(_)|DSubSection(_)|DSubSubSection(_));
+			if (complete || sectioning) {
+				if (offset > 0) {
+					for (i in 1...offset)
+						buf.add("│ ");
+					buf.add("├ ");
+				}
+
+				if (!sectioning)
+					buf.add("*");
+				buf.add(Type.enumConstructor(v.def));
+
+				if (v.id != null) {
+					buf.add(": ");
+					buf.add(v.id);
+				}
+
+				buf.add("\n");
+				iter(v, f.bind(offset+1));
+			} else {
+				iter(v, f.bind(offset));
+			}
+		}
+		f(0, v);
+		return buf.toString();
+	}
 }

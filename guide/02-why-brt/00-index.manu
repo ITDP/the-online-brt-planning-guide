@@ -1,0 +1,53 @@
+\chapter{Why BRT?}
+
+\quotation{For a successful technology, reality must take precedence over public relations, for nature cannot 
+be fooled.}{Richard P. Feynman, physicist, 1918–1988}
+
+The choice of rapid transit technology will affect travel times, personal transport expenditures, and 
+commuter comfort. The choice will also dramatically affect government finances and a city’s economic 
+efficiency. Ultimately, the selection will shape a city’s urban form and the lifestyles of its inhabitants. 
+But the choice should be guided first and foremost by what type of service is needed. Technology then 
+becomes the tool to provide that service.
+
+Choosing the appropriate rapid transit technology for a city requires balancing what citizens want 
+and where they want it with more technical considerations such as costs and potential benefits. This 
+chapter summarizes the technical differences among three main mass transit options: Bus Rapid Transit 
+(BRT), Light-Rail Transit (LRT), and Heavy Rail Transit (HRT).  
+
+When deciding on the type of rapid transit most appropriate for a city, cost, performance, implementation 
+speed, scalability, and local preferences all need to be taken into consideration. For most cities, the 
+costs of different rapid transit alternatives, both capital and operating expenditures, should be preeminent 
+decision-making factors. Even wealthier cities will benefit from cost-effective investments, offering 
+greater benefits per dollar of investment. As the economic and social benefits of funds invested in rapid 
+transit need to be weighed against other economic and social investments, an effort should be made to 
+get the greatest social benefit per dollar of investment possible. The quality of the service, including 
+the capacity, the speed, and the comfort of the service are also very important. People will willingly 
+pay more for a higher speed and more comfortable service, and some corridors have more potential riders 
+and require a higher capacity service. 
+
+The flexibility and scalability of the system also matters. Perhaps normal existing transit speeds 
+are very fast in a city everywhere except in one area such as downtown. A high-speed congestion-free 
+service may be needed in the congested area but not elsewhere. For different transit modes, there are 
+different minimum operable lengths, which are the shortest segments that make sense to build and still 
+bring benefits. The costs of the stations, vehicles, rights-of-way, and other factors will change this 
+length for various modes. Some modes are easy to build in small segments, while other modes make financial 
+sense in larger segments. There is also a benefit to expanding existing modes, as services and infrastructure 
+can be connected more seamlessly. 
+
+As all public investments are ultimately political, they require some sort of mandate from the political 
+leadership and the general public. Because politics and public opinion change rapidly, implementation 
+speed is also very important. If a project can be implemented during a single term of political office, 
+it stands a greater chance of being implemented, and its benefits can be realized more quickly. 
+
+Economic development impacts also matter. If one type of rapid transit is known to have a greater economic 
+development impact, this would also affect investment decisions. Many cities are looking to rapid transit 
+investments to help stimulate economic development in particular locations to guide urban growth to strategic 
+locations. This chapter reviews how BRT, LRT, and HRT options vary with respect to each of these issues. 
+
+\include{01-defining-rapid-transit-modes.manu}
+\include{02-costs.manu}
+\include{03-planning-and-development.manu}
+\include{04-performance.manu}
+\include{05-impacts.manu}
+\include{06-why-brt.manu}
+

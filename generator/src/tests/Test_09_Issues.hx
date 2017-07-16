@@ -68,6 +68,29 @@ class Test_09_Issues {
 		Assert.pass();
 	}
 
+	public function test_issue_0186()
+	{
+		var exp = transform(expand(
+				VElemList([
+					Chapter(Word("cte")),
+					VElemList([
+						Section(Word("foo")),
+						SubSection(Word("bar"))
+					])
+				])));
+		var got = transform(expand(
+				VElemList([
+					Chapter(Word("cte")),
+					VElemList([
+						Section(Word("foo"))
+					]),
+					VElemList([
+						SubSection(Word("bar"))
+					])
+				])));
+		Assert.same(exp, got);
+	}
+
 	public function test_internal_0001()
 		Assert.raises(parse.bind("\\beginbox{foo}\\section{bar}\\endbox"));
 

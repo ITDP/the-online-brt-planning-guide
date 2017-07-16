@@ -11,30 +11,49 @@ import js.jquery.Helper.*;
 using StringTools;
 
 class Main {
-
 	static function getToc()
 	{
 		var req = new haxe.Http("table-of-contents");
 		req.onData =
 			function (tocData:String)
 			{
-				JTHIS.ready(function (_) drawNav(tocData));
+				JTHIS.ready(function (_) drawNavNextPrev(tocData));
 			}
 		req.onStatus = function (status) weakAssert(status == 200, status);
 		req.onError = function (msg) assert(false, msg);
 		req.request();
 	}
 
-	static function drawNav(tocData:String)
+	static function drawNavNextPrev(tocData:String)
 	{
 		// parse and locate myselft
 		assert(tocData != null, "toc data is missing");
 		var toc = J(JQuery.parseHTML(tocData)).find("div#toc>ul");
-		var myUrl = J("base").attr("x-rel-path");
+		var myUrl =  J("link[rel=canonical]").attr("href");
 		assert(myUrl != null);
 		var me = toc.find('a[href="$myUrl"]').not("#toc-menu").parent();
 		assert(me.length > 0, myUrl);
 		assert(me.is("li"));
+
+        //nav buttons content 
+        var prevContent:Null<js.html.Element> = null;
+        var nextContent:Null<js.html.Element>  = null;
+	
+        if (!me.is("nav")) {
+            var prev = me.prev("li");
+            if (!prev.is("li")) {
+                prev = me.parents("li");
+            } else if (prev.find("li.chapter, li.section").last().is("li")) {
+                prev = prev.find("li.chapter, li.section").last();
+            }
+            if (prev.is("li")) prevContent = prev.clone().find("a")[0];
+
+            var next = me.find("li.chapter, li.section");
+            if (!next.is("li")) next = me.next("li");
+            if (!next.is("li")) next = me.parents("li").next();
+            if (next.is("li")) nextContent = next.clone().find("a")[0];
+        }
+
 
 		// if we're the ToC, just remove the placeholder
 		if (me.hasClass("toc-link")) {
@@ -73,6 +92,9 @@ class Main {
 		// draw the nav toc
 		J("#toc-loading").remove();
 		J("nav").append(toc);
+		me.addClass("active");
+		
+        drawBottomButtons(prevContent,nextContent);
 	}
 
 	static function drawOverview(internals:JQuery)
@@ -82,10 +104,26 @@ class Main {
 		J("div.col-text").append(oview);
 	}
 
+	static function drawBottomButtons(prevContent:Null<js.html.Element>, nextContent:Null<js.html.Element>)
+	{
+        var navDiv = J(JQuery.parseHTML('<div class="navigation"></div>'));
+        if (prevContent  != null) {
+            var prev = J(JQuery.parseHTML('<div class="prev"></div>'));
+            prev.append(prevContent);
+            navDiv.append(prev);
+        }
+        if (nextContent != null) {
+            var next = J(JQuery.parseHTML('<div class="next"></div>'));
+            next.append(nextContent);
+            navDiv.append(next);
+        }
+		J("div.col-text").append(navDiv);
+	}
+
 	static function figClick(e:Event)
 	{
 		var b = J("body");
-		var t  = J(e.target);
+		var t = J(e.target);
 		if (!t.is("img.overlay-trigger"))
 			return;
 
@@ -101,10 +139,24 @@ class Main {
 		e.stopPropagation();
 	}
 
+	static function shareClick(e:Event)
+	{
+		var t = J(e.target).parents(".share");
+		if (t.length == 0 || ((untyped document.getSelection().toString()):String) != "")
+			return;
+
+		var id = ( t.is("figcaption") ? t.parent("figure") : t ).attr("id");
+		window.location.hash = id;
+
+		e.preventDefault();
+		e.stopPropagation();
+	}
+
 	static function main()
 	{
 		getToc();
 		JTHIS.click(figClick);
+		JTHIS.click(shareClick);
 	}
 }
 

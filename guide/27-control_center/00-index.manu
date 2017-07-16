@@ -1,0 +1,32 @@
+\chapter{Control Center}
+
+\quotation{Everyone in a complex system has a slightly different interpretation. The more interpretations we gather, the easier it becomes to gain a sense of the whole.}
+{Margaret J. Wheatley, writer and management consultant, 1944–}
+
+A centralized management and control of the BRT system affords many advantages to optimize system efficiencies
+and minimize costs:
+
+\item Immediate response to changes in customer demand;
+\item Immediate response to equipment failures, safety, and security problems;
+\item Efficient spacing between BRT vehicles and avoidance of vehicle “bunching”;
+\item Automated system performance evaluation;
+\item Automated linkages between operations and revenue distribution;
+\item Efficient response to customer queries.
+
+In the case of many conventional bus service operators, vehicle fleets are often depleted, old, and
+not adequately adapted to existing infrastructure and operational needs, like accommodating the disabled.
+
+\figure[medium]{assets/image1.jpeg}{Control Center in Lanzhou, China.}{ Karl Fjellstrom, Far East BRT.}
+
+\highlight{Contributors:} Johann Andersen, *Techso*
+
+\include{01-development-of-the-traffic-management-center-concept.manu}
+\include{02-the-brtmc.manu}
+\include{03-brt-stakeholders.manu}
+\include{04-location-of-brtmc.manu}
+\include{05-staffing-of-the-brtmc.manu}
+\include{06-floor-space-requirements.manu}
+\include{07-layout-and-site-planning.manu}
+\include{08-building-requirements.manu}
+\include{09-costing.manu}
+\include{10-operational-requirements.manu}

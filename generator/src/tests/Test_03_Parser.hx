@@ -645,6 +645,8 @@ class Test_03_Parser {
 		Assert.same(expand(@wrap(12,1)HtmlStore(@elem@len(2)"\\")), parse("\\html\\store{\\\\}"));
 		Assert.same(expand(@wrap(12,1)HtmlStore(@elem@len(2)"}")), parse("\\html\\store{\\}}"));
 		Assert.same(expand(@wrap(12,1)HtmlStore(@elem@len(3)"--")), parse("\\html\\store{-\\-}"));
+
+		fails("\\html\\store{foo\\bar}", UnexpectedToken(TCommand("bar")));
 	}
 
 	public function test_028_blob_sizes()
