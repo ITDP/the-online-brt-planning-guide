@@ -517,7 +517,7 @@ q::after {
 
 /* lists */
 
-section > ul,ol {
+section > ul, section > ol {
 	padding-left: 32px;
 	width: 576px;
 	font-family: 'PT Serif', serif;
