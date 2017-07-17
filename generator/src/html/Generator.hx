@@ -343,8 +343,7 @@ class Generator {
 				</section>
 			'.doctrim() + "\n";
 		case DTitle(name):
-			// FIXME
-			return genv({ def:DParagraph({ def:Highlight(name), pos:v.pos }), pos:v.pos, id:v.id }, idc, noc, bcs);
+			return '<h3>${genh(name)}</h3>';
 		case DFigure(no, size, _.toInputPath() => path, caption, cright):
 			idc.figure = v.id.sure();
 			noc.figure = no;
