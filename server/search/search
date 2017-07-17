@@ -1,0 +1,187 @@
+<html>
+<head>
+  <title></title>
+  <script>
+    (function() {
+      var cx = '016366598916526293617:4eo0mxqq_ym';
+      var gcse = document.createElement('script');
+      gcse.type = 'text/javascript';
+      gcse.async = true;
+      gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header>
+    <ul>
+      <li><a class="brtcolor" href="./"><strong>BRT Planning Guide</strong></a></li>
+      <li>/</li>
+      <li><a><strong><span>Search</span></strong></a></li>
+    </ul>
+  </header>
+  <div class="searcharea">
+    <gcse:search></gcse:search>
+  </div>
+</body>
+<style>
+
+  /* header */
+  header {
+    font-family: 'PT Sans', sans-serif;
+    width: 100%;
+    height: 32px;
+    position: fixed;
+    background-color: #FFF;
+    color: #333;
+    z-index: 999;
+    border-bottom: 1px solid #00a95e;
+  }
+  header a {
+    color: #333;
+    text-decoration: none;
+  }
+  header ul {
+    line-height: 32px;
+    width: 1216px;
+    margin: 0 auto;
+    padding: 0 0 0 0;
+    font-size: 14px;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAAAgCAYAAACxSj5wAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABAxJREFUeNrsWd11okAUJjm+h+1gtoKwFQQqUB59ClaQpQJjBZoKwCcfIRVEKwhWEFPBWsLeYb7B6zCgMavJcb3nXBWYOwMf3/0bHeciF7nIEeVq54hZKOizR3pH6hpXp6Rrp5/l/x9As9CjzzGp32KfA7w16RPphMBanxNA1xZgXNIER26L7RzfE9IR6QPpK9n65wuQYs0LaQRmBGCHTaYYsyTWSJB+ArQXmic6P4AkcxwnI/Vw5h4AxBaQJBC3+L0qP6Vr9bMB/ZKanAtIHfZbgiPYsQAwCR46Y9ee4FJ16WcpwJYgFXRcGCwds5cgr8fGuV2yy0be84I0rcXD9nWK0s5IOB0YRg3B+A4MGYJJY7DHw4RN8WbFwP1lXPMsdt6OZGDOvcumV97zLIzLF7bfOvL8b7KRzxdqcLWLDVsWmmLiLoLxM9izZMhLkHtlcJ+Ff8A2t7T796623HOcZnHvg/P73Fuu8QCiYbBgb0wa3oAZLotLQwMUPT4uaa5i2S6JkRC0ckmNa6k1o/YzWbL8wFxcEri83UbZmcnIR8IqXWwFZjgAwDMA6oIl8vw7QCjgbpq2MWoi7eMDxCIPqd9trY/qcYofvdP1+V7vXq0xASBDxqQI5UiT3ZxsRuyZNCGKa0y0wgQa6QV0CkoHSOM5Y4hAFR3gfFKVBtrvNw/uOacVs7Lv7hX86y5aMsiHDsGkJWKMMDKDDrouxonytyoqPRwHNTaooO6zwvL4Iu9hm4ViD6uurRDuGJMkrG1YAyjtUr2KYf3skW5ghfERe2vfqc1YMWCENYhvqv5umcG2CVGYAHFqDTEoBpJRC33ncEUZjN9o0bRkWD9bfSOAbKK7Bps8mWm+rd54AVhpVYQp5HVAey5jjopFAW7qDSnf+0KA3APtRqWHsELRhnSKWJQY/hlaUB8TEPeGe2nWRdWipxevJQBrAkyN47nJ/A6MhQHOmjEkZxM9bCGtJk0Qs/gcN+wteg03eDypM9cOEGNKWy/2jADsoOe6q2qZTbuhz2lXi9AT5XQzKuPZFlMZbv0Fe0Rjy87Dgc2qKugewILcWMQ1XGSBAF6gQtU0lfaPlp3IiAF9TBG03iPbhRBGxXxwiaGDdIDti1eWum1B7paNzxGPCtygZ3mLhdEsHg8g9eKGBjgF4uYn94OUC3g70qILV9QpMEYMGuP7nrHnN8YOnK+TFIXrp9yb10EhGCQaIr6OQZMK1FkYgEWi2lxTze8Y/VjR0Ji6rCCzSWApN9rmse0ZrQ9ce0uuLNE/sfROGohRLRhvtmld1lYMTuRaJ9xy3TSXgaVa9rfYU2dXzmJBcC7g1Bm0zQzdwOpG00VJUFSNqkr/vnPGf/t89o/DRVUPXeQiF7nIx+WvAAMAhoF6/UERhegAAAAASUVORK5CYII=');
+    background-repeat: no-repeat;
+    background-position: top left;
+  }
+  header ul li {
+    display: inline;
+    margin: 0;
+    list-style: none;
+    padding: 0 8px 0 0;
+  }
+  header ul li:first-child {
+    padding: 0 8px 0 120px;
+  }
+  header ul li.jump-to-nav {
+    display: none;
+  }
+  header ul li ul {
+    line-height: 16px;
+    margin: 0 auto;
+    padding: 0;
+    font-size: 12px;
+  }
+  header noscript .js-required-banner {
+    background-color: #F33;
+    color: #FFF;
+    text-align: center;
+    padding: 4px;
+    font-family: sans-serif;
+    font-size: 12px;
+  }
+  .item {
+    display: none;
+    position: fixed;
+    background-color: #FFF;
+    width: auto;
+    padding: 0 16px 16px 16px;
+    border: solid #00a95e;
+    border-width: 0px 1px 1px 1px;
+  }
+  .hide {
+    display: none;
+  }
+  .item li {
+    display: block;
+    padding: 0;
+  }
+   :target:before {
+    content: "";
+    display: block;
+    height: 48px;
+    /* fixed header height*/
+    margin: -48px 0 0;
+    /* negative fixed header height */
+  }
+
+  .searcharea {
+    padding-top: 64px;
+    margin: 0 auto;
+    width: 640px;
+  }
+  .brtcolor {
+    color: #00a95e;
+  }
+  .gsc-results {
+    width: 100%;
+  }
+  .gs-result div {
+    padding: 0;
+  }
+  .gs-result table {
+    padding: 0;
+  }
+  .gsc-control-cse {
+    font-family: 'PT Sans', sans-serif;
+    padding: 0;
+  }
+  .gs-title {
+    font-size: 20px!important;
+    text-decoration: none!important;
+    margin: 0 0 8px 0;
+  }
+  .gs-title b {
+    font-size: 20px!important;
+    font-weight: bold;
+    text-decoration: none!important;
+  }
+  .gs-visibleUrl-long {
+    font-size: 14px;
+    margin: 4px 0;
+  }
+  .gs-snippet {
+    font-size: 16px;
+    line-height: 23px;
+  }
+  .gsc-cursor-page{
+    font-size: 16px;
+  }
+  .gsc-search-button-v2 {
+    background-color: #00a95e!important;
+    border-color: #00a95e!important;
+    margin: 0!important;
+  }
+  .gcsc-branding {
+    padding-right: 0;
+  }
+  .gs-imageResult-column {
+    width: auto;
+  }
+  .gsc-imageResult-column {
+    margin-right: 0;
+    height: 100px;
+  }
+  .gsc-imageResult {
+    margin-right: 0;
+  }
+  .gs-imageResult-column {
+    height: 100px;
+  }
+  .gs-imageResult-column .gs-text-box {
+    width: 500px;
+    height: 100px;
+  }
+
+</style>
+
+<script>
+	(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");
+	ga("create", "UA-77667300-5", "auto");
+	ga("send", "pageview");
+</script>
+
+</html>
