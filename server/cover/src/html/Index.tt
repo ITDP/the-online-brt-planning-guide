@@ -146,21 +146,20 @@
 				</div>
 			</div>
 
-			(:*
 			<!--menu #2 (search)-->
 			<div class="ui container" style="margin: 0 0 20px 0;">
 				<div class="ui secondary massive menu stackable">
 					<div class="right menu">
 						<div class="item" style="margin: 0;">
-							<div class="ui icon input">
-								<input type="text" placeholder="Search...">
+							<div class="ui icon input search">
+								<input type="text" placeholder="Search..." name="search" id="input-search">
 								<i class="search link icon"></i>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			*:)
+			<script type="text/javascript"> $(document).ready(function() { $("#input-search").keyup(function (e) { var kc = e.keyCode || e.which; if (kc == 13) { $("#input-search").addClass("button-search"); window.location.href = "/search?search=" + this.value; } }); });</script>
 
 			<!--main banner-->
 			<div class="ui container">

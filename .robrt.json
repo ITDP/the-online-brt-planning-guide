@@ -62,6 +62,10 @@
 			"cp -r server/cover/ready/html $ROBRT_OUTPUT_DIR/cover",
 
 			"cd $ROBRT_REPOSITORY_DIR",
+			"mkdir -p $ROBRT_OUTPUT_DIR/search",
+			"cp server/search/search $ROBRT_OUTPUT_DIR/search/index.html",
+
+			"cd $ROBRT_REPOSITORY_DIR",
 			"ls -l .generated/pdf/fonts",
 			"server/compress-pdf-assets.sh .generated/pdf 150",
 			"cd .generated/pdf/",
