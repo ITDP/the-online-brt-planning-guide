@@ -116,14 +116,14 @@
 \usepackage{titlesec}
 \setcounter{secnumdepth}{3}
 \titleformat{\part}[display]{\bfseries\huge\color{volume\thepart}\familycapsf}{{\fontsize{10mm}{10mm}\selectfont VOLUME \thepart}}{0pt}{\vskip 5mm \rule{105mm}{1.5mm} \\ \vskip 2.25mm}[]
-\titleformat{\chapter}[display]{\bfseries\LARGE\color{volume\thepart}\familycapsf}{}{0pt}{\thechapter.\ }[]
-\titleformat*{\section}{\bfseries\Large\color{volume\thepart}\familycapsf}
-\titleformat*{\subsection}{\bfseries\large\color{volume\thepart}\sffamily}
-\titleformat*{\subsubsection}{\bfseries\sffamily}
+\titleformat{\chapter}[display]{\raggedright\sloppy\bfseries\LARGE\color{volume\thepart}\familycapsf}{}{0pt}{\thechapter.\ }[]
+\titleformat*{\section}{\raggedright\sloppy\bfseries\Large\color{volume\thepart}\familycapsf}
+\titleformat*{\subsection}{\raggedright\sloppy\bfseries\large\color{volume\thepart}\sffamily}
+\titleformat*{\subsubsection}{\raggedright\sloppy\bfseries\sffamily}
 \titlespacing*{\chapter}{0mm}{0mm}{2.25mm plus 2.25mm}[0pt]
 \titlespacing*{\section}{0mm}{4.5mm plus 4.5mm}{2.25mm plus 2.25mm}[0pt]
-\titlespacing*{\subsection}{0mm}{2.25mm plus 2.25mm}{0mm plus 2.25mm}[0pt]
-\titlespacing*{\subsubsection}{0mm}{2.25mm plus 2.25mm}{0mm plus 2.25mm}[0pt]
+\titlespacing*{\subsection}{0mm}{4.5mm plus 2.25mm}{2.25mm plus 2.25mm}[0pt]
+\titlespacing*{\subsubsection}{0mm}{4.5mm plus 2.25mm}{2.25mm plus 2.25mm}[0pt]
 \newcommand\setnextcounter[2]{\setcounter{#1}{#2}\addtocounter{#1}{-1}}
 \newcommand\volume[2]{\setnextcounter{part}{#1}\part{#2}}
 \let\uchapter=\chapter\renewcommand\chapter[2]{\setnextcounter{chapter}{#1}\uchapter{#2}}
