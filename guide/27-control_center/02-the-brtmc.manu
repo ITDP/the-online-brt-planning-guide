@@ -121,7 +121,7 @@ It is recommended that this function be accommodated in the BRTMC.
 The fleet management function is responsible for:
 
 \item Maintenance of management systems;
-\item \item Transportation operations systems;
+\item Transportation operations systems;
 \item Utilization management systems;
 \item Fleet telemetry systems;
 \item Vehicle guidance.
