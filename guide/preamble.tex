@@ -197,7 +197,7 @@
 \newcommand{\manusmallfigure}[4]{
 	\marginpar{
 		\noindent\includegraphics[width=49mm]{#1} \\
-		\noindent\raggedright\figcaption{#2}{#3}{#4}\par
+		\noindent\RaggedRight\figcaption{#2}{#3}{#4}\par
 	}
 }
 \newcommand{\manumediumfigure}[4]{
@@ -205,7 +205,7 @@
 		\vskip 2.25mm plus 2.25mm
 		\noindent\includegraphics[width=105mm]{#1}
 		\vskip 2.25mm
-		\noindent\raggedright\figcaption{#2}{#3}{#4}
+		\noindent\RaggedRight\figcaption{#2}{#3}{#4}
 		\vskip 2.25mm plus 2.25mm
 	}
 }
@@ -215,7 +215,7 @@
 		\vskip 2.25mm plus 2.25mm
 		\noindent\includegraphics[width=161mm]{#1}
 		\vskip 2.25mm
-		\vbox{\hsize=161mm\noindent\raggedright\figcaption{#2}{#3}{#4}}
+		\vbox{\hsize=161mm\noindent\RaggedRight\figcaption{#2}{#3}{#4}}
 		\vskip 2.25mm plus 2.25mm
 	}
 	\unblockmargin
@@ -225,14 +225,14 @@
 \newcommand\tabletitletext[2]{{\bfseries\color{volume\thepart}\sffamily Table \thechapter.#1. #2}}
 \newcommand{\manusmallimgtable}[4]{
 	\marginpar{
-		\noindent\raggedright\footnotesize\tabletitletext{#2}{#3}\par
+		\noindent\RaggedRight\footnotesize\tabletitletext{#2}{#3}\par
 		\noindent\includegraphics[width=49mm]{#1}
 	}
 }
 \newcommand{\manumediumimgtable}[4]{
 	{
 		\vskip 2.25mm plus 2.25mm
-		\noindent\raggedright\tabletitletext{#2}{#3}
+		\noindent\RaggedRight\tabletitletext{#2}{#3}
 		\vskip 2.25mm plus 2.25mm
 		\noindent\includegraphics[width=105mm]{#1}
 		\vskip 2.25mm plus 2.25mm
@@ -242,7 +242,7 @@
 	\blockmargin
 	{
 		\vskip 2.25mm plus 2.25mm
-		\vbox{\hsize=161mm\noindent\raggedright\tabletitletext{#2}{#3}}
+		\vbox{\hsize=161mm\noindent\RaggedRight\tabletitletext{#2}{#3}}
 		\vskip 2.25mm plus 2.25mm
 		\noindent\includegraphics[width=161mm]{#1}
 		\vskip 2.25mm plus 2.25mm
@@ -274,7 +274,7 @@
 \usepackage{ifoddpage}
 \newdimen\tablemodule \tablemodule=\textwidth \divide\tablemodule by 60
 \newcommand{\tabletitle}[2]{{\vskip 2.25mm plus 2.25mm\noindent\tabletitletext{#1}{#2}} \vskip 2.25mm plus 2.25mm }
-\newcommand{\tablesource}[1]{\noindent\raggedright\footnotesize\sffamily\color{gray50}{\bfseries Source:} #1 \par \smallskip}
+\newcommand{\tablesource}[1]{\noindent\RaggedRight\footnotesize\sffamily\color{gray50}{\bfseries Source:} #1 \par \smallskip}
 
 \AtBeginDocument{
 	\parskip=0mm plus 4.5mm
@@ -317,3 +317,5 @@
 % better bookmarks than with just hyperref (replaces them)
 \usepackage{bookmark}
 
+% make hyphenation effective within \raggedright text
+\usepackage{ragged2e}
