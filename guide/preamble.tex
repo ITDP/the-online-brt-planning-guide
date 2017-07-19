@@ -116,14 +116,14 @@
 \usepackage{titlesec}
 \setcounter{secnumdepth}{3}
 \titleformat{\part}[display]{\bfseries\huge\color{volume\thepart}\familycapsf}{{\fontsize{10mm}{10mm}\selectfont VOLUME \thepart}}{0pt}{\vskip 5mm \rule{105mm}{1.5mm} \\ \vskip 2.25mm}[]
-\titleformat{\chapter}[display]{\bfseries\LARGE\color{volume\thepart}\familycapsf}{}{0pt}{\thechapter.\ }[]
-\titleformat*{\section}{\bfseries\Large\color{volume\thepart}\familycapsf}
-\titleformat*{\subsection}{\bfseries\large\color{volume\thepart}\sffamily}
-\titleformat*{\subsubsection}{\bfseries\sffamily}
+\titleformat{\chapter}[display]{\raggedright\sloppy\bfseries\LARGE\color{volume\thepart}\familycapsf}{}{0pt}{\thechapter.\ }[]
+\titleformat*{\section}{\raggedright\sloppy\bfseries\Large\color{volume\thepart}\familycapsf}
+\titleformat*{\subsection}{\raggedright\sloppy\bfseries\large\color{volume\thepart}\sffamily}
+\titleformat*{\subsubsection}{\raggedright\sloppy\bfseries\sffamily}
 \titlespacing*{\chapter}{0mm}{0mm}{2.25mm plus 2.25mm}[0pt]
 \titlespacing*{\section}{0mm}{4.5mm plus 4.5mm}{2.25mm plus 2.25mm}[0pt]
-\titlespacing*{\subsection}{0mm}{2.25mm plus 2.25mm}{0mm plus 2.25mm}[0pt]
-\titlespacing*{\subsubsection}{0mm}{2.25mm plus 2.25mm}{0mm plus 2.25mm}[0pt]
+\titlespacing*{\subsection}{0mm}{4.5mm plus 2.25mm}{2.25mm plus 2.25mm}[0pt]
+\titlespacing*{\subsubsection}{0mm}{4.5mm plus 2.25mm}{2.25mm plus 2.25mm}[0pt]
 \newcommand\setnextcounter[2]{\setcounter{#1}{#2}\addtocounter{#1}{-1}}
 \newcommand\volume[2]{\setnextcounter{part}{#1}\part{#2}}
 \let\uchapter=\chapter\renewcommand\chapter[2]{\setnextcounter{chapter}{#1}\uchapter{#2}}
@@ -197,7 +197,7 @@
 \newcommand{\manusmallfigure}[4]{
 	\marginpar{
 		\noindent\includegraphics[width=49mm]{#1} \\
-		\noindent\raggedright\figcaption{#2}{#3}{#4}\par
+		\noindent\RaggedRight\figcaption{#2}{#3}{#4}\par
 	}
 }
 \newcommand{\manumediumfigure}[4]{
@@ -205,7 +205,7 @@
 		\vskip 2.25mm plus 2.25mm
 		\noindent\includegraphics[width=105mm]{#1}
 		\vskip 2.25mm
-		\noindent\figcaption{#2}{#3}{#4}
+		\noindent\RaggedRight\figcaption{#2}{#3}{#4}
 		\vskip 2.25mm plus 2.25mm
 	}
 }
@@ -215,7 +215,7 @@
 		\vskip 2.25mm plus 2.25mm
 		\noindent\includegraphics[width=161mm]{#1}
 		\vskip 2.25mm
-		\vbox{\hsize=161mm\noindent\figcaption{#2}{#3}{#4}}
+		\vbox{\hsize=161mm\noindent\RaggedRight\figcaption{#2}{#3}{#4}}
 		\vskip 2.25mm plus 2.25mm
 	}
 	\unblockmargin
@@ -225,14 +225,14 @@
 \newcommand\tabletitletext[2]{{\bfseries\color{volume\thepart}\sffamily Table \thechapter.#1. #2}}
 \newcommand{\manusmallimgtable}[4]{
 	\marginpar{
-		\noindent\raggedright\footnotesize\tabletitletext{#2}{#3}\par
+		\noindent\RaggedRight\footnotesize\tabletitletext{#2}{#3}\par
 		\noindent\includegraphics[width=49mm]{#1}
 	}
 }
 \newcommand{\manumediumimgtable}[4]{
 	{
 		\vskip 2.25mm plus 2.25mm
-		\noindent\tabletitletext{#2}{#3}
+		\noindent\RaggedRight\tabletitletext{#2}{#3}
 		\vskip 2.25mm plus 2.25mm
 		\noindent\includegraphics[width=105mm]{#1}
 		\vskip 2.25mm plus 2.25mm
@@ -242,7 +242,7 @@
 	\blockmargin
 	{
 		\vskip 2.25mm plus 2.25mm
-		\vbox{\hsize=161mm\noindent\tabletitletext{#2}{#3}}
+		\vbox{\hsize=161mm\noindent\RaggedRight\tabletitletext{#2}{#3}}
 		\vskip 2.25mm plus 2.25mm
 		\noindent\includegraphics[width=161mm]{#1}
 		\vskip 2.25mm plus 2.25mm
@@ -274,7 +274,7 @@
 \usepackage{ifoddpage}
 \newdimen\tablemodule \tablemodule=\textwidth \divide\tablemodule by 60
 \newcommand{\tabletitle}[2]{{\vskip 2.25mm plus 2.25mm\noindent\tabletitletext{#1}{#2}} \vskip 2.25mm plus 2.25mm }
-\newcommand{\tablesource}[1]{\noindent\raggedright\footnotesize\sffamily\color{gray50}{\bfseries Source:} #1 \par \smallskip}
+\newcommand{\tablesource}[1]{\noindent\RaggedRight\footnotesize\sffamily\color{gray50}{\bfseries Source:} #1 \par \smallskip}
 
 \AtBeginDocument{
 	\parskip=0mm plus 4.5mm
@@ -317,3 +317,5 @@
 % better bookmarks than with just hyperref (replaces them)
 \usepackage{bookmark}
 
+% make hyphenation effective within \raggedright text
+\usepackage{ragged2e}
