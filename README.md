@@ -69,7 +69,7 @@ After running **manu**, the website is already functional, it's just a matter of
 
 Since we already have Node.js installed for _manu_, the easiest way to do this is with [`http-server`](https://www.npmjs.com/package/http-server) (you can install it with `npm install -g http-server`).
 
-Then, also at the root folder of the project, simply run `http-server .generated/html --ext html -o`.
+Then, also at the root folder of the project, simply run `http-server .generated/html --ext html` and open the page indicated in your preferred browser.
 
 #### How to build the PDF?
 
