@@ -213,7 +213,7 @@ $$C_\text{pub} = \text{IVT} + 2\;\text{WTM} + 2\;\text{WAT} + 2\;\text{TTM}
 		+ 5\;\text{NTR} + f/a \cdot \text{FAR}$$
 
 Where:
-\item $$f/a = \alpha =$$ Inverse of the value of time savings.
+\item $$f/a =$$ Inverse of the value of time savings.
 
 An initial estimate could be the length of working time required to earn one unit of currency, for
 example how many minutes it takes for the average earner to earn US$1. The average earner in question
