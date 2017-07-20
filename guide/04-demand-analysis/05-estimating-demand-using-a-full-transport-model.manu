@@ -80,7 +80,7 @@ and recreational trips). The proper segmentation of data can be costly since it 
 collected data and greater detail in the modeling process. However, the benefits of segmentation can
 be a system well-tailored to the needs of the customers.
 
-*Trip Generation*
+\subsubsection{Trip Generation}
 
 When applying this model the *input* is the land use for a given area (zone), which may be expressed,
 for example, as:
@@ -119,7 +119,7 @@ estimates based on traffic and public transport surveys and transportation secto
 The trip generation model is usually is divided into two other models: *production model* and *attraction
 model*.
 
-*Trip Distribution*
+\subsubsection{Trip Distribution}
 
 The next stage in the application of the model is to fill the interior of the matrices, “the borders”
 of which were determined in the previous stage.
@@ -143,7 +143,6 @@ for reaching a stable solution.
 
 Trips will be distributed with respect to the total cost of travelling from each origin and destination
 zone, in an attempt to be proportional to users’ perception of the cost of travelling between the zones.
-
 
 The perception of cost, including the time to wait and transfer, is discussed in Box 4.2. Those perceptions
 are cultural specific and affects the willingness of a given market segment to travel farther and how
@@ -302,7 +301,7 @@ PENALTY = Cost of public transport being less comfortable and convenient than us
 The last two are the versions of generalized costs used in Logit mode choice and Gravity models.
 \endbox
 
-\highlight{Modal Split}
+\subsubsection{Modal Split}
 
 A complexity not previously mentioned is that costs need to consider private and public transport altogether.
 When new services are added or taken away, people may shift from one mode to another and some may decide
@@ -383,7 +382,7 @@ costs; a small value (0.02) produces a gentler transition between modes. Both pr
 the car and bus costs are equal. The value of this parameter must be estimated locally to represent not
 only local behavior but also the size and nature of zones and networks.
 
-*Assignment*
+\subsubsection{Assignment}
 
 The previous stages in the modeling process focused primarily on the demand side of public transport
 services or generating OD matrices. The “assignment” stage is where the supply of public transport services
@@ -434,7 +433,7 @@ of an issue for design purposes. In any case, congested public transport assignm
 good use of a suitable software platform; it should not be attempted without at least a minimum of assisted
 experience.
 
-*Calibration *
+\subsubsection{Calibration}
 
 Calibration is the process of, after choosing the (sub) model (i.e., defining how input and output
 mathematically relate), quantifying (adjust) the parameters that better explain what is observed from
@@ -448,7 +447,7 @@ so that when they run the full model with present conditions, resulting flows re
 the ground (traffic counts and occupancy surveys at that moment of the day). When they calibrate the
 matrix models, they usually say they are “making the models.”
 
-*Validation*
+\subsubsection{Validation}
 
 Models are developed to represent the reality, based on the isolated observation of several parts in
 the travel decision-making process. Each simplification is related to an assumption (i.e., everyone in
@@ -486,7 +485,7 @@ a procedure, although useful to validate other models for the present, completel
 of the classic four-stage model and severely limits the validity of the generation, distribution, and
 mode selection models.
 
-*Conversion of Demand into Revenue*
+\subsubsection{Conversion of Demand into Revenue}
 
 The levels of demand estimated by the models will have to be converted via fares into revenues for
 the system. This financial modeling will require consideration of the proposed fare system (see Chapter
@@ -497,7 +496,7 @@ the demand model exercise is needed to understand what the fare should be (see C
 Modeling). Once the fare is set, though, the demand model should be tested with that determined cost
 to see how it affects the demand.
 
-*Evaluation*
+\subsubsection{Evaluation}
 
 The previous modeling stages have combined supply and demand factors to develop an overall simulation
 of a city’s public transport services. The final stage of the process is to evaluate the robustness of
@@ -510,7 +509,7 @@ identifiable solution for the problem (reducing travel time). If several scenari
 then the proposed solution is considered to be sufficiently robust. The lack of a convergence may imply
 that changes in the model structure are necessary before proceeding.
 
-\highlight{Assessment of the Feasibility of the System}
+\subsubsection{Assessment of the Feasibility of the System}
 
 Once some sort of public transport or full transport model has been developed, and a clear scenario
 for the BRT system has been defined, it should be possible to make a preliminary assessment of the feasibility
@@ -615,3 +614,4 @@ In general terms, if no household survey has already been conducted, one would l
 some one thousand home interview surveys, and preferably three thousand, in order to produce a rough
 four-stage model in the study area. The trip data from these interviews will then be combined with that
 from intercept surveys to obtain a more accurate trip pattern in the study area.
+
