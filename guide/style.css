@@ -527,9 +527,6 @@ section ol ol, section ol ul, section ul ol, section ul ul {
     padding-left: 16px;
     text-align: justify;
 }
-section ul {
-	list-style: disc;
-}
 
 /* code */
 
