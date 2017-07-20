@@ -560,14 +560,13 @@ a 200 zone division, very few OD pairs (out of 40,000 possible OD pairs) would c
 zone\]). The generation and distribution models are often the best method for matrix estimation with a
 much smaller sample.
 
-Ortúzar and Willumsen (2011, 80) are quite incisive on this point:
-
-“*The first requirement *\[knowledge about the variables to be estimated for sample size estimation\]*,
+\quotation{The first requirement *\[knowledge about the variables to be estimated for sample size estimation\]*,
 although both obvious and fundamental, has been ignored many times in the past. The majority of household
 O–D surveys have been designed on the basis of vague objectives, such as ‘to reproduce the travel patterns
 in the area’. What is the meaning of this? Is it the elements of the O–D matrix which are required, and
 if this is the case, are they required by purpose mode and time of day, or is it just the flow trends
-between large zones which are of interest?”*
+between large zones which are of interest?}
+{Ortúzar and Willumsen (2011, 80) are quite incisive on this point.}
 
 A good indication that home base OD surveys are being requested without understanding of the basic
 statistical concepts can be found in many government contracts stating that “the sample for each zone
