@@ -144,11 +144,15 @@ header noscript .js-required-banner {
 .item a {
 	color:#333;
 }
-:target:before {
+*[id]:target:before {
 	content:"";
 	display:block;
-	height:48px; /* fixed header height*/
-	margin:-48px 0 0; /* negative fixed header height */
+	padding-top: 48px; /* fixed header height*/
+	margin: -48px 0 0; /* negative fixed header height */
+}
+.box:target {
+	outline: 0;
+	border-bottom: 2px #CCC solid;
 }
 
 /* volume */
@@ -487,7 +491,6 @@ q::after {
 	outline-offset: 15px;
 	margin: 32px 0;
 	color: #666;
-	overflow: auto;
 }
 .box > p {
 	color: #666;
@@ -787,7 +790,6 @@ div.search input {
 		outline-offset: 8px;
 		margin: 32px 0;
 		color: #666;
-		overflow: auto;
 	}
 	.box > p {
 		width: auto;
