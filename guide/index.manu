@@ -64,8 +64,8 @@ Fortunately for cities, the technology for providing high-quality public transpo
 \volume{Operations}
 \include{volume-2-landing-page.manu}
 \include{04-demand-analysis/00-index.manu}
-\include{05-network_development/00-index.manu}
-\include{06-service_planning/00-index.manu}
+\include{05-network-development/00-index.manu}
+\include{06-service-planning/00-index.manu}
 \include{07-system-speed/00-index.manu}
 \include{08-traffic-impact-assessment/00-index.manu}
 
@@ -89,29 +89,29 @@ Fortunately for cities, the technology for providing high-quality public transpo
 
 \volume{Technology}
 \include{volume-5-landing-page.manu}
-\include{18-fare_systems/00-index.manu}
+\include{18-fare-systems/00-index.manu}
 \include{19-technology/00-index.manu}
 \include{20-vehicles/00-index.manu}
 
 
 \volume{Infrastructure}
 \include{volume-6-landing-page.manu}
-\include{21-infrastructure_management_costing/00-index.manu}
+\include{21-infrastructure-management-costing/00-index.manu}
 \include{22-roadway-and-station-configurations/00-index.manu}
 \include{23-roadway-design/00-index.manu}
-\include{24-intersections_and_signal_control/00-index.manu}
+\include{24-intersections-and-signal-control/00-index.manu}
 \include{25-brt-stations/00-index.manu}
 \include{26-depots/00-index.manu}
-\include{27-control_center/00-index.manu}
+\include{27-control-center/00-index.manu}
 
 
 \volume{Integration}
 \include{volume-7-landing-page.manu}
 \include{28-multi-modal-integration/00-index.manu}
 \include{29-pedestrian-access/00-index.manu}
-\include{30-universal_access/00-index.manu}
+\include{30-universal-access/00-index.manu}
 \include{31-bicycle-pedicab-integration/00-index.manu}
-\include{32-transportation_demand_management/00-index.manu}
+\include{32-transportation-demand-management/00-index.manu}
 \include{33-transit-oriented-development/00-index.manu}
 
 

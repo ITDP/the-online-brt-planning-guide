@@ -80,7 +80,7 @@ and recreational trips). The proper segmentation of data can be costly since it 
 collected data and greater detail in the modeling process. However, the benefits of segmentation can
 be a system well-tailored to the needs of the customers.
 
-*Trip Generation*
+\subsubsection{Trip Generation}
 
 When applying this model the *input* is the land use for a given area (zone), which may be expressed,
 for example, as:
@@ -119,7 +119,7 @@ estimates based on traffic and public transport surveys and transportation secto
 The trip generation model is usually is divided into two other models: *production model* and *attraction
 model*.
 
-*Trip Distribution*
+\subsubsection{Trip Distribution}
 
 The next stage in the application of the model is to fill the interior of the matrices, “the borders”
 of which were determined in the previous stage.
@@ -144,7 +144,6 @@ for reaching a stable solution.
 Trips will be distributed with respect to the total cost of travelling from each origin and destination
 zone, in an attempt to be proportional to users’ perception of the cost of travelling between the zones.
 
-
 The perception of cost, including the time to wait and transfer, is discussed in Box 4.2. Those perceptions
 are cultural specific and affects the willingness of a given market segment to travel farther and how
 they travel. This can be calibrated from the survey data, normally home interviews, as they capture trips
@@ -153,18 +152,19 @@ of all possible lengths.
 This procedure is commonly referred to as the “Gravity Model,” with its mathematical expression to
 satisfy the fulfillment of the matrix in the above condition given by trips between $$i$$ and $$j$$ ($$T_{ij}$$):
 
-Eq. 4.1\' TODO Math:
+Eq. 4.1
 
-Tij=Ai*Oi*Bj* Dj*e^(-β*cij)  '\
+$$T_{ij} = A_i \cdot O_i \cdot B_j \cdot D_j \cdot e^{-\beta c_{ij}}$$
 
-Where “*Oi” *and* “Dj” *are total trips generated and attracted to zone* i *and* j *respectively, “*cij*”
-is the cost of travelling between *i *and *j *(generally a combination of time and fares) and “*ß” *is
-a parameter that defines how cost deters travel. The component  is usually called a deterrence function,
+Where $$O_i$$ and $$D_j$$ are total trips generated and attracted to zone $$i$$ and $$j$$ respectively, $$c_{ij}$$
+is the cost of travelling between $$i$$ and $$j$$ (generally a combination of time and fares) and $$\beta$$ is
+a parameter that defines how cost deters travel.
+The component $$e^{-\beta c_{ij}}$$ is usually called a deterrence function,
 as it expresses the way in which distance (costs) prevents longer trips. As shown in the next figure,
 where the Y axis indicates how frequently a given trip would be seen for the travel time given in X:
 the lower the beta calibrated for a given market segment, the less the travel time (or travel generalized
 cost) is affecting the willingness of that market segment to travel farther to do its activity. The other
-two parameters, “*Ai” *and* “Bj” *are required to ensure the final trip matrix matches the total number
+two parameters, $$A_i$$ and $$B_j$$ are required to ensure the final trip matrix matches the total number
 of trips generated and attracted at each zone; these are estimated iteratively.
 
 \figure{assets/image42.png}{How the value of ß affects the deterrent effect of travel costs.}{Luis Willumsen.}
@@ -177,65 +177,43 @@ is shown below:
 
 \highlight{For public transportation:}
 
-Eq. 4.2\' TODO Math:
+Eq. 4.2
 
-CPT = a * IVT + b * WTM + c * WAT + d * TTM + e * NTR + f * FAR '\
+$$C_\text{pub} = a \cdot \text{IVT} + b \cdot \text{WTM} + c \cdot \text{WAT}
+		+ d \cdot \text{TTM} + e \cdot \text{NTR} + f \cdot \text{FAR}$$
 
 Where:
-
-CPT = Costs of using public transport;
-
-a, b, c, d, e, and f = parameters representing the weight attached to each of these elements in the
+\item $$C_\text{pub} =$$ Costs of using public transport;
+\item $$a,b,c,d,e\text{ and }f =$$ parameters representing the weight attached to each of these elements in the
 journey;
+\item $$\text{IVT} =$$ Time in minutes spent on the bus;
+\item $$\text{WTM} =$$ Total waiting time to board the bus;
+\item $$\text{WAT} =$$ Total walking time to and from the bus stop;
+\item $$\text{TTM} =$$ Time spent transferring from one service to another, if any;
+\item $$\text{NTR} =$$ Total number of transfers required for the journey, if any;
+\item $$\text{FAR} =$$ Total fare paid for the whole journey.
 
-IVT = Time in minutes spent on the bus;
-
-WTM = Total waiting time to board the bus;
-
-WAT = Total walking time to and from the bus stop;
-
-TTM = Time spent transferring from one service to another, if any;
-
-NTR = Total number of transfers required for the journey, if any;
-
-FAR = Total fare paid for the whole journey.
-
-The factors* a*,* b*,* c*,* d*,* e*, and *f *are parameters representing the weight attached to each
+The factors $$a,b,c,d,e\text{ and }f$$ are parameters representing the weight attached to each
 of these elements in the journey. This generalized cost can be represented in time or monetary units.
-For example, by dividing the whole formulation by *f*, the generalized cost would be measured in money
-units. It is more advantageous to divide the formulation by *a *and then measure generalized costs in
+For example, by dividing the whole formulation by $$f$$, the generalized cost would be measured in money
+units. It is more advantageous to divide the formulation by $$a$$ and then measure generalized costs in
 (in-vehicle) time units.
 
 Research results agree that walking, waiting, and transfer times are between 1.5 and 3 times more onerous
 than in-bus times, with the precise values depending on cultural and local conditions like the weather.
 Similarly, the need to transfer is perceived by customers as adding a notional three to six minutes to
-their journey. A good starting point is to assume that *b*,* c*,* *and *d* to be twice as big as *a*,
-and that *e/a* is about five minutes.
+their journey. A good starting point is to assume that $$b,c\text{ and }d$$ to be twice as big as $$a$$,
+and that $$e/a$$ is about five minutes.
 
 This provisional formulation could then be written as:
 
-Eq. 4.3\' TODO Math:
+Eq. 4.3
 
-CPT = IVT + 2 WTM + 2 WAT + 2 TTM + 5 NTR + f/α * FAR '\
+$$C_\text{pub} = \text{IVT} + 2\;\text{WTM} + 2\;\text{WAT} + 2\;\text{TTM}
+		+ 5\;\text{NTR} + f/a \cdot \text{FAR}$$
 
-Where:CPT = Costs of public transport;
-
-f/a = Inverse of the value of time savings;
-
-IVT = Time in minutes spent on the bus;
-
-WTM = Total waiting time to board the bus;
-
-WAT = Total walking time to and from the bus stop;
-
-TTM = Time spent transferring from one service to another, if any;
-
-NTR = Total number of transfers required for the journey, if any;
-
-FAR = Total fare paid for the whole journey.
-
-In this case, α is equal to *f/a* and is often interpreted as the inverse of the Value of Time (savings).
-
+Where:
+\item $$f/a =$$ Inverse of the value of time savings.
 
 An initial estimate could be the length of working time required to earn one unit of currency, for
 example how many minutes it takes for the average earner to earn US$1. The average earner in question
@@ -249,60 +227,44 @@ The formulation would be similar for cars (or motorcycles), but in general it wi
 the waiting time is zero, walking is minimal (usually assumed to be zero as well), there will be no transfers,
 and instead of fares one must consider a combination of fuel and parking costs plus any toll payment.
 
-Eq. 4.4\' TODO Math:
+Eq. 4.4
 
-Ccar = IVT + α * FUEL + b* Park + c * TOLL '\
+$$C_\text{car} = \text{IVT} + g \cdot \text{Fuel} + h \cdot \text{Park}
+		+ i \cdot \text{Tool}$$
 
 Where:
-
-Ccar = Costs of using a car;
-
-IVT = Time in minutes spent on the bus;
-
-FUEL = Cost of fuel;
-
-Park = Cost of parking;
-
-a, b, c, d, e, and f = parameters representing the weight attached to each of these elements in the
+\item $$C_\text{car} =$$ Costs of using a car;
+\item $$\text{IVT} =$$ Time in minutes spent on the bus;
+\item $$\text{Fuel} =$$ Cost of fuel;
+\item $$\text{Park} =$$ Cost of parking;
 journey;
-
-TOLL = Cost of tolls.
+\item $$\text{Toll} =$$ Cost of tolls;
+\item $$g, h\text{ and }i =$$ parameters representing the weight attached to each of these elements in the journey.
 
 This implies that car users are only reasonably aware of fuel costs, but ignore maintenance and depreciation
-costs; there is some evidence that this is the case. For parking, the value of *b *is usually assumed
-to be half of *a*,* *implying that the parking costs are shared by the onward and return trips. The coefficient
-*c* for toll should be the same as *a*, except that paying cash for tolls is usually seen as more onerous
-than filling up the tank; nevertheless, the default value would be *c = a*.
+costs; there is some evidence that this is the case. For parking, the value of $$h$$ is usually assumed
+to be half of $$g$$, implying that the parking costs are shared by the onward and return trips. The coefficient
+$$i$$ for toll should be the same as $$g$$, except that paying cash for tolls is usually seen as more onerous
+than filling up the tank; nevertheless, the default value would be $$i = g$$.
 
 Both expressions for generalized cost (public transport and car) ignore the fact that a car is usually
 more comfortable and convenient for many journeys. To accommodate this influence, it is customary to
 add a “penalty” to the less convenient mode, in this case public transport. This penalty is in the range
 of five to fifteen (generalized) minutes and this extends the generalized cost as:
 
-Eq. 4.5\' TODO Math:
+Eq. 4.5
 
-CPT = IVT + 2 WTM + 2 WAT + 2 TTM + 3 NTR + f/α * FAR + PENALTY '\
+$$C_\text{pub} = \text{IVT} + 2\;\text{WTM} + 2\;\text{WAT} + 2\;\text{TTM}
+		+ 5\;\text{NTR} + f/a \cdot \text{FAR} + \text{PENALTY}$$
 
-Where:CPT = Costs of public transport;
+Where:
+\item $$\text{PENALTY} =$$ Cost of public transport being less comfortable and convenient than using a car.
 
-IVT = Time in minutes spent on the bus;
+The revised expression for public transport and the expression for private transport are the versions of generalized costs used in Logit mode choice and Gravity models.
 
-WTM = Total waiting time to board the bus;
-
-WAT = Total walking time to and from the bus stop;
-
-NTR = Total number of transfers required for the journey, if any;
-
-f/a = Inverse of the value of time savings;
-
-FAR = Total fare paid for the whole journey.
-
-PENALTY = Cost of public transport being less comfortable and convenient than using a car.
-
-The last two are the versions of generalized costs used in Logit mode choice and Gravity models.
 \endbox
 
-\highlight{Modal Split}
+\subsubsection{Modal Split}
 
 A complexity not previously mentioned is that costs need to consider private and public transport altogether.
 When new services are added or taken away, people may shift from one mode to another and some may decide
@@ -367,23 +329,24 @@ for multi-class called logit multinomial). The Logit model is a probability dist
 choice, where the outcome is related to the characteristics of the user that makes a choice. A higher-income
 transport user, then, will have a higher probability of choosing a private car for his or her trip than
 a lower income user. This expresses the probability or proportion of trips that would use public transport
-(Pbus) below instead of cars as:\' TODO Math:
+($$P_\text{bus}$$) below instead of cars as:
 
-Pbus=e-λ Cbuse-λ Cbus+ e-λ Ccar=11+e-λ Ccar-Cbus   '\
+$$P_{bus} = \frac{ e^{-\lambda C_\text{bus}} }{ e^{-\lambda C_\text{bus}} + e^{-\lambda C_\text{car}}}
+          = \frac{ 1 }{ 1 + e^{-\lambda \big( C_\text{car} - C_\text{bus} \big)} }$$
 
-Here, the only new element is the parameter "λ." Cbus is the generalized
-cost for public transportation and Ccar is the generalized cost for a car (this would be calculated for
+Here, the only new element is the parameter $$\lambda$$. $$C_\text{bus}$$ is the generalized
+cost for public transportation and $$C_\text{car}$$ is the generalized cost for a car (this would be calculated for
 each OD pair). Figure 4.33 shows the influence of this parameter in making choices very dependent on
 (generalized) cost or less so:
 
-\figure[medium]{assets/image44.png}{The influence of λ on mode choice proportions.}{Luis Willumsen.}
+\figure[medium]{assets/image44.png}{The influence of $$\lambda$$ on mode choice proportions.}{Luis Willumsen.}
 
-As can be seen, a high value for λ (0.25) produces a very sharp mode shift for a small difference in
+As can be seen, a high value for $$\lambda$$ (0.25) produces a very sharp mode shift for a small difference in
 costs; a small value (0.02) produces a gentler transition between modes. Both predict a 50/50 split when
 the car and bus costs are equal. The value of this parameter must be estimated locally to represent not
 only local behavior but also the size and nature of zones and networks.
 
-*Assignment*
+\subsubsection{Assignment}
 
 The previous stages in the modeling process focused primarily on the demand side of public transport
 services or generating OD matrices. The “assignment” stage is where the supply of public transport services
@@ -434,13 +397,13 @@ of an issue for design purposes. In any case, congested public transport assignm
 good use of a suitable software platform; it should not be attempted without at least a minimum of assisted
 experience.
 
-*Calibration *
+\subsubsection{Calibration}
 
 Calibration is the process of, after choosing the (sub) model (i.e., defining how input and output
 mathematically relate), quantifying (adjust) the parameters that better explain what is observed from
 the surveys. Calibration is an activity that happens with the development of the model itself. For example,
-in the models discussed in the previous section, calibration is finding the βs that promote the best
-fit in the distribution model for each “market segment” or the best λs in the mode selection model.
+in the models discussed in the previous section, calibration is finding such values of $$\beta$$s that promote the best
+fit in the distribution model for each “market segment” or the best $$\lambda$$s in the mode selection model.
 
 Usually, when modelers say they are “calibrating the model” they are, in fact, adding detail to the
 public transport network (eventually calibrating parameters or creating sub-models to generate congestion),
@@ -448,7 +411,7 @@ so that when they run the full model with present conditions, resulting flows re
 the ground (traffic counts and occupancy surveys at that moment of the day). When they calibrate the
 matrix models, they usually say they are “making the models.”
 
-*Validation*
+\subsubsection{Validation}
 
 Models are developed to represent the reality, based on the isolated observation of several parts in
 the travel decision-making process. Each simplification is related to an assumption (i.e., everyone in
@@ -486,7 +449,7 @@ a procedure, although useful to validate other models for the present, completel
 of the classic four-stage model and severely limits the validity of the generation, distribution, and
 mode selection models.
 
-*Conversion of Demand into Revenue*
+\subsubsection{Conversion of Demand into Revenue}
 
 The levels of demand estimated by the models will have to be converted via fares into revenues for
 the system. This financial modeling will require consideration of the proposed fare system (see Chapter
@@ -497,7 +460,7 @@ the demand model exercise is needed to understand what the fare should be (see C
 Modeling). Once the fare is set, though, the demand model should be tested with that determined cost
 to see how it affects the demand.
 
-*Evaluation*
+\subsubsection{Evaluation}
 
 The previous modeling stages have combined supply and demand factors to develop an overall simulation
 of a city’s public transport services. The final stage of the process is to evaluate the robustness of
@@ -510,7 +473,7 @@ identifiable solution for the problem (reducing travel time). If several scenari
 then the proposed solution is considered to be sufficiently robust. The lack of a convergence may imply
 that changes in the model structure are necessary before proceeding.
 
-\highlight{Assessment of the Feasibility of the System}
+\subsubsection{Assessment of the Feasibility of the System}
 
 Once some sort of public transport or full transport model has been developed, and a clear scenario
 for the BRT system has been defined, it should be possible to make a preliminary assessment of the feasibility
@@ -597,14 +560,13 @@ a 200 zone division, very few OD pairs (out of 40,000 possible OD pairs) would c
 zone\]). The generation and distribution models are often the best method for matrix estimation with a
 much smaller sample.
 
-Ortúzar and Willumsen (2011, 80) are quite incisive on this point:
-
-“*The first requirement *\[knowledge about the variables to be estimated for sample size estimation\]*,
+\quotation{The first requirement *\[knowledge about the variables to be estimated for sample size estimation\]*,
 although both obvious and fundamental, has been ignored many times in the past. The majority of household
 O–D surveys have been designed on the basis of vague objectives, such as ‘to reproduce the travel patterns
 in the area’. What is the meaning of this? Is it the elements of the O–D matrix which are required, and
 if this is the case, are they required by purpose mode and time of day, or is it just the flow trends
-between large zones which are of interest?”*
+between large zones which are of interest?}
+{Ortúzar and Willumsen (2011, 80) are quite incisive on this point.}
 
 A good indication that home base OD surveys are being requested without understanding of the basic
 statistical concepts can be found in many government contracts stating that “the sample for each zone
@@ -615,3 +577,4 @@ In general terms, if no household survey has already been conducted, one would l
 some one thousand home interview surveys, and preferably three thousand, in order to produce a rough
 four-stage model in the study area. The trip data from these interviews will then be combined with that
 from intercept surveys to obtain a more accurate trip pattern in the study area.
+
