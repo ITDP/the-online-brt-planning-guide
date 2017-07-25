@@ -152,7 +152,7 @@ header noscript .js-required-banner {
 }
 .box:target {
 	outline: 0;
-	border-bottom: 2px #CCC solid;
+	box-shadow: -15px 15px #FFF, -17px 17px #CCC;
 }
 
 /* volume */
@@ -248,7 +248,7 @@ nav {
 	font-size: 14px;
 	line-height: 18px;
 	float: left;
-	padding: 37px 0 16px;
+	padding: 35px 0 16px;
 	top: 33px;
 	bottom: 96px;
 	width: 256px;
@@ -264,6 +264,10 @@ nav ul, nav li, #toc-loading {
 	list-style: none;
 	font-size: 14px;
 	color: #999;
+}
+nav li {
+	line-height: 14px;
+	margin: 4px 0;
 }
 nav a {
 	color: #333;
@@ -703,7 +707,7 @@ div.search input {
 	.sm, .md, .lg {
 		width: 100%;
 	}
-	section > ul,ol {
+	section > ul, section > ol {
 		width: auto;
 	}
 	blockquote {
@@ -858,6 +862,19 @@ div.search input {
 
 	div.search {
 		display: none;
+	}
+
+	/* target */
+
+	*[id]:target:before {
+		content:"";
+		display:block;
+		padding-top: 32px;
+		margin: -32px 0 0;
+	}
+	.box:target {
+		outline: 0;
+		box-shadow: -7px 7px #FFF, -9px 9px #CCC;
 	}
 
 }
