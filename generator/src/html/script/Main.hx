@@ -145,7 +145,6 @@ class Main {
 		if (t.length == 0 || ((untyped document.getSelection().toString()):String) != "")
 			return;
 
-		window.location.hash = id;
 			var id = "";
 
 			if ( t.is("figcaption") ) {
@@ -158,6 +157,7 @@ class Main {
 				id = t.attr("id");
 			}
 
+		window.location.hash = id;
 
 		e.preventDefault();
 		e.stopPropagation();
