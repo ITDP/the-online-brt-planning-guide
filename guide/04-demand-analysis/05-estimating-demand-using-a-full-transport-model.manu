@@ -230,7 +230,7 @@ and instead of fares one must consider a combination of fuel and parking costs p
 Eq. 4.4
 
 $$C_\text{car} = \text{IVT} + g \cdot \text{Fuel} + h \cdot \text{Park}
-		+ i \cdot \text{Tool}$$
+		+ i \cdot \text{Toll}$$
 
 Where:
 \item $$C_\text{car} =$$ Costs of using a car;
