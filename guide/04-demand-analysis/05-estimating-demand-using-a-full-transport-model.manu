@@ -150,9 +150,7 @@ they travel. This can be calibrated from the survey data, normally home intervie
 of all possible lengths.
 
 This procedure is commonly referred to as the “Gravity Model,” with its mathematical expression to
-satisfy the fulfillment of the matrix in the above condition given by trips between $$i$$ and $$j$$ ($$T_{ij}$$):
-
-Eq. 4.1
+satisfy the fulfillment of the matrix in the above condition given by trips ($$T_{ij}$$) between $$i$$ and $$j$$ (eq. 4.1):
 
 $$T_{ij} = A_i \cdot O_i \cdot B_j \cdot D_j \cdot e^{-\beta c_{ij}}$$
 
