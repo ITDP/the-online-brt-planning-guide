@@ -177,7 +177,7 @@ is shown below:
 
 \highlight{For public transportation:}
 
-Eq. 4.2
+Equation 4.2:
 
 $$C_\text{pub} = a \cdot \text{IVT} + b \cdot \text{WTM} + c \cdot \text{WAT}
 		+ d \cdot \text{TTM} + e \cdot \text{NTR} + f \cdot \text{FAR}$$
@@ -205,9 +205,7 @@ Similarly, the need to transfer is perceived by customers as adding a notional t
 their journey. A good starting point is to assume that $$b,c\text{ and }d$$ to be twice as big as $$a$$,
 and that $$e/a$$ is about five minutes.
 
-This provisional formulation could then be written as:
-
-Eq. 4.3
+This provisional formulation could then be written as (eq. 4.3):
 
 $$C_\text{pub} = \text{IVT} + 2\;\text{WTM} + 2\;\text{WAT} + 2\;\text{TTM}
 		+ 5\;\text{NTR} + f/a \cdot \text{FAR}$$
@@ -225,9 +223,7 @@ costs in this case would be measures in generalized in-bus minutes.
 
 The formulation would be similar for cars (or motorcycles), but in general it will be assumed that
 the waiting time is zero, walking is minimal (usually assumed to be zero as well), there will be no transfers,
-and instead of fares one must consider a combination of fuel and parking costs plus any toll payment.
-
-Eq. 4.4
+and instead of fares one must consider a combination of fuel and parking costs plus any toll payment (eq. 4.4).
 
 $$C_\text{car} = \text{IVT} + g \cdot \text{Fuel} + h \cdot \text{Park}
 		+ i \cdot \text{Toll}$$
@@ -250,9 +246,7 @@ than filling up the tank; nevertheless, the default value would be $$i = g$$.
 Both expressions for generalized cost (public transport and car) ignore the fact that a car is usually
 more comfortable and convenient for many journeys. To accommodate this influence, it is customary to
 add a “penalty” to the less convenient mode, in this case public transport. This penalty is in the range
-of five to fifteen (generalized) minutes and this extends the generalized cost as:
-
-Eq. 4.5
+of five to fifteen (generalized) minutes and this extends the generalized cost as (eq. 4.5):
 
 $$C_\text{pub} = \text{IVT} + 2\;\text{WTM} + 2\;\text{WAT} + 2\;\text{TTM}
 		+ 5\;\text{NTR} + f/a \cdot \text{FAR} + \text{PENALTY}$$
