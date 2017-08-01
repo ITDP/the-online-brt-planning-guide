@@ -319,7 +319,7 @@ class Generator {
 			var id = idc.join(false, "/", subSection, subSubSection);
 			var html = '
 				<section>
-				<h3 id="$id" class="volume${noc.volume} share">$lno$QUAD${genh(name)}</h3>
+				<h3 id="$id" class="volume${noc.volume} share">${genh(name)}</h3>
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim() + "\n";
