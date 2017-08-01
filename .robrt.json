@@ -63,7 +63,7 @@
 
 			"cd $ROBRT_REPOSITORY_DIR",
 			"mkdir -p $ROBRT_OUTPUT_DIR/search",
-			"cp server/search/search $ROBRT_OUTPUT_DIR/search/index.html",
+			"cp -r server/search $ROBRT_OUTPUT_DIR/search",
 
 			"cd $ROBRT_REPOSITORY_DIR",
 			"ls -l .generated/pdf/fonts",
