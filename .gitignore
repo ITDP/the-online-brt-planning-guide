@@ -15,4 +15,5 @@ server/cover/bin/
 server/cover/ready/html/
 
 !generator/bin/manu
+!server/search/*.html
 
