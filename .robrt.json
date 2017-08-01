@@ -62,7 +62,6 @@
 			"cp -r server/cover/ready/html $ROBRT_OUTPUT_DIR/cover",
 
 			"cd $ROBRT_REPOSITORY_DIR",
-			"mkdir -p $ROBRT_OUTPUT_DIR/search",
 			"cp -r server/search $ROBRT_OUTPUT_DIR/search",
 
 			"cd $ROBRT_REPOSITORY_DIR",
