@@ -152,7 +152,7 @@ header noscript .js-required-banner {
 }
 .box:target {
 	outline: 0;
-	box-shadow: -15px 15px #FFF, -17px 17px #CCC;
+	box-shadow: -15px 15px #FFF, -17px 17px #CCC, 15px 15px #FFF, 17px 17px #CCC;
 }
 
 /* volume */
@@ -874,7 +874,7 @@ div.search input {
 	}
 	.box:target {
 		outline: 0;
-		box-shadow: -7px 7px #FFF, -9px 9px #CCC;
+		box-shadow: -7px 7px #FFF, -9px 9px #CCC, 7px 7px #FFF, 9px 9px #CCC;
 	}
 
 }
