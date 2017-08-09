@@ -500,7 +500,7 @@ class Generator {
 				${DateTools.format(Date.fromTime(Main.version.commit_timestamp*1000), "%b %d %Y")} | <a href="https://github.com/ITDP/the-online-brt-planning-guide/commit/${Main.version.fullCommit}">#${Main.version.commit}</a>
 			${(Context.branch != null && Context.branch.length > 0 && Context.gh_user != null && Context.branch != "master") ?
 				'<br><a href="https://github.com/${Context.gh_user}/the-online-brt-planning-guide/tree/${Context.branch}">${Context.gh_user}:${Context.branch}</a>' : ''}
-			${(Context.pullRequest != null && Context.pullRequest.length > 0) ?
+			${(Context.pullRequest != null && Context.pullRequest.length > 0 && Std.parseInt(Context.pullRequest) != null) ?
 				'| <a href="https://github.com/ITDP/the-online-brt-planning-guide/pull/${Context.pullRequest}">#${Context.pullRequest}</a>' : ""}
 			</li>
 		'.doctrim());
