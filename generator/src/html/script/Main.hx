@@ -145,7 +145,18 @@ class Main {
 		if (t.length == 0 || ((untyped document.getSelection().toString()):String) != "")
 			return;
 
-		var id = ( t.is("figcaption") ? t.parent("figure") : t ).attr("id");
+			var id = "";
+
+			if ( t.is("figcaption") ) {
+				id = t.parent("figure").attr("id");
+			}
+			else if ( t.is(".box h3") ) {
+				id = t.parent(".box").attr("id");
+			}
+			else {
+				id = t.attr("id");
+			}
+
 		window.location.hash = id;
 
 		e.preventDefault();

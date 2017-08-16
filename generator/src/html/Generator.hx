@@ -339,8 +339,8 @@ class Generator {
 			autoSize(v);
 			var size = sizeToClass(sz);
 			return '
-				<section class="box $size">
-				<h3 id="$id" class="volume${noc.volume} share">Box $no <em>${genh(name)}</em></h3>
+			<section class="box $size" id="$id">
+			<h3 class="volume${noc.volume} share">Box $no <em>${genh(name)}</em></h3>
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim() + "\n";
