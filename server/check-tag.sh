@@ -19,7 +19,7 @@ function compare_versions()
 	return 0	
 }
 
-if [[ $IS_PR -eq 1 ]] 
+if [[ $IS_PR -eq 0 ]] 
 	then for t in $(git tag --list 'v*.*') 
 	do 
 	if [[ "$t" =~ ^[v\d+\.\d+]  ]]
