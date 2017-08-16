@@ -52,6 +52,8 @@
 			"cp -r .generated/html $ROBRT_OUTPUT_DIR/guide",
 			"unset DEBUG",
 
+			"tags='$(git tag)' max='' if [[ $IS_PR -eq 1 ]] then for t in $tags; do if [[ '$t' =~ ^[v\\d\\.\\d] && '$max' < '$t' ]] then max=$t; fi done fi export TAG=$max",
+
 			"cd $ROBRT_REPOSITORY_DIR/server/cover",
 			"hmm install",
 			"haxelib list",

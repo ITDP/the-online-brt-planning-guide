@@ -502,6 +502,8 @@ class Generator {
 				'<br><a href="https://github.com/${Context.gh_user}/the-online-brt-planning-guide/tree/${Context.branch}">${Context.gh_user}:${Context.branch}</a>' : ''}
 			${(Context.pullRequest != null && Context.pullRequest.length > 0 && Std.parseInt(Context.pullRequest) != null) ?
 				'| <a href="https://github.com/ITDP/the-online-brt-planning-guide/pull/${Context.pullRequest}">#${Context.pullRequest}</a>' : ""}
+			${(Context.tag != null && Context.tag.length > 0) ? 
+				'| <a>${Context.tag}</a>' : ""}
 			</li>
 		'.doctrim());
 		toc.add("\n</ul></div>");

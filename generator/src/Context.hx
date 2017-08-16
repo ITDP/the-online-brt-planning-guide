@@ -10,6 +10,7 @@ class Context {
 	public static var googleAnalyticsId = env["GL_ANALYTICS_UA_ID"];
 	public static var assetUrlPrefix = env["ASSET_URL_PREFIX"];
 	public static var assetServer = env["ASSET_SERVER"];
+	public static var tag = env["TAG"];
 
 	//public static var gh_user = env["GH_USER"];
 	public static var pullRequest = env["PULL_REQUEST"];
