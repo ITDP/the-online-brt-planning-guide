@@ -52,7 +52,7 @@
 			"cp -r .generated/html $ROBRT_OUTPUT_DIR/guide",
 			"unset DEBUG",
 
-			"max='' ; if [[ $IS_PR -eq 0 ]] ; then for t in $(git tag --list 'v*.*') ; do if [[ '$t' =~ ^[v\\d+\\.\\d+]  ]] && [[ '$max' < '$t' ]] ; then max=$t ; fi ; done ; fi ; export TAG=$max",
+			"server/check-tag.sh",
 
 			"cd $ROBRT_REPOSITORY_DIR/server/cover",
 			"hmm install",
