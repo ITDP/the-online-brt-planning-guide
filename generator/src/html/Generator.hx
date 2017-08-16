@@ -56,6 +56,7 @@ class Generator {
 	var srcCache:Map<String,Int>;
 	var lastSrcId:Int;
 	var toc:StringBuf;
+	var sitemap : StringBuf;
 
 	function gent(text:String)
 		return text.htmlEscape();
@@ -160,6 +161,10 @@ class Generator {
 	@:template function renderHead(title:String, base:String, relPath:String);
 	@:template function renderBreadcrumbs(bcs:Breadcrumbs, relPath:String);  // FIXME
 
+	//Priority is a float between 0 and 1; hostname should be get by an env var (todo :Add env var in robrt)
+	//relpath is the generated content path
+	@:template function renderSiteMap(priority : Float, relPath : String);
+
 	var reserved = new StringBuf();
 
 	function urlToPath(url:String)
@@ -250,6 +255,7 @@ class Generator {
 			var url = Path.join(["volume", idc.volume]);
 			bcs.volume = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = 'Volume $no: ${genn(name)}';
+			sitemap.add(renderSiteMap(0.9, url));
 			var buf = openBuffer(title, bcs, url);
 			toc.add('<li class="volume">\n${renderToc(no, "Volume " + no, new Html(genh(name)), url)}\n<ul>\n');
 			buf.add('
@@ -267,6 +273,7 @@ class Generator {
 			var url = Path.addTrailingSlash(idc.chapter);
 			bcs.chapter = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = 'Chapter $no: ${genn(name)}';
+			sitemap.add(renderSiteMap(0.8, url));
 			var buf = openBuffer(title, bcs, url);
 			toc.add('<li class="chapter">${renderToc(null, "Chapter " + noc.chapter, new Html(genh(name)), url)}<ul>\n');
 			buf.add('
@@ -286,6 +293,7 @@ class Generator {
 			var url = Path.join([idc.chapter, idc.section]);
 			bcs.section = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = '$lno ${genn(name)}';  // TODO chapter name
+			sitemap.add(renderSiteMap(0.7, url));
 			var buf = openBuffer(title, bcs, url);
 			toc.add('<li class="section">${renderToc(null, lno, new Html(genh(name)), url)}<ul>\n');
 			buf.add('
@@ -467,6 +475,16 @@ class Generator {
 		reserveBuffer(ROOT_URL);  // temporary due to ordering constraints
 		reserveBuffer(TOC_URL);  // temporary due to ordering constraints
 
+		
+		sitemap = new StringBuf();
+		sitemap.add('
+		<?xml version="1.0" encoding="UTF-8"?>
+			<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'.doctrim());
+		//index
+		sitemap.add(renderSiteMap(1.0, ""));
+		//Table of contents
+		sitemap.add(renderSiteMap(1.0, TOC_URL));
+
 		// `toc.add` and `genv` ordering is relevant
 		// it's necessary to process all `\html\head` before actually opening buffers and writing heads
 		toc = new StringBuf();
@@ -512,6 +530,11 @@ class Generator {
 
 		var script = saveAsset("manu.js", haxe.Resource.getBytes("html.js"));
 		var srcMapPath = saveAsset("src.haxedata", Bytes.ofString(s.toString()));
+
+		sitemap.add('</urlset>');
+		
+		File.saveContent(Path.addTrailingSlash(destDir) + "sitemap.xml", sitemap.toString());
+		//saveAsset("sitemap.txt", Bytes.ofString(sitemap.toString()));
 
 		for (p in bufs.keys()) {
 			var b = bufs[p];

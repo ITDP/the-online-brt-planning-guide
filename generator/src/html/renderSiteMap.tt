@@ -1,0 +1,11 @@
+(: if priority < 0 || priority > 1 :)
+    (: do throw "Invalid Priority: Please use a value between 0 and 1" :)
+(:end:)
+(: if Sys.getEnv('HOSTNAME') == null || Sys.getEnv('HOSTNAME') == '' :)
+    (: do throw "No hostname env var detected! Please set it before running this program" :)
+(:end:)
+
+<url>
+    <loc>(:Sys.getEnv('HOSTNAME'):)(:relPath:)</loc>
+    <priority>(:priority:)</priority>
+</url>
