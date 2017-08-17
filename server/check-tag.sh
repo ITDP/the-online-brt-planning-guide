@@ -19,7 +19,8 @@ function compare_versions()
 	return 0	
 }
 
-if [[ $IsPullRequest -eq "0" ]] 
+#null string or 0
+if [[ ${#ROBRT_IS_PR} -eq 0 ]] || [[ $ROBRT_IS_PR -eq 0 ]]
 	then for t in $(git tag --list 'v*.*') 
 	do 
 	if [[ "$t" =~ ^[v\d+\.\d+]  ]]
@@ -28,5 +29,9 @@ if [[ $IsPullRequest -eq "0" ]]
 	done
 fi
 
-export TAG=v$major.$minor
-echo $TAG
+if [[ major -gt 0 ]] || [[ minor -gt 0 ]]
+	then TAG=v$major.$minor
+else
+	TAG=""
+fi
+export TAG=$TAG

@@ -41,6 +41,8 @@
 			"export DEBUG=1",
 			"export TEX_NO_POSITIONS=1",
 			"favicon=grey",
+			"source server/check-tag.sh",
+
 			"if [ \"${FORCE_GREY_FAVICON}\" -eq 1 ]; then echo Skipped; elif [ \"${ROBRT_IS_PR}\" -eq 1 ]; then favicon=red; elif [ \"${ROBRT_HEAD}\" = master ]; then favicon=green; fi",
 			"cp guide/{itdp_$favicon,favicon}.ico",
 			"manu generate guide/index.manu .generated",
@@ -51,8 +53,6 @@
 			"if [ -z ${ASSET_URL_PREFIX+x} ]; then echo Skipped; else rm -rf .generated/html/assets; fi",
 			"cp -r .generated/html $ROBRT_OUTPUT_DIR/guide",
 			"unset DEBUG",
-
-			"source server/check-tag.sh",
 
 			"cd $ROBRT_REPOSITORY_DIR/server/cover",
 			"hmm install",
