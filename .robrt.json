@@ -52,7 +52,7 @@
 			"cp -r .generated/html $ROBRT_OUTPUT_DIR/guide",
 			"unset DEBUG",
 
-			"server/check-tag.sh",
+			"source server/check-tag.sh",
 
 			"cd $ROBRT_REPOSITORY_DIR/server/cover",
 			"hmm install",
