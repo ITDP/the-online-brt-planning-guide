@@ -39,11 +39,6 @@
       "url": "https://github.com/jonasmalacofilho/sys-utils.hx"
     },
     {
-      "name": "tink_template",
-      "type": "haxelib",
-      "version": null
-    },
-    {
       "name": "utest",
       "type": "git",
       "dir": null,

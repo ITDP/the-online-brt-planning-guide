@@ -5,7 +5,6 @@ import haxe.io.Path;
 import html.script.Const;
 import sys.FileSystem;
 import sys.io.File;
-import tink.template.Html;
 import transform.Context;
 import transform.NewDocument;
 
@@ -16,18 +15,6 @@ using Literals;
 using StringTools;
 using PositionTools;
 using transform.DocumentTools;
-
-typedef BreadcrumbItem = {
-	no:Int,
-	name:Html,
-	url:String
-}
-
-typedef Breadcrumbs = {
-	?volume:BreadcrumbItem,
-	?chapter:BreadcrumbItem,
-	?section:BreadcrumbItem
-}
 
 /*
 Generate a static website
@@ -43,7 +30,6 @@ Assumes that the server will:
 @:hasTemplates
 class Generator {
 	static inline var ASSET_SUBDIR = "assets";
-	@:template static var FILE_BANNER;
 	static inline var ROOT_URL = "./";
 	static inline var TOC_URL = "table-of-contents";
 
@@ -71,33 +57,31 @@ class Generator {
 	function exportPos(pos:Position)
 		return [saveSource(pos.src), pos.min, pos.max].join(":");
 
-	@:template function genp(pos:Position);
-
 	function genh(h:HElem)
 	{
 		switch h.def {
 		case Wordspace:
 			return " ";
 		case Superscript(h):
-			return '<sup${genp(h.pos)}>${genh(h)}</sup>';
+			return '<sup${Render.posAttr(h.pos)}>${genh(h)}</sup>';
 		case Subscript(h):
-			return '<sub${genp(h.pos)}>${genh(h)}</sub>';
+			return '<sub${Render.posAttr(h.pos)}>${genh(h)}</sub>';
 		case Emphasis(h):
-			return '<em${genp(h.pos)}>${genh(h)}</em>';
+			return '<em${Render.posAttr(h.pos)}>${genh(h)}</em>';
 		case Highlight(h):
-			return '<strong${genp(h.pos)}>${genh(h)}</strong>';
+			return '<strong${Render.posAttr(h.pos)}>${genh(h)}</strong>';
 		case Word(word):
 			return gent(word);
 		case InlineCode(code):
-			return '<code${genp(h.pos)}>${gent(code)}</code>';
+			return '<code${Render.posAttr(h.pos)}>${gent(code)}</code>';
 		case Math(tex):
-			return '<span class="mathjax"${genp(h.pos)}>\\(${gent(tex)}\\)</span>';
+			return '<span class="mathjax"${Render.posAttr(h.pos)}>\\(${gent(tex)}\\)</span>';
 		case Url(address):
 			return '<a class="url" href="${gent(address)}">${gent(address)}</a>';
 		case HElemList(li):
 			var buf = new StringBuf();
 			if (godOn)
-				buf.add('<span${genp(h.pos)}>');
+				buf.add('<span${Render.posAttr(h.pos)}>');
 			for (i in li)
 				buf.add(genh(i));
 			if (godOn)
@@ -157,9 +141,6 @@ class Generator {
 	function saveAsset(src, ?content)
 		return Context.time("html generation (saveAsset)", _saveAsset.bind(src, content));
 
-	@:template function renderHead(title:String, base:String, relPath:String);
-	@:template function renderBreadcrumbs(bcs:Breadcrumbs, relPath:String);  // FIXME
-
 	var reserved = new StringBuf();
 
 	function urlToPath(url:String)
@@ -192,11 +173,13 @@ class Generator {
 		// TODO get jquery and mathjax with \html\run
 		var buf = new StringBuf();
 		buf.add("<!DOCTYPE html>");
-		buf.add(FILE_BANNER);
+		var v = Main.version;
+		buf.add(Render.fileBanner({ commit:v.commit, haxe:v.haxe, runtime:v.runtime, platform:v.platform },
+				{ art:Main.LOGO, text:Main.LOGO_TEXT }));
 		buf.add("<html>\n");
-		buf.add(renderHead(title, computedBase, url));
+		buf.add(Render.head(title, computedBase, url, customHead));
 		buf.add("<body>\n");
-		buf.add(renderBreadcrumbs(bcs, url));  // FIXME
+		buf.add(Render.breadcrumbs(bcs, ROOT_URL, url));
 		buf.add('<div class="container">\n');
 		buf.add('<nav id="action:navigate"><span id="toc-loading">Loading the table of contents...</span></nav>\n');
 		buf.add('<div class="search"><input type="text" placeholder="Search..." name="search" id="input-search"></div>\n');
@@ -251,7 +234,7 @@ class Generator {
 			bcs.volume = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = 'Volume $no: ${genn(name)}';
 			var buf = openBuffer(title, bcs, url);
-			toc.add('<li class="volume">\n${renderToc(no, "Volume " + no, new Html(genh(name)), url)}\n<ul>\n');
+			toc.add('<li class="volume">\n${Render.tocItem(no, "Volume " + no, new Html(genh(name)), url)}\n<ul>\n');
 			buf.add('
 				<section>
 				<div class="volumehead v${noc.volume}"><h1 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h1></div>
@@ -268,7 +251,7 @@ class Generator {
 			bcs.chapter = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = 'Chapter $no: ${genn(name)}';
 			var buf = openBuffer(title, bcs, url);
-			toc.add('<li class="chapter">${renderToc(null, "Chapter " + noc.chapter, new Html(genh(name)), url)}<ul>\n');
+			toc.add('<li class="chapter">${Render.tocItem(null, "Chapter " + noc.chapter, new Html(genh(name)), url)}<ul>\n');
 			buf.add('
 				<section>
 				<h1 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h1>
@@ -287,7 +270,7 @@ class Generator {
 			bcs.section = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
 			var title = '$lno ${genn(name)}';  // TODO chapter name
 			var buf = openBuffer(title, bcs, url);
-			toc.add('<li class="section">${renderToc(null, lno, new Html(genh(name)), url)}<ul>\n');
+			toc.add('<li class="section">${Render.tocItem(null, lno, new Html(genh(name)), url)}<ul>\n');
 			buf.add('
 				<section>
 				<h1 id="heading" class="volume${noc.volume}">$lno$QUAD${genh(name)}</h1>
@@ -303,7 +286,7 @@ class Generator {
 			noc.subSection = no;
 			var lno = noc.join(false, ".", chapter, section, subSection);
 			var id = idc.join(false, "/", subSection);
-			toc.add('<li>${renderToc(null, lno, new Html(genh(name)), bcs.section.url+"#"+id)}<ul>\n');
+			toc.add('<li>${Render.tocItem(null, lno, new Html(genh(name)), bcs.section.url+"#"+id)}<ul>\n');
 			var html = '
 				<section>
 				<h2 id="$id" class="volume${noc.volume} share">$lno$QUAD${genh(name)}</h2>
@@ -323,7 +306,7 @@ class Generator {
 				${genv(children, idc, noc, bcs)}
 				</section>
 			'.doctrim() + "\n";
-			toc.add('<li>${renderToc(null, lno, new Html(genh(name)), bcs.section.url+"#"+id)}</li>');
+			toc.add('<li>${Render.tocItem(null, lno, new Html(genh(name)), bcs.section.url+"#"+id)}</li>');
 			return html;
 		case DBox(no, name, children):
 			idc.box = v.id.sure();
@@ -428,9 +411,9 @@ class Generator {
 		case DQuotation(text, by):
 			return '<blockquote class="md"><q>${genh(text)}</q><span class="by">${genh(by)}</span></blockquote>\n';
 		case DParagraph({pos:p, def:Math(tex)}):
-			return '<p${genp(v.pos)}><span class="mathjax equation"${genp(p)}>\\[${gent(tex)}\\]</span></p>\n';
+			return '<p${Render.posAttr(v.pos)}><span class="mathjax equation"${Render.posAttr(p)}>\\[${gent(tex)}\\]</span></p>\n';
 		case DParagraph(h):
-			return '<p${genp(v.pos)}>${genh(h)}</p>\n';
+			return '<p${Render.posAttr(v.pos)}>${genh(h)}</p>\n';
 		case DElemList(li):
 			var buf = new StringBuf();
 			for (i in li)
@@ -440,8 +423,6 @@ class Generator {
 			return "";
 		}
 	}
-
-	@:template function renderToc(vno:Null<Int>, lno:String, name:Html, url:String);
 
 	// save data as jsonp
 	function saveData(global:String, data:Dynamic)
@@ -472,7 +453,7 @@ class Generator {
 		toc = new StringBuf();
 		toc.add(
 				'<div id="toc" class="tocfull">
-					<ul><li class="index">${renderToc(null, null, "BRT Planning Guide", ROOT_URL)}</li>
+					<ul><li class="index">${Render.tocItem(null, null, "BRT Planning Guide", ROOT_URL)}</li>
 				'.doctrim());
 		var contents = genv(doc, new IdCtx(), new NoCtx(), {});
 

@@ -4,10 +4,7 @@
 -lib literals
 -lib sys-utils
 -lib version
--lib tink_template
 -lib utest
 -lib hxnodejs
 -lib ansi
--D tink_template_pos=off
--D tink_template_filter_classes
 
