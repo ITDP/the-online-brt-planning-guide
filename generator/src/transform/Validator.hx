@@ -37,7 +37,7 @@ using StringTools;
 class Validator {
 	var errors:Array<ValidationError> = [];
 	var wait = 0;
-	var final = false;
+	var asyncDone = false;
 	var cback:Null<Array<ValidationError>>->Void;
 
 	function push(e:Null<ValidationError>)
@@ -48,7 +48,7 @@ class Validator {
 
 	function tick()
 	{
-		if (final && wait == 0)
+		if (asyncDone && wait == 0)
 			cback(errors.length > 0 ? errors : null);
 	}
 
@@ -243,7 +243,7 @@ class Validator {
 
 	function complete()
 	{
-		final = true;
+		asyncDone = true;
 		tick();
 	}
 
@@ -262,7 +262,6 @@ class Validator {
 	{
 		var d = new Validator(cback);
 		Context.time("validation (sync)", d.diter.bind(doc));
-		d.final = true;
 		d.complete();
 	}
 }
