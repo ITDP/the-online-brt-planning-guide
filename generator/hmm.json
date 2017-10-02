@@ -14,10 +14,8 @@
     },
     {
       "name": "hxnodejs",
-      "type": "git",
-      "dir": null,
-      "ref": "master",
-      "url": "https://github.com/HaxeFoundation/hxnodejs"
+      "type": "haxelib",
+      "version": null
     },
     {
       "name": "hxparse",
