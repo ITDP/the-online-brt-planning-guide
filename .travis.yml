@@ -1,5 +1,8 @@
 language: generic
 
+git:
+  lfs_skip_smudge: true
+
 script:
   - ./server/enforce_lfs.sh
 
