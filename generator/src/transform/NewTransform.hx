@@ -32,7 +32,7 @@ class NewTransform {
 			h = mk(Emphasis(htrim(i, ctx)), h.pos);
 		case Highlight(i):
 			h = mk(Highlight(htrim(i, ctx)), h.pos);
-		case Word(_), InlineCode(_), Math(_), Url(_):
+		case Word(_), InlineCode(_), Math(_), Url(_), Ref(_), RangeRef(_):
 			ctx.prevSpace = false;
 		case HElemList(li):
 			if (ctx.reverse) {
@@ -55,7 +55,7 @@ class NewTransform {
 	static function hclean(h:HElem)
 	{
 		var def = switch h.def {
-		case Wordspace, Word(_), InlineCode(_), Math(_), Url(_), HEmpty:
+		case Wordspace, Word(_), InlineCode(_), Math(_), Url(_), Ref(_), RangeRef(_), HEmpty:
 			h.def;
 		case Superscript(i):
 			i = hclean(i);
@@ -105,8 +105,12 @@ class NewTransform {
 			buf.add("-");
 		case Superscript(i), Subscript(i), Emphasis(i), Highlight(i):
 			buf.add(genId(i));
-		case Word(cte), InlineCode(cte), Math(cte), Url(cte):
+		case Word(cte), InlineCode(cte), Math(cte), Url(cte), Ref(_, _.def => cte):
 			buf.add(~/[^a-z0-9\-]/ig.replace(cte, "").toLowerCase());
+		case RangeRef(_, _.def => cte1, _.def => cte2):
+			buf.add(~/[^a-z0-9\-]/ig.replace(cte1, "").toLowerCase());
+			buf.add("-to-");
+			buf.add(~/[^a-z0-9\-]/ig.replace(cte2, "").toLowerCase());
 		case HElemList(li):
 			for (i in li)
 				buf.add(genId(i));
@@ -205,7 +209,8 @@ class NewTransform {
 		case Figure(size, path, horizontal(_) => caption, horizontal(_) => copyright):
 			// prefer path for id generation, but fallback to caption if a generic file name is recognized
 			var fname = new haxe.io.Path(path.internal()).file;
-			var id = idc.figure = genId(~/^(image|figure)/i.match(fname) ? caption : mk(Word(fname), path.pos));
+			// weakAssert(~/^(image|figure)/i.match(fname), "filename looks generic; this is discouraged and not guaranteed to work", path.pos);  // FIXME enable
+			var id = idc.figure = genId(mk(Word(fname), path.pos));
 			var no = ++noc.figure;
 			return mkd(DFigure(no, size, path, caption, copyright), v.pos, id);
 		case Table(size, horizontal(_) => caption, header, rows):

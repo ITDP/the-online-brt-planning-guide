@@ -116,6 +116,10 @@ class Generator {
 			return '\\($tex\\)';
 		case Url(address):
 			return '\\url{${gent(address, true)}}';
+		case Ref(type, target):
+			return gent('<broken reference>');  // FIXME
+		case RangeRef(type, firstTarget, lastTarget):
+			return gent('<broken range>');  // FIXME
 		case HElemList(li):
 			var buf = new StringBuf();
 			for (i in li)

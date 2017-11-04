@@ -144,6 +144,8 @@ class Validator {
 				hiter(i);
 		case Wordspace, Word(_), InlineCode(_), Url(_), HEmpty:
 			// nothing to do
+		case Ref(_), RangeRef(_):
+			// TODO nothing to do yet
 		}
 	}
 

@@ -48,6 +48,13 @@ abstract PElem(Elem<String>) from Elem<String> {
 		return this.def;
 }
 
+enum RefType {
+	RTAuto;  // migth be one or more of the following
+	RTItemNumber;
+	RTItemName;
+	RTPageNumber;
+}
+
 /*
 A horizontal element.
 */
@@ -61,6 +68,9 @@ enum HDef {
 	InlineCode(c:String);
 	Math(tex:String);
 	Url(u:String);  // just a typeset url (e.g. in bibliography listings)
+
+	Ref(type:RefType, target:Elem<String>);
+	RangeRef(type:RefType, firstTarget:Elem<String>, lastTarget:Elem<String>);
 
 	HElemList(elem:Array<HElem>);
 	HEmpty;
@@ -99,6 +109,8 @@ enum VDef {
 	Box(name:HElem, contents:VElem);
 	CodeBlock(c:String);
 	Paragraph(h:HElem);
+
+	// Id(id:Elem<String>, elem:VElem);
 
 	VElemList(elem:Array<VElem>);
 	VEmpty;

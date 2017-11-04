@@ -30,10 +30,10 @@ class Parser {
 	// command name fixing suggestions
 	static var verticalCommands = [
 		"volume", "chapter", "section", "subsection", "subsubsection", "title",
-		"figure", "quotation", "item", "number", "beginbox", "endbox", "include",
+		"figure", "quotation", "id", "item", "number", "beginbox", "endbox", "include",
 		"begintable", "header", "row", "col", "endtable",
 		"meta", "reset", "tex", "preamble", "export", "html", "store", "head"];
-	static var horizontalCommands = ["sup", "sub", "emph", "highlight", "url"];
+	static var horizontalCommands = ["sup", "sub", "emph", "highlight", "url", "ref", "rangeref"];
 	static var hardSuggestions = [  // some things can't be infered automatically
 		"quote" => "quotation",
 		"display" => "highlight"
@@ -198,6 +198,29 @@ class Parser {
 			var cmd = pop();
 			var address = arg(rawHorizontal, cmd);
 			mk(Url(address.val.trim()), cmd.pos.span(address.pos));
+		case { def:TCommand(name), pos:pos } if (name == "ref" || name == "rangeref"):
+			var cmd = pop();
+			var traw = optArg(rawHorizontal, cmd, "type");
+			var target = arg(rawHorizontal, cmd, "partial or full id");
+			var type =
+					switch traw.or({ val:null, pos:null }).val {
+					case null, "auto": RTAuto;
+					case "num": RTItemNumber;
+					case "name": RTItemName;
+					case "page": RTPageNumber;
+					case _: badValue(traw.sure().pos, "only types 'auto', 'num', 'name' and 'page' are valid");
+					}
+			switch name {
+			case "ref":
+				mk(Ref(type, { def:target.val, pos:target.pos.offset(1, -1) }), cmd.pos.span(target.pos));
+			case "rangeref":
+				var firstTarget = target;
+				var lastTarget = arg(rawHorizontal, cmd, "partial or full id");
+				mk(RangeRef(type, { def:firstTarget.val, pos:firstTarget.pos.offset(1, -1) },
+						{ def:lastTarget.val, pos:lastTarget.pos.offset(1, -1) }), cmd.pos.span(lastTarget.pos));
+			case _:
+				unexpectedCmd(cmd);  // should not reach here
+			}
 		case { def:TCommand(cname), pos:pos } if (Lambda.has(horizontalCommands, cname)):
 			var cmd = pop();
 			var content = arg(hlist, cmd);
@@ -365,6 +388,17 @@ class Parser {
 		return mk(Quotation(text.val, author.val), cmd.pos.span(author.pos));
 	}
 
+	function verticalWithId(cmd:Token, stop:Stop, restricted:Bool):Nullable<VElem>
+	{
+		assert(cmd.def.match(TCommand("id")), cmd);
+		var raw = arg(rawHorizontal, cmd);
+		var v = vertical(stop, restricted);
+		// FIXME
+		if (v.isNull())
+			return v;
+		return v;
+	}
+
 	// TODO docs
 	function listItem(mark:Token, stop:Stop)
 	{
@@ -526,6 +560,7 @@ class Parser {
 			case "figure": figure(pop());
 			case "begintable": table(pop());
 			case "quotation": quotation(pop());
+			case "id": verticalWithId(pop(), stop, restricted);
 			case "item", "number": list(peek(), stop);
 			case "meta", "tex", "html": meta(pop());
 			case "beginbox":

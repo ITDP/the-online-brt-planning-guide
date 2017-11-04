@@ -4,9 +4,11 @@ import parser.Ast;
 
 // expose the reused definitions from parser.Ast so that downstream users don't
 // need to import both types
+typedef Elem<T> = parser.Elem<T>;
 typedef PElem = parser.PElem;
 typedef HElem = parser.HElem;
 typedef BlobSize = parser.BlobSize;
+typedef RefType = parser.RefType;
 
 /*
 A document level definition.
