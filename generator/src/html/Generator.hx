@@ -282,6 +282,46 @@ class Generator {
 		}
 	}
 
+	static function normalizeId(ctx:IdCtx, id:String):String
+	{
+		var ctx:IdCtx = Reflect.copy(ctx);
+		var segs = id.split(":");
+		assert(segs.length > 0 && segs.length % 2 == 0, segs.length, id);
+		var parts = [ for (i in 0...(segs.length >> 1)) { name:segs[i*2], value:segs[i*2 + 1] } ];
+		// TODO check parts
+		// TODO sort parts
+		for (p in parts)
+			Reflect.setProperty(ctx, p.name, p.value);
+		return
+				switch parts[parts.length - 1].name {
+				case "volume": ctx.join(true, ":", volume);
+				case "chapter": ctx.join(true, ":", chapter);
+				case "section": ctx.join(true, ":", chapter, section);
+				case "subSection": ctx.join(true, ":", chapter, section, subSection);
+				case "subSubSection": ctx.join(true, ":", chapter, section, subSection, subSubSection);
+				case "box": ctx.join(true, ":", chapter, box);
+				case "figure": ctx.join(true, ":", chapter, figure);
+				case "table": ctx.join(true, ":", chapter, table);
+				case other: assert(false, other); null;
+				}
+	}
+
+	static function normalizeRefs(ctx:IdCtx, h:HElem)
+	{
+		switch h.def {
+		case Ref(type, target):
+			h.def = parser.Ast.HDef.Ref(type, { def:normalizeId(ctx, target.def), pos:target.pos });
+		case RangeRef(type, firstTarget, lastTarget):
+			h.def = parser.Ast.HDef.RangeRef(type, { def:normalizeId(ctx, firstTarget.def), pos:firstTarget.pos },
+					{ def:normalizeId(ctx, lastTarget.def), pos:lastTarget.pos });
+		case HElemList(li):
+			for (i in li)
+				normalizeRefs(ctx, i);
+		case _:
+			// noop
+		}
+	}
+
 	/**
 	First pass: prepare for generation.
 
@@ -294,7 +334,7 @@ class Generator {
 	{
 		var infos:{ id:String, htmlId:String, no:String, volumeNo:Int, url:String, page:DElem } = null;
 		switch v.def {
-		case DVolume(no, _, children):
+		case DVolume(no, name, children):
 			idc.volume = v.id.sure();
 			noc.volume = no;
 			infos = {
@@ -305,8 +345,9 @@ class Generator {
 				url : Path.join(["volume", idc.volume]),
 				page : v
 			};
+			normalizeRefs(idc, name);
 			firstPass(children, idc, noc, v);
-		case DChapter(no, _, children):
+		case DChapter(no, name, children):
 			idc.chapter = v.id.sure();
 			noc.chapter = no;
 			infos = {
@@ -317,8 +358,9 @@ class Generator {
 				url : Path.addTrailingSlash(idc.chapter),
 				page : v
 			};
+			normalizeRefs(idc, name);
 			firstPass(children, idc, noc, v);
-		case DSection(no, _, children):
+		case DSection(no, name, children):
 			idc.section = v.id.sure();
 			noc.section = no;
 			infos = {
@@ -329,8 +371,9 @@ class Generator {
 				url : Path.join([idc.chapter, idc.section]),
 				page : v
 			};
+			normalizeRefs(idc, name);
 			firstPass(children, idc, noc, v);
-		case DSubSection(no, _, children):
+		case DSubSection(no, name, children):
 			idc.subSection = v.id.sure();
 			noc.subSection = no;
 			var htmlId = idc.join(false, "/", subSection);
@@ -342,8 +385,9 @@ class Generator {
 				url : Path.join([idc.chapter, idc.section + "#" + htmlId]),
 				page : page
 			};
+			normalizeRefs(idc, name);
 			firstPass(children, idc, noc, page);
-		case DSubSubSection(no, _, children):
+		case DSubSubSection(no, name, children):
 			idc.subSubSection = v.id.sure();
 			noc.subSubSection = no;
 			var htmlId = idc.join(false, "/", subSection, subSubSection);
@@ -355,8 +399,9 @@ class Generator {
 				url : Path.join([idc.chapter, idc.section + "#" + htmlId]),
 				page : page
 			};
+			normalizeRefs(idc, name);
 			firstPass(children, idc, noc, page);
-		case DBox(no, _, children):
+		case DBox(no, name, children):
 			idc.box = v.id.sure();
 			noc.box = no;
 			var htmlId = idc.join(true, ":", box);
@@ -368,8 +413,9 @@ class Generator {
 				url : Path.join([idc.chapter, idc.section + "#" + htmlId]),
 				page : page
 			};
+			normalizeRefs(idc, name);
 			firstPass(children, idc, noc, page);
-		case DFigure(no, _, _, _, _):
+		case DFigure(no, _, _, caption, cright):
 			idc.figure = v.id.sure();
 			noc.figure = no;
 			var htmlId = idc.join(true, ":", figure);
@@ -381,7 +427,9 @@ class Generator {
 				url : Path.join([idc.chapter, idc.section + "#" + htmlId]),
 				page : page
 			};
-		case DTable(no, _, _, header, rows):
+			normalizeRefs(idc, caption);
+			normalizeRefs(idc, cright);
+		case DTable(no, _, title, header, rows):
 			idc.table = v.id.sure();
 			noc.table = no;
 			var htmlId = idc.join(true, ":", table);
@@ -393,13 +441,14 @@ class Generator {
 				url : Path.join([idc.chapter, idc.section + "#" + htmlId]),
 				page : page
 			};
+			normalizeRefs(idc, title);
 			for (i in header)
 				firstPass(i, idc, noc, page);
 			for (row in rows) {
 				for (i in row)
 					firstPass(i, idc, noc, page);
 			}
-		case DImgTable(no, _, _, _):
+		case DImgTable(no, _, title, _):
 			idc.table = v.id.sure();
 			noc.table = no;
 			var htmlId = idc.join(true, ":", table);
@@ -411,11 +460,20 @@ class Generator {
 				url : Path.join([idc.chapter, idc.section + "#" + htmlId]),
 				page : page
 			};
+			normalizeRefs(idc, title);
 		case DElemList(li), DList(_, li):
 			for (i in li)
 				firstPass(i, idc, noc, page);
 			return;
-		case DParagraph(_), DQuotation(_), DTitle(_):
+		case DParagraph(content):
+			normalizeRefs(idc, content);
+			return;
+		case DQuotation(content, author):
+			normalizeRefs(idc, content);
+			normalizeRefs(idc, author);
+			return;
+		case DTitle(title):
+			normalizeRefs(idc, title);
 			return;
 		case DEmpty, DCodeBlock(_), DHtmlStore(_), DHtmlToHead(_), DLaTeXExport(_), DLaTeXPreamble(_):
 			return;
