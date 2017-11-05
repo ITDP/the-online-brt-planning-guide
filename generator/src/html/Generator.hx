@@ -87,7 +87,7 @@ class Generator {
 			}
 		}
 		if (prefix == null)
-		 prefix = gent(Type.enumConstructor(targetElem.def).substr(1).replace("S", "-S").replace("Img", "")) + " ";
+		 prefix = gent(Type.enumConstructor(targetElem.def).substr(1).replace("SubS", "Sub-S").replace("Img", "")) + " ";
 		return { targetElem:targetElem, infos:infos, text:text, prefix:prefix };
 	}
 
