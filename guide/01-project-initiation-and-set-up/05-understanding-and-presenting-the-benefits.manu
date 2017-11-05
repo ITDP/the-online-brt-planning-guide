@@ -10,7 +10,7 @@ initiatives bring to a city and the quality of life of its inhabitants. In many 
 can be directly quantified to produce results in monetary terms. In other cases, the qualitative benefits 
 can also be assessed within a logical framework. 
 
-\ref{table:the-benefits-of-public-transport-initiatives} outlines
+\ref{table:benefits-of-public-transit} outlines
 some of the direct benefits that public transport improvements have provided to 
 cities. Beyond these benefits, though, there exist others that can further increase the system’s value 
 to a municipality. For example, public transport projects can lead to reduced costs on the public associated 
@@ -18,6 +18,7 @@ with vehicle emissions and accidents. Such impacts include costs borne by the he
 police force, and the judicial system. By reducing these costs, municipal resources can be directed toward 
 other areas such as preventive health care, education, and nutrition.
 
+\id{benefits-of-public-transit}
 \begintable[large]{The benefits of public transport initiatives}
 \header
 \col \highlight{Factor} 
