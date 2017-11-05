@@ -25,7 +25,7 @@ related to tunneling or elevating the right-of-way. Even costlier is elevating o
 station, which is likely to cost around US$100 million per station. Most elevated or underground heavy 
 rapid transit systems minimize the number of stations to increase speeds and keep the costs down, but 
 this frequently limits accessibility to the system. It is fairly typical for modern HRT systems to have 
-stations 1 kilometer apart, whereas it is generally recommended (see Chapter 6: Service Planning) that 
+stations 1 kilometer apart, whereas it is generally recommended -- see \ref{chapter:service-planning} -- that 
 high-capacity public transport stations be placed around .450 to 500 meters apart to minimize walking 
 access times. Were stations located in optimal locations, the cost of HRT alternatives would be significantly 
 increased. LRT and BRT both have significantly lower capital costs in relation to HRT primarily because 
@@ -320,7 +320,7 @@ major rail manufacturers in the world today (i.e., Alstom, Bombardier, Hitachi, 
 The scale required to set up local rail manufacturing is unlikely to be achieved in most lower income 
 nations. Instead, manufacturing (and the associated employment) will be based in higher income countries, 
 such as France, Canada, Japan, or Germany. When a city such as Bangkok purchases its rail metro vehicles, 
-the carriages arrive almost fully fabricated (Figure 2.1). This tends to make the vehicles far more expensive. 
+the carriages arrive almost fully fabricated (\ref{figure:image6}). This tends to make the vehicles far more expensive. 
 
 
 \figure[medium]{assets/image6.jpg}{A metro rail car arrives in Bangkok from Germany.}{Bangkok MRTA 
@@ -369,10 +369,10 @@ of vehicle operators needed. LRT and HRT vehicles come in sizes larger than the 
 (biarticulated buses) and can therefore carry more passengers with a single operator, reducing labor 
 costs. 
 
-However, as explained in Chapter 6: Service Planning, this guide recommends optimizing the vehicle 
+However, as explained in \ref{chapter:service-planning}, this guide recommends optimizing the vehicle 
 size following a formula that finds the optimal trade-off between minimizing passenger waiting times 
 (with high frequency) and minimizing labor costs (with larger vehicles). While the formulas for calculating 
-optimal vehicle size included in Chapter 6 were developed for BRT systems, they can equally be applied 
+optimal vehicle size included in \ref[num]{chapter:service-planning} were developed for BRT systems, they can equally be applied 
 to LRT systems. 
 
 For any given demand profile on a transit corridor, the number of vehicles needed to satisfy peak hour 

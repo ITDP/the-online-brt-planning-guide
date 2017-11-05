@@ -19,7 +19,7 @@ ridership is too low to justify the investment. While such factors will inevitab
 process, BRT planners generally suggest putting a BRT system in a location that will benefit the most
 customers in the best way possible as quickly as possible, most directly through *time savings*.
 
-The first use of demand analysis, discussed in Chapter 5, is generally to find out where the existing  \' TODO cross-ref '\
+The first use of demand analysis, discussed in \ref{chapter:corridor-and-network-development}, is generally to find out where the existing  \' TODO cross-ref '\
 public transport demand is concentrated, and from this to extrapolate where the greatest potential BRT
 demand may be. The second use is to rank the existing public transport demand on all the main public
 transport corridors so that a full network of BRT corridors can be identified and a rough phase-in plan
@@ -61,20 +61,20 @@ with a full transport model; and risk and uncertainty.
 
 \' TODO cross-refs '\
 
-Section 4.1 provides an overview of demand analysis—what is required and what is to be taken into consideration
+\ref{section:overview-of-demand-analysis} provides an overview of demand analysis—what is required and what is to be taken into consideration
 to properly accomplish it. It also stresses the need to gain a thorough understanding of current operations
 before attempting to improve on them.
 
-Section 4.2 discusses the data collection effort required to support demand estimation, as it is necessary
+\ref{section:data-collection} discusses the data collection effort required to support demand estimation, as it is necessary
 to gain a solid base for forecasting.
 
-Section 4.3 describes a methodology to provide a *rapid demand assessment*. Rapid demand assessment
+\ref{section:basic-methods-for-estimating-public-transport-demand} describes a methodology to provide a *rapid demand assessment*. Rapid demand assessment
 will provide an approximate idea of likely BRT demand on major corridors using only traffic counts and
 occupancy surveys in key locations, accompanied by boarding and alighting and bus-speed surveys. With
 this information alone, a skilled BRT planner may be able to develop a reasonable demand estimate, but
 the BRT planner’s previous experience is paramount.
 
-Section 4.4 discusses how to estimate demand more accurately as a transfer from other public transport
+\ref{section:estimating-demand-with-a-public-transport-model} discusses how to estimate demand more accurately as a transfer from other public transport
 modes; this is achieved using a *public transport model*.* *The public transport model simulates only
 the public transport system, and can be strengthened with the addition of a customer origin and destination
 survey. With a basic public transport model, most critical decisions about the BRT system and many critical
@@ -82,7 +82,7 @@ operational decisions can be made, but the public transport model can only rough
 the system on mixed traffic and on modal shift. Most BRT planners, including the team that designed TransMilenio,
 primarily use a public transport model.
 
-Section 4.5 discusses the basics of developing a multimodal* transport demand model* for BRT. Such
+\ref{section:estimating-demand-using-a-full-transport-model} discusses the basics of developing a multimodal* transport demand model* for BRT. Such
 a model will provide full flexibility for testing multiple routing and pricing scenarios, a more robust
 estimate of plausible modal shift, emissions impacts, bus route optimization, and a host of other useful
 tools.
@@ -90,7 +90,7 @@ tools.
 Finally, all forecasts are subject to uncertainty and risk, and decision makers must understand these
 when planning a BRT system. The two main risks in demand estimation are the overestimation of demand,
 thus requiring more infrastructure and fleet than necessary and exaggerating revenues; and the underestimation
-of demand, thus limiting the performance and success of the BRT system. Section 4.6 discusses these issues
+of demand, thus limiting the performance and success of the BRT system. \ref{section:risk-and-uncertainty} discusses these issues
 and suggests a few ways to handle them.
 
 \highlight{Contributors:} Walter Hook, *BRT Planning International*; Karl Fjellstrom, *Far East BRT*; Luis (Pilo) Willumsen, *consultant*; Arthur Szász, *Protocubo*; Ulises Navarro, *ITDP Latin America*; Pranjali Deshpande, *ITDP India*
