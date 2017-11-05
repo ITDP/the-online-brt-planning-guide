@@ -232,6 +232,10 @@ class NewTransform {
 			return mkd(DQuotation(horizontal(text), horizontal(by)), v.pos);
 		case Paragraph(text):
 			return mkd(DParagraph(horizontal(text)), v.pos);
+		case Id(_.def => id, on):
+			var elem = vertical(on, siblings, idc, noc);
+			elem.id = id;
+			return elem;
 		case VElemList(li):
 			// `siblings`: shared stack of remaining neighbors from depth-first searches;
 			// we first clone `li` since it gets modified by us and by `consume`

@@ -110,7 +110,7 @@ enum VDef {
 	CodeBlock(c:String);
 	Paragraph(h:HElem);
 
-	// Id(id:Elem<String>, elem:VElem);
+	Id(id:Elem<String>, elem:VElem);
 
 	VElemList(elem:Array<VElem>);
 	VEmpty;

@@ -51,8 +51,8 @@ class Parser {
 	inline function unclosed(tok:Token):Dynamic
 		throw new ParserError(tok.pos, UnclosedToken(tok.def));
 
-	inline function missingArg(pos:Position, ?parent:Token, ?desc:String):Dynamic
-		throw new ParserError(pos, MissingArgument(parent.def, desc));
+	inline function missing(pos:Position, ?parent:Token, ?desc:String):Dynamic
+		throw new ParserError(pos, MissingComplement(parent.def, desc));
 
 	inline function badValue(pos:Position, ?desc:String):Dynamic
 		throw new ParserError(pos, BadValue(desc));
@@ -138,7 +138,7 @@ class Parser {
 	{
 		discardNoise();
 		var open = pop();
-		if (!open.def.match(TBrOpen)) missingArg(open.pos, toToken, desc);
+		if (!open.def.match(TBrOpen)) missing(open.pos, toToken, desc);
 
 		var li = internal({ before : TBrClose });
 
@@ -156,7 +156,7 @@ class Parser {
 
 		while (i-- > 0) pop();
 		var open = pop();
-		if (!open.def.match(TBrkOpen)) missingArg(open.pos, toToken, desc);
+		if (!open.def.match(TBrkOpen)) missing(open.pos, toToken, desc);
 
 		var li = internal({ before : TBrkClose });
 
@@ -376,7 +376,7 @@ class Parser {
 			if (!end.def.match(TCommand("endtable"))) unexpected(end);
 			return mk(Table(size, caption.val, header, rows), begin.pos.span(end.pos));
 		} else {
-			missingArg(peek().pos, begin, "\\header line");
+			missing(peek().pos, begin, "\\header line");
 		}
 	}
 
@@ -393,10 +393,12 @@ class Parser {
 		assert(cmd.def.match(TCommand("id")), cmd);
 		var raw = arg(rawHorizontal, cmd);
 		var v = vertical(stop, restricted);
-		// FIXME
-		if (v.isNull())
-			return v;
-		return v;
+		return switch v.cases() {
+		case Some(on):
+			mk(Id({ def:raw.val, pos:raw.pos.offset(1, -1) }, v.sure()), cmd.pos.span(raw.pos));
+		case None:
+			missing({ src:raw.pos.src, min:raw.pos.max, max:raw.pos.max }, "target vertical element");
+		}
 	}
 
 	// TODO docs
