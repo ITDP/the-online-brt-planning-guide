@@ -77,7 +77,6 @@ class Generator {
 		case [RTPageNumber, _]:
 			assert(infos.page != null, "missing parent/page DElem", id.pos.toString());
 			var pdelem = infos.page;
-			infos = getFirstPassInfos(pdelem);  // (hack) adjust the resulting href
 			switch pdelem.def {
 			case DVolume(_, name, _), DChapter(_, name, _), DSection(_, name, _):
 				prefix = "";
