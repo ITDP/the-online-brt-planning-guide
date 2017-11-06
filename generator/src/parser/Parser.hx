@@ -204,11 +204,11 @@ class Parser {
 			var target = arg(rawHorizontal, cmd, "partial or full id");
 			var type =
 					switch traw.or({ val:null, pos:null }).val {
-					case null, "auto": RTAuto;
+					case null: RTAuto;
 					case "num": RTItemNumber;
 					case "name": RTItemName;
 					case "page": RTPageNumber;
-					case _: badValue(traw.sure().pos, "only types 'auto', 'num', 'name' and 'page' are valid");
+					case _: badValue(traw.sure().pos, "only types 'num', 'name' and 'page' are valid");
 					}
 			switch name {
 			case "ref":
