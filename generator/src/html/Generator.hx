@@ -68,10 +68,10 @@ class Generator {
 				DHtmlStore(_)|DHtmlToHead(_)|DLaTeXPreamble(_)|DLaTeXExport(_)]:
 			assert(false, "unsupported target", Type.enumConstructor(targetElem.def), id.pos.toString()); null;
 		case [RTAuto|RTItemName, DVolume(no,name,_)|DChapter(no,name,_)]:
-			gent('$no (${genn(name)})');
+			'${gent(Std.string(no))} (${genh(name)})';
 		case [RTItemName, DSection(no,name,_)|DSubSection(no,name,_)|DSubSubSection(no,name,_)|
 				DBox(no,name,_)|DFigure(no,_,_,name,_)|DTable(no,_,name,_,_)|DImgTable(no,_,name,_)]:
-			gent('${infos.no} (${genn(name)})');
+			'${gent(infos.no)} (${genh(name)})';
 		case [RTAuto|RTItemNumber, _]:
 			gent('${infos.no}');
 		case [RTPageNumber, _]:
@@ -80,7 +80,7 @@ class Generator {
 			switch pdelem.def {
 			case DVolume(_, name, _), DChapter(_, name, _), DSection(_, name, _):
 				prefix = "";
-				gent('${genn(name)}');
+				genh(name);
 			case other:
 				assert(false, "unsupported parent/page element", Type.enumConstructor(other), id.pos.toString()); null;
 			}
