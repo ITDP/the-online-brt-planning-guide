@@ -207,7 +207,6 @@ class NewTransform {
 		case Title(name):
 			return mkd(DTitle(name), v.pos);
 		case Figure(size, path, horizontal(_) => caption, horizontal(_) => copyright):
-			// prefer path for id generation, but fallback to caption if a generic file name is recognized
 			var fname = new haxe.io.Path(path.internal()).file;
 			// weakAssert(~/^(image|figure)/i.match(fname), "filename looks generic; this is discouraged and not guaranteed to work", path.pos);  // FIXME enable
 			var id = idc.figure = genId(mk(Word(fname), path.pos));
@@ -221,7 +220,9 @@ class NewTransform {
 			var drows = rows.map(function (r) return r.map(vertical.bind(_, [], idc, noc)));
 			return mkd(DTable(no, size, caption, dheader, drows), v.pos, id);
 		case ImgTable(size, horizontal(_) => caption, path):
-			var id = idc.table = genId(caption);
+			var fname = new haxe.io.Path(path.internal()).file;
+			// weakAssert(~/^(image|figure)/i.match(fname), "filename looks generic; this is discouraged and not guaranteed to work", path.pos);  // FIXME enable
+			var id = idc.table = genId(mk(Word(fname), path.pos));
 			var no = ++noc.table;
 			return mkd(DImgTable(no, size, caption, path), v.pos, id);
 		case List(numbered, li):
