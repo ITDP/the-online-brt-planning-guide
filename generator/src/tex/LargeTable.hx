@@ -125,7 +125,7 @@ class LargeTable {
 		return icost;
 	}
 
-	public static function gen(v:DElem, id:String, gen:Generator, genAt:Array<String>, genIdc:IdCtx)
+	public static function gen(v:DElem, id:String, gen:Generator, genAt:Array<String>)
 	{
 		assert(v.def.match(DTable(_)), v);
 		switch v.def {
@@ -171,7 +171,7 @@ class LargeTable {
 					return "";
 				return switch i.def {
 				case DParagraph(h): gen.genh(h);
-				case _: gen.genv(i, genAt, genIdc);
+				case _: gen.genv(i, genAt);
 				}
 			}
 			buf.add("\\color{gray75}\\bfseries ");

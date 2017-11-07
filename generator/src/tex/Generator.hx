@@ -32,6 +32,7 @@ class Generator {
 	var destDir:String;
 	var preamble:StringBuf;
 	var bufs:Map<String,StringBuf>;
+	var index:Map<String,DElem>;
 
 	static var texEscapes = ~/([{}\$&#\^_%~])/g;  // FIXME complete with LaTeX/Math
 
@@ -95,6 +96,44 @@ class Generator {
 		return '% @ ${pos.src}: bytes ${pos.min + 1}-${pos.max}\n';
 	}
 
+	function resolveRef(type:RefType, id:Elem<String>)
+	{
+		var targetElem = index[id.def];
+		assert(targetElem != null, "could not resolve reference", id.def, id.pos.toString());
+		var infos = getFirstPassInfos(targetElem);
+		var prefix = null;
+		var text = switch [type, targetElem.def] {
+		case [_, DTitle(_)|DList(_)|DCodeBlock(_)|DQuotation(_)|DParagraph(_)|DElemList(_)|DEmpty|
+				DHtmlStore(_)|DHtmlToHead(_)|DLaTeXPreamble(_)|DLaTeXExport(_)]:
+			assert(false, "unsupported target", Type.enumConstructor(targetElem.def), id.pos.toString()); null;
+		case [RTAuto|RTItemName, DVolume(no,name,_)|DChapter(no,name,_)]:
+			'${gent(Std.string(no))} (${genh(name)})';
+		case [RTItemName, DSection(no,name,_)|DSubSection(no,name,_)|DSubSubSection(no,name,_)|
+				DBox(no,name,_)|DFigure(no,_,_,name,_)|DTable(no,_,name,_,_)|DImgTable(no,_,name,_)]:
+			'${gent(infos.no)} (${genh(name)})';
+		case [RTAuto|RTItemNumber, _]:
+			gent('${infos.no}');
+		case [RTPageNumber, _]:
+			prefix = "page ";
+			'\\pageref{${infos.id}}';
+		}
+		if (prefix == null)
+		 prefix = gent(Type.enumConstructor(targetElem.def).substr(1).replace("SubS", "Sub-S").replace("Img", "")) + " ";
+		return { targetElem:targetElem, infos:infos, text:text, prefix:prefix };
+	}
+
+	function compareCounters(a:String, b:String):Int
+	{
+		var a = a.split(".");
+		var b = b.split(".");
+		assert(a.length == b.length && a.length <= 3, a.length, b.length);
+		for (i in 0...a.length) {
+			if (a[i] != b[i])
+				return (Std.parseInt(a[i]) - Std.parseInt(b[i])) << 10*(a.length - i - 1);
+		}
+		return 0;
+	}
+
 	public function genh(h:HElem)
 	{
 		switch h.def {
@@ -117,9 +156,34 @@ class Generator {
 		case Url(address):
 			return '\\url{${gent(address, true)}}';
 		case Ref(type, target):
-			return gent('<broken reference>');  // FIXME
+			var ref = resolveRef(type, target);
+			return '\\hyperref[${ref.infos.id}]{${ref.prefix}${ref.text}}';
 		case RangeRef(type, firstTarget, lastTarget):
-			return gent('<broken range>');  // FIXME
+			/*
+			Be user friendly: handle first == last, check if targets match in type
+			and fix order if first > last.  Additionally, customize the interval word
+			if last = first + 1.
+			*/
+			var first = resolveRef(type, firstTarget);
+			var last = resolveRef(type, lastTarget);
+			if (first.targetElem == last.targetElem)
+				return genh({ def:Ref(type, firstTarget), pos:h.pos });
+			assert(first.targetElem.def.getIndex() == last.targetElem.def.getIndex(),
+					"trying to reference a range of different elements",
+					first.targetElem.def.getName(), last.targetElem.def.getName(), h.pos.toString());
+			assert(first.prefix == last.prefix);
+			var dif = compareCounters(last.infos.no, first.infos.no);
+			if (dif < 0) {
+				var tmp = first;
+				first = last;
+				last = tmp;
+				dif = - dif;
+			}
+			var interval = dif == 1 ? " and " : " to ";
+			var prefix = first.prefix;
+			if (prefix != "")
+				prefix = prefix.rtrim() + "s ";
+			return '$prefix\\hyperref[${first.infos.id}]{${first.text}}$interval\\hyperref[${last.infos.id}]{${last.text}}';
 		case HElemList(li):
 			var buf = new StringBuf();
 			for (i in li)
@@ -130,7 +194,166 @@ class Generator {
 		}
 	}
 
-	public function genv(v:DElem, at:Array<String>, idc:IdCtx)
+	static function normalizeId(ctx:IdCtx, id:String):String
+	{
+		var ctx:IdCtx = Reflect.copy(ctx);
+		var segs = id.split(":");
+		assert(segs.length > 0 && segs.length % 2 == 0, segs.length, id);
+		var parts = [ for (i in 0...(segs.length >> 1)) { name:segs[i*2], value:segs[i*2 + 1] } ];
+		// TODO check parts
+		// TODO sort parts
+		for (p in parts)
+			Reflect.setProperty(ctx, p.name, p.value);
+		return
+				switch parts[parts.length - 1].name {
+				case "volume": ctx.join(true, ":", volume);
+				case "chapter": ctx.join(true, ":", chapter);
+				case "section": ctx.join(true, ":", chapter, section);
+				case "subSection": ctx.join(true, ":", chapter, section, subSection);
+				case "subSubSection": ctx.join(true, ":", chapter, section, subSection, subSubSection);
+				case "box": ctx.join(true, ":", chapter, box);
+				case "figure": ctx.join(true, ":", chapter, figure);
+				case "table": ctx.join(true, ":", chapter, table);
+				case other: assert(false, other); null;
+				}
+	}
+
+	static function normalizeRefs(ctx:IdCtx, h:HElem)
+	{
+		switch h.def {
+		case Ref(type, target):
+			h.def = parser.Ast.HDef.Ref(type, { def:normalizeId(ctx, target.def), pos:target.pos });
+		case RangeRef(type, firstTarget, lastTarget):
+			h.def = parser.Ast.HDef.RangeRef(type, { def:normalizeId(ctx, firstTarget.def), pos:firstTarget.pos },
+					{ def:normalizeId(ctx, lastTarget.def), pos:lastTarget.pos });
+		case HElemList(li):
+			for (i in li)
+				normalizeRefs(ctx, i);
+		case _:
+			// noop
+		}
+	}
+
+	function firstPass(v:DElem, idc:IdCtx, noc:NoCtx)
+	{
+		var infos:{ id:String, no:String } = null;
+		switch v.def {
+		case DVolume(no, name, children):
+			idc.volume = v.id.sure();
+			noc.volume = no;
+			infos = {
+				id : idc.join(true, ":", volume),
+				no : noc.join(false, ".", volume)
+			};
+			normalizeRefs(idc, name);
+			firstPass(children, idc, noc);
+		case DChapter(no, name, children):
+			idc.chapter = v.id.sure();
+			noc.chapter = no;
+			infos = {
+				id : idc.join(true, ":", chapter),
+				no : noc.join(false, ".", chapter)
+			};
+			normalizeRefs(idc, name);
+			firstPass(children, idc, noc);
+		case DSection(no, name, children):
+			idc.section = v.id.sure();
+			noc.section = no;
+			infos = {
+				id : idc.join(true, ":", chapter, section),
+				no : noc.join(false, ".", chapter, section)
+			};
+			normalizeRefs(idc, name);
+			firstPass(children, idc, noc);
+		case DSubSection(no, name, children):
+			idc.subSection = v.id.sure();
+			noc.subSection = no;
+			infos = {
+				id : idc.join(true, ":", chapter, section, subSection),
+				no : noc.join(false, ".", chapter, section, subSection)
+			};
+			normalizeRefs(idc, name);
+			firstPass(children, idc, noc);
+		case DSubSubSection(no, name, children):
+			idc.subSubSection = v.id.sure();
+			noc.subSubSection = no;
+			infos = {
+				id : idc.join(true, ":", chapter, section, subSection, subSubSection),
+				no:noc.join(false, ".", chapter, section, subSection, subSubSection)
+			};
+			normalizeRefs(idc, name);
+			firstPass(children, idc, noc);
+		case DBox(no, name, children):
+			idc.box = v.id.sure();
+			noc.box = no;
+			infos = {
+				id : idc.join(true, ":", chapter, box),
+				no : noc.join(false, ".", chapter, box)
+			};
+			normalizeRefs(idc, name);
+			firstPass(children, idc, noc);
+		case DFigure(no, _, _, caption, cright):
+			idc.figure = v.id.sure();
+			noc.figure = no;
+			infos = {
+				id : idc.join(true, ":", chapter, figure),
+				no : noc.join(false, ".", chapter, figure)
+			};
+			normalizeRefs(idc, caption);
+			normalizeRefs(idc, cright);
+		case DTable(no, _, title, header, rows):
+			idc.table = v.id.sure();
+			noc.table = no;
+			infos = {
+				id : idc.join(true, ":", chapter, table),
+				no : noc.join(false, ".", chapter, table)
+			};
+			normalizeRefs(idc, title);
+			for (i in header)
+				firstPass(i, idc, noc);
+			for (row in rows) {
+				for (i in row)
+					firstPass(i, idc, noc);
+			}
+		case DImgTable(no, _, title, _):
+			idc.table = v.id.sure();
+			noc.table = no;
+			infos = {
+				id : idc.join(true, ":", chapter, table),
+				no : noc.join(false, ".", chapter, table)
+			};
+			normalizeRefs(idc, title);
+		case DElemList(li), DList(_, li):
+			for (i in li)
+				firstPass(i, idc, noc);
+			return;
+		case DParagraph(content):
+			normalizeRefs(idc, content);
+			return;
+		case DQuotation(content, author):
+			normalizeRefs(idc, content);
+			normalizeRefs(idc, author);
+			return;
+		case DTitle(title):
+			normalizeRefs(idc, title);
+			return;
+		case DEmpty, DCodeBlock(_), DHtmlStore(_), DHtmlToHead(_), DLaTeXExport(_), DLaTeXPreamble(_):
+			return;
+		}
+		assert(infos != null, v.pos.toString());
+		weakAssert(!index.exists(infos.id), "global id conflict", infos.id, v.pos.toString());  // FIXME switch to assert
+		index[infos.id] = v;
+		Reflect.setField(v, "_first", infos);
+	}
+
+	static function getFirstPassInfos(v:DElem):{ id:String, no:String }
+	{
+		var infos = Reflect.field(v, "_first");
+		assert(infos != null, v.pos.toString());
+		return infos;
+	}
+
+	public function genv(v:DElem, at:Array<String>)
 	{
 		assert(!Lambda.foreach(at, function (p) return p.endsWith(".tex")), at, "should not be anything but a directory");
 		switch v.def {
@@ -148,48 +371,41 @@ class Generator {
 			FsUtil.copy(src, dest, false);
 			return "";
 		case DVolume(no, name, children):
-			idc.volume = v.id.sure();
-			var id = idc.join(true, ":", volume);
-			var path = Path.join(at.concat([idc.volume+".tex"]));
-			var dir = at.concat([idc.volume]);
+			var infos = getFirstPassInfos(v);
+			var path = Path.join(at.concat([v.id.sure()+".tex"]));
+			var dir = at.concat([v.id.sure()]);
 			var buf = new StringBuf();
 			bufs[path] = buf;
 			buf.add("% This file is part of the\n");
 			buf.add(FILE_BANNER);
-			buf.add('\n\n\\volume{$no}{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, dir, idc)}');
+			buf.add('\n\n\\volume{$no}{${genh(name)}}\n\\label{${infos.id}}\n${genp(v.pos)}\n${genv(children, dir)}');
 			return '\\input{$path}\n\n';
 		case DChapter(no, name, children):
-			idc.chapter = v.id.sure();
-			var id = idc.join(true, ":", volume, chapter);
-			var path = Path.join(at.concat([idc.chapter+".tex"]));
+			var infos = getFirstPassInfos(v);
+			var path = Path.join(at.concat([v.id.sure()+".tex"]));
 			var buf = new StringBuf();
 			bufs[path] = buf;
 			buf.add("% This file is part of the\n");
 			buf.add(FILE_BANNER);
-			buf.add('\n\n\\chapter{$no}{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at, idc)}');
+			buf.add('\n\n\\chapter{$no}{${genh(name)}}\n\\label{${infos.id}}\n${genp(v.pos)}\n${genv(children, at)}');
 			return '\\input{$path}\n\n';
 		case DSection(no, name, children):
-			idc.section = v.id.sure();
-			var id = idc.join(true, ":", volume, chapter, section);
-			return '\\section{$no}{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at, idc)}';
+			var infos = getFirstPassInfos(v);
+			return '\\section{$no}{${genh(name)}}\n\\label{${infos.id}}\n${genp(v.pos)}\n${genv(children, at)}';
 		case DSubSection(no, name, children):
-			idc.subSection = v.id.sure();
-			var id = idc.join(true, ":", volume, chapter, section, subSection);
-			return '\\subsection{$no}{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at, idc)}';
+			var infos = getFirstPassInfos(v);
+			return '\\subsection{$no}{${genh(name)}}\n\\label{${infos.id}}\n${genp(v.pos)}\n${genv(children, at)}';
 		case DSubSubSection(no, name, children):
-			idc.subSubSection = v.id.sure();
-			var id = idc.join(true, ":", volume, chapter, section, subSection, subSubSection);
-			return '\\subsubsection{$no}{${genh(name)}}\n\\label{$id}\n${genp(v.pos)}\n${genv(children, at, idc)}';
+			var infos = getFirstPassInfos(v);
+			return '\\subsubsection{$no}{${genh(name)}}\n\\label{${infos.id}}\n${genp(v.pos)}\n${genv(children, at)}';
 		case DBox(no, name, children):
-			idc.box = v.id.sure();
-			var id = idc.join(true, ":", chapter, box);
-			return '\\beginbox{$no}{${genh(name)}}\n\\label{$id}\n${genv(children, at, idc)}\\endbox\n${genp(v.pos)}\n';
+			var infos = getFirstPassInfos(v);
+			return '\\beginbox{$no}{${genh(name)}}\n\\label{${infos.id}}\n${genv(children, at)}\\endbox\n${genp(v.pos)}\n';
 		case DTitle(name):
 			// FIXME optional id
 			return '\\manutitle{${genh(name)}}\n${genp(v.pos)}\n';
 		case DFigure(no, size, _.toInputPath() => path, caption, cright):
-			idc.figure = v.id.sure();
-			var id = idc.join(true, ":", chapter, figure);
+			var infos = getFirstPassInfos(v);
 			path = saveAsset(at, path, size);
 			var csize =
 				switch size {
@@ -198,14 +414,12 @@ class Generator {
 				case FullWidth: "large";
 				}
 			// FIXME label
-			return '\\manu${csize}figure{$path}{$no}{${genh(caption)}\\label{${id}}}{${genh(cright)}}\n${genp(v.pos)}\n';
+			return '\\manu${csize}figure{$path}{$no}{${genh(caption)}\\label{${infos.id}}}{${genh(cright)}}\n${genp(v.pos)}\n';
 		case DTable(_):
-			idc.table = v.id.sure();
-			var id = idc.join(true, ":", chapter, table);
-			return LargeTable.gen(v, id, this, at, idc);
+			var infos = getFirstPassInfos(v);
+			return LargeTable.gen(v, infos.id, this, at);
 		case DImgTable(no, size, caption, _.toInputPath() => path):
-			idc.table = v.id.sure();
-			var id = idc.join(true, ":", chapter, table);
+			var infos = getFirstPassInfos(v);
 			path = saveAsset(at, path, size);
 			var csize =
 				switch size {
@@ -214,7 +428,7 @@ class Generator {
 				case FullWidth: "large";
 				}
 			// FIXME label
-			return '\\manu${csize}imgtable{$path}{$no}{${genh(caption)}\\label{${id}}}\n${genp(v.pos)}\n';
+			return '\\manu${csize}imgtable{$path}{$no}{${genh(caption)}\\label{${infos.id}}}\n${genp(v.pos)}\n';
 		case DList(numbered, li):
 			var buf = new StringBuf();
 			var env = numbered ? "enumerate" : "itemize";
@@ -224,7 +438,7 @@ class Generator {
 				case DParagraph(h):
 					buf.add('\\item ${genh(h)}${genp(i.pos)}');
 				case _:
-					buf.add('\\item {${genv(i, at, idc)}}\n');
+					buf.add('\\item {${genv(i, at)}}\n');
 				}
 			buf.add('\\end{$env}\n');
 			buf.add(genp(v.pos));
@@ -242,7 +456,7 @@ class Generator {
 		case DElemList(li):
 			var buf = new StringBuf();
 			for (i in li)
-				buf.add(genv(i, at, idc));
+				buf.add(genv(i, at));
 			return buf.toString();
 		case DEmpty:
 			return "";
@@ -251,13 +465,16 @@ class Generator {
 
 	public function writeDocument(doc:NewDocument)
 	{
+		bufs = new Map();
+		index = new Map();
+
 		FileSystem.createDirectory(destDir);
 		preamble = new StringBuf();
 		preamble.add(FILE_BANNER);
 		preamble.add("\n\n");
 
-		var idc = new IdCtx();
-		var contents = genv(doc, ["./"], idc);
+		firstPass(doc, new IdCtx(), new NoCtx());
+		var contents = genv(doc, ["./"]);
 
 		var root = new StringBuf();
 		root.add(preamble.toString());
@@ -278,7 +495,6 @@ class Generator {
 		this.hasher = hasher;
 		// TODO validate destDir
 		this.destDir = destDir;
-		bufs = new Map();
 	}
 }
 
