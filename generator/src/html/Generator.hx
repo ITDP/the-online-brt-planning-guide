@@ -606,8 +606,8 @@ class Generator {
 			var p = saveAsset(path);
 			return '
 				<figure class="img-block ${sizeToClass(size)}" id="${infos.htmlId}">
-				<a><img src="$p" class="overlay-trigger" alt="Fig. ${infos.no} ${genn(caption)}"/></a>
-				<figcaption class="share"><strong>Fig. ${infos.no}</strong>$QUAD${genh(caption)} <em>${genh(cright)}</em></figcaption>
+				<a><img src="$p" class="overlay-trigger" alt="Figure ${infos.no} ${genn(caption)}"/></a>
+				<figcaption class="share"><strong>Figure ${infos.no}</strong>$QUAD${genh(caption)} <em>${genh(cright)}</em></figcaption>
 				</figure>
 			'.doctrim() + "\n";
 		case DTable(no, size, caption, header, rows):
