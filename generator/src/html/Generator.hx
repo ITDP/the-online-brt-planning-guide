@@ -134,12 +134,12 @@ class Generator {
 			*/
 			var first = resolveRef(type, firstTarget);
 			var last = resolveRef(type, lastTarget);
-			if (first.targetElem == last.targetElem)
-				return genh({ def:Ref(type, firstTarget), pos:h.pos });
 			assert(first.targetElem.def.getIndex() == last.targetElem.def.getIndex(),
 					"trying to reference a range of different elements",
 					first.targetElem.def.getName(), last.targetElem.def.getName(), h.pos.toString());
 			assert(first.prefix == last.prefix);
+			if (first.text == last.text)  // infos.url theoretically better, but text practically more relevant
+				return genh({ def:Ref(type, firstTarget), pos:h.pos });
 			var dif = compareCounters(last.infos.no, first.infos.no);
 			if (dif < 0) {
 				var tmp = first;
