@@ -2,7 +2,7 @@ package transform;
 
 import haxe.io.Path;
 import sys.FileSystem;
-import transform.NewDocument;
+import transform.Document;
 import transform.ValidationError;
 
 import Assertion.*;

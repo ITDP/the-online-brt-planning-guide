@@ -7,8 +7,8 @@ import parser.Lexer;
 import parser.Parser;
 import tex.Generator in TexGen;
 import transform.Context;
-import transform.NewDocument;
-import transform.NewTransform;
+import transform.Document;
+import transform.Structurer;
 import utest.Assert;
 
 import Assertion.*;
@@ -26,10 +26,10 @@ class Test_09_Issues {
 
 	function transform(ast:Ast)
 	{
-		return NewTransform.transform(ast);
+		return Structurer.transform(ast);
 	}
 
-	// function generate(dast:NewDocument, htmlDir:String, texDir:String)
+	// function generate(dast:Document, htmlDir:String, texDir:String)
 	// {
 	// 	new HtmlGen(htmlDir).writeDocument(dast);
 	// 	new TexGen(texDir).writeDocument(dast);

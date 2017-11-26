@@ -23,7 +23,7 @@ class AstTools {
 	{
 		if (!clear && cachedDefs != null) return cachedDefs;
 		var ret = [];
-		var modules = [getModule("parser.Ast"), getModule("transform.NewDocument")];
+		var modules = [getModule("parser.Ast"), getModule("transform.Document")];
 		for (m in modules) {
 			for (t in m) {
 				switch t {

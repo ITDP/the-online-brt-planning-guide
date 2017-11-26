@@ -6,7 +6,7 @@ import html.script.Const;
 import sys.FileSystem;
 import sys.io.File;
 import transform.Context;
-import transform.NewDocument;
+import transform.Document;
 
 import Assertion.*;
 import generator.tex.*;
@@ -695,7 +695,7 @@ class Generator {
 		return saveAsset(path, Bytes.ofString(contents));
 	}
 
-	public function writeDocument(doc:NewDocument)
+	public function writeDocument(doc:Document)
 	{
 		// FIXME get the document name elsewhere
 

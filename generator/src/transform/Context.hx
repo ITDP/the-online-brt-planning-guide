@@ -3,7 +3,7 @@ package transform;
 import haxe.macro.Expr;
 import haxe.macro.Context.*;
 
-@:allow(transform.NewTransform)  // allow NewTransform meta handling to change lastVolume/lastChapter
+@:allow(transform.Structurer)  // allow Structurer meta handling to change lastVolume/lastChapter
 private class DocumentContext<T> {
 	var zero:T;
 	public var lastVolume(default,null):T;

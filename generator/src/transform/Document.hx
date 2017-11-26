@@ -44,7 +44,7 @@ A document level element.
 All document level elements can have (nullable) identifiers.
 
 Identifiers are unique within their scope, that is defined by their tree
-structure of the NewDocument tree.  A global unique identifier can be composed
+structure of the Document tree.  A global unique identifier can be composed
 by concatenating all parent types and parent ids to any given element and
 element id.
 */
@@ -56,5 +56,5 @@ typedef DElem = {
 /*
 A document.
 */
-typedef NewDocument = DElem;
+typedef Document = DElem;
 

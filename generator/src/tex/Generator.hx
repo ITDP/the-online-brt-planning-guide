@@ -4,7 +4,7 @@ import generator.tex.*;
 import haxe.io.Path;
 import sys.FileSystem;
 import sys.io.File;
-import transform.NewDocument;
+import transform.Document;
 import transform.Context;
 import util.sys.FsUtil;
 
@@ -463,7 +463,7 @@ class Generator {
 		}
 	}
 
-	public function writeDocument(doc:NewDocument)
+	public function writeDocument(doc:Document)
 	{
 		bufs = new Map();
 		index = new Map();

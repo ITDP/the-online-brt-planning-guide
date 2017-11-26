@@ -4,13 +4,13 @@ import haxe.io.Bytes;
 import parser.Lexer;
 import parser.Parser;
 import transform.Context;
-import transform.NewDocument;
-import transform.NewTransform;
+import transform.Document;
+import transform.Structurer;
 import utest.Assert;
 
 import Assertion.*;
 import parser.AstTools.*;
-import transform.NewTransform.transform;
+import transform.Structurer.transform;
 
 class Test_05_Transform {
 	static inline var SRC = "tests.Test_05_Transform.hx";

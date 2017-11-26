@@ -1,6 +1,6 @@
 package transform;
 
-import transform.NewDocument;
+import transform.Document;
 
 enum ValidationErrorValue {
 	BadMath(math:String, errors:Array<String>);

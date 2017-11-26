@@ -1,6 +1,6 @@
 package tex;
 
-import transform.NewDocument;
+import transform.Document;
 import transform.Context;
 
 import Assertion.*;

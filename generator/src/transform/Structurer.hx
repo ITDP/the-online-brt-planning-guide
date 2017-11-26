@@ -2,7 +2,7 @@ package transform;
 
 import parser.Ast;
 import transform.Context;
-import transform.NewDocument;  // TODO remove
+import transform.Document;  // TODO remove
 
 import Assertion.*;
 import parser.AstTools.*;
@@ -11,7 +11,7 @@ using PositionTools;
 using StringTools;
 
 // TODO split in transform/vertical/horizontal classes (or even modules)
-class NewTransform {
+class Structurer {
 	/*
 	Trim redundant wordspace.
 
@@ -298,7 +298,7 @@ class NewTransform {
 		return mkd(def, d.pos, d.id);
 	}
 
-	public static function transform(ast:Ast):NewDocument
+	public static function transform(ast:Ast):Document
 		return clean(vertical(ast, [], new IdCtx(), new NoCtx()));
 }
 
