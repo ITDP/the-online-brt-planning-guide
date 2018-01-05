@@ -2,7 +2,7 @@ package transform;
 
 import parser.Ast;
 import transform.Context;
-import transform.Document;  // TODO remove
+import transform.Document;
 
 import Assertion.*;
 import parser.AstTools.*;
@@ -10,7 +10,6 @@ import parser.AstTools.*;
 using PositionTools;
 using StringTools;
 
-// TODO split in transform/vertical/horizontal classes (or even modules)
 class Structurer {
 	/*
 	Trim redundant wordspace.
@@ -93,12 +92,15 @@ class Structurer {
 
 	// end of horizontal stuff
 
-	static function mkd(def, pos, ?id):DElem
-		return { id:id, def:def, pos:pos };
+	static function checkManualId(id:Elem<String>)
+	{
+	}
 
 	// TODO test id generation (it took me two tries to get this right)
-	static function genId(h:HElem):String
+	static function genId(h:HElem, mid:Null<Elem<String>>):String
 	{
+		if (mid != null)
+			h = mk(Word(mid.def), mid.pos);
 		var buf = new StringBuf();
 		switch h.def {
 		case Wordspace:
@@ -117,7 +119,9 @@ class Structurer {
 		case HEmpty:
 			// NOOP
 		}
-		return buf.toString();
+		var id = buf.toString();
+		assert(mid == false || mid.def == id, mid.def, "invalid", mid.pos.toString());
+		return id;
 	}
 
 	static function consume(parent:VElem, mainPool:Array<VElem>, idc:IdCtx, noc:NoCtx):DElem
@@ -148,104 +152,104 @@ class Structurer {
 
 		while (mainPool.length > 0 && !eatTillBoundary(mainPool)) {}
 		return switch li {
-		case []: mkd(DEmpty, parent.pos.offset(parent.pos.max - parent.pos.min, 0));
+		case []: mk(DEmpty, parent.pos.offset(parent.pos.max - parent.pos.min, 0));
 		case [single]: single;
-		case _: mkd(DElemList(li), li[0].pos.span(li[li.length -1 ].pos));
+		case _: mk(DElemList(li), li[0].pos.span(li[li.length -1 ].pos));
 		}
 	}
 
-	static function vertical(v:VElem, siblings:Array<VElem>, idc:IdCtx, noc:NoCtx):DElem  // MAYBE rename idc/noc to id/no
+	static function vertical(v:VElem, siblings:Array<VElem>, idc:IdCtx, noc:NoCtx, ?manualId:Elem<String>):DElem  // MAYBE rename idc/noc to id/no
 	{
 		// the parser should not output any nulls
 		assert(v != null);
 		assert(v.def != null);
 		switch v.def {
 		case HtmlStore(path):
-			return mkd(DHtmlStore(path), v.pos);
+			return mk(DHtmlStore(path), v.pos);
 		case HtmlToHead(template):
-			return mkd(DHtmlToHead(template), v.pos);
+			return mk(DHtmlToHead(template), v.pos);
 		case LaTeXPreamble(path):
-			return mkd(DLaTeXPreamble(path), v.pos);
+			return mk(DLaTeXPreamble(path), v.pos);
 		case LaTeXExport(src, dst):
-			return mkd(DLaTeXExport(src, dst), v.pos);
+			return mk(DLaTeXExport(src, dst), v.pos);
 		case MetaReset(name, val):
 			switch name.toLowerCase().trim() {
 			case "volume": noc.lastVolume = val;
 			case "chapter": noc.lastChapter = val;
 			case other: throw other;
 			}
-			return mkd(DEmpty, v.pos);
+			return mk(DEmpty, v.pos);
 		case Volume(horizontal(_) => name):
-			var id = idc.volume = genId(name);
-			var no = noc.volume = noc.lastVolume + 1;
+			var id = (idc.volume = genId(name, manualId)).stamp(volume);
+			var no = (noc.volume = noc.lastVolume + 1).stamp(volume);
 			var children = consume(v, siblings, idc, noc);
-			return mkd(DVolume(no, name, children), v.pos.span(children.pos), id);
+			return mk(DVolume(id, no, name, children), v.pos.span(children.pos));
 		case Chapter(horizontal(_) => name):
-			var id = idc.chapter = genId(name);
-			var no = noc.chapter = noc.lastChapter + 1;
+			var id = (idc.chapter = genId(name, manualId)).stamp(chapter);
+			var no = (noc.chapter = noc.lastChapter + 1).stamp(chapter);
 			var children = consume(v, siblings, idc, noc);
-			return mkd(DChapter(no, name, children), v.pos.span(children.pos), id);
+			return mk(DChapter(id, no, name, children), v.pos.span(children.pos));
 		case Section(horizontal(_) => name):
-			var id = idc.section = genId(name);
-			var no = ++noc.section;
+			var id = (idc.section = genId(name, manualId)).stamp(chapter, section);
+			var no = (++noc.section).stamp(chapter, section);
 			var children = consume(v, siblings, idc, noc);
-			return mkd(DSection(no, name, children), v.pos.span(children.pos), id);
+			return mk(DSection(id, no, name, children), v.pos.span(children.pos));
 		case SubSection(horizontal(_) => name):
-			var id = idc.subSection = genId(name);
-			var no = ++noc.subSection;
+			var id = (idc.subSection = genId(name, manualId)).stamp(chapter, section, subSection);
+			var no = (++noc.subSection).stamp(chapter, section, subSection);
 			var children = consume(v, siblings, idc, noc);
-			return mkd(DSubSection(no, name, children), v.pos.span(children.pos), id);
+			return mk(DSubSection(id, no, name, children), v.pos.span(children.pos));
 		case SubSubSection(horizontal(_) => name):
-			var id = idc.subSubSection = genId(name);
-			var no = ++noc.subSubSection;
+			var id = (idc.subSubSection = genId(name, manualId)).stamp(chapter, section, subSection, subSubSection);
+			var no = (++noc.subSubSection).stamp(chapter, section, subSection, subSubSection);
 			var children = consume(v, siblings, idc, noc);
-			return mkd(DSubSubSection(no, name, children), v.pos.span(children.pos), id);
+			return mk(DSubSubSection(id, no, name, children), v.pos.span(children.pos));
 		case Box(name, contents):
-			var id = idc.box = genId(name);
-			var no = ++noc.box;
-			return mkd(DBox(no, name, vertical(contents, [], idc, noc)), v.pos, id);  // TODO assert that restricted vertical mode has been respected
-		case Title(name):
-			return mkd(DTitle(name), v.pos);
+			var id = (idc.box = genId(name, manualId)).stamp(chapter, box);
+			var no = (++noc.box).stamp(chapter, box);
+			// TODO assert that restricted vertical mode has been respected
+			return mk(DBox(id, no, name, vertical(contents, [], idc, noc)), v.pos);
 		case Figure(size, path, horizontal(_) => caption, horizontal(_) => copyright):
 			var fname = new haxe.io.Path(path.internal()).file;
 			// weakAssert(~/^(image|figure)/i.match(fname), "filename looks generic; this is discouraged and not guaranteed to work", path.pos);  // FIXME enable
-			var id = idc.figure = genId(mk(Word(fname), path.pos));
-			var no = ++noc.figure;
-			return mkd(DFigure(no, size, path, caption, copyright), v.pos, id);
+			var id = (idc.figure = genId(mk(Word(fname), path.pos), manualId)).stamp(chapter, figure);
+			var no = (++noc.figure).stamp(chapter, figure);
+			return mk(DFigure(id, no, size, path, caption, copyright), v.pos);
 		case Table(size, horizontal(_) => caption, header, rows):
-			var id = idc.table = genId(caption);
-			var no = ++noc.table;
+			var id = (idc.table = genId(caption, manualId)).stamp(chapter, table);
+			var no = (++noc.table).stamp(chapter, table);
 			// TODO assert that restricted vertical mode has been respected
 			var dheader = header.map(vertical.bind(_, [], idc, noc));
 			var drows = rows.map(function (r) return r.map(vertical.bind(_, [], idc, noc)));
-			return mkd(DTable(no, size, caption, dheader, drows), v.pos, id);
+			return mk(DTable(id, no, size, caption, dheader, drows), v.pos);
 		case ImgTable(size, horizontal(_) => caption, path):
 			var fname = new haxe.io.Path(path.internal()).file;
 			// weakAssert(~/^(image|figure)/i.match(fname), "filename looks generic; this is discouraged and not guaranteed to work", path.pos);  // FIXME enable
-			var id = idc.table = genId(mk(Word(fname), path.pos));
-			var no = ++noc.table;
-			return mkd(DImgTable(no, size, caption, path), v.pos, id);
+			var id = (idc.table = genId(mk(Word(fname), path.pos), manualId)).stamp(chapter, table);
+			var no = (++noc.table).stamp(chapter, table);
+			return mk(DImgTable(id, no, size, caption, path), v.pos);
+		case Title(name):
+			return mk(DTitle(name), v.pos);
 		case List(numbered, li):
-			return mkd(DList(numbered, [ for (i in li) vertical(i, siblings, idc, noc) ]), v.pos);
+			return mk(DList(numbered, [ for (i in li) vertical(i, siblings, idc, noc) ]), v.pos);
 		case CodeBlock(cte):
-			return mkd(DCodeBlock(cte), v.pos);
+			return mk(DCodeBlock(cte), v.pos);
 		case Quotation(text, by):
-			return mkd(DQuotation(horizontal(text), horizontal(by)), v.pos);
+			return mk(DQuotation(horizontal(text), horizontal(by)), v.pos);
 		case Paragraph(text):
-			return mkd(DParagraph(horizontal(text)), v.pos);
-		case Id(_.def => id, on):
-			var elem = vertical(on, siblings, idc, noc);
-			elem.id = id;
-			return elem;
+			return mk(DParagraph(horizontal(text)), v.pos);
+		case Id(id, on):
+			// TODO assert if id is valid (at least until we add this to the validator)
+			return vertical(on, siblings, idc, noc, id);
 		case VElemList(li):
 			// `siblings`: shared stack of remaining neighbors from depth-first searches;
 			// we first clone `li` since it gets modified by us and by `consume`
 			var li = li.copy();
 			siblings.unshift(mk(VElemList(li), v.pos));
 			var li = [ while (li.length > 0) vertical(li.shift(), siblings, idc, noc) ];
-			return mkd(DElemList(li), v.pos.span(li[li.length -1 ].pos));
+			return mk(DElemList(li), v.pos.span(li[li.length -1 ].pos));
 		case VEmpty:
-			return mkd(DEmpty, v.pos);
+			return mk(DEmpty, v.pos);
 		}
 	}
 
@@ -261,20 +265,20 @@ class Structurer {
 		case DHtmlStore(_), DHtmlToHead(_), DLaTeXPreamble(_), DLaTeXExport(_),
 				DTitle(_), DFigure(_), DImgTable(_), DCodeBlock(_), DQuotation(_), DEmpty:
 			d.def;
-		case DVolume(no, name, children):
-			DVolume(no, name, clean(children));
-		case DChapter(no, name, children):
-			DChapter(no, name, clean(children));
-		case DSection(no, name, children):
-			DSection(no, name, clean(children));
-		case DSubSection(no, name, children):
-			DSubSection(no, name, clean(children));
-		case DSubSubSection(no, name, children):
-			DSubSubSection(no, name, clean(children));
-		case DBox(no, name, children):
-			DBox(no, name, clean(children));
-		case DTable(no, size, caption, header, rows):
-			DTable(no, size, caption, header.map(clean), rows.map(function (r) return r.map(clean)));
+		case DVolume(id, no, name, children):
+			DVolume(id, no, name, clean(children));
+		case DChapter(id, no, name, children):
+			DChapter(id, no, name, clean(children));
+		case DSection(id, no, name, children):
+			DSection(id, no, name, clean(children));
+		case DSubSection(id, no, name, children):
+			DSubSection(id, no, name, clean(children));
+		case DSubSubSection(id, no, name, children):
+			DSubSubSection(id, no, name, clean(children));
+		case DBox(id, no, name, children):
+			DBox(id, no, name, clean(children));
+		case DTable(id, no, size, caption, header, rows):
+			DTable(id, no, size, caption, header.map(clean), rows.map(function (r) return r.map(clean)));
 		case DList(numbered, li):
 			DList(numbered, [ for (i in li) clean(i) ]);
 		case DParagraph(text):
@@ -295,7 +299,7 @@ class Structurer {
 			case _: DElemList(cli);
 			}
 		}
-		return mkd(def, d.pos, d.id);
+		return mk(def, d.pos);
 	}
 
 	public static function transform(ast:Ast):Document

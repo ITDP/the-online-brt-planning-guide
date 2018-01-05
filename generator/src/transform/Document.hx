@@ -1,60 +1,72 @@
+/*
+A structured document
+
+A tree of what we want to generate.
+*/
+
 package transform;
 
 import parser.Ast;
 
-// expose the reused definitions from parser.Ast so that downstream users don't
-// need to import both types
+/*
+Expose reused parser.Ast types, users shouldn't need to import both modules
+*/
 typedef Elem<T> = parser.Elem<T>;
 typedef PElem = parser.PElem;
 typedef HElem = parser.HElem;
 typedef BlobSize = parser.BlobSize;
 typedef RefType = parser.RefType;
 
-/*
-A document level definition.
-*/
+/**
+A structured document
+**/
+typedef Document = DElem;
+
+/**
+A document level element
+**/
+typedef DElem = Elem<DDef>;
+
+/**
+A document level definition
+**/
 enum DDef {
+	/*
+	Special purpose definitions
+	*/
 	DHtmlStore(path:PElem);
 	DHtmlToHead(template:String);
 	DLaTeXPreamble(path:PElem);
 	DLaTeXExport(src:PElem, dest:PElem);
 
-	DVolume(no:Int, name:HElem, children:DElem);
-	DChapter(no:Int, name:HElem, children:DElem);
-	DSection(no:Int, name:HElem, children:DElem);
-	DSubSection(no:Int, name:HElem, children:DElem);
-	DSubSubSection(no:Int, name:HElem, children:DElem);
-	DBox(no:Int, name:HElem, children:DElem);
-	DTitle(name:HElem);  // differently than a (sub)*section, titles have no contents and aren't numbered
-	DFigure(no:Int, size:BlobSize, path:PElem, caption:HElem, copyright:HElem);
-	DTable(no:Int, size:BlobSize, caption:HElem, header:Array<DElem>, rows:Array<Array<DElem>>);
-	DImgTable(no:Int, size:BlobSize, caption:HElem, path:PElem);
+	/*
+	Definitions that correspond to elements with ids and numbers
+	*/
+	DVolume(id:String, no:String, name:HElem, children:DElem);
+	DChapter(id:String, no:String, name:HElem, children:DElem);
+	DSection(id:String, no:String, name:HElem, children:DElem);
+	DSubSection(id:String, no:String, name:HElem, children:DElem);
+	DSubSubSection(id:String, no:String, name:HElem, children:DElem);
+	DBox(id:String, no:String, name:HElem, children:DElem);
+	DFigure(id:String, no:String, size:BlobSize, path:PElem, caption:HElem, copyright:HElem);
+	DTable(id:String, no:String, size:BlobSize, caption:HElem, header:Row, rows:Array<Row>);
+	DImgTable(id:String, no:String, size:BlobSize, caption:HElem, path:PElem);
+
+	/*
+	Other definitions
+	*/
+	DTitle(name:HElem);  // differently than a (sub)*section, titles have no contents
 	DList(numbered:Bool, li:Array<DElem>);
 	DCodeBlock(cte:String);
 	DQuotation(text:HElem, by:HElem);
 	DParagraph(text:HElem);
 
-	DElemList(li:Array<DElem>);  // TODO rename avoiding confusion with (un)numbered lists
+	/*
+	Structural definitions
+	*/
+	DElemList(li:Array<DElem>);
 	DEmpty;
 }
 
-/*
-A document level element.
-
-All document level elements can have (nullable) identifiers.
-
-Identifiers are unique within their scope, that is defined by their tree
-structure of the Document tree.  A global unique identifier can be composed
-by concatenating all parent types and parent ids to any given element and
-element id.
-*/
-typedef DElem = {
-	> Elem<DDef>,
-	id:Nullable<String>
-}
-
-/*
-A document.
-*/
-typedef Document = DElem;
+private typedef Row = Array<DElem>;
 
