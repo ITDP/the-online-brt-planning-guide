@@ -159,7 +159,7 @@
 					</div>
 				</div>
 			</div>
-			<script type="text/javascript"> $(document).ready(function() { $("#input-search").keyup(function (e) { var kc = e.keyCode || e.which; if (kc == 13) { $("#input-search").addClass("button-search"); window.location.href = "/search?search=" + this.value; } }); });</script>
+			<script type="text/javascript"> $(document).ready(function() { $("#input-search").keyup(function (e) { var kc = e.keyCode || e.which; if (kc == 13) { $("#input-search").addClass("button-search"); window.location.href = "/search?q=" + this.value; } }); });</script>
 
 			<!--main banner-->
 			<div class="ui container">
