@@ -463,7 +463,7 @@ low cost with a GPS. From this information it is possible to estimate the curren
 Eq. 6.18
 
 
-$$ \text{Fleet}_\text{route} = {{\text{MaxLoad}_\text{route} \cdots \text {TC}} \over \text{VSize} \cdots \text{LoadFactor}} $$ 
+$$ \text{Fleet}_\text{route} = {{\text{MaxLoad}_\text{route} \cdot \text {TC}} \over \text{VSize} \cdot \text{LoadFactor}} $$ 
 
 Where:
 
