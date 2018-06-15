@@ -463,14 +463,16 @@ low cost with a GPS. From this information it is possible to estimate the curren
 Eq. 6.18
 
 
-$$ \text{Fleet}_\text{route} = {\text{MaxLoad}_\text{route} \over \text{VSize} * \text{LoadFactor}} $$ 
+$$ \text{Fleet}_\text{route} = {{\text{MaxLoad}_\text{route}*TC} \over \text{VSize} * \text{LoadFactor}} $$ 
 
 Where:
 
 \item $$ \text{Fleet}_\text{route}$$: Number of buses needed to serve the route;
 \item $$ \text{VSize}_\text{route}$$: Vehicle serving the route capacity;
+
 \item $$ \text{MaxLoad}_\text{route}$$:Maximum demand across the critical segment of the route that will accumulate for the 
 duration of one hour, here is assumed constant;
+\item $$ \text{TC}$$: Cycle time in hours;
 \item $$ \text{Freq}_\text{route}$$:Frequency of the route;
 \item $$  \text{LoadFactor} $$: Design load factor (usually 0.85);
 
