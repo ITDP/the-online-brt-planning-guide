@@ -469,7 +469,6 @@ Where:
 
 \item $$ \text{Fleet}_\text{route}$$: Number of buses needed to serve the route;
 \item $$ \text{VSize}_\text{route}$$: Vehicle serving the route capacity;
-
 \item $$ \text{MaxLoad}_\text{route}$$:Maximum demand across the critical segment of the route that will accumulate for the 
 duration of one hour, here is assumed constant;
 \item $$ \text{TC}$$: Cycle time in hours;
