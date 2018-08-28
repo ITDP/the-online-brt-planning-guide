@@ -22,7 +22,7 @@ class Test_04_Validation {
 
 	function passes(str:String, ?timeout:Null<Int>, ?assertPos:PosInfos)
 	{
-		var done = Assert.createAsync();
+		var done = Assert.createAsync(timeout);
 		validate(str, function (errors) {
 			Assert.isNull(errors, assertPos);
 			done();

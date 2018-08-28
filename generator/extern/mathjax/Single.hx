@@ -21,7 +21,7 @@ Externs for MathJax-node mj-single.js
 Documentation taken from the original source.
 **/
 #if nodejs
-@:jsRequire("mathjax-node/lib/mj-single.js")
+@:jsRequire("mathjax-node")
 #else
 #error "MathJax-node requires Node.js.  Compile with `-lib hxnodejs`."
 #end
