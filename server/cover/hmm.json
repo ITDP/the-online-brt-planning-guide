@@ -18,6 +18,11 @@
       "version": null
     },
     {
+      "name": "tink_macro",
+      "type": "haxelib",
+      "version": "0.16.5"
+    },
+    {
       "name": "tink_template",
       "type": "haxelib",
       "version": null
