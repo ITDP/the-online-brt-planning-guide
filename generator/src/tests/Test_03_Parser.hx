@@ -140,8 +140,8 @@ class Test_03_Parser {
 			expand(Paragraph(HElemList([@wrap(1,1)Emphasis(HElemList([@len(1)Word("a"),@len(1)Wordspace])),@wrap(1,1)Emphasis(@len(1)Word("b")),@wrap(1,1)Emphasis(HElemList([@len(1)Wordspace,@len(1)Word("c")]))]))),
 			parse("*a **b** c*"));
   // {\}}
-		fails("\\emph", MissingArgument(TCommand("emph")), mkPos(5, 5));
-		fails("\\emph a", MissingArgument(TCommand("emph")), mkPos(6,7));
+		fails("\\emph", MissingComplement(TCommand("emph")), mkPos(5, 5));
+		fails("\\emph a", MissingComplement(TCommand("emph")), mkPos(6,7));
 		fails("\\emph{a}{}", UnexpectedToken(TBrOpen), mkPos(8,9));
 	}
 
@@ -157,8 +157,8 @@ class Test_03_Parser {
 			expand(Paragraph(@wrap(11,1)Highlight(HElemList([@len(1)Word("a"),@len(1)Wordspace,@wrap(11,1)Highlight(@len(1)Word("b"))])))),
 			parse("\\highlight{a \\highlight{b}}"));
 
-		fails("\\highlight", MissingArgument(TCommand("highlight")), mkPos(10, 10));
-		fails("\\highlight a", MissingArgument(TCommand("highlight")), mkPos(11, 12));
+		fails("\\highlight", MissingComplement(TCommand("highlight")), mkPos(10, 10));
+		fails("\\highlight a", MissingComplement(TCommand("highlight")), mkPos(11, 12));
 		fails("\\highlight{a}{}", UnexpectedToken(TBrOpen), mkPos(13, 14));
 	}
 
@@ -254,8 +254,8 @@ class Test_03_Parser {
 			expand(VElemList([Paragraph(@len(1)Word("a")),@skip(2)@wrap(15,1)SubSubSection(@len(1)Word("b")),@skip(2)Paragraph(@len(1)Word("c"))])),
 			parse("a\n\n\\subsubsection{b}\n\nc"));
 
-		fails("\\volume", MissingArgument(TCommand("volume"), "name"), mkPos(7, 7));
-		fails("\\volume a", MissingArgument(TCommand("volume"), "name"), mkPos(8, 9));
+		fails("\\volume", MissingComplement(TCommand("volume"), "name"), mkPos(7, 7));
+		fails("\\volume a", MissingComplement(TCommand("volume"), "name"), mkPos(8, 9));
 		fails("\\volume{a}{}", UnexpectedToken(TBrOpen), mkPos(10, 11));
 		fails("\\section{\\volume{a}}", UnexpectedToken(TCommand("volume")), mkPos(9, 16));
 		fails("\\section{a\\volume{b}}", UnexpectedToken(TCommand("volume")), mkPos(10, 17));
@@ -275,10 +275,10 @@ class Test_03_Parser {
 			expand(@wrap(12,1)Quotation(@len(1)Word("a"),@skip(3)@len(1)Word("b"))),  // FIXME @skip
 			parse("\\quotation\n{a}\n{b}"));
 
-		fails("\\quotation", MissingArgument(TCommand("quotation"), "text"), mkPos(10, 10));
-		fails("\\quotation a", MissingArgument(TCommand("quotation"), "text"), mkPos(11, 12));
-		fails("\\quotation{a}", MissingArgument(TCommand("quotation"), "author"), mkPos(13, 13));
-		fails("\\quotation{a} b", MissingArgument(TCommand("quotation"), "author"), mkPos(14, 15));
+		fails("\\quotation", MissingComplement(TCommand("quotation"), "text"), mkPos(10, 10));
+		fails("\\quotation a", MissingComplement(TCommand("quotation"), "text"), mkPos(11, 12));
+		fails("\\quotation{a}", MissingComplement(TCommand("quotation"), "author"), mkPos(13, 13));
+		fails("\\quotation{a} b", MissingComplement(TCommand("quotation"), "author"), mkPos(14, 15));
 		fails("\\quotation{a}{b}{}", UnexpectedToken(TBrOpen), mkPos(16, 17));
 	}
 
@@ -472,8 +472,8 @@ class Test_03_Parser {
 		fails("\\meta\\reset{}{1}", BadValue(badCounter));
 		fails("\\meta\\reset{volume}{}", BadValue(badValue));
 
-		fails("\\meta\\reset", MissingArgument(TCommand("reset"), "counter name"));
-		fails("\\meta\\reset{volume}", MissingArgument(TCommand("reset"), "reset value"));
+		fails("\\meta\\reset", MissingComplement(TCommand("reset"), "counter name"));
+		fails("\\meta\\reset{volume}", MissingComplement(TCommand("reset"), "reset value"));
 
 		fails("\\meta");  // FIXME specific error
 		fails("\\meta\n\n\\reset{volume}{2}");  // FIXME specific error
@@ -513,8 +513,8 @@ class Test_03_Parser {
 
 		fails("\\endbox", UnexpectedToken(TCommand("endbox"), "no beginning"));
 
-		fails("\\beginbox", MissingArgument(TCommand("beginbox"), "name"), mkPos(9, 9));
-		fails("\\beginbox a", MissingArgument(TCommand("beginbox"), "name"), mkPos(10, 11));
+		fails("\\beginbox", MissingComplement(TCommand("beginbox"), "name"), mkPos(9, 9));
+		fails("\\beginbox a", MissingComplement(TCommand("beginbox"), "name"), mkPos(10, 11));
 		fails("\\beginbox{a}{}", UnexpectedToken(TBrOpen), mkPos(12, 13));
 	}
 
@@ -624,12 +624,12 @@ class Test_03_Parser {
 			expand(Paragraph(HElemList([@len(1)Word("a"),@wrap(5,1)Subscript(HElemList([@len(1)Word("b"),@wrap(5,1)Superscript(@len(1)Word("c"))]))]))),
 			parse("a\\sub{b\\sup{c}}"));
 
-		fails("\\sup", MissingArgument(TCommand("sup")), mkPos(4, 4));
-		fails("\\sup a", MissingArgument(TCommand("sup")), mkPos(5, 6));
+		fails("\\sup", MissingComplement(TCommand("sup")), mkPos(4, 4));
+		fails("\\sup a", MissingComplement(TCommand("sup")), mkPos(5, 6));
 		fails("\\sup{a}{}", UnexpectedToken(TBrOpen), mkPos(7, 8));
 
-		fails("\\sub", MissingArgument(TCommand("sub")), mkPos(4, 4));
-		fails("\\sub a", MissingArgument(TCommand("sub")), mkPos(5, 6));
+		fails("\\sub", MissingComplement(TCommand("sub")), mkPos(4, 4));
+		fails("\\sub a", MissingComplement(TCommand("sub")), mkPos(5, 6));
 		fails("\\sub{a}{}", UnexpectedToken(TBrOpen), mkPos(7, 8));
 	}
 
@@ -673,16 +673,16 @@ class Test_03_Parser {
 	{
 		Assert.same(expand(Paragraph(@wrap(5,1)Url(@len(3)"foo"))), parse("\\url{foo}"));
 		Assert.same(expand(Paragraph(@wrap(5,1)Url(@len(5)"foo"))), parse("\\url{ foo }"));  // unstable: triming
-		fails("\\url", MissingArgument(TCommand("url")), mkPos(4, 4));
-		fails("\\url a", MissingArgument(TCommand("url")), mkPos(5, 6));
+		fails("\\url", MissingComplement(TCommand("url")), mkPos(4, 4));
+		fails("\\url a", MissingComplement(TCommand("url")), mkPos(5, 6));
 		fails("\\url{a}{}", UnexpectedToken(TBrOpen), mkPos(7, 8));
 	}
 
 	public function test_030_test_title()
 	{
 		Assert.same(expand(@wrap(7,1)Title(Word(@len(3)"foo"))), parse("\\title{foo}"));
-		fails("\\title", MissingArgument(TCommand("title"), "name"), mkPos(6, 6));  // unstable: arg description
-		fails("\\title a", MissingArgument(TCommand("title"), "name"), mkPos(7, 8));  // unstable: arg description
+		fails("\\title", MissingComplement(TCommand("title"), "name"), mkPos(6, 6));  // unstable: arg description
+		fails("\\title a", MissingComplement(TCommand("title"), "name"), mkPos(7, 8));  // unstable: arg description
 		fails("\\title{a}{}", UnexpectedToken(TBrOpen), mkPos(9, 10));
 	}
 }

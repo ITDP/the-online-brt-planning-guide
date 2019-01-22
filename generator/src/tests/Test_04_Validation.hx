@@ -16,7 +16,7 @@ class Test_04_Validation {
 	{
 		var l = new parser.Lexer(haxe.io.Bytes.ofString(str), SRC);
 		var ast = new parser.Parser(SRC, l).file();
-		var doc = transform.NewTransform.transform(ast);
+		var doc = transform.Structurer.transform(ast);
 		transform.Validator.validate(doc, cback);
 	}
 

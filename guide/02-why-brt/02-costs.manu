@@ -25,7 +25,7 @@ related to tunneling or elevating the right-of-way. Even costlier is elevating o
 station, which is likely to cost around US$100 million per station. Most elevated or underground heavy 
 rapid transit systems minimize the number of stations to increase speeds and keep the costs down, but 
 this frequently limits accessibility to the system. It is fairly typical for modern HRT systems to have 
-stations 1 kilometer apart, whereas it is generally recommended (see Chapter 6: Service Planning) that 
+stations 1 kilometer apart, whereas it is generally recommended -- see \ref{chapter:service-planning} -- that 
 high-capacity public transport stations be placed around .450 to 500 meters apart to minimize walking 
 access times. Were stations located in optimal locations, the cost of HRT alternatives would be significantly 
 increased. LRT and BRT both have significantly lower capital costs in relation to HRT primarily because 
@@ -64,6 +64,7 @@ buses utilized the BRT corridor, while for new LRT systems a new yard or depot i
 For the two LRT systems for which disaggregated data was available, the cost of the LRT depot ranged 
 from US$10.4 million to US$65.7 million. 
 
+\id{cost-per-kilometer}
 \begintable{Average Cost per Kilometer by Mode(BRT, LRT, HRT), Developed Versus Developing Country }
 \header \col Type\col Lower Income Countries 
 (2013 $/Km)\col Higher Income Countries
@@ -77,7 +78,7 @@ from US$10.4 million to US$65.7 million.
 \endtable
 
 Out of a database of forty-two BRT projects, nineteen LRT projects, and twenty-six HRT projects, the 
-average cost per kilometer in constant 2013 dollars was derived and shown in Table 2.1. The number of 
+average cost per kilometer in constant 2013 dollars was derived and shown in \ref{table:cost-per-kilometer}. The number of 
 data points is limited, and the clarity of this cost data is also limited, so these figures should be 
 taken as very rough indications. The database has taken out LRT and BRT systems that involved elevation 
 or tunneling to make the costs more comparable. For example, the Crenshaw/LAX LRT in Los Angeles, which 
@@ -108,6 +109,7 @@ and the cost of an HRT project in higher income countries costs five times as mu
 in lower income countries, probably due to the higher cost of labor in construction. 
 
 
+\id{brt-capital-costs}
 \begintable{BRT Project Capital Costs by Country and Quality}
 \header \col Country\col City\col Project\col Length (km)\col Cost/Km (2013 USD/km)\col Quality (BRT Classification)
 \row \col *BRT Lower Income Economies*\col \col \col \col \col 
@@ -168,7 +170,7 @@ in lower income countries, probably due to the higher cost of labor in construct
 Note: Systems referred to as “likely” Gold, Silver, or Bronze means that they have been evaluated but 
 their rating is pending final approval from the technical committee.
 
-Table 2.2 shows the full list of BRT projects and their costs, and their quality as measured by the 
+\ref{table:brt-capital-costs} shows the full list of BRT projects and their costs, and their quality as measured by the 
 *BRT Standard*. Some of the highest scoring elements of the *Standard*, which account for many of the 
 differences between Silver and Bronze systems, such as turning restrictions across the busways or physical 
 separation of the rights-of-way, are relatively low cost, yet require political will to implement. Most 
@@ -189,7 +191,8 @@ some roadways during Phase II in order to maintain the number of mixed traffic l
 For Phase III, costs came down again to around US$24.6 million per kilometer (“Applicability of Bogotá’s 
 TransMilenio BRT System to the United States.” USDOT: FTA. May 2006 \url{http://www.fta.dot.gov/documents/Bogota_Report_Final_Report_May_2006.pdf}).
 
-\begintable{Table 2.3 LRT Project Capital Costs}
+\id{lrt-capital-costs}
+\begintable{LRT Project Capital Costs}
 \header \col Country\col City\col Project\col Length (km)\col Cost/Km (2013 USD/km)
 \row \col *LRT Lower Income Economies*\col \col \col \col 
 \row \col Algeria\col Constantine\col Constantine Tram\col 8\col $50,000,000 
@@ -217,12 +220,12 @@ TransMilenio BRT System to the United States.” USDOT: FTA. May 2006 \url{http:
 \endtable
 
 The costs of at-grade LRT systems in countries with both developed and emerging economies, shown in 
-Table 2.3, range from US$19.3 million per kilometer for tramways in France to US$66.9 million for the 
+\ref{table:lrt-capital-costs}, range from US$19.3 million per kilometer for tramways in France to US$66.9 million for the 
 Charlotte (North Carolina) LRT extension. A few of the LRT systems in the United States were rated using 
 the *BRT Standard*, and they ranged from Silver to Bronze. There was no clear correlation between the 
 cost of an LRT system and its rating using the *BRT Standard*.
 
-Table 2.4 contains the range of costs for HRT projects divided into countries with developed and emerging 
+\ref{table:hrt-capital-costs} contains the range of costs for HRT projects divided into countries with developed and emerging 
 economies. The lowest cost systems are in India, at a minimum of US$51 million per kilometer. Labor 
 costs for construction are very low in India, and these are primarily elevated structures with a limited 
 number of station stops. 
@@ -241,7 +244,8 @@ with traditional cut and cover methods, requiring land acquisition in a very hig
 high water table is another factor when estimating construction costs, as construction below the water 
 table adds additional expense. 
 
-\begintable{Table 2.4 HRT Project Capital Costs, Emerging and Developed Economies}
+\id{hrt-capital-costs}
+\begintable{HRT Project Capital Costs, Emerging and Developed Economies}
 \header \col Country\col City\col Project\col Length (km)\col Cost/Km (2013 USD/km)
 \row \col HRT Lower Income Economies\col \col \col \col 
 \row \col Brazil\col Rio de Janeiro\col Line 4 metro\col 16\col $233,750,000 
@@ -320,7 +324,7 @@ major rail manufacturers in the world today (i.e., Alstom, Bombardier, Hitachi, 
 The scale required to set up local rail manufacturing is unlikely to be achieved in most lower income 
 nations. Instead, manufacturing (and the associated employment) will be based in higher income countries, 
 such as France, Canada, Japan, or Germany. When a city such as Bangkok purchases its rail metro vehicles, 
-the carriages arrive almost fully fabricated (Figure 2.1). This tends to make the vehicles far more expensive. 
+the carriages arrive almost fully fabricated (\ref{figure:image6}). This tends to make the vehicles far more expensive. 
 
 
 \figure[medium]{assets/image6.jpg}{A metro rail car arrives in Bangkok from Germany.}{Bangkok MRTA 
@@ -369,10 +373,10 @@ of vehicle operators needed. LRT and HRT vehicles come in sizes larger than the 
 (biarticulated buses) and can therefore carry more passengers with a single operator, reducing labor 
 costs. 
 
-However, as explained in Chapter 6: Service Planning, this guide recommends optimizing the vehicle 
+However, as explained in \ref{chapter:service-planning}, this guide recommends optimizing the vehicle 
 size following a formula that finds the optimal trade-off between minimizing passenger waiting times 
 (with high frequency) and minimizing labor costs (with larger vehicles). While the formulas for calculating 
-optimal vehicle size included in Chapter 6 were developed for BRT systems, they can equally be applied 
+optimal vehicle size included in \ref[num]{chapter:service-planning} were developed for BRT systems, they can equally be applied 
 to LRT systems. 
 
 For any given demand profile on a transit corridor, the number of vehicles needed to satisfy peak hour 

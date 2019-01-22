@@ -3,9 +3,10 @@ package transform;
 import haxe.macro.Expr;
 import haxe.macro.Context.*;
 
-@:allow(transform.NewTransform)  // allow NewTransform meta handling to change lastVolume/lastChapter
+@:allow(transform.Structurer)  // allow Structurer meta handling to change lastVolume/lastChapter
 private class DocumentContext<T> {
 	var zero:T;
+	var prefix:Bool;
 	public var lastVolume(default,null):T;
 	public var lastChapter(default,null):T;
 	public var box:T;
@@ -59,22 +60,41 @@ private class DocumentContext<T> {
 		return macro $a{comp}.join($v{separator});
 	}
 
-	function new(zero:T) {
+	public macro function stamp(ethis:Expr, fields:Array<Expr>)
+	{
+		var comp = [];
+		for (f in fields) {
+			switch f.expr {
+			case EConst(CIdent(name)):
+				comp.push(macro
+						if ($ethis.prefix)
+							$v{name} + ":" + $ethis.$name
+						else
+							$ethis.$name);
+			case _:
+				error('Unsupported field expression (expected EConst(CIdent(_))): $f', f.pos);
+			}
+		}
+		return macro $a{comp}.join(macro ".");
+	}
+
+	function new(zero:T, prefix:Bool) {
 		this.zero = zero;
+		this.prefix = prefix;
 		volume = zero;
 	}
 }
 
 class IdCtx extends DocumentContext<String> {
 	public function new()
-		super("");
+		super("", true);
 }
 
 class NoCtx extends DocumentContext<Int> {
 	public function new()
 	{
 		lastChapter = 0;
-		super(0);
+		super(0, false);
 	}
 }
 

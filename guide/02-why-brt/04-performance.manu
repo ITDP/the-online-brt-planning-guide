@@ -28,10 +28,10 @@ single station. If the next bus comes before the first bus has finished the boar
 the next bus has to wait to enter the station, and a bus queue quickly develops. Intersections rarely 
 represent the capacity constraint on a BRT system because many buses can queue at a traffic light like 
 any other form of traffic, and there are only very rare instances where the bus volumes are so high they 
-cannot clear a traffic light in a single signal phase. As such, in Chapter 7: System Speed and Capacity, 
-the BRT capacity calculations are made based only on the capacity of the bottleneck station. Chapter 
-7 provides the calculations necessary to calculate the design capacity at a reasonable speed for BRT 
-systems. Chapter 7 of this guide differs in some minor respects from the Bus chapter of the *Transit 
+cannot clear a traffic light in a single signal phase. As such, in \ref{chapter:system-speed-and-capacity}, 
+the BRT capacity calculations are made based only on the capacity of the bottleneck station. \ref[num]{chapter:system-speed-and-capacity}
+provides the calculations necessary to calculate the design capacity at a reasonable speed for BRT 
+systems. \ref[num]{chapter:system-speed-and-capacity} of this guide differs in some minor respects from the Bus chapter of the *Transit 
 Capacity and Quality of Service Manual*, in ways that will be explained in the following text. 
 
 In rail systems it is more likely that capacity is set by some other bottleneck in the system, such 
@@ -74,7 +74,8 @@ In general, the possibility exists of using larger vehicles with more doors in L
 systems than in BRT systems, though in most operational conditions this distinction does not matter for 
 reasons that will be explained. 
 
-\begintable{Table 2.5 Standard Vehicle Types and Capacities}
+\id{vehicle-types-and-capacities}
+\begintable{Standard Vehicle Types and Capacities}
 \header \col Vehicle Types\col \col Vehicle Lengths\col Doors\col Vehicle Capacities
 \row \col Heavy Rail Large 8 car train\col \col 176\col 24\col 1408
 \row \col Heavy Rail Small 6 car train\col \col 90\col 18\col 720
@@ -122,7 +123,7 @@ range approaches crush-loaded conditions.
 A reduction by 0.3 p/ft length (1.0 p/m length) should be used for smaller, narrower 
 cars *(1).*}{\emph{continued}}
 
-Table 2.5 uses eight passengers per meter of length to estimate the passenger capacity of a rail car.
+\ref{table:vehicle-types-and-capacities} uses eight passengers per meter of length to estimate the passenger capacity of a rail car.
 
 The metro systems with the longest trains have eight-car trains, with six being more typical (for BRT 
 systems, then, this guide uses $$(L-3) * 10 $$, or 10 passengers per meter, within the range of the TCSQM 
@@ -239,7 +240,7 @@ are 30 seconds or less (\url{http://onlinepubs.trb.org/onlinepubs/tcrp/tcrp_rpt_
 it rightly points out that at most three of them are effective because at some point a 
 delay in boarding and alighting in the rearmost docking bay will block access to all of the remaining 
 docking bays in front of it. This guide includes the possibility that, with passing lanes, six docking 
-bays can be made effective. Chapter 7 of this guide thus provides capacity calculation and station saturation 
+bays can be made effective. \ref[num]{chapter:system-speed-and-capacity} of this guide thus provides capacity calculation and station saturation 
 formulas that accept the possibility of up to six effective loading areas, if there are at least three 
 sub-stops with two docking bays each, based on empirical observation of stations in Latin America. 
 
@@ -271,7 +272,7 @@ These limited-stop services increase the system’s capacity mainly because the 
 can be divided into multiple services, some of which bypass all together the bottleneck station. Because 
 the capacity of a BRT system is limited by the critical bottleneck station, having all the buses stop 
 at that station is not always a good idea. Often, some portion of the demand can be well served by services 
-that bypass the bottleneck station. Detailed service planning calculations, as provided in Chapter 6, 
+that bypass the bottleneck station. Detailed service planning calculations, as provided in \ref{chapter:service-planning}, 
 would need to be made in order to determine the optimal service patterns. The greater the number of limited-stop 
 services that are able to bypass the bottleneck station, the greater the capacity of that station, because 
 the additional dwell time for the share of the demand bypassing the station is zero. The enormous flexibility 
@@ -314,7 +315,7 @@ frequency of buses, the longer the distance needed between the intersection and 
 Station/intersection interference can significantly reduce the capacity of either a BRT or LRT system. 
 So long as this issue is addressed in the design, large numbers of buses can easily pass through a single 
 green signal phase of any standard length at any intersection. As such, the capacity calculations for 
-BRT systems in Chapter 7 do not consider intersections as the critical bottleneck. 
+BRT systems in \ref[num]{chapter:system-speed-and-capacity} do not consider intersections as the critical bottleneck. 
 
 For LRT systems, however, the length of the full signal phase at an intersection is also a capacity 
 constraint. This is because train sets require much longer minimum headways between them. The rule of 
@@ -326,7 +327,7 @@ fully achieved in most LRT systems. For this reason, *TCQSM* states the followin
 \quotation{Therefore, a common rule of thumb is that the minimum sustainable headway is double the longest traffic 
 signal cycle on the on-street portions of the line.}{TCQSM pp. 8–57}
 
-As this problem does not manifest itself in BRT systems, they are not considered in Chapter 7. For 
+As this problem does not manifest itself in BRT systems, they are not considered in \ref[num]{chapter:system-speed-and-capacity}. For 
 this reason, the *TCQSM* is a better manual for calculating the likely capacity of an LRT system. It 
 should be emphasized, however, that the potential capacity of LRT systems in the *TCQSM* may still be 
 exaggerated as there are no street-level LRT systems with capacities of over 6,000 upon which to base 
@@ -356,7 +357,8 @@ greater than design capacity, or below design capacity as is often the case in t
 they could face constraints unanticipated by theoretical design capacity calculations, like a demand 
 profile with heavy boarding and alighting concentrated at a few critical stops.  
 
-\begintable{Table 2.7 Theoretical Capacities of Different Rapid Transit Alternatives}
+\id{theoretical-capacities-of-rapid-transit}
+\begintable{Theoretical Capacities of Different Rapid Transit Alternatives}
 \header \col \col \col Vehicle capacity \col Load Factor\col Frequency\col Capacity
 \row \col HRT 8 car single track, best signaling system\col \col 1408\col 0.85\col 30\col 35904
 \row \col HRT 8 car double track \col \col 1408\col 0.85\col 60\col 71808
@@ -373,7 +375,7 @@ profile with heavy boarding and alighting concentrated at a few critical stops.
 The theoretical values used above are illustrative only, and local circumstances will cause significant 
 deviations from these values. 
 
-In Table 2.7, the vehicle capacities are based on existing commercial vehicles operated in fairly typical 
+In \ref{table:theoretical-capacities-of-rapid-transit}, the vehicle capacities are based on existing commercial vehicles operated in fairly typical 
 conditions without crush loads. The longest HRT trains are 176 meters with 8-car trains. At 8 passengers 
 per meter of length, this is 1,408 passengers per train. The longest LRT vehicles are 8 modules and 79 
 meters long, and have a capacity of about 632 passengers per train. This is longer than is possible to 
@@ -415,7 +417,7 @@ the current record. It is believed that once the TransBrasil BRT system in Rio d
 for 2018), that design capacities of over 45,000 will be achieved, due to limited intersections and a 
 unique demand profile, which allows for an unprecedented majority of services to run very limited stops. 
 
-
+\id{peak-volume-brt}
 \begintable{Passengers per Hour per Peak Direction Observed: BRT}
 \header \col Corridor\col Type\col Daily Weekday Ridership\col PPHPD\col Level\col Tracks/ Lanes\col Source 
 \row \col BRT\col \col \col \col \col \col 
@@ -492,8 +494,8 @@ of the most reliable data that the authors could collect.
 
 The observed pphpd on two BRT systems now exceeds 20,000 (Bogotá, Guangzhou). 
 
+\id{peak-volume-lrt-and-hrt}
 \begintable{Passengers per Hour per Peak Direction Observed: LRT and HRT}
-
 \header \col Corridor\col Type\col Daily Weekday Ridership\col PPHPD\col Level\col Tracks/ Lanes\col Source 
 \row \col LRT\col \col \col \col \col \col 
 \row \col Tunis- LRT\col LRT\col \col  13,400 \col Underground Junctions\col 1\col ? 
@@ -554,10 +556,9 @@ design capacity.
 
 \figure[medium]{assets/image22.png}{Passenger throughputs and capital cost for mass transit options. This figure 
 compares the range of passenger throughputs for each technology measured against the range of capital 
-costs. The ranges presented in Figure 2.12 are based on observed, not theoretical, data (Tables 2.8 and 
-2.9).}{ITDP.}
+costs. The ranges presented there are based on observed, not theoretical, data (\rangeref{table:peak-volume-brt}{table:peak-volume-lrt-and-hrt}).}{ITDP.}
 
-The different sized areas of the rectangles in Figure 2.12 are also revealing with regard to the relative 
+The different sized areas of the rectangles in \ref{figure:image22} are also revealing with regard to the relative 
 risk and overall flexibility of each transit technology option. Ideally, a technology will have a small 
 band of possible capital cost levels (y-axis) and a wide band of profitable capacity operations (x-axis). 
 In other words, a system that minimizes costs and maximizes the spectrum of profitable operating conditions 
@@ -636,11 +637,12 @@ does not matter much, as transit vehicles can usually accelerate and decelerate 
 for passengers, and they are normally able to move faster than traffic rules on normal streets would 
 allow. 
 
-Table 2.4.2 shows the average speeds of various BRT, LRT, and HRT systems around the world. It is clear 
+\ref{table:comparative-speeds} shows the average speeds of various BRT, LRT, and HRT systems around the world. It is clear 
 from the table that BRT and LRT operate at very similar speeds, and the variance is almost entirely explained 
 by corridor characteristics, with the existence of express services and grade separation in Ottawa, Pittsburgh, 
 and Bogotá giving BRT a slight advantage in a like-to-like comparison. 
 
+\id{comparative-speeds}
 \begintable{Comparative Observed Speeds, BRT, LRT, and HRT}
 \header \col Corridor\col Type\col Speed (km/hr)\col Source
 \row \col BRT\col \col \col 
@@ -677,8 +679,7 @@ and Bogotá giving BRT a slight advantage in a like-to-like comparison.
 \row \col Tren Urbano, San Juan, Puerto Rico\col HRT\col 33.2\col \[ix\]
 \endtable
 
-
-  Sources:   
+Sources:
 
 \item  \[i\]Ottawa Ontario BRT Case Study." Transportation Research Board. \url{http://onlinepubs.trb.org/onlinepubs/tcrp/tcrp90v1_cs/Ottawa.pdf.}   
 \item  \[ii\] US Department of Transportation. Evaluation of Port Authority of Allegheny County's West Busway Bus Rapid Transit Project. Washington DC, 2003. Report No. FTA-PA-26-7010-03.1 \url{http://www.fta.dot.gov/documents/Pittsburgh_West_Busway_BRT_Evaluation-April_2003.pdf}   
@@ -726,7 +727,7 @@ such as reading or studying, easier to undertake.}{Lloyd Wright.}
 
 Ride comfort is one potential area of significant difference between BRT vehicles and rail vehicles. 
 Rail is typically credited with a smoother ride performance both during starts and stops as well as during 
-full operation. A smoother ride better permits value-added activities, such as reading (Figure 2.16). 
+full operation. A smoother ride better permits value-added activities, such as reading (\ref{figure:image27}). 
 However, not all rail systems provide the same ride quality. The Kuala Lumpur monorail technology actually 
 delivers a somewhat “bumpy” travel experience. Additionally, older tram systems may not provide an entirely 
 smooth ride. Low-floor BRT vehicles can be susceptible to surface imperfections on the busway that will 
@@ -746,8 +747,7 @@ and sophisticated image, though usually at a significant cost. Such an advantage
 important when attempting to attract ridership from car users. At the same time, the traditional image 
 of the bus is relatively poor. Attracting middle- and higher-income users to the bus can thus be difficult. 
 Image issues, though, are not entirely restricted to bus technology. Older or poorly maintained rail-based 
-systems may also evoke images that are not entirely favorable to attracting customers (Figures 2.17 and 
-2.18). In Mexico City, for instance, the surface BRT system is preferred by upper- and middle-income 
+systems may also evoke images that are not entirely favorable to attracting customers (\rangeref{figure:image28}{figure:image29}). In Mexico City, for instance, the surface BRT system is preferred by upper- and middle-income 
 residents to the underground subway system. 
 
 \figure[medium]{assets/image28.jpg}{Rail-based systems do not always offer superior
@@ -759,7 +759,7 @@ Image is mostly determined by the quality of the stations, and secondarily by th
 and the feel of the vehicles. BRT systems have done much to create a modern and unique identity, mainly 
 by developing stations with architectural merit and by using special buses. The modern tube boarding 
 stations in Curitiba helped make a dramatic new impression for the service. Modern vehicles that cover 
-their wheels and emulate the rounded shape of LRT vehicles also help create a new image (Figure 2.19).
+their wheels and emulate the rounded shape of LRT vehicles also help create a new image (\ref{figure:image30}).
 
 In all countries where BRT has become most accepted to the general public, (Colombia, Mexico), high-quality 
 station design and buses played a key role in convincing the public that BRT was a premium service. Passengers 

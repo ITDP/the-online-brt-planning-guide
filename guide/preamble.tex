@@ -196,12 +196,14 @@
 \newcommand\figcaption[3]{\footnotesize\sffamily\color{gray50}{\bfseries Figure \thechapter.#1.} #2 {\itshape #3}}
 \newcommand{\manusmallfigure}[4]{
 	\marginpar{
+		\phantomsection
 		\noindent\includegraphics[width=49mm]{#1} \\
 		\noindent\RaggedRight\figcaption{#2}{#3}{#4}\par
 	}
 }
 \newcommand{\manumediumfigure}[4]{
 	{
+		\phantomsection
 		\vskip 2.25mm plus 2.25mm
 		\noindent\includegraphics[width=105mm]{#1}
 		\vskip 2.25mm
@@ -212,6 +214,7 @@
 \newcommand{\manulargefigure}[4]{
 	\blockmargin
 	{
+		\phantomsection
 		\vskip 2.25mm plus 2.25mm
 		\noindent\includegraphics[width=161mm]{#1}
 		\vskip 2.25mm
@@ -225,12 +228,14 @@
 \newcommand\tabletitletext[2]{{\bfseries\color{volume\thepart}\sffamily Table \thechapter.#1. #2}}
 \newcommand{\manusmallimgtable}[4]{
 	\marginpar{
+		\phantomsection
 		\noindent\RaggedRight\footnotesize\tabletitletext{#2}{#3}\par
 		\noindent\includegraphics[width=49mm]{#1}
 	}
 }
 \newcommand{\manumediumimgtable}[4]{
 	{
+		\phantomsection
 		\vskip 2.25mm plus 2.25mm
 		\noindent\RaggedRight\tabletitletext{#2}{#3}
 		\vskip 2.25mm plus 2.25mm
@@ -241,6 +246,7 @@
 \newcommand{\manulargeimgtable}[4]{
 	\blockmargin
 	{
+		\phantomsection
 		\vskip 2.25mm plus 2.25mm
 		\vbox{\hsize=161mm\noindent\RaggedRight\tabletitletext{#2}{#3}}
 		\vskip 2.25mm plus 2.25mm
@@ -273,7 +279,7 @@
 %note: \tablemodule*46*2 must match \textwidth+\marginparsep+\marginparwidth
 \usepackage{ifoddpage}
 \newdimen\tablemodule \tablemodule=\textwidth \divide\tablemodule by 60
-\newcommand{\tabletitle}[2]{{\vskip 2.25mm plus 2.25mm\noindent\tabletitletext{#1}{#2}} \vskip 2.25mm plus 2.25mm }
+\newcommand{\tabletitle}[2]{{\phantomsection\vskip 2.25mm plus 2.25mm\noindent\tabletitletext{#1}{#2}} \vskip 2.25mm plus 2.25mm }
 \newcommand{\tablesource}[1]{\noindent\RaggedRight\footnotesize\sffamily\color{gray50}{\bfseries Source:} #1 \par \smallskip}
 
 \AtBeginDocument{
@@ -281,7 +287,9 @@
 	\baselineskip=4.5mm
 	\parindent=7mm
 	\color{gray75}
-
+	% can't do any typesetting here, still part of the preamble
+}
+\AfterEndPreamble{
 	\part*{The BRT Planning Guide}
 }
 

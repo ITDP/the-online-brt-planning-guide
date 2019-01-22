@@ -1,6 +1,6 @@
 package transform;
 
-import transform.NewDocument;
+import transform.Document;
 
 class DocumentTools {
 	public static function iter(v:DElem, f:DElem->Void)

@@ -156,7 +156,7 @@ in wealthier nations.
 
 All new public transport systems present both an opportunity and a threat in terms of operational employment. 
 The specific opportunity and threat depends entirely on the services being planned. If the vehicles specified 
-for use in the new transit system follow the recommendations made in Chapter 6, then in most cases similar 
+for use in the new transit system follow the recommendations made in \ref{chapter:service-planning}, then in most cases similar 
 numbers of BRT and LRT vehicles would be needed, as well as similar levels of employment. That LRT and 
 HRT systems frequently use larger vehicles, however, means that these systems tend to be more capital 
 intensive and less labor intensive, having fewer employment benefits. 
@@ -242,7 +242,7 @@ Further, in lower income countries, BRT has been used to encourage locally owned
 Most BRT operators in such countries came from former informal bus operator consortiums or enterprises 
 whose businesses would otherwise have been adversely affected by the new rapid transit system. This incorporation 
 of the affected bus and minibus owners and operators into the ownership structure of the BRT operating 
-companies (see Chapter 9: Strategic Planning for Communications) was a major selling point for the South 
+companies -- see \ref{chapter:strategic-planning-for-communications} -- was a major selling point for the South 
 African National DOT when promoting BRT in South Africa, as it was trying to promote black- and people-of-color-owned 
 businesses and minimize unemployment. South Africa also hired locally for many elements of station operation 
 and construction, design, bus fabrication, and other elements of the BRT business. Rail systems, by contrast, 

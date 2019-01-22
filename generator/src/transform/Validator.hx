@@ -2,7 +2,7 @@ package transform;
 
 import haxe.io.Path;
 import sys.FileSystem;
-import transform.NewDocument;
+import transform.Document;
 import transform.ValidationError;
 
 import Assertion.*;
@@ -144,6 +144,8 @@ class Validator {
 				hiter(i);
 		case Wordspace, Word(_), InlineCode(_), Url(_), HEmpty:
 			// nothing to do
+		case Ref(_), RangeRef(_):
+			// TODO nothing to do yet
 		}
 	}
 

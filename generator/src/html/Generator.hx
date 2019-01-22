@@ -6,7 +6,7 @@ import html.script.Const;
 import sys.FileSystem;
 import sys.io.File;
 import transform.Context;
-import transform.NewDocument;
+import transform.Document;
 
 import Assertion.*;
 import generator.tex.*;
@@ -27,7 +27,6 @@ Assumes that the server will:
 
 (e.g. Nginx configured to `try_files $uri $uri/ $uri.html 404`)
 */
-@:hasTemplates
 class Generator {
 	static inline var ASSET_SUBDIR = "assets";
 	static inline var ROOT_URL = "./";
@@ -42,6 +41,7 @@ class Generator {
 	var srcCache:Map<String,Int>;
 	var lastSrcId:Int;
 	var toc:StringBuf;
+	var index:Map<String,DElem>;
 
 	function gent(text:String)
 		return text.htmlEscape();
@@ -56,6 +56,51 @@ class Generator {
 
 	function exportPos(pos:Position)
 		return [saveSource(pos.src), pos.min, pos.max].join(":");
+
+	function resolveRef(type:RefType, id:Elem<String>)
+	{
+		var targetElem = index[id.def];
+		assert(targetElem != null, "could not resolve reference", id.def, id.pos.toString());
+		var infos = getFirstPassInfos(targetElem);
+		var prefix = null;
+		var text = switch [type, targetElem.def] {
+		case [_, DTitle(_)|DList(_)|DCodeBlock(_)|DQuotation(_)|DParagraph(_)|DElemList(_)|DEmpty|
+				DHtmlStore(_)|DHtmlToHead(_)|DLaTeXPreamble(_)|DLaTeXExport(_)]:
+			assert(false, "unsupported target", Type.enumConstructor(targetElem.def), id.pos.toString()); null;
+		case [RTAuto|RTItemName, DVolume(no,name,_)|DChapter(no,name,_)]:
+			'${gent(Std.string(no))} (${genh(name)})';
+		case [RTItemName, DSection(no,name,_)|DSubSection(no,name,_)|DSubSubSection(no,name,_)|
+				DBox(no,name,_)|DFigure(no,_,_,name,_)|DTable(no,_,name,_,_)|DImgTable(no,_,name,_)]:
+			'${gent(infos.no)} (${genh(name)})';
+		case [RTAuto|RTItemNumber, _]:
+			gent('${infos.no}');
+		case [RTPageNumber, _]:
+			assert(infos.page != null, "missing parent/page DElem", id.pos.toString());
+			var pdelem = infos.page;
+			switch pdelem.def {
+			case DVolume(_, name, _), DChapter(_, name, _), DSection(_, name, _):
+				prefix = "";
+				genh(name);
+			case other:
+				assert(false, "unsupported parent/page element", Type.enumConstructor(other), id.pos.toString()); null;
+			}
+		}
+		if (prefix == null)
+		 prefix = gent(Type.enumConstructor(targetElem.def).substr(1).replace("SubS", "Sub-S").replace("Img", "")) + " ";
+		return { targetElem:targetElem, infos:infos, text:text, prefix:prefix };
+	}
+
+	function compareCounters(a:String, b:String):Int
+	{
+		var a = a.split(".");
+		var b = b.split(".");
+		assert(a.length == b.length && a.length <= 3, a.length, b.length);
+		for (i in 0...a.length) {
+			if (a[i] != b[i])
+				return (Std.parseInt(a[i]) - Std.parseInt(b[i])) << 10*(a.length - i - 1);
+		}
+		return 0;
+	}
 
 	function genh(h:HElem)
 	{
@@ -78,6 +123,35 @@ class Generator {
 			return '<span class="mathjax"${Render.posAttr(h.pos)}>\\(${gent(tex)}\\)</span>';
 		case Url(address):
 			return '<a class="url" href="${gent(address)}">${gent(address)}</a>';
+		case Ref(type, target):
+			var ref = resolveRef(type, target);
+			return '<a href="${ref.infos.url}">${ref.prefix}${ref.text}</a>';
+		case RangeRef(type, firstTarget, lastTarget):
+			/*
+			Be user friendly: handle first == last, check if targets match in type
+			and fix order if first > last.  Additionally, customize the interval word
+			if last = first + 1.
+			*/
+			var first = resolveRef(type, firstTarget);
+			var last = resolveRef(type, lastTarget);
+			assert(first.targetElem.def.getIndex() == last.targetElem.def.getIndex(),
+					"trying to reference a range of different elements",
+					first.targetElem.def.getName(), last.targetElem.def.getName(), h.pos.toString());
+			assert(first.prefix == last.prefix);
+			if (first.text == last.text)  // infos.url theoretically better, but text practically more relevant
+				return genh({ def:Ref(type, firstTarget), pos:h.pos });
+			var dif = compareCounters(last.infos.no, first.infos.no);
+			if (dif < 0) {
+				var tmp = first;
+				first = last;
+				last = tmp;
+				dif = - dif;
+			}
+			var interval = dif == 1 ? " and " : " to ";
+			var prefix = first.prefix;
+			if (prefix != "")
+				prefix = prefix.rtrim() + "s ";
+			return '${prefix}<a href="${first.infos.url}">${first.text}</a>$interval<a href="${last.infos.url}">${last.text}</a>';
 		case HElemList(li):
 			var buf = new StringBuf();
 			if (godOn)
@@ -101,6 +175,10 @@ class Generator {
 			return genn(h);
 		case Word(cte), InlineCode(cte), Math(cte), Url(cte):
 			return gent(cte);
+		case Ref(type, target):
+			return gent('<broken reference>');  // FIXME
+		case RangeRef(type, firstTarget, lastTarget):
+			return gent('<broken range>');  // FIXME
 		case HElemList(li):
 			var buf = new StringBuf();
 			for (i in li)
@@ -203,7 +281,217 @@ class Generator {
 		}
 	}
 
-	function genv(v:DElem, idc:IdCtx, noc:NoCtx, bcs:Breadcrumbs)
+	static function normalizeId(ctx:IdCtx, id:String):String
+	{
+		var ctx:IdCtx = Reflect.copy(ctx);
+		var segs = id.split(":");
+		assert(segs.length > 0 && segs.length % 2 == 0, segs.length, id);
+		var parts = [ for (i in 0...(segs.length >> 1)) { name:segs[i*2], value:segs[i*2 + 1] } ];
+		// TODO check parts
+		// TODO sort parts
+		for (p in parts)
+			Reflect.setProperty(ctx, p.name, p.value);
+		return
+				switch parts[parts.length - 1].name {
+				case "volume": ctx.join(true, ":", volume);
+				case "chapter": ctx.join(true, ":", chapter);
+				case "section": ctx.join(true, ":", chapter, section);
+				case "subSection": ctx.join(true, ":", chapter, section, subSection);
+				case "subSubSection": ctx.join(true, ":", chapter, section, subSection, subSubSection);
+				case "box": ctx.join(true, ":", chapter, box);
+				case "figure": ctx.join(true, ":", chapter, figure);
+				case "table": ctx.join(true, ":", chapter, table);
+				case other: assert(false, other); null;
+				}
+	}
+
+	static function normalizeRefs(ctx:IdCtx, h:HElem)
+	{
+		switch h.def {
+		case Ref(type, target):
+			h.def = parser.Ast.HDef.Ref(type, { def:normalizeId(ctx, target.def), pos:target.pos });
+		case RangeRef(type, firstTarget, lastTarget):
+			h.def = parser.Ast.HDef.RangeRef(type, { def:normalizeId(ctx, firstTarget.def), pos:firstTarget.pos },
+					{ def:normalizeId(ctx, lastTarget.def), pos:lastTarget.pos });
+		case HElemList(li):
+			for (i in li)
+				normalizeRefs(ctx, i);
+		case _:
+			// noop
+		}
+	}
+
+	/**
+	First pass: prepare for generation.
+
+	Compute ids, counters and urls, and normalize all ref/rangeref targets.
+
+	Builds an index for ref/rangeref resolution, and stores useful data in the
+	DElem (adding a _first field with Reflection).
+	**/
+	function firstPass(v:DElem, idc:IdCtx, noc:NoCtx, page:DElem)
+	{
+		var infos:{ id:String, htmlId:String, no:String, volumeNo:Int, url:String, page:DElem } = null;
+		switch v.def {
+		case DVolume(no, name, children):
+			idc.volume = v.id.sure();
+			noc.volume = no;
+			infos = {
+				id : idc.join(true, ":", volume),
+				htmlId : "heading",
+				no : noc.join(false, ".", volume),
+				volumeNo : noc.volume,
+				url : Path.join(["volume", idc.volume]),
+				page : v
+			};
+			normalizeRefs(idc, name);
+			firstPass(children, idc, noc, v);
+		case DChapter(no, name, children):
+			idc.chapter = v.id.sure();
+			noc.chapter = no;
+			infos = {
+				id : idc.join(true, ":", chapter),
+				htmlId : "heading",
+				no : noc.join(false, ".", chapter),
+				volumeNo : noc.volume,
+				url : Path.addTrailingSlash(idc.chapter),
+				page : v
+			};
+			normalizeRefs(idc, name);
+			firstPass(children, idc, noc, v);
+		case DSection(no, name, children):
+			idc.section = v.id.sure();
+			noc.section = no;
+			infos = {
+				id : idc.join(true, ":", chapter, section),
+				htmlId : "heading",
+				no : noc.join(false, ".", chapter, section),
+				volumeNo : noc.volume,
+				url : Path.join([idc.chapter, idc.section]),
+				page : v
+			};
+			normalizeRefs(idc, name);
+			firstPass(children, idc, noc, v);
+		case DSubSection(no, name, children):
+			idc.subSection = v.id.sure();
+			noc.subSection = no;
+			var htmlId = idc.join(false, "/", subSection);
+			infos = {
+				id : idc.join(true, ":", chapter, section, subSection),
+				htmlId : htmlId,
+				no : noc.join(false, ".", chapter, section, subSection),
+				volumeNo : noc.volume,
+				url : Path.join([idc.chapter, idc.section + "#" + htmlId]),
+				page : page
+			};
+			normalizeRefs(idc, name);
+			firstPass(children, idc, noc, page);
+		case DSubSubSection(no, name, children):
+			idc.subSubSection = v.id.sure();
+			noc.subSubSection = no;
+			var htmlId = idc.join(false, "/", subSection, subSubSection);
+			infos = {
+				id : idc.join(true, ":", chapter, section, subSection, subSubSection),
+				htmlId : htmlId,
+				no : noc.join(false, ".", chapter, section, subSection, subSubSection),
+				volumeNo : noc.volume,
+				url : Path.join([idc.chapter, idc.section + "#" + htmlId]),
+				page : page
+			};
+			normalizeRefs(idc, name);
+			firstPass(children, idc, noc, page);
+		case DBox(no, name, children):
+			idc.box = v.id.sure();
+			noc.box = no;
+			var htmlId = idc.join(true, ":", box);
+			infos = {
+				id : idc.join(true, ":", chapter, box),
+				htmlId : htmlId,
+				no : noc.join(false, ".", chapter, box),
+				volumeNo : noc.volume,
+				url : Path.join([idc.chapter, idc.section + "#" + htmlId]),
+				page : page
+			};
+			normalizeRefs(idc, name);
+			firstPass(children, idc, noc, page);
+		case DFigure(no, _, _, caption, cright):
+			idc.figure = v.id.sure();
+			noc.figure = no;
+			var htmlId = idc.join(true, ":", figure);
+			infos = {
+				id : idc.join(true, ":", chapter, figure),
+				htmlId : htmlId,
+				no : noc.join(false, ".", chapter, figure),
+				volumeNo : noc.volume,
+				url : Path.join([idc.chapter, idc.section + "#" + htmlId]),
+				page : page
+			};
+			normalizeRefs(idc, caption);
+			normalizeRefs(idc, cright);
+		case DTable(no, _, title, header, rows):
+			idc.table = v.id.sure();
+			noc.table = no;
+			var htmlId = idc.join(true, ":", table);
+			infos = {
+				id : idc.join(true, ":", chapter, table),
+				htmlId : htmlId,
+				no : noc.join(false, ".", chapter, table),
+				volumeNo : noc.volume,
+				url : Path.join([idc.chapter, idc.section + "#" + htmlId]),
+				page : page
+			};
+			normalizeRefs(idc, title);
+			for (i in header)
+				firstPass(i, idc, noc, page);
+			for (row in rows) {
+				for (i in row)
+					firstPass(i, idc, noc, page);
+			}
+		case DImgTable(no, _, title, _):
+			idc.table = v.id.sure();
+			noc.table = no;
+			var htmlId = idc.join(true, ":", table);
+			infos = {
+				id : idc.join(true, ":", chapter, table),
+				htmlId : htmlId,
+				no : noc.join(false, ".", chapter, table),
+				volumeNo : noc.volume,
+				url : Path.join([idc.chapter, idc.section + "#" + htmlId]),
+				page : page
+			};
+			normalizeRefs(idc, title);
+		case DElemList(li), DList(_, li):
+			for (i in li)
+				firstPass(i, idc, noc, page);
+			return;
+		case DParagraph(content):
+			normalizeRefs(idc, content);
+			return;
+		case DQuotation(content, author):
+			normalizeRefs(idc, content);
+			normalizeRefs(idc, author);
+			return;
+		case DTitle(title):
+			normalizeRefs(idc, title);
+			return;
+		case DEmpty, DCodeBlock(_), DHtmlStore(_), DHtmlToHead(_), DLaTeXExport(_), DLaTeXPreamble(_):
+			return;
+		}
+		assert(infos != null, v.pos.toString());
+		weakAssert(!index.exists(infos.id), "global id conflict", infos.id, v.pos.toString());  // FIXME switch to assert
+		index[infos.id] = v;
+		Reflect.setField(v, "_first", infos);
+	}
+
+	function getFirstPassInfos(v:DElem)
+	{
+		var infos:{ id:String, htmlId:String, no:String, volumeNo:Int, url:String, page:DElem } =
+				Reflect.field(v, "_first");
+		assert(infos != null, v.pos.toString());
+		return infos;
+	}
+
+	function secondPass(v:DElem, bcs:Breadcrumbs)
 	{
 		switch v.def {
 		case DHtmlStore(_.toInputPath() => path):
@@ -228,34 +516,30 @@ class Generator {
 		case DLaTeXPreamble(_), DLaTeXExport(_):
 			return "";
 		case DVolume(no, name, children):
-			idc.volume = v.id.sure();
-			noc.volume = no;
-			var url = Path.join(["volume", idc.volume]);
-			bcs.volume = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
+			var infos = getFirstPassInfos(v);
+			bcs.volume = { no:no, name:new Html(genh(name)), url:infos.url };
 			var title = 'Volume $no: ${genn(name)}';
-			var buf = openBuffer(title, bcs, url);
-			toc.add('<li class="volume">\n${Render.tocItem(no, "Volume " + no, new Html(genh(name)), url)}\n<ul>\n');
+			var buf = openBuffer(title, bcs, infos.url);
+			toc.add('<li class="volume">\n${Render.tocItem(no, "Volume " + no, new Html(genh(name)), infos.url)}\n<ul>\n');
 			buf.add('
 				<section>
-				<div class="volumehead v${noc.volume}"><h1 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h1></div>
-				${genv(children, idc, noc, bcs)}
+				<div class="volumehead v$no"><h1 id="heading" class="volume$no">$no$QUAD${genh(name)}</h1></div>
+				${secondPass(children, bcs)}
 				</section>
 			'.doctrim());
 			toc.add("</ul>\n</li>\n");
 			bcs.volume = null;  // FIXME hack
 			return "";
 		case DChapter(no, name, children):
-			idc.chapter = v.id.sure();
-			noc.chapter = no;
-			var url = Path.addTrailingSlash(idc.chapter);
-			bcs.chapter = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
+			var infos = getFirstPassInfos(v);
+			bcs.chapter = { no:no, name:new Html(genh(name)), url:infos.url };
 			var title = 'Chapter $no: ${genn(name)}';
-			var buf = openBuffer(title, bcs, url);
-			toc.add('<li class="chapter">${Render.tocItem(null, "Chapter " + noc.chapter, new Html(genh(name)), url)}<ul>\n');
+			var buf = openBuffer(title, bcs, infos.url);
+			toc.add('<li class="chapter">${Render.tocItem(null, "Chapter " + no, new Html(genh(name)), infos.url)}<ul>\n');
 			buf.add('
 				<section>
-				<h1 id="heading" class="volume${noc.volume}">$no$QUAD${genh(name)}</h1>
-				${genv(children, idc, noc, bcs)}
+				<h1 id="heading" class="volume${infos.volumeNo}">$no$QUAD${genh(name)}</h1>
+				${secondPass(children, bcs)}
 				</section>
 			'.doctrim());
 			toc.add("</ul>\n</li>\n");
@@ -263,18 +547,15 @@ class Generator {
 			bcs.chapter = null;  // FIXME hack
 			return "";
 		case DSection(no, name, children):
-			idc.section = v.id.sure();
-			noc.section = no;
-			var lno = noc.join(false, ".", chapter, section);
-			var url = Path.join([idc.chapter, idc.section]);
-			bcs.section = { no:no, name:new Html(genh(name)), url:url };  // FIXME raw html
-			var title = '$lno ${genn(name)}';  // TODO chapter name
-			var buf = openBuffer(title, bcs, url);
-			toc.add('<li class="section">${Render.tocItem(null, lno, new Html(genh(name)), url)}<ul>\n');
+			var infos = getFirstPassInfos(v);
+			bcs.section = { no:no, name:new Html(genh(name)), url:infos.url };
+			var title = '${infos.no} ${genn(name)}';
+			var buf = openBuffer(title, bcs, infos.url);
+			toc.add('<li class="section">${Render.tocItem(null, infos.no, new Html(genh(name)), infos.url)}<ul>\n');
 			buf.add('
 				<section>
-				<h1 id="heading" class="volume${noc.volume}">$lno$QUAD${genh(name)}</h1>
-				${genv(children, idc, noc, bcs)}
+				<h1 id="heading" class="volume${infos.volumeNo}">${infos.no}$QUAD${genh(name)}</h1>
+				${secondPass(children, bcs)}
 				</section>
 			'.doctrim());
 			toc.add("</ul>\n</li>\n");
@@ -282,37 +563,28 @@ class Generator {
 			bcs.section = null;  // FIXME hack
 			return "";
 		case DSubSection(no, name, children):
-			idc.subSection = v.id.sure();
-			noc.subSection = no;
-			var lno = noc.join(false, ".", chapter, section, subSection);
-			var id = idc.join(false, "/", subSection);
-			toc.add('<li>${Render.tocItem(null, lno, new Html(genh(name)), bcs.section.url+"#"+id)}<ul>\n');
+			var infos = getFirstPassInfos(v);
+			toc.add('<li>${Render.tocItem(null, infos.no, new Html(genh(name)), infos.url)}<ul>\n');
 			var html = '
 				<section>
-				<h2 id="$id" class="volume${noc.volume} share">$lno$QUAD${genh(name)}</h2>
-				${genv(children, idc, noc, bcs)}
+				<h2 id="${infos.htmlId}" class="volume${infos.volumeNo} share">${infos.no}$QUAD${genh(name)}</h2>
+				${secondPass(children, bcs)}
 				</section>
 			'.doctrim() + "\n";
 			toc.add("</ul>\n</li>\n");
 			return html;
 		case DSubSubSection(no, name, children):
-			idc.subSubSection = v.id.sure();
-			noc.subSubSection = no;
-			var lno = noc.join(false, ".", chapter, section, subSection, subSubSection);
-			var id = idc.join(false, "/", subSection, subSubSection);
+			var infos = getFirstPassInfos(v);
 			var html = '
 				<section>
-				<h3 id="$id" class="volume${noc.volume} share">$lno$QUAD${genh(name)}</h3>
-				${genv(children, idc, noc, bcs)}
+				<h3 id="${infos.htmlId}" class="volume${infos.volumeNo} share">${infos.no}$QUAD${genh(name)}</h3>
+				${secondPass(children, bcs)}
 				</section>
 			'.doctrim() + "\n";
-			toc.add('<li>${Render.tocItem(null, lno, new Html(genh(name)), bcs.section.url+"#"+id)}</li>');
+			toc.add('<li>${Render.tocItem(null, infos.no, new Html(genh(name)), infos.url)}</li>');
 			return html;
 		case DBox(no, name, children):
-			idc.box = v.id.sure();
-			noc.box = no;
-			var no = noc.join(false, ".", chapter, box);
-			var id = idc.join(true, ":", box);
+			var infos = getFirstPassInfos(v);
 			var sz = TextWidth;
 			function autoSize(d:DElem) {
 				if (d.def.match(DTable(_, FullWidth|MarginWidth, _) | DFigure(_, FullWidth|MarginWidth, _)))
@@ -322,30 +594,24 @@ class Generator {
 			autoSize(v);
 			var size = sizeToClass(sz);
 			return '
-			<section class="box $size" id="$id">
-			<h3 class="volume${noc.volume} share">Box $no <em>${genh(name)}</em></h3>
-				${genv(children, idc, noc, bcs)}
+			<section class="box $size" id="${infos.htmlId}">
+			<h3 class="volume${infos.volumeNo} share">Box ${infos.no} <em>${genh(name)}</em></h3>
+				${secondPass(children, bcs)}
 				</section>
 			'.doctrim() + "\n";
 		case DTitle(name):
 			return '<h3>${genh(name)}</h3>';
 		case DFigure(no, size, _.toInputPath() => path, caption, cright):
-			idc.figure = v.id.sure();
-			noc.figure = no;
-			var no = noc.join(false, ".", chapter, figure);
-			var id = idc.join(true, ":", figure);
+			var infos = getFirstPassInfos(v);
 			var p = saveAsset(path);
 			return '
-				<figure class="img-block ${sizeToClass(size)}" id="$id">
-				<a><img src="$p" class="overlay-trigger" alt="Fig. $no ${genn(caption)}"/></a>
-				<figcaption class="share"><strong>Fig. $no</strong>$QUAD${genh(caption)} <em>${genh(cright)}</em></figcaption>
+				<figure class="img-block ${sizeToClass(size)}" id="${infos.htmlId}">
+				<a><img src="$p" class="overlay-trigger" alt="Figure ${infos.no} ${genn(caption)}"/></a>
+				<figcaption class="share"><strong>Figure ${infos.no}</strong>$QUAD${genh(caption)} <em>${genh(cright)}</em></figcaption>
 				</figure>
 			'.doctrim() + "\n";
 		case DTable(no, size, caption, header, rows):
-			idc.table = v.id.sure();
-			noc.table = no;
-			var no = noc.join(false, ".", chapter, table);
-			var id = idc.join(true, ":", table);
+			var infos = getFirstPassInfos(v);
 			var buf = new StringBuf();
 			function writeCell(cell:DElem, header:Bool)
 			{
@@ -355,7 +621,7 @@ class Generator {
 				case DParagraph(h):
 					buf.add(genh(h));
 				case _:
-					buf.add(genv(cell, idc, noc, bcs));
+					buf.add(secondPass(cell, bcs));
 				}
 				buf.add('</$tag>');
 			}
@@ -368,7 +634,7 @@ class Generator {
 			}
 			buf.add('
 				<section class="${sizeToClass(size)}">
-				<h3 id="$id" class="share">Table $no$QUAD${genh(caption)}</h3>
+				<h3 id="${infos.htmlId}" class="share">Table ${infos.no}$QUAD${genh(caption)}</h3>
 				<table>
 			'.doctrim());
 			buf.add("\n<thead>");
@@ -379,15 +645,12 @@ class Generator {
 			buf.add("</table>\n</section>\n");
 			return buf.toString();
 		case DImgTable(no, size, caption, _.toInputPath() => path):
-			idc.table = v.id.sure();
-			noc.table = no;
-			var no = noc.join(false, ".", chapter, table);
-			var id = idc.join(true, ":", table);
+			var infos = getFirstPassInfos(v);
 			var p = saveAsset(path);
 			return '
 				<figure class="img-block ${sizeToClass(size)}">
-				<h3 id="$id" class="share">Table $no$QUAD${genh(caption)}</h3>
-				<a><img src="$p" class="overlay-trigger" alt="Table $no ${genn(caption)}"/></a>
+				<h3 id="${infos.htmlId}" class="share">Table ${infos.no}$QUAD${genh(caption)}</h3>
+				<a><img src="$p" class="overlay-trigger" alt="Table ${infos.no} ${genn(caption)}"/></a>
 				</figure>
 			'.doctrim() + "\n";
 		case DList(numbered, li):
@@ -400,7 +663,7 @@ class Generator {
 				case DParagraph(h):
 					buf.add(genh(h));
 				case _:
-					buf.add(genv(i, idc, noc, bcs));
+					buf.add(secondPass(i, bcs));
 				}
 				buf.add("</li>\n");
 			}
@@ -417,7 +680,7 @@ class Generator {
 		case DElemList(li):
 			var buf = new StringBuf();
 			for (i in li)
-				buf.add(genv(i, idc, noc, bcs));
+				buf.add(secondPass(i, bcs));
 			return buf.toString();
 		case DEmpty:
 			return "";
@@ -432,7 +695,7 @@ class Generator {
 		return saveAsset(path, Bytes.ofString(contents));
 	}
 
-	public function writeDocument(doc:NewDocument)
+	public function writeDocument(doc:Document)
 	{
 		// FIXME get the document name elsewhere
 
@@ -441,21 +704,22 @@ class Generator {
 		customHead = [];  // FIXME unique stylesheet collection
 		srcCache = new Map();  // TODO abstract
 		lastSrcId = 0;
-
+		index = new Map();
 
 		for (keyword in ["assets", "volume"])
 			reserveBuffer(keyword);
 		reserveBuffer(ROOT_URL);  // temporary due to ordering constraints
 		reserveBuffer(TOC_URL);  // temporary due to ordering constraints
 
-		// `toc.add` and `genv` ordering is relevant
+		// `toc.add` and `secondPass` ordering is relevant
 		// it's necessary to process all `\html\head` before actually opening buffers and writing heads
 		toc = new StringBuf();
 		toc.add(
 				'<div id="toc" class="tocfull">
 					<ul><li class="index">${Render.tocItem(null, null, "BRT Planning Guide", ROOT_URL)}</li>
 				'.doctrim());
-		var contents = genv(doc, new IdCtx(), new NoCtx(), {});
+		firstPass(doc, new IdCtx(), new NoCtx(), null);  // FIXME need a pseudo (or real) root page
+		var contents = secondPass(doc, {});
 
 		// remove temporary constraints
 		for (url in [ROOT_URL, TOC_URL])

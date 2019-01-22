@@ -6,7 +6,7 @@ import transform.ValidationError;
 enum ParserErrorValue {
 	InvalidUtf8;
 	UnexpectedToken(def:TokenDef, ?desc:String);
-	MissingArgument(?parent:TokenDef, ?desc:String);
+	MissingComplement(?parent:TokenDef, ?desc:String);
 	UnclosedToken(def:TokenDef);
 	BadValue(?details:String);
 	UnexpectedCommand(name:String);
@@ -61,7 +61,7 @@ class ParserError extends GenericError {
 			if (desc != null)
 				msg += '; $desc';
 			return msg;
-		case MissingArgument(parent, desc):
+		case MissingComplement(parent, desc):
 			var msg = new StringBuf();
 			msg.add("Missing ");
 			msg.add(desc != null ? desc : "argument");

@@ -46,7 +46,7 @@ class Main {
 		var ast = Context.time("parsing", parser.Parser.parse.bind(p.toInputPath()));
 
 		println(ansi(Green) + "=> Structuring" + ansi(Off));
-		var doc = Context.time("structuring", transform.NewTransform.transform.bind(ast));
+		var doc = Context.time("structuring", transform.Structurer.transform.bind(ast));
 
 		println(ansi(Green) + "=> Validating" + ansi(Off));
 		var tval = Sys.time();
